@@ -62,10 +62,7 @@ if (isset($_POST['action'])) {
 	  }
 	$ProfileGallery				=$_POST['ProfileGallery'];
 	  if (empty($ProfileGallery)) {  // Probably a new record... 
-		$ProfileGallery = rb_agency_safenames($ProfileContactDisplay)."-".$current_user->ID; 
-	  }else{
-		  
-		  $ProfileGallery = $ProfileGallery."-".$current_user->ID; 
+		$ProfileGallery = rb_agency_safenames($ProfileContactDisplay); 
 	  }
 	$ProfileContactParent		=$_POST['ProfileContactParent'];
 	$ProfileContactEmail		=$_POST['ProfileContactEmail'];
@@ -101,7 +98,7 @@ if (isset($_POST['action'])) {
 	}
 	
 	/* Update user password. */
-	if ( !empty($ProfilePassword) && !empty($ProfilePasswordConfirm) ) {
+	if ( !empty($ProfilePassword ) && !empty( $ProfilePasswordConfirm ) ) {
 		if ( $ProfilePassword == $ProfilePasswordConfirm ) {
 			wp_update_user( array( 'ID' => $current_user->id, 'user_pass' => esc_attr( $ProfilePassword ) ) );
 		} else {
@@ -155,7 +152,7 @@ if (isset($_POST['action'])) {
 			// Set Display Name as Record ID (We have to do this after so we know what record ID to use... right ;)
 			if ($rb_agency_option_profilenaming == 3) {
 				$ProfileContactDisplay = "ID-". $ProfileID;
-				$ProfileGallery = "ID". $ProfileID."-";
+				$ProfileGallery = "ID". $ProfileID;
 
 				$update = $wpdb->query("UPDATE " . table_agency_profile . " SET ProfileContactDisplay='". $ProfileContactDisplay. "', ProfileGallery='". $ProfileGallery. "' WHERE ProfileID='". $ProfileID ."'");
 				$updated = $wpdb->query($update);
@@ -168,7 +165,7 @@ if (isset($_POST['action'])) {
 			} else {
 				$finished = false;                       // we're not finished yet (we just started)
 				while ( ! $finished ):                   // while not finished
-				  $NewProfileGallery = $ProfileGallery ;   // output folder name
+				  $NewProfileGallery = $ProfileGallery ."-". rand(1, 15);   // output folder name
 				  if ( ! is_dir(rb_agency_UPLOADPATH . $NewProfileGallery) ):        // if folder DOES NOT exist...
 					mkdir(rb_agency_UPLOADPATH . $NewProfileGallery, 0755);
 					$ProfileGallery = $NewProfileGallery;  // Set it to the new  thing
@@ -188,14 +185,14 @@ if (isset($_POST['action'])) {
 			}
 			
 			$alerts = "<div id=\"message\" class=\"updated\"><p>". __("New Profile added successfully", rb_agencyinteract_TEXTDOMAIN) ."!</p></div>"; 
-					
-			/* Redirect so the page will show updated info. */
-			if ( !$error ) {
-				wp_redirect(get_bloginfo("wpurl") . "/profile-member/manage/");
-				exit;
-			}
 		} else {
         	$alerts = "<div id=\"message\" class=\"error\"><p>". __("Error creating record, please ensure you have filled out all required fields.", rb_agencyinteract_TEXTDOMAIN) ."<br />". $error ."</p></div>"; 
+		}
+				
+		/* Redirect so the page will show updated info. */
+		if ( !$error ) {
+			wp_redirect(get_bloginfo("wpurl") . "/profile-member/manage/");
+			exit;
 		}
 	break;
 	
@@ -334,16 +331,5 @@ get_header();
 	echo "  </div><!-- #content -->\n";
 	echo "</div><!-- #container -->\n";
 	
-// Get Sidebar 
-$rb_agencyinteract_options_arr = get_option('rb_agencyinteract_options');
-	$rb_agencyinteract_option_profilemanage_sidebar = $rb_agencyinteract_options_arr['rb_agencyinteract_option_profilemanage_sidebar'];
-	$LayoutType = "";
-	if ($rb_agencyinteract_option_profilemanage_sidebar) {
-		echo "	<div id=\"profile-sidebar\" class=\"manage\">\n";
-			$LayoutType = "profile";
-			get_sidebar(); 
-		echo "	</div>\n";
-	}
-// Get Footer
 get_footer();
 ?>
