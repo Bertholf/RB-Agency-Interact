@@ -3,7 +3,8 @@
 	global $current_user;
 	get_currentuserinfo();
 	$ProfileUserLinked = $current_user->id;
-
+	
+	// Talent Account Info Setup
 	// Get Settings
 	$rb_agency_options_arr = get_option('rb_agency_options');
 		$rb_agency_option_showsocial 			= $rb_agency_options_arr['rb_agency_option_showsocial'];
@@ -47,11 +48,23 @@
 		echo "    <tr colspan=\"2\">\n";
 		echo "		<td scope=\"row\"><h3>". __("Contact Information", rb_agencyinteract_TEXTDOMAIN) ."</h3></th>\n";
 		echo "	  </tr>\n";
+
+
+// BNE EDIT (Removed gallery link for clients and only show for Talents
+// 0 = Talent, 1 = Clients
+if ($profiletype == 0) {
+		echo "<div class=\"PageTitle\"><h1>Talent Account Area</h1></div>\n";	 // Profile Name
+
+
+
+		// Talent Profile Link
+		// BNE EDIT - Added PrettyPhoto to gallery link
+		
 		echo "    <tr valign=\"top\">\n";
-		echo "		<td scope=\"row\">". __("Gallery Folder", rb_agencyinteract_TEXTDOMAIN) ."</th>\n";
+		echo "		<td scope=\"row\">". __("Preview Your Profile", rb_agencyinteract_TEXTDOMAIN) ."</th>\n";		
 		echo "		<td>\n";
 					if (!empty($ProfileGallery) && is_dir(rb_agency_UPLOADPATH .$ProfileGallery)) { 
-						echo "<div id=\"message\"><span class=\"updated\"><a href=\"/profile/". $ProfileGallery ."/\" target=\"_blank\">/profile/". $ProfileGallery ."/</a></span></div>\n";
+						echo "<div id=\"message\"><span class=\"updated\"><a href=\"/profile/". $ProfileGallery ."/?iframe=true&width=100%&height=100%\" rel=\"prettyPhoto[iframes]\">/profile/". $ProfileGallery ."/</a></span></div>\n";
 						echo "<input type=\"hidden\" id=\"ProfileGallery\" name=\"ProfileGallery\" value=\"". $ProfileGallery ."\" />\n";
 					} else {
 						echo "<input type=\"text\" id=\"ProfileGallery\" name=\"ProfileGallery\" value=\"". $ProfileGallery ."\" />\n";
@@ -60,6 +73,13 @@
 		echo "             	</div>\n";
 		echo "		</td>\n";
 		echo "	</tr>\n";
+
+} 		// END EDIT
+
+
+
+
+
 		echo "    <tr valign=\"top\">\n";
 		echo "		<td scope=\"row\">". __("First Name", rb_agencyinteract_TEXTDOMAIN) ."</th>\n";
 		echo "		<td>\n";
@@ -72,6 +92,12 @@
 		echo "			<input type=\"text\" id=\"ProfileContactNameLast\" name=\"ProfileContactNameLast\" value=\"". $ProfileContactNameLast ."\" />\n";
 		echo "		</td>\n";
 		echo "	  </tr>\n";
+
+// BNE EDIT (Removed Gender for clients adn only show for Talents
+// 0 = Talent, 1 = Clients
+if ($profiletype == 0) {
+
+
 		echo "    <tr valign=\"top\">\n";
 		echo "		<td scope=\"row\">". __("Gender", rb_agencyinteract_TEXTDOMAIN) ."</th>\n";
 		echo "		<td><select name=\"ProfileGender\" id=\"ProfileGender\">\n";
@@ -81,20 +107,25 @@
 		echo "		  </select>\n";
 		echo "		</td>\n";
 		echo "	  </tr>\n";
+		
+} // END EDIT		
+		
 		// Private Information
 		echo "    <tr valign=\"top\">\n";
 		echo "		<td scope=\"row\" colspan=\"2\"><h3>". __("Private Information", rb_agencyinteract_TEXTDOMAIN) ."</h3>The following information will appear only in administrative areas.</th>\n";
 		echo "	  </tr>\n";
+
+
+// BNE EDIT (Removed Parent and Birthdate for clients adn only show for Talents
+// 0 = Talent, 1 = Clients
+if ($profiletype == 0) {
+
+
+
 		echo "    <tr valign=\"top\">\n";
 		echo "		<td scope=\"row\">". __("Parent (if minor)", rb_agencyinteract_TEXTDOMAIN) ."</th>\n";
 		echo "		<td>\n";
 		echo "			<input type=\"text\" id=\"ProfileContactParent\" name=\"ProfileContactParent\" value=\"". $ProfileContactParent ."\" />\n";
-		echo "		</td>\n";
-		echo "	  </tr>\n";
-		echo "    <tr valign=\"top\">\n";
-		echo "		<td scope=\"row\">". __("Email Address", rb_agencyinteract_TEXTDOMAIN) ."</th>\n";
-		echo "		<td>\n";
-		echo "			<input type=\"text\" id=\"ProfileContactEmail\" name=\"ProfileContactEmail\" value=\"". $ProfileContactEmail ."\" />\n";
 		echo "		</td>\n";
 		echo "	  </tr>\n";
 		echo "    <tr valign=\"top\">\n";
@@ -103,6 +134,19 @@
 		echo "			<input type=\"text\" id=\"ProfileDateBirth\" name=\"ProfileDateBirth\" value=\"". $ProfileDateBirth ."\" />\n";
 		echo "		</td>\n";
 		echo "	  </tr>\n";
+
+} // END EDIT
+
+
+
+		echo "    <tr valign=\"top\">\n";
+		echo "		<td scope=\"row\">". __("Email Address", rb_agencyinteract_TEXTDOMAIN) ."</th>\n";
+		echo "		<td>\n";
+		echo "			<input type=\"text\" id=\"ProfileContactEmail\" name=\"ProfileContactEmail\" value=\"". $ProfileContactEmail ."\" />\n";
+		echo "		</td>\n";
+		echo "	  </tr>\n";
+		
+		
 		// Address
 		echo "    <tr valign=\"top\">\n";
 		echo "		<td scope=\"row\">". __("Street", rb_agencyinteract_TEXTDOMAIN) ."</th>\n";

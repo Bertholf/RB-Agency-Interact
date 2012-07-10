@@ -1,4 +1,14 @@
 <?php
+
+	// Agency Account Information Setup
+	
+	/* Get Options */
+	$rb_agencyinteract_options_arr = get_option('rb_agencyinteract_options');
+		$rb_agencyinteract_option_registerconfirm = (int)$rb_agencyinteract_options_arr['rb_agencyinteract_option_registerconfirm'];
+
+	
+	
+	
 	echo "<form method=\"post\" enctype=\"multipart/form-data\" action=\"". get_bloginfo("wpurl") ."/profile-member/account/\" style=\"width: 400px;\">\n";
 	echo "<input type=\"hidden\" id=\"ProfileContactEmail\" name=\"ProfileContactEmail\" value=\"". $current_user->user_email ."\" />\n";
 	echo "<input type=\"hidden\" id=\"ProfileUserLinked\" name=\"ProfileUserLinked\" value=\"". $current_user->id ."\" />\n";
@@ -26,9 +36,11 @@
 	echo "			<input type=\"text\" id=\"ProfileContactEmail\" name=\"ProfileContactPhoneHome\" />\n";
 	echo "		</td>\n";
 	echo "	  </tr>\n";
-	// Public Information
+	
+/*	// Public Information
+		
 	echo "    <tr valign=\"top\">\n";
-	echo "		<td scope=\"row\" colspan=\"2\"><h3>". __("Public Information", rb_agencyinteract_TEXTDOMAIN) ."</h3>The following information may appear in profile pages.</th>\n";
+	echo "		<td scope=\"row\" colspan=\"2\"><br><br><h3>". __("Public Information", rb_agencyinteract_TEXTDOMAIN) ."</h3>The following information may appear in profile pages.</th>\n";
 	echo "	  </tr>\n";
 	echo "    <tr valign=\"top\">\n";
 	echo "		<td scope=\"row\">". __("Gender", rb_agencyinteract_TEXTDOMAIN) ."</th>\n";
@@ -42,7 +54,7 @@
 	echo "    <tr valign=\"top\">\n";
 	echo "		<td scope=\"row\">". __("Birthdate", rb_agencyinteract_TEXTDOMAIN) ."</th>\n";
 	echo "		<td>\n";
-				  /* Month */ 
+				  // Month
 				  $monthName = array(1=> "January", "February", "March","April", "May", "June", "July", "August","September", "October", "November", "December"); 
 	echo "		  <select name=\"ProfileDateBirth_Month\" id=\"ProfileDateBirth_Month\">\n";
 					for ($currentMonth = 1; $currentMonth <= 12; $currentMonth++ ) { 	
@@ -50,31 +62,35 @@
 					}
 	echo "		  </select>\n";
 
-				  /* Day */ 
+				  // Day  
 	echo "		  <select name=\"ProfileDateBirth_Day\" id=\"ProfileDateBirth_Day\">\n";
 					for ($currentDay = 1; $currentDay <= 31; $currentDay++ ) { 	
 	echo "			<option value=\"". $currentDay ."\">". $currentDay ."</option>\n";
 					}
 	echo "		  </select>\n";
 
-				  /* Year */ 
+				  // Year 
 	echo "		  <select name=\"ProfileDateBirth_Year\" id=\"ProfileDateBirth_Year\">\n";
 					for ($currentYear = 1940; $currentYear <= 2010; $currentYear++ ) { 	
 	echo "			<option value=\"". $currentYear ."\">". $currentYear ."</option>\n";
 					}
 	echo "		  </select>\n";
 	echo "		</td>\n";
-	echo "	  </tr>\n";
+	echo "	  </tr>\n"; 
+*/
+	
 	// Private Information
+	
 	echo "    <tr valign=\"top\">\n";
-	echo "		<td scope=\"row\" colspan=\"2\"><h3>". __("Private Information", rb_agencyinteract_TEXTDOMAIN) ."</h3>". __("The following information will NOT appear in public areas and is for administrative use only.", rb_agencyinteract_TEXTDOMAIN) ."</th>\n";
+	echo "		<td scope=\"row\" colspan=\"2\"><br><br><h3>". __("Private Information", rb_agencyinteract_TEXTDOMAIN) ."</h3>". __("The following information will NOT appear in public areas and is for administrative use only.", rb_agencyinteract_TEXTDOMAIN) ."</th>\n";
 	echo "	  </tr>\n";
-	echo "    <tr valign=\"top\">\n";
+/*	echo "    <tr valign=\"top\">\n";
 	echo "		<td scope=\"row\">". __("Parent (if minor)", rb_agencyinteract_TEXTDOMAIN) ."</th>\n";
 	echo "		<td>\n";
 	echo "			<input type=\"text\" id=\"ProfileContactParent\" name=\"ProfileContactParent\" />\n";
 	echo "		</td>\n";
 	echo "	  </tr>\n";
+*/
 	echo "    <tr valign=\"top\">\n";
 	echo "		<td scope=\"row\">". __("Street", rb_agencyinteract_TEXTDOMAIN) ."</th>\n";
 	echo "		<td>\n";
@@ -141,23 +157,30 @@
 	// END Query
 	echo "    </td>\n";
 	echo "  </tr>\n";
-	echo "    <tr valign=\"top\">\n";
-	echo "		<td scope=\"row\">". __("Password (Leave blank to keep same password)", rb_agencyinteract_TEXTDOMAIN) ."</th>\n";
-	echo "		<td>\n";
+	if ($rb_agencyinteract_option_registerconfirm == 0) {
+	echo "  <tr valign=\"top\">\n";
+	echo "    <td scope=\"row\">". __("Password (Leave blank to keep same password)", rb_agencyinteract_TEXTDOMAIN) ."</th>\n";
+	echo "    <td>\n";
 	echo "			<input type=\"password\" id=\"ProfilePassword\" name=\"ProfilePassword\" />\n";
-	echo "		</td>\n";
-	echo "	  </tr>\n";
-	echo "    <tr valign=\"top\">\n";
-	echo "		<td scope=\"row\">". __("Password (Retype to Confirm)", rb_agencyinteract_TEXTDOMAIN) ."</th>\n";
-	echo "		<td>\n";
+	echo "    </td>\n";
+	echo "  </tr>\n";
+	echo "  <tr valign=\"top\">\n";
+	echo "    <td scope=\"row\">". __("Password (Retype to Confirm)", rb_agencyinteract_TEXTDOMAIN) ."</th>\n";
+	echo "    <td>\n";
 	echo "			<input type=\"password\" id=\"ProfilePasswordConfirm\" name=\"ProfilePasswordConfirm\" />\n";
-	echo "		</td>\n";
-	echo "	  </tr>\n";
+	echo "    </td>\n";
+	echo "  </tr>\n";
+	}
 	echo "  </tbody>\n";
 	echo "</table>\n";
-	echo "<p class=\"submit\">\n";
+	echo "<br><br><p class=\"submit\">\n";
 	echo "     <input type=\"hidden\" name=\"action\" value=\"addRecord\" />\n";
 	echo "     <input type=\"submit\" name=\"submit\" value=\"". __("Save and Continue", rb_restaurant_TEXTDOMAIN) ."\" class=\"button-primary\" />\n";
 	echo "</p>\n";
 	echo "</form>\n";
+	
+	
+	echo "</div>\n";
+	
+	
 ?>

@@ -62,10 +62,7 @@ if (isset($_POST['action'])) {
 	  }
 	$ProfileGallery				=$_POST['ProfileGallery'];
 	  if (empty($ProfileGallery)) {  // Probably a new record... 
-		$ProfileGallery = rb_agency_safenames($ProfileContactDisplay)."-".$current_user->ID; 
-	  }else{
-		  
-		  $ProfileGallery = $ProfileGallery."-".$current_user->ID; 
+		$ProfileGallery = rb_agency_safenames($ProfileContactDisplay); 
 	  }
 	$ProfileContactParent		=$_POST['ProfileContactParent'];
 	$ProfileContactEmail		=$_POST['ProfileContactEmail'];
@@ -155,7 +152,7 @@ if (isset($_POST['action'])) {
 			// Set Display Name as Record ID (We have to do this after so we know what record ID to use... right ;)
 			if ($rb_agency_option_profilenaming == 3) {
 				$ProfileContactDisplay = "ID-". $ProfileID;
-				$ProfileGallery = "ID". $ProfileID."-";
+				$ProfileGallery = "ID". $ProfileID;
 
 				$update = $wpdb->query("UPDATE " . table_agency_profile . " SET ProfileContactDisplay='". $ProfileContactDisplay. "', ProfileGallery='". $ProfileGallery. "' WHERE ProfileID='". $ProfileID ."'");
 				$updated = $wpdb->query($update);
@@ -168,7 +165,7 @@ if (isset($_POST['action'])) {
 			} else {
 				$finished = false;                       // we're not finished yet (we just started)
 				while ( ! $finished ):                   // while not finished
-				  $NewProfileGallery = $ProfileGallery ;   // output folder name
+				  $NewProfileGallery = $ProfileGallery ."-". rand(1, 15);   // output folder name
 				  if ( ! is_dir(rb_agency_UPLOADPATH . $NewProfileGallery) ):        // if folder DOES NOT exist...
 					mkdir(rb_agency_UPLOADPATH . $NewProfileGallery, 0755);
 					$ProfileGallery = $NewProfileGallery;  // Set it to the new  thing
@@ -268,6 +265,14 @@ if (isset($_POST['action'])) {
 
 /* Display Page ******************************************/ 
 get_header();
+
+
+echo "<div class=\"content_wrapper\">\n"; // Theme Wrapper 
+	echo "<div class=\"PageTitle\"><h1>Edit Account Information</h1></div>\n";	 // Profile Name
+
+
+
+
 	
 	echo "<div id=\"container\" class=\"one-column rb-agency-interact-account\">\n";
 	echo "  <div id=\"content\">\n";
@@ -277,7 +282,7 @@ get_header();
 		if (is_user_logged_in()) { 
 			
 			/// Show registration steps
-			echo "<div id=\"profile-steps\">Profile Setup: Step 1 of 4</div>\n";
+			//echo "<div id=\"profile-steps\">Profile Setup: Step 1 of 4</div>\n";
 			
 			echo "<div id=\"profile-manage\" class=\"profile-admin account\">\n";
 			
@@ -315,7 +320,7 @@ get_header();
 				
 			  } else {
 				// Cant register
-				echo "<strong>". __("Self registration is not permitted.", rb_agencyinteract_TEXTDOMAIN) ."</strong>";
+				echo "<strong>". __("Lets Setup your account, shall we? <a href=\"/profile-member/manage/\"/>Click here to begin</a>", rb_agencyinteract_TEXTDOMAIN) ."</strong>";
 			  }
 
 				
@@ -324,7 +329,7 @@ get_header();
 			echo " </div>\n"; // .profile-manage-inner
 			echo "</div>\n"; // #profile-manage
 		} else {
-			echo "<p class=\"warning\">\n";
+			echo "<p class=\"alert\">\n";
 					_e('You must be logged in to edit your profile.', 'frontendprofile');
 			echo "</p><!-- .warning -->\n";
 			// Show Login Form
@@ -333,6 +338,14 @@ get_header();
 		
 	echo "  </div><!-- #content -->\n";
 	echo "</div><!-- #container -->\n";
+
+
+
+echo "</div>\n"; //END .content_wrapper 
+
+
+
+
 	
 // Get Sidebar 
 $rb_agencyinteract_options_arr = get_option('rb_agencyinteract_options');

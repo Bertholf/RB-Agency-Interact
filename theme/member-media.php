@@ -64,6 +64,11 @@ if (isset($_POST['action'])) {
 						$error .= "<b><i>Please upload an image file only</i></b><br />";
 						$have_error = true;
 						}
+					} elseif($uploadMediaType == "VoiceDemo") {
+						if($_FILES['profileMedia'. $i]['type'] != "audio/mp3"){
+						$error .= "<b><i>Please upload a mp3 file only</i></b><br />";
+						$have_error = true;
+						}
 					} else {
 						if(!$_FILES['profileMedia'. $i]['type'] == "application/pdf" || !$_FILES['profileMedia'. $i]['type'] == "image/jpeg" || !$_FILES['profileMedia'. $i]['type'] == "image/gif" || !$_FILES['profileMedia'. $i]['type'] == "image/png"){
 						$error .= "<b><i>Please upload a PDF or image file only</i></b><br />";
@@ -77,16 +82,30 @@ if (isset($_POST['action'])) {
 					 $count = mysql_num_rows($results);
 
 					 if ($count < 1) {
-						$image = new rb_agency_image();
-						$image->load($_FILES['profileMedia'. $i]['tmp_name']);
-
-						if ($image->getHeight() > $rb_agency_option_agencyimagemaxheight) {
-							$image->resizeToHeight($rb_agency_option_agencyimagemaxheight);
-						}
-						$image->save(rb_agency_UPLOADPATH . $ProfileGallery ."/". $safeProfileMediaFilename);
-						// Add to database
-						$results = $wpdb->query("INSERT INTO " . table_agency_profile_media . " (ProfileID, ProfileMediaType, ProfileMediaTitle, ProfileMediaURL) VALUES ('". $ProfileID ."','". $uploadMediaType ."','". $safeProfileMediaFilename ."','". $safeProfileMediaFilename ."')");
+						if($uploadMediaType == "Image") { 
+						    if($_FILES['profileMedia'. $i]['type'] == "image/jpeg" || $_FILES['profileMedia'. $i]['type'] == "image/gif" || $_FILES['profileMedia'. $i]['type'] == "image/png"){
+						
+									$image = new rb_agency_image();
+									$image->load($_FILES['profileMedia'. $i]['tmp_name']);
 			
+									if ($image->getHeight() > $rb_agency_option_agencyimagemaxheight) {
+										$image->resizeToHeight($rb_agency_option_agencyimagemaxheight);
+									}
+									$image->save(rb_agency_UPLOADPATH . $ProfileGallery ."/". $safeProfileMediaFilename);
+									// Add to database
+								$results = $wpdb->query("INSERT INTO " . table_agency_profile_media . " (ProfileID, ProfileMediaType, ProfileMediaTitle, ProfileMediaURL) VALUES ('". $ProfileID ."','". $uploadMediaType ."','". $safeProfileMediaFilename ."','". $safeProfileMediaFilename ."')");
+						    }else{
+								$error .= "<b><i>Please upload an image file only</i></b><br />";
+						        $have_error = true;
+							}
+						}
+						else if($uploadMediaType =="VoiceDemo"){
+							// Add to database
+							
+							 $results = $wpdb->query("INSERT INTO " . table_agency_profile_media . " (ProfileID, ProfileMediaType, ProfileMediaTitle, ProfileMediaURL) VALUES ('". $ProfileID ."','". $uploadMediaType ."','". $safeProfileMediaFilename ."','". $safeProfileMediaFilename ."')");
+			                  move_uploaded_file($_FILES['profileMedia'. $i]['tmp_name'], rb_agency_UPLOADPATH . $ProfileGallery ."/".$_FILES['profileMedia'. $i]['name']);
+						}
+						
 					 }
 					}
 				}
@@ -134,8 +153,11 @@ if (isset($_POST['action'])) {
 			$alerts = "<div id=\"message\" class=\"error\"><p>". __("Error updating record, please ensure you have filled out all required fields.", rb_agencyinteract_TEXTDOMAIN) ."</p></div>"; 
 		}
 		
-		wp_redirect( $rb_agencyinteract_WPURL ."/profile-member/subscription" );
+		if ($have_error != true) {
+			wp_redirect( $rb_agencyinteract_WPURL ."/profile-member/media/" );
+		
 		exit;
+	    }
 	break;
 	}
 }
@@ -144,6 +166,11 @@ if (isset($_POST['action'])) {
 
 /* Display Page ******************************************/ 
 get_header();
+
+echo "<div class=\"content_wrapper\">\n"; // Theme Wrapper 
+	echo "<div class=\"PageTitle\"><h1>Edit Your Media Files</h1></div>\n";	 // Profile Name
+
+
 	
 	echo "<div id=\"container\" class=\"one-column\">\n";
 	echo "  <div id=\"content\">\n";
@@ -153,7 +180,7 @@ get_header();
 		if (is_user_logged_in()) { 
 			
 			/// Show registration steps
-			echo "<div id=\"profile-steps\">Profile Setup: Step 3 of 4</div>\n";
+			//echo "<div id=\"profile-steps\">Profile Setup: Step 3 of 4</div>\n";
 			
 			echo "<div id=\"profile-manage\" class=\"overview\">\n";
 			
@@ -164,11 +191,11 @@ get_header();
 			
 			/* Check if the user is regsitered *****************************************/ 
 			// Verify Record
-			$sql = "SELECT ProfileID FROM ". table_agency_profile ." WHERE ProfileUserLinked =  ". $current_user->ID ."";
-			$results = mysql_query($sql);
-			$count = mysql_num_rows($results);
-			if ($count > 0) {
-			  while ($data = mysql_fetch_array($results)) {
+			$sql2 = "SELECT ProfileID FROM ". table_agency_profile ." WHERE ProfileUserLinked =  ". $current_user->ID ."";
+			$results2 = mysql_query($sql2);
+			$count2 = mysql_num_rows($results2);
+			if ($count2 > 0) {
+			  while ($data2 = mysql_fetch_array($results2)) {
 			
 				// Manage Profile
 				include("include-profilemedia.php"); 	
@@ -189,6 +216,8 @@ get_header();
 		
 	echo "  </div><!-- #content -->\n";
 	echo "</div><!-- #container -->\n";
+
+echo "</div>\n"; //END .content_wrapper 
 	
 // Get Sidebar 
 $rb_agencyinteract_options_arr = get_option('rb_agencyinteract_options');

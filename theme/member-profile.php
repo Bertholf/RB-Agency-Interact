@@ -104,8 +104,8 @@ if (isset($_POST['action'])) {
 			$alerts = "<div id=\"message\" class=\"error\"><p>". __("Error updating record, please ensure you have filled out all required fields.", rb_agencyinteract_TEXTDOMAIN) ."</p></div>"; 
 		}
 		
-		wp_redirect( $rb_agencyinteract_WPURL ."/profile-member/media/" );
-		exit;
+		//wp_redirect( $rb_agencyinteract_WPURL ."/profile-member/media/" );
+		//exit;
 	break;
 	}
 }
@@ -114,6 +114,11 @@ if (isset($_POST['action'])) {
 
 /* Display Page ******************************************/ 
 get_header();
+
+echo "<div class=\"content_wrapper\">\n"; // Theme Wrapper 
+	echo "<div class=\"PageTitle\"><h1>Edit Profile Information</h1></div>\n";	 // Profile Name
+
+
 	
 	echo "<div id=\"container\" class=\"one-column rb-agency-interact rb-agency-interact-profile\">\n";
 	echo "  <div id=\"content\">\n";
@@ -123,7 +128,7 @@ get_header();
 		if (is_user_logged_in()) { 
 			
 			/// Show registration steps
-			echo "<div id=\"profile-steps\">Profile Setup: Step 2 of 4</div>\n";
+			//echo "<div id=\"profile-steps\">Profile Setup: Step 2 of 4</div>\n";
 			
 			echo "<div id=\"profile-manage\" class=\"overview\">\n";
 			
@@ -167,6 +172,9 @@ get_header();
 	echo "    <div style=\"clear: both; \"></div>\n";
 	echo "  </div><!-- #content -->\n";
 	echo "</div><!-- #container -->\n";
+
+
+echo "</div>\n"; //END .content_wrapper 
 	
 // Get Sidebar 
 $rb_agencyinteract_options_arr = get_option('rb_agencyinteract_options');

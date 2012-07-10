@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: RB Agency Interactive\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-02-16 06:32-1000\n"
-"PO-Revision-Date: 2012-02-16 06:32-1000\n"
+"POT-Creation-Date: 2012-04-03 11:12-1000\n"
+"PO-Revision-Date: 2012-04-03 11:12-1000\n"
 "Last-Translator: Rob Bertholf <rob@bertholf.com>\n"
 "Language-Team: RB Plugin <info@rbplugin.com>\n"
 "MIME-Version: 1.0\n"
@@ -100,17 +100,17 @@ msgid "Agency Interact Login"
 msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
-#: Plugin\rb-agency-interact/rb-agency-interact.php:251
+#: Plugin\rb-agency-interact/rb-agency-interact.php:261
 msgid "Almost done..."
 msgstr "fast fertig..."
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
-#: Plugin\rb-agency-interact/rb-agency-interact.php:251
+#: Plugin\rb-agency-interact/rb-agency-interact.php:261
 msgid "One More Step"
 msgstr "ein weiterer Schritt"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
-#: Plugin\rb-agency-interact/rb-agency-interact.php:251
+#: Plugin\rb-agency-interact/rb-agency-interact.php:261
 msgid "Please click here to complete the uninstallation process"
 msgstr "Please click here to complete the uninstallation process"
 
@@ -123,8 +123,12 @@ msgstr ""
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/admin/profile-approve.php:60
 #: Plugin\rb-agency-interact/admin/profile-approve.php:107
-#: Plugin\rb-agency-interact/admin/profile-approve.php:121
 msgid "Profile deleted successfully!"
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/admin/profile-approve.php:121
+msgid "Profile approved successfully!"
 msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
@@ -219,124 +223,87 @@ msgid "View"
 msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
-#: Plugin\rb-agency-interact/admin/profile-approve.php:344
-msgid "You are about to delete the profile for "
-msgstr ""
-
-#: C:\Dropbox\Users\Rob\Scripts\RB
-#: Plugin\rb-agency-interact/admin/profile-approve.php:344
-msgid "Cancel"
-msgstr ""
-
-#: C:\Dropbox\Users\Rob\Scripts\RB
-#: Plugin\rb-agency-interact/admin/profile-approve.php:344
-msgid "to stop"
-msgstr ""
-
-#: C:\Dropbox\Users\Rob\Scripts\RB
-#: Plugin\rb-agency-interact/admin/profile-approve.php:344
-msgid "OK"
-msgstr ""
-
-#: C:\Dropbox\Users\Rob\Scripts\RB
-#: Plugin\rb-agency-interact/admin/profile-approve.php:344
-msgid "to delete"
-msgstr ""
-
-#: C:\Dropbox\Users\Rob\Scripts\RB
-#: Plugin\rb-agency-interact/admin/profile-approve.php:344
-msgid "Delete this Record"
-msgstr ""
-
-#: C:\Dropbox\Users\Rob\Scripts\RB
-#: Plugin\rb-agency-interact/admin/profile-approve.php:344
 #: Plugin\rb-agency-interact/admin/profile-approve.php:393
 msgid "Delete"
 msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
-#: Plugin\rb-agency-interact/theme/include-login.php:5
-#: Plugin\rb-agency-interact/theme/member-login.php:60
+#: Plugin\rb-agency-interact/theme/include-login.php:20
 msgid "Members Sign in"
 msgstr "Mitglieder Anmeldung"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
-#: Plugin\rb-agency-interact/theme/include-login.php:9
-#: Plugin\rb-agency-interact/theme/member-login.php:68
+#: Plugin\rb-agency-interact/theme/include-login.php:23
 msgid "Username"
 msgstr "Username"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
-#: Plugin\rb-agency-interact/theme/include-login.php:12
-#: Plugin\rb-agency-interact/theme/member-login.php:71
+#: Plugin\rb-agency-interact/theme/include-login.php:26
 msgid "Password"
 msgstr "Passwort"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
-#: Plugin\rb-agency-interact/theme/include-login.php:12
-#: Plugin\rb-agency-interact/theme/member-login.php:71
+#: Plugin\rb-agency-interact/theme/include-login.php:26
 msgid "forgot password"
 msgstr "Passwort vergessen"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
-#: Plugin\rb-agency-interact/theme/include-login.php:15
-#: Plugin\rb-agency-interact/theme/member-login.php:74
+#: Plugin\rb-agency-interact/theme/include-login.php:29
 msgid "Keep me signed in"
 msgstr "angemeldet bleiben"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
-#: Plugin\rb-agency-interact/theme/include-login.php:19
-#: Plugin\rb-agency-interact/theme/member-login.php:78
+#: Plugin\rb-agency-interact/theme/include-login.php:33
 msgid "Sign In"
 msgstr "anmelden"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
-#: Plugin\rb-agency-interact/theme/include-login.php:26
+#: Plugin\rb-agency-interact/theme/include-login.php:42
 msgid "Not a member"
 msgstr "Kein Mitglied"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
-#: Plugin\rb-agency-interact/theme/include-login.php:27
+#: Plugin\rb-agency-interact/theme/include-login.php:43
 msgid "Talent"
 msgstr "Komparse"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
-#: Plugin\rb-agency-interact/theme/include-login.php:27
+#: Plugin\rb-agency-interact/theme/include-login.php:43
 msgid "Register here"
 msgstr "hier registrieren"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
-#: Plugin\rb-agency-interact/theme/include-login.php:29
+#: Plugin\rb-agency-interact/theme/include-login.php:45
 msgid "Create your free profile page"
 msgstr "erstelle Dein Profil"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
-#: Plugin\rb-agency-interact/theme/include-login.php:30
+#: Plugin\rb-agency-interact/theme/include-login.php:46
 msgid "Apply to Auditions & Jobs"
 msgstr "freigeben für Jobs"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
-#: Plugin\rb-agency-interact/theme/include-login.php:32
+#: Plugin\rb-agency-interact/theme/include-login.php:48
 msgid "Register as Talent / Model"
 msgstr "Registrierung als Komparse"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
-#: Plugin\rb-agency-interact/theme/include-login.php:36
+#: Plugin\rb-agency-interact/theme/include-login.php:52
 msgid "Casting Agents & Producers"
 msgstr "Produktionen"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
-#: Plugin\rb-agency-interact/theme/include-login.php:38
+#: Plugin\rb-agency-interact/theme/include-login.php:54
 msgid "List Auditions & Jobs free"
 msgstr "zeige freie Jobs"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
-#: Plugin\rb-agency-interact/theme/include-login.php:39
+#: Plugin\rb-agency-interact/theme/include-login.php:55
 msgid "Contact People in the Talent Directory"
 msgstr "Kontakt zu Komparsen"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
-#: Plugin\rb-agency-interact/theme/include-login.php:41
+#: Plugin\rb-agency-interact/theme/include-login.php:57
 msgid "Register as Agent / Producer"
 msgstr "Registrierung für Produktionen"
 
@@ -478,17 +445,30 @@ msgid "Flickr"
 msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
-#: Plugin\rb-agency-interact/theme/include-profileaccount.php:238
+#: Plugin\rb-agency-interact/theme/include-profileaccount.php:236
+#: Plugin\rb-agency-interact/theme/include-profileregister.php:145
+msgid "Password (Leave blank to keep same password)"
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/include-profileaccount.php:242
+#: Plugin\rb-agency-interact/theme/include-profileregister.php:151
+msgid "Password (Retype to Confirm)"
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/include-profileaccount.php:250
 #: Plugin\rb-agency-interact/theme/include-profilemanage.php:289
 #, fuzzy
 msgid "Last updated "
 msgstr "Nachname"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
-#: Plugin\rb-agency-interact/theme/include-profileaccount.php:242
+#: Plugin\rb-agency-interact/theme/include-profileaccount.php:254
 #: Plugin\rb-agency-interact/theme/include-profilemanage.php:294
 #: Plugin\rb-agency-interact/theme/include-profilemedia.php:120
-msgid "Update Record"
+#: Plugin\rb-agency-interact/theme/include-profileregister.php:160
+msgid "Save and Continue"
 msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
@@ -690,14 +670,8 @@ msgid "The following information will NOT appear in public areas and is for admi
 msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
-#: Plugin\rb-agency-interact/theme/include-profileregister.php:148
-#, fuzzy
-msgid "Create Profile"
-msgstr "Profiltyp"
-
-#: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/member-account.php:26
-#: Plugin\rb-agency-interact/theme/member-overview.php:25
+#: Plugin\rb-agency-interact/theme/member-overview.php:27
 #: Plugin\rb-agency-interact/theme/member-profile.php:19
 #, fuzzy
 msgid "Agent/Producer"
@@ -705,98 +679,81 @@ msgstr "Produktion"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/member-account.php:26
-#: Plugin\rb-agency-interact/theme/member-overview.php:25
+#: Plugin\rb-agency-interact/theme/member-overview.php:27
 #: Plugin\rb-agency-interact/theme/member-profile.php:19
 #, fuzzy
 msgid "Model/Talent"
 msgstr "Komparse"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
-#: Plugin\rb-agency-interact/theme/member-account.php:55
+#: Plugin\rb-agency-interact/theme/member-account.php:57
 msgid " must have a display name identified"
 msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
-#: Plugin\rb-agency-interact/theme/member-account.php:104
+#: Plugin\rb-agency-interact/theme/member-account.php:106
 msgid "The passwords you entered do not match.  Your password was not updated."
 msgstr "falsches Passwort"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
-#: Plugin\rb-agency-interact/theme/member-account.php:184
+#: Plugin\rb-agency-interact/theme/member-account.php:187
 msgid "New Profile added successfully"
 msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
-#: Plugin\rb-agency-interact/theme/member-account.php:186
+#: Plugin\rb-agency-interact/theme/member-account.php:195
 msgid "Error creating record, please ensure you have filled out all required fields."
 msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
-#: Plugin\rb-agency-interact/theme/member-account.php:248
-#: Plugin\rb-agency-interact/theme/member-media.php:133
+#: Plugin\rb-agency-interact/theme/member-account.php:251
+#: Plugin\rb-agency-interact/theme/member-media.php:132
 #: Plugin\rb-agency-interact/theme/member-profile.php:102
 msgid "Profile updated successfully"
 msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
-#: Plugin\rb-agency-interact/theme/member-account.php:250
-#: Plugin\rb-agency-interact/theme/member-media.php:135
+#: Plugin\rb-agency-interact/theme/member-account.php:253
+#: Plugin\rb-agency-interact/theme/member-media.php:134
 #: Plugin\rb-agency-interact/theme/member-profile.php:104
 msgid "Error updating record, please ensure you have filled out all required fields."
 msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
-#: Plugin\rb-agency-interact/theme/member-account.php:300
-#: Plugin\rb-agency-interact/theme/member-profile.php:149
+#: Plugin\rb-agency-interact/theme/member-account.php:307
+#: Plugin\rb-agency-interact/theme/member-profile.php:153
 msgid "Records show you are not currently linked to a model or agency profile.  Lets setup your profile now!"
 msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
-#: Plugin\rb-agency-interact/theme/member-account.php:308
-#: Plugin\rb-agency-interact/theme/member-overview.php:89
+#: Plugin\rb-agency-interact/theme/member-account.php:315
+#: Plugin\rb-agency-interact/theme/member-overview.php:111
 msgid "Self registration is not permitted."
 msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
-#: Plugin\rb-agency-interact/theme/member-login.php:33
-#: Plugin\rb-agency-interact/theme/member-login.php:47
-#, php-format
-msgid "You have successfully logged in as <a href=\"%1$s\" title=\"%2$s\">%2$s</a>."
-msgstr "erfolgreich angemeldet als <a href=\"%1$s\" title=\"%2$s\">%2$s</a>."
-
-#: C:\Dropbox\Users\Rob\Scripts\RB
-#: Plugin\rb-agency-interact/theme/member-login.php:34
-msgid "Log out of this account"
-msgstr "Abmelden von diesem Konto"
-
-#: C:\Dropbox\Users\Rob\Scripts\RB
-#: Plugin\rb-agency-interact/theme/member-login.php:34
-msgid "Log out &raquo;"
-msgstr "Abmelden &raquo;"
-
-#: C:\Dropbox\Users\Rob\Scripts\RB
-#: Plugin\rb-agency-interact/theme/member-overview.php:59
+#: Plugin\rb-agency-interact/theme/member-overview.php:65
 msgid "Welcome Back"
 msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
-#: Plugin\rb-agency-interact/theme/member-overview.php:69
+#: Plugin\rb-agency-interact/theme/member-overview.php:88
 msgid "Welcome"
 msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
-#: Plugin\rb-agency-interact/theme/member-overview.php:72
-#: Plugin\rb-agency-interact/theme/member-overview.php:80
+#: Plugin\rb-agency-interact/theme/member-overview.php:91
+#: Plugin\rb-agency-interact/theme/member-overview.php:102
 msgid "We have you registered as"
 msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
-#: Plugin\rb-agency-interact/theme/member-overview.php:73
+#: Plugin\rb-agency-interact/theme/member-overview.php:92
 msgid "Begin Your Search"
 msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
-#: Plugin\rb-agency-interact/theme/member-overview.php:81
+#: Plugin\rb-agency-interact/theme/member-overview.php:103
 #, fuzzy
 msgid "Setup Your Profile"
 msgstr "Profiltyp"
@@ -830,6 +787,11 @@ msgstr "Du musst den Nutzungsbedingungen zustimmen. <br />"
 #: Plugin\rb-agency-interact/theme/member-register.php:74
 msgid "You are currently logged in as ."
 msgstr "Du bist angemeldet als ."
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/member-register.php:76
+msgid "Log out of this account"
+msgstr "Abmelden von diesem Konto"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/member-register.php:76
@@ -883,24 +845,37 @@ msgid "I agree to the %s terms of service"
 msgstr "Ich stimme den  %s Nutzungsbedingungen zu."
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
-#: Plugin\rb-agency-interact/theme/member-subscription.php:60
+#: Plugin\rb-agency-interact/theme/member-subscription.php:65
 msgid "enjoying your membership?"
 msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
-#: Plugin\rb-agency-interact/theme/member-subscription.php:61
+#: Plugin\rb-agency-interact/theme/member-subscription.php:66
 msgid "Your membership expires on "
 msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
-#: Plugin\rb-agency-interact/theme/member-subscription.php:63
+#: Plugin\rb-agency-interact/theme/member-subscription.php:68
 msgid "are you ready to get discovered?"
 msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
-#: Plugin\rb-agency-interact/theme/member-subscription.php:64
+#: Plugin\rb-agency-interact/theme/member-subscription.php:69
 msgid "Subscribe now, and start applying to Casting Calls, join the Talent Directory, and more."
 msgstr ""
+
+#, fuzzy
+#~ msgid "Create Profile"
+#~ msgstr "Profiltyp"
+
+#~ msgid ""
+#~ "You have successfully logged in as <a href=\"%1$s\" title=\"%2$s\">%2$s</"
+#~ "a>."
+#~ msgstr ""
+#~ "erfolgreich angemeldet als <a href=\"%1$s\" title=\"%2$s\">%2$s</a>."
+
+#~ msgid "Log out &raquo;"
+#~ msgstr "Abmelden &raquo;"
 
 #~ msgid "Settings"
 #~ msgstr "Einstellungen"

@@ -86,7 +86,7 @@
 			$user_login = stripslashes($user->user_login);  
 			$user_email = stripslashes($user->user_email);  
 	  
-			$message  = sprintf(__('New user registration on your blog %s:'), get_option('blogname')) . "\r\n\r\n";  
+			$message  = sprintf(__('A new user has registered on your %s:'), get_option('blogname')) . "\r\n\r\n";  
 			$message .= sprintf(__('Username: %s'), $user_login) . "\r\n\r\n";  
 			$message .= sprintf(__('E-mail: %s'), $user_email) . "\r\n";  
 	  
@@ -96,11 +96,12 @@
 				return;  
 
 			$message  = __('Hi there,') . "\r\n\r\n";  
-			$message .= sprintf(__("Thanks for joining %s! Here's how to log in:"), get_option('blogname')) . "\r\n\r\n"; 
+			$message .= sprintf(__("Thank you for joining %s! Here's how to log in:"), get_option('blogname')) . "\r\n\r\n"; 
 			$message .= get_option('home') ."/profile-login/\r\n"; 
 			$message .= sprintf(__('Username: %s'), $user_login) . "\r\n"; 
 			$message .= sprintf(__('Password: %s'), $plaintext_pass) . "\r\n\r\n"; 
 			$message .= sprintf(__('If you have any problems, please contact us at %s.'), get_option('admin_email')) . "\r\n\r\n"; 
+			$message .= sprintf(__('Please note, your profile will still need to be approved by our marketing department, until that has happened, it will not be located in search or online to the general public. Please allow up to 48 hours for your profile to become fully approved. In the meantime, Log in and complete your Aramarts profile.'))."\r\n\r\n";
 			$message .= __('Regards,')."\r\n";
 			$message .= get_option('blogname') . __(' Team') ."\r\n"; 
 			$message .= get_option('home') ."\r\n"; 
