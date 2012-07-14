@@ -34,12 +34,6 @@ if ($profiletype == 1) { $profiletypetext = __("Agent/Producer", rb_agencyintera
 	
 /* Display Page ******************************************/ 
 get_header();
-
-
-echo "<div class=\"content_wrapper\">\n"; // Theme Wrapper 
-	echo "<div class=\"PageTitle\"><h1>Available Online Subscriptions</h1></div>\n";	 // Profile Name
-
-
 	
 	echo "<div id=\"container\" class=\"one-column rb-agency-interact rb-agency-interact-subscribe\">\n";
 	echo "  <div id=\"content\">\n";
@@ -50,7 +44,7 @@ echo "<div class=\"content_wrapper\">\n"; // Theme Wrapper
 		if (is_user_logged_in()) {
 			
 			/// Show registration steps
-			//echo "<div id=\"profile-steps\">Profile Setup: Step 4 of 4</div>\n";
+			echo "<div id=\"profile-steps\">Profile Setup: Step 4 of 4</div>\n";
 			
 			echo "<div id=\"profile-manage\" class=\"profile-admin account\">\n";
 			
@@ -72,8 +66,7 @@ echo "<div class=\"content_wrapper\">\n"; // Theme Wrapper
 					echo "<h3>". __("Your membership expires on ", rb_agencyinteract_TEXTDOMAIN) ." ". $SubscriberDateExpire .", renew today!</h3>";
 				} else {
 					echo "<h1>". $current_user->first_name .", ". __("are you ready to get discovered?", rb_agencyinteract_TEXTDOMAIN) ."</h1>";
-					
-				//	echo "<h3>". __("Subscribe now, and start applying to Casting Calls, join the Talent Directory, and more.", rb_agencyinteract_TEXTDOMAIN) ."</h3>";
+					echo "<h3>". __("Subscribe now, and start applying to Casting Calls, join the Talent Directory, and more.", rb_agencyinteract_TEXTDOMAIN) ."</h3>";
 				}
 
 				// What are the rates?
@@ -113,18 +106,8 @@ echo "<div class=\"content_wrapper\">\n"; // Theme Wrapper
 	
 					
 				echo "  <div id=\"subscription-customtext\">\n";
-					
-					
 					$Page = get_page($rb_agencyinteract_option_subscribepagedetails);
 					echo apply_filters('the_content', $Page->post_content);
-					
-					// BNE EDIT - Add Restrict Content Pro Subscription Info
-					echo "<div class=\"hr-half\"></div>\n";
-					echo "<h3>Current Subscription</h3>\n";
-					echo do_shortcode('[subscription_details]');
-					
-					// END BNE EDIT
-					
 				echo " </div>";
 
 			
@@ -151,9 +134,6 @@ echo "<div class=\"content_wrapper\">\n"; // Theme Wrapper
 		
 	echo "  </div><!-- #content -->\n";
 	echo "</div><!-- #container -->\n";
-
-echo "</div>\n"; //END .content_wrapper 
-
 	
 // Get Sidebar 
 $rb_agencyinteract_options_arr = get_option('rb_agencyinteract_options');

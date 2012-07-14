@@ -33,10 +33,6 @@
 		$ProfileDateUpdated			=stripslashes($data['ProfileDateUpdated']);
 		$ProfileType				=stripslashes($data['ProfileType']);
 
-
-
-
-
 		echo "<form method=\"post\" enctype=\"multipart/form-data\" action=\"". get_bloginfo("wpurl") ."/profile-member/manage/\">\n";
 		
 		echo " <table class=\"form-table\">\n";
@@ -46,8 +42,8 @@
 		echo "		<td scope=\"row\" colspan=\"2\"><h3>". __("Classification", rb_agencyinteract_TEXTDOMAIN) ."</h3></th>\n";
 		echo "	  </tr>\n";
 		echo "    <tr valign=\"top\">\n";
-		echo "		<td scope=\"row\" style=\"width:150px;\">". __("Verify Your Account Type", rb_agencyinteract_TEXTDOMAIN) ."</th>\n";
-		echo "		<td style=\"width:550px;\">\n";
+		echo "		<td scope=\"row\">". __("Classification", rb_agencyinteract_TEXTDOMAIN) ."</th>\n";
+		echo "		<td>\n";
 			
 					$ProfileTypeArray = explode(",", $ProfileType);
 		
@@ -60,15 +56,6 @@
 	
 		echo "		</td>\n";
 		echo "	  </tr>\n";
-		
-		
-// BNE EDIT (Removed from Client View)
-// Ethnicity to Suit Sizes
-
-// 0 = Talent, 1 = Clients
-if ($profiletype == 0) { 
-
-		
 		
 		echo "    <tr valign=\"top\">\n";
 		echo "        <td scope=\"row\">". __("Ethnicity", rb_agencyinteract_TEXTDOMAIN) ."</th>\n";
@@ -184,12 +171,12 @@ if ($profiletype == 0) {
 		echo "    <tr valign=\"top\">\n";
 		echo "        <td scope=\"row\">". __("Measurements", rb_agencyinteract_TEXTDOMAIN) ."</th>\n";
 		echo "        <td>\n";
-						if ($ProfileGender == "Male") { _e("Chest:", rb_agencyinteract_TEXTDOMAIN); } elseif ($ProfileGender == "Female"){ _e("Bust:", rb_agencyinteract_TEXTDOMAIN); } else { echo "". __("Bust:", rb_agencyinteract_TEXTDOMAIN) ."/". __("Bust", rb_agencyinteract_TEXTDOMAIN); } 
-							echo "<input type=\"text\" style=\"width: 80px;margin-left:15px;\" id=\"ProfileStatBust\" name=\"ProfileStatBust\" value=\"". $ProfileStatBust ."\" /><br />\n";
+						if ($ProfileGender == "Male") { _e("Chest", rb_agencyinteract_TEXTDOMAIN); } elseif ($ProfileGender == "Female"){ _e("Bust", rb_agencyinteract_TEXTDOMAIN); } else { echo "". __("Bust", rb_agencyinteract_TEXTDOMAIN) ."/". __("Bust", rb_agencyinteract_TEXTDOMAIN); } 
+							echo "<input type=\"text\" style=\"width: 80px;\" id=\"ProfileStatBust\" name=\"ProfileStatBust\" value=\"". $ProfileStatBust ."\" /><br />\n";
 						echo "". __("Waist", rb_agencyinteract_TEXTDOMAIN) .": \n";
-							echo "<input type=\"text\" style=\"width: 80px;margin-left:15px;\" id=\"ProfileStatWaist\" name=\"ProfileStatWaist\" value=\"". $ProfileStatWaist ."\" /><br />\n";
-						if ($ProfileGender == "Male") { _e("Inseam:", rb_agencyinteract_TEXTDOMAIN); } elseif ($ProfileGender == "Female"){ _e("Hips", rb_agencyinteract_TEXTDOMAIN); } else { echo "". __("Hips:", rb_agencyinteract_TEXTDOMAIN) ."/". __("Inseam", rb_agencyinteract_TEXTDOMAIN); } 
-							echo "<input type=\"text\" style=\"width: 80px;margin-left:15px;\" id=\"ProfileStatHip\" name=\"ProfileStatHip\" value=\"". $ProfileStatHip ."\" /><br />\n";
+							echo "<input type=\"text\" style=\"width: 80px;\" id=\"ProfileStatWaist\" name=\"ProfileStatWaist\" value=\"". $ProfileStatWaist ."\" /><br />\n";
+						if ($ProfileGender == "Male") { _e("Inseam", rb_agencyinteract_TEXTDOMAIN); } elseif ($ProfileGender == "Female"){ _e("Hips", rb_agencyinteract_TEXTDOMAIN); } else { echo "". __("Hips", rb_agencyinteract_TEXTDOMAIN) ."/". __("Inseam", rb_agencyinteract_TEXTDOMAIN); } 
+							echo "<input type=\"text\" style=\"width: 80px;\" id=\"ProfileStatHip\" name=\"ProfileStatHip\" value=\"". $ProfileStatHip ."\" /><br />\n";
 		echo "        </td>\n";
 		echo "    </tr>\n";
 		echo "    <tr valign=\"top\">\n";
@@ -257,9 +244,6 @@ if ($profiletype == 0) {
 		echo "    </td>\n";
 		echo "  </tr>\n";
 		}
-		
-} // END BNE EDIT - (Removing the above information from Client Views 		
-		
 		// Description
 		echo "    <tr valign=\"top\">\n";
 		echo "		<td scope=\"row\" colspan=\"2\"><h3>". __("Details", rb_agencyinteract_TEXTDOMAIN) ."</h3></th>\n";
@@ -267,7 +251,7 @@ if ($profiletype == 0) {
 		echo "    <tr valign=\"top\">\n";
 		echo "		<td scope=\"row\">". __("Description", rb_agencyinteract_TEXTDOMAIN) ."</th>\n";
 		echo "		<td>\n";
-		echo "			<textarea style=\"width: 100%; min-height: 100px;\" id=\"ProfileExperience\" name=\"ProfileExperience\" class=\"ProfileExperience\">". $ProfileExperience ."</textarea>\n";
+		echo "			<textarea style=\"width: 100%; min-height: 300px;\" id=\"ProfileExperience\" name=\"ProfileExperience\" class=\"ProfileExperience\">". $ProfileExperience ."</textarea>\n";
 		echo "		</td>\n";
 		echo "	  </tr>\n";
 	
@@ -294,7 +278,7 @@ if ($profiletype == 0) {
 					
 				  } /// End 
 				  
-		echo "			<textarea style=\"width: 100%; min-height: 100px;\" id=\"ProfileCustomID". $data1['ProfileCustomID'] ."\" name=\"ProfileCustomID". $data1['ProfileCustomID'] ."\" class=\"ProfileExperience\">". $ProfileCustomValue ."</textarea>\n";
+		echo "			<textarea style=\"width: 100%; min-height: 300px;\" id=\"ProfileCustomID". $data1['ProfileCustomID'] ."\" name=\"ProfileCustomID". $data1['ProfileCustomID'] ."\" class=\"ProfileExperience\">". $ProfileCustomValue ."</textarea>\n";
 		echo "		</td>\n";
 		echo "	  </tr>\n";
 		}
@@ -302,7 +286,7 @@ if ($profiletype == 0) {
 
 		echo "  </tbody>\n";
 		echo "</table>\n";
-		echo "<br><br>". __("Last updated ", rb_agencyinteract_TEXTDOMAIN) ." ". rb_agency_makeago(rb_agency_convertdatetime($ProfileDateUpdated), $rb_agency_option_locationtimezone) ."\n";
+		echo "". __("Last updated ", rb_agencyinteract_TEXTDOMAIN) ." ". rb_agency_makeago(rb_agency_convertdatetime($ProfileDateUpdated), $rb_agency_option_locationtimezone) ."\n";
 	
 		echo "<p class=\"submit\">\n";
 		echo "     <input type=\"hidden\" name=\"ProfileID\" value=\"". $ProfileID ."\" />\n";

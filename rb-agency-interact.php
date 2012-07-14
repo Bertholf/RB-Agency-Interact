@@ -3,12 +3,12 @@
   Plugin Name: RB Agency Interact
   Text Domain: rb-agencyinteract-interact
   Plugin URI: http://rbplugin.com/
-  Description: Enhancement to the RB Agency software allowing models to manage their own information.
+  Description: Enhancement to the RB Agency software allowing models ot manage their own information.
   Author: Rob Bertholf
   Author URI: http://rob.bertholf.com/
-  Version: 0.3
+  Version: 0.1
 */
-$rb_agencyinteract_VERSION = "0.3"; 
+$rb_agencyinteract_VERSION = "0.1"; 
 
 if (!session_id())
 session_start();

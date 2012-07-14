@@ -92,11 +92,6 @@
 
     get_header();
 
-
-echo "<div class=\"content_wrapper\">\n"; // Theme Wrapper 
-	echo "<div class=\"PageTitle\"><h1>Aramarts Online Registration</h1></div>\n";	 // Page Title
-
-
 	echo "<div id=\"container\" class=\"one-column rb-agency-interact rb-agency-interact-register\">\n";
 	echo "  <div id=\"content\">\n";
 
@@ -143,41 +138,34 @@ echo "<div class=\"content_wrapper\">\n"; // Theme Wrapper
 			// Self Registration
 			if ( $registration || current_user_can("create_users") ) {
 
-
-	echo "    <div id=\"rb-agency-online-register\">\n";
-
-
 	echo "    <form method=\"post\" id=\"adduser\" class=\"user-forms\" action=\"". $rb_agencyinteract_WPURL ."/profile-register/\">\n";
-
-
 			
-	echo "    <h2 style=\"font-weight:bold;\">Sign Up Below</h2>\n";
-	echo "    <p>Complete this form to register for Aramarts Talent Agency. <br><span style=\"color:#FDA45E; font-style: italic;\">Please note: New talent accounts require approvals by the Aramarts Team prior to the profile being visable to the public.</span></p>\n";
+	echo "    <h1>Register</h1>\n";
 				
 	echo "       <p class=\"form-username\">\n";
-	echo "       	<label for=\"profile_user_name\">". __("Username (required)", rb_agencyinteract_TEXTDOMAIN) ."</label><br>\n";
+	echo "       	<label for=\"profile_user_name\">". __("Username (required)", rb_agencyinteract_TEXTDOMAIN) ."</label>\n";
 	echo "       	<input class=\"text-input\" name=\"profile_user_name\" type=\"text\" id=\"profile_user_name\" value=\""; if ( $error ) echo wp_specialchars( $_POST['profile_user_name'], 1 ); echo "\" />\n";
 	echo "       </p><!-- .form-username -->\n";
 			
 	if ($rb_agencyinteract_option_registerconfirm == 1) {
 	echo "       <p class=\"form-password\">\n";
-	echo "       	<label for=\"profile_password\">". __("Password (required)", rb_agencyinteract_TEXTDOMAIN) ."</label><br>\n";
+	echo "       	<label for=\"profile_password\">". __("Password (required)", rb_agencyinteract_TEXTDOMAIN) ."</label>\n";
 	echo "       	<input class=\"text-input\" name=\"profile_password\" type=\"password\" id=\"profile_password\" value=\""; if ( $error ) echo wp_specialchars( $_POST['profile_password'], 1 ); echo "\" />\n";
 	echo "       </p><!-- .form-username -->\n";
 	}
 				
 	echo "       <p class=\"profile_first_name\">\n";
-	echo "       	<label for=\"profile_first_name\">". __("First Name", rb_agencyinteract_TEXTDOMAIN) ."</label><br>\n";
+	echo "       	<label for=\"profile_first_name\">". __("First Name", rb_agencyinteract_TEXTDOMAIN) ."</label>\n";
 	echo "       	<input class=\"text-input\" name=\"profile_first_name\" type=\"text\" id=\"profile_first_name\" value=\""; if ( $error ) echo wp_specialchars( $_POST['profile_first_name'], 1 ); echo "\" />\n";
 	echo "       </p><!-- .profile_first_name -->\n";
 				
 	echo "       <p class=\"profile_last_name\">\n";
-	echo "       	<label for=\"profile_last_name\">". __("Last Name", rb_agencyinteract_TEXTDOMAIN) ."</label><br>\n";
+	echo "       	<label for=\"profile_last_name\">". __("Last Name", rb_agencyinteract_TEXTDOMAIN) ."</label>\n";
 	echo "       	<input class=\"text-input\" name=\"profile_last_name\" type=\"text\" id=\"profile_last_name\" value=\""; if ( $error ) echo wp_specialchars( $_POST['profile_last_name'], 1 ); echo "\" />\n";
 	echo "       </p><!-- .profile_last_name -->\n";
 				
 	echo "       <p class=\"form-email\">\n";
-	echo "       	<label for=\"email\">". __("E-mail (required)", rb_agencyinteract_TEXTDOMAIN) ."</label><br>\n";
+	echo "       	<label for=\"email\">". __("E-mail (required)", rb_agencyinteract_TEXTDOMAIN) ."</label>\n";
 	echo "       	<input class=\"text-input\" name=\"profile_email\" type=\"text\" id=\"profile_email\" value=\""; if ( $error ) echo wp_specialchars( $_POST['profile_email'], 1 ); echo "\" />\n";
 	echo "       </p><!-- .form-email -->\n";
 				
@@ -195,7 +183,7 @@ echo "<div class=\"content_wrapper\">\n"; // Theme Wrapper
 	echo "       </p><!-- .form-profile_agree -->\n";
 
 	echo "       <p class=\"form-submit\">\n";
-	echo "       	<input name=\"adduser\" type=\"submit\" id=\"addusersub\" class=\"button medium orange\" value=\"";  
+	echo "       	<input name=\"adduser\" type=\"submit\" id=\"addusersub\" class=\"submit button\" value=\"";  
 						if ( current_user_can("create_users") ) {  _e("Add User", rb_agencyinteract_TEXTDOMAIN); } else {  _e("Register", rb_agencyinteract_TEXTDOMAIN); } echo "\" />\n";
 					wp_nonce_field("add-user");
 	echo "       	<input name=\"action\" type=\"hidden\" id=\"action\" value=\"adduser\" />\n";
@@ -206,28 +194,8 @@ echo "<div class=\"content_wrapper\">\n"; // Theme Wrapper
 			}
 	}
 
-	echo " </div>\n"; //END #rb-agency-online-register
-
-
-
-	echo " <div id=\"register-slider\">\n";
-
-	echo do_shortcode("[slider_pro id=\"4\"]");
-
-	echo " </div>\n"; //END #register-slider
-
-
-
-
-
-
-
 echo "  </div><!-- #content -->\n";
 echo "</div><!-- #container -->\n";
-  
-
-echo "</div>\n"; //END .content_wrapper 
-
    
 // Get Sidebar 
 	$LayoutType = "";

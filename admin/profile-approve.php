@@ -67,62 +67,8 @@ if (isset($_POST['action'])) {
 	
 	}
 }
-// *************************************************************************************************** //
-// Delete Single
-elseif ($_GET['action'] == "deleteRecord") {
 
-	$ProfileID = $_GET['ProfileID'];
-	// Verify Record
-	$queryDelete = "SELECT * FROM ". table_agency_profile ." WHERE ProfileID =  \"". $ProfileID ."\"";
-	$resultsDelete = mysql_query($queryDelete);
-	while ($dataDelete = mysql_fetch_array($resultsDelete)) {
-		$ProfileGallery = $dataDelete['ProfileGallery'];
-
-		// Remove Profile
-		$delete = "DELETE FROM " . table_agency_profile . " WHERE ProfileID = \"". $ProfileID ."\"";
-		$results = $wpdb->query($delete);
-		// Remove Media
-		$delete = "DELETE FROM " . table_agency_profile_media . " WHERE ProfileID = \"". $ProfileID ."\"";
-		$results = $wpdb->query($delete);
-			
-		if (isset($ProfileGallery)) {
-			// Remove Folder
-			$dir = rb_agency_UPLOADPATH . $ProfileGallery ."/";
-			$mydir = opendir($dir);
-			while(false !== ($file = readdir($mydir))) {
-				if($file != "." && $file != "..") {
-					unlink($dir.$file) or DIE("couldn't delete $dir$file<br />");
-				}
-			}
-			// remove dir
-			if(is_dir($dir)) {
-				rmdir($dir) or DIE("couldn't delete $dir$file<br />");
-			}
-			closedir($mydir);
-			
-		} else {
-			echo __("No valid record found.", rb_agencyinteract_TEXTDOMAIN);
-		}
-			
-	echo ('<div id="message" class="updated"><p>'. __("Profile deleted successfully!", rb_agencyinteract_TEXTDOMAIN) .'</p></div>');
-	} // is there record?
-	rb_display_list();
-
-}
-// *************************************************************************************************** //
-// Delete Single
-elseif ($_GET['action'] == "approveRecord") {
-
-	$ProfileID = $_GET['ProfileID'];
-	// Verify Record
-	$queryApprove = "UPDATE ". table_agency_profile ." SET ProfileIsActive = 1 WHERE ProfileID =  \"". $ProfileID ."\"";
-	$resultsApprove = mysql_query($queryApprove);
-
-	echo ('<div id="message" class="updated"><p>'. __("Profile approved successfully!", rb_agencyinteract_TEXTDOMAIN) .'</p></div>');
-
-	rb_display_list();
-
-} else {
+else {
 // *************************************************************************************************** //
 // Show List
 	rb_display_list();
@@ -191,6 +137,85 @@ function rb_display_list() {
 			$filter .= " AND profiletype.DataTypeID='". $selectedType ."'";
 		}
 		
+		// Bulk Action
+		
+		if(isset($_POST['BulkAction_ProfileApproval']) || isset($_POST['BulkAction_ProfileApproval2'])){
+			
+			//**** BULK DELETE	
+			if($_POST['BulkAction_ProfileApproval']=="Delete" || $_POST['BulkAction_ProfileApproval2']=="Delete"){
+			 
+			   if(isset($_POST['profileID'])){
+					foreach($_POST['profileID'] as $key){
+					 
+									$ProfileID = $key;
+									// Verify Record
+									$queryDelete = "SELECT * FROM ". table_agency_profile ." WHERE ProfileID =  \"". $ProfileID ."\"";
+									$resultsDelete = mysql_query($queryDelete);
+									while ($dataDelete = mysql_fetch_array($resultsDelete)) {
+										$ProfileGallery = $dataDelete['ProfileGallery'];
+								
+										// Remove Profile
+										$delete = "DELETE FROM " . table_agency_profile . " WHERE ProfileID = \"". $ProfileID ."\"";
+										$results = $wpdb->query($delete);
+										// Remove Media
+										$delete = "DELETE FROM " . table_agency_profile_media . " WHERE ProfileID = \"". $ProfileID ."\"";
+										$results = $wpdb->query($delete);
+											
+										if (isset($ProfileGallery)) {
+											// Remove Folder
+											$dir = rb_agency_UPLOADPATH . $ProfileGallery ."/";
+											$mydir = opendir($dir);
+											while(false !== ($file = readdir($mydir))) {
+												if($file != "." && $file != "..") {
+													unlink($dir.$file) or DIE("couldn't delete $dir$file<br />");
+												}
+											}
+											// remove dir
+											if(is_dir($dir)) {
+												rmdir($dir) or DIE("couldn't delete $dir$file<br />");
+											}
+											closedir($mydir);
+											
+										} else {
+											echo __("No valid record found.", rb_agencyinteract_TEXTDOMAIN);
+										}
+											
+									echo ('<div id="message" class="updated"><p>'. __("Profile deleted successfully!", rb_agencyinteract_TEXTDOMAIN) .'</p></div>');
+									} // is there record?
+									
+						
+					}
+					
+			   }
+				
+			}
+			// Bulk Approve
+			else if($_POST['BulkAction_ProfileApproval']=="Approve" || $_POST['BulkAction_ProfileApproval2']=="Approve"){
+					
+					if(isset($_POST['profileID'])){
+						$countProfile = 0;
+						foreach($_POST['profileID'] as $key){
+							
+							$countProfile++;
+							$ProfileID = $key;
+							// Verify Record
+							$queryApprove = "UPDATE ". table_agency_profile ." SET ProfileIsActive = 1 WHERE ProfileID =  \"". $ProfileID ."\"";
+							$resultsApprove = mysql_query($queryApprove);
+						
+							
+						}
+						
+						$profileLabel = '';
+						$countProfile > 1 ? $profileLabel = "$countProfile Profiles" : $profileLabel = "Profile" ;
+					echo ('<div id="message" class="updated"><p>'. __("$profileLabel approved successfully!", rb_agencyinteract_TEXTDOMAIN) .'</p></div>');
+						
+							
+					}
+				
+			}
+		}
+		
+		
 		//Paginate
 		$items = mysql_num_rows(mysql_query("SELECT * FROM ". table_agency_profile ." profile LEFT JOIN ". table_agency_data_type ." profiletype ON profile.ProfileType = profiletype.DataTypeID ". $filter  ."")); // number of total rows in the database
 		if($items > 0) {
@@ -215,6 +240,7 @@ function rb_display_list() {
 			$limit = "";
 		}
 		
+		
         echo "<div class=\"tablenav\">\n";
  		echo "	<div style=\"float: left; \"><a class=\"button-primary\" href=\"". admin_url("admin.php?page=". $_GET['page']) ."&action=add\">". __("Create New Record", rb_agencyinteract_TEXTDOMAIN) ."</a></div>\n";
         echo "  <div class=\"tablenav-pages\">\n";
@@ -227,7 +253,10 @@ function rb_display_list() {
 		echo "<table cellspacing=\"0\" class=\"widefat fixed\">\n";
 		echo "  <thead>\n";
 		echo "    <tr>\n";
-		echo "        <td style=\"width: 90%;\" nowrap=\"nowrap\">    \n";               
+		echo "        <td style=\"width: 90%;\" nowrap=\"nowrap\">    \n";  
+       
+	
+	
 		echo "        	<form method=\"GET\" action=\"". admin_url("admin.php?page=". $_GET['page']) ."\">\n";
 		echo "        		<input type=\"hidden\" name=\"page_index\" id=\"page_index\" value=\"". $_GET['page_index'] ."\" />  \n";
 		echo "        		<input type=\"hidden\" name=\"page\" id=\"page\" value=\"". $_GET['page'] ."\" />\n";
@@ -270,13 +299,21 @@ function rb_display_list() {
 		echo "        	</form>\n";
 		echo "        </td>\n";
 		echo "        <td>&nbsp;</td>\n";
+		
 		echo "    </tr>\n";
 		echo "  </thead>\n";
 		echo "</table>\n";
-        
-		echo "<form method=\"post\" action=\"". admin_url("admin.php?page=". $_GET['page']) ."\">\n";	
+     
+		echo "<form method=\"post\" action=\"". admin_url("admin.php?page=". $_GET['page']) ."\" id=\"formMainBulk\">\n";	
+	    echo "        		<select name=\"BulkAction_ProfileApproval\">\n";
+		echo "              <option value=\"\"> ". __("Bulk Action", rb_agencyinteract_TEXTDOMAIN) ."<option\>\n";
+		echo "              <option value=\"Approve\"> ". __("Approve", rb_agencyinteract_TEXTDOMAIN) ."<option\>\n";
+		echo "              <option value=\"Delete\"> ". __("Delete", rb_agencyinteract_TEXTDOMAIN) ."<option\>\n";
+		echo "              </select>"; 
+		echo "    <input type=\"submit\" value=\"". __("Apply", rb_agencyinteract_TEXTDOMAIN) ."\" name=\"ProfileBulkAction\" class=\"button-secondary\"  />\n";
 		echo "<table cellspacing=\"0\" class=\"widefat fixed\">\n";
-		echo " <thead>\n";
+	    echo " <thead>\n";
+
 		echo "    <tr class=\"thead\">\n";
 		echo "        <th class=\"manage-column column-cb check-column\" id=\"cb\" scope=\"col\"><input type=\"checkbox\"/></th>\n";
 		echo "        <th class=\"column-ProfileID\" id=\"ProfileID\" scope=\"col\" style=\"width:50px;\"><a href=\"". admin_url("admin.php?page=". $_GET['page'] ."&sort=ProfileID&dir=". $sortDirection) ."\">ID</a></th>\n";
@@ -332,7 +369,7 @@ function rb_display_list() {
 
 		echo "    <tr". $rowColor .">\n";
 		echo "        <th class=\"check-column\" scope=\"row\">\n";
-		echo "          <input type=\"checkbox\" value=\"". $ProfileID ."\" class=\"administrator\" id=\"". $ProfileID ."\" name=\"". $ProfileID ."\"/>\n";
+		echo "          <input type=\"checkbox\" value=\"". $ProfileID ."\" class=\"administrator\" id=\"". $ProfileID ."\" name=\"profileID[". $ProfileID ."]\"/>\n";
 		echo "        </th>\n";
 		echo "        <td class=\"ProfileID column-ProfileID\">". $ProfileID ."</td>\n";
 		echo "        <td class=\"ProfileContactNameFirst column-ProfileContactNameFirst\">\n";
@@ -356,6 +393,10 @@ function rb_display_list() {
 		echo "           ". rb_agency_makeago(rb_agency_convertdatetime($ProfileDateCreated), $rb_agency_option_locationtimezone);
 		echo "        </td>\n";
 		echo "    </tr>\n";
+		
+		
+		
+		
 
         }
             mysql_free_result($results2);
@@ -378,6 +419,14 @@ function rb_display_list() {
         } 
 		echo " </tbody>\n";
 		echo "</table>\n";
+		
+		echo "        		<select name=\"BulkAction_ProfileApproval2\">\n";
+		echo "              <option value=\"\"> ". __("Bulk Action", rb_agencyinteract_TEXTDOMAIN) ."<option\>\n";
+		echo "              <option value=\"Approve\"> ". __("Approve", rb_agencyinteract_TEXTDOMAIN) ."<option\>\n";
+		echo "              <option value=\"Delete\"> ". __("Delete", rb_agencyinteract_TEXTDOMAIN) ."<option\>\n";
+		echo "              </select>"; 
+		echo "    <input type=\"submit\" value=\"". __("Apply", rb_agencyinteract_TEXTDOMAIN) ."\" name=\"ProfileBulkAction\" class=\"button-secondary\"  />\n";
+		
 		echo "<div class=\"tablenav\">\n";
 		echo "  <div class='tablenav-pages'>\n";
 
@@ -389,9 +438,11 @@ function rb_display_list() {
 		echo "</div>\n";
     
 		echo "<p class=\"submit\">\n";
-		echo "  <input type=\"hidden\" value=\"deleteRecord\" name=\"action\" />\n";
-		echo "  <input type=\"submit\" value=\"". __('Delete') ."\" class=\"button-primary\" name=\"submit\" />	\n";	
+		//echo "  <input type=\"hidden\" value=\"deleteRecord\" name=\"action\" />\n";
+		//echo "  <input type=\"submit\" value=\"". __('Delete') ."\" class=\"button-primary\" name=\"submit\" />	\n";	
 		echo "</p>\n";
+		
+		
 		echo "</form>\n";
 }
 ?>
