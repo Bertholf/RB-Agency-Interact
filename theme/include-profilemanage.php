@@ -56,79 +56,7 @@
 	
 		echo "		</td>\n";
 		echo "	  </tr>\n";
-		
-		echo "    <tr valign=\"top\">\n";
-		echo "        <td scope=\"row\">". __("Ethnicity", rb_agencyinteract_TEXTDOMAIN) ."</th>\n";
-		echo "        <td><select name=\"ProfileStatEthnicity\" id=\"ProfileStatEthnicity\">\n";
 	
-						$queryData = "SELECT EthnicityTitle FROM ". table_agency_data_ethnicity ." ORDER BY EthnicityTitle";
-						$resultsData = mysql_query($queryData);
-						$countData = mysql_num_rows($resultsData);
-						if ($countData > 0) {
-							if (empty($ProfileStatEthnicity)) {
-								echo " <option value=\"0\" selected>--</option>\n";
-							}
-							while ($dataData = mysql_fetch_array($resultsData)) {
-								echo " <option value=\"". $dataData["EthnicityTitle"] ."\" ". selected($ProfileStatEthnicity, $dataData["EthnicityTitle"]) .">". $dataData["EthnicityTitle"] ."</option>\n";
-							}
-							echo "</select>\n";
-						}
-		echo "        </td>\n";
-		echo "    </tr>\n";
-		echo "    <tr valign=\"top\">\n";
-		echo "        <td scope=\"row\">". __("Skin Color", rb_agencyinteract_TEXTDOMAIN) ."</th>\n";
-		echo "        <td><select name=\"ProfileStatSkinColor\" id=\"ProfileStatSkinColor\">\n";
-	
-						$queryData = "SELECT ColorSkinTitle FROM ". table_agency_data_colorskin ." ORDER BY ColorSkinTitle";
-						$resultsData = mysql_query($queryData);
-						$countData = mysql_num_rows($resultsData);
-						if ($countData > 0) {
-							if (empty($ProfileStatSkinColor)) {
-								echo " <option value=\"0\" selected>--</option>\n";
-							}
-							while ($dataData = mysql_fetch_array($resultsData)) {
-								echo " <option value=\"". $dataData["ColorSkinTitle"] ."\" ". selected($ProfileStatSkinColor, $dataData["ColorSkinTitle"]) .">". $dataData["ColorSkinTitle"] ."</option>\n";
-							}
-							echo "</select>\n";
-						}
-		echo "        </td>\n";
-		echo "    </tr>\n";
-		echo "    <tr valign=\"top\">\n";
-		echo "        <td scope=\"row\">". __("Eye Color", rb_agencyinteract_TEXTDOMAIN) ."</th>\n";
-		echo "        <td><select name=\"ProfileStatEyeColor\" id=\"ProfileStatEyeColor\">\n";
-	
-						$queryData = "SELECT ColorEyeTitle FROM ". table_agency_data_coloreye ." ORDER BY ColorEyeTitle";
-						$resultsData = mysql_query($queryData);
-						$countData = mysql_num_rows($resultsData);
-						if ($countData > 0) {
-							if (empty($ProfileStatEyeColor)) {
-								echo " <option value=\"0\" selected>--</option>\n";
-							}
-							while ($dataData = mysql_fetch_array($resultsData)) {
-								echo " <option value=\"". $dataData["ColorEyeTitle"] ."\" ". selected($ProfileStatEyeColor, $dataData["ColorEyeTitle"]) .">". $dataData["ColorEyeTitle"] ."</option>\n";
-							}
-							echo "</select>\n";
-						}
-		echo "        </td>\n";
-		echo "    </tr>\n";
-		echo "    <tr valign=\"top\">\n";
-		echo "        <td scope=\"row\">". __("Hair Color", rb_agencyinteract_TEXTDOMAIN) ."</th>\n";
-		echo "        <td><select name=\"ProfileStatHairColor\" id=\"ProfileStatHairColor\">\n";
-	
-						$queryData = "SELECT ColorHairTitle FROM ". table_agency_data_colorhair ." ORDER BY ColorHairTitle";
-						$resultsData = mysql_query($queryData);
-						$countData = mysql_num_rows($resultsData);
-						if ($countData > 0) {
-							if (empty($ProfileStatHairColor)) {
-								echo " <option value=\"0\" selected>--</option>\n";
-							}
-							while ($dataData = mysql_fetch_array($resultsData)) {
-								echo " <option value=\"". $dataData["ColorHairTitle"] ."\" ". selected($ProfileStatHairColor, $dataData["ColorHairTitle"]) .">". $dataData["ColorHairTitle"] ."</option>\n";
-							}
-							echo "</select>\n";
-						}
-		echo "        </td>\n";
-		echo "    </tr>\n";
 				  // Metric or Imperial?
 				  if ($rb_agency_option_unittype == 1) {
 		echo "    <tr valign=\"top\">\n";
@@ -194,7 +122,7 @@
 		echo "		</td>\n";
 		echo "	  </tr>\n";
 	
-		$query1 = "SELECT ProfileCustomID, ProfileCustomTitle, ProfileCustomType, ProfileCustomOptions FROM ". table_agency_customfields ." WHERE ProfileCustomView IN (0,2) AND ProfileCustomType < 4 ORDER BY ProfileCustomView, ProfileCustomTitle";
+		$query1 = "SELECT ProfileCustomID, ProfileCustomTitle, ProfileCustomType, ProfileCustomOptions,  ProfileCustomOrder, ProfileCustomView,  ProfileCustomShowGender	, ProfileCustomShowProfile, ProfileCustomShowSearch, ProfileCustomShowLogged, ProfileCustomShowAdmin FROM ". table_agency_customfields ." WHERE ProfileCustomView IN (0,2) AND ProfileCustomType < 7 ORDER BY ProfileCustomOrder desc";
 		$results1 = mysql_query($query1);
 		$count1 = mysql_num_rows($results1);
 		while ($data1 = mysql_fetch_array($results1)) {
@@ -204,7 +132,7 @@
 		echo "    <td>\n";
 			  if ( !empty($ProfileID) && ($ProfileID > 0) ) {
 
-				$subresult = mysql_query("SELECT ProfileCustomValue FROM ". table_agency_customfield_mux ." WHERE ProfileCustomID = ". $data1['ProfileCustomID'] ." AND ProfileID = ". $ProfileID);
+				$subresult = mysql_query("SELECT ProfileCustomValue FROM ". table_agency_customfield_mux ." WHERE ProfileCustomID = ". $data1['ProfileCustomID'] ." AND ProfileID = ". $ProfileID." ");
 				$subcount = mysql_num_rows($subresult);
 				if ($subcount > 0) { 
 				  while ($row = mysql_fetch_object($subresult)) {
@@ -217,72 +145,53 @@
 				
 			  } /// End 
 			  
+			  	//Custom fields display options
+	$rb_agency_option_customfields_profilepage = $rb_agency_options_arr['rb_agency_option_customfield_profilepage'];
+	$rb_agency_option_customfields_searchpage = $rb_agency_options_arr['rb_agency_option_customfield_searchpage'];
+	$rb_agency_option_customfields_loggedin_all = $rb_agency_options_arr['rb_agency_option_customfield_loggedin_all'];
+	$rb_agency_option_customfields_loggedin_admin = $rb_agency_options_arr['rb_agency_option_customfield_loggedin_admin'];
+	  
+	  $ProfileCustomID  = $data1['ProfileCustomID'];
+	  $ProfileCustomType = $data1['ProfileCustomType'];
 			  
-				$ProfileCustomType = $data1['ProfileCustomType'];
-				if ($ProfileCustomType == 1) {
-					$ProfileCustomOptions_Array = explode( "|", $data1['ProfileCustomOptions']);
-					foreach ($ProfileCustomOptions_Array as &$value) {
-					//echo "	<input type=\"checkbox\"  name=\"ProfileCustomID". $data1['ProfileCustomID'] ."\" value=\"". $value ."\" ". checked($ProfileCustomValue, $value) ." /> ". $value ."\n";
-					} 
-				} elseif ($ProfileCustomType == 2) {
-					$ProfileCustomOptions_Array = explode( "|", $data1['ProfileCustomOptions']);
-					foreach ($ProfileCustomOptions_Array as &$value) {
-					//echo "	<input type=\"radio\"  name=\"ProfileCustomID". $data1['ProfileCustomID'] ."\" value=\"". $value ."\" ". checked($ProfileCustomValue, $value) ." /> ". $value ."\n";
-					} 
-				} elseif ($ProfileCustomType == 3) {
-					$ProfileCustomOptions_Array = explode( "|", $data1['ProfileCustomOptions']);
-					echo "<select name=\"ProfileCustomID". $data1['ProfileCustomID'] ."\">\n";
-					foreach ($ProfileCustomOptions_Array as &$value) {
-					echo "	<option value=\"". $value ."\" ". selected($ProfileCustomValue, $value) ."> ". $value ." </option>\n";
-					} 
-					echo "</select>\n";
-				} else {
-					echo "<input type=\"text\" name=\"ProfileCustomID". $data1['ProfileCustomID'] ."\" value=\"". $ProfileCustomValue ."\" /><br />\n";
-				}
-				
+			   if($rb_agency_option_customfields_searchpage == 1 || $rb_agency_option_customfield_profilepage == 1 ){ // Show on Search Page
+		    
+						 if(($rb_agency_option_customfields_loggedin_all ==1 && is_user_logged_in()))
+						 {
+							 // Show custom fields for admins only.
+							if($rb_agency_option_customfields_loggedin_admin == 1 && current_user_can("level_10") && is_user_logged_in()){ 
+								include("view-customfields-profilemanager.php");
+								//echo "1";
+							}
+							// Show custom fields for logged in users.
+							if($rb_agency_option_customfields_loggedin_admin == 0 && !current_user_can("level_10")){
+								include("view-customfields-profilemanager.php");
+							 // echo "2";
+							}
+							
+						 }
+						 
+						 // Show custom fields to all user level.
+						 if(($rb_agency_option_customfields_loggedin_all == 0 && !is_user_logged_in())){
+							
+							include("view-customfields-profilemanager.php");
+							// echo "3";
+						}
+						if((!current_user_can("level_10") && $rb_agency_option_customfields_loggedin_admin ==0  && $rb_agency_option_customfields_loggedin_all == 0)){
+								include("view-customfields-profilemanager.php");
+							// echo "4";
+							
+						}
+			
+				 }
+					              
+					
+	
+			
 				// END Query2
 		echo "    </td>\n";
 		echo "  </tr>\n";
 		}
-		// Description
-		echo "    <tr valign=\"top\">\n";
-		echo "		<td scope=\"row\" colspan=\"2\"><h3>". __("Details", rb_agencyinteract_TEXTDOMAIN) ."</h3></th>\n";
-		echo "	  </tr>\n";
-		echo "    <tr valign=\"top\">\n";
-		echo "		<td scope=\"row\">". __("Description", rb_agencyinteract_TEXTDOMAIN) ."</th>\n";
-		echo "		<td>\n";
-		echo "			<textarea style=\"width: 100%; min-height: 300px;\" id=\"ProfileExperience\" name=\"ProfileExperience\" class=\"ProfileExperience\">". $ProfileExperience ."</textarea>\n";
-		echo "		</td>\n";
-		echo "	  </tr>\n";
-	
-		$query1 = "SELECT ProfileCustomID, ProfileCustomTitle FROM ". table_agency_customfields ." WHERE ProfileCustomView IN (0,2) AND ProfileCustomType = 4 ORDER BY ProfileCustomView, ProfileCustomTitle";
-		$results1 = mysql_query($query1);
-		$count1 = mysql_num_rows($results1);
-		while ($data1 = mysql_fetch_array($results1)) {
-			
-		echo "    <tr valign=\"top\">\n";
-		echo "		<td scope=\"row\">". $data1['ProfileCustomTitle'] ."</th>\n";
-		echo "		<td>\n";
-				  if ( !empty($ProfileID) && ($ProfileID > 0) ) {
-	
-					$subresult = mysql_query("SELECT ProfileCustomValue FROM ". table_agency_customfield_mux ." WHERE ProfileCustomID = ". $data1['ProfileCustomID'] ." AND ProfileID = ". $ProfileID);
-					$subcount = mysql_num_rows($subresult);
-					if ($subcount > 0) { 
-					  while ($row = mysql_fetch_object($subresult)) {
-						$ProfileCustomValue = $row->ProfileCustomValue;
-					  }
-					} else {
-						$ProfileCustomValue = "";
-					}
-					mysql_free_result($subresult);
-					
-				  } /// End 
-				  
-		echo "			<textarea style=\"width: 100%; min-height: 300px;\" id=\"ProfileCustomID". $data1['ProfileCustomID'] ."\" name=\"ProfileCustomID". $data1['ProfileCustomID'] ."\" class=\"ProfileExperience\">". $ProfileCustomValue ."</textarea>\n";
-		echo "		</td>\n";
-		echo "	  </tr>\n";
-		}
-		
 
 		echo "  </tbody>\n";
 		echo "</table>\n";
@@ -295,4 +204,6 @@
 		echo "</p>\n";
 		echo "</form>\n";
 	}
+		
+
 ?>

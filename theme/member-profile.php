@@ -31,10 +31,6 @@ if (isset($_POST['action'])) {
 	$ProfileID					=$_POST['ProfileID'];
 	$ProfileUserLinked			=$_POST['ProfileUserLinked'];
 	$ProfileLanguage			=$_POST['ProfileLanguage'];
-	$ProfileStatEthnicity		=$_POST['ProfileStatEthnicity'];
-	$ProfileStatSkinColor		=$_POST['ProfileStatSkinColor'];
-	$ProfileStatEyeColor		=$_POST['ProfileStatEyeColor'];
-	$ProfileStatHairColor		=$_POST['ProfileStatHairColor'];
 	$ProfileStatHeight			=$_POST['ProfileStatHeight'];
 	$ProfileStatWeight			=$_POST['ProfileStatWeight'];
 	$ProfileStatBust	        =$_POST['ProfileStatBust'];
@@ -48,6 +44,89 @@ if (isset($_POST['action'])) {
 	  if (is_array($ProfileType)) { 
 		$ProfileType = implode(",", $ProfileType);
 	  } 	
+
+    // Custom Fields
+	   // Remove Old Custom Field Values
+						$delete1 = "DELETE FROM " . table_agency_customfield_mux . " WHERE ProfileID = ". $ProfileID ."";
+						$results1 = $wpdb->query($delete1);
+	 	foreach($_POST as $key => $val){
+			
+				if(substr($key,0,15)=="ProfileCustomID"){
+					//if(isset($val) && !empty($val)){
+					 
+					   
+							 $value1 = explode("_",$key);
+						     $ProfileTypeKey = substr($value1[0],15);
+					
+					   
+					  
+					   
+					   $query =  mysql_query("SELECT ProfileCustomType,ProfileCustomID FROM  ". table_agency_customfields ." WHERE ProfileCustomID=".$ProfileTypeKey." ") or die(mysql_error());
+					   
+						/******************
+						1 - Text
+						2 - Min-Max > Removed
+						3 - Dropdown
+						4 - Textbox
+						5 - Checkbox
+						6 - Radiobutton
+						7 - Metrics/Imperials
+						*********************/
+						$data1 = mysql_fetch_assoc($query);
+					    
+						$ProfileCustomType = $data1["ProfileCustomType"];
+					
+						$ProfileCustomID = $data1["ProfileCustomID"];
+						
+						$q1 = mysql_query("SELECT * FROM  ". table_agency_customfield_mux ." WHERE ProfileID = ". $ProfileID ." AND  ProfileCustomID=".$ProfileCustomID." ")  or die(mysql_error());
+						$c1 = mysql_num_rows($q1);
+						
+						
+						
+						if($ProfileCustomType  == 1){ //Text
+						
+							 	 mysql_query("INSERT INTO  ". table_agency_customfield_mux ." (ProfileCustomMuxID, ProfileCustomID, ProfileID,	ProfileCustomValue,	ProfileCustomShowProfile,ProfileCustomShowSearch,ProfileCustomShowLogged,ProfileCustomShowAdmin) VALUES ('',".$ProfileCustomID.",". $ProfileID ." ,'".$val."',1,1,1,1)  ")  or die(mysql_error());
+						 
+						}elseif($ProfileCustomType  == 3){ // Dropdown
+								
+								 $value_separated = implode(",",$val);
+							  
+								
+								 mysql_query("INSERT INTO  ". table_agency_customfield_mux ." (ProfileCustomMuxID, ProfileCustomID,ProfileID,	ProfileCustomValue,	ProfileCustomShowProfile,ProfileCustomShowSearch,ProfileCustomShowLogged,ProfileCustomShowAdmin) VALUES ('',".$ProfileCustomID.",". $ProfileID ." ,'".$value_separated."',1,1,1,1)  ")  or die(mysql_error());
+						
+							 
+						}elseif($ProfileCustomType  == 4){ //Textbox
+							
+							
+								 mysql_query("INSERT INTO  ". table_agency_customfield_mux ." (ProfileCustomMuxID, ProfileCustomID,ProfileID,	ProfileCustomValue,	ProfileCustomShowProfile,ProfileCustomShowSearch,ProfileCustomShowLogged,ProfileCustomShowAdmin) VALUES ('',".$ProfileCustomID.",". $ProfileID ." ,'".$val."',1,1,1,1)  ")  or die(mysql_error());
+						 
+						}elseif($ProfileCustomType  == 5){ //Checkbox
+							
+							 $value_separated = implode(",",$val);
+							 
+							
+								 mysql_query("INSERT INTO  ". table_agency_customfield_mux ." (ProfileCustomMuxID, ProfileCustomID,ProfileID,	ProfileCustomValue,	ProfileCustomShowProfile,ProfileCustomShowSearch,ProfileCustomShowLogged,ProfileCustomShowAdmin) VALUES ('',".$ProfileCustomID.",". $ProfileID ." ,'".$value_separated."',1,1,1,1)  ")  or die(mysql_error());
+						 
+						
+						}elseif($ProfileCustomType  == 6){ // Radiobutton
+							
+							     
+								 mysql_query("INSERT INTO  ". table_agency_customfield_mux ."  (ProfileCustomMuxID,	ProfileCustomID,ProfileID,	ProfileCustomValue,	ProfileCustomShowProfile,ProfileCustomShowSearch,ProfileCustomShowLogged,ProfileCustomShowAdmin) VALUES ('',".$ProfileCustomID.",". $ProfileID ." ,'".$val."',1,1,1,1)  ")  or die(mysql_error());
+						 
+						
+						}elseif($ProfileCustomType  == 7){ // Metrics/Imperials
+							
+								 mysql_query("INSERT INTO  ". table_agency_customfield_mux ."  (ProfileCustomMuxID,	ProfileCustomID,ProfileID,	ProfileCustomValue,	ProfileCustomShowProfile,ProfileCustomShowSearch,ProfileCustomShowLogged,ProfileCustomShowAdmin) VALUES ('',".$ProfileCustomID.",". $ProfileID ." ,'".$val."',1,1,1,1)  ")  or die(mysql_error());
+						
+						}
+					  
+					// }
+				}
+			 $val ="";
+		}// end for each
+
+         
+
 
 	// Get Primary Image
 	$ProfileMediaPrimaryID		=$_POST['ProfileMediaPrimary'];
@@ -67,10 +146,6 @@ if (isset($_POST['action'])) {
 			
 			// Update Record
 			$update = "UPDATE " . table_agency_profile . " SET 
-			ProfileStatEthnicity='" . $wpdb->escape($ProfileStatEthnicity) . "',
-			ProfileStatSkinColor='" . $wpdb->escape($ProfileStatSkinColor) . "',
-			ProfileStatEyeColor='" . $wpdb->escape($ProfileStatEyeColor) . "',
-			ProfileStatHairColor='" . $wpdb->escape($ProfileStatHairColor) . "',
 			ProfileStatHeight='" . $wpdb->escape($ProfileStatHeight) . "',
 			ProfileStatWeight='" . $wpdb->escape($ProfileStatWeight) . "',
 			ProfileStatBust='" . $wpdb->escape($ProfileStatBust) . "',
@@ -79,25 +154,14 @@ if (isset($_POST['action'])) {
 			ProfileStatShoe='" . $wpdb->escape($ProfileStatShoe) . "',
 			ProfileStatDress='" . $wpdb->escape($ProfileStatDress) . "',
 			ProfileUnion='" . $wpdb->escape($ProfileUnion) . "',
-			ProfileExperience='" . $wpdb->escape($ProfileExperience) . "',
 			ProfileDateUpdated=now(),
 			ProfileType='" . $wpdb->escape($ProfileType) . "'
 			WHERE ProfileID=$ProfileID";
 		    $results = $wpdb->query($update);
 
-			// Remove Old Custom Field Values
-			$delete1 = "DELETE FROM " . table_agency_customfield_mux . " WHERE ProfileID = \"". $ProfileID ."\"";
-			$results1 = $wpdb->query($delete1);
 			
-			// Add New Custom Field Values
-			foreach($_POST as $key => $value) {
-				if ((substr($key, 0, 15) == "ProfileCustomID") && (isset($value) && !empty($value))) {
-					$ProfileCustomID = substr($key, 15);
-					
-					$insert1 = "INSERT INTO " . table_agency_customfield_mux . " (ProfileID,ProfileCustomID,ProfileCustomValue)" . "VALUES ('" . $ProfileID . "','" . $ProfileCustomID . "','" . $value . "')";
-					$results1 = $wpdb->query($insert1);
-				}
-			}
+			
+			
 			
 			$alerts = "<div id=\"message\" class=\"updated\"><p>". __("Profile updated successfully", rb_agencyinteract_TEXTDOMAIN) ."!</a></p></div>";
 		} else {
