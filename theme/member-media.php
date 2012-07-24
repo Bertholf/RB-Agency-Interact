@@ -50,45 +50,84 @@ if (isset($_POST['action'])) {
 	// Edit Record
 	case 'editRecord':
 		if (!$have_error){
+		
 			
-			// If the directory Doesnt Exist, make it.
-			if (!is_dir(rb_agency_UPLOADPATH . $ProfileGallery)) {
-				mkdir(rb_agency_UPLOADPATH . $ProfileGallery, 0755);
-			}
-
 			// Upload Image & Add to Database
 			$i = 1;
 			while ($i <= 10) {
 				if($_FILES['profileMedia'. $i]['tmp_name'] != ""){
 					$uploadMediaType = $_POST['profileMedia'. $i .'Type'];
-					if($uploadMediaType == "Image") {
-						if(!$_FILES['profileMedia'. $i]['type'] == "image/jpeg" || !$_FILES['profileMedia'. $i]['type'] == "image/gif" || !$_FILES['profileMedia'. $i]['type'] == "image/png"){
-						$error .= "<b><i>Please upload an image file only</i></b><br />";
-						$have_error = true;
-						}
-					} else {
-						if(!$_FILES['profileMedia'. $i]['type'] == "application/pdf" || !$_FILES['profileMedia'. $i]['type'] == "image/jpeg" || !$_FILES['profileMedia'. $i]['type'] == "image/gif" || !$_FILES['profileMedia'. $i]['type'] == "image/png"){
-						$error .= "<b><i>Please upload a PDF or image file only</i></b><br />";
-						$have_error = true;
-						}
-					}
+					
 					if ($have_error != true) {
 					// Upload if it doesnt exist already
-					 $safeProfileMediaFilename = rb_agency_safenames($_FILES['profileMedia'. $i]['name']);
+					 $path_parts = pathinfo($_FILES['profileMedia'. $i]['name']);
+					 $safeProfileMediaFilename =  rb_agency_safenames(str_replace("_","-",$path_parts['filename'])."---".time(U).rand(10,90).".".$path_parts['extension']);
 					 $results = mysql_query("SELECT * FROM " . table_agency_profile_media . " WHERE ProfileID='". $ProfileID ."' AND ProfileMediaURL = '". $safeProfileMediaFilename ."'");
 					 $count = mysql_num_rows($results);
 
 					 if ($count < 1) {
-						$image = new rb_agency_image();
-						$image->load($_FILES['profileMedia'. $i]['tmp_name']);
-
-						if ($image->getHeight() > $rb_agency_option_agencyimagemaxheight) {
-							$image->resizeToHeight($rb_agency_option_agencyimagemaxheight);
-						}
-						$image->save(rb_agency_UPLOADPATH . $ProfileGallery ."/". $safeProfileMediaFilename);
-						// Add to database
-						$results = $wpdb->query("INSERT INTO " . table_agency_profile_media . " (ProfileID, ProfileMediaType, ProfileMediaTitle, ProfileMediaURL) VALUES ('". $ProfileID ."','". $uploadMediaType ."','". $safeProfileMediaFilename ."','". $safeProfileMediaFilename ."')");
+						if($uploadMediaType == "Image") { 
+						    if($_FILES['profileMedia'. $i]['type'] == "image/jpeg" || $_FILES['profileMedia'. $i]['type'] == "image/gif" || $_FILES['profileMedia'. $i]['type'] == "image/png"){
+						
+									$image = new rb_agency_image();
+									$image->load($_FILES['profileMedia'. $i]['tmp_name']);
 			
+									if ($image->getHeight() > $rb_agency_option_agencyimagemaxheight) {
+										$image->resizeToHeight($rb_agency_option_agencyimagemaxheight);
+									}
+									$image->save(rb_agency_UPLOADPATH . $ProfileGallery ."/". $safeProfileMediaFilename);
+									// Add to database
+								$results = $wpdb->query("INSERT INTO " . table_agency_profile_media . " (ProfileID, ProfileMediaType, ProfileMediaTitle, ProfileMediaURL) VALUES ('". $ProfileID ."','". $uploadMediaType ."','". $safeProfileMediaFilename ."','". $safeProfileMediaFilename ."')");
+						    }else{
+								$error .= "<b><i>Please upload an image file only</i></b><br />";
+						        $have_error = true;
+							}
+						}
+						else if($uploadMediaType =="VoiceDemo"){
+							// Add to database
+							$MIME = array('audio/mpeg', 'audio/mp3');
+							 if(in_array($_FILES['profileMedia'. $i]['type'], $MIME)){
+								 $results = $wpdb->query("INSERT INTO " . table_agency_profile_media . " (ProfileID, ProfileMediaType, ProfileMediaTitle, ProfileMediaURL) VALUES ('". $ProfileID ."','". $uploadMediaType ."','". $safeProfileMediaFilename ."','". $safeProfileMediaFilename ."')");
+			                 	 move_uploaded_file($_FILES['profileMedia'. $i]['tmp_name'], rb_agency_UPLOADPATH . $ProfileGallery ."/".$safeProfileMediaFilename);
+							 }else{
+								 $error .= "<b><i>Please upload a mp3 file only</i></b><br />";
+								 $have_error = true;
+							 }
+						}
+						else if($uploadMediaType =="Resume"){
+							// Add to database
+							 if ($_FILES['profileMedia'. $i]['type'] == "application/msword" || $_FILES['profileMedia'. $i]['type'] == "application/vnd.openxmlformats-officedocument.wordprocessingml.document"  || $_FILES['profileMedia'. $i]['type'] == "application/pdf" || $_FILES['profileMedia'. $i]['type'] == "application/rtf")
+							{
+							  $results = $wpdb->query("INSERT INTO " . table_agency_profile_media . " (ProfileID, ProfileMediaType, ProfileMediaTitle, ProfileMediaURL) VALUES ('". $ProfileID ."','". $uploadMediaType ."','". $safeProfileMediaFilename ."','". $safeProfileMediaFilename ."')");
+			                 		  move_uploaded_file($_FILES['profileMedia'. $i]['tmp_name'], rb_agency_UPLOADPATH . $ProfileGallery ."/".$safeProfileMediaFilename);
+							}else{
+							   	$error .= "<b><i>Please upload PDF/MSword/RTF files only</i></b><br />";
+						        $have_error = true;	
+							}
+						}
+						else if($uploadMediaType =="Headshot"){
+							// Add to database
+							 if ($_FILES['profileMedia'. $i]['type'] == "application/msword" || $_FILES['profileMedia'. $i]['type'] == "application/vnd.openxmlformats-officedocument.wordprocessingml.document" || $_FILES['profileMedia'. $i]['type'] == "application/pdf" || $_FILES['profileMedia'. $i]['type'] == "application/rtf" || $_FILES['profileMedia'. $i]['type'] == "image/jpeg" || $_FILES['profileMedia'. $i]['type'] == "image/gif" || $_FILES['profileMedia'. $i]['type'] == "image/png")
+							{
+							  $results = $wpdb->query("INSERT INTO " . table_agency_profile_media . " (ProfileID, ProfileMediaType, ProfileMediaTitle, ProfileMediaURL) VALUES ('". $ProfileID ."','". $uploadMediaType ."','". $safeProfileMediaFilename ."','". $safeProfileMediaFilename ."')");
+			                  move_uploaded_file($_FILES['profileMedia'. $i]['tmp_name'], rb_agency_UPLOADPATH . $ProfileGallery ."/".$safeProfileMediaFilename);
+							}else{
+							   	$error .= "<b><i>Please upload PDF/MSWord/RTF/Image files only</i></b><br />";
+						        $have_error = true;	
+							}
+						}
+						else if($uploadMediaType =="CompCard"){
+							// Add to database
+							 if ($_FILES['profileMedia'. $i]['type'] == "image/jpeg" || $_FILES['profileMedia'. $i]['type'] == "image/png")
+							{
+							  $results = $wpdb->query("INSERT INTO " . table_agency_profile_media . " (ProfileID, ProfileMediaType, ProfileMediaTitle, ProfileMediaURL) VALUES ('". $ProfileID ."','". $uploadMediaType ."','". $safeProfileMediaFilename ."','". $safeProfileMediaFilename ."')");
+			                  move_uploaded_file($_FILES['profileMedia'. $i]['tmp_name'], rb_agency_UPLOADPATH . $ProfileGallery ."/".$safeProfileMediaFilename);
+							}else{
+							   	$error .= "<b><i>Please upload jpeg or png files only</i></b><br />";
+								$have_error = true;	
+							}
+						}
+						
 					 }
 					}
 				}
@@ -136,8 +175,11 @@ if (isset($_POST['action'])) {
 			$alerts = "<div id=\"message\" class=\"error\"><p>". __("Error updating record, please ensure you have filled out all required fields.", rb_agencyinteract_TEXTDOMAIN) ."</p></div>"; 
 		}
 		
-		wp_redirect( $rb_agencyinteract_WPURL ."/profile-member/subscription" );
+		if ($have_error != true) {
+			wp_redirect( $rb_agencyinteract_WPURL ."/profile-member/media/" );
+		
 		exit;
+	    }
 	break;
 	}
 }
