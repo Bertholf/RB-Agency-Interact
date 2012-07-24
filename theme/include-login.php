@@ -3,8 +3,9 @@
 	require_once( ABSPATH . WPINC . '/registration.php' );
 	
 	/* Check if users can register. */
-	$registration = get_option( 'users_can_register' );
-	if (( current_user_can("create_users") || $registration ) && !$hideregister) {
+	$registration = get_option( 'rb_agencyinteract_options' );
+	$rb_agencyinteract_option_registerallow = $registration["rb_agencyinteract_option_registerallow"];
+	if (( current_user_can("create_users") || $rb_agencyinteract_option_registerallow )) {
 		$widthClass = "half";
 	} else {
 		$widthClass = "full";
@@ -14,7 +15,10 @@ echo "     <div id=\"profile-interact\">\n";
 
 			if ( $error ) {
 			echo "<p class=\"error\">". $error ."</p>\n";
+			echo $_POST['user-name']."-".$_POST['password'];
 			}
+			
+	
 
 echo "        <div id=\"member-sign-in\" class=\"fl ". $widthClass ."\">\n";
 echo "          <h1>". __("Members Sign in", rb_agencyinteract_TEXTDOMAIN). "</h1>\n";
@@ -35,7 +39,7 @@ echo "            </div>\n";
 echo "          <form>\n";
 echo "        </div> <!-- member-sign-in -->\n";
 
-			if (( current_user_can("create_users") || $registration ) && !$hideregister) {
+			if (( current_user_can("create_users") || $rb_agencyinteract_option_registerallow == 1)) {
 
 echo "        <div id=\"not-a-member\" class=\"fr\">\n";
 echo "          <div id=\"talent-register\">\n";

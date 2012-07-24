@@ -1,17 +1,16 @@
 <?php
-
 // *************************************************************************************************** //
 // Respond to Login Request
 
 	if ( $_SERVER['REQUEST_METHOD'] == "POST" && !empty( $_POST['action'] ) && $_POST['action'] == 'log-in' ) {
 	
 		global $error;
-		$login = wp_login( $_POST['user-name'], $_POST['password'] );
-		$login = wp_signon( array( 'user_login' => $_POST['user-name'], 'user_password' => $_POST['password'], 'remember' => $_POST['remember-me'] ), false );
+		 $login = wp_login( $_POST['user-name'], $_POST['password'] );
+		 $login = wp_signon( array( 'user_login' => $_POST['user-name'], 'user_password' => $_POST['password'], 'remember' => $_POST['remember-me'] ), false );
           get_currentuserinfo();
-
-			if( $login) {
-
+        
+			if($login->ID) {
+               wp_set_current_user($login->ID);  // populate
 			   get_user_login_info();
 
 			}
@@ -41,7 +40,7 @@ function  get_user_login_info(){
 
 					else if ( strtotime( $user_info->user_registered ) > ( time() - 172800 ) ) {
 
-						header("Location: ". get_bloginfo("wpurl"). "/profile-member/account/");
+						header("Location: ". get_bloginfo("wpurl"). "/profile-member/");
 
 					} else {
 
@@ -57,8 +56,8 @@ function  get_user_login_info(){
 				else{
 
 					 // Reload
-
-				    header("Location: ". get_bloginfo("wpurl")."/profile-login/&callback=".md5(rand(1000,9999)));	
+                
+				    header("Location: ". get_bloginfo("wpurl")."/profile-login/");	
 
 				}
 
@@ -107,8 +106,7 @@ function  get_user_login_info(){
 		echo "<div id=\"container\" class=\"one-column rb-agency-interact-account\">\n";
 
 		echo "  <div id=\"content\">\n";
-
-		
+	
 
 			// Show Login Form
 
