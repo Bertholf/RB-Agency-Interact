@@ -6,9 +6,13 @@
 
 	// Get Settings
 	$rb_agency_options_arr = get_option('rb_agency_options');
+	
 		$rb_agency_option_showsocial 			= $rb_agency_options_arr['rb_agency_option_showsocial'];
 		$rb_agency_option_profilenaming 		= (int)$rb_agency_options_arr['rb_agency_option_profilenaming'];
 		$rb_agency_option_locationtimezone 		= (int)$rb_agency_options_arr['rb_agency_option_locationtimezone'];
+      
+	$rb_agencyinteract_options_arr = get_option('rb_agencyinteract_options');
+	$rb_agencyinteract_option_registerallow = (int)$rb_agencyinteract_options_arr['rb_agencyinteract_option_registerallow'];
 
 	// Get Data
 	$query = "SELECT * FROM " . table_agency_profile . " WHERE ProfileUserLinked='$ProfileUserLinked'";
@@ -41,7 +45,7 @@
 		$ProfileDateUpdated			=$data['ProfileDateUpdated'];
 
 		echo "<form method=\"post\" enctype=\"multipart/form-data\" action=\"". get_bloginfo("wpurl") ."/profile-member/account/\">\n";
-		
+		echo "     <input type=\"hidden\" name=\"ProfileID\" value=\"". $ProfileID ."\" />\n";
 		echo " <table class=\"form-table\">\n";
 		echo "  <tbody>\n";
 		echo "    <tr colspan=\"2\">\n";
@@ -51,7 +55,7 @@
 		echo "		<td scope=\"row\">". __("Gallery Folder", rb_agencyinteract_TEXTDOMAIN) ."</th>\n";
 		echo "		<td>\n";
 					if (!empty($ProfileGallery) && is_dir(rb_agency_UPLOADPATH .$ProfileGallery)) { 
-						echo "<div id=\"message\"><span class=\"updated\"><a href=\"/profile/". $ProfileGallery ."/\" target=\"_blank\">/profile/". $ProfileGallery ."/</a></span></div>\n";
+						echo "<div id=\"message\"><span class=\"updated\"><a href=\"".network_site_url("/")."profile/". $ProfileGallery ."/\" target=\"_blank\">/profile/". $ProfileGallery ."/</a></span></div>\n";
 						echo "<input type=\"hidden\" id=\"ProfileGallery\" name=\"ProfileGallery\" value=\"". $ProfileGallery ."\" />\n";
 					} else {
 						echo "<input type=\"text\" id=\"ProfileGallery\" name=\"ProfileGallery\" value=\"". $ProfileGallery ."\" />\n";
@@ -134,60 +138,6 @@
 		echo "			<input type=\"text\" id=\"ProfileLocationCountry\" name=\"ProfileLocationCountry\" value=\"". $ProfileLocationCountry ."\" />\n";
 		echo "		</td>\n";
 		echo "	  </tr>\n";
-		// Custom Admin Fields
-	
-		$query1 = "SELECT ProfileCustomID, ProfileCustomTitle, ProfileCustomType, ProfileCustomOptions FROM ". table_agency_customfields ." WHERE ProfileCustomView = 1 ORDER BY ProfileCustomView, ProfileCustomTitle";
-		$results1 = mysql_query($query1);
-		$count1 = mysql_num_rows($results1);
-		while ($data1 = mysql_fetch_array($results1)) {
-		
-		echo "  <tr valign=\"top\">\n";
-		echo "    <td scope=\"row\">". $data1['ProfileCustomTitle'] ."</th>\n";
-		echo "    <td>\n";
-			  if ( !empty($ProfileID) && ($ProfileID > 0) ) {
-	
-				$subresult = mysql_query("SELECT ProfileCustomValue FROM ". table_agency_customfield_mux ." WHERE ProfileCustomID = ". $data1['ProfileCustomID'] ." AND ProfileID = ". $ProfileID);
-				$subcount = mysql_num_rows($subresult);
-				if ($subcount > 0) { 
-				  while ($row = mysql_fetch_object($subresult)) {
-					$ProfileCustomValue = $row->ProfileCustomValue;
-				  }
-				} else {
-					$ProfileCustomValue = "";
-				}
-				mysql_free_result($subresult);
-				
-			  } /// End 
-			  
-			  
-				$ProfileCustomType = $data1['ProfileCustomType'];
-				if ($ProfileCustomType == 1) {
-					$ProfileCustomOptions_Array = explode( "|", $data1['ProfileCustomOptions']);
-					foreach ($ProfileCustomOptions_Array as &$value) {
-					//echo "	<input type=\"checkbox\"  name=\"ProfileCustomID". $data1['ProfileCustomID'] ."\" value=\"". $value ."\" ". checked($ProfileCustomValue, $value) ." /> ". $value ."\n";
-					} 
-				} elseif ($ProfileCustomType == 2) {
-					$ProfileCustomOptions_Array = explode( "|", $data1['ProfileCustomOptions']);
-					foreach ($ProfileCustomOptions_Array as &$value) {
-					//echo "	<input type=\"radio\"  name=\"ProfileCustomID". $data1['ProfileCustomID'] ."\" value=\"". $value ."\" ". checked($ProfileCustomValue, $value) ." /> ". $value ."\n";
-					} 
-				} elseif ($ProfileCustomType == 3) {
-					$ProfileCustomOptions_Array = explode( "|", $data1['ProfileCustomOptions']);
-					echo "<select name=\"ProfileCustomID". $data1['ProfileCustomID'] ."\">\n";
-					foreach ($ProfileCustomOptions_Array as &$value) {
-					echo "	<option value=\"". $value ."\" ". selected($ProfileCustomValue, $value) ."> ". $value ." </option>\n";
-					} 
-					echo "</select>\n";
-				} else {
-					echo "<input type=\"text\" name=\"ProfileCustomID". $data1['ProfileCustomID'] ."\" value=\"". $ProfileCustomValue ."\" /><br />\n";
-				}
-				
-				// END Query2
-		echo "    </td>\n";
-		echo "  </tr>\n";
-		}
-		
-		// Links	
 		echo "    <tr valign=\"top\">\n";
 		echo "		<td scope=\"row\">". __("Phone", rb_agencyinteract_TEXTDOMAIN) ."</th>\n";
 		echo "		<td>\n";
@@ -202,6 +152,9 @@
 		echo "			<input type=\"text\" id=\"ProfileContactWebsite\" name=\"ProfileContactWebsite\" value=\"". $ProfileContactWebsite ."\" />\n";
 		echo "		</td>\n";
 		echo "	  </tr>\n";
+		// Include Profile Customfields
+		     $ProfileInformation = "1"; // Private fields only
+			include("include-custom-fields.php");
 		// Show Social Media Links
 		if ($rb_agency_option_showsocial == "1") { 
 		echo "    <tr valign=\"top\">\n";
@@ -232,6 +185,18 @@
 		echo "		</td>\n";
 		echo "	  </tr>\n";
 		} 
+		if ($rb_agencyinteract_option_registerallow  == 1) {
+			echo "    <tr valign=\"top\">\n";
+			echo "		<td scope=\"row\">". __("Username(cannot be changed.)", rb_agencyinteract_TEXTDOMAIN) ."</th>\n";
+			echo "		<td>\n";
+			if(isset($current_user->user_login)){
+			echo "			<input type=\"text\" id=\"ProfileUsername\"  name=\"ProfileUsername\" disabled=\"disabled\" value=\"".$current_user->user_login."\" />\n";
+			}else{
+			echo "			<input type=\"text\" id=\"ProfileUsername\"  name=\"ProfileUsername\" value=\"\" />\n";	
+			}
+			echo "		</td>\n";
+			echo "	  </tr>\n";
+	 	}
 		echo "    <tr valign=\"top\">\n";
 		echo "		<td scope=\"row\">". __("Password (Leave blank to keep same password)", rb_agencyinteract_TEXTDOMAIN) ."</th>\n";
 		echo "		<td>\n";
@@ -249,7 +214,7 @@
 
 		echo "". __("Last updated ", rb_agencyinteract_TEXTDOMAIN) ." ". rb_agency_makeago(rb_agency_convertdatetime($ProfileDateUpdated), $rb_agency_option_locationtimezone) ."\n";
 		echo "<p class=\"submit\">\n";
-		echo "     <input type=\"hidden\" name=\"ProfileID\" value=\"". $ProfileID ."\" />\n";
+
 		echo "     <input type=\"hidden\" name=\"action\" value=\"editRecord\" />\n";
 		echo "     <input type=\"submit\" name=\"submit\" value=\"". __("Save and Continue", rb_restaurant_TEXTDOMAIN) ."\" class=\"button-primary\" />\n";
 		echo "</p>\n";

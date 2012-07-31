@@ -105,42 +105,29 @@
 	echo "			<input type=\"text\" id=\"ProfileLocationCountry\" name=\"ProfileLocationCountry\" />\n";
 	echo "		</td>\n";
 	echo "	  </tr>\n";
-	// Address
-	// Custom Admin Fields
+		 // Load Customfields
+		 
+		 include("view-customfields.php");
 
-	$query1 = "SELECT ProfileCustomID, ProfileCustomTitle, ProfileCustomType, ProfileCustomOptions FROM ". table_agency_customfields ." WHERE ProfileCustomView = 1 ORDER BY ProfileCustomView, ProfileCustomTitle";
-	$results1 = mysql_query($query1);
-	$count1 = mysql_num_rows($results1);
-	while ($data1 = mysql_fetch_array($results1)) {
-	
-	echo "  <tr valign=\"top\">\n";
-	echo "    <td scope=\"row\">". $data1['ProfileCustomTitle'] ."</th>\n";
-	echo "    <td>\n";
-			$ProfileCustomType = $data1['ProfileCustomType'];
-			if ($ProfileCustomType == 1) {
-				$ProfileCustomOptions_Array = explode( "|", $data1['ProfileCustomOptions']);
-				foreach ($ProfileCustomOptions_Array as &$value) {
-				//echo "	<input type=\"checkbox\"  name=\"ProfileCustomID". $data1['ProfileCustomID'] ."\" value=\"". $value ."\" ". checked($ProfileCustomValue, $value) ." /> ". $value ."\n";
-				} 
-			} elseif ($ProfileCustomType == 2) {
-				$ProfileCustomOptions_Array = explode( "|", $data1['ProfileCustomOptions']);
-				foreach ($ProfileCustomOptions_Array as &$value) {
-				//echo "	<input type=\"radio\"  name=\"ProfileCustomID". $data1['ProfileCustomID'] ."\" value=\"". $value ."\" ". checked($ProfileCustomValue, $value) ." /> ". $value ."\n";
-				} 
-			} elseif ($ProfileCustomType == 3) {
-				$ProfileCustomOptions_Array = explode( "|", $data1['ProfileCustomOptions']);
-				echo "<select name=\"ProfileCustomID". $data1['ProfileCustomID'] ."\">\n";
-				foreach ($ProfileCustomOptions_Array as &$value) {
-				echo "	<option value=\"". $value ."\"> ". $value ." </option>\n";
-				} 
-				echo "</select>\n";
-			} else {
-				echo "<input type=\"text\" name=\"ProfileCustomID". $data1['ProfileCustomID'] ."\" /><br />\n";
-			}
-	}
-	// END Query
 	echo "    </td>\n";
 	echo "  </tr>\n";
+	$rb_agencyinteract_options_arr = get_option('rb_agencyinteract_options');
+	$rb_agencyinteract_option_registerallow = (int)$rb_agencyinteract_options_arr['rb_agencyinteract_option_registerallow'];
+
+	
+	  if ($rb_agencyinteract_option_registerallow  == 1) {
+		echo "    <tr valign=\"top\">\n";
+		echo "		<td scope=\"row\">". __("Username(cannot be changed.)", rb_agencyinteract_TEXTDOMAIN) ."</th>\n";
+		echo "		<td>\n";
+		if(isset($current_user->user_login)){
+		echo "			<input type=\"text\" id=\"ProfileUsername\"  disabled=\"disabled\" value=\"".$current_user->user_login."\" />\n";
+		echo "                  <input type=\"hidden\" name=\"ProfileUsername\" value=\"".$current_user->user_login."\"  />";
+		}else{
+		echo "			<input type=\"text\" id=\"ProfileUsername\"  name=\"ProfileUsername\" value=\"\" />\n";	
+		}
+		echo "		</td>\n";
+		echo "	  </tr>\n";
+	 }
 	echo "    <tr valign=\"top\">\n";
 	echo "		<td scope=\"row\">". __("Password (Leave blank to keep same password)", rb_agencyinteract_TEXTDOMAIN) ."</th>\n";
 	echo "		<td>\n";

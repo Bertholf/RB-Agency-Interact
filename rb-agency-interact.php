@@ -26,12 +26,13 @@ if ( ! isset($GLOBALS['wp_version']) || version_compare($GLOBALS['wp_version'], 
 		exit();
 	}
 	
+	
 // Plugin Definitions
 	define("rb_agencyinteract_VERSION", $rb_agencyinteract_VERSION); // e.g. 1.0
 	define("rb_agencyinteract_BASENAME", plugin_basename(__FILE__) );  // rb-agency/rb-agency.php
 	$rb_agencyinteract_WPURL = get_bloginfo("wpurl"); // http://domain.com/wordpress
 	$rb_agencyinteract_WPUPLOADARRAY = wp_upload_dir(); // Array  $rb_agencyinteract_WPUPLOADARRAY['baseurl'] $rb_agencyinteract_WPUPLOADARRAY['basedir']
-	define("rb_agencyinteract_BASEDIR", get_bloginfo("wpurl") ."/". PLUGINDIR ."/". dirname( plugin_basename(__FILE__) ) ."/" );  // http://domain.com/wordpress/wp-content/plugins/rb-agency/
+	define("rb_agencyinteract_BASEDIR", get_bloginfo("wpurl") ."/". PLUGINDIR ."/". dirname( plugin_basename(__FILE__) ) ."/" );  // http://domain.com/wordpress/wp-content/plugins/rb-agency-interact/
 	define("rb_agencyinteract_UPLOADDIR", $rb_agencyinteract_WPUPLOADARRAY['baseurl'] ."/profile-media/" );  // http://domain.com/wordpress/wp-content/uploads/profile-media/
 	define("rb_agencyinteract_UPLOADPATH", $rb_agencyinteract_WPUPLOADARRAY['basedir'] ."/profile-media/" ); // /home/content/99/6048999/html/domain.com/wordpress/wp-content/uploads/profile-media/
 	define("rb_agencyinteract_TEXTDOMAIN", basename(dirname( __FILE__ )) ); //   rb-agency

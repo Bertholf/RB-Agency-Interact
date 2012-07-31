@@ -207,7 +207,7 @@ function rb_display_list() {
 						
 						$profileLabel = '';
 						$countProfile > 1 ? $profileLabel = "$countProfile Profiles" : $profileLabel = "Profile" ;
-					echo ('<div id="message" class="updated"><p>'. __("$profileLabel approved successfully!", rb_agencyinteract_TEXTDOMAIN) .'</p></div>');
+					echo ('<div id="message" class="updated"><p>'. __("$profileLabel Approved successfully!", rb_agencyinteract_TEXTDOMAIN) .'</p></div>');
 						
 							
 					}
@@ -215,6 +215,14 @@ function rb_display_list() {
 			}
 		}
 		
+		if(isset($_GET["action"])=="approveRecord"){
+			$ProfileID = $_GET["ProfileID"];
+			$queryApprove = "UPDATE ". table_agency_profile ." SET ProfileIsActive = 1 WHERE ProfileID =  \"". $ProfileID ."\"";
+			$resultsApprove = mysql_query($queryApprove);
+			if($resultsApprove){ 
+				echo ('<div id="message" class="updated"><p>'. __("$profileLabel Approved successfully!", rb_agencyinteract_TEXTDOMAIN) .'</p></div>');
+			}
+		}
 		
 		//Paginate
 		$items = mysql_num_rows(mysql_query("SELECT * FROM ". table_agency_profile ." profile LEFT JOIN ". table_agency_data_type ." profiletype ON profile.ProfileType = profiletype.DataTypeID ". $filter  ."")); // number of total rows in the database
@@ -242,7 +250,7 @@ function rb_display_list() {
 		
 		
         echo "<div class=\"tablenav\">\n";
- 		echo "	<div style=\"float: left; \"><a class=\"button-primary\" href=\"". admin_url("admin.php?page=". $_GET['page']) ."&action=add\">". __("Create New Record", rb_agencyinteract_TEXTDOMAIN) ."</a></div>\n";
+ 		echo "	<div style=\"float: left; \"><a class=\"button-primary\" href=\"". admin_url("admin.php?page=rb_agency_menu_profiles&action=add")."\">". __("Create New Record", rb_agencyinteract_TEXTDOMAIN) ."</a></div>\n";
         echo "  <div class=\"tablenav-pages\">\n";
 				if($items > 0) {
 					echo $p->show();  // Echo out the list of paging. 

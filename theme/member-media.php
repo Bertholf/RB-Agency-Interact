@@ -52,22 +52,22 @@ if (isset($_POST['action'])) {
 		if (!$have_error){
 		
 			
-			// Upload Image & Add to Database
+					// Upload Image & Add to Database
 			$i = 1;
-			while ($i <= 10) {
+		while ($i <= 10) {
 				if($_FILES['profileMedia'. $i]['tmp_name'] != ""){
 					$uploadMediaType = $_POST['profileMedia'. $i .'Type'];
 					
 					if ($have_error != true) {
 					// Upload if it doesnt exist already
 					 $path_parts = pathinfo($_FILES['profileMedia'. $i]['name']);
-					 $safeProfileMediaFilename =  rb_agency_safenames(str_replace("_","-",$path_parts['filename'])."---".time(U).rand(10,90).".".$path_parts['extension']);
-					 $results = mysql_query("SELECT * FROM " . table_agency_profile_media . " WHERE ProfileID='". $ProfileID ."' AND ProfileMediaURL = '". $safeProfileMediaFilename ."'");
+					 $safeProfileMediaFilename =  rb_agency_safenames($path_parts['filename']."-".time(U).rand(10,90).".".$path_parts['extension']);
+					 $results = mysql_query("SELECT * FROM " . table_agency_profile_media . " WHERE ProfileID='". $ProfileID ."' AND ProfileMediaURL = '".$safeProfileMediaFilename ."'");
 					 $count = mysql_num_rows($results);
 
 					 if ($count < 1) {
 						if($uploadMediaType == "Image") { 
-						    if($_FILES['profileMedia'. $i]['type'] == "image/pjpeg" || $_FILES['profileMedia'. $i]['type'] == "image/jpeg" || $_FILES['profileMedia'. $i]['type'] == "image/gif" || $_FILES['profileMedia'. $i]['type'] == "image/png"){
+						     if($_FILES['profileMedia'. $i]['type'] == "image/pjpeg" || $_FILES['profileMedia'. $i]['type'] == "image/jpeg" || $_FILES['profileMedia'. $i]['type'] == "image/gif" || $_FILES['profileMedia'. $i]['type'] == "image/png"){
 						
 									$image = new rb_agency_image();
 									$image->load($_FILES['profileMedia'. $i]['tmp_name']);
@@ -99,7 +99,7 @@ if (isset($_POST['action'])) {
 							 if ($_FILES['profileMedia'. $i]['type'] == "application/msword" || $_FILES['profileMedia'. $i]['type'] == "application/vnd.openxmlformats-officedocument.wordprocessingml.document"  || $_FILES['profileMedia'. $i]['type'] == "application/pdf" || $_FILES['profileMedia'. $i]['type'] == "application/rtf")
 							{
 							  $results = $wpdb->query("INSERT INTO " . table_agency_profile_media . " (ProfileID, ProfileMediaType, ProfileMediaTitle, ProfileMediaURL) VALUES ('". $ProfileID ."','". $uploadMediaType ."','". $safeProfileMediaFilename ."','". $safeProfileMediaFilename ."')");
-			                 		  move_uploaded_file($_FILES['profileMedia'. $i]['tmp_name'], rb_agency_UPLOADPATH . $ProfileGallery ."/".$safeProfileMediaFilename);
+			                  move_uploaded_file($_FILES['profileMedia'. $i]['tmp_name'], rb_agency_UPLOADPATH . $ProfileGallery ."/".$safeProfileMediaFilename);
 							}else{
 							   	$error .= "<b><i>Please upload PDF/MSword/RTF files only</i></b><br />";
 						        $have_error = true;	
@@ -107,7 +107,7 @@ if (isset($_POST['action'])) {
 						}
 						else if($uploadMediaType =="Headshot"){
 							// Add to database
-							 if ($_FILES['profileMedia'. $i]['type'] == "application/msword" || $_FILES['profileMedia'. $i]['type'] == "application/vnd.openxmlformats-officedocument.wordprocessingml.document" || $_FILES['profileMedia'. $i]['type'] == "application/pdf" || $_FILES['profileMedia'. $i]['type'] == "application/rtf" || $_FILES['profileMedia'. $i]['type'] == "image/jpeg" || $_FILES['profileMedia'. $i]['type'] == "image/gif" || $_FILES['profileMedia'. $i]['type'] == "image/png")
+							 if ($_FILES['profileMedia'. $i]['type'] == "application/msword"|| $_FILES['profileMedia'. $i]['type'] == "application/pdf" || $_FILES['profileMedia'. $i]['type'] == "application/rtf" || $_FILES['profileMedia'. $i]['type'] == "image/jpeg" || $_FILES['profileMedia'. $i]['type'] == "image/gif" || $_FILES['profileMedia'. $i]['type'] == "image/png")
 							{
 							  $results = $wpdb->query("INSERT INTO " . table_agency_profile_media . " (ProfileID, ProfileMediaType, ProfileMediaTitle, ProfileMediaURL) VALUES ('". $ProfileID ."','". $uploadMediaType ."','". $safeProfileMediaFilename ."','". $safeProfileMediaFilename ."')");
 			                  move_uploaded_file($_FILES['profileMedia'. $i]['tmp_name'], rb_agency_UPLOADPATH . $ProfileGallery ."/".$safeProfileMediaFilename);
@@ -128,11 +128,12 @@ if (isset($_POST['action'])) {
 							}
 						}
 						
-					 }
-					}
-				}
+					 } // End count
+					} // End have error = false
+				} //End:: if profile media is not empty.
 				$i++;
-			}			
+			} // endwhile			
+
 
 
 			// Upload Videos to Database

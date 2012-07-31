@@ -110,7 +110,15 @@
 	  
 		}  
 	}  
-
+	// Make Directory for new profile
+     function rb_agencyinteract_checkdir($ProfileGallery){
+	      	
+			if (!is_dir(rb_agency_UPLOADPATH . $ProfileGallery)) {
+				mkdir(rb_agency_UPLOADPATH . $ProfileGallery, 0755);
+				chmod(rb_agency_UPLOADPATH . $ProfileGallery, 0777);
+			}
+			return $ProfileGallery;
+     }
 // *************************************************************************************************** //
 // Functions
 
@@ -211,6 +219,9 @@
 
 // *************************************************************************************************** //
 // Shortcodes
+
+
+
 
 
 ?>

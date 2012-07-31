@@ -4,14 +4,63 @@
 
 	/* Load registration file. */
 	require_once( ABSPATH . WPINC . '/registration.php' );
+	//require_once(ABSPATH.rb_agencyinteract_TEXTDOMAIN."/tasks/facebook.php");
+	
 	
 	/* Get Options */
 	$rb_agencyinteract_options_arr = get_option('rb_agencyinteract_options');
 		$rb_agencyinteract_option_profilemanage_sidebar = $rb_agencyinteract_options_arr['rb_agencyinteract_option_profilemanage_sidebar'];
 		$rb_agencyinteract_option_registerconfirm = (int)$rb_agencyinteract_options_arr['rb_agencyinteract_option_registerconfirm'];
+		$rb_agencyinteract_option_fb_app_id = $rb_agencyinteract_options_arr['rb_agencyinteract_option_fb_app_id'];
+		$rb_agencyinteract_option_fb_app_secret = $rb_agencyinteract_options_arr['rb_agencyinteract_option_fb_app_secret'];
+		$rb_agencyinteract_option_fb_app_uri = $rb_agencyinteract_options_arr['rb_agencyinteract_option_fb_app_uri'];
 	
+	   $rb_agencyinteract_option_fb_registerallow = $rb_agencyinteract_options_arr['rb_agencyinteract_option_fb_registerallow'];
 	/* Check if users can register. */
 	$registration = get_option( 'users_can_register' );
+	
+	/*
+	define('FACEBOOK_APP_ID', $rb_agencyinteract_option_fb_app_id);
+	define('FACEBOOK_SECRET', $rb_agencyinteract_option_fb_app_secret);
+	
+	function parse_signed_request($signed_request, $secret) {
+			  list($encoded_sig, $payload) = explode('.', $signed_request, 2); 
+			
+			  // decode the data
+			  $sig = base64_url_decode($encoded_sig);
+			  $data = json_decode(base64_url_decode($payload), true);
+			
+			  if (strtoupper($data['algorithm']) !== 'HMAC-SHA256') {
+			    error_log('Unknown algorithm. Expected HMAC-SHA256');
+			    return null;
+			  }
+			
+			  // check sig
+			  $expected_sig = hash_hmac('sha256', $payload, $secret, $raw = true);
+			  if ($sig !== $expected_sig) {
+			    error_log('Bad Signed JSON signature!');
+			    return null;
+			  }
+			
+			  return $data;
+	}
+			
+	function base64_url_decode($input) {
+			    return base64_decode(strtr($input, '-_', '+/'));
+	}
+			
+	if ($_REQUEST) {
+			  echo '<p>signed_request contents:</p>';
+			  $response = parse_signed_request($_REQUEST['signed_request'], 
+								     FACEBOOK_SECRET);
+			  echo '<pre>';
+			  print_r($response);
+			  echo '</pre>';
+	} else {
+			  echo '$_REQUEST is empty';
+      
+	}
+   */
 
 	/* If user registered, input info. */
 	if ( 'POST' == $_SERVER['REQUEST_METHOD'] && !empty( $_POST['action'] ) && $_POST['action'] == 'adduser' ) {
@@ -181,14 +230,49 @@
 					$profile_agree = get_the_author_meta("profile_agree", $current_user->ID );
 	echo "       		<input type=\"checkbox\" name=\"profile_agree\" value=\"yes\" /> ". sprintf(__("I agree to the %s terms of service", rb_agencyinteract_TEXTDOMAIN), "<a href=\"/terms-of-use/\" target=\"_blank\">") ."</a>\n";
 	echo "       </p><!-- .form-profile_agree -->\n";
-
+ 
 	echo "       <p class=\"form-submit\">\n";
-	echo "       	<input name=\"adduser\" type=\"submit\" id=\"addusersub\" class=\"submit button\" value=\"";  
+	echo "       	<input name=\"adduser\" type=\"submit\" id=\"addusersub\" class=\"submit button\" value=\"";
+
 						if ( current_user_can("create_users") ) {  _e("Add User", rb_agencyinteract_TEXTDOMAIN); } else {  _e("Register", rb_agencyinteract_TEXTDOMAIN); } echo "\" />\n";
 					wp_nonce_field("add-user");
+		// Allow facebook login/registration
+	if($rb_agencyinteract_option_fb_registerallow ==1){
+		echo '  <div class="fb-login-button" scope="email" data-show-faces="false" data-width="200" data-max-rows="1"></div>';
+		echo '  <div id="fb-root"></div>
+		
+			<script>
+			window.fbAsyncInit = function() {
+			    FB.init({
+				appId      : \''.$rb_agencyinteract_option_fb_app_id.'\',  ';
+		   if(empty($rb_agencyinteract_option_fb_app_uri)){  // set default
+			   echo "\n channelUrl : '".network_site_url("/")."profile-member/', \n";
+		   }else{
+			  echo ' channelUrl : \''.$rb_agencyinteract_option_fb_app_uri.'\',\n'; 
+		   }
+		echo'		status     : true, // check login status
+				cookie     : true, // enable cookies to allow the server to access the session
+				xfbml      : true  // parse XFBML
+			    });
+			  };
+        // Load the SDK Asynchronously
+			(function(d, s, id) {
+			  var js, fjs = d.getElementsByTagName(s)[0];
+			  if (d.getElementById(id)) return;
+			  js = d.createElement(s); js.id = id;
+			  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId='.$rb_agencyinteract_option_fb_app_id.'";
+			  fjs.parentNode.insertBefore(js, fjs);
+			}(document, \'script\', \'facebook-jssdk\'));</script>';
+	}
+					
 	echo "       	<input name=\"action\" type=\"hidden\" id=\"action\" value=\"adduser\" />\n";
 	echo "       </p><!-- .form-submit -->\n";
-
+	// Facebook connect
+	?>
+    
+         
+     
+<?php	
 	echo "   </form><!-- #adduser -->\n";
 
 			}
