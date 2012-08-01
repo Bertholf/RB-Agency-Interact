@@ -13,7 +13,7 @@
 		$rb_agencyinteract_option_registerconfirm = (int)$rb_agencyinteract_options_arr['rb_agencyinteract_option_registerconfirm'];
 		$rb_agencyinteract_option_fb_app_id = $rb_agencyinteract_options_arr['rb_agencyinteract_option_fb_app_id'];
 		$rb_agencyinteract_option_fb_app_secret = $rb_agencyinteract_options_arr['rb_agencyinteract_option_fb_app_secret'];
-		$rb_agencyinteract_option_fb_app_uri = $rb_agencyinteract_options_arr['rb_agencyinteract_option_fb_app_uri'];
+		$rb_agencyinteract_option_fb_app_register_uri = $rb_agencyinteract_options_arr['rb_agencyinteract_option_fb_app_register_uri'];
 	
 	   $rb_agencyinteract_option_fb_registerallow = $rb_agencyinteract_options_arr['rb_agencyinteract_option_fb_registerallow'];
 	/* Check if users can register. */
@@ -234,36 +234,42 @@
 	echo "       <p class=\"form-submit\">\n";
 	echo "       	<input name=\"adduser\" type=\"submit\" id=\"addusersub\" class=\"submit button\" value=\"";
 
-						if ( current_user_can("create_users") ) {  _e("Add User", rb_agencyinteract_TEXTDOMAIN); } else {  _e("Register", rb_agencyinteract_TEXTDOMAIN); } echo "\" />\n";
+					if ( current_user_can("create_users") ) {  _e("Add User", rb_agencyinteract_TEXTDOMAIN); } else {  _e("Register", rb_agencyinteract_TEXTDOMAIN); } echo "\" />\n";
 					wp_nonce_field("add-user");
-		// Allow facebook login/registration
-	if($rb_agencyinteract_option_fb_registerallow ==1){
-		echo '  <div class="fb-login-button" scope="email" data-show-faces="false" data-width="200" data-max-rows="1"></div>';
-		echo '  <div id="fb-root"></div>
-		
-			<script>
-			window.fbAsyncInit = function() {
-			    FB.init({
-				appId      : \''.$rb_agencyinteract_option_fb_app_id.'\',  ';
-		   if(empty($rb_agencyinteract_option_fb_app_uri)){  // set default
-			   echo "\n channelUrl : '".network_site_url("/")."profile-member/', \n";
-		   }else{
-			  echo ' channelUrl : \''.$rb_agencyinteract_option_fb_app_uri.'\',\n'; 
-		   }
-		echo'		status     : true, // check login status
-				cookie     : true, // enable cookies to allow the server to access the session
-				xfbml      : true  // parse XFBML
-			    });
-			  };
-        // Load the SDK Asynchronously
-			(function(d, s, id) {
-			  var js, fjs = d.getElementsByTagName(s)[0];
-			  if (d.getElementById(id)) return;
-			  js = d.createElement(s); js.id = id;
-			  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId='.$rb_agencyinteract_option_fb_app_id.'";
-			  fjs.parentNode.insertBefore(js, fjs);
-			}(document, \'script\', \'facebook-jssdk\'));</script>';
-	}
+					$fb_app_register_uri = "";
+					if($rb_agencyinteract_option_fb_app_register_uri == 1){
+						$fb_app_register_uri = $rb_agencyinteract_option_fb_app_register_uri;
+					}else{
+						$fb_app_register_uri = network_site_url("/")."profile-register/";
+					}
+					// Allow facebook login/registration
+					if($rb_agencyinteract_option_fb_registerallow ==1){
+						echo "<div>\n";
+						echo "<span>Or</span>\n";
+						echo "<div id=\"fb_RegistrationForm\">\n";
+						if ($rb_agencyinteract_option_registerconfirm == 1) {	 // With custom password fields
+							echo "<iframe src=\"https://www.facebook.com/plugins/registration?client_id=".$rb_agencyinteract_option_fb_app_id."&redirect_uri=".$fb_app_register_uri."&fields=name,birthday,gender,location,email,password\"		 
+								  scrolling=\"auto\"
+								  frameborder=\"no\"
+								  style=\"border:none\"
+								  allowTransparency=\"true\"
+								  width=\"100%\"
+								  height=\"330\">
+							</iframe>";
+						}else{
+							echo "<iframe src=\"https://www.facebook.com/plugins/registration?client_id=".$rb_agencyinteract_option_fb_app_id."&redirect_uri=".$fb_app_register_uri."&fields=name,birthday,gender,location,email\"		 
+								  scrolling=\"auto\"
+								  frameborder=\"no\"
+								  style=\"border:none\"
+								  allowTransparency=\"true\"
+								  width=\"100%\"
+								  height=\"330\">
+							</iframe>";
+						}
+					
+						echo "</div>\n";
+						
+					}
 					
 	echo "       	<input name=\"action\" type=\"hidden\" id=\"action\" value=\"adduser\" />\n";
 	echo "       </p><!-- .form-submit -->\n";
