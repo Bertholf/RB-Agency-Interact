@@ -176,19 +176,32 @@
 										   $array_customOptions_values = explode("|",$data1['ProfileCustomOptions']);
 										          echo "<div style=\"width:300px;float:left;\">";
 												  foreach($array_customOptions_values as $val){
-														 echo "<label><input type=\"checkbox\" value=\"". $val."\"  name=\"ProfileCustomID". $data1['ProfileCustomID'] ."[]\" />";
+													     if(in_array($val,explode(",",$ProfileCustomValue))){
+														 echo "<label><input type=\"checkbox\" checked=\"checked\" value=\"". $val."\"  name=\"ProfileCustomID". $data1['ProfileCustomID'] ."[]\" />";
 														 echo "". $val."</label>";
+													     }else{
+														  echo "<label><input type=\"checkbox\" value=\"". $val."\"  name=\"ProfileCustomID". $data1['ProfileCustomID'] ."[]\" />";
+														 echo "". $val."</label>";
+													     }
 												  }
+												    echo "<input type=\"hidden\" value=\"\" name=\"ProfileCustomID". $data1['ProfileCustomID'] ."[]\"/>";
 												  echo "</div>";
 									       
 									}
 									elseif ($ProfileCustomType == 6) {
-										   $array_customOptions_values = explode("|",$data1['ProfileCustomOptions']);
-										   
+										  $array_customOptions_values = explode("|",$data1['ProfileCustomOptions']);
+										   echo "<div style=\"width:300px;float:left;\">";
 												  foreach($array_customOptions_values as $val){
-														 echo "<input type=\"radio\" value=\"". $val."\" name=\"ProfileCustomID". $data1['ProfileCustomID'] ."[]\" />";
-														 echo "<span style=\"color:white;\">". $val."</span><br/>";
+													     if(in_array($val,explode(",",$ProfileCustomValue))){
+														 echo "<label><input type=\"radio\" checked=\"checked\" value=\"". $val."\"  name=\"ProfileCustomID". $data1['ProfileCustomID'] ."[]\" />";
+														 echo "". $val."</label>";
+													     }else{
+														 echo "<label><input type=\"radio\" value=\"". $val."\"  name=\"ProfileCustomID". $data1['ProfileCustomID'] ."[]\" />";
+														 echo "". $val."</label>";
+													     }
 												  }
+												  echo "<input type=\"hidden\" value=\"\" name=\"ProfileCustomID". $data1['ProfileCustomID'] ."[]\"/>";
+												  echo "</div>";
 									       
 									}
 									

@@ -107,7 +107,7 @@
 	echo "	  </tr>\n";
 		 // Load Customfields
 		 
-		 include("view-customfields.php");
+		 include("view-custom-fields.php");
 
 	echo "    </td>\n";
 	echo "  </tr>\n";

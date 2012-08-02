@@ -59,6 +59,7 @@ if (isset($_POST['action'])) {
 					if(is_array($value)){
 						$value =  implode(",",$value);
 					}
+				
 					if(!empty($value)){
 						$insert1 = "INSERT INTO " . table_agency_customfield_mux . " (ProfileID,ProfileCustomID,ProfileCustomValue)" . "VALUES ('" . $ProfileID . "','" . $ProfileCustomID . "','" . $value . "')";
 						$results1 = $wpdb->query($insert1);

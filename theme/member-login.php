@@ -10,9 +10,8 @@
           get_currentuserinfo();
         
 			if($login->ID) {
-               wp_set_current_user($login->ID);  // populate
+            	   wp_set_current_user($login->ID);  // populate
 			   get_user_login_info();
-
 			}
 			
 	}
@@ -74,80 +73,51 @@ function  get_user_login_info(){
 		$login = get_userdata( $user_ID );
 				 get_user_login_info();	 
 			/*
-
 			echo "    <p class=\"alert\">\n";
-
 						printf( __('You have successfully logged in as <a href="%1$s" title="%2$s">%2$s</a>.', rb_agencyinteract_TEXTDOMAIN), "/profile-member/", $login->display_name );
-
 			echo "		 <a href=\"". wp_logout_url( get_permalink() ) ."\" title=\"". __('Log out of this account', rb_agencyinteract_TEXTDOMAIN) ."\">". __('Log out &raquo;', rb_agencyinteract_TEXTDOMAIN) ."</a>\n";
-
 			echo "    </p><!-- .alert -->\n";
-
 			*/
-
 	
-
 // ****************************************************************************************** //
-
 // Not logged in
-
 	} else { 
 
-
-
 		// *************************************************************************************************** //
-
 		// Prepare Page
-
 		get_header();
+
+echo "<div class=\"content_wrapper\">\n"; // Theme Wrapper 
+	echo "<div class=\"PageTitle\"><h1></h1></div>\n";	 // Profile Name
 
 
 
 		echo "<div id=\"container\" class=\"one-column rb-agency-interact-account\">\n";
-
 		echo "  <div id=\"content\">\n";
-	
-
+		
 			// Show Login Form
-
 			$hideregister = true;
-
 			include("include-login.php"); 	
 
-
-
 		echo "  </div><!-- #content -->\n";
-
 		echo "</div><!-- #container -->\n";
-
 		
-
 		// Get Sidebar 
-
 		$rb_agencyinteract_options_arr = get_option('rb_agencyinteract_options');
-
 			$rb_agencyinteract_option_profilemanage_sidebar = $rb_agencyinteract_options_arr['rb_agencyinteract_option_profilemanage_sidebar'];
-
 			$LayoutType = "";
-
 			if ($rb_agencyinteract_option_profilemanage_sidebar) {
-
 				echo "	<div id=\"profile-sidebar\" class=\"manage\">\n";
-
 					$LayoutType = "profile";
-
 					get_sidebar(); 
-
 				echo "	</div>\n";
-
 			}
-
 		// Get Footer
-
+		
+echo "</div>\n"; //END .content_wrapper 
+		
+		
 		get_footer();
-
 	
-
 	} // Done
-
 ?>

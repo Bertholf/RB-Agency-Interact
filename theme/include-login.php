@@ -21,14 +21,13 @@ echo "     <div id=\"profile-interact\">\n";
 
 			if ( $error ) {
 			echo "<p class=\"error\">". $error ."</p>\n";
-			echo $_POST['user-name']."-".$_POST['password'];
 			}
 			
 	
 
 echo "        <div id=\"member-sign-in\" class=\"fl ". $widthClass ."\">\n";
 echo "          <h1>". __("Members Sign in", rb_agencyinteract_TEXTDOMAIN). "</h1>\n";
-echo "          <form name=\"loginform\" id=\"login\" action=\"". get_bloginfo("wpurl") ."/profile-login/\" method=\"post\">\n";
+echo "          <form name=\"loginform\" id=\"login\" action=\"". network_site_url("/"). "profile-login/\" method=\"post\">\n";
 echo "            <div class=\"box\">\n";
 echo "              <label for=\"user-name\">". __("Username", rb_agencyinteract_TEXTDOMAIN). "</label><input type=\"text\" name=\"user-name\" value=\"". wp_specialchars( $_POST['user-name'], 1 ) ."\" id=\"user-name\" />\n";
 echo "            </div>\n";
@@ -69,7 +68,7 @@ echo "              <input type=\"submit\" value=\"". __("Sign In", rb_agencyint
 							}(document, 'script', 'facebook-jssdk'));</script>";
 		}
 echo "            </div>\n";
-echo "          <form>\n";
+echo "          </form>\n";
 echo "        </div> <!-- member-sign-in -->\n";
 
 			if (( current_user_can("create_users") || $rb_agencyinteract_option_registerallow == 1)) {
