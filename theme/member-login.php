@@ -7,6 +7,7 @@
 		global $error;
 		 $login = wp_login( $_POST['user-name'], $_POST['password'] );
 		 $login = wp_signon( array( 'user_login' => $_POST['user-name'], 'user_password' => $_POST['password'], 'remember' => $_POST['remember-me'] ), false );
+		
           get_currentuserinfo();
         
 			if($login->ID) {
@@ -18,7 +19,9 @@
 function  get_user_login_info(){
 
 	      global $user_ID;  
-
+		
+		 $redirect = $_POST["lastviewed"];
+		 
 	      get_currentuserinfo();
 
 		        $user_info = get_userdata( $user_ID ); 
@@ -29,15 +32,18 @@ function  get_user_login_info(){
 
 					// If user_registered date/time is less than 48hrs from now
 
-					// Message will show for 48hrs after registration
+				
+				  if(!empty($redirect)){
+					  header("Location: ". get_bloginfo("wpurl"). "/profile/".$redirect);
+				  }else{
 
 					if( $user_info->user_level > 7) {
 
 						header("Location: ". get_bloginfo("wpurl"). "/wp-admin/");
 
 					} 
-
-					else if ( strtotime( $user_info->user_registered ) > ( time() - 172800 ) ) {
+					// Message will show for 48hrs after registration
+					elseif( strtotime( $user_info->user_registered ) > ( time() - 172800 ) ) {
 
 						header("Location: ". get_bloginfo("wpurl"). "/profile-member/");
 
@@ -46,7 +52,7 @@ function  get_user_login_info(){
 						header("Location: ". get_bloginfo("wpurl"). "/profile-member/");
 
 					}
-				
+				  }
 
 				}
 				elseif(empty($_POST['user-name']) || empty($_POST['password']) ){
