@@ -74,6 +74,33 @@
 			$wp_rewrite->flush_rules();
 		}
 	
+	
+	/*/
+	 *  Multi Language Session
+	/*/
+		
+	if(!is_admin() && !isset($_GET["action"]) && !isset($_POST["action"])){  // Ignore admin & form actions to avoid redirection on form post.
+		if(in_array(substr($_SERVER['REQUEST_URI'],1,2), array("en","de","nl"))){
+		   $_SESSION["rb_agencyinteract_lang"] = substr($_SERVER['REQUEST_URI'],1,2);
+		}
+		if(isset($_SESSION["rb_agencyinteract_lang"])){
+		    if(!in_array(substr($_SERVER['REQUEST_URI'],1,2),array("en","de","nl"))){
+			   header("Location: ".home_url()."/".$_SESSION["rb_agencyinteract_lang"].$_SERVER['REQUEST_URI'] ); exit;
+		   }
+		}
+	}
+	
+	
+	/*/
+	 *  Fix form post url for multi language.
+	/*/
+	function rb_agencyinteract_postURILanguage($request_URI){
+		 if(!in_array(substr($_SERVER['REQUEST_URI'],1,2), array("en","de","nl"))){
+			if(isset($_SESSION["rb_agencyinteract_lang"])){
+			 	return "/".$_SESSION["rb_agencyinteract_lang"];
+			}
+		 }
+	}
 
 // *************************************************************************************************** //
 // Handle Emails
