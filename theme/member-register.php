@@ -4,7 +4,7 @@
 
 	/* Load registration file. */
 	require_once( ABSPATH . WPINC . '/registration.php' );
-	//require_once(ABSPATH.rb_agencyinteract_TEXTDOMAIN."/tasks/facebook.php");
+	require_once(ABSPATH."wp-content/plugins/".rb_agencyinteract_TEXTDOMAIN."/tasks/facebook.php");
 	
 	
 	/* Get Options */
@@ -19,7 +19,7 @@
 	/* Check if users can register. */
 	$registration = get_option( 'users_can_register' );
 	
-	/*
+	
 	define('FACEBOOK_APP_ID', $rb_agencyinteract_option_fb_app_id);
 	define('FACEBOOK_SECRET', $rb_agencyinteract_option_fb_app_secret);
 	
@@ -51,16 +51,12 @@
 			
 	if ($_REQUEST) {
 			  echo '<p>signed_request contents:</p>';
-			  $response = parse_signed_request($_REQUEST['signed_request'], 
-								     FACEBOOK_SECRET);
+			  $response = parse_signed_request($_REQUEST['signed_request'], FACEBOOK_SECRET);
 			  echo '<pre>';
 			  print_r($response);
 			  echo '</pre>';
-	} else {
-			  echo '$_REQUEST is empty';
-      
-	}
-   */
+	} 
+ 
 
 	/* If user registered, input info. */
 	if ( 'POST' == $_SERVER['REQUEST_METHOD'] && !empty( $_POST['action'] ) && $_POST['action'] == 'adduser' ) {
@@ -144,6 +140,7 @@
 	echo "<div id=\"container\" class=\"one-column rb-agency-interact rb-agency-interact-register\">\n";
 	echo "  <div id=\"content\">\n";
 
+   
 		// ****************************************************************************************** //
 		// Already logged in 
 			
@@ -248,7 +245,7 @@
 						echo "<span>Or</span>\n";
 						echo "<div id=\"fb_RegistrationForm\">\n";
 						if ($rb_agencyinteract_option_registerconfirm == 1) {	 // With custom password fields
-							echo "<iframe src=\"https://www.facebook.com/plugins/registration?client_id=".$rb_agencyinteract_option_fb_app_id."&redirect_uri=".$fb_app_register_uri."&fields=name,birthday,gender,location,email,password\"		 
+							echo "<iframe src=\"https://www.facebook.com/plugins/registration?client_id=".$rb_agencyinteract_option_fb_app_id."&redirect_uri=".$fb_app_register_uri."&fields=[ {'name':'name'}, {'name':'email'}, {'name':'location'}, {'name':'gender'}, {'name':'birthday'}, {'name':'username',  'description':'Username',  'type':'text'},{'name':'password'}]\"		 
 								  scrolling=\"auto\"
 								  frameborder=\"no\"
 								  style=\"border:none\"
@@ -257,7 +254,7 @@
 								  height=\"330\">
 							</iframe>";
 						}else{
-							echo "<iframe src=\"https://www.facebook.com/plugins/registration?client_id=".$rb_agencyinteract_option_fb_app_id."&redirect_uri=".$fb_app_register_uri."&fields=name,birthday,gender,location,email\"		 
+							echo "<iframe src=\"https://www.facebook.com/plugins/registration?client_id=".$rb_agencyinteract_option_fb_app_id."&redirect_uri=".$fb_app_register_uri."&fields=[ {'name':'name'}, {'name':'email'}, {'name':'location'}, {'name':'gender'}, {'name':'birthday'}, {'name':'username',  'description':'Username',  'type':'text'},{'name':'password'}]\"		 
 								  scrolling=\"auto\"
 								  frameborder=\"no\"
 								  style=\"border:none\"

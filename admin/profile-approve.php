@@ -374,6 +374,10 @@ function rb_display_list() {
 			
 			$resultImageCount = mysql_query("SELECT * FROM " . table_agency_profile_media . " WHERE ProfileID='". $ProfileID ."' AND ProfileMediaType = 'Image'");
 			$profileImageCount = mysql_num_rows($resultImageCount);
+			
+			$resultProfileGender = mysql_query("SELECT * FROM ".table_agency_data_gender." WHERE GenderID = '".$ProfileGender."' ");
+			$fetchProfileGender = mysql_fetch_assoc($resultProfileGender);
+			$ProfileGender  = $fetchProfileGender["GenderTitle"];
 
 		echo "    <tr". $rowColor .">\n";
 		echo "        <th class=\"check-column\" scope=\"row\">\n";
