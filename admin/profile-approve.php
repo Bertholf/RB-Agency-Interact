@@ -251,7 +251,12 @@ function rb_display_list() {
 		
         echo "<div class=\"tablenav\">\n";
  		echo "	<div style=\"float: left; \"><a class=\"button-primary\" href=\"". admin_url("admin.php?page=rb_agency_menu_profiles&action=add")."\">". __("Create New Record", rb_agencyinteract_TEXTDOMAIN) ."</a></div>\n";
-        echo "  <div class=\"tablenav-pages\">\n";
+         $queryGenderResult = mysql_query("SELECT GenderID, GenderTitle FROM ".table_agency_data_gender." ");
+		  $queryGenderCount = mysql_num_rows($queryGenderResult);
+		  while($fetchGender = mysql_fetch_assoc($queryGenderResult)){
+			 echo "	<div style=\"float: left; \"><a class=\"button-primary\" href=\"". admin_url("admin.php?page=rb_agency_menu_profiles") ."&action=add&ProfileGender=".$fetchGender["GenderID"]."\">". __("Create New ".ucfirst($fetchGender["GenderTitle"])."", rb_agency_TEXTDOMAIN) ."</a></div>\n";
+		  }
+	  echo "  <div class=\"tablenav-pages\">\n";
 				if($items > 0) {
 					echo $p->show();  // Echo out the list of paging. 
 				}

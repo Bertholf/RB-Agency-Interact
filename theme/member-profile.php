@@ -143,12 +143,12 @@ get_header();
 			$results = mysql_query($sql);
 			$count = mysql_num_rows($results);
 			if ($count > 0) {
-			  while ($data = mysql_fetch_array($results)) {
+			  $data = mysql_fetch_array($results);
 			
 				// Manage Profile
 				include("include-profilemanage.php"); 	
 						
-			  } // is there record?
+			  
 			} else {
 				
 				// No Record Exists, register them

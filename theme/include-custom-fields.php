@@ -9,14 +9,11 @@
 							      $dataList2 = mysql_fetch_assoc($results2); 
 								$count2 = mysql_num_rows($results2);
 								
-			$query3 = "SELECT GenderID, GenderTitle FROM ". table_agency_data_gender ." WHERE GenderTitle='".$dataList2["ProfileGender"]."' ORDER BY GenderID";
-								$results3 = mysql_query($query3);
-							      $dataList3 = mysql_fetch_assoc($results3); 
-							
+		
 		while ($data1 = mysql_fetch_array($results1)) { 
 		       
 							
-							if($data1["ProfileCustomShowGender"] == $dataList3["GenderID"] && $count2 >=1 ){ // Depends on Current LoggedIn User's Gender
+							if($data1["ProfileCustomShowGender"] == $dataList2["ProfileGender"] && $count2 >=1 ){ // Depends on Current LoggedIn User's Gender
 								
 									 include("view-custom-fields.php");
 								

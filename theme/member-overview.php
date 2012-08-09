@@ -58,7 +58,7 @@ get_header();
 			  include("include-menu.php"); 	
 			  echo " <div class=\"profile-overview-inner inner\">\n";
 			  
-			  while ($data = mysql_fetch_array($results)) {
+			 $data = mysql_fetch_array($results);  // is there record?
 				  
 				echo "	 <div class=\"welcome\">\n";
 			
@@ -74,7 +74,7 @@ get_header();
 				echo "      <div><a href=\"subscription/\">Manage your Subscription</a></div>\n";
 				echo "	 </div>\n";
 						
-			  } // is there record?
+			 
 				
 			  echo "	 <div id=\"subscription-customtext\">\n";
 							$Page = get_page($rb_agencyinteract_option_overviewpagedetails);

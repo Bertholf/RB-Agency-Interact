@@ -1,0 +1,988 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: RB Agency\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-08-09 10:38+0800\n"
+"PO-Revision-Date: 2012-08-09 11:49+0800\n"
+"Last-Translator: Rob Bertholf <rob@bertholf.com>\n"
+"Language-Team: Rob Bertholf <rob@bertholf.com>\n"
+"Language: nl_NL\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _;_e;__ngettext:1,2;__ngettext_noop:1,2;_n:1,2;"
+"_nx_noop:4c,1,2;_nx:4c,1,2;_ex:1,2c;_x:1,2c;_c,_nc:4c,1,2;_n_noop:1,2;__\n"
+"X-Poedit-Basepath: D:\\wamp\\www\\wordpress\\wordpress\\wp-content\\plugins"
+"\\rb-agency-interact\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: D:\\wamp\\www\\wordpress\\wordpress\\wp-content"
+"\\plugins\\rb-agency-interact\n"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/functions.php:116
+#, php-format
+msgid "New user registration on your blog %s:"
+msgstr "Nieuwe gebruiker registreren op uw blog% s:"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/functions.php:117
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/functions.php:128
+#, php-format
+msgid "Username: %s"
+msgstr "Gebruikersnaam: %s"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/functions.php:118
+#, php-format
+msgid "E-mail: %s"
+msgstr "Email: %s"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/functions.php:120
+#, php-format
+msgid "[%s] New User Registration"
+msgstr "[% s] Registratie nieuwe gebruiker"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/functions.php:125
+msgid "Hi there,"
+msgstr "Hi there,"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/functions.php:126
+#, php-format
+msgid "Thanks for joining %s! Here's how to log in:"
+msgstr "Dank je voor het samenvoegen van %s Hier ziet u hoe in te loggen:"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/functions.php:129
+#, php-format
+msgid "Password: %s"
+msgstr "Wachtwoord: %s"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/functions.php:130
+#, php-format
+msgid "If you have any problems, please contact us at %s."
+msgstr "Als u problemen heeft, neem dan contact met ons op %s."
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/functions.php:131
+msgid "Regards,"
+msgstr "Met vriendelijke groet,"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/functions.php:132
+msgid " Team"
+msgstr " Team"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/functions.php:136
+#, php-format
+msgid "%s Registration Successful! Login Details"
+msgstr "% s Registratie Succesvolle Log in Details"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/rb-agency-interact.php:17
+msgid "This plugin requires WordPress version 2.8 or newer"
+msgstr "Deze plugin vereist WordPress versie 2.8 of nieuwer"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/rb-agency-interact.php:131
+msgid "Approve Users"
+msgstr "Akkoord Gebruikers"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/rb-agency-interact.php:175
+msgid "Displays profile actions such as login and links to edit"
+msgstr ""
+"Geeft het profiel van acties, zoals de login en koppelingen bewerken om"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/rb-agency-interact.php:176
+msgid "Agency Interact Login"
+msgstr "Bureau Interact Login"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/rb-agency-interact.php:212
+msgid "Title:"
+msgstr "Titel"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/rb-agency-interact.php:213
+msgid "Show Count:"
+msgstr "Toon Tellen"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/rb-agency-interact.php:262
+msgid "Almost done..."
+msgstr "Bijna klaar..."
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/rb-agency-interact.php:262
+msgid "One More Step"
+msgstr "Nog een stap"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/rb-agency-interact.php:262
+msgid "Please click here to complete the uninstallation process"
+msgstr "Please click here to complete the uninstallation process"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/admin/profile-approve.php:57
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/admin/profile-approve.php:180
+msgid "No valid record found."
+msgstr "Geen gevonden geldige opnemen"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/admin/profile-approve.php:60
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/admin/profile-approve.php:183
+msgid "Profile deleted successfully!"
+msgstr "Profiel met succes verwijderd"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/admin/profile-approve.php:88
+msgid "List"
+msgstr "Lijst"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/admin/profile-approve.php:90
+msgid "All Records"
+msgstr "Alle records"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/admin/profile-approve.php:253
+msgid "Create New Record"
+msgstr "Maak een nieuw record"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/admin/profile-approve.php:272
+msgid "Search By"
+msgstr "Zoek op"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/admin/profile-approve.php:273
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-profileaccount.php:64
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-profileregister.php:12
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/member-register.php:121
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/include-profileaccount.php:68
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/include-profileregister.php:12
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/member-register.php:204
+msgid "First Name"
+msgstr "Voornaam"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/admin/profile-approve.php:274
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-profileaccount.php:70
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-profileregister.php:18
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/member-register.php:126
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/include-profileaccount.php:74
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/include-profileregister.php:18
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/member-register.php:209
+msgid "Last Name"
+msgstr "Achternaam"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/admin/profile-approve.php:275
+msgid "Location"
+msgstr "Plaats"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/admin/profile-approve.php:277
+msgid "Any Location"
+msgstr "Elke locatie"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/admin/profile-approve.php:288
+msgid "Category"
+msgstr "Categorie"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/admin/profile-approve.php:290
+msgid "Any Category"
+msgstr "Elke categorie"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/admin/profile-approve.php:299
+msgid "Filter"
+msgstr "Filter"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/admin/profile-approve.php:306
+msgid "Clear Filters"
+msgstr "Filter verwijderen"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/admin/profile-approve.php:317
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/admin/profile-approve.php:436
+msgid "Bulk Action"
+msgstr "Bulkactie"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/admin/profile-approve.php:318
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/admin/profile-approve.php:390
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/admin/profile-approve.php:437
+msgid "Approve"
+msgstr "Goedkeuren"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/admin/profile-approve.php:319
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/admin/profile-approve.php:438
+msgid "Delete"
+msgstr "Verwijder"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/admin/profile-approve.php:321
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/admin/profile-approve.php:440
+msgid "Apply"
+msgstr "Aanvragen"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/admin/profile-approve.php:390
+msgid "Approve this Record"
+msgstr "Goedkeuren dit Record"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/admin/profile-approve.php:391
+msgid "Edit this Record"
+msgstr "Wijzig dit record"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/admin/profile-approve.php:391
+msgid "Edit"
+msgstr "Bewerken"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/admin/profile-approve.php:392
+msgid "View"
+msgstr "Zien"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-login.php:20
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/include-login.php:29
+msgid "Members Sign in"
+msgstr "Lid Aanmelden"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-login.php:23
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/include-login.php:32
+msgid "Username"
+msgstr "Gebruikersnaam"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-login.php:26
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/include-login.php:35
+msgid "Password"
+msgstr "Wachtwoord"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-login.php:26
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/include-login.php:35
+msgid "forgot password"
+msgstr "Wachtwoord Vergeten"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-login.php:29
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/include-login.php:38
+msgid "Keep me signed in"
+msgstr "Ik wil ingelogd blijven"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-login.php:33
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/include-login.php:42
+msgid "Sign In"
+msgstr "Meld u aan"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-login.php:42
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/include-login.php:78
+msgid "Not a member"
+msgstr "Geen lid"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-login.php:43
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/include-login.php:79
+msgid "Talent"
+msgstr "Talent"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-login.php:43
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/include-login.php:79
+msgid "Register here"
+msgstr "Registreer hier"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-login.php:45
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/include-login.php:81
+msgid "Create your free profile page"
+msgstr "Maak uw gratis profielpagina"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-login.php:46
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/include-login.php:82
+msgid "Apply to Auditions & Jobs"
+msgstr "Toepassen op Auditions & Jobs"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-login.php:48
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/include-login.php:84
+msgid "Register as Talent / Model"
+msgstr "Registreer als Talent / Model"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-login.php:52
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/include-login.php:88
+msgid "Casting Agents & Producers"
+msgstr "Casting Agenten & Producenten"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-login.php:54
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/include-login.php:90
+msgid "List Auditions & Jobs free"
+msgstr "Lijst Audities & Jobs gratis"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-login.php:55
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/include-login.php:91
+msgid "Contact People in the Talent Directory"
+msgstr "Neem contact op met Mensen in de Talent-gids"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-login.php:57
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/include-login.php:93
+msgid "Register as Agent / Producer"
+msgstr "Registreer als Agent / Producer"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-profileaccount.php:15
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-profilemanage.php:14
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-profilemedia.php:8
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/include-profileaccount.php:19
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/include-profilemanage.php:14
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/include-profilemedia.php:8
+msgid "Error, query failed"
+msgstr "Error, query failed"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-profileaccount.php:48
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-profileregister.php:9
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/include-profileaccount.php:52
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/include-profileregister.php:9
+msgid "Contact Information"
+msgstr "Contact Informatie"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-profileaccount.php:51
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/include-profileaccount.php:55
+msgid "Gallery Folder"
+msgstr "Galerij Folder"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-profileaccount.php:58
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/include-profileaccount.php:62
+msgid "Folder Pending Creation"
+msgstr "Folder In afwachting van Creatie"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-profileaccount.php:76
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-profileregister.php:34
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/include-profileaccount.php:80
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/include-profileregister.php:34
+msgid "Gender"
+msgstr "Gender"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-profileaccount.php:78
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-profileregister.php:36
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/include-profileaccount.php:82
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/include-profileregister.php:36
+msgid "Not Specified"
+msgstr "Not Specified"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-profileaccount.php:79
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-profileregister.php:37
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/include-profileaccount.php:83
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/include-profileregister.php:37
+msgid "Male"
+msgstr "Male"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-profileaccount.php:80
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-profileregister.php:38
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/include-profileaccount.php:84
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/include-profileregister.php:38
+msgid "Female"
+msgstr "Vrouw"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-profileaccount.php:86
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-profileregister.php:70
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/include-profileaccount.php:90
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/include-profileregister.php:70
+msgid "Private Information"
+msgstr "Private Informatie"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-profileaccount.php:89
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-profileregister.php:73
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/include-profileaccount.php:93
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/include-profileregister.php:73
+msgid "Parent (if minor)"
+msgstr "Ouder (als minor)"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-profileaccount.php:95
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/include-profileaccount.php:99
+msgid "Email Address"
+msgstr "E-mail adres"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-profileaccount.php:101
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-profileregister.php:43
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/include-profileaccount.php:105
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/include-profileregister.php:43
+msgid "Birthdate"
+msgstr "Geboortedatum"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-profileaccount.php:108
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-profileregister.php:79
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/include-profileaccount.php:112
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/include-profileregister.php:79
+msgid "Street"
+msgstr "Street"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-profileaccount.php:114
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-profileregister.php:85
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/include-profileaccount.php:118
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/include-profileregister.php:85
+msgid "City"
+msgstr "City"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-profileaccount.php:120
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-profileregister.php:91
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/include-profileaccount.php:124
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/include-profileregister.php:91
+msgid "State"
+msgstr "Staat"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-profileaccount.php:126
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-profileregister.php:97
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/include-profileaccount.php:130
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/include-profileregister.php:97
+msgid "Zip"
+msgstr "Zip"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-profileaccount.php:132
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-profileregister.php:103
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/include-profileaccount.php:136
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/include-profileregister.php:103
+msgid "Country"
+msgstr "Country"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-profileaccount.php:192
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-profileregister.php:24
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/include-profileaccount.php:142
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/include-profileregister.php:24
+msgid "Phone"
+msgstr "Telefoon"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-profileaccount.php:200
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/include-profileaccount.php:150
+msgid "Website"
+msgstr "Website"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-profileaccount.php:208
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/include-profileaccount.php:161
+msgid "Social Media Profiles"
+msgstr "Social Media Profielen"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-profileaccount.php:211
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/include-profileaccount.php:164
+msgid "Facebook"
+msgstr "Facebook"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-profileaccount.php:217
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/include-profileaccount.php:170
+msgid "Twitter"
+msgstr "Twitter"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-profileaccount.php:223
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/include-profileaccount.php:176
+msgid "YouTube"
+msgstr "YouTube"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-profileaccount.php:229
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/include-profileaccount.php:182
+msgid "Flickr"
+msgstr "Flickr"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-profileaccount.php:236
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-profileregister.php:145
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/include-profileaccount.php:201
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/include-profileregister.php:132
+msgid "Password (Leave blank to keep same password)"
+msgstr "Wachtwoord (Laat leeg om hetzelfde wachtwoord te houden)"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-profileaccount.php:242
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-profileregister.php:151
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/include-profileaccount.php:207
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/include-profileregister.php:138
+msgid "Password (Retype to Confirm)"
+msgstr "Wachtwoord (Bevestig om te bevestigen)"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-profileaccount.php:250
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-profilemanage.php:289
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/include-profileaccount.php:215
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/include-profilemanage.php:53
+msgid "Last updated "
+msgstr "Laatst bijgewerkt"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-profileaccount.php:254
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-profilemanage.php:294
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-profilemedia.php:120
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-profileregister.php:160
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/include-profileaccount.php:219
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/include-profilemanage.php:58
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/include-profilemedia.php:144
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/include-profileregister.php:147
+msgid "Save and Continue"
+msgstr "Save and Continue"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-profilemanage.php:42
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-profilemanage.php:45
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/include-profilemanage.php:31
+msgid "Classification"
+msgstr "Classificatie"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-profilemanage.php:61
+msgid "Ethnicity"
+msgstr "Etniciteit"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-profilemanage.php:79
+msgid "Skin Color"
+msgstr "Huidskleur"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-profilemanage.php:97
+msgid "Eye Color"
+msgstr "Oogkleur"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-profilemanage.php:115
+msgid "Hair Color"
+msgstr "Haarkleur"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-profilemanage.php:135
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-profilemanage.php:157
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/view-custom-fields.php:20
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/view-custom-fields.php:46
+msgid "Height"
+msgstr "Hoogte"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-profilemanage.php:135
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/view-custom-fields.php:20
+msgid "In Inches"
+msgstr "In Inches"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-profilemanage.php:157
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/view-custom-fields.php:46
+msgid "cm"
+msgstr "cm"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-profilemanage.php:164
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/view-custom-fields.php:59
+msgid "Weight"
+msgstr "Gewicht"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-profilemanage.php:165
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/view-custom-fields.php:60
+msgid "In Pounds"
+msgstr "In Pounds"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-profilemanage.php:165
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/view-custom-fields.php:60
+msgid "In Kilo"
+msgstr "In Kilo"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-profilemanage.php:172
+msgid "Measurements"
+msgstr "Metingen"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-profilemanage.php:174
+msgid "Chest"
+msgstr "Borst"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-profilemanage.php:174
+msgid "Bust"
+msgstr "Buste"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-profilemanage.php:176
+msgid "Waist"
+msgstr "Taille"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-profilemanage.php:178
+msgid "Inseam"
+msgstr "Binnenbeenlengte"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-profilemanage.php:178
+msgid "Hips"
+msgstr "Heupen"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-profilemanage.php:183
+msgid "Shoe Size"
+msgstr "Schoenmaat"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-profilemanage.php:190
+msgid "Suit Size"
+msgstr "Pak Maat"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-profilemanage.php:190
+msgid "Dress Size"
+msgstr "Confectiemaat"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-profilemanage.php:190
+msgid "Suit"
+msgstr "Pak"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-profilemanage.php:249
+msgid "Details"
+msgstr "Meer informatie"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-profilemanage.php:252
+msgid "Description"
+msgstr "Beschrijving"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-profilemedia.php:19
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/include-profilemedia.php:20
+msgid "Gallery"
+msgstr "Galerij"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-profilemedia.php:52
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/include-profilemedia.php:51
+msgid "Error removing"
+msgstr "Fout bij het verwijderen"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-profilemedia.php:52
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/include-profilemedia.php:51
+msgid "Please try again"
+msgstr "Probeer het opnieuw"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-profilemedia.php:54
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/include-profilemedia.php:46
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/include-profilemedia.php:53
+msgid "successfully removed"
+msgstr "succesvol verwijderd"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-profilemedia.php:81
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/include-profilemedia.php:83
+msgid "There are no images loaded for this profile yet."
+msgstr "Er zijn geen foto's geladen voor dit profiel."
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-profilemedia.php:85
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/include-profilemedia.php:87
+msgid "Media"
+msgstr "Media"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-profilemedia.php:86
+msgid ""
+"The following downloadable files (pdf, audio file, etc.) are associated with "
+"this record"
+msgstr ""
+"De volgende downloadbare bestanden (pdf, audio-bestand, enz.) worden "
+"geassocieerd met dit rec"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-profilemedia.php:99
+msgid "There is not any additional media linked"
+msgstr "Er is geen gekoppelde extra media"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-profilemedia.php:102
+msgid "Upload"
+msgstr "uploaden"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-profilemedia.php:103
+msgid "Upload new media using the forms below"
+msgstr "Upload nieuwe media met behulp van de onderstaande formulieren"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-profilemedia.php:108
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/include-profilemedia.php:131
+msgid "Paste the YouTube video URL below"
+msgstr "Plak de YouTube-video onderstaande URL"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-profilemedia.php:110
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-profilemedia.php:111
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-profilemedia.php:112
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/include-profilemedia.php:133
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/include-profilemedia.php:134
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/include-profilemedia.php:135
+msgid "Video Slate"
+msgstr "Video Leisteen"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-profilemedia.php:110
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-profilemedia.php:111
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-profilemedia.php:112
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/include-profilemedia.php:133
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/include-profilemedia.php:134
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/include-profilemedia.php:135
+msgid "Video Monologue"
+msgstr "Video Monoloog"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-profilemedia.php:110
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-profilemedia.php:111
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-profilemedia.php:112
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/include-profilemedia.php:133
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/include-profilemedia.php:134
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/include-profilemedia.php:135
+msgid "Demo Reel"
+msgstr "Demo Reel"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-profileregister.php:31
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/include-profileregister.php:31
+msgid "Public Information"
+msgstr "Openbare Informatie"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/include-profileregister.php:70
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/include-profileregister.php:70
+msgid ""
+"The following information will NOT appear in public areas and is for "
+"administrative use only."
+msgstr ""
+"De volgende informatie verschijnt niet in de openbare ruimtes en is voor "
+"administratieve doeleinden."
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/member-account.php:26
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/member-overview.php:25
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/member-profile.php:19
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/member-subscription.php:26
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/member-account.php:26
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/member-overview.php:27
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/member-profile.php:19
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/member-subscription.php:26
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/translation/member-subscription.php:26
+msgid "Agent/Producer"
+msgstr "Agent/Producer"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/member-account.php:26
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/member-overview.php:25
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/member-profile.php:19
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/member-subscription.php:26
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/member-account.php:26
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/member-overview.php:27
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/member-profile.php:19
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/member-subscription.php:26
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/translation/member-subscription.php:26
+msgid "Model/Talent"
+msgstr "Model/Talent"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/member-account.php:57
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/member-account.php:58
+msgid " must have a display name identified"
+msgstr "moet een geïdentificeerd weergavenaam"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/member-account.php:106
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/member-account.php:107
+msgid "The passwords you entered do not match.  Your password was not updated."
+msgstr ""
+"De ingevoerde wachtwoorden komen niet overeen. Je wachtwoord is niet "
+"bijgewerkt."
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/member-account.php:187
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/member-account.php:214
+msgid "New Profile added successfully"
+msgstr "Nieuw profiel succesvol toegevoegd"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/member-account.php:189
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/member-account.php:222
+msgid ""
+"Error creating record, please ensure you have filled out all required fields."
+msgstr ""
+"Fout bij het ​​maken van opnemen, zorg er dan voor je hebt ingevuld alle "
+"verplichte velden in."
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/member-account.php:251
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/member-media.php:132
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/member-profile.php:102
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/member-account.php:288
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/member-media.php:174
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/member-profile.php:97
+msgid "Profile updated successfully"
+msgstr "Profiel bijgewerkt"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/member-account.php:253
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/member-media.php:134
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/member-profile.php:104
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/member-account.php:290
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/member-media.php:176
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/member-profile.php:100
+msgid ""
+"Error updating record, please ensure you have filled out all required fields."
+msgstr ""
+"Fout bij het updaten opnemen, zorg er dan voor je hebt ingevuld alle "
+"verplichte velden in."
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/member-account.php:307
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/member-profile.php:153
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/member-subscription.php:118
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/member-account.php:344
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/member-profile.php:155
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/member-subscription.php:118
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/translation/member-subscription.php:105
+msgid ""
+"Records show you are not currently linked to a model or agency profile.  "
+"Lets setup your profile now!"
+msgstr ""
+"Gegevens blijkt dat u op dit moment niet gekoppeld aan een model of bureau "
+"profiel. Laten we nu het opzetten van je profiel!"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/member-account.php:315
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/member-overview.php:101
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/member-account.php:352
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/member-overview.php:111
+msgid "Self registration is not permitted."
+msgstr "Zelf registratie is niet toegestaan."
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/member-account.php:325
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/member-subscription.php:129
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/member-account.php:362
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/member-subscription.php:129
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/translation/member-subscription.php:116
+msgid "You must be logged in to edit your profile."
+msgstr "U moet ingelogd zijn om je profiel te bewerken."
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/member-overview.php:63
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/member-overview.php:65
+msgid "Welcome Back"
+msgstr "Welkom Terug"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/member-overview.php:81
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/member-overview.php:88
+msgid "Welcome"
+msgstr "Welkom"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/member-overview.php:84
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/member-overview.php:92
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/member-overview.php:91
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/member-overview.php:102
+msgid "We have you registered as"
+msgstr "Wij hebben u ​​geregistreerd als"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/member-overview.php:85
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/member-overview.php:92
+msgid "Begin Your Search"
+msgstr "Beginnen met zoeken"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/member-overview.php:93
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/member-overview.php:103
+msgid "Setup Your Profile"
+msgstr "Stel uw profiel"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/member-register.php:28
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/member-register.php:88
+msgid "A username is required for registration.<br />"
+msgstr "Een gebruikersnaam is verplicht voor registratie. <br />"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/member-register.php:32
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/member-register.php:92
+msgid "Sorry, that username already exists!<br />"
+msgstr "Sorry, die gebruikersnaam bestaat al! <br />"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/member-register.php:36
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/member-register.php:96
+msgid "You must enter a valid email address.<br />"
+msgstr "U moet een geldig e-mailadres. <br />"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/member-register.php:40
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/member-register.php:100
+msgid "Sorry, that email address is already used!<br />"
+msgstr "Sorry, dat e-mailadres al in gebruik! <br />"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/member-register.php:44
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/member-register.php:104
+msgid "You must agree to the terms and conditions to register.<br />"
+msgstr "U moet akkoord gaan met de voorwaarden om te registreren. <br />"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/member-register.php:74
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/member-register.php:150
+msgid "You are currently logged in as ."
+msgstr "Je bent momenteel aangemeld als."
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/member-register.php:76
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/member-register.php:152
+msgid "Log out of this account"
+msgstr "Log uit van deze rekening"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/member-register.php:76
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/member-register.php:152
+msgid "Log out"
+msgstr "Log out"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/member-register.php:88
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/member-register.php:164
+msgid ""
+"Please check your email address. That's where you'll recieve your login "
+"password.<br/> (It might go into your spam folder)"
+msgstr ""
+"Controleer uw e-mailadres. Dat is waar ontvangt u uw login wachtwoord. <br/> "
+"(Het zou kunnen gaan in uw spam-map)"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/member-register.php:100
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/member-register.php:176
+msgid "Users can register themselves or you can manually create users here."
+msgstr ""
+"Gebruikers kunnen zich registreren zelf of u kunt handmatig hier gebruikers "
+"aanmaken."
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/member-register.php:104
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/member-register.php:180
+msgid ""
+"Users cannot currently register themselves, but you can manually create "
+"users here."
+msgstr ""
+"Gebruikers kunnen op dit moment niet zichzelf registreren, maar u kunt hier "
+"handmatig gebruikers aanmaken."
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/member-register.php:116
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/member-register.php:192
+msgid "Username (required)"
+msgstr "Gebruikersnaam (verplicht)"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/member-register.php:131
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/member-register.php:214
+msgid "E-mail (required)"
+msgstr "E-mail (verplicht)"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/member-register.php:136
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/member-register.php:219
+msgid "Type of Profile"
+msgstr "Type profiel"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/member-register.php:138
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/member-register.php:221
+msgid "Talent / Model"
+msgstr "Talent / Model"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/member-register.php:139
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/member-register.php:222
+msgid "Agent / Producer"
+msgstr "Agent / Producer"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/member-register.php:145
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/member-register.php:228
+#, php-format
+msgid "I agree to the %s terms of service"
+msgstr "Ik ga akkoord met wat de %s van de dienst"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/member-register.php:150
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/member-register.php:234
+msgid "Add User"
+msgstr "Gebruiker toevoegen"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/member-register.php:150
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/member-register.php:234
+msgid "Register"
+msgstr "registreren"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/member-subscription.php:65
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/member-subscription.php:65
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/translation/member-subscription.php:62
+msgid "enjoying your membership?"
+msgstr "genieten van uw lidmaatschap?"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/member-subscription.php:66
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/member-subscription.php:66
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/translation/member-subscription.php:63
+msgid "Your membership expires on "
+msgstr "Uw lidmaatschap loopt af op"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/member-subscription.php:68
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/member-subscription.php:68
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/translation/member-subscription.php:66
+msgid "are you ready to get discovered?"
+msgstr "bent u klaar om aan de slag ontdekt?"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/style/member-subscription.php:69
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/member-subscription.php:69
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/translation/member-subscription.php:67
+msgid ""
+"Subscribe now, and start applying to Casting Calls, join the Talent "
+"Directory, and more."
+msgstr ""
+"Schrijf je nu in en start van toepassing zijn op Casting verzoekt, lid "
+"worden van de Talent-gids, en nog veel meer."
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/include-profileaccount.php:190
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/include-profileregister.php:120
+msgid "Username(cannot be changed.)"
+msgstr "Gebruikersnaam (kan niet worden gewijzigd.)"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/include-profilemedia.php:88
+msgid ""
+"The following files (pdf, audio file, etc.) are associated with this record"
+msgstr ""
+"De volgende bestanden (pdf, audio-bestand, enz.) worden geassocieerd met dit "
+"record"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/include-profilemedia.php:122
+msgid "There are no additional media linked"
+msgstr "Er zijn geen gekoppelde extra media"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/include-profilemedia.php:125
+msgid "Upload Media Files"
+msgstr "Upload Media-bestanden"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/include-profilemedia.php:126
+msgid ""
+"Upload new media using the forms below. The following formats are available: "
+"jpg, png, mp3, and pdf. If uploading an mp3 for a voice monolouge, use the  "
+"\"Voice Demo\" option. For Resumes, make sure the file is a PDF "
+msgstr ""
+"Upload new media using the forms below. The following formats are available: "
+"jpg, png, mp3, and pdf. If uploading an mp3 for a voice monolouge, use the  "
+"\"Voice Demo\" option. For Resumes, make sure the file is a PDF "
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/member-register.php:198
+msgid "Password (required)"
+msgstr "Wachtwoord (verplicht)"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/view-custom-fields.php:96
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/view-custom-fields.php:103
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/view-customfields-profilemanager.php:28
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/view-customfields-profilemanager.php:35
+msgid "Min"
+msgstr "Min"
+
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/view-custom-fields.php:98
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/view-custom-fields.php:105
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/view-customfields-profilemanager.php:30
+#: D:\wamp\www\wordpress\wordpress\wp-content\plugins\rb-agency-interact/theme/view-customfields-profilemanager.php:37
+msgid "Max"
+msgstr "Max"

@@ -33,9 +33,12 @@
 	echo "    <tr valign=\"top\">\n";
 	echo "		<td scope=\"row\">". __("Gender", rb_agencyinteract_TEXTDOMAIN) ."</th>\n";
 	echo "		<td><select name=\"ProfileGender\" id=\"ProfileGender\">\n";
-	echo "			<option value=\"\">". __("Not Specified", rb_agencyinteract_TEXTDOMAIN) ."</option>\n";
-	echo "			<option value=\"Male\">". __("Male", rb_agencyinteract_TEXTDOMAIN) ."</option>\n";
-	echo "			<option value=\"Female\">". __("Female", rb_agencyinteract_TEXTDOMAIN) ."</option>\n";
+				$query= "SELECT GenderID, GenderTitle FROM " .  table_agency_data_gender . " GROUP BY GenderTitle ";
+				echo "<option value=\"\">All Gender</option>";
+				$queryShowGender = mysql_query($query);
+				while($dataShowGender = mysql_fetch_assoc($queryShowGender)){
+					echo "<option value=\"".$dataShowGender["GenderID"]."\" >".$dataShowGender["GenderTitle"]."</option>";
+				 }
 	echo "		  </select>\n";
 	echo "		</td>\n";
 	echo "	  </tr>\n";

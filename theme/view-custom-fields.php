@@ -5,76 +5,36 @@
 									$ProfileCustomType = $data1['ProfileCustomType'];
 								
 
-									$qProfileCustomValue = mysql_query("SELECT * FROM ".table_agency_customfield_mux." WHERE ProfileID = ".$ProfileID." AND ProfileCustomID = ".$data1['ProfileCustomID']."");
+									$qProfileCustomValue = mysql_query("SELECT * FROM ".table_agency_customfield_mux." WHERE ProfileID = '".$ProfileID."' AND ProfileCustomID = '".$data1['ProfileCustomID']."'") or die(mysql_error());
 									$fProfileCustomValue = mysql_fetch_assoc($qProfileCustomValue);
 									$ProfileCustomValue = $fProfileCustomValue["ProfileCustomValue"];
 									
 									
-			//Hardcoded Fields -> Height
-			if(strtolower($ProfileCustomTitle) == "height"){
-				
-				 // Metric or Imperial?
-				  if ($rb_agency_option_unittype == 1) {
-						echo "    <tr valign=\"top\">\n";
-						echo "		<td scope=\"row\">";
-						echo "	     <label for=\"ProfileCustomID". $data1['ProfileCustomID'] ."\">". __("Height", rb_agency_TEXTDOMAIN) ." <em>(". __("In Inches", rb_agency_TEXTDOMAIN) .")</em></label>\n";
-						echo "		</td>\n";
-						echo "		<td>";
-						echo "<select name=\"ProfileCustomID". $data1['ProfileCustomID'] ."[]\">\n";
-								if (empty($ProfileCustomValue)) {
-						echo " 				<option value=\"\" selected>--</option>\n";
-										}
-										
-										$i=36;
-										$heightraw = 0;
-										$heightfeet = 0;
-										$heightinch = 0;
-										while($i<=90)  { 
-										  $heightraw = $i;
-										  $heightfeet = floor($heightraw/12);
-										  $heightinch = $heightraw - floor($heightfeet*12);
-						echo " 				<option value=\"". $i ."\" ". selected($ProfileStatHeight, $i) .">". $heightfeet ." ft ". $heightinch ." in</option>\n";
-										  $i++;
-										}
-				  		echo " 			</select>\n";
-						echo "		</td>\n";
-						echo "	  </tr>\n";	
-						
-				} else {
-						echo "    <tr valign=\"top\">\n";
-						echo "		<td scope=\"row\">";
-						echo "	 <label for=\"ProfileCustomID". $data1['ProfileCustomID'] ."\">". __("Height", rb_agency_TEXTDOMAIN) ." <em>(". __("cm", rb_agency_TEXTDOMAIN) .")</em></label>\n";
-						echo "		</td>\n";
-						echo "		<td>";
-						echo "	 <input type=\"text\" id=\"ProfileStatHeight\" name=\"ProfileStatHeight\" value=\"". $ProfileCustomValue ."\" />\n";
-						echo "		</td>\n";
-						echo "	</tr>";
-				}
-				
-			}
-			//Hardcoded Fields -> Weight
-			elseif(strtolower($ProfileCustomTitle) == "weight"){
-						echo "    <tr valign=\"top\">\n";
-						echo "		<td scope=\"row\">";
-						echo "	 <label for=\"ProfileCustomID". $data1['ProfileCustomID'] ."\">". __("Weight", rb_agency_TEXTDOMAIN); 
-							 if ($rb_agency_option_unittype == 1) { echo "<em>(". __("In Pounds", rb_agency_TEXTDOMAIN) .")</em>"; } else { echo "<em>(". __("In Kilo", rb_agency_TEXTDOMAIN) .")</em></th>\n"; }	
-						echo "	</label>\n";
-						echo "		</td>\n";
-						echo "	<td>";
-						  if(!empty($ProfileCustomValue)){
-									echo "<input type=\"text\" name=\"ProfileCustomID". $data1['ProfileCustomID'] ."\" value=\"". $ProfileCustomValue ."\" /><br />\n";
-							 }
-						   else{
-									echo "<input type=\"text\" name=\"ProfileCustomID". $data1['ProfileCustomID'] ."\" value=\"".$_SESSION["ProfileCustomID". $data1['ProfileCustomID']]."\" /><br />\n";
-						   }
-						 echo "		</td>\n";
-						 echo "	</tr>";
-			}
-			// Customfields
-			else{ 
+			
+			
+			 // SET Label for Measurements
+			 // Imperial(in/lb), Metrics(ft/kg)
+			 $rb_agency_options_arr = get_option('rb_agency_options');
+			  $rb_agency_option_unittype  = $rb_agency_options_arr['rb_agency_option_unittype'];
+			  $measurements_label = "";
+			 if ($ProfileCustomType == 7) { //measurements field type
+			            if($data1['ProfileCustomOptions'] ==1){ //1 = Imperial(in/lb)
+						if($rb_agency_option_unittype == 1){
+						    $measurements_label  ="<em>(In Inches)</em>";
+						}else{
+						    $measurements_label  ="<em>(In Pounds)</em>";
+						}
+					}else{ // 0 = Metrics(ft/kg)
+						if($rb_agency_option_unittype == 1){
+						    $measurements_label  ="<em>(In Feet)</em>";
+						}else{
+						    $measurements_label  ="<em>(In Kilos)</em>";
+						}
+					}
+			 }
 			 echo "    <tr valign=\"top\">\n";
 			 echo "		<td scope=\"row\">";
-			 echo "				        <label for=\"ProfileCustomID". $data1['ProfileCustomID'] ."\">". $data1['ProfileCustomTitle']."</label>\n";
+			 echo "				        <label for=\"ProfileCustomID". $data1['ProfileCustomID'] ."\">". $data1['ProfileCustomTitle'].$measurements_label."</label>\n";
 			 echo "		</td>\n";
 			 echo "	<td>";
 									if ($ProfileCustomType == 1) { //TEXT
@@ -205,21 +165,37 @@
 									       
 									}
 									
-									else {
-										
-										if(!empty($ProfileCustomValue)){
-											
-												echo "<input type=\"text\" name=\"ProfileCustomID". $data1['ProfileCustomID'] ."\" value=\"". $ProfileCustomValue ."\" /><br />\n";
-									
-											
-										}else{
-												echo "<input type=\"text\" name=\"ProfileCustomID". $data1['ProfileCustomID'] ."\" value=\"".$_SESSION["ProfileCustomID". $data1['ProfileCustomID']]."\" /><br />\n";
-									
+									elseif ($ProfileCustomType == 7) { // Imperial(in/lb), Metrics(ft/kg)
+									   if($data1['ProfileCustomOptions']==1){
+												    if($rb_agency_option_unittype == 1){
+														echo "<select name=\"ProfileCustomID". $data1['ProfileCustomID'] ."\">\n";
+															if (empty($ProfileCustomValue)) {
+														echo " 				<option value=\"\">--</option>\n";
+															}
+															
+															$i=36;
+															$heightraw = 0;
+															$heightfeet = 0;
+															$heightinch = 0;
+															while($i<=90)  { 
+															  $heightraw = $i;
+															  $heightfeet = floor($heightraw/12);
+															  $heightinch = $heightraw - floor($heightfeet*12);
+														echo " <option value=\"". $i ."\" ". selected($ProfileCustomValue, $i) .">". $heightfeet ." ft ". $heightinch ." in</option>\n";
+															  $i++;
+															}
+														echo " </select>\n";
+												    }else{
+													    echo "	 <input type=\"text\" id=\"ProfileStatHeight\" name=\"ProfileStatHeight\" value=\"". $ProfileCustomValue ."\" />\n";
+												    }
+									   }else{
 										   
-										}
+										  echo "<input type=\"text\" name=\"ProfileCustomID". $data1['ProfileCustomID'] ."\" value=\"". $ProfileCustomValue ."\" /><br />\n";
+										
+									   }
+										
 									}
 					 echo "		</td>\n";
 		echo "	</tr>";
-			}
-
+		
 		?>
