@@ -79,7 +79,7 @@ if (isset($_POST['action'])) {
 									// Add to database
 								$results = $wpdb->query("INSERT INTO " . table_agency_profile_media . " (ProfileID, ProfileMediaType, ProfileMediaTitle, ProfileMediaURL) VALUES ('". $ProfileID ."','". $uploadMediaType ."','". $safeProfileMediaFilename ."','". $safeProfileMediaFilename ."')");
 						    }else{
-								$error .= "<b><i>Please upload an image file only</i></b><br />";
+								$error .= "<b><i>". __("Please upload an image file only", rb_agencyinteract_TEXTDOMAIN) ."</i></b><br />";
 						        $have_error = true;
 							}
 						}
@@ -90,7 +90,7 @@ if (isset($_POST['action'])) {
 								 $results = $wpdb->query("INSERT INTO " . table_agency_profile_media . " (ProfileID, ProfileMediaType, ProfileMediaTitle, ProfileMediaURL) VALUES ('". $ProfileID ."','". $uploadMediaType ."','". $safeProfileMediaFilename ."','". $safeProfileMediaFilename ."')");
 			                 	 move_uploaded_file($_FILES['profileMedia'. $i]['tmp_name'], rb_agency_UPLOADPATH . $ProfileGallery ."/".$safeProfileMediaFilename);
 							 }else{
-								 $error .= "<b><i>Please upload a mp3 file only</i></b><br />";
+								 $error .= "<b><i>". __("Please upload a mp3 file only", rb_agencyinteract_TEXTDOMAIN) ."</i></b><br />";
 								 $have_error = true;
 							 }
 						}
@@ -101,7 +101,7 @@ if (isset($_POST['action'])) {
 							  $results = $wpdb->query("INSERT INTO " . table_agency_profile_media . " (ProfileID, ProfileMediaType, ProfileMediaTitle, ProfileMediaURL) VALUES ('". $ProfileID ."','". $uploadMediaType ."','". $safeProfileMediaFilename ."','". $safeProfileMediaFilename ."')");
 			                  move_uploaded_file($_FILES['profileMedia'. $i]['tmp_name'], rb_agency_UPLOADPATH . $ProfileGallery ."/".$safeProfileMediaFilename);
 							}else{
-							   	$error .= "<b><i>Please upload PDF/MSword/RTF files only</i></b><br />";
+							   	$error .= "<b><i>". __("Please upload PDF/MSword/RTF files only", rb_agencyinteract_TEXTDOMAIN) ."</i></b><br />";
 						        $have_error = true;	
 							}
 						}
@@ -112,7 +112,7 @@ if (isset($_POST['action'])) {
 							  $results = $wpdb->query("INSERT INTO " . table_agency_profile_media . " (ProfileID, ProfileMediaType, ProfileMediaTitle, ProfileMediaURL) VALUES ('". $ProfileID ."','". $uploadMediaType ."','". $safeProfileMediaFilename ."','". $safeProfileMediaFilename ."')");
 			                  move_uploaded_file($_FILES['profileMedia'. $i]['tmp_name'], rb_agency_UPLOADPATH . $ProfileGallery ."/".$safeProfileMediaFilename);
 							}else{
-							   	$error .= "<b><i>Please upload PDF/MSWord/RTF/Image files only</i></b><br />";
+							   	$error .= "<b><i>". __("Please upload PDF/MSWord/RTF/Image files only", rb_agencyinteract_TEXTDOMAIN) ."</i></b><br />";
 						        $have_error = true;	
 							}
 						}
@@ -123,7 +123,7 @@ if (isset($_POST['action'])) {
 							  $results = $wpdb->query("INSERT INTO " . table_agency_profile_media . " (ProfileID, ProfileMediaType, ProfileMediaTitle, ProfileMediaURL) VALUES ('". $ProfileID ."','". $uploadMediaType ."','". $safeProfileMediaFilename ."','". $safeProfileMediaFilename ."')");
 			                  move_uploaded_file($_FILES['profileMedia'. $i]['tmp_name'], rb_agency_UPLOADPATH . $ProfileGallery ."/".$safeProfileMediaFilename);
 							}else{
-							   	$error .= "<b><i>Please upload jpeg or png files only</i></b><br />";
+							   	$error .= "<b><i>". __("Please upload jpeg or png files only", rb_agencyinteract_TEXTDOMAIN) ."</i></b><br />";
 								$have_error = true;	
 							}
 						}
@@ -198,7 +198,7 @@ get_header();
 		if (is_user_logged_in()) { 
 			
 			/// Show registration steps
-			echo "<div id=\"profile-steps\">Profile Setup: Step 3 of 4</div>\n";
+			echo "<div id=\"profile-steps\">". __("Profile Setup: Step 3 of 4", rb_agencyinteract_TEXTDOMAIN) . "</div>\n";
 			
 			echo "<div id=\"profile-manage\" class=\"overview\">\n";
 			
@@ -222,7 +222,7 @@ get_header();
 			} else {
 				
 				// No Record Exists, register them
-				echo "Records show you are not currently linked to a model or agency profile. ";
+				echo "". __("Records show you are not currently linked to a model or agency profile", rb_agencyinteract_TEXTDOMAIN) . ".";
 				
 			}
 			echo " </div>\n"; // .profile-manage-inner
