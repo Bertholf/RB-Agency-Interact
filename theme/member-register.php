@@ -52,6 +52,7 @@
 	if ($_REQUEST) {
 			  echo '<p>signed_request contents:</p>';
 			  $response = parse_signed_request($_REQUEST['signed_request'], FACEBOOK_SECRET);
+			  print_r($_REQUEST);
 			  echo '<pre>';
 			  print_r($response);
 			  echo '</pre>';
@@ -245,7 +246,7 @@
 						echo "<span>Or</span>\n";
 						echo "<div id=\"fb_RegistrationForm\">\n";
 						if ($rb_agencyinteract_option_registerconfirm == 1) {	 // With custom password fields
-							echo "<iframe src=\"https://www.facebook.com/plugins/registration?client_id=".$rb_agencyinteract_option_fb_app_id."&redirect_uri=".$fb_app_register_uri."&fields=[ {'name':'name'}, {'name':'email'}, {'name':'location'}, {'name':'gender'}, {'name':'birthday'}, {'name':'username',  'description':'Username',  'type':'text'},{'name':'password'}]\"		 
+							echo "<iframe src=\"https://www.facebook.com/plugins/registration?client_id=".$rb_agencyinteract_option_fb_app_id."&redirect_uri=".$fb_app_register_uri."&fields=[ {'name':'name'}, {'name':'email'}, {'name':'location'}, {'name':'gender'}, {'name':'birthday'}, {'name':'username',  'description':'Username',  'type':'text'},{'name':'password'},{'name':'tos','description':'I agree to the terms of service','type':'checkbox'}]\"		 
 								  scrolling=\"auto\"
 								  frameborder=\"no\"
 								  style=\"border:none\"
@@ -254,7 +255,7 @@
 								  height=\"330\">
 							</iframe>";
 						}else{
-							echo "<iframe src=\"https://www.facebook.com/plugins/registration?client_id=".$rb_agencyinteract_option_fb_app_id."&redirect_uri=".$fb_app_register_uri."&fields=[ {'name':'name'}, {'name':'email'}, {'name':'location'}, {'name':'gender'}, {'name':'birthday'}, {'name':'username',  'description':'Username',  'type':'text'},{'name':'password'}]\"		 
+							echo "<iframe src=\"https://www.facebook.com/plugins/registration?client_id=".$rb_agencyinteract_option_fb_app_id."&redirect_uri=".$fb_app_register_uri."&fields=[ {'name':'name'}, {'name':'email'}, {'name':'location'}, {'name':'gender'}, {'name':'birthday'}, {'name':'username',  'description':'Username',  'type':'text'},{'name':'password'},{'name':'tos','description':'I agree to the terms of service','type':'checkbox'}]\"		 
 								  scrolling=\"auto\"
 								  frameborder=\"no\"
 								  style=\"border:none\"

@@ -13,7 +13,6 @@
 		$ProfileUserLinked			=$data['ProfileUserLinked'];
 		$ProfileGallery				=stripslashes($data['ProfileGallery']);
 
-
 		echo "<form method=\"post\" enctype=\"multipart/form-data\" action=\"". get_bloginfo("wpurl") ."/profile-member/media/\">\n";
 	
 			if ( !empty($ProfileID) && ($ProfileID > 0) ) { // Editing Record
@@ -21,7 +20,7 @@
 				
 				echo "<script>\n";
 				echo "function confirmDelete(delMedia,mediaType) {\n";
-				echo "  if (confirm(\"Are you sure you want to delete this \"+mediaType+\"?\")) {\n";
+				echo "  if (confirm(\"".__("Are you sure you want to delete this", rb_agencyinteract_TEXTDOMAIN) ." \"+mediaType+\"?\")) {\n";
 				echo "	document.location = \"?&action=editRecord&ProfileID=". $ProfileID ."&actionsub=photodelete&targetid=\"+delMedia;\n";
 				echo "  }\n";
 				echo "}\n";
@@ -39,8 +38,6 @@
 						$ProfileMediaID = $dataImgConfirm['ProfileMediaID'];
 						$ProfileMediaType = $dataImgConfirm['ProfileMediaType'];
 						$ProfileMediaURL = $dataImgConfirm['ProfileMediaURL'];
-						
-					
 						
 						if ($ProfileMediaType == "Demo Reel" || $ProfileMediaType == "Video Monologue" || $ProfileMediaType == "Video Slate") {
 								  echo ("<div id=\"message\" class=\"updated\"><p>File <strong>'. $ProfileMediaURL .'</strong> ". __("successfully removed", rb_agencyinteract_TEXTDOMAIN) .".</p></div>");

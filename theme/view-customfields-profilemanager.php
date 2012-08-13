@@ -51,7 +51,7 @@
 											
 											
 								
-											echo "<label>".$data1[0]."</label>";
+											echo "<label>".__($data1[0], rb_agency_TEXTDOMAIN) ."</label>";
 											echo "<select name=\"ProfileCustomID". $ProfileCustomID  ."[]\">\n";
 											   
 												foreach($data1 as $val1){
@@ -71,7 +71,7 @@
 												
 												
 											if(!empty($data2) && !empty($option2)){
-													echo "<label>".$data2[0]."</label>";
+													echo "<label>".__($data2[0], rb_agency_TEXTDOMAIN) ."</label>";
 											
 											 		
 													echo "<select name=\"ProfileCustomID". $ProfileCustomID  ."[]\">\n";

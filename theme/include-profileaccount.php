@@ -1,4 +1,6 @@
 <?php
+/* Updated 8/12/2012 */
+
 	global $user_ID; 
 	global $current_user;
 	get_currentuserinfo();
@@ -80,7 +82,7 @@
 		echo "		<td scope=\"row\">". __("Gender", rb_agencyinteract_TEXTDOMAIN) ."</th>\n";
 		echo "		<td><select name=\"ProfileGender\" id=\"ProfileGender\">\n";
 				$query= "SELECT GenderID, GenderTitle FROM " .  table_agency_data_gender . " GROUP BY GenderTitle ";
-				echo "<option value=\"\">All Gender</option>";
+				echo "<option value=\"\">". __("All Gender", rb_agencyinteract_TEXTDOMAIN) ."</option>";
 				$queryShowGender = mysql_query($query);
 				while($dataShowGender = mysql_fetch_assoc($queryShowGender)){
 					echo "<option value=\"".$dataShowGender["GenderID"]."\" ".selected($dataShowGender["GenderID"],$ProfileGender,false).">".$dataShowGender["GenderTitle"]."</option>";
@@ -223,4 +225,5 @@
 		echo "</p>\n";
 		echo "</form>\n";
 	}
+	
 ?>

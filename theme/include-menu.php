@@ -5,13 +5,13 @@
 					if ( ($_SERVER["REQUEST_URI"]) == "/profile-member/") { $tabclass = "active"; } else { $tabclass = "inactive"; }
 		echo " 		<div class=\"tab-left tab-". $tabclass ."\">\n";
 		echo " 			<a href=\"". get_bloginfo("wpurl") ."/profile-member/\">\n";
-		echo " 			  <div class=\"subMenuTabBG\"><div class=\"subMenuTabBorders\"><div class=\"subMenuTabText\">Overview</div></div></div>\n";
+		echo " 			  <div class=\"subMenuTabBG\"><div class=\"subMenuTabBorders\"><div class=\"subMenuTabText\">".__("Overview", rb_agencyinteract_TEXTDOMAIN) ."</div></div></div>\n";
 		echo " 			</a>\n";
 		echo " 		</div>\n";
 					if ( ($_SERVER["REQUEST_URI"]) == "/profile-member/account/") { $tabclass = "active"; } else { $tabclass = "inactive"; }
 		echo " 		<div class=\"tab-inner tab-". $tabclass ."\">\n";
 		echo " 			<a  href=\"". get_bloginfo("wpurl") ."/profile-member/account/\">\n";
-		echo " 			  <div class=\"subMenuTabBG\"><div class=\"subMenuTabBorders\"><div class=\"subMenuTabText\">My Account</div></div></div>\n";
+		echo " 			  <div class=\"subMenuTabBG\"><div class=\"subMenuTabBorders\"><div class=\"subMenuTabText\">".__("My Account", rb_agencyinteract_TEXTDOMAIN) ."</div></div></div>\n";
 		echo " 			</a>\n";
 		echo " 		</div>\n";
 		if ($profiletype == 1) {
@@ -20,7 +20,7 @@
 					if ( ($_SERVER["REQUEST_URI"]) == "/profile-favorite/") { $tabclass = "active"; } else { $tabclass = "inactive"; }
 		echo " 		<div class=\"tab-inner tab-". $tabclass ."\">\n";
 		echo " 			<a href=\"\">\n";
-		echo " 			  <div class=\"subMenuTabBG\"><div class=\"subMenuTabBorders\"><div class=\"subMenuTabText\">Favorites</div></div></div>\n";
+		echo " 			  <div class=\"subMenuTabBG\"><div class=\"subMenuTabBorders\"><div class=\"subMenuTabText\">".__("Favorites", rb_agencyinteract_TEXTDOMAIN) ."</div></div></div>\n";
 		echo " 			</a>\n";
 		echo " 		</div>\n";
 		} else {
@@ -28,13 +28,13 @@
 					if ( ($_SERVER["REQUEST_URI"]) == "/profile-member/manage/") { $tabclass = "active"; } else { $tabclass = "inactive"; }
 		echo " 		<div class=\"tab-inner tab-". $tabclass ."\">\n";
 		echo " 			<a  href=\"". get_bloginfo("wpurl") ."/profile-member/manage/\">\n";
-		echo " 			  <div class=\"subMenuTabBG\"><div class=\"subMenuTabBorders\"><div class=\"subMenuTabText\">My Profile</div></div></div>\n";
+		echo " 			  <div class=\"subMenuTabBG\"><div class=\"subMenuTabBorders\"><div class=\"subMenuTabText\">".__("My Profile", rb_agencyinteract_TEXTDOMAIN) ."</div></div></div>\n";
 		echo " 			</a>\n";
 		echo " 		</div>\n";
 					if ( ($_SERVER["REQUEST_URI"]) == "/profile-member/media/") { $tabclass = "active"; } else { $tabclass = "inactive"; }
 		echo " 		<div class=\"tab-inner tab-". $tabclass ."\">\n";
 		echo " 			<a href=\"". get_bloginfo("wpurl") ."/profile-member/media/\">\n";
-		echo " 			  <div class=\"subMenuTabBG\"><div class=\"subMenuTabBorders\"><div class=\"subMenuTabText\">My Media</div></div></div>\n";
+		echo " 			  <div class=\"subMenuTabBG\"><div class=\"subMenuTabBorders\"><div class=\"subMenuTabText\">".__("My Media", rb_agencyinteract_TEXTDOMAIN) ."</div></div></div>\n";
 		echo " 			</a>\n";
 		echo " 		</div>\n";
 		}
@@ -52,7 +52,7 @@
 				$SubscriberDateExpire = $data["SubscriberDateExpire"];
 				echo " 		<div class=\"tab-right tab-". $tabclass ."\">\n";
 				echo " 			<a href=\"". get_bloginfo("wpurl") ."/profile-member/subscription/\">\n";
-				echo " 			  <div class=\"subMenuTabBG\"><div class=\"subMenuTabBorders\"><div class=\"subMenuTabText\">My Subscription</div></div></div>\n";
+				echo " 			  <div class=\"subMenuTabBG\"><div class=\"subMenuTabBorders\"><div class=\"subMenuTabText\">".__("My Subscription", rb_agencyinteract_TEXTDOMAIN) ."</div></div></div>\n";
 				echo " 			</a>\n";
 				echo " 		</div>\n";
 			  } // is there record?
@@ -60,7 +60,7 @@
 				$SubscriberDateExpire = NULL;
 				echo " 		<div class=\"tab-right tab-". $tabclass ."\">\n";
 				echo " 			<a href=\"". get_bloginfo("wpurl") ."/profile-member/subscription/\">\n";
-				echo " 			  <div class=\"subMenuTabBG\"><div class=\"subMenuTabBorders\"><div class=\"subMenuTabText\">My Subscription</div></div></div>\n";
+				echo " 			  <div class=\"subMenuTabBG\"><div class=\"subMenuTabBorders\"><div class=\"subMenuTabText\">".__("My Subscription", rb_agencyinteract_TEXTDOMAIN) ."</div></div></div>\n";
 				echo " 			</a>\n";
 				echo " 		</div>\n";
 			}

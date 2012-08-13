@@ -29,7 +29,7 @@ if ($profiletype == 1) { $profiletypetext = __("Agent/Producer", rb_agencyintera
 	// Change Title
 	add_filter('wp_title', 'rb_agencyinteractive_override_title', 10, 2);
 		function rb_agencyinteractive_override_title(){
-			return "Manage Profile";
+			return __("Manage Profile", rb_agencyinteract_TEXTDOMAIN);
 		}   
 	
  
@@ -94,7 +94,7 @@ if (isset($_POST['action'])) {
 	$error = "";
 	$have_error = false;
 	if(trim($ProfileContactNameFirst) == ""){
-		$error .= "<b><i>Name is required.</i></b><br>";
+		$error .= "<b><i>".__("Name is required.", rb_agencyinteract_TEXTDOMAIN) ."</i></b><br>";
 		$have_error = true;
 	}
 	

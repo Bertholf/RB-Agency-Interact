@@ -34,7 +34,7 @@
 			 }
 			 echo "    <tr valign=\"top\">\n";
 			 echo "		<td scope=\"row\">";
-			 echo "				        <label for=\"ProfileCustomID". $data1['ProfileCustomID'] ."\">". $data1['ProfileCustomTitle'].$measurements_label."</label>\n";
+			 echo "				        <label for=\"ProfileCustomID". $data1['ProfileCustomID'] ."\">".__($data1['ProfileCustomTitle'].$measurements_label, rb_agency_TEXTDOMAIN)."</label>\n";
 			 echo "		</td>\n";
 			 echo "	<td>";
 									if ($ProfileCustomType == 1) { //TEXT
