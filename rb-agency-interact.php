@@ -1,7 +1,7 @@
 <?php 
 /*
   Plugin Name: RB Agency Interact
-  Text Domain: rb-agencyinteract-interact
+  Text Domain: rb-agency-interact
   Plugin URI: http://rbplugin.com/
   Description: Enhancement to the RB Agency software allowing models ot manage their own information.
   Author: Rob Bertholf
@@ -40,8 +40,10 @@ if ( ! isset($GLOBALS['wp_version']) || version_compare($GLOBALS['wp_version'], 
 // Call Language Options
 	add_action('plugins_loaded', 'rb_agencyinteract_loadtranslation');
 		function rb_agencyinteract_loadtranslation(){
-			load_plugin_textdomain( rb_agencyinteract_TEXTDOMAIN, false, basename( dirname( __FILE__ ) ) . '/translation/' ); 
+			load_plugin_textdomain( rb_agencyinteract_TEXTDOMAIN, false, dirname( plugin_basename( __FILE__ ) ) . '/translation/' ); 
 		}
+
+echo dirname( plugin_basename( __FILE__ ) ) . '/translation/' . rb_agencyinteract_TEXTDOMAIN;
 
 // *************************************************************************************************** //
 
