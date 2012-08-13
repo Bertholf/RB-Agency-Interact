@@ -37,13 +37,12 @@ if ( ! isset($GLOBALS['wp_version']) || version_compare($GLOBALS['wp_version'], 
 	define("rb_agencyinteract_UPLOADPATH", $rb_agencyinteract_WPUPLOADARRAY['basedir'] ."/profile-media/" ); // /home/content/99/6048999/html/domain.com/wordpress/wp-content/uploads/profile-media/
 	define("rb_agencyinteract_TEXTDOMAIN", basename(dirname( __FILE__ )) ); //   rb-agency-interact
 
+
 // Call Language Options
-	add_action('plugins_loaded', 'rb_agencyinteract_loadtranslation');
+	add_action('init', 'rb_agencyinteract_loadtranslation');
 		function rb_agencyinteract_loadtranslation(){
 			load_plugin_textdomain( rb_agencyinteract_TEXTDOMAIN, false, dirname( plugin_basename( __FILE__ ) ) . '/translation/' ); 
 		}
-
-echo dirname( plugin_basename( __FILE__ ) ) . '/translation/' . rb_agencyinteract_TEXTDOMAIN;
 
 // *************************************************************************************************** //
 
