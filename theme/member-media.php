@@ -23,7 +23,7 @@ $rb_agency_options_arr = get_option('rb_agency_options');
 // Change Title
 add_filter('wp_title', 'rb_agencyinteractive_override_title', 10, 2);
 	function rb_agencyinteractive_override_title(){
-		return "Manage Media";
+		return "". __("Manage Media", rb_agencyinteract_TEXTDOMAIN) ."";
 	}   
 
 // Form Post
