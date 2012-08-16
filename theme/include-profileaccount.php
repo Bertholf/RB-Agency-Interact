@@ -1,6 +1,4 @@
 <?php
-/* Updated 8/12/2012 */
-
 	global $user_ID; 
 	global $current_user;
 	get_currentuserinfo();
@@ -80,14 +78,18 @@
 		echo "	  </tr>\n";
 		echo "    <tr valign=\"top\">\n";
 		echo "		<td scope=\"row\">". __("Gender", rb_agencyinteract_TEXTDOMAIN) ."</th>\n";
-		echo "		<td><select name=\"ProfileGender\" id=\"ProfileGender\">\n";
-				$query= "SELECT GenderID, GenderTitle FROM " .  table_agency_data_gender . " GROUP BY GenderTitle ";
-				echo "<option value=\"\">". __("All Gender", rb_agencyinteract_TEXTDOMAIN) ."</option>";
-				$queryShowGender = mysql_query($query);
-				while($dataShowGender = mysql_fetch_assoc($queryShowGender)){
-					echo "<option value=\"".$dataShowGender["GenderID"]."\" ".selected($dataShowGender["GenderID"],$ProfileGender,false).">".$dataShowGender["GenderTitle"]."</option>";
-				 }
-		echo "		  </select>\n";
+		echo "		<td>";
+		
+					$query= "SELECT GenderID, GenderTitle FROM " .  table_agency_data_gender . " GROUP BY GenderTitle ";
+					echo "<select name=\"ProfileGender\">";
+					echo "<option value=\"\">All Gender</option>";
+					$queryShowGender = mysql_query($query);
+					while($dataShowGender = mysql_fetch_assoc($queryShowGender)){
+															
+						echo "<option value=\"".$dataShowGender["GenderID"]."\" ". selected($ProfileGender ,$dataShowGender["GenderID"],false).">".$dataShowGender["GenderTitle"]."</option>";
+															
+					}
+					echo "</select>";
 		echo "		</td>\n";
 		echo "	  </tr>\n";
 		// Private Information
@@ -146,9 +148,9 @@
 		echo "    <tr valign=\"top\">\n";
 		echo "		<td scope=\"row\">". __("Phone", rb_agencyinteract_TEXTDOMAIN) ."</th>\n";
 		echo "		<td>\n";
-		echo "			Home: <input type=\"text\" style=\"width: 100px;\" id=\"ProfileContactPhoneHome\" name=\"ProfileContactPhoneHome\" value=\"". $ProfileContactPhoneHome ."\" /><br />\n";
-		echo "			Cell: <input type=\"text\" style=\"width: 100px;\" id=\"ProfileContactPhoneCell\" name=\"ProfileContactPhoneCell\" value=\"". $ProfileContactPhoneCell ."\" /><br />\n";
-		echo "			Work: <input type=\"text\" style=\"width: 100px;\" id=\"ProfileContactPhoneWork\" name=\"ProfileContactPhoneWork\" value=\"". $ProfileContactPhoneWork ."\" /><br />\n";
+		echo "			<label style=\"width: 50px;float:left;line-height: 24px;\">Home:</label> <input type=\"text\" style=\"width: 144px;\" id=\"ProfileContactPhoneHome\" name=\"ProfileContactPhoneHome\" value=\"". $ProfileContactPhoneHome ."\" /><br />\n";
+		echo "			<label style=\"width: 50px;float:left;line-height: 24px;\">Cell:</label> <input type=\"text\" style=\"width: 144px;\" id=\"ProfileContactPhoneCell\" name=\"ProfileContactPhoneCell\" value=\"". $ProfileContactPhoneCell ."\" /><br />\n";
+		echo "			<label style=\"width: 50px;float:left;line-height: 24px;\">Work:</label> <input type=\"text\" style=\"width: 144px;\" id=\"ProfileContactPhoneWork\" name=\"ProfileContactPhoneWork\" value=\"". $ProfileContactPhoneWork ."\" /><br />\n";
 		echo "		</td>\n";
 		echo "	  </tr>\n";
 		echo "    <tr valign=\"top\">\n";
@@ -225,5 +227,4 @@
 		echo "</p>\n";
 		echo "</form>\n";
 	}
-	
 ?>

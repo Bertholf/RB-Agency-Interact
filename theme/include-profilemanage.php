@@ -46,6 +46,7 @@
 		// Include Profile Customfields
 		     $ProfileInformation = "0"; // Public fields only
 			include("include-custom-fields.php");
+								
 						
 		echo "  </tbody>\n";
 		echo "</table>\n";
@@ -59,4 +60,5 @@
 		echo "</form>\n";
 	}
 		
+
 ?>

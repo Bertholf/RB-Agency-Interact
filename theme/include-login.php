@@ -10,7 +10,7 @@
 	$rb_agencyinteract_option_fb_app_id = $registration['rb_agencyinteract_option_fb_app_id'];
 	$rb_agencyinteract_option_fb_app_secret = $registration['rb_agencyinteract_option_fb_app_secret'];
 	$rb_agencyinteract_option_fb_app_uri = $registration['rb_agencyinteract_option_fb_app_uri'];
-   
+      $rb_agencyinteract_option_registerallowAgentProducer = $registration['rb_agencyinteract_option_registerallowAgentProducer'];
 	if (( current_user_can("create_users") || $rb_agencyinteract_option_registerallow )) {
 		$widthClass = "half";
 	} else {
@@ -84,6 +84,7 @@ echo "            </ul>\n";
 echo "            <a href=\"". get_bloginfo("wpurl") ."/profile-register/\" id=\"register-talent\">". __("Register as Talent / Model", rb_agencyinteract_TEXTDOMAIN). "</a>\n";
 echo "          </div> <!-- talent-register -->\n";
 echo "          <div class=\"clear line\"></div>\n";
+if($rb_agencyinteract_option_registerallowAgentProducer == 1){
 echo "          <div id=\"agent-register\" >\n";
 echo "            <h2>". __("Casting Agents & Producers", rb_agencyinteract_TEXTDOMAIN). "</h2>\n";
 echo "            <ul>\n";
@@ -92,6 +93,7 @@ echo "              <li>". __("Contact People in the Talent Directory", rb_agenc
 echo "            </ul>\n";
 echo "            <a href=\"". get_bloginfo("wpurl") ."/profile-register/\" id=\"register-agent\">". __("Register as Agent / Producer", rb_agencyinteract_TEXTDOMAIN). "</a>\n";
 echo "          </div> <!-- talent-register -->\n";
+}
 echo "        </div> <!-- not-a-member -->\n";
 			}
 			

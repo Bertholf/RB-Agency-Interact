@@ -13,6 +13,7 @@
 		$ProfileUserLinked			=$data['ProfileUserLinked'];
 		$ProfileGallery				=stripslashes($data['ProfileGallery']);
 
+
 		echo "<form method=\"post\" enctype=\"multipart/form-data\" action=\"". get_bloginfo("wpurl") ."/profile-member/media/\">\n";
 	
 			if ( !empty($ProfileID) && ($ProfileID > 0) ) { // Editing Record
@@ -38,6 +39,8 @@
 						$ProfileMediaID = $dataImgConfirm['ProfileMediaID'];
 						$ProfileMediaType = $dataImgConfirm['ProfileMediaType'];
 						$ProfileMediaURL = $dataImgConfirm['ProfileMediaURL'];
+						
+					
 						
 						if ($ProfileMediaType == "Demo Reel" || $ProfileMediaType == "Video Monologue" || $ProfileMediaType == "Video Slate") {
 								  echo ("<div id=\"message\" class=\"updated\"><p>File <strong>'. $ProfileMediaURL .'</strong> ". __("successfully removed", rb_agencyinteract_TEXTDOMAIN) .".</p></div>");
@@ -123,13 +126,13 @@
 		echo "		<p>". __("Upload new media using the forms below. The following formats are available: jpg, png, mp3, and pdf. If uploading an mp3 for a voice monolouge, use the  \"Voice Demo\" option. For Resumes, make sure the file is a PDF ", rb_agencyinteract_TEXTDOMAIN) .".</p>\n";
 	
 				for( $i=1; $i<10; $i++ ) {
-				echo "<div>Type: <select name=\"profileMedia". $i ."Type\"><option value=\"Image\">Image</option><option value=\"Headshot\">Headshot</option><option value=\"CompCard\">Comp Card</option><option value=\"Resume\">Resume</option><option value=\"VoiceDemo\">Voice Demo</option></select><input type='file' id='profileMedia". $i ."' name='profileMedia". $i ."' /></div>\n";
+				echo "<div>Type: <select name=\"profileMedia". $i ."Type\"><option>Image</option><option>Headshot</option><option>Comp Card</option><option>Resume</option><option>Voice Demo</option>"; rb_agency_getMediaCategories($data['ProfileGender']); echo"</select><input type='file' id='profileMedia". $i ."' name='profileMedia". $i ."' /></div>\n";
 				}
-		echo "		<p><br>". __("Paste the YouTube video URL below", rb_agencyinteract_TEXTDOMAIN) .".</p>\n";
+		echo "		<p>". __("Paste the video URL below", rb_agencyinteract_TEXTDOMAIN) .".</p>\n";
 	
-				echo "<div>Type: <select name=\"profileMediaV1Type\"><option selected>". __("Video Slate", rb_agencyinteract_TEXTDOMAIN) ."</option><option>". __("Video Monologue", rb_agencyinteract_TEXTDOMAIN) ."</option><option>". __("Demo Reel", rb_agencyinteract_TEXTDOMAIN) ."</option></select><input id='profileMediaV1' style=\"width:240px;\" name='profileMediaV1'></input></div>\n";
-				echo "<div>Type: <select name=\"profileMediaV2Type\"><option>". __("Video Slate", rb_agencyinteract_TEXTDOMAIN) ."</option><option selected>". __("Video Monologue", rb_agencyinteract_TEXTDOMAIN) ."</option><option>". __("Demo Reel", rb_agencyinteract_TEXTDOMAIN) ."</option></select><input id='profileMediaV2' style=\"width:240px;\" name='profileMediaV2'></input></div>\n";
-				echo "<div>Type: <select name=\"profileMediaV3Type\"><option>". __("Video Slate", rb_agencyinteract_TEXTDOMAIN) ."</option><option>". __("Video Monologue", rb_agencyinteract_TEXTDOMAIN) ."</option><option selected>". __("Demo Reel", rb_agencyinteract_TEXTDOMAIN) ."</option></select><input id='profileMediaV3' style=\"width:240px;\" name='profileMediaV3'></input></div>\n";
+				echo "<div>Type: <select name=\"profileMediaV1Type\"><option selected>". __("Video Links", rb_agencyinteract_TEXTDOMAIN) ."</option><option>". __("Video Links", rb_agencyinteract_TEXTDOMAIN) ."</option><option>". __("Video Links", rb_agencyinteract_TEXTDOMAIN) ."</option></select><textarea id='profileMediaV1' name='profileMediaV1'></textarea></div>\n";
+				echo "<div>Type: <select name=\"profileMediaV2Type\"><option>". __("Video Links", rb_agencyinteract_TEXTDOMAIN) ."</option><option selected>". __("Video Links", rb_agencyinteract_TEXTDOMAIN) ."</option><option>". __("Video Links", rb_agencyinteract_TEXTDOMAIN) ."</option></select><textarea id='profileMediaV2' name='profileMediaV2'></textarea></div>\n";
+				echo "<div>Type: <select name=\"profileMediaV3Type\"><option>". __("Video Links", rb_agencyinteract_TEXTDOMAIN) ."</option><option>". __("Video Links", rb_agencyinteract_TEXTDOMAIN) ."</option><option selected>". __("Video Links", rb_agencyinteract_TEXTDOMAIN) ."</option></select><textarea id='profileMediaV3' name='profileMediaV3'></textarea></div>\n";
 		
 			}
 		echo "<br>\n";

@@ -103,13 +103,13 @@
 		echo "		<p>". __("Upload new media using the forms below", rb_agencyinteract_TEXTDOMAIN) .".</p>\n";
 	
 				for( $i=1; $i<10; $i++ ) {
-				echo "<div>Type: <select name=\"profileMedia". $i ."Type\"><option>Image</option><option>Headshot</option><option>Comp Card</option><option>Resume</option><option>Voice Demo</option></select><input type='file' id='profileMedia". $i ."' name='profileMedia". $i ."' /></div>\n";
+				echo "<div>Type: <select name=\"profileMedia". $i ."Type\"><option>Image</option><option>Headshot</option><option>Comp Card</option><option>Resume</option><option>Voice Demo</option>"; rb_agency_getMediaCategories($data['GenderID']); echo"</select><input type='file' id='profileMedia". $i ."' name='profileMedia". $i ."' /></div>\n";
 				}
-		echo "		<p>". __("Paste the YouTube video URL below", rb_agencyinteract_TEXTDOMAIN) .".</p>\n";
+		echo "		<p>". __("Paste the video URL below", rb_agencyinteract_TEXTDOMAIN) .".</p>\n";
 	
-				echo "<div>Type: <select name=\"profileMediaV1Type\"><option selected>". __("Video Slate", rb_agencyinteract_TEXTDOMAIN) ."</option><option>". __("Video Monologue", rb_agencyinteract_TEXTDOMAIN) ."</option><option>". __("Demo Reel", rb_agencyinteract_TEXTDOMAIN) ."</option></select><textarea id='profileMediaV1' name='profileMediaV1'></textarea></div>\n";
-				echo "<div>Type: <select name=\"profileMediaV2Type\"><option>". __("Video Slate", rb_agencyinteract_TEXTDOMAIN) ."</option><option selected>". __("Video Monologue", rb_agencyinteract_TEXTDOMAIN) ."</option><option>". __("Demo Reel", rb_agencyinteract_TEXTDOMAIN) ."</option></select><textarea id='profileMediaV2' name='profileMediaV2'></textarea></div>\n";
-				echo "<div>Type: <select name=\"profileMediaV3Type\"><option>". __("Video Slate", rb_agencyinteract_TEXTDOMAIN) ."</option><option>". __("Video Monologue", rb_agencyinteract_TEXTDOMAIN) ."</option><option selected>". __("Demo Reel", rb_agencyinteract_TEXTDOMAIN) ."</option></select><textarea id='profileMediaV3' name='profileMediaV3'></textarea></div>\n";
+				echo "<div>Type: <select name=\"profileMediaV1Type\"><option selected>". __("Video Links", rb_agencyinteract_TEXTDOMAIN) ."</option><option>". __("Video Links", rb_agencyinteract_TEXTDOMAIN) ."</option><option>". __("Video Links", rb_agencyinteract_TEXTDOMAIN) ."</option></select><textarea id='profileMediaV1' name='profileMediaV1'></textarea></div>\n";
+				echo "<div>Type: <select name=\"profileMediaV2Type\"><option>". __("Video Links", rb_agencyinteract_TEXTDOMAIN) ."</option><option selected>". __("Video Links", rb_agencyinteract_TEXTDOMAIN) ."</option><option>". __("Video Links", rb_agencyinteract_TEXTDOMAIN) ."</option></select><textarea id='profileMediaV2' name='profileMediaV2'></textarea></div>\n";
+				echo "<div>Type: <select name=\"profileMediaV3Type\"><option>". __("Video Links", rb_agencyinteract_TEXTDOMAIN) ."</option><option>". __("Video Links", rb_agencyinteract_TEXTDOMAIN) ."</option><option selected>". __("Video Links", rb_agencyinteract_TEXTDOMAIN) ."</option></select><textarea id='profileMediaV3' name='profileMediaV3'></textarea></div>\n";
 		
 			}
 	

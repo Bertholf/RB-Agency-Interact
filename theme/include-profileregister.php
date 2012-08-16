@@ -1,4 +1,5 @@
 <?php
+     
 	echo "<form method=\"post\" enctype=\"multipart/form-data\" action=\"". get_bloginfo("wpurl") ."/profile-member/account/\" style=\"width: 400px;\">\n";
 	echo "<input type=\"hidden\" id=\"ProfileContactEmail\" name=\"ProfileContactEmail\" value=\"". $current_user->user_email ."\" />\n";
 	echo "<input type=\"hidden\" id=\"ProfileUserLinked\" name=\"ProfileUserLinked\" value=\"". $current_user->id ."\" />\n";
@@ -131,6 +132,7 @@
 		echo "		</td>\n";
 		echo "	  </tr>\n";
 	 }
+	
 	echo "    <tr valign=\"top\">\n";
 	echo "		<td scope=\"row\">". __("Password (Leave blank to keep same password)", rb_agencyinteract_TEXTDOMAIN) ."</th>\n";
 	echo "		<td>\n";

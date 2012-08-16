@@ -16,38 +16,58 @@
 			}
 			
 	}
-	
-	function  get_user_login_info(){
-	        global $user_ID;  
+function  get_user_login_info(){
+
+	      global $user_ID;  
 		
-	        get_currentuserinfo();
-			
-		    $redirect = $_POST["lastviewed"];
-			$user_info = get_userdata( $user_ID ); 
-		
-			if($user_ID){
-			  // If user_registered date/time is less than 48hrs from now
-			  if (!empty($redirect)) {
-				  header("Location: ". get_bloginfo("wpurl"). "/profile/".$redirect);
-			  } else {
-				if( $user_info->user_level > 7) {
-					header("Location: ". get_bloginfo("wpurl"). "/wp-admin/");
-				} 
-				// Message will show for 48hrs after registration
-				elseif( strtotime( $user_info->user_registered ) > ( time() - 172800 ) ) {
-					header("Location: ". get_bloginfo("wpurl"). "/profile-member/");
-				} else {
-					header("Location: ". get_bloginfo("wpurl"). "/profile-member/");
-				}
-			  }
-		
-			} elseif(empty($_POST['user-name']) || empty($_POST['password']) ){
+		 $redirect = $_POST["lastviewed"];
+		 
+	      get_currentuserinfo();
+
+		        $user_info = get_userdata( $user_ID ); 
+
 				
-			} else {
-				 // Reload
-				header("Location: ". get_bloginfo("wpurl")."/profile-login/");	
-			}
-	}
+
+				if($user_ID){
+
+					// If user_registered date/time is less than 48hrs from now
+
+				
+				  if(!empty($redirect)){
+					  header("Location: ". get_bloginfo("wpurl"). "/profile/".$redirect);
+				  }else{
+
+					if( $user_info->user_level > 7) {
+
+						header("Location: ". get_bloginfo("wpurl"). "/wp-admin/");
+
+					} 
+					// Message will show for 48hrs after registration
+					elseif( strtotime( $user_info->user_registered ) > ( time() - 172800 ) ) {
+
+						header("Location: ". get_bloginfo("wpurl"). "/profile-member/");
+
+					} else {
+
+						header("Location: ". get_bloginfo("wpurl"). "/profile-member/");
+
+					}
+				  }
+
+				}
+				elseif(empty($_POST['user-name']) || empty($_POST['password']) ){
+					
+				}
+				else{
+
+					 // Reload
+                
+				    header("Location: ". get_bloginfo("wpurl")."/profile-login/");	
+
+				}
+
+}
+
 
 
 // ****************************************************************************************** //
@@ -65,42 +85,43 @@
 			echo "    </p><!-- .alert -->\n";
 			*/
 	
-	// ****************************************************************************************** //
-	// Not logged in
+// ****************************************************************************************** //
+// Not logged in
 	} else { 
 
 		// *************************************************************************************************** //
 		// Prepare Page
 		get_header();
 
-		echo "<div class=\"content_wrapper\">\n"; // Theme Wrapper 
-			echo "<div class=\"PageTitle\"><h1></h1></div>\n";	 // Profile Name
+echo "<div class=\"content_wrapper\">\n"; // Theme Wrapper 
+	echo "<div class=\"PageTitle\"><h1></h1></div>\n";	 // Profile Name
 
 
-	
-			echo "<div id=\"container\" class=\"one-column rb-agency-interact-account\">\n";
-			echo "  <div id=\"content\">\n";
-			
-				// Show Login Form
-				$hideregister = true;
-				include("include-login.php"); 	
-	
-			echo "  </div><!-- #content -->\n";
-			echo "</div><!-- #container -->\n";
-			
-			// Get Sidebar 
-			$rb_agencyinteract_options_arr = get_option('rb_agencyinteract_options');
-				$rb_agencyinteract_option_profilemanage_sidebar = $rb_agencyinteract_options_arr['rb_agencyinteract_option_profilemanage_sidebar'];
-				$LayoutType = "";
-				if ($rb_agencyinteract_option_profilemanage_sidebar) {
-					echo "	<div id=\"profile-sidebar\" class=\"manage\">\n";
-						$LayoutType = "profile";
-						get_sidebar(); 
-					echo "	</div>\n";
-				}
-			// Get Footer
+
+		echo "<div id=\"container\" class=\"one-column rb-agency-interact-account\">\n";
+		echo "  <div id=\"content\">\n";
 		
-		echo "</div>\n"; //END .content_wrapper 
+			// Show Login Form
+			$hideregister = true;
+			include("include-login.php"); 	
+
+		echo "  </div><!-- #content -->\n";
+		echo "</div><!-- #container -->\n";
+		
+		// Get Sidebar 
+		$rb_agencyinteract_options_arr = get_option('rb_agencyinteract_options');
+			$rb_agencyinteract_option_profilemanage_sidebar = $rb_agencyinteract_options_arr['rb_agencyinteract_option_profilemanage_sidebar'];
+			$LayoutType = "";
+			if ($rb_agencyinteract_option_profilemanage_sidebar) {
+				echo "	<div id=\"profile-sidebar\" class=\"manage\">\n";
+					$LayoutType = "profile";
+					get_sidebar(); 
+				echo "	</div>\n";
+			}
+		// Get Footer
+		
+echo "</div>\n"; //END .content_wrapper 
+		
 		
 		get_footer();
 	

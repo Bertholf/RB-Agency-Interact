@@ -139,21 +139,22 @@ if (isset($_POST['action'])) {
 				'" . $wpdb->escape($ProfileLocationStreet) . "','" . $wpdb->escape($ProfileLocationCity) . "','" . $wpdb->escape($ProfileLocationState) . "','" . $wpdb->escape($ProfileLocationZip) . "','" . $wpdb->escape($ProfileLocationCountry) . "',
 				'" . $wpdb->escape($ProfileContactPhoneHome) . "','" . $wpdb->escape($ProfileContactPhoneCell) . "','" . $wpdb->escape($ProfileContactPhoneWork) . "',
 				now(), ". $ProfileIsActive .")";
-		    $results = $wpdb->query($insert) or die(mysql_error());
+		      $results = $wpdb->query($insert) or die(mysql_error());
 			$ProfileID = $wpdb->insert_id;
-
-
+ 			
+			
+             
 			// Add New Custom Field Values
 			  $pos = 0;
 			foreach($_POST as $key => $value) {
 			
-				
+			         
 				if ((substr($key, 0, 15) == "ProfileCustomID") && (isset($value) && !empty($value))) {
 						$pos++; 
 					if($pos == 1){
 					// Remove Old Custom Field Values
 					$delete1 = "DELETE FROM " . table_agency_customfield_mux . " WHERE ProfileID = \"". $ProfileID ."\"";
-					$results1 = $wpdb->query($delete1) or die(mysql_error());	
+					$results1 = $wpdb->query($delete1);// or die(mysql_error());	
 					}
 					$ProfileCustomID = substr($key, 15);
 					if(is_array($value)){
@@ -175,6 +176,7 @@ if (isset($_POST['action'])) {
 	#DEBUG
 	#echo "<script>alert('".$ProfileUsername."');<\/script>";		 
 			// Link to Wordpress user_meta
+			 
 			 if ( username_exists( $ProfileUsername) )
 			 {
 				$isLinked =  mysql_query("UPDATE ". table_agency_profile ." SET ProfileUserLinked =  ". $current_user->ID ." WHERE ProfileID = ".$ProfileID." ");
@@ -215,10 +217,12 @@ if (isset($_POST['action'])) {
 					
 			/* Redirect so the page will show updated info. */
 			if ( !$error ) {
+				
 				wp_redirect(get_bloginfo("wpurl") . "/profile-member/manage/");
-				exit;
+				//exit;
 			}
 		} else {
+			
         	$alerts = "<div id=\"message\" class=\"error\"><p>". __("Error creating record, please ensure you have filled out all required fields.", rb_agencyinteract_TEXTDOMAIN) ."<br />". $error ."</p></div>"; 
 		}
 	break;
@@ -252,7 +256,8 @@ if (isset($_POST['action'])) {
 			ProfileDateUpdated=now()
 			WHERE ProfileID=$ProfileID";
 		    $results = $wpdb->query($update);
-
+              
+		    
 			/* Update WordPress user information. */
 			update_usermeta( $current_user->id, 'first_name', esc_attr( $ProfileContactNameFirst ) );
 			update_usermeta( $current_user->id, 'last_name', esc_attr( $ProfileContactNameLast ) );
@@ -290,7 +295,7 @@ if (isset($_POST['action'])) {
 			$alerts = "<div id=\"message\" class=\"error\"><p>". __("Error updating record, please ensure you have filled out all required fields.", rb_agencyinteract_TEXTDOMAIN) ."<br />". $error ."</p></div>"; 
 		}
 		
-		//wp_redirect( $rb_agencyinteract_WPURL ."/profile-member/" );
+		wp_redirect( $rb_agencyinteract_WPURL ."/profile-member/" );
 		//exit;
 	break;
 	}

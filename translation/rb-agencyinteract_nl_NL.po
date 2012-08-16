@@ -1,0 +1,811 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: RB Agency\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-08-12 13:50-1000\n"
+"PO-Revision-Date: 2012-08-12 13:50-1000\n"
+"Last-Translator: Rob Bertholf <rob@bertholf.com>\n"
+"Language-Team: Rob Bertholf <rob@bertholf.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: nl_NL\n"
+"X-Poedit-KeywordsList: _;_e;__ngettext:1,2;__ngettext_noop:1,2;_n:1,2;_nx_noop:4c,1,2;_nx:4c,1,2;_ex:1,2c;_x:1,2c;_c,_nc:4c,1,2;_n_noop:1,2;__\n"
+"X-Poedit-Basepath: D:\\RobDropbox\\Dropbox\\ScriptRepository\\RB-Agency-Interact\\\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: D:\\RobDropbox\\Dropbox\\ScriptRepository\\RB-Agency-Interact\n"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/functions.php:108
+#, php-format
+msgid "New user registration on your blog %s:"
+msgstr "Nieuwe gebruiker registreren op uw blog% s:"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/functions.php:109
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/functions.php:120
+#, php-format
+msgid "Username: %s"
+msgstr "Gebruikersnaam: %s"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/functions.php:110
+#, php-format
+msgid "E-mail: %s"
+msgstr "Email: %s"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/functions.php:112
+#, php-format
+msgid "[%s] New User Registration"
+msgstr "[% s] Registratie nieuwe gebruiker"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/functions.php:117
+msgid "Hi there,"
+msgstr "Hi there,"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/functions.php:118
+#, php-format
+msgid "Thanks for joining %s! Here's how to log in:"
+msgstr "Dank je voor het samenvoegen van %s Hier ziet u hoe in te loggen:"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/functions.php:121
+#, php-format
+msgid "Password: %s"
+msgstr "Wachtwoord: %s"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/functions.php:122
+#, php-format
+msgid "If you have any problems, please contact us at %s."
+msgstr "Als u problemen heeft, neem dan contact met ons op %s."
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/functions.php:123
+msgid "Regards,"
+msgstr "Met vriendelijke groet,"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/functions.php:124
+msgid " Team"
+msgstr " Team"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/functions.php:128
+#, php-format
+msgid "%s Registration Successful! Login Details"
+msgstr "% s Registratie Succesvolle Log in Details"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/rb-agency-interact.php:17
+msgid "This plugin requires WordPress version 2.8 or newer"
+msgstr "Deze plugin vereist WordPress versie 2.8 of nieuwer"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/rb-agency-interact.php:131
+msgid "Approve Users"
+msgstr "Akkoord Gebruikers"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/rb-agency-interact.php:175
+msgid "Displays profile actions such as login and links to edit"
+msgstr "Geeft het profiel van acties, zoals de login en koppelingen bewerken om"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/rb-agency-interact.php:176
+msgid "Agency Interact Login"
+msgstr "Bureau Interact Login"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/rb-agency-interact.php:212
+msgid "Title:"
+msgstr "Titel"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/rb-agency-interact.php:213
+msgid "Show Count:"
+msgstr "Toon Tellen"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/rb-agency-interact.php:262
+msgid "Almost done..."
+msgstr "Bijna klaar..."
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/rb-agency-interact.php:262
+msgid "One More Step"
+msgstr "Nog een stap"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/rb-agency-interact.php:262
+msgid "Please click here to complete the uninstallation process"
+msgstr "Please click here to complete the uninstallation process"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/admin/profile-approve.php:57
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/admin/profile-approve.php:180
+msgid "No valid record found."
+msgstr "Geen gevonden geldige opnemen"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/admin/profile-approve.php:60
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/admin/profile-approve.php:183
+msgid "Profile deleted successfully!"
+msgstr "Profiel met succes verwijderd"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/admin/profile-approve.php:88
+msgid "List"
+msgstr "Lijst"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/admin/profile-approve.php:90
+msgid "All Records"
+msgstr "Alle records"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/admin/profile-approve.php:253
+msgid "Create New Record"
+msgstr "Maak een nieuw record"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/admin/profile-approve.php:257
+#, fuzzy
+msgid "Create New "
+msgstr "Maak een nieuw record"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/admin/profile-approve.php:277
+msgid "Search By"
+msgstr "Zoek op"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/admin/profile-approve.php:278
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-profileaccount.php:64
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-profileregister.php:12
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/member-register.php:121
+msgid "First Name"
+msgstr "Voornaam"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/admin/profile-approve.php:279
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-profileaccount.php:70
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-profileregister.php:18
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/member-register.php:126
+msgid "Last Name"
+msgstr "Achternaam"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/admin/profile-approve.php:280
+msgid "Location"
+msgstr "Plaats"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/admin/profile-approve.php:282
+msgid "Any Location"
+msgstr "Elke locatie"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/admin/profile-approve.php:293
+msgid "Category"
+msgstr "Categorie"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/admin/profile-approve.php:295
+msgid "Any Category"
+msgstr "Elke categorie"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/admin/profile-approve.php:304
+msgid "Filter"
+msgstr "Filter"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/admin/profile-approve.php:311
+msgid "Clear Filters"
+msgstr "Filter verwijderen"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/admin/profile-approve.php:322
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/admin/profile-approve.php:441
+msgid "Bulk Action"
+msgstr "Bulkactie"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/admin/profile-approve.php:323
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/admin/profile-approve.php:395
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/admin/profile-approve.php:442
+msgid "Approve"
+msgstr "Goedkeuren"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/admin/profile-approve.php:324
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/admin/profile-approve.php:443
+msgid "Delete"
+msgstr "Verwijder"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/admin/profile-approve.php:326
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/admin/profile-approve.php:445
+msgid "Apply"
+msgstr "Aanvragen"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/admin/profile-approve.php:395
+msgid "Approve this Record"
+msgstr "Goedkeuren dit Record"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/admin/profile-approve.php:396
+msgid "Edit this Record"
+msgstr "Wijzig dit record"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/admin/profile-approve.php:396
+msgid "Edit"
+msgstr "Bewerken"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/admin/profile-approve.php:397
+msgid "View"
+msgstr "Zien"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-login.php:20
+msgid "Members Sign in"
+msgstr "Lid Aanmelden"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-login.php:23
+msgid "Username"
+msgstr "Gebruikersnaam"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-login.php:26
+msgid "Password"
+msgstr "Wachtwoord"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-login.php:26
+msgid "forgot password"
+msgstr "Wachtwoord Vergeten"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-login.php:29
+msgid "Keep me signed in"
+msgstr "Ik wil ingelogd blijven"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-login.php:33
+msgid "Sign In"
+msgstr "Meld u aan"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-login.php:42
+msgid "Not a member"
+msgstr "Geen lid"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-login.php:43
+msgid "Talent"
+msgstr "Talent"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-login.php:43
+msgid "Register here"
+msgstr "Registreer hier"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-login.php:45
+msgid "Create your free profile page"
+msgstr "Maak uw gratis profielpagina"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-login.php:46
+msgid "Apply to Auditions & Jobs"
+msgstr "Toepassen op Auditions & Jobs"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-login.php:48
+msgid "Register as Talent / Model"
+msgstr "Registreer als Talent / Model"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-login.php:52
+msgid "Casting Agents & Producers"
+msgstr "Casting Agenten & Producenten"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-login.php:54
+msgid "List Auditions & Jobs free"
+msgstr "Lijst Audities & Jobs gratis"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-login.php:55
+msgid "Contact People in the Talent Directory"
+msgstr "Neem contact op met Mensen in de Talent-gids"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-login.php:57
+msgid "Register as Agent / Producer"
+msgstr "Registreer als Agent / Producer"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-profileaccount.php:15
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-profilemanage.php:14
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-profilemedia.php:8
+msgid "Error, query failed"
+msgstr "Error, query failed"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-profileaccount.php:48
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-profileregister.php:9
+msgid "Contact Information"
+msgstr "Contact Informatie"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-profileaccount.php:51
+msgid "Gallery Folder"
+msgstr "Galerij Folder"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-profileaccount.php:58
+msgid "Folder Pending Creation"
+msgstr "Folder In afwachting van Creatie"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-profileaccount.php:76
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-profileregister.php:34
+msgid "Gender"
+msgstr "Gender"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-profileaccount.php:78
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-profileregister.php:36
+msgid "Not Specified"
+msgstr "Not Specified"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-profileaccount.php:79
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-profileregister.php:37
+msgid "Male"
+msgstr "Male"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-profileaccount.php:80
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-profileregister.php:38
+msgid "Female"
+msgstr "Vrouw"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-profileaccount.php:86
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-profileregister.php:70
+msgid "Private Information"
+msgstr "Private Informatie"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-profileaccount.php:89
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-profileregister.php:73
+msgid "Parent (if minor)"
+msgstr "Ouder (als minor)"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-profileaccount.php:95
+msgid "Email Address"
+msgstr "E-mail adres"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-profileaccount.php:101
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-profileregister.php:43
+msgid "Birthdate"
+msgstr "Geboortedatum"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-profileaccount.php:108
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-profileregister.php:79
+msgid "Street"
+msgstr "Street"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-profileaccount.php:114
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-profileregister.php:85
+msgid "City"
+msgstr "City"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-profileaccount.php:120
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-profileregister.php:91
+msgid "State"
+msgstr "Staat"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-profileaccount.php:126
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-profileregister.php:97
+msgid "Zip"
+msgstr "Zip"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-profileaccount.php:132
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-profileregister.php:103
+msgid "Country"
+msgstr "Country"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-profileaccount.php:192
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-profileregister.php:24
+msgid "Phone"
+msgstr "Telefoon"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-profileaccount.php:200
+msgid "Website"
+msgstr "Website"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-profileaccount.php:208
+msgid "Social Media Profiles"
+msgstr "Social Media Profielen"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-profileaccount.php:211
+msgid "Facebook"
+msgstr "Facebook"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-profileaccount.php:217
+msgid "Twitter"
+msgstr "Twitter"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-profileaccount.php:223
+msgid "YouTube"
+msgstr "YouTube"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-profileaccount.php:229
+msgid "Flickr"
+msgstr "Flickr"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-profileaccount.php:236
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-profileregister.php:145
+msgid "Password (Leave blank to keep same password)"
+msgstr "Wachtwoord (Laat leeg om hetzelfde wachtwoord te houden)"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-profileaccount.php:242
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-profileregister.php:151
+msgid "Password (Retype to Confirm)"
+msgstr "Wachtwoord (Bevestig om te bevestigen)"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-profileaccount.php:250
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-profilemanage.php:289
+msgid "Last updated "
+msgstr "Laatst bijgewerkt"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-profileaccount.php:254
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-profilemanage.php:294
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-profilemedia.php:120
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-profileregister.php:160
+msgid "Save and Continue"
+msgstr "Save and Continue"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-profilemanage.php:42
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-profilemanage.php:45
+msgid "Classification"
+msgstr "Classificatie"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-profilemanage.php:61
+msgid "Ethnicity"
+msgstr "Etniciteit"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-profilemanage.php:79
+msgid "Skin Color"
+msgstr "Huidskleur"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-profilemanage.php:97
+msgid "Eye Color"
+msgstr "Oogkleur"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-profilemanage.php:115
+msgid "Hair Color"
+msgstr "Haarkleur"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-profilemanage.php:135
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-profilemanage.php:157
+msgid "Height"
+msgstr "Hoogte"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-profilemanage.php:135
+msgid "In Inches"
+msgstr "In Inches"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-profilemanage.php:157
+msgid "cm"
+msgstr "cm"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-profilemanage.php:164
+msgid "Weight"
+msgstr "Gewicht"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-profilemanage.php:165
+msgid "In Pounds"
+msgstr "In Pounds"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-profilemanage.php:165
+msgid "In Kilo"
+msgstr "In Kilo"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-profilemanage.php:172
+msgid "Measurements"
+msgstr "Metingen"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-profilemanage.php:174
+msgid "Chest"
+msgstr "Borst"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-profilemanage.php:174
+msgid "Bust"
+msgstr "Buste"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-profilemanage.php:176
+msgid "Waist"
+msgstr "Taille"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-profilemanage.php:178
+msgid "Inseam"
+msgstr "Binnenbeenlengte"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-profilemanage.php:178
+msgid "Hips"
+msgstr "Heupen"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-profilemanage.php:183
+msgid "Shoe Size"
+msgstr "Schoenmaat"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-profilemanage.php:190
+msgid "Suit Size"
+msgstr "Pak Maat"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-profilemanage.php:190
+msgid "Dress Size"
+msgstr "Confectiemaat"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-profilemanage.php:190
+msgid "Suit"
+msgstr "Pak"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-profilemanage.php:249
+msgid "Details"
+msgstr "Meer informatie"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-profilemanage.php:252
+msgid "Description"
+msgstr "Beschrijving"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-profilemedia.php:19
+msgid "Gallery"
+msgstr "Galerij"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-profilemedia.php:52
+msgid "Error removing"
+msgstr "Fout bij het verwijderen"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-profilemedia.php:52
+msgid "Please try again"
+msgstr "Probeer het opnieuw"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-profilemedia.php:54
+msgid "successfully removed"
+msgstr "succesvol verwijderd"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-profilemedia.php:81
+msgid "There are no images loaded for this profile yet."
+msgstr "Er zijn geen foto's geladen voor dit profiel."
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-profilemedia.php:85
+msgid "Media"
+msgstr "Media"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-profilemedia.php:86
+msgid "The following downloadable files (pdf, audio file, etc.) are associated with this record"
+msgstr "De volgende downloadbare bestanden (pdf, audio-bestand, enz.) worden geassocieerd met dit rec"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-profilemedia.php:99
+msgid "There is not any additional media linked"
+msgstr "Er is geen gekoppelde extra media"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-profilemedia.php:102
+msgid "Upload"
+msgstr "uploaden"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-profilemedia.php:103
+msgid "Upload new media using the forms below"
+msgstr "Upload nieuwe media met behulp van de onderstaande formulieren"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-profilemedia.php:108
+msgid "Paste the YouTube video URL below"
+msgstr "Plak de YouTube-video onderstaande URL"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-profilemedia.php:110
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-profilemedia.php:111
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-profilemedia.php:112
+msgid "Video Slate"
+msgstr "Video Leisteen"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-profilemedia.php:110
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-profilemedia.php:111
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-profilemedia.php:112
+msgid "Video Monologue"
+msgstr "Video Monoloog"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-profilemedia.php:110
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-profilemedia.php:111
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-profilemedia.php:112
+msgid "Demo Reel"
+msgstr "Demo Reel"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-profileregister.php:31
+msgid "Public Information"
+msgstr "Openbare Informatie"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/include-profileregister.php:70
+msgid "The following information will NOT appear in public areas and is for administrative use only."
+msgstr "De volgende informatie verschijnt niet in de openbare ruimtes en is voor administratieve doeleinden."
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/member-account.php:26
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/member-overview.php:25
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/member-profile.php:19
+msgid "Agent/Producer"
+msgstr "Agent/Producer"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/member-account.php:26
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/member-overview.php:25
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/member-profile.php:19
+msgid "Model/Talent"
+msgstr "Model/Talent"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/member-account.php:57
+msgid " must have a display name identified"
+msgstr "moet een geïdentificeerd weergavenaam"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/member-account.php:106
+msgid "The passwords you entered do not match.  Your password was not updated."
+msgstr "De ingevoerde wachtwoorden komen niet overeen. Je wachtwoord is niet bijgewerkt."
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/member-account.php:187
+msgid "New Profile added successfully"
+msgstr "Nieuw profiel succesvol toegevoegd"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/member-account.php:189
+msgid "Error creating record, please ensure you have filled out all required fields."
+msgstr "Fout bij het ​​maken van opnemen, zorg er dan voor je hebt ingevuld alle verplichte velden in."
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/member-account.php:251
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/member-media.php:132
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/member-profile.php:102
+msgid "Profile updated successfully"
+msgstr "Profiel bijgewerkt"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/member-account.php:253
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/member-media.php:134
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/member-profile.php:104
+msgid "Error updating record, please ensure you have filled out all required fields."
+msgstr "Fout bij het updaten opnemen, zorg er dan voor je hebt ingevuld alle verplichte velden in."
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/member-account.php:307
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/member-profile.php:153
+msgid "Records show you are not currently linked to a model or agency profile.  Lets setup your profile now!"
+msgstr "Gegevens blijkt dat u op dit moment niet gekoppeld aan een model of bureau profiel. Laten we nu het opzetten van je profiel!"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/member-account.php:315
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/member-overview.php:101
+msgid "Self registration is not permitted."
+msgstr "Zelf registratie is niet toegestaan."
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/member-account.php:325
+msgid "You must be logged in to edit your profile."
+msgstr "U moet ingelogd zijn om je profiel te bewerken."
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/member-overview.php:63
+msgid "Welcome Back"
+msgstr "Welkom Terug"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/member-overview.php:81
+msgid "Welcome"
+msgstr "Welkom"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/member-overview.php:84
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/member-overview.php:92
+msgid "We have you registered as"
+msgstr "Wij hebben u ​​geregistreerd als"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/member-overview.php:85
+msgid "Begin Your Search"
+msgstr "Beginnen met zoeken"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/member-overview.php:93
+msgid "Setup Your Profile"
+msgstr "Stel uw profiel"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/member-register.php:28
+msgid "A username is required for registration.<br />"
+msgstr "Een gebruikersnaam is verplicht voor registratie. <br />"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/member-register.php:32
+msgid "Sorry, that username already exists!<br />"
+msgstr "Sorry, die gebruikersnaam bestaat al! <br />"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/member-register.php:36
+msgid "You must enter a valid email address.<br />"
+msgstr "U moet een geldig e-mailadres. <br />"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/member-register.php:40
+msgid "Sorry, that email address is already used!<br />"
+msgstr "Sorry, dat e-mailadres al in gebruik! <br />"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/member-register.php:44
+msgid "You must agree to the terms and conditions to register.<br />"
+msgstr "U moet akkoord gaan met de voorwaarden om te registreren. <br />"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/member-register.php:74
+msgid "You are currently logged in as ."
+msgstr "Je bent momenteel aangemeld als."
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/member-register.php:76
+msgid "Log out of this account"
+msgstr "Log uit van deze rekening"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/member-register.php:76
+msgid "Log out"
+msgstr "Log out"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/member-register.php:88
+msgid "Please check your email address. That's where you'll recieve your login password.<br/> (It might go into your spam folder)"
+msgstr "Controleer uw e-mailadres. Dat is waar ontvangt u uw login wachtwoord. <br/> (Het zou kunnen gaan in uw spam-map)"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/member-register.php:100
+msgid "Users can register themselves or you can manually create users here."
+msgstr "Gebruikers kunnen zich registreren zelf of u kunt handmatig hier gebruikers aanmaken."
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/member-register.php:104
+msgid "Users cannot currently register themselves, but you can manually create users here."
+msgstr "Gebruikers kunnen op dit moment niet zichzelf registreren, maar u kunt hier handmatig gebruikers aanmaken."
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/member-register.php:116
+msgid "Username (required)"
+msgstr "Gebruikersnaam (verplicht)"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/member-register.php:131
+msgid "E-mail (required)"
+msgstr "E-mail (verplicht)"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/member-register.php:136
+msgid "Type of Profile"
+msgstr "Type profiel"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/member-register.php:138
+msgid "Talent / Model"
+msgstr "Talent / Model"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/member-register.php:139
+msgid "Agent / Producer"
+msgstr "Agent / Producer"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/member-register.php:145
+#, php-format
+msgid "I agree to the %s terms of service"
+msgstr "Ik ga akkoord met wat de %s van de dienst"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/member-register.php:150
+msgid "Add User"
+msgstr "Gebruiker toevoegen"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/member-register.php:150
+msgid "Register"
+msgstr "registreren"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/member-subscription.php:65
+msgid "enjoying your membership?"
+msgstr "genieten van uw lidmaatschap?"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/member-subscription.php:66
+msgid "Your membership expires on "
+msgstr "Uw lidmaatschap loopt af op"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/member-subscription.php:68
+msgid "are you ready to get discovered?"
+msgstr "bent u klaar om aan de slag ontdekt?"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/style/member-subscription.php:69
+msgid "Subscribe now, and start applying to Casting Calls, join the Talent Directory, and more."
+msgstr "Schrijf je nu in en start van toepassing zijn op Casting verzoekt, lid worden van de Talent-gids, en nog veel meer."
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/theme/include-profileaccount.php:193
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/theme/include-profileregister.php:123
+msgid "Username(cannot be changed.)"
+msgstr "Gebruikersnaam (kan niet worden gewijzigd.)"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/theme/include-profilemedia.php:88
+msgid "The following files (pdf, audio file, etc.) are associated with this record"
+msgstr "De volgende bestanden (pdf, audio-bestand, enz.) worden geassocieerd met dit record"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/theme/include-profilemedia.php:122
+msgid "There are no additional media linked"
+msgstr "Er zijn geen gekoppelde extra media"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/theme/include-profilemedia.php:125
+msgid "Upload Media Files"
+msgstr "Upload Media-bestanden"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/theme/include-profilemedia.php:126
+msgid "Upload new media using the forms below. The following formats are available: jpg, png, mp3, and pdf. If uploading an mp3 for a voice monolouge, use the  \"Voice Demo\" option. For Resumes, make sure the file is a PDF "
+msgstr "Upload new media using the forms below. The following formats are available: jpg, png, mp3, and pdf. If uploading an mp3 for a voice monolouge, use the  \"Voice Demo\" option. For Resumes, make sure the file is a PDF "
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/theme/member-media.php:82
+msgid "Please upload an image file only"
+msgstr ""
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/theme/member-media.php:93
+msgid "Please upload a mp3 file only"
+msgstr ""
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/theme/member-media.php:104
+msgid "Please upload PDF/MSword/RTF files only"
+msgstr ""
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/theme/member-media.php:115
+msgid "Please upload PDF/MSWord/RTF/Image files only"
+msgstr ""
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/theme/member-media.php:126
+msgid "Please upload jpeg or png files only"
+msgstr ""
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/theme/member-media.php:201
+msgid "Profile Setup: Step 3 of 4"
+msgstr ""
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/theme/member-media.php:225
+#, fuzzy
+msgid "Records show you are not currently linked to a model or agency profile"
+msgstr "Gegevens blijkt dat u op dit moment niet gekoppeld aan een model of bureau profiel. Laten we nu het opzetten van je profiel!"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/theme/member-register.php:198
+msgid "Password (required)"
+msgstr "Wachtwoord (verplicht)"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/theme/view-custom-fields.php:56
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/theme/view-custom-fields.php:63
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/theme/view-customfields-profilemanager.php:28
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/theme/view-customfields-profilemanager.php:35
+msgid "Min"
+msgstr "Min"
+
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/theme/view-custom-fields.php:58
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/theme/view-custom-fields.php:65
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/theme/view-customfields-profilemanager.php:30
+#: D:\RobDropbox\Dropbox\ScriptRepository\RB-Agency-Interact/theme/view-customfields-profilemanager.php:37
+msgid "Max"
+msgstr "Max"
+

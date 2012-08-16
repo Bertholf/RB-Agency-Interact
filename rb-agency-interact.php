@@ -1,7 +1,7 @@
 <?php 
 /*
   Plugin Name: RB Agency Interact
-  Text Domain: rb-agency-interact
+  Text Domain: rb-agencyinteract-interact
   Plugin URI: http://rbplugin.com/
   Description: Enhancement to the RB Agency software allowing models ot manage their own information.
   Author: Rob Bertholf
@@ -35,14 +35,14 @@ if ( ! isset($GLOBALS['wp_version']) || version_compare($GLOBALS['wp_version'], 
 	define("rb_agencyinteract_BASEDIR", get_bloginfo("wpurl") ."/". PLUGINDIR ."/". dirname( plugin_basename(__FILE__) ) ."/" );  // http://domain.com/wordpress/wp-content/plugins/rb-agency-interact/
 	define("rb_agencyinteract_UPLOADDIR", $rb_agencyinteract_WPUPLOADARRAY['baseurl'] ."/profile-media/" );  // http://domain.com/wordpress/wp-content/uploads/profile-media/
 	define("rb_agencyinteract_UPLOADPATH", $rb_agencyinteract_WPUPLOADARRAY['basedir'] ."/profile-media/" ); // /home/content/99/6048999/html/domain.com/wordpress/wp-content/uploads/profile-media/
-	define("rb_agencyinteract_TEXTDOMAIN", basename(dirname( __FILE__ )) ); //   rb-agency-interact
-
+	define("rb_agencyinteract_TEXTDOMAIN", basename(dirname( __FILE__ )) ); //   rb-agency
 
 // Call Language Options
 	add_action('init', 'rb_agencyinteract_loadtranslation');
 		function rb_agencyinteract_loadtranslation(){
-			load_plugin_textdomain( rb_agencyinteract_TEXTDOMAIN, false, dirname( plugin_basename( __FILE__ ) ) . '/translation/' ); 
+			load_plugin_textdomain( rb_agencyinteract_TEXTDOMAIN, false, basename( dirname( __FILE__ ) ) . '/translation/' ); 
 		}
+	
 
 // *************************************************************************************************** //
 
