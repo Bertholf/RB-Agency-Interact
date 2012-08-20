@@ -126,6 +126,15 @@ if (isset($_POST['action'])) {
 							   	$error .= "<b><i>".__("Please upload jpeg or png files only", rb_agencyinteract_TEXTDOMAIN) ."</i></b><br />";
 								$have_error = true;	
 							}
+						}else{
+							// Add to database
+							  if($_FILES['profileMedia'. $i]['type'] == "image/pjpeg" || $_FILES['profileMedia'. $i]['type'] == "image/jpeg" || $_FILES['profileMedia'. $i]['type'] == "image/gif" || $_FILES['profileMedia'. $i]['type'] == "image/png"){
+							  $results = $wpdb->query("INSERT INTO " . table_agency_profile_media . " (ProfileID, ProfileMediaType, ProfileMediaTitle, ProfileMediaURL) VALUES ('". $ProfileID ."','". $uploadMediaType ."','". $safeProfileMediaFilename ."','". $safeProfileMediaFilename ."')");
+			                 		 move_uploaded_file($_FILES['profileMedia'. $i]['tmp_name'], rb_agency_UPLOADPATH . $ProfileGallery ."/".$safeProfileMediaFilename);
+							}else{
+							   	$error .= "<b><i>".__("Please upload jpeg or png files only", rb_agencyinteract_TEXTDOMAIN) ."</i></b><br />";
+								$have_error = true;	
+							}
 						}
 						
 					 } // End count

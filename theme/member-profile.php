@@ -16,8 +16,10 @@ get_currentuserinfo();
 
 // Were they users or agents?
 $profiletype = (int)get_user_meta($current_user->id, "rb_agency_interact_profiletype", true);
-if ($profiletype == 1) { $profiletypetext = __("Agent/Producer", rb_agencyinteract_TEXTDOMAIN); } else { $profiletypetext = __("Model/Talent", rb_agencyinteract_TEXTDOMAIN); }
 
+if ($profiletype == 1) { $profiletypetext = __("Agent/Producer", rb_agencyinteract_TEXTDOMAIN); } else { $profiletypetext = __("Model/Talent", rb_agencyinteract_TEXTDOMAIN); }
+// get profile Custom fields value
+$rb_agency_new_registeredUser = get_user_meta($current_user->id);
 
 // Change Title
 add_filter('wp_title', 'rb_agencyinteractive_override_title', 10, 2);

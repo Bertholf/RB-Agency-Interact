@@ -103,6 +103,8 @@
 							$outLinkHeadShot .= "<div>". $dataMedia['ProfileMediaType'] .": <a href=\"". rb_agency_UPLOADDIR . $ProfileGallery ."/". $dataMedia['ProfileMediaURL'] ."\" target=\"_blank\">". $dataMedia['ProfileMediaTitle'] ."</a> [<a href=\"javascript:confirmDelete('". $dataMedia['ProfileMediaID'] ."','".$dataMedia['ProfileMediaType']."')\">DELETE</a>]</div>\n";
 						}elseif ($dataMedia['ProfileMediaType'] == "CompCard") {
 							$outLinkComCard .= "<div>". $dataMedia['ProfileMediaType'] .": <a href=\"". rb_agency_UPLOADDIR . $ProfileGallery ."/". $dataMedia['ProfileMediaURL'] ."\" target=\"_blank\">". $dataMedia['ProfileMediaTitle'] ."</a> [<a href=\"javascript:confirmDelete('". $dataMedia['ProfileMediaID'] ."','".$dataMedia['ProfileMediaType']."')\">DELETE</a>]</div>\n";
+						}else{
+							$outCustomMediaLink .= "<div>". $dataMedia['ProfileMediaType'] .": <a href=\"". rb_agency_UPLOADDIR . $ProfileGallery ."/". $dataMedia['ProfileMediaURL'] ."\" target=\"_blank\">". $dataMedia['ProfileMediaTitle'] ."</a> [<a href=\"javascript:confirmDelete('". $dataMedia['ProfileMediaID'] ."','".$dataMedia['ProfileMediaType']."')\">DELETE</a>]</div>\n";
 						}
 					}
 					echo '<div style=\"width:500px;\">';
@@ -116,6 +118,9 @@
 					echo '</div>';
 					echo '<div style=\"width:500px;\">';
 					echo $outLinkComCard;
+					echo '</div>';
+					echo '<div style=\"width:500px;\">';
+					echo $outCustomMediaLink;
 					echo '</div>';
 					echo $outVideoMedia;
 					if ($countMedia < 1) {

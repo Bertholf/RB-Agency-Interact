@@ -9,14 +9,20 @@
 	
 	/* Get Options */
 	$rb_agencyinteract_options_arr = get_option('rb_agencyinteract_options');
+		//Sidebar
 		$rb_agencyinteract_option_profilemanage_sidebar = $rb_agencyinteract_options_arr['rb_agencyinteract_option_profilemanage_sidebar'];
-		$rb_agencyinteract_option_registerconfirm = (int)$rb_agencyinteract_options_arr['rb_agencyinteract_option_registerconfirm'];
+		
+		//Facebook Integration
 		$rb_agencyinteract_option_fb_app_id = $rb_agencyinteract_options_arr['rb_agencyinteract_option_fb_app_id'];
 		$rb_agencyinteract_option_fb_app_secret = $rb_agencyinteract_options_arr['rb_agencyinteract_option_fb_app_secret'];
 		$rb_agencyinteract_option_fb_app_register_uri = $rb_agencyinteract_options_arr['rb_agencyinteract_option_fb_app_register_uri'];
-	
-	   $rb_agencyinteract_option_fb_registerallow = $rb_agencyinteract_options_arr['rb_agencyinteract_option_fb_registerallow'];
-	   $rb_agencyinteract_option_registerallowAgentProducer = $registration['rb_agencyinteract_option_registerallowAgentProducer'];
+	      $rb_agencyinteract_option_fb_registerallow = $rb_agencyinteract_options_arr['rb_agencyinteract_option_fb_registerallow'];
+	      //+Registration
+	      // - show/hide registration for Agent/Producers
+		$rb_agencyinteract_option_registerallowAgentProducer = $registration['rb_agencyinteract_option_registerallowAgentProducer'];
+		// - show/hide  self-generate password
+		$rb_agencyinteract_option_registerconfirm = (int)$rb_agencyinteract_options_arr['rb_agencyinteract_option_registerconfirm'];
+		
 	/* Check if users can register. */
 	$registration = get_option( 'users_can_register' );
 	
@@ -116,6 +122,26 @@
 			
 			// Model or Client
 			update_usermeta($new_user, 'rb_agency_interact_profiletype', $new_user_type);
+			
+			//Custom Fields
+			$customfield_meta = "";
+			foreach($_POST as $key => $value) {
+			
+			         
+				if ((substr($key, 0, 15) == "ProfileCustomID") && (isset($value) && !empty($value))) {
+					$ProfileCustomID = substr($key, 15);
+					if(is_array($value)){
+						$value =  implode(",",$value);
+					}
+					//format: _ID|value|_ID|value|_ID|value|
+					if(!empty($value)){
+						$customfield_meta .= "_".$ProfileCustomID."|".$value."|";
+					}
+				}
+			}
+			$_SESSION["rb_agency_new_registeredUser"] = $customfield_meta;
+			add_user_meta($new_user, 'rb_agency_new_registeredUser', $customfield_meta);
+			
 			
 			// Log them in if no confirmation required.
 			if ($rb_agencyinteract_option_registerconfirm == 1) {
@@ -250,19 +276,21 @@
 			  $rb_agency_option_unittype  = $rb_agency_options_arr['rb_agency_option_unittype'];
 			  $measurements_label = "";
 			 if ($ProfileCustomType == 7) { //measurements field type
-			            if($data1['ProfileCustomOptions'] ==1){ //1 = Imperial(in/lb)
-						if($rb_agency_option_unittype == 1){
-						    $measurements_label  ="<em>(In Inches)</em>";
-						}else{
-						    $measurements_label  ="<em>(In Pounds)</em>";
-						}
-					}else{ // 0 = Metrics(ft/kg)
+			            if($data3['ProfileCustomOptions'] ==1){ //1 = Imperial(in/lb)
 						if($rb_agency_option_unittype == 1){
 						    $measurements_label  ="<em>(In Feet)</em>";
 						}else{
-						    $measurements_label  ="<em>(In Kilos)</em>";
+						   $measurements_label  ="<em>(In Kilos)</em>";
+						 }
+					}elseif($data3['ProfileCustomOptions'] ==2){ // 2 = Metrics(ft/kg)
+						if($rb_agency_option_unittype == 1){
+						    
+						    $measurements_label  ="<em>(In Inches)</em>";
+						}else{
+						     $measurements_label  ="<em>(In Pounds)</em>";
 						}
 					}
+					
 			 }  
 		 echo "       <p class=\"form-".strtolower(trim($data3['ProfileCustomTitle']))."\">\n"; 
 		 echo "       <label for=\"".strtolower(trim($data3['ProfileCustomTitle']))."\">". __( $data3['ProfileCustomTitle'].$measurements_label, rb_agencyinteract_TEXTDOMAIN) ."</label>\n";		  
