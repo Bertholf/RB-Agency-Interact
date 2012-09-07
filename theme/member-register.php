@@ -9,9 +9,7 @@
 	/* Load registration file. */
 
 	require_once( ABSPATH . WPINC . '/registration.php' );
-
-	require_once(ABSPATH."wp-content/plugins/".rb_agencyinteract_TEXTDOMAIN."/tasks/facebook.php");
-
+   
 	
 
 	
@@ -45,8 +43,10 @@
 		// - show/hide  self-generate password
 
 		$rb_agencyinteract_option_registerconfirm = (int)$rb_agencyinteract_options_arr['rb_agencyinteract_option_registerconfirm'];
-
 		
+		   if($rb_agencyinteract_option_fb_registerallow == 1){
+			require_once(ABSPATH."wp-content/plugins/".rb_agencyinteract_TEXTDOMAIN."/tasks/facebook.php");
+		    }
 
 	/* Check if users can register. */
 

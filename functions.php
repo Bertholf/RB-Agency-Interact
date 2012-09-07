@@ -41,6 +41,11 @@
 			echo "<link rel=\"stylesheet\" href=\"". rb_agencyinteract_BASEDIR ."style/style.css\" type=\"text/css\" media=\"screen\" />\n";
 
 		  }
+		  if(!wp_script_is('jquery')) {
+
+			echo "<script type=\"text/javascript\" src=\"". rb_agencyinteract_BASEDIR ."style/jquery.1.8.js\"></script>";
+			
+			} 
 
 		}
 
