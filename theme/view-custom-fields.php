@@ -343,7 +343,7 @@
 
 									elseif ($ProfileCustomType == 7) { // Imperial(in/lb), Metrics(ft/kg)
 
-										   if($data1['ProfileCustomOptions']==1){
+										/*   if($data1['ProfileCustomOptions']==1){
 
 													    if($rb_agency_option_unittype == 1){
 
@@ -388,14 +388,14 @@
 													    }
 
 										   }else{
-
+*/
 											   
 
 											  echo "<input type=\"text\" name=\"ProfileCustomID". $data1['ProfileCustomID'] ."\" value=\"". $ProfileCustomValue ."\" /><br />\n";
 
 											
 
-										   }
+										 //  }
 
 										
 

@@ -784,7 +784,7 @@
 			}elseif ($ProfileCustomType == 7) { //Imperial/Metrics
 
 			
-
+/*
 					 if($data3['ProfileCustomOptions']==1){
 
 												    if($rb_agency_option_unittype == 1){
@@ -830,14 +830,14 @@
 												    }
 
 						 }else{
-
+*/
 										   
 
 										  echo "<input type=\"text\" name=\"ProfileCustomID". $data3['ProfileCustomID'] ."\" value=\"".$_REQUEST["ProfileCustomID". $data3['ProfileCustomID']]."\" /><br />\n";
 
 										
 
-						}
+						//}
 
 						
 
