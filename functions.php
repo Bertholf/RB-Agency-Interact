@@ -73,8 +73,11 @@
 
 			$newrules['profile-member'] = 'index.php?type=profileoverview';
 
+			$newrules['profile-register/(.*)$'] = 'index.php?type=profileregister&typeofprofile=$matches[1]';
+
 			$newrules['profile-register'] = 'index.php?type=profileregister';
 
+			
 			$newrules['profile-login'] = 'index.php?type=profilelogin';
 
 			return $newrules + $rules;
@@ -90,6 +93,7 @@
 		function rb_agencyinteract_query_vars( $query_vars ) {
 
 			$query_vars[] = 'type';
+			$query_vars[] = 'typeofprofile';
 
 			return $query_vars;
 

@@ -164,7 +164,7 @@ echo "              <li>". __("Apply to Auditions & Jobs", rb_agencyinteract_TEX
 
 echo "            </ul>\n";
 
-echo "            <a href=\"". get_bloginfo("wpurl") ."/profile-register/\" id=\"register-talent\">". __("Register as Talent / Model", rb_agencyinteract_TEXTDOMAIN). "</a>\n";
+echo "            <a href=\"". get_bloginfo("wpurl") ."/profile-register/Model/\" id=\"register-talent\">". __("Register as Talent / Model", rb_agencyinteract_TEXTDOMAIN). "</a>\n";
 
 echo "          </div> <!-- talent-register -->\n";
 
@@ -184,7 +184,7 @@ echo "              <li>". __("Contact People in the Talent Directory", rb_agenc
 
 echo "            </ul>\n";
 
-echo "            <a href=\"". get_bloginfo("wpurl") ."/profile-register/\" id=\"register-agent\">". __("Register as Agent / Producer", rb_agencyinteract_TEXTDOMAIN). "</a>\n";
+echo "            <a href=\"". get_bloginfo("wpurl") ."/profile-register/Agency/\" id=\"register-agent\">". __("Register as Agent / Producer", rb_agencyinteract_TEXTDOMAIN). "</a>\n";
 
 echo "          </div> <!-- talent-register -->\n";
 

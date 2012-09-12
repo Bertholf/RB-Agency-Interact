@@ -443,7 +443,9 @@
 	echo "    </p><!-- .alert -->\n";
 
 			}
-
+       
+	 
+	
 
 
 			// Self Registration
@@ -454,7 +456,7 @@
 
 	echo "    <form method=\"post\" id=\"adduser\" class=\"user-forms\" action=\"". $rb_agencyinteract_WPURL ."/profile-register/\">\n";
       echo "<h1>JOIN OUR TEAM</h1>";
-	echo "<p>If you would like to join our team at SP Promotions, please complete the application below. We will review your application shortly, successful applicants will be contacted for a personal interview.</p>";		
+	echo "<p>To Join Our Team please complete the application below.</p>";		
 
 	//echo "    <h1>Register</h1>\n";
 
@@ -511,23 +513,28 @@
 	echo "       	<input class=\"text-input\" name=\"profile_email\" type=\"text\" id=\"profile_email\" value=\""; if ( $error ) echo wp_specialchars( $_POST['profile_email'], 1 ); echo "\" />\n";
 
 	echo "       </p><!-- .form-email -->\n";
-
-				
+     
+	
 
 	echo "       <p class=\"form-profile_type\">\n";
-
+      
 	echo "       	<label for=\"profile_type\">". __("Type of Profile", rb_agencyinteract_TEXTDOMAIN) ."</label>\n";
 
 	echo "       		<select name=\"profile_type\">\n";
-
+      $target = get_query_var("typeofprofile");
+	
+	if($target == "Model"){
 	echo "       			<option value=\"0\">". __("Talent / Model", rb_agencyinteract_TEXTDOMAIN) ."</option>\n";
-
-	if(  $rb_agencyinteract_option_registerallowAgentProducer == 1){
-
-	echo "       			<option value=\"1\">". __("Agent / Producer", rb_agencyinteract_TEXTDOMAIN) ."</option>\n";
-
+	}elseif($target == "Agency"){
+	
+		echo "       			<option value=\"1\">". __("Agent / Producer", rb_agencyinteract_TEXTDOMAIN) ."</option>\n";
+	
+		
+	}else{
+		echo "       			<option value=\"0\">". __("Talent / Model", rb_agencyinteract_TEXTDOMAIN) ."</option>\n";
+	     	echo "       			<option value=\"1\">". __("Agent / Producer", rb_agencyinteract_TEXTDOMAIN) ."</option>\n";
 	}
-
+	
 	echo "       		</select>\n";
 
 	echo "       </p><!-- .form-profile_type -->\n";
