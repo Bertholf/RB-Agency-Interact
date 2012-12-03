@@ -132,8 +132,6 @@ if (isset($_POST['action'])) {
 
 	  }
 
-	$ProfileContactParent		=$_POST['ProfileContactParent'];
-
 	$ProfileContactEmail		=$_POST['ProfileContactEmail'];
 
 	$ProfileContactWebsite		=$_POST['ProfileContactWebsite'];
@@ -256,7 +254,7 @@ if (isset($_POST['action'])) {
 
 			$insert = "INSERT INTO " . table_agency_profile .
 
-			" (ProfileUserLinked,ProfileGallery,ProfileContactDisplay,ProfileContactNameFirst,ProfileContactNameLast,ProfileContactParent,
+			" (ProfileUserLinked,ProfileGallery,ProfileContactDisplay,ProfileContactNameFirst,ProfileContactNameLast,
 
 			   ProfileContactEmail,ProfileContactWebsite,ProfileGender,ProfileDateBirth,
 
@@ -268,7 +266,7 @@ if (isset($_POST['action'])) {
 
 			   ProfileDateUpdated,ProfileIsActive)" .
 
-			"VALUES (". $ProfileUserLinked .",'" . $wpdb->escape($ProfileGallery) . "','" . $wpdb->escape($ProfileContactDisplay) . "','" . $wpdb->escape($ProfileContactNameFirst) . "','" . $wpdb->escape($ProfileContactNameLast) . "','" . $wpdb->escape($ProfileContactParent) . "',
+			"VALUES (". $ProfileUserLinked .",'" . $wpdb->escape($ProfileGallery) . "','" . $wpdb->escape($ProfileContactDisplay) . "','" . $wpdb->escape($ProfileContactNameFirst) . "','" . $wpdb->escape($ProfileContactNameLast) . "',
 
 				'" . $wpdb->escape($ProfileContactEmail) . "','" . $wpdb->escape($ProfileContactWebsite) . "','" . $wpdb->escape($ProfileGender) . "','" . $wpdb->escape($ProfileDateBirth) . "',
 
@@ -493,8 +491,6 @@ if (isset($_POST['action'])) {
 			ProfileContactPhoneCell='" . $wpdb->escape($ProfileContactPhoneCell) . "',
 
 			ProfileContactPhoneWork='" . $wpdb->escape($ProfileContactPhoneWork) . "',
-
-			ProfileContactParent='" . $wpdb->escape($ProfileContactParent) . "',
 
 			ProfileGender='" . $wpdb->escape($ProfileGender) . "',
 

@@ -152,17 +152,6 @@
 
 	echo "	  </tr>\n";
 
-	echo "    <tr valign=\"top\">\n";
-
-	echo "		<td scope=\"row\">". __("Parent (if minor)", rb_agencyinteract_TEXTDOMAIN) ."</th>\n";
-
-	echo "		<td>\n";
-
-	echo "			<input type=\"text\" id=\"ProfileContactParent\" name=\"ProfileContactParent\" />\n";
-
-	echo "		</td>\n";
-
-	echo "	  </tr>\n";
 
 	echo "    <tr valign=\"top\">\n";
 
