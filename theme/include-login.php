@@ -1,3 +1,10 @@
+<style>
+#member-sign-in{float:left; padding-left:55px; padding-right:55px; margin-left:130px;}
+
+#not-a-member{float:left;padding-left:55px; padding-right:55px;}
+#agent-register h2{font-size:18px;}
+
+</style>
 <?php
 
 	/* Load registration file. */
@@ -164,7 +171,7 @@ echo "              <li>". __("Apply to Auditions & Jobs", rb_agencyinteract_TEX
 
 echo "            </ul>\n";
 
-echo "            <a href=\"". get_bloginfo("wpurl") ."/profile-register/Model/\" id=\"register-talent\">". __("Register as Talent / Model", rb_agencyinteract_TEXTDOMAIN). "</a>\n";
+echo "            <a href=\"". get_bloginfo("wpurl") ."/profile-register/model-talent/\" id=\"register-talent\">". __("Register as Talent / Model", rb_agencyinteract_TEXTDOMAIN). "</a>\n";
 
 echo "          </div> <!-- talent-register -->\n";
 
@@ -184,7 +191,7 @@ echo "              <li>". __("Contact People in the Talent Directory", rb_agenc
 
 echo "            </ul>\n";
 
-echo "            <a href=\"". get_bloginfo("wpurl") ."/profile-register/Agency/\" id=\"register-agent\">". __("Register as Agent / Producer", rb_agencyinteract_TEXTDOMAIN). "</a>\n";
+echo "            <a href=\"". get_bloginfo("wpurl") ."/profile-register/agent-partners/\" id=\"register-agent\">". __("Register as Agent / Producer", rb_agencyinteract_TEXTDOMAIN). "</a>\n";
 
 echo "          </div> <!-- talent-register -->\n";
 

@@ -21,6 +21,11 @@
 		//Sidebar
 
 		$rb_agencyinteract_option_profilemanage_sidebar = $rb_agencyinteract_options_arr['rb_agencyinteract_option_profilemanage_sidebar'];
+		if($rb_agencyinteract_option_profilemanage_sidebar){
+			$columnWidth = "nine";
+		} else {
+			$columnWidth = "twelve";
+		}
 
 		
 
@@ -358,7 +363,7 @@
 
 
 
-	echo "<div id=\"container\" class=\"one-column rb-agency-interact rb-agency-interact-register\">\n";
+	echo "<div id=\"primary\" class=\"".$columnWidth." column rb-agency-interact rb-agency-interact-register\">\n";
 
 	echo "  <div id=\"content\">\n";
 
@@ -455,8 +460,8 @@
 
 
 	echo "    <form method=\"post\" id=\"adduser\" class=\"user-forms\" action=\"". $rb_agencyinteract_WPURL ."/profile-register/\">\n";
-      echo "<h1>JOIN OUR TEAM</h1>";
-	echo "<p>To Join Our Team please complete the application below.</p>";		
+      echo "<h1 class=\"entry-title\">JOIN OUR TEAM</h1>";
+	echo "<p class=\"form-title\">To Join Our Team please complete the application below.</p>";		
 
 	//echo "    <h1>Register</h1>\n";
 
@@ -519,13 +524,13 @@
 	echo "       <p class=\"form-profile_type\">\n";
       
 	echo "       	<label for=\"profile_type\">". __("Type of Profile", rb_agencyinteract_TEXTDOMAIN) ."</label>\n";
-
+	
 	echo "       		<select name=\"profile_type\">\n";
       $target = get_query_var("typeofprofile");
 	
-	if($target == "Model"){
+	if($target == "model-talent"){
 	echo "       			<option value=\"0\">". __("Talent / Model", rb_agencyinteract_TEXTDOMAIN) ."</option>\n";
-	}elseif($target == "Agency"){
+	}elseif($target == "agent-partners"){
 	
 		echo "       			<option value=\"1\">". __("Agent / Producer", rb_agencyinteract_TEXTDOMAIN) ."</option>\n";
 	
@@ -539,7 +544,20 @@
 
 	echo "       </p><!-- .form-profile_type -->\n";
 
-          
+  	
+        echo "     <p class=\"form-profile_gender\">\n";
+     	echo "		<label for=\"profile_gender\">". __("Gender", rb_agencyinteract_TEXTDOMAIN) ."</label>\n";
+					$query= "SELECT GenderID, GenderTitle FROM " .  table_agency_data_gender . " GROUP BY GenderTitle ";
+					echo "<select name=\"ProfileGender\">";
+					echo "<option value=\"\">All Gender</option>";
+					$queryShowGender = mysql_query($query);
+					while($dataShowGender = mysql_fetch_assoc($queryShowGender)){
+						echo "<option value=\"".$dataShowGender["GenderID"]."\" ". selected($ProfileGender ,$dataShowGender["GenderID"],false).">".$dataShowGender["GenderTitle"]."</option>";
+					}
+
+					echo "</select>";
+		echo "	  </p><!-- .form-profile_gender-->\n";
+
 
 	      $rb_agency_options_arr = get_option('rb_agency_options');
 
@@ -628,17 +646,13 @@
 
 		 echo "       <label for=\"".strtolower(trim($data3['ProfileCustomTitle']))."\">". __( $data3['ProfileCustomTitle'].$measurements_label, rb_agencyinteract_TEXTDOMAIN) ."</label>\n";		  
 
-		
-
 			if ($ProfileCustomType == 1) { //TEXT
-
-			
 
 						echo "<input type=\"text\" name=\"ProfileCustomID". $data3['ProfileCustomID'] ."\" value=\"". $_REQUEST["ProfileCustomID". $data3['ProfileCustomID']] ."\" /><br />\n";
 
-						
-
-			}/* elseif ($ProfileCustomType == 2) { // Min Max
+			}
+			
+			/* elseif ($ProfileCustomType == 2) { // Min Max
 
 			
 
@@ -672,55 +686,28 @@
 
 			 
 
-			} */elseif ($ProfileCustomType == 3) {  // Drop Down
-
-				
-
+			} */
+			
+			elseif ($ProfileCustomType == 3) {  // Drop Down
 				list($option1,$option2) = explode(":",$data3['ProfileCustomOptions']);	
-
-					
-
 				$data = explode("|",$option1);
-
 				$data2 = explode("|",$option2);
-
-				
-
 				echo "<label>".$data[0]."</label>";
-
 				echo "<select name=\"ProfileCustomID". $data3['ProfileCustomID'] ."\">\n";
-
 				echo "<option value=\"\">--</option>";
-
 					$pos = 0;
-
 					foreach($data as $val1){
-
-						
-
 						if(!empty($val1)){
 
 										echo "<option value=\"".$val1."\" ".selected($_REQUEST["ProfileCustomID". $data3['ProfileCustomID']],$val1,false)." >".$val1."</option>";
 
 						}
-
-					
-
-						
-
 					}
-
 					echo "</select>\n";
-
-					
-
-					
 
 				/*if (!empty($data2) && !empty($option2)) {
 
 					echo "<label>".$data2[0]."</label>";
-
-				
 
 						$pos2 = 0;
 
@@ -744,15 +731,11 @@
 
 			} elseif ($ProfileCustomType == 4) {
 
-				
+				echo "<textarea style=\"width: 100%; min-height: 100px;\" name=\"ProfileCustomID". $data3['ProfileCustomID'] ."\">". $_REQUEST["ProfileCustomID". $data3['ProfileCustomID']] ."</textarea>";
 
-				echo "<textarea style=\"width: 100%; min-height: 300px;\" name=\"ProfileCustomID". $data3['ProfileCustomID'] ."\">". $_REQUEST["ProfileCustomID". $data3['ProfileCustomID']] ."</textarea>";
-
-				
 
 			} elseif ($ProfileCustomType == 5) {
 
-			
 
 				$array_customOptions_values = explode("|",$data3['ProfileCustomOptions']);
 
@@ -795,54 +778,50 @@
 			
 /*
 					 if($data3['ProfileCustomOptions']==1){
-
 												    if($rb_agency_option_unittype == 1){
-
 														echo "<select name=\"ProfileCustomID". $data3['ProfileCustomID'] ."\">\n";
-
 															if (empty($_REQUEST["ProfileCustomID". $data3['ProfileCustomID']])) {
-
 														echo " 				<option value=\"\">--</option>\n";
-
 															}
-
-															
-
 															$i=36;
-
 															$heightraw = 0;
-
 															$heightfeet = 0;
-
 															$heightinch = 0;
-
 															while($i<=90)  { 
-
 															  $heightraw = $i;
-
 															  $heightfeet = floor($heightraw/12);
-
 															  $heightinch = $heightraw - floor($heightfeet*12);
-
 														echo " <option value=\"". $i ."\" ". selected($_REQUEST["ProfileCustomID". $data3['ProfileCustomID']], $i) .">". $heightfeet ." ft ". $heightinch ." in</option>\n";
-
 															  $i++;
-
 															}
-
 														echo " </select>\n";
-
 												    }else{
-
 													    echo "	 <input type=\"text\" id=\"ProfileStatHeight\" name=\"ProfileCustomID". $data3['ProfileCustomID'] ."\" value=\"". $_REQUEST["ProfileCustomID". $data3['ProfileCustomID']]."\" />\n";
-
 												    }
-
 						 }else{
 */
 										   
-
-										  echo "<input type=\"text\" name=\"ProfileCustomID". $data3['ProfileCustomID'] ."\" value=\"".$_REQUEST["ProfileCustomID". $data3['ProfileCustomID']]."\" /><br />\n";
+           if($data3['ProfileCustomTitle']=="Height" AND $rb_agency_option_unittype==1){
+			 //  echo "<select><option>-".$rb_agency_option_unittype."-</option></select>";
+			  echo "<select name=\"ProfileCustomID". $data3['ProfileCustomID'] ."\">\n";
+					echo "<option value=\"\">--</option>\n";
+		
+					$i=36;
+						$heightraw = 0;
+						$heightfeet = 0;
+						$heightinch = 0;
+						while($i<=90)  { 
+							  $heightraw = $i;
+							  $heightfeet = floor($heightraw/12);
+							  $heightinch = $heightraw - floor($heightfeet*12);
+								echo " <option value=\"". $i ."\" ". selected($_REQUEST["ProfileCustomID". $data3['ProfileCustomID']], $i) .">
+							". $heightfeet ." ft ". $heightinch ." in</option>\n";
+							  $i++;
+						}
+		     echo " </select>\n";
+		   
+		   }else{
+			   echo "<input type=\"text\" name=\"ProfileCustomID". $data3['ProfileCustomID'] ."\" value=\"".$_REQUEST["ProfileCustomID". $data3['ProfileCustomID']]."\" /><br />\n";}
 
 										
 
