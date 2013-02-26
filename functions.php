@@ -1,8 +1,6 @@
 <?php
-
 // *************************************************************************************************** //
 // Admin Head Section 
-
 	add_action('admin_head', 'rb_agencyinteract_admin_head');
 		function rb_agencyinteract_admin_head(){
 		  if( is_admin() ) {
@@ -10,10 +8,8 @@
 		  }
 		}
 	
-
 // *************************************************************************************************** //
 // Page Head Section
-
 	add_action('wp_head', 'rb_agencyinteract_inserthead');
 		// Call Custom Code to put in header
 		function rb_agencyinteract_inserthead() {
@@ -26,10 +22,8 @@
 			} 
 		}
 
-
 // *************************************************************************************************** //
 // Handle Folders
-
 	// Adding a new rule
 	add_filter('rewrite_rules_array','rb_agencyinteract_rewriteRules');
 		function rb_agencyinteract_rewriteRules($rules) {
@@ -82,7 +76,6 @@
 			$wp_rewrite->flush_rules();
 		}
 	
-
 	
 	
 	/*/
@@ -102,10 +95,8 @@
 	    }
 	}
 	*/
-
 // *************************************************************************************************** //
 // Handle Emails
-
 	// Redefine user notification function  
 	if ( !function_exists('wp_new_user_notification') ) {  
 		function wp_new_user_notification( $user_id, $plaintext_pass = '' ) {  
@@ -122,7 +113,6 @@
 	  
 			if ( empty($plaintext_pass) )  
 				return;  
-
 			$message  = __('Hi there,') . "\r\n\r\n";  
 			$message .= sprintf(__("Thanks for joining %s! Here's how to log in:"), get_option('blogname')) . "\r\n\r\n"; 
 			$message .= get_option('home') ."/profile-login/\r\n"; 
@@ -149,7 +139,6 @@
      }
 // *************************************************************************************************** //
 // Functions
-
 	// Move Login Page	
 	add_filter("login_init", "rb_agencyinteract_login_movepage", 10, 2);
 		function rb_agencyinteract_login_movepage( $url ) {
@@ -198,7 +187,6 @@
 			}
 		}
 
-
 	add_filter("registration_redirect", "rb_agencyinteract_register_redirect");
 		function rb_agencyinteract_register_redirect() {
 			return "/profile-member/";
@@ -208,7 +196,6 @@
 			if(!is_user_logged_in()) {
 				$link = '<a href="/profile-register/">' . __('Register') . '</a>';
 			}
-
 			$link = str_replace(site_url("wp-login.php?action=register"), "/profile-member/", $link );
 			return $link;
 		}
@@ -225,17 +212,13 @@
 		}
 		
 
-
-
 	// Change Login URL
-
 	// Change Registration Form Submit Titles
 	add_filter('register', 'change_admin');
 		function change_admin($link) {
 			$link = str_replace("Site Admin", "Your Account", $link);
 			return $link;
 		}
-
 	add_filter('register', 'rb_agencyinteract_register_changenames');
 		function rb_agencyinteract_register_changenames($link) {
 			$link = str_replace(">Register<", ">Sign up<", $link);
@@ -243,13 +226,8 @@
 		}
 	*/
 
-
-
 // *************************************************************************************************** //
 // Shortcodes
-
-
-
 
 
 ?>

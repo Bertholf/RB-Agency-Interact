@@ -9,16 +9,13 @@
   Version: 0.1
 */
 $rb_agencyinteract_VERSION = "0.1"; 
-
 if (!session_id())
 session_start();
-
 if ( ! isset($GLOBALS['wp_version']) || version_compare($GLOBALS['wp_version'], '2.8', '<') ) { // if less than 2.8 
 	echo "<div class=\"error\"><p>". __("This plugin requires WordPress version 2.8 or newer", rb_agencyinteract_TEXTDOMAIN) .".</p></div>\n";
 	return;
 }
 // *************************************************************************************************** //
-
 // Avoid direct calls to this file, because now WP core and framework has been used
 	if ( !function_exists('add_action') ) {
 		header('Status: 403 Forbidden');
@@ -36,16 +33,13 @@ if ( ! isset($GLOBALS['wp_version']) || version_compare($GLOBALS['wp_version'], 
 	define("rb_agencyinteract_UPLOADDIR", $rb_agencyinteract_WPUPLOADARRAY['baseurl'] ."/profile-media/" );  // http://domain.com/wordpress/wp-content/uploads/profile-media/
 	define("rb_agencyinteract_UPLOADPATH", $rb_agencyinteract_WPUPLOADARRAY['basedir'] ."/profile-media/" ); // /home/content/99/6048999/html/domain.com/wordpress/wp-content/uploads/profile-media/
 	define("rb_agencyinteract_TEXTDOMAIN", basename(dirname( __FILE__ )) ); //   rb-agency
-
 // Call Language Options
 	add_action('init', 'rb_agencyinteract_loadtranslation');
 		function rb_agencyinteract_loadtranslation(){
 			load_plugin_textdomain( rb_agencyinteract_TEXTDOMAIN, false, basename( dirname( __FILE__ ) ) . '/translation/' ); 
 		}
 	
-
 // *************************************************************************************************** //
-
 // Set Table Names
 	if (!defined("table_agencyinteract_agent"))
 		define("table_agencyinteract_agent", "rb_agencyinteract_agent");
@@ -53,18 +47,14 @@ if ( ! isset($GLOBALS['wp_version']) || version_compare($GLOBALS['wp_version'], 
 		define("table_agencyinteract_subscription", "rb_agencyinteract_subscription");
 	if (!defined("table_agencyinteract_subscription_rates"))
 		define("table_agencyinteract_subscription_rates", "rb_agencyinteract_subscription_rates");
-
 // Call default functions
 	include_once(dirname(__FILE__).'/functions.php');
-
 
 // Does it need a diaper change?
 	include_once(dirname(__FILE__).'/upgrade.php');
 
-
 // *************************************************************************************************** //
 // Creating tables on plugin activation
-
 	function rb_agencyinteract_install() {
 		// Required for all WordPress database manipulations
 		global $wpdb, $rb_agencyinteract_options_arr;
@@ -74,7 +64,6 @@ if ( ! isset($GLOBALS['wp_version']) || version_compare($GLOBALS['wp_version'], 
 		update_option("rb_agencyinteract_options", $rb_agencyinteract_options_arr);
 		// Hold the version in a seprate opgion
 		add_option("rb_agencyinteract_version", $rb_agencyinteract_VERSION);
-
 		// Subscriptions
 		$sql = "CREATE TABLE ". table_agencyinteract_subscription ." (
 			SubscriberID BIGINT(20) NOT NULL AUTO_INCREMENT,
@@ -86,7 +75,6 @@ if ( ! isset($GLOBALS['wp_version']) || version_compare($GLOBALS['wp_version'], 
 			PRIMARY KEY (SubscriberID)
 			);";
 		dbDelta($sql);
-
 		// Subscriptions
 		$sql = "CREATE TABLE ". table_agencyinteract_subscription_rates ." (
 			SubscriptionRateID BIGINT(20) NOT NULL AUTO_INCREMENT,
@@ -104,14 +92,10 @@ if ( ! isset($GLOBALS['wp_version']) || version_compare($GLOBALS['wp_version'], 
 //Activate Install Hook
 register_activation_hook(__FILE__,'rb_agencyinteract_install');
 
-
 // *************************************************************************************************** //
 // Register Administrative Settings
-
 if ( is_admin() ){
-
 	/****************  Add Options Page Settings Group ***************/
-
 	add_action('admin_init', 'rb_agencyinteract_register_settings');
 		// Register our Array of settings
 		function rb_agencyinteract_register_settings() {
@@ -122,7 +106,6 @@ if ( is_admin() ){
 		function rb_agencyinteract_options_validate($input) {
 			// Sanitize Data
 		}	
-
 	
 	add_action('admin_menu','set_rb_agencyinteract_menu');
 		//Create Admin Menu
@@ -140,7 +123,6 @@ if ( is_admin() ){
 			if (!$this_plugin) {
 				$this_plugin = plugin_basename(__FILE__);	
 			}
-
 			if ($file == $this_plugin){
 				$settings_link = '<a href="users.php?page=' . rb_agencyinteract_BASENAME . '">' . __('Settings', rb_agencyinteract_TEXTDOMAIN) . '</a>';
 				array_unshift($links, $settings_link); // before other links
@@ -162,10 +144,8 @@ if ( is_admin() ){
 	
 		
 }
-
 // *************************************************************************************************** //
 // Add Widgets
-
 	// Login / Actions Widget
 	add_action('widgets_init', create_function('', 'return register_widget("rb_agencyinteract_widget_loginactions");'));
 		class rb_agencyinteract_widget_loginactions extends WP_Widget {
@@ -257,10 +237,8 @@ if ( is_admin() ){
                  
 		     
 		                
-
 // *************************************************************************************************** //
 // Add Short Codes
-
 	add_shortcode("agency_register","rb_agencyinteract_shortcode_agencyregister");
 		function rb_agencyinteract_shortcode_agencyregister($atts, $content = null){
 			ob_start();
@@ -270,7 +248,6 @@ if ( is_admin() ){
 			return $output_string;
 		}
 
-
 	add_shortcode("profile_register","rb_agencyinteract_shortcode_profileregister");
 		function rb_agencyinteract_shortcode_profileregister($atts, $content = null){
 			ob_start();
@@ -279,7 +256,6 @@ if ( is_admin() ){
 			ob_end_clean();
 			return $output_string;
 		}
-
 
 /****************************************************************/
 //Uninstall

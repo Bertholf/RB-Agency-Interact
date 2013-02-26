@@ -1,7 +1,6 @@
 <?php
 global $wpdb;
 $rb_agency_storedversion = get_option('rb_agency_version');
-
 // *************************************************************************************************** //
 // Set Default Values for Options
 /*
@@ -9,7 +8,6 @@ $rb_agency_storedversion = get_option('rb_agency_version');
 		"rb_agencyineract_option_registerapproval" => 1,
 		"rb_agencyineract_option_registerallow" => 1
 		);
-
 		$results = $wpdb->query("CREATE TABLE ". table_agencyinteract_subscription ." (
 			SubscriberID BIGINT(20) NOT NULL AUTO_INCREMENT,
 			ProfileID BIGINT(20) NOT NULL DEFAULT '0',
@@ -19,7 +17,6 @@ $rb_agency_storedversion = get_option('rb_agency_version');
 			SubscriberPurchaseDetails TEXT,
 			PRIMARY KEY (SubscriberID)
 			);");
-
 		// Subscriptions
 		$results = $wpdb->query("CREATE TABLE ". table_agencyinteract_subscription_rates ." (
 			SubscriptionRateID BIGINT(20) NOT NULL AUTO_INCREMENT,

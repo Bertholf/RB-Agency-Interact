@@ -2,7 +2,6 @@
 global $wpdb;
 define("LabelPlural", "Pending Profiles");
 define("LabelSingular", "Pending Profiles");
-
 $rb_agency_options_arr = get_option('rb_agency_options');
 	$rb_agency_option_unittype  			= $rb_agency_options_arr['rb_agency_option_unittype'];
 	$rb_agency_option_showsocial 			= $rb_agency_options_arr['rb_agency_option_showsocial'];
@@ -10,21 +9,16 @@ $rb_agency_options_arr = get_option('rb_agency_options');
 		if (empty($rb_agency_option_agencyimagemaxheight) || $rb_agency_option_agencyimagemaxheight < 500) { $rb_agency_option_agencyimagemaxheight = 800; }
 	$rb_agency_option_profilenaming 		= (int)$rb_agency_options_arr['rb_agency_option_profilenaming'];
 	$rb_agency_option_locationtimezone 		= (int)$rb_agency_options_arr['rb_agency_option_locationtimezone'];
-
 // *************************************************************************************************** //
 // Handle Post Actions
-
 if (isset($_POST['action'])) {
-
 	// Get Post State
 	$action = $_POST['action'];
 	switch($action) {
-
 	// *************************************************************************************************** //
 	// Delete bulk
 	case 'deleteRecord':
 		foreach($_POST as $ProfileID) {
-
 			// Verify Record
 			$queryDelete = "SELECT * FROM ". table_agency_profile ." WHERE ProfileID =  \"". $ProfileID ."\"";
 			$resultsDelete = mysql_query($queryDelete);
@@ -67,22 +61,18 @@ if (isset($_POST['action'])) {
 	
 	}
 }
-
 else {
 // *************************************************************************************************** //
 // Show List
 	rb_display_list();
 }
 
-
 // *************************************************************************************************** //
 // Manage Record
 function rb_display_list() {
-
   global $wpdb;
   $rb_agency_options_arr = get_option('rb_agency_options');
 	$rb_agency_option_locationtimezone 		= (int)$rb_agency_options_arr['rb_agency_option_locationtimezone'];
-
   echo "<div class=\"wrap\">\n";
   echo "  <div id=\"rb-overview-icon\" class=\"icon32\"></div>\n";
   echo "  <h2>". __("List", rb_agencyinteract_TEXTDOMAIN) ." ". LabelPlural ."</h2>\n";
@@ -271,7 +261,6 @@ function rb_display_list() {
 				}
         echo "  </div>\n";
         echo "</div>\n";
-
 		echo "<table cellspacing=\"0\" class=\"widefat fixed\">\n";
 		echo "  <thead>\n";
 		echo "    <tr>\n";
@@ -289,7 +278,6 @@ function rb_display_list() {
 		echo "        		". __("Location", rb_agencyinteract_TEXTDOMAIN) .": \n";
 		echo "        		<select name=\"ProfileLocationCity\">\n";
 		echo "				  <option value=\"\">". __("Any Location", rb_agencyinteract_TEXTDOMAIN) ."</option>";
-
 								$query = "SELECT DISTINCT ProfileLocationCity, ProfileLocationState FROM ". table_agency_profile ." ORDER BY ProfileLocationState, ProfileLocationCity ASC";
 								$results = mysql_query($query);
 								$count = mysql_num_rows($results);
@@ -302,7 +290,6 @@ function rb_display_list() {
 		echo "        		". __("Category", rb_agencyinteract_TEXTDOMAIN) .":\n";
 		echo "        		<select name=\"ProfileType\">\n";
 		echo "				  <option value=\"\">". __("Any Category", rb_agencyinteract_TEXTDOMAIN) ."</option>";
-
 								$query = "SELECT DataTypeID, DataTypeTitle FROM ". table_agency_data_type ." ORDER BY DataTypeTitle ASC";
 								$results = mysql_query($query);
 								$count = mysql_num_rows($results);
@@ -335,7 +322,6 @@ function rb_display_list() {
 		echo "    <input type=\"submit\" value=\"". __("Apply", rb_agencyinteract_TEXTDOMAIN) ."\" name=\"ProfileBulkAction\" class=\"button-secondary\"  />\n";
 		echo "<table cellspacing=\"0\" class=\"widefat fixed\">\n";
 	    echo " <thead>\n";
-
 		echo "    <tr class=\"thead\">\n";
 		echo "        <th class=\"manage-column column-cb check-column\" id=\"cb\" scope=\"col\"><input type=\"checkbox\"/></th>\n";
 		echo "        <th class=\"column-ProfileID\" id=\"ProfileID\" scope=\"col\" style=\"width:50px;\"><a href=\"". admin_url("admin.php?page=". $_GET['page'] ."&sort=ProfileID&dir=". $sortDirection) ."\">ID</a></th>\n";
@@ -368,7 +354,6 @@ function rb_display_list() {
 		echo "    </tr>\n";
 		echo " </tfoot>\n";
 		echo " <tbody>\n";
-
         $query = "SELECT * FROM ". table_agency_profile ." profile LEFT JOIN ". table_agency_data_type ." profiletype ON profile.ProfileType = profiletype.DataTypeID ". $filter  ." ORDER BY $sort $dir $limit";
         $results2 = @mysql_query($query);
         $count = @mysql_num_rows($results2);
@@ -392,7 +377,6 @@ function rb_display_list() {
 			$resultProfileGender = mysql_query("SELECT * FROM ".table_agency_data_gender." WHERE GenderID = '".$ProfileGender."' ");
 			$fetchProfileGender = mysql_fetch_assoc($resultProfileGender);
 			$ProfileGender  = $fetchProfileGender["GenderTitle"];
-
 		echo "    <tr". $rowColor .">\n";
 		echo "        <th class=\"check-column\" scope=\"row\">\n";
 		echo "          <input type=\"checkbox\" value=\"". $ProfileID ."\" class=\"administrator\" id=\"". $ProfileID ."\" name=\"profileID[". $ProfileID ."]\"/>\n";
@@ -423,7 +407,6 @@ function rb_display_list() {
 		
 		
 		
-
         }
             @mysql_free_result($results2);
             if ($count < 1) {
@@ -455,11 +438,9 @@ function rb_display_list() {
 		
 		echo "<div class=\"tablenav\">\n";
 		echo "  <div class='tablenav-pages'>\n";
-
 			if($items > 0) {
 				echo $p->show();  // Echo out the list of paging. 
 			}
-
 		echo "  </div>\n";
 		echo "</div>\n";
     
