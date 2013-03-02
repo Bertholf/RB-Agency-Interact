@@ -68,3 +68,85 @@
 .rb-agency-interact form#adduser p input[type="submit"] { float:left; margin-left: 292px; }
 
 .inline-block { display: inline-block; }
+
+#profile-steps { font-size: 22px; text-align: center; background: #eee; border-bottom: 3px solid #aaa; padding: 10px; }
+
+#profile-manage { overflow: hidden; margin: 20px 10px; }
+#profile-manage h2 { margin: 20px 0 10px 0; }
+#profile-manage table { border:none }
+#profile-manage table tr td { font-size: 13px; padding: 10px; }
+#profile-manage table tr td h3 { font-size: 16px; margin-bottom:10px; }
+#profile-manage table tr td select { width: 200px; }
+#profile-manage table tr td input[type="text"], #profile-manage table tr td input[type="email"], #profile-manage table tr td input[type="password"] { width: 194px; }
+#profile-manage .profile-manage-menu { overflow: hidden; margin: 20px 0 0 0; }
+#profile-manage .profile-manage-menu #subMenuTab { overflow: hidden; }
+#profile-manage .profile-manage-menu #subMenuTab a { float: left; border-left: 1px solid #fff; padding: 10px 20px; color: #555; background: url(/wp-content/uploads/2012/01/bg-tab.png) repeat-x }
+#profile-manage .profile-manage-menu #subMenuTab a:hover { color: #444; background: url(/wp-content/uploads/2012/01/bg-tab.png) 0 -38px repeat-x  }
+#profile-manage .profile-manage-menu #subMenuTab div.tab-inner, #profile-manage .profile-manage-menu #subMenuTab .tab-left, #profile-manage .profile-manage-menu #subMenuTab .tab-right { float: left; border-left: 1px solid #d1d1d1; border-top: 1px solid #d1d1d1; border-right: 1px solid #d1d1d1; }
+#profile-manage .profile-manage-menu #subMenuTab div.tab-inner, #profile-manage .profile-manage-menu #subMenuTab .tab-right { border-left: none; }
+#profile-manage .profile-manage-menu #subMenuTab .tab-left { -webkit-border-top-left-radius: 5px; -moz-border-radius-topleft: 5px; border-top-left-radius: 5px; }
+#profile-manage .profile-manage-menu #subMenuTab .tab-left a { -webkit-border-top-left-radius: 5px; -moz-border-radius-topleft: 5px; border-top-left-radius: 5px; }
+#profile-manage .profile-manage-menu #subMenuTab .tab-left a { border: none; }
+#profile-manage .profile-manage-menu #subMenuTab .tab-right { -webkit-border-top-right-radius: 5px; -moz-border-radius-topright: 5px; border-top-right-radius: 5px; }
+#profile-manage .profile-manage-menu #subMenuTab .tab-right a { -webkit-border-top-right-radius: 5px; -moz-border-radius-topright: 5px; border-top-right-radius: 5px; }
+#profile-manage .profile-manage-menu #subMenuTab .tab-active, #profile-manage .profile-manage-menu #subMenuTab .tab-active a { background: #fff; border-bottom: 1px solid #fff; }
+#profile-manage .inner { background: #fff; min-height: 350px; padding: 20px; border-left: 1px solid #acaca8; border-right: 1px solid #acaca8; border-bottom: 1px solid #acaca8;  -webkit-border-bottom-right-radius: 5px; -moz-border-radius-bottomright: 5px; border-bottom-right-radius: 5px; 
+-webkit-border-bottom-left-radius: 5px; -moz-border-radius-bottomleft: 5px; border-bottom-left-radius: 5px;}
+
+#profile-manage .inner .account div { overflow:hidden; }
+#profile-manage .inner .account div a { padding: 10px; color:#333; background: #eee; border-bottom: 2px solid #aaa; float:left; width: 300px; }
+#profile-manage .inner .account div a:hover { background: #f5f5f5; }
+#profile-manage .inner p.submit { text-align: right; }
+
+/* Profile Gallery */
+#profile-manage .inner .profileimage { float:left; background: #eee!important; border: 1px solid #aaa; font-size:13px; position: relative; }
+#profile-manage .inner .profileimage .primary { padding: 5px; color: #fff; }
+#profile-manage .inner .profileimage .delete { position: absolute; padding: 5px; text-align: center; left: 0; top: 0; background:#fff; right:0; }
+#profile-manage .inner h3 { font-weight: bold; padding: 10px 0; border-bottom: 2px solid #eaeaea; margin-bottom: 10px; }
+
+/** Sign In - Register **/
+#rbsignin-register { text-align: center; vertical-align: top; }
+#rbsignin-register .inline-block { padding: 30px; text-align: left; vertical-align: top; margin: 15px; }
+#rbsignin-register .inline-block h1 { margin-bottom: 10px; }
+
+/* Sign In */
+#rbsignin-register .inline-block .field-row { padding: 10px 0; }
+#rbsignin-register .inline-block .field-row label { display: block; margin-bottom: 5px; }
+#rbsignin-register .inline-block .field-row input[type="text"],
+#rbsignin-register .inline-block .field-row input[type="password"] { width: 100%; }
+#rbsignin-register .inline-block .field-row input[type="password"] { margin-bottom: 5px; }
+
+/* Register */
+#rbsignin-register .inline-block h3 { margin: 20px 0 10px 0; }
+#rbsignin-register .inline-block ul { padding: 0 0 0 15px; }
+#rbsignin-register .inline-block ul li { padding: 5px 0; }
+#rbsignin-register .inline-block .register { margin-bottom: 15px; }
+
+/* Register */
+.rb-agency-interact {  }
+.rb-agency-interact p.alert { border-bottom: 3px solid #0C0; background:#fafafa; padding: 10px; }
+.rb-agency-interact h1 { margin-bottom:10px; }
+.rb-agency-interact form#adduser {  }
+.rb-agency-interact form#adduser p { padding: 10px; margin:0; overflow:hidden; }
+.rb-agency-interact form#adduser p input[type="text"],
+.rb-agency-interact form#adduser p input[type="email"],
+.rb-agency-interact form#adduser p select { float:left; padding: 5px; }
+.rb-agency-interact form#adduser p label { width:150px; float:left; line-height: 28px; }
+.rb-agency-interact form#adduser p input[type="text"],
+.rb-agency-interact form#adduser p input[type="email"] { width: 200px; }
+.rb-agency-interact form#adduser p select { width: 212px; }
+.rb-agency-interact form#adduser p input[type="checkbox"] { margin-left:150px; }
+.rb-agency-interact form#adduser p input[type="submit"] { float:left; margin-left: 292px; }
+
+.inline-block { display: inline-block; }
+
+/* Featured Image Widget */
+#profile-featured a { text-decoration: none; }
+#profile-featured .style { position: absolute; }
+#profile-featured .image { overflow: hidden; }
+#profile-featured .title { top: 235px; left: 0; width: 200px; position: absolute; text-align: center;}
+#profile-featured .title .name { width: 200px; height: 30px; line-height: 30px; }
+#profile-featured .title .favorite { margin: 9px 0 0 0; font-size: 13px; background: #ccc; padding: 5px 0; }
+#profile-featured .image img {  }
+#profile-featured .image-broken {  }
+#profile-featured .image-broken a {  }
