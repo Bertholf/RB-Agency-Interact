@@ -41,8 +41,7 @@ if (isset($_POST['action'])) {
 	$ProfileContactNameFirst	=trim($_POST['ProfileContactNameFirst']);
 	$ProfileContactNameLast		=trim($_POST['ProfileContactNameLast']);
 	$ProfileContactDisplay		=trim($_POST['ProfileContactDisplay']);
-
-  	if (empty($ProfileContactDisplay)) {  // Probably a new record... 
+	  if (empty($ProfileContactDisplay)) {  // Probably a new record... 
 		if ($rb_agency_option_profilenaming == 0) {
 			$ProfileContactDisplay = $ProfileContactNameFirst . " ". $ProfileContactNameLast;
 		} elseif ($rb_agency_option_profilenaming == 1) {
@@ -53,14 +52,11 @@ if (isset($_POST['action'])) {
 		} elseif ($rb_agency_option_profilenaming == 3) {
 			$ProfileContactDisplay = "ID ". $ProfileID;
 		}
-  	}
-
+	  }
 	$ProfileGallery				=$_POST['ProfileGallery'];
-
-  	if (empty($ProfileGallery)) {  // Probably a new record... 
+	  if (empty($ProfileGallery)) {  // Probably a new record... 
 		$ProfileGallery = rb_agency_safenames($ProfileContactDisplay); 
-  	}
-
+	  }
 	$ProfileContactEmail		=$_POST['ProfileContactEmail'];
 	$ProfileContactWebsite		=$_POST['ProfileContactWebsite'];
 	$ProfileContactLinkFacebook	=$_POST['ProfileContactLinkFacebook'];
@@ -78,15 +74,12 @@ if (isset($_POST['action'])) {
 	$ProfileLocationZip		=$_POST['ProfileLocationZip'];
 	$ProfileLocationCountry		=$_POST['ProfileLocationCountry'];
 	$ProfileLanguage			=$_POST['ProfileLanguage'];
-
 	if ($rb_agencyinteract_option_registerapproval == 1) {
-
 		// 0 Inactive | 1 Active | 2 Archived | 3 Pending Approval
 		$ProfileIsActive			= 0; 
 	} else {
 		$ProfileIsActive			= 3; 
 	}
-
 	// Error checking
 	$error = "";
 	$have_error = false;
@@ -108,7 +101,6 @@ if (isset($_POST['action'])) {
 	// Get Post State
 	$action = $_POST['action'];
 	switch($action) {
-
 	// *************************************************************************************************** //
 	// Add Record
 	case 'addRecord':
@@ -120,7 +112,6 @@ if (isset($_POST['action'])) {
 			$ProfileStatHits		= 0;
 			$ProfileDateBirth	    	= $_POST['ProfileDateBirth_Year'] ."-". $_POST['ProfileDateBirth_Month'] ."-". $_POST['ProfileDateBirth_Day'];
 			$ProfileGallery 		= rb_agencyinteract_checkdir($ProfileGallery); // Check directory existence , create if does not exist.
-
 			// Create Record
 			$insert = "INSERT INTO " . table_agency_profile .
 			" (ProfileUserLinked,ProfileGallery,ProfileContactDisplay,ProfileContactNameFirst,ProfileContactNameLast,
@@ -135,25 +126,24 @@ if (isset($_POST['action'])) {
 				'" . $wpdb->escape($ProfileLocationStreet) . "','" . $wpdb->escape($ProfileLocationCity) . "','" . $wpdb->escape($ProfileLocationState) . "','" . $wpdb->escape($ProfileLocationZip) . "','" . $wpdb->escape($ProfileLocationCountry) . "',
 				'" . $wpdb->escape($ProfileContactPhoneHome) . "','" . $wpdb->escape($ProfileContactPhoneCell) . "','" . $wpdb->escape($ProfileContactPhoneWork) . "',
 				now(), ". $ProfileIsActive .")";
-		    $results1	= $wpdb->query($insert) or die(mysql_error());
-			$ProfileID 	= $wpdb->insert_id;
+		      $results = $wpdb->query($insert) or die(mysql_error());
+			$ProfileID = $wpdb->insert_id;
 			
 			// delete temporary storage
 			delete_user_meta($ProfileUserLinked, 'rb_agency_new_registeredUser');
             
 			// Add New Custom Field Values
-			$pos = 0;
-			foreach($_POST as $key => $value) {			
+			  $pos = 0;
+			foreach($_POST as $key => $value) {
+			
 			         
 				if ((substr($key, 0, 15) == "ProfileCustomID") && (isset($value) && !empty($value))) {
-
-					$pos++; 
+						$pos++; 
 					if($pos == 1){
-						// Remove Old Custom Field Values
-						$delete1 = "DELETE FROM " . table_agency_customfield_mux . " WHERE ProfileID = \"". $ProfileID ."\"";
-						$results1 = $wpdb->query($delete1);// or die(mysql_error());	
+					// Remove Old Custom Field Values
+					$delete1 = "DELETE FROM " . table_agency_customfield_mux . " WHERE ProfileID = \"". $ProfileID ."\"";
+					$results1 = $wpdb->query($delete1);// or die(mysql_error());	
 					}
-
 					$ProfileCustomID = substr($key, 15);
 					if(is_array($value)){
 						$value =  implode(",",$value);
@@ -175,16 +165,16 @@ if (isset($_POST['action'])) {
 	#echo "<script>alert('".$ProfileUsername."');<\/script>";		 
 			// Link to Wordpress user_meta
 			 
-			if ( username_exists( $ProfileUsername) ) {
-
+			 if ( username_exists( $ProfileUsername) )
+			 {
 				$isLinked =  mysql_query("UPDATE ". table_agency_profile ." SET ProfileUserLinked =  ". $current_user->ID ." WHERE ProfileID = ".$ProfileID." ");
-				if($isLinked){
-
-					wp_redirect(get_bloginfo("wpurl") . "/profile-member/media/");
-
-				}  else {
-				    die(mysql_error());	 				    				}
-			} else {
+				 if($isLinked){
+					
+					 wp_redirect(get_bloginfo("wpurl") . "/profile-member/media/");
+				 }else{
+				    die(mysql_error());	 
+				 }
+			 }else{
 				$user_data = array(
 				    'ID' => $current_user->id,
 				    'user_pass' => wp_generate_password(),
@@ -197,15 +187,17 @@ if (isset($_POST['action'])) {
 				);
 				$user_id = wp_insert_user( $user_data );
 				wp_set_password($ProfilePassword, $user_id);
-			}
-
+			 }
 			// Set Display Name as Record ID (We have to do this after so we know what record ID to use... right ;)
 			if ($rb_agency_option_profilenaming == 3) {
 				$ProfileContactDisplay = "ID-". $ProfileID;
 				$ProfileGallery = "ID". $ProfileID."-";
 				$update = $wpdb->query("UPDATE " . table_agency_profile . " SET ProfileContactDisplay='". $ProfileContactDisplay. "', ProfileGallery='". $ProfileGallery. "' WHERE ProfileID='". $ProfileID ."'");
 				$updated = $wpdb->query($update);
-			}			
+			}
+			
+			
+			
 			
 			$alerts = "<div id=\"message\" class=\"updated\"><p>". __("New Profile added successfully", rb_agencyinteract_TEXTDOMAIN) ."!</p></div>"; 
 					
@@ -248,7 +240,8 @@ if (isset($_POST['action'])) {
 			ProfileLocationCountry='" . $wpdb->escape($ProfileLocationCountry) . "',
 			ProfileDateUpdated=now()
 			WHERE ProfileID=$ProfileID";
-		    $results = $wpdb->query($update);             
+		    $results = $wpdb->query($update);
+             
 		    
 			/* Update WordPress user information. */
 			update_usermeta( $current_user->id, 'first_name', esc_attr( $ProfileContactNameFirst ) );
@@ -256,8 +249,8 @@ if (isset($_POST['action'])) {
 			update_usermeta( $current_user->id, 'nickname', esc_attr( $ProfileContactDisplay ) );
 			update_usermeta( $current_user->id, 'display_name', esc_attr( $ProfileContactDisplay ) );
 			update_usermeta( $current_user->id, 'user_email', esc_attr( $ProfileContactEmail ) );
-
-			// Add New Custom Field Values			 
+		// Add New Custom Field Values
+			 
 			foreach($_POST as $key => $value) {
 			
 				
@@ -320,13 +313,13 @@ get_header();
 			$results = mysql_query($sql);
 			$count = mysql_num_rows($results);
 			if ($count > 0) {
-			  	while ($data = mysql_fetch_array($results)) {
+			  while ($data = mysql_fetch_array($results)) {
 			
-					// Manage Profile
-					include("include-profileaccount.php"); 	
+				// Manage Profile
+				include("include-profileaccount.php"); 	
 						
 						
-			  	} // is there record?
+			  } // is there record?
 			} else {
 			  if ($rb_agencyinteract_option_registerallow  == 1) {
 				// Users CAN register themselves
@@ -362,10 +355,11 @@ $rb_agencyinteract_options_arr = get_option('rb_agencyinteract_options');
 	$rb_agencyinteract_option_profilemanage_sidebar = $rb_agencyinteract_options_arr['rb_agencyinteract_option_profilemanage_sidebar'];
 	$LayoutType = "";
 	if ($rb_agencyinteract_option_profilemanage_sidebar) {
+		echo "	<div id=\"profile-sidebar\" class=\"manage\">\n";
 			$LayoutType = "profile";
+			get_sidebar(); 
 		echo "	</div>\n";
 	}
-
 // Get Footer
 get_footer();
 ?>

@@ -58,60 +58,59 @@ get_header();
 			$results = mysql_query($sql);
 			$count = mysql_num_rows($results);
 			if ($count > 0) {
-			  while ($data = mysql_fetch_array($results)) {
+			  	while ($data = mysql_fetch_array($results)) {
 			
-				// Is there a subscription?
-				if (isset($SubscriberDateExpire)) {
-					echo "<h1>". $current_user->first_name .", ". __("enjoying your membership?", rb_agencyinteract_TEXTDOMAIN) ."</h1>";
-					echo "<h3>". __("Your membership expires on ", rb_agencyinteract_TEXTDOMAIN) ." ". $SubscriberDateExpire .", renew today!</h3>";
-				} else {
-					echo "<h1>". $current_user->first_name .", ". __("are you ready to get discovered?", rb_agencyinteract_TEXTDOMAIN) ."</h1>";
-					echo "<h3>". __("Subscribe now, and start applying to Casting Calls, join the Talent Directory, and more.", rb_agencyinteract_TEXTDOMAIN) ."</h3>";
-				}
+					// Is there a subscription?
+					if (isset($SubscriberDateExpire)) {
+						echo "<h1>". $current_user->first_name .", ". __("enjoying your membership?", rb_agencyinteract_TEXTDOMAIN) ."</h1>";
+						echo "<h3>". __("Your membership expires on ", rb_agencyinteract_TEXTDOMAIN) ." ". $SubscriberDateExpire .", renew today!</h3>";
+					} else {
+						echo "<h1>". $current_user->first_name .", ". __("are you ready to get discovered?", rb_agencyinteract_TEXTDOMAIN) ."</h1>";
+						echo "<h3>". __("Subscribe now, and start applying to Casting Calls, join the Talent Directory, and more.", rb_agencyinteract_TEXTDOMAIN) ."</h3>";
+					}
 
-				// What are the rates?
-				$sql = "SELECT * FROM ". table_agencyinteract_subscription_rates ."";
-				$results = mysql_query($sql);
-				$count = mysql_num_rows($results);
-				if ($count > 0) {
-				echo "<div id=\"subscription-wrapper\">";
-				  while ($data = mysql_fetch_array($results)) {
-					echo " <div class=\"subscription-rate\">";
-					echo "  <div class=\"subscription-rate-title\">". stripslashes($data['SubscriptionRateTitle']) ."</div>\n";
-					echo "  <div class=\"subscription-rate-price\">$". $data['SubscriptionRatePrice'] ."</div>\n";
-					echo "  <div class=\"subscription-rate-button\">\n";
-					echo "    <form action=\"https://www.paypal.com/cgi-bin/webscr\" method=\"post\">\n";
-					echo "  	<input type=\"hidden\" name=\"cmd\" value=\"_xclick\" />\n";
-					echo "  	<input type=\"hidden\" name=\"business\" value=\"". $rb_agencyinteract_option_subscribepaypalemail ."\" />\n";
-					echo "  	<input type=\"hidden\" name=\"item_name\" value=\"". $data['SubscriptionRateTitle'] ."\" />\n";
-					echo "  	<input type=\"hidden\" name=\"item_number\" value=\"". $data['SubscriptionRateID'] ."\" />\n";
-					echo "  	<input type=\"hidden\" name=\"custom\" value=\"". $current_user->ID ."\" />\n";
-					echo "  	<input type=\"hidden\" name=\"amount\" value=\"". $data['SubscriptionRatePrice'] ."\" />\n";
-					echo "  	<input type=\"hidden\" name=\"return\" value=\"". get_bloginfo("wpurl") ."/profile-member/subscription/\" />\n";
-					echo "  	<input type=\"hidden\" name=\"notify_url\" value=\"". rb_agencyinteract_BASEDIR ."tasks/paypalIPN.php\" />\n";
-					echo "  	<input type=\"hidden\" name=\"first_name\" value=\"". $current_user->first_name ."\" />\n";
-					echo "  	<input type=\"hidden\" name=\"last_name\" value=\"". $current_user->last_name ."\" />\n";
-					echo "  	<input type=\"hidden\" name=\"email\" value=\"". $current_user->user_email ."\" />\n";
-					echo "  	<input type=\"hidden\" name=\"button_subtype\" value=\"services\" />\n";
-					echo "  	<input type=\"image\" src=\"https://www.paypal.com/en_US/i/btn/btn_paynow_SM.gif\" border=\"0\" name=\"submit\" alt=\"PayPal - The safer, easier way to pay online!\" />\n";
-					echo "    </form>\n";
-					echo "  </div>\n";
-					echo "  <div class=\"subscription-rate-text\">". stripslashes($data['SubscriptionRateText']) ."</div>\n";
+					// What are the rates?
+					$sql = "SELECT * FROM ". table_agencyinteract_subscription_rates ."";
+					$results = mysql_query($sql);
+					$count = mysql_num_rows($results);
+					if ($count > 0) {
+						echo "<div id=\"subscription-wrapper\">";
+					  	while ($data = mysql_fetch_array($results)) {
+							echo " <div class=\"subscription-rate\">";
+							echo "  <div class=\"subscription-rate-title\">". stripslashes($data['SubscriptionRateTitle']) ."</div>\n";
+							echo "  <div class=\"subscription-rate-price\">$". $data['SubscriptionRatePrice'] ."</div>\n";
+							echo "  <div class=\"subscription-rate-button\">\n";
+							echo "    <form action=\"https://www.paypal.com/cgi-bin/webscr\" method=\"post\">\n";
+							echo "  	<input type=\"hidden\" name=\"cmd\" value=\"_xclick\" />\n";
+							echo "  	<input type=\"hidden\" name=\"business\" value=\"". $rb_agencyinteract_option_subscribepaypalemail ."\" />\n";
+							echo "  	<input type=\"hidden\" name=\"item_name\" value=\"". $data['SubscriptionRateTitle'] ."\" />\n";
+							echo "  	<input type=\"hidden\" name=\"item_number\" value=\"". $data['SubscriptionRateID'] ."\" />\n";
+							echo "  	<input type=\"hidden\" name=\"custom\" value=\"". $current_user->ID ."\" />\n";
+							echo "  	<input type=\"hidden\" name=\"amount\" value=\"". $data['SubscriptionRatePrice'] ."\" />\n";
+							echo "  	<input type=\"hidden\" name=\"return\" value=\"". get_bloginfo("wpurl") ."/profile-member/subscription/\" />\n";
+							echo "  	<input type=\"hidden\" name=\"notify_url\" value=\"". rb_agencyinteract_BASEDIR ."tasks/paypalIPN.php\" />\n";
+							echo "  	<input type=\"hidden\" name=\"first_name\" value=\"". $current_user->first_name ."\" />\n";
+							echo "  	<input type=\"hidden\" name=\"last_name\" value=\"". $current_user->last_name ."\" />\n";
+							echo "  	<input type=\"hidden\" name=\"email\" value=\"". $current_user->user_email ."\" />\n";
+							echo "  	<input type=\"hidden\" name=\"button_subtype\" value=\"services\" />\n";
+							echo "  	<input type=\"image\" src=\"https://www.paypal.com/en_US/i/btn/btn_paynow_SM.gif\" border=\"0\" name=\"submit\" alt=\"PayPal - The safer, easier way to pay online!\" />\n";
+							echo "    </form>\n";
+							echo "  </div>\n";
+							echo "  <div class=\"subscription-rate-text\">". stripslashes($data['SubscriptionRateText']) ."</div>\n";
 
+							echo " </div>";
+					  	} // is there record?
+					echo " <div class=\"clear\"></div>";
+					echo "</div>";
+					}		
+						
+					echo "  <div id=\"subscription-customtext\">\n";
+						$Page = get_page($rb_agencyinteract_option_subscribepagedetails);
+						echo apply_filters('the_content', $Page->post_content);
 					echo " </div>";
-				  } // is there record?
-				echo " <div class=\"clear\"></div>";
-				echo "</div>";
-				}
-	
-					
-				echo "  <div id=\"subscription-customtext\">\n";
-					$Page = get_page($rb_agencyinteract_option_subscribepagedetails);
-					echo apply_filters('the_content', $Page->post_content);
-				echo " </div>";
-
 			
-			  } // is there record?
+		  		} // is there record?
+
 			} else {
 				
 				// No Record Exists, register them
@@ -140,11 +139,10 @@ $rb_agencyinteract_options_arr = get_option('rb_agencyinteract_options');
 	$rb_agencyinteract_option_profilemanage_sidebar = $rb_agencyinteract_options_arr['rb_agencyinteract_option_profilemanage_sidebar'];
 	$LayoutType = "";
 	if ($rb_agencyinteract_option_profilemanage_sidebar) {
-		echo "	<div id=\"profile-sidebar\" class=\"manage\">\n";
-			$LayoutType = "profile";
-			get_sidebar(); 
-		echo "	</div>\n";
+		$LayoutType = "profile";
+		get_sidebar(); 
 	}
+
 // Get Footer
 get_footer();
 ?>

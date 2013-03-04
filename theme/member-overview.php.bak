@@ -89,39 +89,41 @@ get_header();
 			// No Record Exists, register them
 			} else {
 					
-				echo "<h1>". __("Welcome", rb_agencyinteract_TEXTDOMAIN) ." ". $current_user->first_name ."!</h1>";
+					echo "<h1>". __("Welcome", rb_agencyinteract_TEXTDOMAIN) ." ". $current_user->first_name ."!</h1>";
 
-				if ($profiletype == 1) {
-					echo "". __("We have you registered as", rb_agencyinteract_TEXTDOMAIN) ." <strong>". $profiletypetext ."</strong>";
-					echo "<h2><a href=\"". $rb_agencyinteract_WPURL ."/profile-search/\">". __("Begin Your Search", rb_agencyinteract_TEXTDOMAIN) ."</a></h2>";
-					
-					echo "  <div id=\"subscription-customtext\">\n";
-						$Page = get_page($rb_agencyinteract_option_subscribepagedetails);
-						echo apply_filters('the_content', $Page->post_content);
-					echo " </div>";
+					if ($profiletype == 1) {
+						echo "". __("We have you registered as", rb_agencyinteract_TEXTDOMAIN) ." <strong>". $profiletypetext ."</strong>";
+						echo "<h2><a href=\"". $rb_agencyinteract_WPURL ."/profile-search/\">". __("Begin Your Search", rb_agencyinteract_TEXTDOMAIN) ."</a></h2>";
+						
+						echo "  <div id=\"subscription-customtext\">\n";
+							$Page = get_page($rb_agencyinteract_option_subscribepagedetails);
+							echo apply_filters('the_content', $Page->post_content);
+						echo " </div>";
 
-				} else {
-				  if ($rb_agencyinteract_option_registerallow == 1) {
-
-					// Users CAN register themselves
-					echo "". __("We have you registered as", rb_agencyinteract_TEXTDOMAIN) ." <strong>". $profiletypetext ."</strong>";
-					echo "<h2>". __("Setup Your Profile", rb_agencyinteract_TEXTDOMAIN) ."</h2>";
+					} else {
+					  if ($rb_agencyinteract_option_registerallow == 1) {
+						// Users CAN register themselves
+						echo "". __("We have you registered as", rb_agencyinteract_TEXTDOMAIN) ." <strong>". $profiletypetext ."</strong>";
+						echo "<h2>". __("Setup Your Profile", rb_agencyinteract_TEXTDOMAIN) ."</h2>";
+						
+						// Register Profile
+						include("include-profileregister.php"); 	
+						
+						
+					  } else {
+						// Cant register
+						echo "<strong>". __("Self registration is not permitted.", rb_agencyinteract_TEXTDOMAIN) ."</strong>";
+					  }
+					}
 					
-					// Register Profile
-					include("include-profileregister.php");
-					
-				  } else {
-					// Cant register
-					echo "<strong>". __("Self registration is not permitted.", rb_agencyinteract_TEXTDOMAIN) ."</strong>";
-				  }
-				}					
 			}
 			
-			echo "	 </div>\n";				
-			echo "</div>\n"; // #profile-manage
-
-		} else {
+			echo "	 </div>\n";
 			
+
+				
+			echo "</div>\n"; // #profile-manage
+		} else {
 			// Show Login Form
 			include("include-login.php"); 	
 		}
@@ -134,10 +136,11 @@ $rb_agencyinteract_options_arr = get_option('rb_agencyinteract_options');
 	$rb_agencyinteract_option_profilemanage_sidebar = $rb_agencyinteract_options_arr['rb_agencyinteract_option_profilemanage_sidebar'];
 	$LayoutType = "";
 	if ($rb_agencyinteract_option_profilemanage_sidebar) {
-		$LayoutType = "profile";
-		get_sidebar(); 
+		echo "	<div id=\"profile-sidebar\" class=\"manage\">\n";
+			$LayoutType = "profile";
+			get_sidebar(); 
+		echo "	</div>\n";
 	}
-	
 // Get Footer
 get_footer();
 ?>

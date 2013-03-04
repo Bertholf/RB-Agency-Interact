@@ -9,7 +9,6 @@
 	
 	/* Get Options */
 	$rb_agencyinteract_options_arr = get_option('rb_agencyinteract_options');
-
 		//Sidebar
 		$rb_agencyinteract_option_profilemanage_sidebar = $rb_agencyinteract_options_arr['rb_agencyinteract_option_profilemanage_sidebar'];
 		if($rb_agencyinteract_option_profilemanage_sidebar){
@@ -22,52 +21,50 @@
 		$rb_agencyinteract_option_fb_app_id = $rb_agencyinteract_options_arr['rb_agencyinteract_option_fb_app_id'];
 		$rb_agencyinteract_option_fb_app_secret = $rb_agencyinteract_options_arr['rb_agencyinteract_option_fb_app_secret'];
 		$rb_agencyinteract_option_fb_app_register_uri = $rb_agencyinteract_options_arr['rb_agencyinteract_option_fb_app_register_uri'];
-	    $rb_agencyinteract_option_fb_registerallow = $rb_agencyinteract_options_arr['rb_agencyinteract_option_fb_registerallow'];
-
-	    //+Registration
-	    // - show/hide registration for Agent/Producers
+	      $rb_agencyinteract_option_fb_registerallow = $rb_agencyinteract_options_arr['rb_agencyinteract_option_fb_registerallow'];
+	      //+Registration
+	      // - show/hide registration for Agent/Producers
 		$rb_agencyinteract_option_registerallowAgentProducer = $registration['rb_agencyinteract_option_registerallowAgentProducer'];
-
 		// - show/hide  self-generate password
 		$rb_agencyinteract_option_registerconfirm = (int)$rb_agencyinteract_options_arr['rb_agencyinteract_option_registerconfirm'];
 		
-	   	if($rb_agencyinteract_option_fb_registerallow == 1){
-		 	if(!class_exists("FacebookApiException")){   
-		   		require_once(ABSPATH."wp-content/plugins/".rb_agencyinteract_TEXTDOMAIN."/tasks/facebook.php");
-		 	}
-	    }
-
+		   if($rb_agencyinteract_option_fb_registerallow == 1){
+			 if(!class_exists("FacebookApiException")){   
+			   require_once(ABSPATH."wp-content/plugins/".rb_agencyinteract_TEXTDOMAIN."/tasks/facebook.php");
+			 }
+		    }
 	/* Check if users can register. */
-	$registration = get_option( 'users_can_register' );	
+	$registration = get_option( 'users_can_register' );
+	
 	
 	define('FACEBOOK_APP_ID', $rb_agencyinteract_option_fb_app_id);
 	define('FACEBOOK_SECRET', $rb_agencyinteract_option_fb_app_secret);
 	
 	function parse_signed_request($signed_request, $secret) {
-		list($encoded_sig, $payload) = explode('.', $signed_request, 2); 
-		
-		// decode the data
-		$sig = base64_url_decode($encoded_sig);
-		$data = json_decode(base64_url_decode($payload), true);
-		
-		if (strtoupper($data['algorithm']) !== 'HMAC-SHA256') {
-			error_log('Unknown algorithm. Expected HMAC-SHA256');
-		    return null;
-		}
-		
-		// check sig
-		$expected_sig = hash_hmac('sha256', $payload, $secret, $raw = true);
-		if ($sig !== $expected_sig) {
-			error_log('Bad Signed JSON signature!');
-		    return null;
-		}			
-		return $data;
+			  list($encoded_sig, $payload) = explode('.', $signed_request, 2); 
+			
+			  // decode the data
+			  $sig = base64_url_decode($encoded_sig);
+			  $data = json_decode(base64_url_decode($payload), true);
+			
+			  if (strtoupper($data['algorithm']) !== 'HMAC-SHA256') {
+			    error_log('Unknown algorithm. Expected HMAC-SHA256');
+			    return null;
+			  }
+			
+			  // check sig
+			  $expected_sig = hash_hmac('sha256', $payload, $secret, $raw = true);
+			  if ($sig !== $expected_sig) {
+			    error_log('Bad Signed JSON signature!');
+			    return null;
+			  }
+			
+			  return $data;
 	}
 			
 	function base64_url_decode($input) {
-		return base64_decode(strtr($input, '-_', '+/'));
+			    return base64_decode(strtr($input, '-_', '+/'));
 	}
-
 	/*
 	 #DEBUG !		
 	if ($_REQUEST) {
@@ -141,7 +138,9 @@
 			//Custom Fields
 			$arr = array();
 			
-			foreach($_POST as $key => $value) {			         
+			foreach($_POST as $key => $value) {
+			
+			         
 				if ((substr($key, 0, 15) == "ProfileCustomID") && (isset($value) && !empty($value))) {
 					$ProfileCustomID = substr($key, 15);
 					if(is_array($value)){
@@ -154,16 +153,19 @@
 				}
 			}
 			
-			add_user_meta($new_user, 'rb_agency_new_registeredUser',$arr);			
+			add_user_meta($new_user, 'rb_agency_new_registeredUser',$arr);
 			
-			// Log them in if no confirmation required.			
+			
+			// Log them in if no confirmation required.
+			
 			if ($rb_agencyinteract_option_registerconfirm == 1) {
-
 				global $error;
 				
 				$login = wp_login( $user_login, $user_pass );
-				$login = wp_signon( array( 'user_login' => $user_login, 'user_password' => $user_pass, 'remember' => 1 ), false );	
-			}				
+				$login = wp_signon( array( 'user_login' => $user_login, 'user_password' => $user_pass, 'remember' => 1 ), false );
+	
+			}
+				
 				// Notify admin and user
 				wp_new_user_notification($new_user, $user_pass);	
 			
@@ -227,7 +229,10 @@
 	echo "    <p class=\"alert\">\n";
 	echo "      ". __("Users cannot currently register themselves, but you can manually create users here.", rb_agencyinteract_TEXTDOMAIN);
 	echo "    </p><!-- .alert -->\n";
-			}	
+			}
+       
+	 
+	
 
 			// Self Registration
 			if ( $registration || current_user_can("create_users") ) {
@@ -274,11 +279,12 @@
 	
 	if($target == "model-talent"){
 	echo "       			<option value=\"0\">". __("Talent / Model", rb_agencyinteract_TEXTDOMAIN) ."</option>\n";
-	} elseif ($target == "agent-partners"){
+	}elseif($target == "agent-partners"){
 	
-		echo "       			<option value=\"1\">". __("Agent / Producer", rb_agencyinteract_TEXTDOMAIN) ."</option>\n";	
+		echo "       			<option value=\"1\">". __("Agent / Producer", rb_agencyinteract_TEXTDOMAIN) ."</option>\n";
+	
 		
-	} else {
+	}else{
 		echo "       			<option value=\"0\">". __("Talent / Model", rb_agencyinteract_TEXTDOMAIN) ."</option>\n";
 	     	echo "       			<option value=\"1\">". __("Agent / Producer", rb_agencyinteract_TEXTDOMAIN) ."</option>\n";
 	}
@@ -305,7 +311,7 @@
 	
 
 		
-	$query3 = "SELECT * FROM ". table_agency_customfields ." WHERE ProfileCustomView = 0 AND ProfileCustomShowRegistration = 1 ORDER BY ProfileCustomOrder";
+		$query3 = "SELECT * FROM ". table_agency_customfields ." WHERE ProfileCustomView = 0 AND ProfileCustomShowRegistration = 1 ORDER BY ProfileCustomOrder";
 	$results3 = mysql_query($query3) or die(mysql_error());
 	$count3 = mysql_num_rows($results3);
 	
@@ -320,28 +326,31 @@
 			  $rb_agency_option_unittype  = $rb_agency_options_arr['rb_agency_option_unittype'];
 			  $measurements_label = "";
 			 if ($ProfileCustomType == 7) { //measurements field type
-			    if($rb_agency_option_unittype ==0){ // 0 = Metrics(ft/kg)						
-					if($data3['ProfileCustomOptions'] == 1){
-					    $measurements_label  ="<em>(cm)</em>";
-					}elseif($data3['ProfileCustomOptions'] == 2){
-					    $measurements_label  ="<em>(kg)</em>";
-					}elseif($data3['ProfileCustomOptions'] == 3){
-					  	$measurements_label  ="<em>(In Inches/Feet)</em>";
-					}
-					} elseif($rb_agency_option_unittype ==1){ //1 = Imperial(in/lb)
+			             if($rb_agency_option_unittype ==0){ // 0 = Metrics(ft/kg)
+						
 						if($data3['ProfileCustomOptions'] == 1){
-						    $measurements_label  ="<em>(In Inches)</em>";
+						     $measurements_label  ="<em>(cm)</em>";
 						}elseif($data3['ProfileCustomOptions'] == 2){
-						  	$measurements_label  ="<em>(In Pounds)</em>";
+						     $measurements_label  ="<em>(kg)</em>";
 						}elseif($data3['ProfileCustomOptions'] == 3){
-						  	$measurements_label  ="<em>(In Inches/Feet)</em>";
+						  $measurements_label  ="<em>(In Inches/Feet)</em>";
 						}
-					}					
+					}elseif($rb_agency_option_unittype ==1){ //1 = Imperial(in/lb)
+						if($data3['ProfileCustomOptions'] == 1){
+						     $measurements_label  ="<em>(In Inches)</em>";
+						}elseif($data3['ProfileCustomOptions'] == 2){
+						  $measurements_label  ="<em>(In Pounds)</em>";
+						}elseif($data3['ProfileCustomOptions'] == 3){
+						  $measurements_label  ="<em>(In Inches/Feet)</em>";
+						}
+					}
+
+					
 			 }  
 		 echo "       <p class=\"form-".strtolower(trim($data3['ProfileCustomTitle']))."\">\n"; 
 		 echo "       <label for=\"".strtolower(trim($data3['ProfileCustomTitle']))."\">". __( $data3['ProfileCustomTitle'].$measurements_label, rb_agencyinteract_TEXTDOMAIN) ."</label>\n";		  
 			if ($ProfileCustomType == 1) { //TEXT
-				echo "<input type=\"text\" name=\"ProfileCustomID". $data3['ProfileCustomID'] ."\" value=\"". $_REQUEST["ProfileCustomID". $data3['ProfileCustomID']] ."\" /><br />\n";
+						echo "<input type=\"text\" name=\"ProfileCustomID". $data3['ProfileCustomID'] ."\" value=\"". $_REQUEST["ProfileCustomID". $data3['ProfileCustomID']] ."\" /><br />\n";
 			}
 			
 			/* elseif ($ProfileCustomType == 2) { // Min Max
@@ -373,7 +382,7 @@
 					$pos = 0;
 					foreach($data as $val1){
 						if(!empty($val1)){
-							echo "<option value=\"".$val1."\" ".selected($_REQUEST["ProfileCustomID". $data3['ProfileCustomID']],$val1,false)." >".$val1."</option>";
+										echo "<option value=\"".$val1."\" ".selected($_REQUEST["ProfileCustomID". $data3['ProfileCustomID']],$val1,false)." >".$val1."</option>";
 						}
 					}
 					echo "</select>\n";
@@ -397,21 +406,23 @@
 				$array_customOptions_values = explode("|",$data3['ProfileCustomOptions']);
 				echo "<div style=\"width:300px;float:left;\">";
 				foreach($array_customOptions_values as $val){
-					$xplode = explode(",",$_REQUEST["ProfileCustomID". $data3['ProfileCustomID']]);
-					echo "<label><input type=\"checkbox\" value=\"". $val."\"   "; if(in_array($val,$xplode)){ echo "checked=\"checked\""; } echo" name=\"ProfileCustomID". $data3['ProfileCustomID'] ."[]\" />";
-					echo "". $val."</label>";
+					 $xplode = explode(",",$_REQUEST["ProfileCustomID". $data3['ProfileCustomID']]);
+					 echo "<label><input type=\"checkbox\" value=\"". $val."\"   "; if(in_array($val,$xplode)){ echo "checked=\"checked\""; } echo" name=\"ProfileCustomID". $data3['ProfileCustomID'] ."[]\" />";
+					 echo "". $val."</label>";
 				}      echo "<br/>";
 				echo "</div>";
 				   
 			} elseif ($ProfileCustomType == 6) {
 				
-				$array_customOptions_values = explode("|",$data3['ProfileCustomOptions']);				
+				$array_customOptions_values = explode("|",$data3['ProfileCustomOptions']);
+				
 				foreach($array_customOptions_values as $val){
 					
-					echo "<input type=\"radio\" value=\"". $val."\" "; checked($val, $_REQUEST["ProfileCustomID". $data3['ProfileCustomID']]); echo" name=\"ProfileCustomID". $data3['ProfileCustomID'] ."[]\" />";
-					echo "<span>". $val."</span><br/>";
+					 echo "<input type=\"radio\" value=\"". $val."\" "; checked($val, $_REQUEST["ProfileCustomID". $data3['ProfileCustomID']]); echo" name=\"ProfileCustomID". $data3['ProfileCustomID'] ."[]\" />";
+					 echo "<span>". $val."</span><br/>";
 				}
-			} elseif ($ProfileCustomType == 7) { //Imperial/Metrics			
+			}elseif ($ProfileCustomType == 7) { //Imperial/Metrics
+			
 /*
 					 if($data3['ProfileCustomOptions']==1){
 												    if($rb_agency_option_unittype == 1){
@@ -437,32 +448,32 @@
 						 }else{
 */
 										   
-	           if($data3['ProfileCustomTitle']=="Height" AND $rb_agency_option_unittype==1){
-				 //  echo "<select><option>-".$rb_agency_option_unittype."-</option></select>";
-				  echo "<select name=\"ProfileCustomID". $data3['ProfileCustomID'] ."\">\n";
-						echo "<option value=\"\">--</option>\n";
-			
-						$i=36;
-							$heightraw = 0;
-							$heightfeet = 0;
-							$heightinch = 0;
-							while($i<=90)  { 
-								$heightraw = $i;
-								$heightfeet = floor($heightraw/12);
-								$heightinch = $heightraw - floor($heightfeet*12);
+           if($data3['ProfileCustomTitle']=="Height" AND $rb_agency_option_unittype==1){
+			 //  echo "<select><option>-".$rb_agency_option_unittype."-</option></select>";
+			  echo "<select name=\"ProfileCustomID". $data3['ProfileCustomID'] ."\">\n";
+					echo "<option value=\"\">--</option>\n";
+		
+					$i=36;
+						$heightraw = 0;
+						$heightfeet = 0;
+						$heightinch = 0;
+						while($i<=90)  { 
+							  $heightraw = $i;
+							  $heightfeet = floor($heightraw/12);
+							  $heightinch = $heightraw - floor($heightfeet*12);
 								echo " <option value=\"". $i ."\" ". selected($_REQUEST["ProfileCustomID". $data3['ProfileCustomID']], $i) .">
-								". $heightfeet ." ft ". $heightinch ." in</option>\n";
-								$i++;
-							}
-			     echo " </select>\n";
-			   
-			   	} else {
-				   echo "<input type=\"text\" name=\"ProfileCustomID". $data3['ProfileCustomID'] ."\" value=\"".$_REQUEST["ProfileCustomID". $data3['ProfileCustomID']]."\" /><br />\n";
-				}
+							". $heightfeet ." ft ". $heightinch ." in</option>\n";
+							  $i++;
+						}
+		     echo " </select>\n";
+		   
+		   }else{
+			   echo "<input type=\"text\" name=\"ProfileCustomID". $data3['ProfileCustomID'] ."\" value=\"".$_REQUEST["ProfileCustomID". $data3['ProfileCustomID']]."\" /><br />\n";}
+										
 						//}
-
-		}
-
+						
+			}
+									
 	    echo "       </p>\n";
 			
         }// End while
@@ -477,13 +488,11 @@
 					if ( current_user_can("create_users") ) {  _e("Add User", rb_agencyinteract_TEXTDOMAIN); } else {  _e("Register", rb_agencyinteract_TEXTDOMAIN); } echo "\" />\n";
 					wp_nonce_field("add-user");
 					$fb_app_register_uri = "";
-
 					if($rb_agencyinteract_option_fb_app_register_uri == 1){
 						$fb_app_register_uri = $rb_agencyinteract_option_fb_app_register_uri;
 					}else{
 						$fb_app_register_uri = network_site_url("/")."profile-register/";
 					}
-
 					// Allow facebook login/registration
 					if($rb_agencyinteract_option_fb_registerallow ==1){
 						echo "<div>\n";
@@ -532,10 +541,11 @@ echo "</div><!-- #container -->\n";
 // Get Sidebar 
 	$LayoutType = "";
 	if ($rb_agencyinteract_option_profilemanage_sidebar) {
-		$LayoutType = "profile";
-		get_sidebar(); 
+		echo "	<div id=\"profile-sidebar\" class=\"manage\">\n";
+			$LayoutType = "profile";
+			get_sidebar(); 
+		echo "	</div>\n";
 	}
-	
 // Get Footer
 get_footer();
 ?>
