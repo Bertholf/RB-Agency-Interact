@@ -50,6 +50,7 @@ function  get_user_login_info(){
 		// Reload
         header("Location: ". get_bloginfo("wpurl")."/profile-login/");
 }
+}
 
 // ****************************************************************************************** //
 // Already logged in 
@@ -72,31 +73,18 @@ function  get_user_login_info(){
 		// *************************************************************************************************** //
 		// Prepare Page
 		get_header();
-		
-echo "<div class=\"content_wrapper\">\n"; // Theme Wrapper 
-	echo "<div class=\"PageTitle\"><h1></h1></div>\n";	 // Profile Name
 
-		echo "<div id=\"container\" class=\"one-column rb-agency-interact-account\">\n";
-		echo "  <div id=\"content\">\n";
+		echo "<div id=\"rbcontent\" class=\"rb-interact rb-interact-login\">\n";
 		
 			// Show Login Form
 			$hideregister = true;
 			include("include-login.php");
-		echo "  </div><!-- #content -->\n";
-		echo "</div><!-- #container -->\n";
-		
-		// Get Sidebar 
-		$rb_agencyinteract_options_arr = get_option('rb_agencyinteract_options');
-			$rb_agencyinteract_option_profilemanage_sidebar = $rb_agencyinteract_options_arr['rb_agencyinteract_option_profilemanage_sidebar'];
-			$LayoutType = "";
-			if ($rb_agencyinteract_option_profilemanage_sidebar) {
-				$LayoutType = "profile";
-				get_sidebar(); 
-			}
-echo "</div>\n"; //END .content_wrapper		
+
+		echo "</div><!-- #rbcontent -->\n";
 
 	// Get Footer
 	get_footer();
 	
 	} // Done
+	
 ?>
