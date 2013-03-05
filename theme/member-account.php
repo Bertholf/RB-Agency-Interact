@@ -129,15 +129,33 @@ if (isset($_POST['action'])) {
 			   ProfileLocationStreet,ProfileLocationCity,ProfileLocationState,ProfileLocationZip,ProfileLocationCountry,
 			   ProfileContactPhoneHome, ProfileContactPhoneCell, ProfileContactPhoneWork,
 			   ProfileDateUpdated,ProfileIsActive)" .
-			"VALUES (". $ProfileUserLinked .",'" . $wpdb->escape($ProfileGallery) . "','" . $wpdb->escape($ProfileContactDisplay) . "','" . $wpdb->escape($ProfileContactNameFirst) . "','" . $wpdb->escape($ProfileContactNameLast) . "',
-				'" . $wpdb->escape($ProfileContactEmail) . "','" . $wpdb->escape($ProfileContactWebsite) . "','" . $wpdb->escape($ProfileGender) . "','" . $wpdb->escape($ProfileDateBirth) . "',
-			    '" . $wpdb->escape($ProfileContactLinkFacebook) . "','" . $wpdb->escape($ProfileContactLinkTwitter) . "','" . $wpdb->escape($ProfileContactLinkYouTube) . "','" . $wpdb->escape($ProfileContactLinkFlickr) . "',
-				'" . $wpdb->escape($ProfileLocationStreet) . "','" . $wpdb->escape($ProfileLocationCity) . "','" . $wpdb->escape($ProfileLocationState) . "','" . $wpdb->escape($ProfileLocationZip) . "','" . $wpdb->escape($ProfileLocationCountry) . "',
-				'" . $wpdb->escape($ProfileContactPhoneHome) . "','" . $wpdb->escape($ProfileContactPhoneCell) . "','" . $wpdb->escape($ProfileContactPhoneWork) . "',
-				now(), ". $ProfileIsActive .")";
-		    $results1	= $wpdb->query($insert) or die(mysql_error());
-			$ProfileID 	= $wpdb->insert_id;
-			
+			"VALUES (". $ProfileUserLinked . 
+			         ",'" . $wpdb->escape($ProfileGallery) . "','" . 
+					 $wpdb->escape($ProfileContactDisplay) . 
+					 "','" . $wpdb->escape($ProfileContactNameFirst) . "','" . 
+					 $wpdb->escape($ProfileContactNameLast) . 
+					 "','" . $wpdb->escape($ProfileContactEmail) . "','" . 
+					 $wpdb->escape($ProfileContactWebsite) . "','" . 
+					 $wpdb->escape($ProfileGender) . 
+					 "','" . $wpdb->escape($ProfileDateBirth) . "','" . 
+					 $wpdb->escape($ProfileContactLinkFacebook) . "','" . 
+					 $wpdb->escape($ProfileContactLinkTwitter) . "','" . 
+					 $wpdb->escape($ProfileContactLinkYouTube) . "','" . 
+					 $wpdb->escape($ProfileContactLinkFlickr) . "','" . 
+					 $wpdb->escape($ProfileLocationStreet) . "','" . 
+					 $wpdb->escape($ProfileLocationCity) . "','" . 
+					 $wpdb->escape($ProfileLocationState) . "','" . 
+					 $wpdb->escape($ProfileLocationZip) . "','" . 
+					 $wpdb->escape($ProfileLocationCountry) . "','" . 
+					 $wpdb->escape($ProfileContactPhoneHome) . "','" . 
+					 $wpdb->escape($ProfileContactPhoneCell) . "','" . 
+					 $wpdb->escape($ProfileContactPhoneWork) . "',now(), ". 
+					 $ProfileIsActive .")";
+
+		      $results = $wpdb->query($insert) or die(mysql_error());
+              $ProfileID = $wpdb->insert_id;
+ 			
+
 			// delete temporary storage
 			delete_user_meta($ProfileUserLinked, 'rb_agency_new_registeredUser');
             
