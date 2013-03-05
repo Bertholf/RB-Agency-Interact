@@ -255,9 +255,52 @@
 					 echo "<span>". $val."</span><br/>";
 				}
 			}elseif ($ProfileCustomType == 7) { //Imperial/Metrics
-			
-	 
-											  echo "<input type=\"text\" name=\"ProfileCustomID". $data3['ProfileCustomID'] ."\" value=\"".$ProfileCustomValue[$data3['ProfileCustomID']]."\" /><br />\n";
+
+			    // if feet and inches
+				// display dropdown selection box
+				if($data3['ProfileCustomOptions']==3){
+
+                	echo "<select name=\"ProfileCustomID". $data3['ProfileCustomID'] ."\">\n";
+
+						if (empty($_REQUEST["ProfileCustomID". $data3['ProfileCustomID']])) {
+
+							 echo "<option value=\"\">--</option>\n";
+						
+						}
+
+						$i=36;	$heightraw = 0; $heightfeet = 0;  $heightinch = 0;
+
+                        while($i<=90)  {
+							
+							  $heightraw = $i;
+							  $heightfeet = floor($heightraw/12);
+						      $heightinch = $heightraw - floor($heightfeet*12);
+
+							  echo " <option value=\"". $i ."\" "
+							        . selected($_REQUEST["ProfileCustomID". 
+									  $data3['ProfileCustomID']], $i) .">"
+									. $heightfeet ." ft "
+									. $heightinch 
+									." in</option>\n";
+
+							  $i++;
+
+					   }
+
+					echo " </select>\n";
+
+
+                // use textbox if
+				// not feet and inches 
+				}else{
+				
+				    echo "<input type=\"text\" name=\"ProfileCustomID"
+					. $data3['ProfileCustomID'] ."\" value=\""
+					.$_REQUEST["ProfileCustomID"
+					. $data3['ProfileCustomID']]."\" /><br />\n";
+
+			}
+
 											
 						
 			}

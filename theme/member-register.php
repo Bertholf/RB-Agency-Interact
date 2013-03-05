@@ -412,60 +412,58 @@
 					echo "<span>". $val."</span><br/>";
 				}
 			} elseif ($ProfileCustomType == 7) { //Imperial/Metrics			
-/*
-					 if($data3['ProfileCustomOptions']==1){
-												    if($rb_agency_option_unittype == 1){
-														echo "<select name=\"ProfileCustomID". $data3['ProfileCustomID'] ."\">\n";
-															if (empty($_REQUEST["ProfileCustomID". $data3['ProfileCustomID']])) {
-														echo " 				<option value=\"\">--</option>\n";
-															}
-															$i=36;
-															$heightraw = 0;
-															$heightfeet = 0;
-															$heightinch = 0;
-															while($i<=90)  { 
-															  $heightraw = $i;
-															  $heightfeet = floor($heightraw/12);
-															  $heightinch = $heightraw - floor($heightfeet*12);
-														echo " <option value=\"". $i ."\" ". selected($_REQUEST["ProfileCustomID". $data3['ProfileCustomID']], $i) .">". $heightfeet ." ft ". $heightinch ." in</option>\n";
-															  $i++;
-															}
-														echo " </select>\n";
-												    }else{
-													    echo "	 <input type=\"text\" id=\"ProfileStatHeight\" name=\"ProfileCustomID". $data3['ProfileCustomID'] ."\" value=\"". $_REQUEST["ProfileCustomID". $data3['ProfileCustomID']]."\" />\n";
-												    }
-						 }else{
-*/
-										   
-	           if($data3['ProfileCustomTitle']=="Height" AND $rb_agency_option_unittype==1){
-				 //  echo "<select><option>-".$rb_agency_option_unittype."-</option></select>";
-				  echo "<select name=\"ProfileCustomID". $data3['ProfileCustomID'] ."\">\n";
-						echo "<option value=\"\">--</option>\n";
+
+			    // if feet and inches
+				// display dropdown selection box
+				if($data3['ProfileCustomOptions']==3){
+
+                	echo "<select name=\"ProfileCustomID". $data3['ProfileCustomID'] ."\">\n";
+
+						if (empty($_REQUEST["ProfileCustomID". $data3['ProfileCustomID']])) {
+
+							 echo "<option value=\"\">--</option>\n";
+						
+						}
+
+						$i=36;	$heightraw = 0; $heightfeet = 0;  $heightinch = 0;
+
+                        while($i<=90)  {
+							
+							  $heightraw = $i;
+							  $heightfeet = floor($heightraw/12);
+						      $heightinch = $heightraw - floor($heightfeet*12);
+
+							  echo " <option value=\"". $i ."\" "
+							        . selected($_REQUEST["ProfileCustomID". 
+									  $data3['ProfileCustomID']], $i) .">"
+									. $heightfeet ." ft "
+									. $heightinch 
+									." in</option>\n";
+
+							  $i++;
+
+					   }
+
+					echo " </select>\n";
+
+
+                // use textbox if
+				// not feet and inches 
+				}else{
+				
+				    echo "<input type=\"text\" name=\"ProfileCustomID"
+					. $data3['ProfileCustomID'] ."\" value=\""
+					.$_REQUEST["ProfileCustomID"
+					. $data3['ProfileCustomID']]."\" /><br />\n";
+
+			}
 			
-						$i=36;
-							$heightraw = 0;
-							$heightfeet = 0;
-							$heightinch = 0;
-							while($i<=90)  { 
-								$heightraw = $i;
-								$heightfeet = floor($heightraw/12);
-								$heightinch = $heightraw - floor($heightfeet*12);
-								echo " <option value=\"". $i ."\" ". selected($_REQUEST["ProfileCustomID". $data3['ProfileCustomID']], $i) .">
-								". $heightfeet ." ft ". $heightinch ." in</option>\n";
-								$i++;
-							}
-			     echo " </select>\n";
-			   
-			   	} else {
-				   echo "<input type=\"text\" name=\"ProfileCustomID". $data3['ProfileCustomID'] ."\" value=\"".$_REQUEST["ProfileCustomID". $data3['ProfileCustomID']]."\" /><br />\n";
-				}
-						//}
-
-		}
-
 	    echo "       </p>\n";
+			} 
 			
-        }// End while
+		 }
+			
+	}// End while
 	echo "       <p class=\"form-profile_agree\">\n";
 					$profile_agree = get_the_author_meta("profile_agree", $current_user->ID );
 	echo "       		<input type=\"checkbox\" name=\"profile_agree\" value=\"yes\" /> ". sprintf(__("I agree to the %s terms of service", rb_agencyinteract_TEXTDOMAIN), "<a href=\"/terms-of-use/\" target=\"_blank\">") ."</a>\n";
@@ -524,7 +522,7 @@
 	echo "   </form><!-- #adduser -->\n";
 
 			}
-	}
+
 
 echo "  </div><!-- #content -->\n";
 echo "</div><!-- #container -->\n";
