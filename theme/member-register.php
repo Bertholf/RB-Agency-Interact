@@ -456,12 +456,10 @@
 					.$_REQUEST["ProfileCustomID"
 					. $data3['ProfileCustomID']]."\" /><br />\n";
 
-			}
+			    }
 			
 	    echo "       </p>\n";
-			} 
-			
-		 }
+		} 
 			
 	}// End while
 	echo "       <p class=\"form-profile_agree\">\n";
@@ -523,7 +521,7 @@
 
 			}
 
-
+}
 echo "  </div><!-- #content -->\n";
 echo "</div><!-- #container -->\n";
    
