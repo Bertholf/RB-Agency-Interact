@@ -87,6 +87,7 @@
 		$first_name = $_POST['profile_first_name'];
 		$last_name  = $_POST['profile_last_name'];
 		$user_email = $_POST['profile_email'];
+		$ProfileGender = $_POST['ProfileGender'];
 		$user_pass  = NULL;
 		
 		if ($rb_agencyinteract_option_registerconfirm == 1) {
@@ -289,7 +290,7 @@
         echo "     <p class=\"form-profile_gender\">\n";
      	echo "		<label for=\"profile_gender\">". __("Gender", rb_agencyinteract_TEXTDOMAIN) ."</label>\n";
 					$query= "SELECT GenderID, GenderTitle FROM " .  table_agency_data_gender . " GROUP BY GenderTitle ";
-					echo "<select name=\"ProfileGender\">";
+					echo "<select id='ProfileGender' name=\"ProfileGender\">";
 					echo "<option value=\"\">All Gender</option>";
 					$queryShowGender = mysql_query($query);
 					while($dataShowGender = mysql_fetch_assoc($queryShowGender)){
@@ -338,7 +339,8 @@
 						}
 					}					
 			 }  
-		 echo "       <p class=\"form-".strtolower(trim($data3['ProfileCustomTitle']))."\">\n"; 
+		 
+		 echo "       <p class=\"form-".strtolower(trim($data3['ProfileCustomTitle']))." ".gender_filter($data3['ProfileCustomShowGender'])."\">\n"; 
 		 echo "       <label for=\"".strtolower(trim($data3['ProfileCustomTitle']))."\">". __( $data3['ProfileCustomTitle'].$measurements_label, rb_agencyinteract_TEXTDOMAIN) ."</label>\n";		  
 			if ($ProfileCustomType == 1) { //TEXT
 				echo "<input type=\"text\" name=\"ProfileCustomID". $data3['ProfileCustomID'] ."\" value=\"". $_REQUEST["ProfileCustomID". $data3['ProfileCustomID']] ."\" /><br />\n";

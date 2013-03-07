@@ -15,6 +15,7 @@
 		function rb_agencyinteract_inserthead() {
 		  if( !is_admin() ) {
 			echo "<link rel=\"stylesheet\" href=\"". rb_agencyinteract_BASEDIR ."style/style.css\" type=\"text/css\" media=\"screen\" />\n";
+			echo "<script type=\"text/javascript\" src=\"". rb_agencyinteract_BASEDIR ."jquery-page.js\"></script>";
 		  }
 		  if(!wp_script_is('jquery')) {
 			echo "<script type=\"text/javascript\" src=\"". rb_agencyinteract_BASEDIR ."style/jquery.1.8.js\"></script>";
@@ -175,7 +176,19 @@
 				}
 			}
 		}
-	
+		
+    // function for checking male and female filter
+	if ( !function_exists('gender_filter') ) {  
+		function gender_filter($gender=0) {
+			if($gender == '1'){
+				return "male_filter";
+			}elseif($gender == '2'){
+				return "female_filter";
+			}else{
+				return "";
+			}
+		}
+	}
 	/*
 	add_filter('login_redirect', 'rb_agencyinteract_login_redirect');
 		function rb_agencyinteract_login_redirect() {

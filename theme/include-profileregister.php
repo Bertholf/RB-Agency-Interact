@@ -171,10 +171,13 @@
 					}
 
 			 }
-		 echo "<td scope=\"row\">";		 
+         
+		 
+		 echo "<td scope=\"row\" class='".gender_filter($data3['ProfileCustomShowGender'])."'>";		 
+
 		 echo " ". __( $data3['ProfileCustomTitle'].$measurements_label, rb_agencyinteract_TEXTDOMAIN) ."\n";		  
 		  echo "</td>";	
-		 echo "<td>";	
+		 echo "<td class='".gender_filter($data3['ProfileCustomShowGender'])."'>";		
 		   $ProfileCustomValue = $rb_agency_new_registeredUser;
 			if ($ProfileCustomType == 1) { //TEXT
 			
