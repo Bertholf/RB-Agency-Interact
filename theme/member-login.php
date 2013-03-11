@@ -31,7 +31,9 @@ function  get_user_login_info(){
 		} else {
 
 			if( $user_info->user_level > 7) {
-				header("Location: ". get_bloginfo("wpurl"). "/wp-admin/");
+				//header("Location: ". get_bloginfo("wpurl"). "/wp-admin/");
+				header("Location: ". get_bloginfo("wpurl"). "/dashboard/");
+
 			} 
 
 			// Message will show for 48hrs after registration
