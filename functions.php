@@ -180,9 +180,20 @@
     // function for checking male and female filter
 	if ( !function_exists('gender_filter') ) {  
 		function gender_filter($gender=0) {
-			if($gender == '1'){
+		    global $wpdb;
+			$wpdb->query('select * from my_plugin_table where foo = "bar"');
+			
+			$gender = "SELECT GenderTitle FROM rb_agency_data_gender WHERE GenderID = ". $gender ." LIMIT 1";
+			$results = $wpdb->get_results($gender);
+			
+			$gender_title = "";
+			foreach($results as $gname){
+				$gender_title = strtolower($gname->GenderTitle);
+			}
+			
+			if($gender_title == 'male'){
 				return "male_filter";
-			}elseif($gender == '2'){
+			}elseif($gender_title == 'female'){
 				return "female_filter";
 			}else{
 				return "";

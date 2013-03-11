@@ -6,13 +6,13 @@ jQuery(document).ready(function(){
 	 */
 	jQuery("#ProfileGender").change(function() {
 
-		if(jQuery(this).val() == '1'){
+		if(jQuery("#ProfileGender option:selected").text() == 'Male'){
 
 			jQuery(".male_filter").show();
 			jQuery(".female_filter").hide();
 			clear_filter(".female_filter");
 
-		} else if (jQuery(this).val() == '2'){
+		} else if (jQuery("#ProfileGender option:selected").text() == 'Female'){
 
 			jQuery(".male_filter").hide();
 			jQuery(".female_filter").show();
