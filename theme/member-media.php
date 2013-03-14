@@ -49,9 +49,12 @@ if (isset($_POST['action'])) {
 	// *************************************************************************************************** //
 	// Edit Record
 	case 'editRecord':
-		if (!$have_error){		
-			
-			// Upload Image & Add to Database
+		if (!$have_error){
+		
+        // fixed error of folder is not created 
+		$ProfileGallery = rb_agency_checkdir($ProfileGallery);  // Check Directory - create directory if does not exist	
+		
+		// Upload Image & Add to Database
 			$i = 1;
 			while ($i <= 10) {
 				if($_FILES['profileMedia'. $i]['tmp_name'] != ""){
