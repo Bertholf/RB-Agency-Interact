@@ -134,10 +134,12 @@
 		if($have_error == false){
 			$new_user = wp_insert_user( $userdata );
 			$new_user_type = $_POST['profile_type'];
+			$gender = $_POST['ProfileGender'];
 			
 			
 			// Model or Client
 			update_usermeta($new_user, 'rb_agency_interact_profiletype', $new_user_type);
+			update_usermeta($new_user, 'rb_agency_interact_pgender', $gender);
 			
 			//Custom Fields
 			$arr = array();
@@ -264,6 +266,18 @@
 	echo "       	<label for=\"email\">". __("E-mail (required)", rb_agencyinteract_TEXTDOMAIN) ."</label>\n";
 	echo "       	<input class=\"text-input\" name=\"profile_email\" type=\"text\" id=\"profile_email\" value=\""; if ( $error ) echo wp_specialchars( $_POST['profile_email'], 1 ); echo "\" />\n";
 	echo "       </p><!-- .form-email -->\n";
+
+        echo "     <p class=\"form-profile_gender\">\n";
+     	echo "		<label for=\"profile_gender\">". __("Gender", rb_agencyinteract_TEXTDOMAIN) ."</label>\n";
+					$query= "SELECT GenderID, GenderTitle FROM " .  table_agency_data_gender . " GROUP BY GenderTitle ";
+					echo "<select id='ProfileGender' name=\"ProfileGender\">";
+					echo "<option value=\"\">All Gender</option>";
+					$queryShowGender = mysql_query($query);
+					while($dataShowGender = mysql_fetch_assoc($queryShowGender)){
+						echo "<option value=\"".$dataShowGender["GenderID"]."\" ". selected($ProfileGender ,$dataShowGender["GenderID"],false).">".$dataShowGender["GenderTitle"]."</option>";
+					}
+					echo "</select>";
+		echo "	  </p>";
      
 	
 	echo "       <p class=\"form-profile_type\">\n";
@@ -287,183 +301,6 @@
 	echo "       		</select>\n";
 	echo "       </p><!-- .form-profile_type -->\n";
   	
-        echo "     <p class=\"form-profile_gender\">\n";
-     	echo "		<label for=\"profile_gender\">". __("Gender", rb_agencyinteract_TEXTDOMAIN) ."</label>\n";
-					$query= "SELECT GenderID, GenderTitle FROM " .  table_agency_data_gender . " GROUP BY GenderTitle ";
-					echo "<select id='ProfileGender' name=\"ProfileGender\">";
-					echo "<option value=\"\">All Gender</option>";
-					$queryShowGender = mysql_query($query);
-					while($dataShowGender = mysql_fetch_assoc($queryShowGender)){
-						echo "<option value=\"".$dataShowGender["GenderID"]."\" ". selected($ProfileGender ,$dataShowGender["GenderID"],false).">".$dataShowGender["GenderTitle"]."</option>";
-					}
-					echo "</select>";
-		echo "	  </p><!-- .form-profile_gender-->\n";
-
-	      $rb_agency_options_arr = get_option('rb_agency_options');
-		$rb_agency_option_unittype  			= $rb_agency_options_arr['rb_agency_option_unittype'];
-		$rb_agency_option_profilenaming 		= (int)$rb_agency_options_arr['rb_agency_option_profilenaming'];
-		$rb_agency_option_locationtimezone 		= (int)$rb_agency_options_arr['rb_agency_option_locationtimezone'];
-	
-
-		
-	$query3 = "SELECT * FROM ". table_agency_customfields ." WHERE ProfileCustomView = 0 AND ProfileCustomShowRegistration = 1 ORDER BY ProfileCustomOrder";
-	$results3 = mysql_query($query3) or die(mysql_error());
-	$count3 = mysql_num_rows($results3);
-	
-	while ($data3 = mysql_fetch_assoc($results3)) {
-	 	
-		$ProfileCustomTitle = $data3['ProfileCustomTitle'];
-		$ProfileCustomType  = $data3['ProfileCustomType'];
-	       
-			 // SET Label for Measurements
-			 // Imperial(in/lb), Metrics(ft/kg)
-			 $rb_agency_options_arr = get_option('rb_agency_options');
-			  $rb_agency_option_unittype  = $rb_agency_options_arr['rb_agency_option_unittype'];
-			  $measurements_label = "";
-			 if ($ProfileCustomType == 7) { //measurements field type
-			    if($rb_agency_option_unittype ==0){ // 0 = Metrics(ft/kg)						
-					if($data3['ProfileCustomOptions'] == 1){
-					    $measurements_label  ="<em>(cm)</em>";
-					}elseif($data3['ProfileCustomOptions'] == 2){
-					    $measurements_label  ="<em>(kg)</em>";
-					}elseif($data3['ProfileCustomOptions'] == 3){
-					  	$measurements_label  ="<em>(In Inches/Feet)</em>";
-					}
-					} elseif($rb_agency_option_unittype ==1){ //1 = Imperial(in/lb)
-						if($data3['ProfileCustomOptions'] == 1){
-						    $measurements_label  ="<em>(In Inches)</em>";
-						}elseif($data3['ProfileCustomOptions'] == 2){
-						  	$measurements_label  ="<em>(In Pounds)</em>";
-						}elseif($data3['ProfileCustomOptions'] == 3){
-						  	$measurements_label  ="<em>(In Inches/Feet)</em>";
-						}
-					}					
-			 }  
-		 
-		 echo "       <p class=\"form-".strtolower(trim($data3['ProfileCustomTitle']))." ".gender_filter($data3['ProfileCustomShowGender'])."\">\n"; 
-		 echo "       <label for=\"".strtolower(trim($data3['ProfileCustomTitle']))."\">". __( $data3['ProfileCustomTitle'].$measurements_label, rb_agencyinteract_TEXTDOMAIN) ."</label>\n";		  
-			if ($ProfileCustomType == 1) { //TEXT
-				echo "<input type=\"text\" name=\"ProfileCustomID". $data3['ProfileCustomID'] ."\" value=\"". $_REQUEST["ProfileCustomID". $data3['ProfileCustomID']] ."\" /><br />\n";
-			}
-			
-			/* elseif ($ProfileCustomType == 2) { // Min Max
-			
-				$ProfileCustomOptions_String = str_replace(",",":",strtok(strtok($data3['ProfileCustomOptions'],"}"),"{"));
-				list($ProfileCustomOptions_Min_label,$ProfileCustomOptions_Min_value,$ProfileCustomOptions_Max_label,$ProfileCustomOptions_Max_value) = explode(":",$ProfileCustomOptions_String);
-			 
-				if (!empty($ProfileCustomOptions_Min_value) && !empty($ProfileCustomOptions_Max_value)) {
-						echo "<br /><br /> <label for=\"ProfileCustomLabel_min\" style=\"text-align:right;\">". __("Min", rb_agency_TEXTDOMAIN) . "&nbsp;&nbsp;</label>\n";
-						echo "<input type=\"text\" name=\"ProfileCustomID". $data3['ProfileCustomID'] ."\" value=\"". $ProfileCustomOptions_Min_value ."\" />\n";
-						echo "<br /><br /><br /><label for=\"ProfileCustomLabel_min\" style=\"text-align:right;\">". __("Max", rb_agency_TEXTDOMAIN) . "&nbsp;&nbsp;</label>\n";
-						echo "<input type=\"text\" name=\"ProfileCustomID". $data3['ProfileCustomID'] ."\" value=\"". $ProfileCustomOptions_Max_value ."\" /><br />\n";
-				} else {
-						echo "<br /><br />  <label for=\"ProfileCustomLabel_min\" style=\"text-align:right;\">". __("Min", rb_agency_TEXTDOMAIN) . "&nbsp;&nbsp;</label>\n";
-						echo "<input type=\"text\" name=\"ProfileCustomID". $data3['ProfileCustomID'] ."\" value=\"".$_REQUEST["ProfileCustomID". $data3['ProfileCustomID']]."\" />\n";
-						echo "<br /><br /><br /><label for=\"ProfileCustomLabel_min\" style=\"text-align:right;\">". __("Max", rb_agency_TEXTDOMAIN) . "&nbsp;&nbsp;</label>\n";
-						echo "<input type=\"text\" name=\"ProfileCustomID". $data3['ProfileCustomID'] ."\" value=\"".$_REQUEST["ProfileCustomID". $data3['ProfileCustomID']]."\" /><br />\n";
-				}
-			 
-			} */
-			
-			elseif ($ProfileCustomType == 3) {  // Drop Down
-				list($option1,$option2) = explode(":",$data3['ProfileCustomOptions']);	
-				$data = explode("|",$option1);
-				$data2 = explode("|",$option2);
-				echo "<label>".$data[0]."</label>";
-				echo "<select name=\"ProfileCustomID". $data3['ProfileCustomID'] ."\">\n";
-				echo "<option value=\"\">--</option>";
-					$pos = 0;
-					foreach($data as $val1){
-						if(!empty($val1)){
-							echo "<option value=\"".$val1."\" ".selected($_REQUEST["ProfileCustomID". $data3['ProfileCustomID']],$val1,false)." >".$val1."</option>";
-						}
-					}
-					echo "</select>\n";
-				/*if (!empty($data2) && !empty($option2)) {
-					echo "<label>".$data2[0]."</label>";
-						$pos2 = 0;
-						echo "<select name=\"ProfileCustomID". $data3['ProfileCustomID'] ."[]\">\n";
-						echo "<option value=\"\">--</option>";
-						foreach($data2 as $val2){
-								if($val2 != end($data2) && $val2 !=  $data2[0]){
-									echo "<option value=\"".$val2."\" ". selected($val2, $_REQUEST["ProfileCustomID". $data3['ProfileCustomID']]) ." >".$val2."</option>";
-								}
-							}
-						echo "</select>\n";
-				}*/
-			} elseif ($ProfileCustomType == 4) {
-				echo "<textarea style=\"width: 100%; min-height: 100px;\" name=\"ProfileCustomID". $data3['ProfileCustomID'] ."\">". $_REQUEST["ProfileCustomID". $data3['ProfileCustomID']] ."</textarea>";
-
-			} elseif ($ProfileCustomType == 5) {
-
-				$array_customOptions_values = explode("|",$data3['ProfileCustomOptions']);
-				echo "<div style=\"width:300px;float:left;\">";
-				foreach($array_customOptions_values as $val){
-					$xplode = explode(",",$_REQUEST["ProfileCustomID". $data3['ProfileCustomID']]);
-					echo "<label><input type=\"checkbox\" value=\"". $val."\"   "; if(in_array($val,$xplode)){ echo "checked=\"checked\""; } echo" name=\"ProfileCustomID". $data3['ProfileCustomID'] ."[]\" />";
-					echo "". $val."</label>";
-				}      echo "<br/>";
-				echo "</div>";
-				   
-			} elseif ($ProfileCustomType == 6) {
-				
-				$array_customOptions_values = explode("|",$data3['ProfileCustomOptions']);				
-				foreach($array_customOptions_values as $val){
-					
-					echo "<input type=\"radio\" value=\"". $val."\" "; checked($val, $_REQUEST["ProfileCustomID". $data3['ProfileCustomID']]); echo" name=\"ProfileCustomID". $data3['ProfileCustomID'] ."[]\" />";
-					echo "<span>". $val."</span><br/>";
-				}
-			} elseif ($ProfileCustomType == 7) { //Imperial/Metrics			
-
-			    // if feet and inches
-				// display dropdown selection box
-				if($data3['ProfileCustomOptions']==3){
-
-                	echo "<select name=\"ProfileCustomID". $data3['ProfileCustomID'] ."\">\n";
-
-						if (empty($_REQUEST["ProfileCustomID". $data3['ProfileCustomID']])) {
-
-							 echo "<option value=\"\">--</option>\n";
-						
-						}
-
-						$i=36;	$heightraw = 0; $heightfeet = 0;  $heightinch = 0;
-
-                        while($i<=90)  {
-							
-							  $heightraw = $i;
-							  $heightfeet = floor($heightraw/12);
-						      $heightinch = $heightraw - floor($heightfeet*12);
-
-							  echo " <option value=\"". $i ."\" "
-							        . selected($_REQUEST["ProfileCustomID". 
-									  $data3['ProfileCustomID']], $i) .">"
-									. $heightfeet ." ft "
-									. $heightinch 
-									." in</option>\n";
-
-							  $i++;
-
-					   }
-
-					echo " </select>\n";
-
-
-                // use textbox if
-				// not feet and inches 
-				}else{
-				
-				    echo "<input type=\"text\" name=\"ProfileCustomID"
-					. $data3['ProfileCustomID'] ."\" value=\""
-					.$_REQUEST["ProfileCustomID"
-					. $data3['ProfileCustomID']]."\" /><br />\n";
-
-			    }
-			
-	    echo "       </p>\n";
-		} 
-			
-	}// End while
 	echo "       <p class=\"form-profile_agree\">\n";
 					$profile_agree = get_the_author_meta("profile_agree", $current_user->ID );
 	echo "       		<input type=\"checkbox\" name=\"profile_agree\" value=\"yes\" /> ". sprintf(__("I agree to the %s terms of service", rb_agencyinteract_TEXTDOMAIN), "<a href=\"/terms-of-use/\" target=\"_blank\">") ."</a>\n";
