@@ -35,34 +35,7 @@
 		echo "		</td>\n";
 		echo "	  </tr>\n";
 
-		/*
-		 *   have ommitted this previous 
-		 *   custom fields display
-		 */
-		// Include Profile Customfields
-		//	    $ProfileInformation = "0"; // Public fields only
-		//		$query1 = "SELECT ProfileCustomID, ProfileCustomTitle, ProfileCustomType, ProfileCustomOptions, ProfileCustomOrder,  
-		//       ProfileCustomView, ProfileCustomShowGender, ProfileCustomShowProfile, ProfileCustomShowSearch, 
-  		//       ProfileCustomShowLogged, ProfileCustomShowAdmin,ProfileCustomShowRegistration FROM ". table_agency_customfields 
-		//         ." WHERE ProfileCustomView = ". $ProfileInformation ." ORDER BY ProfileCustomOrder ASC";
-		//			$results1 = mysql_query($query1);
-		//			$count1 = mysql_num_rows($results1);
-		//			$pos = 0;
-		//		while ($data1 = mysql_fetch_array($results1)) { 
-		//			if ( ($data1["ProfileCustomShowGender"] == $ProfileGender) || ($data1["ProfileCustomShowGender"] = 0) ) {
-		//				// Yes, its the same gender, show it:
-		//				//include("view-custom-fields.php");
-		//			//if($data1["ProfileCustomShowGender"] == $dataList2["ProfileGender"] && 
-		//          $count2 >=1 && !empty($data1["ProfileCustomShowRegistration"]) || !empty($data1["ProfileCustomShowAdmin"]) ||
-		//          !empty($data1["ProfileCustomShowLogged"]) || !empty($data1["ProfileCustomShowProfile"]) ||
-		//          !empty($data1["ProfileCustomShowSearch"])){ // Depends on Current LoggedIn User's Gender
-		//			//} elseif(empty($data1["ProfileCustomShowGender"]) && !empty($data1["ProfileCustomShowRegistration"]) ||
-		//          !empty($data1["ProfileCustomShowAdmin"]) || !empty($data1["ProfileCustomShowLogged"]) || 
-		//          !empty($data1["ProfileCustomShowProfile"]) || !empty($data1["ProfileCustomShowSearch"])){
-		//			//	include("view-custom-fields.php");
-		//			}
-		//		 }
-		
+	
 		echo "  </tbody>\n";
 		echo "</table>\n";
 
@@ -124,9 +97,10 @@
 		 
 		 if ($ProfileCustomType == 1) { //TEXT
 			
-			echo "<input type=\"text\" name=\"ProfileCustomID". $data3['ProfileCustomID'] 
-			     ."\" value=\"". $_REQUEST["ProfileCustomID". $data3['ProfileCustomID']] 
-				 ."\" /><br />\n";
+			echo '<input type="text" name="ProfileCustomID'. $data3['ProfileCustomID'] 
+			     .'" value="'. retrieve_datavalue($_REQUEST["ProfileCustomID". $data3['ProfileCustomID']],
+				 									$data3['ProfileCustomID'],$ProfileID,"textbox") 
+				 .'" /><br />';
 			}
 			
 		elseif ($ProfileCustomType == 2) { // Min Max
@@ -143,21 +117,27 @@
 					   echo "<br /><br /> <label style='width:200px; float:left;' for=\"ProfileCustomLabel_min\" style=\"text-align:right;\">"
 						     . __("Min", rb_agency_TEXTDOMAIN) . "&nbsp;&nbsp;</label>\n";
 					   echo "<input type=\"text\" name=\"ProfileCustomID". $data3['ProfileCustomID'] 
-						     ."\" value=\"". $ProfileCustomOptions_Min_value ."\" />\n";
+						     ."\" value=\"". 
+							 retrieve_datavalue($ProfileCustomOptions_Min_value,
+				 								$data3['ProfileCustomID'],$ProfileID,"textbox")
+							  ."\" />\n";
 					   echo "<br /><br /><br /><label style='width:200px; float:left;' for=\"ProfileCustomLabel_min\" style=\"text-align:right;\">"
 						    . __("Max", rb_agency_TEXTDOMAIN) . "&nbsp;&nbsp;</label>\n";
 					   echo "<input type=\"text\" name=\"ProfileCustomID". $data3['ProfileCustomID'] ."\" value=\""
-					        . $ProfileCustomOptions_Max_value ."\" /><br />\n";
+					        .  retrieve_datavalue($ProfileCustomOptions_Max_value,
+				 								  $data3['ProfileCustomID'],$ProfileID,"textbox") ."\" /><br />\n";
 				
 				} else {
 						echo "<br /><br />  <label style='width:200px; float:left;' for=\"ProfileCustomLabel_min\" style=\"text-align:right;\">"
 						     . __("Min", rb_agency_TEXTDOMAIN) . "&nbsp;&nbsp;</label>\n";
 						echo "<input type=\"text\" name=\"ProfileCustomID". $data3['ProfileCustomID'] ."\" value=\""
-						     .$_REQUEST["ProfileCustomID". $data3['ProfileCustomID']]."\" />\n";
+						     .retrieve_datavalue($_REQUEST["ProfileCustomID". $data3['ProfileCustomID']],
+				 									$data3['ProfileCustomID'],$ProfileID,"textbox") ."\" />\n";
 						echo "<br /><br /><br /><label for=\"ProfileCustomLabel_min\" style=\"text-align:right;\">"
 						     . __("Max", rb_agency_TEXTDOMAIN) . "&nbsp;&nbsp;</label>\n";
 						echo "<input type=\"text\" name=\"ProfileCustomID". $data3['ProfileCustomID'] ."\" value=\""
-						     .$_REQUEST["ProfileCustomID". $data3['ProfileCustomID']]."\" /><br />\n";
+						     .retrieve_datavalue($_REQUEST["ProfileCustomID". $data3['ProfileCustomID']],
+				 									$data3['ProfileCustomID'],$ProfileID,"textbox") ."\" /><br />\n";
 				}
 			 
 		} 
@@ -178,8 +158,9 @@
 							$pos = 0;
 							foreach($data as $val1){
 								if(!empty($val1)){
-												echo "<option value=\"".$val1."\" ".selected($_REQUEST["ProfileCustomID"
-													 . $data3['ProfileCustomID']],$val1,false)." >".$val1."</option>";
+												echo "<option value=\"".$val1."\" ".
+											retrieve_datavalue("",$data3['ProfileCustomID'],$ProfileID,"dropdown",$val1)
+												." >".$val1."</option>";
 								}
 							}
 					
@@ -250,8 +231,8 @@
 							  $heightraw = $i;
 							  $heightfeet = floor($heightraw/12);
 							  $heightinch = $heightraw - floor($heightfeet*12);
-								echo " <option value=\"". $i ."\" ". selected($_REQUEST["ProfileCustomID"
-								     . $data3['ProfileCustomID']], $i) .">"
+								echo " <option value=\"". $i ."\" ".
+								retrieve_datavalue("",$data3['ProfileCustomID'],$ProfileID,"dropdown",$i)  .">"
 									 . $heightfeet ." ft ". $heightinch ." in</option>\n";
 							    $i++;
 						}
@@ -260,8 +241,11 @@
 		   
 		       }else{
 			   
-			   echo "<input type=\"text\" name=\"ProfileCustomID". $data3['ProfileCustomID'] ."\" value=\"".$_REQUEST["ProfileCustomID"
-			        . $data3['ProfileCustomID']]."\" /><br />\n";}
+			 echo '<input type="text" name="ProfileCustomID'. $data3['ProfileCustomID'] 
+			     .'" value="'. retrieve_datavalue($_REQUEST["ProfileCustomID". $data3['ProfileCustomID']],
+				 									$data3['ProfileCustomID'],$ProfileID, 'textbox') 
+				 .'" /><br />';
+			   }
 			}
 									
 	    echo "</p>\n";
@@ -269,6 +253,7 @@
 		   } // end if
 		   	
         }// End while
+
 
 		echo "". __("Last updated ", rb_agencyinteract_TEXTDOMAIN) ." "
 			   . rb_agency_makeago(rb_agency_convertdatetime($ProfileDateUpdated), $rb_agency_option_locationtimezone) ."\n";

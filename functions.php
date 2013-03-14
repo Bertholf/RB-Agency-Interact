@@ -200,6 +200,64 @@
 			}
 		}
 	}
+
+	// retrieving value of saved fields for edit
+	if ( !function_exists('retrieve_datavalue') ) {  
+		function retrieve_datavalue($field="",$customID=0,$ID=0,$type="", $val="") {
+			global $wpdb;
+			/* 
+			 *    Get data for displaying and pass to array
+			 *    for comparison
+			 */
+			 if($ID != 0){
+					 
+					 if($type == "dropdown"){
+
+							 $result = mysql_query("SELECT ProfileCustomValue FROM "
+										. table_agency_customfield_mux .
+										" WHERE ProfileCustomID = ". $customID .
+										" AND ProfileCustomValue = '" . $val . "' "
+										." AND ProfileID = "
+										. $ID);
+					 
+					 } else {
+
+							 $result = mysql_query("SELECT ProfileCustomValue FROM "
+										. table_agency_customfield_mux .
+										" WHERE ProfileCustomID = ". $customID ." AND ProfileID = "
+										. $ID);
+
+					 }
+					 	
+						
+					  while($row = mysql_fetch_assoc($result)){
+
+						 if($type == "textbox"){
+						     return $row["ProfileCustomValue"];
+						 } elseif($type == "dropdown") {
+						     return "selected";
+						 }
+
+			          }
+
+					  if($type == "textbox"){
+						     return $field;
+					  } elseif($type == "dropdown") {
+						     return "";
+					  }
+					   
+			 } else {
+			 	
+			  if($type == "textbox"){
+					 return $field;
+			  } elseif($type == "dropdown") {
+					 return "";
+			  }
+				
+			 }
+		}
+	}	
+	
 	/*
 	add_filter('login_redirect', 'rb_agencyinteract_login_redirect');
 		function rb_agencyinteract_login_redirect() {
