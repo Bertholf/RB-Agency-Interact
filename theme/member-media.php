@@ -52,7 +52,7 @@ if (isset($_POST['action'])) {
 		if (!$have_error){
 		
         // fixed error of folder is not created 
-		$ProfileGallery = rb_agency_checkdir($ProfileGallery);  // Check Directory - create directory if does not exist	
+		$ProfileGallery = rb_agency_createdir($ProfileGallery);  // Check Directory - create directory if does not exist	
 		
 		// Upload Image & Add to Database
 			$i = 1;
