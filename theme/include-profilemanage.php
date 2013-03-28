@@ -11,6 +11,11 @@
 	$query = "SELECT * FROM " . table_agency_profile . " WHERE ProfileUserLinked='$ProfileUserLinked'";
 	$results = mysql_query($query) or die ( __("Error, query failed", rb_agencyinteract_TEXTDOMAIN ));
 	$count = mysql_num_rows($results);
+        /*
+         * Get profile type
+         */
+        $ptype = get_user_meta($current_user->id, "rb_agency_interact_profiletype", true);
+                
 	while ($data = mysql_fetch_array($results)) {
 		$ProfileID					=$data['ProfileID'];
 		$ProfileUserLinked			=$data['ProfileUserLinked'];
@@ -23,19 +28,11 @@
 		echo "  <tbody>\n";
 		// Account Information	
 		echo "    <tr valign=\"top\">\n";
-		echo "		<td scope=\"row\">". __("Classification", rb_agencyinteract_TEXTDOMAIN) ."</th>\n";
+		echo "		<th scope=\"row\">". __("Classification:", rb_agencyinteract_TEXTDOMAIN) ."</th>\n";
 		echo "		<td>\n";
-					$ProfileTypeArray = explode(",", $ProfileType);
-					$queryType = "SELECT * FROM ". table_agency_data_type ." ORDER BY DataTypeTitle";
-					$resultsType = mysql_query($queryType);
-					$countType = mysql_num_rows($resultsType);
-					while ($dataType = mysql_fetch_array($resultsType)) {
-						echo "<input type=\"checkbox\" name=\"ProfileType[]\" id=\"ProfileType\" value=\"". $dataType['DataTypeID'] ."\""; if ( in_array($dataType['DataTypeID'], $ProfileTypeArray)) { echo " checked=\"checked\""; } echo "> ". $dataType['DataTypeTitle'] ."<br />\n";
-					}
+		echo "		". __($ptype, rb_agencyinteract_TEXTDOMAIN);
 		echo "		</td>\n";
 		echo "	  </tr>\n";
-
-	
 		echo "  </tbody>\n";
 		echo "</table>\n";
 
@@ -51,8 +48,29 @@
 	$count3 = mysql_num_rows($results3);
 	
 	while ($data3 = mysql_fetch_assoc($results3)) {
-	 	
-		if (($data3["ProfileCustomShowGender"] == $ProfileGender) || ($data3["ProfileCustomShowGender"] == 0) ) {
+		/*
+                 * Get Profile Types to
+                 * filter models from clients
+                 */
+                $permit_type = false;
+		
+		$PID = $data3['ProfileCustomID'];
+		
+		$get_types = "SELECT ProfileCustomTypes FROM ". table_agency_customfields_types .
+		             " WHERE ProfileCustomID = " . $PID;
+						
+		$result = mysql_query($get_types);
+						
+		while ( $p = mysql_fetch_array($result)){
+			$types = $p['ProfileCustomTypes'];			    
+		}
+		
+		$types = explode(",",$types); 
+		
+		if(in_array($ptype,$types)){ $permit_type=true; }
+		
+		if (($data3["ProfileCustomShowGender"] == $ProfileGender) || ($data3["ProfileCustomShowGender"] == 0) 
+		    && $permit_type == true ) {
 		
 		$ProfileCustomTitle = $data3['ProfileCustomTitle'];
 		$ProfileCustomType  = $data3['ProfileCustomType'];

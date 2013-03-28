@@ -31,14 +31,26 @@
 		echo " 			  <div class=\"subMenuTabBG\"><div class=\"subMenuTabBorders\"><div class=\"subMenuTabText\">".__("My Profile", rb_agencyinteract_TEXTDOMAIN) ."</div></div></div>\n";
 		echo " 			</a>\n";
 		echo " 		</div>\n";
-					if ( ($_SERVER["REQUEST_URI"]) == "/profile-member/media/") { $tabclass = "active"; } else { $tabclass = "inactive"; }
-		echo " 		<div class=\"tab-inner tab-". $tabclass ."\">\n";
+		/*
+		 * Set Media to not show to
+		 * client/s, agents, producers,
+		 */
+		$ptype = get_user_meta($current_user->id, "rb_agency_interact_profiletype", true);
+		$restrict = array('client','clients','agents','producers');
+		if(in_array(strtolower($ptype),$restrict)){
+			$d = 'display:none;';
+		} else {
+			$d = '';
+		}
+
+		if ( ($_SERVER["REQUEST_URI"]) == "/profile-member/media/") { $tabclass = "active"; } else { $tabclass = "inactive"; }
+		echo ' 		<div class="tab-inner tab-'. $tabclass .'" style="'.$d.'">';
 		echo " 			<a href=\"". get_bloginfo("wpurl") ."/profile-member/media/\">\n";
 		echo " 			  <div class=\"subMenuTabBG\"><div class=\"subMenuTabBorders\"><div class=\"subMenuTabText\">".__("My Media", rb_agencyinteract_TEXTDOMAIN) ."</div></div></div>\n";
 		echo " 			</a>\n";
 		echo " 		</div>\n";
 		}
-
+                
 		$rb_agencyinteract_options_arr = get_option('rb_agencyinteract_options');
 			$rb_agencyinteract_option_subscribeupsell = (int)$rb_agencyinteract_options_arr['rb_agencyinteract_option_subscribeupsell'];
 

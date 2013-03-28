@@ -162,7 +162,29 @@
 				$count1 = mysql_num_rows($results1);
 				$pos = 0;
 			while ($data1 = mysql_fetch_array($results1)) { 
-				if ( ($data1["ProfileCustomShowGender"] == $ProfileGender) || ($data1["ProfileCustomShowGender"] = 0) ) {
+                               /*
+                                * Get Profile Types to
+                                * filter models from clients
+                                */
+                                $permit_type = false;
+
+                                $PID = $data1['ProfileCustomID'];
+
+                                $get_types = "SELECT ProfileCustomTypes FROM ". table_agency_customfields_types .
+                                            " WHERE ProfileCustomID = " . $PID;
+
+                                $result = mysql_query($get_types);
+
+                                while ( $p = mysql_fetch_array($result)){
+                                        $types = $p['ProfileCustomTypes'];			    
+                                }
+
+                                $types = explode(",",$types); 
+
+                                if(in_array($ptype,$types)){ $permit_type=true; }
+                            
+				if ( ($data1["ProfileCustomShowGender"] == $ProfileGender) || ($data1["ProfileCustomShowGender"] = 0) 
+                                      && $permit_type == true )  {
 					// Yes, its the same gender, show it:
 					include("view-custom-fields.php");
 				//if($data1["ProfileCustomShowGender"] == $dataList2["ProfileGender"] && $count2 >=1 && !empty($data1["ProfileCustomShowRegistration"]) || !empty($data1["ProfileCustomShowAdmin"]) || !empty($data1["ProfileCustomShowLogged"]) || !empty($data1["ProfileCustomShowProfile"]) || !empty($data1["ProfileCustomShowSearch"])){ // Depends on Current LoggedIn User's Gender

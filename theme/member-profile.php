@@ -100,8 +100,18 @@ get_header();
 		// Check if User is Logged in or not
 		if (is_user_logged_in()) { 
 
-			/// Show registration steps
-			echo "<div id=\"profile-steps\">Profile Setup: Step 2 of 4</div>\n";
+            /*
+			 * Set Media to not show to
+			 * client/s, agents, producers,
+			 */
+			$ptype = get_user_meta($current_user->id, "rb_agency_interact_profiletype", true);
+			$restrict = array('client','clients','agents','producers');
+			if(in_array(strtolower($ptype),$restrict)){
+				echo "<div id=\"profile-steps\">Profile Setup: Step 2 of 2</div>\n";
+			} else {
+				echo "<div id=\"profile-steps\">Profile Setup: Step 2 of 4</div>\n";
+			}
+
 			echo "<div id=\"profile-manage\" class=\"overview\">\n";
 
 			// Menu
