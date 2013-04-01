@@ -71,7 +71,7 @@
 		
 		if(in_array($ptype,$types)){ $permit_type=true; }
 		
-		if (($data3["ProfileCustomShowGender"] == $ProfileGender) || ($data3["ProfileCustomShowGender"] == 0) 
+		if ((($data3["ProfileCustomShowGender"] == $ProfileGender) || ($data3["ProfileCustomShowGender"] == 0)) 
 		    && $permit_type == true ) {
 		
 		$ProfileCustomTitle = $data3['ProfileCustomTitle'];
