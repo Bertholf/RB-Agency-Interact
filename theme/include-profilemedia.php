@@ -88,9 +88,17 @@
 						echo '<input type="hidden" name="pgallery" value="'.$ProfileGallery.'">';
 						
 						echo '<input type="hidden" name="pmedia_url" value="'.$dataImg['ProfileMediaURL'].'">';
+						/*
+						 * Make Path Dynamic for subdomains also
+						 */
+						$path = dirname(__FILE__) ;
+						$pos = strpos($path,'/wp-content/');
+						$path = substr($path,0,$pos);
+						$pos = strpos($path,'/public_html/');
+						$pos = $pos + 12;
+						$path = get_bloginfo('wpurl') . substr($path,$pos) . '/wp-content/uploads/profile-media/' . $ProfileGallery ."/";
 						
-						echo "  <img src=\"". rb_agency_UPLOADDIR . $ProfileGallery ."/". $dataImg['ProfileMediaURL'] ."\" style=\"width: 100px; z-index: 1; \" />\n";
-						echo "  <div class=\"primary\" style=\"background: ". $styleBackground ."; \"><input type=\"radio\" name=\"ProfileMediaPrimary\" value=\"". $dataImg['ProfileMediaID'] ."\" class=\"button-primary\"". $isChecked ." /> ". $isCheckedText ."</div>\n";
+						echo "  <img src=\"". $path . $dataImg['ProfileMediaURL'] ."\" style=\"width: 100px; z-index: 1; \" />\n";echo "  <div class=\"primary\" style=\"background: ". $styleBackground ."; \"><input type=\"radio\" name=\"ProfileMediaPrimary\" value=\"". $dataImg['ProfileMediaID'] ."\" class=\"button-primary\"". $isChecked ." /> ". $isCheckedText ."</div>\n";
 						echo "</div>\n";
 					}
 					if ($countImg < 1) {
