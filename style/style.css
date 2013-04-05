@@ -1,6 +1,6 @@
 #profile-manage .manage-content { padding: 15px; }
 #profile-manage .manage-content h3 { margin: 5px 0; }
-#profile-manage .manage-content p { margin: 0 0 15px 0; }
+#profile-manage .manage-content p { margin: 0 0 15px 0; line-height: 18px; }
 #profile-manage .manage-content select { padding: 3px; }
 #profile-manage .manage-section { overflow: hidden; margin-bottom: 15px; }
 
@@ -29,8 +29,7 @@
 -webkit-border-bottom-left-radius: 5px; -moz-border-radius-bottomleft: 5px; border-bottom-left-radius: 5px;}
 
 #profile-manage .inner .account div { overflow:hidden; }
-#profile-manage .inner .account div a { padding: 10px; color:#333; background: #eee; border-bottom: 2px solid #aaa; float:left; width: 300px; }
-#profile-manage .inner .account div a:hover { background: #f5f5f5; }
+#profile-manage .inner .account div a { padding: 10px 0; text-decoration: none; float: left; }
 #profile-manage .inner p.submit { text-align: right; }
 
 /* 	My Media 
@@ -42,10 +41,7 @@
 #profile-manage .manage-section.upload p { margin: 15px 0; }
 
 /* Profile Gallery */
-#profile-manage .inner .profileimage { float:left; background: #eee!important; border: 1px solid #aaa; font-size:13px; position: relative; }
-#profile-manage .inner .profileimage .primary { padding: 5px; color: #fff; }
-#profile-manage .inner .profileimage .delete { position: absolute; padding: 5px; text-align: center; left: 0; top: 0; background:#fff; right:0; }
-#profile-manage .inner h3 { font-weight: bold; padding: 10px 0; border-bottom: 2px solid #eaeaea; margin-bottom: 10px; }
+
 
 /** Sign In - Register **/
 #rbsignin-register { text-align: center; vertical-align: top; }

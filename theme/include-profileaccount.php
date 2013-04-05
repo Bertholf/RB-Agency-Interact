@@ -48,8 +48,8 @@
 		echo "     <input type=\"hidden\" name=\"ProfileID\" value=\"". $ProfileID ."\" />\n";
 		echo " <table class=\"form-table\">\n";
 		echo "  <tbody>\n";
-		echo "    <tr colspan=\"2\">\n";
-		echo "		<td scope=\"row\"><h3>". __("Contact Information", rb_agencyinteract_TEXTDOMAIN) ."</h3></th>\n";
+		echo "    <tr>\n";
+		echo "		<td colspan=\"2\" scope=\"row\"><h3>". __("Contact Information", rb_agencyinteract_TEXTDOMAIN) ."</h3></th>\n";
 		echo "	  </tr>\n";
 		echo "    <tr valign=\"top\">\n";
 		echo "		<td scope=\"row\">". __("Gallery Folder", rb_agencyinteract_TEXTDOMAIN) ."</th>\n";

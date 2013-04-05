@@ -72,7 +72,7 @@ get_header();
 				echo "<div id=\"profile-steps\">Profile Setup: Step 1 of 4</div>\n";
 			}
                         
-			echo "	<div id=\"profile-manage\" class=\"profile-admin overview\">\n";
+			echo "	<div id=\"profile-manage\" class=\"profile-overview\">\n";
 				
 			/* Check if the user is regsitered *****************************************/ 
 			$sql = "SELECT ProfileID FROM ". table_agency_profile ." WHERE ProfileUserLinked =  ". $current_user->ID ."";
@@ -82,17 +82,17 @@ get_header();
 
 			// Menu
 			include("include-menu.php"); 	
-			echo " <div class=\"profile-overview-inner inner\">\n";
+			echo " <div class=\"manage-overview manage-content\">\n";
 			  
 			$data = mysql_fetch_array($results);  // is there record?
 				  
-				echo "	 <div class=\"welcome\">\n";			
+				echo "	 <div class=\"manage-section welcome\">\n";			
 				echo "	 <h1>". __("Welcome Back", rb_agencyinteract_TEXTDOMAIN) ." ". $current_user->first_name ."!</h1>";
 				// Record Exists
 			
 				/* Show account information here *****************************************/
 				 
-				echo "	 <div class=\"account\">\n"; // .account
+				echo "	 <div class=\"section-content\">\n"; // .account
 				echo "      <div><a href=\"account/\">Edit Your Account Details</a></div>\n";
 				echo "      <div><a href=\"manage/\">Manage Your Profile Information</a></div>\n";
 				echo "      <div><a href=\"media/\">Manage Photos and Media</a></div>\n";
