@@ -334,12 +334,12 @@ get_header();
 			}
 			
 			
-			echo "<div id=\"profile-manage\" class=\"profile-admin account\">\n";
+			echo "<div id=\"profile-manage\" class=\"profile-account\">\n";
 			$rb_agency_new_registeredUser = get_user_meta($current_user->id,'rb_agency_new_registeredUser');
 			
 			// Menu
 			include("include-menu.php"); 	
-			echo " <div class=\"profile-account-inner inner\">\n";
+			echo " <div class=\"manage-account manage-content\">\n";
 			// Show Errors & Alerts
 			echo $alerts;
 			/* Check if the user is regsitered *****************************************/ 
@@ -372,7 +372,7 @@ get_header();
 			  }
 				
 			}
-			echo " </div>\n"; // .profile-manage-inner
+			echo " </div>\n"; // .manage-account
 			echo "</div>\n"; // #profile-manage
 		} else {
 			echo "<p class=\"warning\">\n";

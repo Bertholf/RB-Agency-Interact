@@ -15,9 +15,7 @@
          * Get profile type
          */
         $ptype = get_user_meta($current_user->id, "rb_agency_interact_profiletype", true);
-    
-	$ProfileGender = get_user_meta($current_user->id, "rb_agency_interact_pgender", true);
-	            
+                
 	while ($data = mysql_fetch_array($results)) {
 		$ProfileID					=$data['ProfileID'];
 		$ProfileUserLinked			=$data['ProfileUserLinked'];
@@ -49,6 +47,8 @@
 	$results3 = mysql_query($query3) or die(mysql_error());
 	$count3 = mysql_num_rows($results3);
 	
+	$ProfileGender = get_user_meta($current_user->id, "rb_agency_interact_pgender", true);
+	
 	while ($data3 = mysql_fetch_assoc($results3)) {
 		/*
                  * Get Profile Types to
@@ -71,7 +71,9 @@
 		
 		if(in_array($ptype,$types)){ $permit_type=true; }
 		
-		if ((($data3["ProfileCustomShowGender"] == $ProfileGender) || ($data3["ProfileCustomShowGender"] == 0)) 
+		echo'<input type="hidden" name="aps12" value="'.$data3["ProfileCustomShowGender"].'" >';
+		
+		if (($data3["ProfileCustomShowGender"] == $ProfileGender) || ($data3["ProfileCustomShowGender"] == 0) 
 		    && $permit_type == true ) {
 		
 		$ProfileCustomTitle = $data3['ProfileCustomTitle'];
@@ -274,14 +276,17 @@
 		   	
         }// End while
 
-
-		echo "". __("Last updated ", rb_agencyinteract_TEXTDOMAIN) ." "
-			   . rb_agency_makeago(rb_agency_convertdatetime($ProfileDateUpdated), $rb_agency_option_locationtimezone) ."\n";
-	
-		echo "<p class=\"submit\">\n";
-		echo "     <input type=\"hidden\" name=\"action\" value=\"editRecord\" />\n";
-		echo "     <input type=\"submit\" name=\"submit\" value=\"". __("Save and Continue", rb_restaurant_TEXTDOMAIN) ."\" class=\"button-primary\" />\n";
-		echo "</p>\n";
+		echo " <table class=\"form-table\">\n";
+		echo "	<tbody>\n";
+		echo "    <tr valign=\"top\">\n";
+		echo "		<td scope=\"row\"><span style=\"width:185px;float:left;\">". __("Last updated ", rb_agencyinteract_TEXTDOMAIN) ." ". rb_agency_makeago(rb_agency_convertdatetime($ProfileDateUpdated), $rb_agency_option_locationtimezone) ."</span></th>\n";
+		echo "		<td>\n";
+		echo "			<input type=\"hidden\" name=\"action\" value=\"editRecord\" />\n";
+		echo "			<input type=\"submit\" name=\"submit\" value=\"". __("Save and Continue", rb_restaurant_TEXTDOMAIN) ."\" class=\"button-primary\" />\n";
+		echo "		</td>\n";
+		echo "	  </tr>\n";
+		echo "	</tbody>\n";
+		echo " </table>\n";
 		echo "</form>\n";
 	}
 ?>

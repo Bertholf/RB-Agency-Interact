@@ -92,12 +92,14 @@ get_header();
 			
 				/* Show account information here *****************************************/
 				 
-				echo "	 <div class=\"section-content\">\n"; // .account
-				echo "      <div><a href=\"account/\">Edit Your Account Details</a></div>\n";
-				echo "      <div><a href=\"manage/\">Manage Your Profile Information</a></div>\n";
-				echo "      <div><a href=\"media/\">Manage Photos and Media</a></div>\n";
-				echo "      <div><a href=\"subscription/\">Manage your Subscription</a></div>\n";
-				echo "	 </div>\n";
+				echo " <div class=\"section-content section-account\">\n"; // .account
+				echo " 	<ul>\n";
+				echo "      <li><a href=\"account/\">Edit Your Account Details</a></li>\n";
+				echo "      <li><a href=\"manage/\">Manage Your Profile Information</a></li>\n";
+				echo "      <li><a href=\"media/\">Manage Photos and Media</a></li>\n";
+				echo "      <li><a href=\"subscription/\">Manage your Subscription</a></li>\n";
+				echo "	</ul>\n";
+				echo " </div>\n";
 				
 			  	echo "	 <div id=\"subscription-customtext\">\n";
 							$Page = get_page($rb_agencyinteract_option_overviewpagedetails);

@@ -1,15 +1,17 @@
-#profile-manage .manage-content { padding: 15px; }
+#profile-manage .manage-content { padding: 15px; background: #fff; }
+#profile-manage .manage-content h1,
 #profile-manage .manage-content h3 { margin: 5px 0; }
 #profile-manage .manage-content p { margin: 0 0 15px 0; line-height: 18px; }
 #profile-manage .manage-content select { padding: 3px; }
 #profile-manage .manage-section { overflow: hidden; margin-bottom: 15px; }
+#profile-manage .manage-section .section-content { overflow: hidden; }
 
 #profile-steps { font-size: 22px; text-align: center; background: #eee; border-bottom: 3px solid #aaa; padding: 10px; }
 
 #profile-manage { overflow: hidden; margin: 20px 10px; }
 #profile-manage h2 { margin: 20px 0 10px 0; }
 #profile-manage table { border:none }
-#profile-manage table tr td { font-size: 13px; padding: 10px; }
+#profile-manage table tr td { font-size: 13px; padding: 5px; }
 #profile-manage table tr td h3 { font-size: 16px; margin-bottom:10px; }
 #profile-manage table tr td select { width: 200px; }
 #profile-manage table tr td input[type="text"], #profile-manage table tr td input[type="email"], #profile-manage table tr td input[type="password"] { width: 194px; }
@@ -25,18 +27,16 @@
 #profile-manage .profile-manage-menu #subMenuTab .tab-right { -webkit-border-top-right-radius: 5px; -moz-border-radius-topright: 5px; border-top-right-radius: 5px; }
 #profile-manage .profile-manage-menu #subMenuTab .tab-right a { -webkit-border-top-right-radius: 5px; -moz-border-radius-topright: 5px; border-top-right-radius: 5px; }
 #profile-manage .profile-manage-menu #subMenuTab .tab-active, #profile-manage .profile-manage-menu #subMenuTab .tab-active a { background: #fff; border-bottom: 1px solid #fff; }
-#profile-manage .inner { background: #fff; min-height: 350px; padding: 20px; border-left: 1px solid #acaca8; border-right: 1px solid #acaca8; border-bottom: 1px solid #acaca8;  -webkit-border-bottom-right-radius: 5px; -moz-border-radius-bottomright: 5px; border-bottom-right-radius: 5px; 
--webkit-border-bottom-left-radius: 5px; -moz-border-radius-bottomleft: 5px; border-bottom-left-radius: 5px;}
+#profile-manage .inner { background: #fff; min-height: 350px; padding: 20px; border-left: 1px solid #acaca8; border-right: 1px solid #acaca8; border-bottom: 1px solid #acaca8;  -webkit-border-bottom-right-radius: 5px; -moz-border-radius-bottomright: 5px; border-bottom-right-radius: 5px; -webkit-border-bottom-left-radius: 5px; -moz-border-radius-bottomleft: 5px; border-bottom-left-radius: 5px;}
 
-#profile-manage .inner .account div { overflow:hidden; }
-#profile-manage .inner .account div a { padding: 10px 0; text-decoration: none; float: left; }
-#profile-manage .inner p.submit { text-align: right; }
+/* 	Overview - /profile-member/
+	/theme/member-overview.php */
+.manage-overview li { padding: 5px 0; overflow: hidden; }
+.manage-overview li a { float: left; text-decoration: none; clear: both; }
 
-/* 	My Media 
-	Path : /profile-member/media/
-	Code : /theme/member-media.php - /theme/include-profilemedia.php
-*/
-
+/* 	My Media - /profile-member/media/
+	/theme/member-media.php
+	/theme/include-profilemedia.php */
 #profile-manage .manage-section.upload div textarea { vertical-align: top; }
 #profile-manage .manage-section.upload p { margin: 15px 0; }
 
