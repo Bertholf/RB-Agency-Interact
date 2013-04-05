@@ -210,11 +210,11 @@ get_header();
 			/// Show registration steps
 			echo "<div id=\"profile-steps\">Profile Setup: Step 3 of 4</div>\n";
 			
-			echo "<div id=\"profile-manage\" class=\"overview\">\n";
+			echo "<div id=\"profile-manage\" class=\"profile-media\">\n";
 			
 			// Menu
 			include("include-menu.php"); 	
-			echo " <div class=\"profile-manage-inner inner\">\n";
+			echo " <div class=\"manage-media manage-content\">\n";
 			
 			
 			/* Check if the user is regsitered *****************************************/ 
