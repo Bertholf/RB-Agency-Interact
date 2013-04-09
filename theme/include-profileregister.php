@@ -1,7 +1,8 @@
 <?php
 	// save gender
-    $profile_gender = (int)get_user_meta($current_user->id, "rb_agency_interact_pgender", true);
-    echo '<input name="ProfileGender" type="hidden" value="'.$profile_gender.'">'; 
+    $ptype = get_user_meta($current_user->id, "rb_agency_interact_profiletype", true);
+    $ProfileGender = get_user_meta($current_user->id, "rb_agency_interact_pgender", true);
+    echo '<input name="ProfileGender" type="hidden" value="'.$ProfileGender.'">'; 
 
     echo "<form method=\"post\" enctype=\"multipart/form-data\" action=\"". get_bloginfo("wpurl") ."/profile-member/account/\" style=\"width: 400px;\">\n";
 	echo "<input type=\"hidden\" id=\"ProfileContactEmail\" name=\"ProfileContactEmail\" value=\"". $current_user->user_email ."\" />\n";
@@ -99,6 +100,49 @@
 	echo "		</td>\n";
 	echo "	  </tr>\n";
 
+	/*
+	 * Get Private custom Fields Here
+	 *
+	 */
+		    $ProfileInformation = "1"; // Private fields only
+
+			$query1 = "SELECT ProfileCustomID, ProfileCustomTitle, ProfileCustomType, ProfileCustomOptions, ProfileCustomOrder, ProfileCustomView, ProfileCustomShowGender, ProfileCustomShowProfile, ProfileCustomShowSearch, 
+			                  ProfileCustomShowLogged, ProfileCustomShowAdmin,ProfileCustomShowRegistration FROM "
+			         . table_agency_customfields ." WHERE ProfileCustomView = ". $ProfileInformation ." ORDER BY ProfileCustomOrder ASC";
+			
+			$results1 = mysql_query($query1);
+			$count1 = mysql_num_rows($results1);
+			$pos = 0;
+			while ($data1 = mysql_fetch_array($results1)) { 
+                               /*
+                                * Get Profile Types to
+                                * filter models from clients
+                                */
+                                $permit_type = false;
+
+                                $PID = $data1['ProfileCustomID'];
+
+                                $get_types = "SELECT ProfileCustomTypes FROM ". table_agency_customfields_types .
+                                            " WHERE ProfileCustomID = " . $PID;
+
+                                $result = mysql_query($get_types);
+
+                                while ( $p = mysql_fetch_array($result)){
+                                        $types = $p['ProfileCustomTypes'];			    
+                                }
+
+                                $types = explode(",",$types); 
+
+                                if(in_array($ptype,$types)){ $permit_type=true; }
+                                
+				if ( ($data1["ProfileCustomShowGender"] == $ProfileGender) || ($data1["ProfileCustomShowGender"] == 0) 
+                                      && $permit_type == true )  {
+
+					include("view-custom-fields.php");
+
+				}
+			}
+        
 
 	
 	$rb_agencyinteract_options_arr = get_option('rb_agencyinteract_options');

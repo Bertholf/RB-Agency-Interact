@@ -278,27 +278,30 @@
 					}
 					echo "</select>";
 		echo "	  </p>";
-     
-	
+ 
+                	
 	echo "       <p class=\"form-profile_type\">\n";
       
 	echo "       	<label for=\"profile_type\">". __("Type of Profile", rb_agencyinteract_TEXTDOMAIN) ."</label>\n";
 	
 	echo "       		<select name=\"profile_type\">\n";
-      $target = get_query_var("typeofprofile");
-	
-	if($target == "model-talent"){
-	echo "       			<option value=\"0\">". __("Talent / Model", rb_agencyinteract_TEXTDOMAIN) ."</option>\n";
-	} elseif ($target == "agent-partners"){
-	
-		echo "       			<option value=\"1\">". __("Agent / Producer", rb_agencyinteract_TEXTDOMAIN) ."</option>\n";	
-		
-	} else {
-		echo "       			<option value=\"0\">". __("Talent / Model", rb_agencyinteract_TEXTDOMAIN) ."</option>\n";
-	     	echo "       			<option value=\"1\">". __("Agent / Producer", rb_agencyinteract_TEXTDOMAIN) ."</option>\n";
-	}
-	
-	echo "       		</select>\n";
+    
+	/*
+	 * This is the new version
+	 * for the sites registration
+	 * get the proper fields on
+	 * profile types here
+	 */
+	$get_types = "SELECT * FROM ". table_agency_data_type;
+
+	$result = mysql_query($get_types);
+
+	while ( $typ = mysql_fetch_array($result)){
+		$type = trim($typ['DataTypeTitle']);
+		echo '<option value="'.$type.'">'. __($type, rb_agencyinteract_TEXTDOMAIN) .'</option>\n';	
+	} 
+
+	echo "       </select>\n";
 	echo "       </p><!-- .form-profile_type -->\n";
   	
 	echo "       <p class=\"form-profile_agree\">\n";

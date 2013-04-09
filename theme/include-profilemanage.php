@@ -12,14 +12,14 @@
 	$results = mysql_query($query) or die ( __("Error, query failed", rb_agencyinteract_TEXTDOMAIN ));
 	$count = mysql_num_rows($results);
         /*
-         * Get profile type
+         * Get profile type and Gender
          */
         $ptype = get_user_meta($current_user->id, "rb_agency_interact_profiletype", true);
+        $ProfileGender = get_user_meta($current_user->id, "rb_agency_interact_pgender", true);
                 
 	while ($data = mysql_fetch_array($results)) {
 		$ProfileID					=$data['ProfileID'];
 		$ProfileUserLinked			=$data['ProfileUserLinked'];
-		$ProfileGender    			=stripslashes($data['ProfileGender']);
 		$ProfileDateUpdated			=stripslashes($data['ProfileDateUpdated']);
 		$ProfileType				=stripslashes($data['ProfileType']);
 		echo "<form method=\"post\" enctype=\"multipart/form-data\" action=\"". get_bloginfo("wpurl") ."/profile-member/manage/\">\n";
@@ -46,8 +46,6 @@
 
 	$results3 = mysql_query($query3) or die(mysql_error());
 	$count3 = mysql_num_rows($results3);
-	
-	$ProfileGender = get_user_meta($current_user->id, "rb_agency_interact_pgender", true);
 	
 	while ($data3 = mysql_fetch_assoc($results3)) {
 		/*

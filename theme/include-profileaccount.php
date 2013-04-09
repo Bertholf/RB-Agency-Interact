@@ -3,7 +3,7 @@
 	global $current_user;
 	get_currentuserinfo();
 	$ProfileUserLinked = $current_user->id;
-    $ptype = get_user_meta($current_user->id, "rb_agency_interact_profiletype", true);
+        $ptype = get_user_meta($current_user->id, "rb_agency_interact_profiletype", true);
 	$ProfileGender  = get_user_meta($current_user->id, "rb_agency_interact_pgender", true);
 
 	// Get Settings
@@ -156,7 +156,7 @@
 		echo "	  </tr>\n";
 		
 		// Include Profile Customfields
-		    $ProfileInformation = "1"; // Private fields only
+		        $ProfileInformation = "1"; // Private fields only
 
 			$query1 = "SELECT ProfileCustomID, ProfileCustomTitle, ProfileCustomType, ProfileCustomOptions, ProfileCustomOrder, ProfileCustomView, ProfileCustomShowGender, ProfileCustomShowProfile, ProfileCustomShowSearch, ProfileCustomShowLogged, ProfileCustomShowAdmin,ProfileCustomShowRegistration FROM ". table_agency_customfields ." WHERE ProfileCustomView = ". $ProfileInformation ." ORDER BY ProfileCustomOrder ASC";
 				$results1 = mysql_query($query1);
@@ -184,7 +184,7 @@
 
                                 if(in_array($ptype,$types)){ $permit_type=true; }
                             
-				if ( ($data1["ProfileCustomShowGender"] == $ProfileGender) || ($data1["ProfileCustomShowGender"] = 0) 
+				if ( ($data1["ProfileCustomShowGender"] == $ProfileGender) || ($data1["ProfileCustomShowGender"] == 0) 
                                       && $permit_type == true )  {
 
 					include("view-custom-fields.php");
