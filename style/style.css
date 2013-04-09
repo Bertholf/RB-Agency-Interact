@@ -5,6 +5,7 @@
 #profile-manage .manage-content select { padding: 3px; }
 #profile-manage .manage-section { overflow: hidden; margin-bottom: 15px; }
 #profile-manage .manage-section .section-content { overflow: hidden; }
+p.submit { margin-top: 15px!important; }
 
 #profile-steps { font-size: 22px; text-align: center; background: #eee; border-bottom: 3px solid #aaa; padding: 10px; }
 
@@ -27,7 +28,6 @@
 #profile-manage .profile-manage-menu #subMenuTab .tab-right { -webkit-border-top-right-radius: 5px; -moz-border-radius-topright: 5px; border-top-right-radius: 5px; }
 #profile-manage .profile-manage-menu #subMenuTab .tab-right a { -webkit-border-top-right-radius: 5px; -moz-border-radius-topright: 5px; border-top-right-radius: 5px; }
 #profile-manage .profile-manage-menu #subMenuTab .tab-active, #profile-manage .profile-manage-menu #subMenuTab .tab-active a { background: #fff; border-bottom: 1px solid #fff; }
-#profile-manage .inner { background: #fff; min-height: 350px; padding: 20px; border-left: 1px solid #acaca8; border-right: 1px solid #acaca8; border-bottom: 1px solid #acaca8;  -webkit-border-bottom-right-radius: 5px; -moz-border-radius-bottomright: 5px; border-bottom-right-radius: 5px; -webkit-border-bottom-left-radius: 5px; -moz-border-radius-bottomleft: 5px; border-bottom-left-radius: 5px;}
 
 /* 	Overview - /profile-member/
 	/theme/member-overview.php */
