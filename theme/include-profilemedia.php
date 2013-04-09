@@ -90,7 +90,7 @@
 						echo '<input type="hidden" name="pmedia_url" value="'.$dataImg['ProfileMediaURL'].'">';
 						
 						echo "  <img src=\"". rb_agency_UPLOADDIR . $ProfileGallery ."/". $dataImg['ProfileMediaURL'] ."\" style=\"width: 100px; z-index: 1; \" />\n";
-						echo "  <div class=\"primary\" style=\"background: ". $styleBackground ."; \"><input type=\"radio\" name=\"ProfileMediaPrimary\" value=\"". $dataImg['ProfileMediaID'] ."\" class=\"button-primary\"". $isChecked ." /> ". $isCheckedText ."</div>\n";
+						echo "  <div class=\"primary\" style=\"background: ". $styleBackground ."; \"><label><input type=\"radio\" name=\"ProfileMediaPrimary\" value=\"". $dataImg['ProfileMediaID'] ."\" class=\"button-primary\"". $isChecked ." /> ". $isCheckedText ."</label></div>\n";
 						echo "</div>\n";
 					}
 					if ($countImg < 1) {
@@ -107,7 +107,7 @@
 					$countMedia = mysql_num_rows($resultsMedia);
 					while ($dataMedia = mysql_fetch_array($resultsMedia)) {
 						if ($dataMedia['ProfileMediaType'] == "Demo Reel" || $dataMedia['ProfileMediaType'] == "Video Monologue" || $dataMedia['ProfileMediaType'] == "Video Slate") {
-							$outVideoMedia .= "<div style=\"float: left; width: 120px; text-align: center; padding: 10px; \">". $dataMedia['ProfileMediaType'] ."<br />". rb_agency_get_videothumbnail($dataMedia['ProfileMediaURL']) ."<br /><a href=\"http://www.youtube.com/watch?v=". $dataMedia['ProfileMediaURL'] ."\" target=\"_blank\">Link to Video</a><br />[<a href=\"javascript:confirmDelete('". $dataMedia['ProfileMediaID'] ."','".$dataMedia['ProfileMediaType']."')\">DELETE</a>]</div>\n";
+							$outVideoMedia .= "<div class=\"media-video\">". $dataMedia['ProfileMediaType'] ."<br />". rb_agency_get_videothumbnail($dataMedia['ProfileMediaURL']) ."<br /><a href=\"http://www.youtube.com/watch?v=". $dataMedia['ProfileMediaURL'] ."\" target=\"_blank\">Link to Video</a><br />[<a href=\"javascript:confirmDelete('". $dataMedia['ProfileMediaID'] ."','".$dataMedia['ProfileMediaType']."')\">DELETE</a>]</div>\n";
 						} elseif ($dataMedia['ProfileMediaType'] == "VoiceDemo") {
 							$outLinkVoiceDemo .= "<div>". $dataMedia['ProfileMediaType'] .": <a href=\"". rb_agency_UPLOADDIR . $ProfileGallery ."/". $dataMedia['ProfileMediaURL'] ."\" target=\"_blank\">". $dataMedia['ProfileMediaTitle'] ."</a> [<a href=\"javascript:confirmDelete('". $dataMedia['ProfileMediaID'] ."','".$dataMedia['ProfileMediaType']."')\">DELETE</a>]</div>\n";
 						}
@@ -122,21 +122,21 @@
 							$outCustomMediaLink .= "<div>". $dataMedia['ProfileMediaType'] .": <a href=\"". rb_agency_UPLOADDIR . $ProfileGallery ."/". $dataMedia['ProfileMediaURL'] ."\" target=\"_blank\">". $dataMedia['ProfileMediaTitle'] ."</a> [<a href=\"javascript:confirmDelete('". $dataMedia['ProfileMediaID'] ."','".$dataMedia['ProfileMediaType']."')\">DELETE</a>]</div>\n";
 						}
 					}
-					echo '<div style=\"width:500px;\">';
+					echo '<p>';
 					echo $outLinkVoiceDemo;
-					echo '</div>';
-					echo '<div style=\"width:500px;\">';
+					echo '</p>';
+					echo '<p>';
 					//echo $outLinkResume;
-					echo '</div>';
-					echo '<div style=\"width:500px;\">';
+					echo '</p>';
+					echo '<p>';
 					echo $outLinkHeadShot;
-					echo '</div>';
-					echo '<div style=\"width:500px;\">';
+					echo '</p>';
+					echo '<p>';
 					echo $outLinkComCard;
-					echo '</div>';
-					echo '<div style=\"width:500px;\">';
+					echo '</p>';
+					echo '<p>';
 					echo $outCustomMediaLink;
-					echo '</div>';
+					echo '</p>';
 					echo $outVideoMedia;
 					if ($countMedia < 1) {
 						echo "<p><em>". __("There are no additional media linked", rb_agencyinteract_TEXTDOMAIN) ."</em></p>\n";

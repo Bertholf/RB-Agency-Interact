@@ -1,6 +1,6 @@
 #profile-manage .manage-content { padding: 15px; background: #fff; }
 #profile-manage .manage-content h1,
-#profile-manage .manage-content h3 { margin: 5px 0; }
+#profile-manage .manage-content h3 { margin-bottom: 15px; }
 #profile-manage .manage-content p { margin: 0 0 15px 0; line-height: 18px; }
 #profile-manage .manage-content select { padding: 3px; }
 #profile-manage .manage-section { overflow: hidden; margin-bottom: 15px; }
@@ -40,8 +40,14 @@
 #profile-manage .manage-section.upload div textarea { vertical-align: top; }
 #profile-manage .manage-section.upload p { margin: 15px 0; }
 
-/* Profile Gallery */
+#profile-manage .manage-section.media .media-video { display: inline-block; margin: 15px; width: 250px; }
 
+/* Profile Gallery */
+#profile-manage .manage-section.gallery .profileimage { float: left; margin: 0 10px 10px 0; height: 150px; position: relative; overflow: hidden; }
+#profile-manage .manage-section.gallery .profileimage .delete a { color: #fff; background: #fb2531; padding: 5px 10px; display: block; text-decoration: none; }
+#profile-manage .manage-section.gallery .profileimage .primary { position: absolute; left: 0; right: 0; bottom: 0; padding: 5px 10px; }
+#profile-manage .manage-section.gallery .profileimage .primary input { margin: 0; }
+#profile-manage .manage-section.gallery .profileimage .primary label { color: #fff; cursor: pointer; }
 
 /** Sign In - Register **/
 #rbsignin-register { text-align: center; vertical-align: top; }
