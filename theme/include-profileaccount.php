@@ -3,6 +3,8 @@
 	global $current_user;
 	get_currentuserinfo();
 	$ProfileUserLinked = $current_user->id;
+    $ptype = get_user_meta($current_user->id, "rb_agency_interact_profiletype", true);
+	$ProfileGender  = get_user_meta($current_user->id, "rb_agency_interact_pgender", true);
 
 	// Get Settings
 	$rb_agency_options_arr = get_option('rb_agency_options');
@@ -35,7 +37,6 @@
 		$ProfileContactPhoneCell	=stripslashes($data['ProfileContactPhoneCell']);
 		$ProfileContactPhoneWork	=stripslashes($data['ProfileContactPhoneWork']);
 
-		$ProfileGender    			=stripslashes($data['ProfileGender']);
 		$ProfileDateBirth	    	=stripslashes($data['ProfileDateBirth']);
 		$ProfileLocationStreet		=stripslashes($data['ProfileLocationStreet']);
 		$ProfileLocationCity		=stripslashes($data['ProfileLocationCity']);
@@ -185,11 +186,9 @@
                             
 				if ( ($data1["ProfileCustomShowGender"] == $ProfileGender) || ($data1["ProfileCustomShowGender"] = 0) 
                                       && $permit_type == true )  {
-					// Yes, its the same gender, show it:
+
 					include("view-custom-fields.php");
-				//if($data1["ProfileCustomShowGender"] == $dataList2["ProfileGender"] && $count2 >=1 && !empty($data1["ProfileCustomShowRegistration"]) || !empty($data1["ProfileCustomShowAdmin"]) || !empty($data1["ProfileCustomShowLogged"]) || !empty($data1["ProfileCustomShowProfile"]) || !empty($data1["ProfileCustomShowSearch"])){ // Depends on Current LoggedIn User's Gender
-				//} elseif(empty($data1["ProfileCustomShowGender"]) && !empty($data1["ProfileCustomShowRegistration"]) || !empty($data1["ProfileCustomShowAdmin"]) || !empty($data1["ProfileCustomShowLogged"]) || !empty($data1["ProfileCustomShowProfile"]) || !empty($data1["ProfileCustomShowSearch"])){
-				//	include("view-custom-fields.php");
+
 				}
 			 }
 
