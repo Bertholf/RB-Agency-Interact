@@ -86,7 +86,7 @@ if (isset($_POST['action'])) {
 							        $have_error = true;
 								}
 							}
-							else if($uploadMediaType =="VoiceDemo"){
+							else if($uploadMediaType =="Voice Demo"){
 								// Add to database
 								$MIME = array('audio/mpeg', 'audio/mp3');
 								if(in_array($_FILES['profileMedia'. $i]['type'], $MIME)){

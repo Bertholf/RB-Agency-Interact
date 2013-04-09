@@ -109,7 +109,7 @@
 					while ($dataMedia = mysql_fetch_array($resultsMedia)) {
 						if ($dataMedia['ProfileMediaType'] == "Demo Reel" || $dataMedia['ProfileMediaType'] == "Video Monologue" || $dataMedia['ProfileMediaType'] == "Video Slate") {
 							$outVideoMedia .= "<div class=\"media-video\">". $dataMedia['ProfileMediaType'] ."<br />". rb_agency_get_videothumbnail($dataMedia['ProfileMediaURL']) ."<br /><a href=\"http://www.youtube.com/watch?v=". $dataMedia['ProfileMediaURL'] ."\" target=\"_blank\">Link to Video</a><br />[<a href=\"javascript:confirmDelete('". $dataMedia['ProfileMediaID'] ."','".$dataMedia['ProfileMediaType']."')\">DELETE</a>]</div>\n";
-						} elseif ($dataMedia['ProfileMediaType'] == "VoiceDemo") {
+						} elseif ($dataMedia['ProfileMediaType'] == "Voice Demo") {
 							$outLinkVoiceDemo .= "<div>". $dataMedia['ProfileMediaType'] .": <a href=\"". rb_agency_UPLOADDIR . $ProfileGallery ."/". $dataMedia['ProfileMediaURL'] ."\" target=\"_blank\">". $dataMedia['ProfileMediaTitle'] ."</a> [<a href=\"javascript:confirmDelete('". $dataMedia['ProfileMediaID'] ."','".$dataMedia['ProfileMediaType']."')\">DELETE</a>]</div>\n";
 						}
 						 elseif ($dataMedia['ProfileMediaType'] == "Resume") {
@@ -127,7 +127,7 @@
 					echo $outLinkVoiceDemo;
 					echo '</p>';
 					echo '<p>';
-					//echo $outLinkResume;
+					echo $outLinkResume;
 					echo '</p>';
 					echo '<p>';
 					echo $outLinkHeadShot;
