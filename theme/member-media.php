@@ -199,8 +199,18 @@ if (isset($_POST['action'])) {
 
 /* Display Page ******************************************/ 
 get_header();
+
+// Check Sidebar
+$rb_agencyinteract_options_arr = get_option('rb_agencyinteract_options');
+$rb_agencyinteract_option_profilemanage_sidebar = $rb_agencyinteract_options_arr['rb_agencyinteract_option_profilemanage_sidebar'];
+$content_class = "";
+if (is_user_logged_in()) {
+	$content_class = "eight";
+} else {
+	$content_class = "twelve";
+}
 	
-	echo "<div id=\"container\" class=\"one-column\">\n";
+	echo "<div id=\"container\" class=\"".$content_class." column rb-agency-interact rb-agency-interact-media\">\n";
 	echo "  <div id=\"content\">\n";
 	
 		// ****************************************************************************************** //
@@ -232,7 +242,7 @@ get_header();
 			} else {
 				
 				// No Record Exists, register them
-				echo __("Records show you are not currently linked to a model or agency profile. ", rb_agencyinteract_TEXTDOMAIN);
+				echo "<p>".__("Records show you are not currently linked to a model or agency profile. ", rb_agencyinteract_TEXTDOMAIN)."</p>";
 				
 			}
 			echo " </div>\n"; // .profile-manage-inner
@@ -246,13 +256,14 @@ get_header();
 	echo "  </div><!-- #content -->\n";
 	echo "</div><!-- #container -->\n";
 	
-// Get Sidebar 
-$rb_agencyinteract_options_arr = get_option('rb_agencyinteract_options');
-	$rb_agencyinteract_option_profilemanage_sidebar = $rb_agencyinteract_options_arr['rb_agencyinteract_option_profilemanage_sidebar'];
-	$LayoutType = "";
-	if ($rb_agencyinteract_option_profilemanage_sidebar) {
-		$LayoutType = "profile";
-		get_sidebar(); 
+	if (is_user_logged_in()) {
+
+		// Get Sidebar 
+		$LayoutType = "";
+		if ($rb_agencyinteract_option_profilemanage_sidebar) {
+			$LayoutType = "profile";
+			get_sidebar();
+		}
 	}
 	
 // Get Footer

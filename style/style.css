@@ -9,7 +9,7 @@ p.submit { margin-top: 15px!important; }
 
 #profile-steps { font-size: 22px; text-align: center; background: #eee; border-bottom: 3px solid #aaa; padding: 10px; }
 
-#profile-manage { overflow: hidden; margin: 20px 10px; }
+#profile-manage { overflow: hidden; }
 #profile-manage h2 { margin: 20px 0 10px 0; }
 #profile-manage table { border:none }
 #profile-manage table tr td { font-size: 13px; padding: 5px; }

@@ -44,12 +44,6 @@ add_filter('wp_title', 'rb_agencyinteractive_override_title', 10, 2);
 /* Display Page ******************************************/ 
 get_header();
 	
-	if (is_user_logged_in()) {
-
-		// Show registration steps
-		echo "	<div id=\"profile-steps\">Profile Setup: Step 1 of 4</div>\n";
-	}
-
 	echo "	<div id=\"container\" class=\"".$content_class." column rb-agency-interact rb-agency-interact-overview\">\n";
 	echo "  	<div id=\"content\">\n";
 
