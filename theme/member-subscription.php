@@ -50,7 +50,7 @@ get_header();
 			
 			// Menu
 			include("include-menu.php"); 	
-			echo " <div class=\"profile-account-inner inner\">\n";
+			echo " <div class=\"manage-subscription manage-content\">\n";
 
 			/* Check if the user is regsitered *****************************************/ 
 			// Verify Record

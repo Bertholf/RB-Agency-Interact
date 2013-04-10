@@ -116,7 +116,7 @@ get_header();
 
 			// Menu
 			include("include-menu.php"); 	
-			echo " <div class=\"manage-media manage-content\">\n";
+			echo " <div class=\"manage-profile manage-content\">\n";
 
 			// Show Errors & Alerts
 			echo $alerts;
