@@ -20,16 +20,16 @@ if (isset($_POST['action'])) {
 	case 'deleteRecord':
 		foreach($_POST as $ProfileID) {
 			// Verify Record
-			$queryDelete = "SELECT * FROM ". table_agency_profile ." WHERE ProfileID =  \"". $ProfileID ."\"";
+			$queryDelete = "SELECT * FROM ". table_agency_profile ." WHERE ProfileID =  ". $ProfileID;
 			$resultsDelete = mysql_query($queryDelete);
 			while ($dataDelete = mysql_fetch_array($resultsDelete)) {
 				$ProfileGallery = $dataDelete['ProfileGallery'];
 		
 				// Remove Profile
-				$delete = "DELETE FROM " . table_agency_profile . " WHERE ProfileID = \"". $ProfileID ."\"";
+				$delete = "DELETE FROM " . table_agency_profile . " WHERE ProfileID = ". $ProfileID;
 				$results = $wpdb->query($delete);
 				// Remove Media
-				$delete = "DELETE FROM " . table_agency_profile_media . " WHERE ProfileID = \"". $ProfileID ."\"";
+				$delete = "DELETE FROM " . table_agency_profile_media . " WHERE ProfileID = ". $ProfileID;
 				$results = $wpdb->query($delete);
 					
 				if (isset($ProfileGallery)) {
@@ -139,16 +139,16 @@ function rb_display_list() {
 					 
 									$ProfileID = $key;
 									// Verify Record
-									$queryDelete = "SELECT * FROM ". table_agency_profile ." WHERE ProfileID =  \"". $ProfileID ."\"";
+									$queryDelete = "SELECT * FROM ". table_agency_profile ." WHERE ProfileID =  ". $ProfileID;
 									$resultsDelete = mysql_query($queryDelete);
 									while ($dataDelete = mysql_fetch_array($resultsDelete)) {
 										$ProfileGallery = $dataDelete['ProfileGallery'];
 								
 										// Remove Profile
-										$delete = "DELETE FROM " . table_agency_profile . " WHERE ProfileID = \"". $ProfileID ."\"";
+										$delete = "DELETE FROM " . table_agency_profile . " WHERE ProfileID = ". $ProfileID;
 										$results = $wpdb->query($delete);
 										// Remove Media
-										$delete = "DELETE FROM " . table_agency_profile_media . " WHERE ProfileID = \"". $ProfileID ."\"";
+										$delete = "DELETE FROM " . table_agency_profile_media . " WHERE ProfileID = ". $ProfileID;
 										$results = $wpdb->query($delete);
 											
 										if (isset($ProfileGallery)) {
@@ -199,7 +199,7 @@ function rb_display_list() {
 							$countProfile++;
 							$ProfileID = $key;
 							// Verify Record
-							$queryApprove = "UPDATE ". table_agency_profile ." SET ProfileIsActive = 1 WHERE ProfileID =  \"". $ProfileID ."\"";
+							$queryApprove = "UPDATE ". table_agency_profile ." SET ProfileIsActive = 1 WHERE ProfileID =  ". $ProfileID;
 							$resultsApprove = mysql_query($queryApprove);
 						
 							
@@ -217,7 +217,7 @@ function rb_display_list() {
 		
 		if(isset($_GET["action"])=="approveRecord"){
 			$ProfileID = $_GET["ProfileID"];
-			$queryApprove = "UPDATE ". table_agency_profile ." SET ProfileIsActive = 1 WHERE ProfileID =  \"". $ProfileID ."\"";
+			$queryApprove = "UPDATE ". table_agency_profile ." SET ProfileIsActive = 1 WHERE ProfileID =  ". $ProfileID;
 			$resultsApprove = mysql_query($queryApprove);
 			if($resultsApprove){ 
 				echo ('<div id="message" class="updated"><p>'. __("$profileLabel Approved successfully!", rb_agencyinteract_TEXTDOMAIN) .'</p></div>');
@@ -354,7 +354,7 @@ function rb_display_list() {
 		echo "    </tr>\n";
 		echo " </tfoot>\n";
 		echo " <tbody>\n";
-        $query = "SELECT * FROM ". table_agency_profile ." profile LEFT JOIN ". table_agency_data_type ." profiletype ON profile.ProfileType = profiletype.DataTypeID ". $filter  ." ORDER BY $sort $dir $limit";
+        $query = "SELECT * FROM ". table_agency_profile ." profile LEFT JOIN ". table_agency_data_type ." profiletype ON profile.ProfileType = profiletype.DataTypeID ". $filter  ." ORDER BY $sort $limit";
         $results2 = @mysql_query($query);
         $count = @mysql_num_rows($results2);
         while ($data = @mysql_fetch_array($results2)) {
