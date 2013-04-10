@@ -169,8 +169,6 @@
 				$data = explode("|",$option1);
 				$data2 = explode("|",$option2);
 		
-				echo "<label style='width:200px; float:left;'>".$data[0]."</label>";
-				
 				echo "<select name=\"ProfileCustomID". $data3['ProfileCustomID'] ."\">\n";
 		
 						echo "<option value=\"\">--</option>";
@@ -187,7 +185,7 @@
 				echo "</select>\n";
 				
 				if (!empty($data2) && !empty($option2)) {
-					echo "<label style='width:200px; float:left;'>".$data2[0]."</label>";
+
 						$pos2 = 0;
 						echo "<select name=\"ProfileCustomID". $data3['ProfileCustomID'] ."[]\">\n";
 						echo "<option value=\"\">--</option>";
