@@ -201,7 +201,8 @@
 				
 			} elseif ($ProfileCustomType == 4) {
 				echo "<textarea style=\"width: 100%; min-height: 100px;\" name=\"ProfileCustomID". $data3['ProfileCustomID'] ."\">"
-				     . $_REQUEST["ProfileCustomID". $data3['ProfileCustomID']] ."</textarea>";
+				     . retrieve_datavalue($_REQUEST["ProfileCustomID". $data3['ProfileCustomID']],
+				 									$data3['ProfileCustomID'],$ProfileID,"textbox") ."</textarea>";
 
 			} elseif ($ProfileCustomType == 5) {
 
@@ -228,9 +229,16 @@
 				
 				foreach($array_customOptions_values as $val){
 					
-					 echo "<label><input type=\"radio\" value=\"". $val."\" "; checked($val, $_REQUEST["ProfileCustomID"
-					       . $data3['ProfileCustomID']]); 
-					 echo" name=\"ProfileCustomID". $data3['ProfileCustomID'] ."[]\" />";
+					$selected = "";
+					 $check = "";
+					 $selected = retrieve_datavalue("",$data3['ProfileCustomID'],$ProfileID,"dropdown",$val);
+					 
+					 if($selected == "selected"){
+					 	$check = "checked";	
+					 }
+					
+					 echo "<label><input type=\"radio\" value=\"". $val."\" " . $check .
+					      " name=\"ProfileCustomID". $data3['ProfileCustomID'] ."[]\" />";
 					 echo $val."</label><br/>";
 				}
 				echo "</fieldset>";
