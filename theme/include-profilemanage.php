@@ -223,15 +223,17 @@
 				   
 			} elseif ($ProfileCustomType == 6) {
 				
+				echo "<fieldset>";
 				$array_customOptions_values = explode("|",$data3['ProfileCustomOptions']);
 				
 				foreach($array_customOptions_values as $val){
 					
-					 echo "<input type=\"radio\" value=\"". $val."\" "; checked($val, $_REQUEST["ProfileCustomID"
+					 echo "<label><input type=\"radio\" value=\"". $val."\" "; checked($val, $_REQUEST["ProfileCustomID"
 					       . $data3['ProfileCustomID']]); 
 					 echo" name=\"ProfileCustomID". $data3['ProfileCustomID'] ."[]\" />";
-					 echo "<span>". $val."</span><br/>";
+					 echo $val."</label><br/>";
 				}
+				echo "</fieldset>";
 				
 			}elseif ($ProfileCustomType == 7) { //Imperial/Metrics
 			
