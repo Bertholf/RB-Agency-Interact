@@ -175,15 +175,16 @@
                                             " WHERE ProfileCustomID = " . $PID;
 
                                 $result = mysql_query($get_types);
-
+                                $types = "";
                                 while ( $p = mysql_fetch_array($result)){
                                         $types = $p['ProfileCustomTypes'];			    
                                 }
 
-                                $types = explode(",",$types); 
-
-                                if(in_array($ptype,$types)){ $permit_type=true; }
-                            
+                                if($types != "" || $types != NULL){
+                                    $types = explode(",",$types); 
+                                    if(in_array($ptype,$types)){ $permit_type=true; } 
+                                } 
+                                
 				if ( ($data1["ProfileCustomShowGender"] == $ProfileGender) || ($data1["ProfileCustomShowGender"] == 0) 
                                       && $permit_type == true )  {
 
