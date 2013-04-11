@@ -94,11 +94,6 @@ get_header();
 				echo "      <li><a href=\"subscription/\">Manage your Subscription</a></li>\n";
 				echo "	</ul>\n";
 				echo " </div>\n";
-				
-			  	echo "	 <div id=\"subscription-customtext\">\n";
-							$Page = get_page($rb_agencyinteract_option_overviewpagedetails);
-			  	echo		apply_filters('the_content', $Page->post_content);
-			  	echo "	 </div>";
 			  	echo " </div>\n"; // .welcome
 			  	echo " </div>\n"; // .profile-manage-inner
 			  
