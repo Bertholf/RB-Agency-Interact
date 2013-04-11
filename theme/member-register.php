@@ -271,7 +271,7 @@
      	echo "		<label for=\"profile_gender\">". __("Gender", rb_agencyinteract_TEXTDOMAIN) ."</label>\n";
 					$query= "SELECT GenderID, GenderTitle FROM " .  table_agency_data_gender . " GROUP BY GenderTitle ";
 					echo "<select id='ProfileGender' name=\"ProfileGender\">";
-					echo "<option value=\"\">All Gender</option>";
+					echo "<option value=\"\">Not Specified</option>";
 					$queryShowGender = mysql_query($query);
 					while($dataShowGender = mysql_fetch_assoc($queryShowGender)){
 						echo "<option value=\"".$dataShowGender["GenderID"]."\" ". selected($ProfileGender ,$dataShowGender["GenderID"],false).">".$dataShowGender["GenderTitle"]."</option>";
@@ -281,9 +281,7 @@
  
                 	
 	echo "       <p class=\"form-profile_type\">\n";
-      
 	echo "       	<label for=\"profile_type\">". __("Type of Profile", rb_agencyinteract_TEXTDOMAIN) ."</label>\n";
-	
 	echo "       		<select name=\"profile_type\">\n";
     
 	/*
