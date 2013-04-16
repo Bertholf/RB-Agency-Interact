@@ -35,7 +35,8 @@
 		 * Set Media to not show to
 		 * client/s, agents, producers,
 		 */
-		$ptype = get_user_meta($current_user->id, "rb_agency_interact_profiletype", true);
+		$ptype = (int)get_user_meta($current_user->id, "rb_agency_interact_profiletype", true);
+	        $ptype = retrieve_title($ptype);
 		$restrict = array('client','clients','agents','producers');
 		if(in_array(strtolower($ptype),$restrict)){
 			$d = 'display:none;';

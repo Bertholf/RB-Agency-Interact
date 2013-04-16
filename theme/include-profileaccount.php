@@ -3,7 +3,8 @@
 	global $current_user;
 	get_currentuserinfo();
 	$ProfileUserLinked = $current_user->id;
-        $ptype = get_user_meta($current_user->id, "rb_agency_interact_profiletype", true);
+        $ptype = (int)get_user_meta($current_user->id, "rb_agency_interact_profiletype", true);
+	$ptype = retrieve_title($ptype);
 	$ProfileGender  = get_user_meta($current_user->id, "rb_agency_interact_pgender", true);
 
 	// Get Settings

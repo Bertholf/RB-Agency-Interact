@@ -14,7 +14,8 @@
         /*
          * Get profile type and Gender
          */
-        $ptype = get_user_meta($current_user->id, "rb_agency_interact_profiletype", true);
+        $ptype = (int)get_user_meta($current_user->id, "rb_agency_interact_profiletype", true);
+	$ptype = retrieve_title($ptype);
         $ProfileGender = get_user_meta($current_user->id, "rb_agency_interact_pgender", true);
                 
 	while ($data = mysql_fetch_array($results)) {

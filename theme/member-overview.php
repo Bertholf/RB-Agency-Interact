@@ -58,8 +58,9 @@ get_header();
 			 * Set Media to not show to
 			 * client/s, agents, producers,
 			 */
-			$ptype = get_user_meta($current_user->id, "rb_agency_interact_profiletype", true);
-			$restrict = array('client','clients','agents','producers');
+                        $ptype = (int)get_user_meta($current_user->id, "rb_agency_interact_profiletype", true);
+	                $ptype = retrieve_title($ptype);
+			$restrict = array('client','clients','agents','agent','producer','producers');
 			if(in_array(strtolower($ptype),$restrict)){
 				echo "<div id=\"profile-steps\">Profile Setup: Step 1 of 2</div>\n";
 			} else {

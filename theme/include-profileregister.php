@@ -1,6 +1,7 @@
 <?php
-	// save gender
-    $ptype = get_user_meta($current_user->id, "rb_agency_interact_profiletype", true);
+    // profile type
+    $ptype = (int)get_user_meta($current_user->id, "rb_agency_interact_profiletype", true);
+    $ptype = retrieve_title($ptype);
     $ProfileGender = get_user_meta($current_user->id, "rb_agency_interact_pgender", true);
     echo '<input name="ProfileGender" type="hidden" value="'.$ProfileGender.'">'; 
 
