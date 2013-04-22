@@ -93,9 +93,8 @@ p.submit { margin-top: 15px!important; }
 #profile-featured a { text-decoration: none; }
 #profile-featured .style { position: absolute; }
 #profile-featured .image { overflow: hidden; }
-#profile-featured .title { top: 235px; left: 0; width: 200px; position: absolute; text-align: center;}
-#profile-featured .title .name { width: 200px; height: 30px; line-height: 30px; }
-#profile-featured .title .favorite { margin: 9px 0 0 0; font-size: 13px; background: #ccc; padding: 5px 0; }
+#profile-featured .name { width: 100%; }
+#profile-featured .favorite { margin: 9px 0 0 0; font-size: 13px; background: #ccc; padding: 5px 0; }
 #profile-featured .image img {  }
 #profile-featured .image-broken {  }
 #profile-featured .image-broken a {  }
