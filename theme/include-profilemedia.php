@@ -23,6 +23,18 @@
 	
 			if ( !empty($ProfileID) && ($ProfileID > 0) ) { // Editing Record
 		echo "	<div class=\"manage-section gallery\">\n";
+		if(!empty($UploadMedia))
+		{
+			foreach ($UploadMedia as $mediaFile) {
+			
+			echo "<p><strong>".$mediaFile. " successfully uploaded!</strong></p>";
+			
+			}
+			echo "<p><strong>You may continue uploading more files. If you are done, please click the EXIT link below to go back to homepage.</strong></p>";
+			$back = $rb_agencyinteract_WPURL ."/profile-member/";
+			echo '<p><a class="button-primary" href='.$back.'>EXIT</a></p>';
+		}
+		
 		echo "	<h3>". __("Gallery", rb_agencyinteract_TEXTDOMAIN) ."</h3>\n";
 				
 				echo "<script type=\"text/javascript\">\n";

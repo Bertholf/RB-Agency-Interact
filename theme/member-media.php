@@ -58,6 +58,8 @@ if (isset($_POST['action'])) {
 			$i = 1;
 			while ($i <= 10) {
 				if($_FILES['profileMedia'. $i]['tmp_name'] != ""){
+					
+					$UploadMedia[] = $_FILES['profileMedia'. $i]['name'];
 
 					$uploadMediaType = $_POST['profileMedia'. $i .'Type'];					
 					if ($have_error != true) {
@@ -187,9 +189,11 @@ if (isset($_POST['action'])) {
 		}
 		
 		if ($have_error != true) {
-			wp_redirect( $rb_agencyinteract_WPURL ."/profile-member/media/" );
+					// redirect only, if requirement of Redirect page is not  "/profile-member/media/ after successful files upload"
+
+			//wp_redirect( $rb_agencyinteract_WPURL ."/profile-member/media/" );
 		
-		exit;
+		//exit;
 	    }
 	break;
 	}
