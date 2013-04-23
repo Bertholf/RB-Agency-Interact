@@ -97,7 +97,7 @@
 		}
 		
 		$userdata = array(
-			'user_pass' => esc_attr( $user_pass ),
+			'user_pass' => $user_pass ,
 			'user_login' => esc_attr( $user_login ),
 			'first_name' => esc_attr( $first_name ),
 			'last_name' => esc_attr( $last_name ),
