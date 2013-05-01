@@ -24,7 +24,7 @@ $rb_agencyinteract_option_overviewpagedetails 	= (int)$rb_agencyinteract_options
 // Check Sidebar
 $rb_agencyinteract_options_arr = get_option('rb_agencyinteract_options');
 $rb_agencyinteract_option_profilemanage_sidebar = $rb_agencyinteract_options_arr['rb_agencyinteract_option_profilemanage_sidebar'];
-$rb_subscription = $rb_agencyinteract_options_arr['rb_agencyinteract_option_subscribeupsell'];
+$rb_subscription = $rb_agency_options_arr['rb_agency_option_profilelist_subscription'];
 $content_class = "";
 if (is_user_logged_in()) {
 	$content_class = "eight";
