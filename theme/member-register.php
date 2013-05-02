@@ -296,7 +296,8 @@
 
 	while ( $typ = mysql_fetch_array($result)){
 		$type = trim($typ['DataTypeTitle']);
-		echo '<option value="'.$type.'">'. __($type, rb_agencyinteract_TEXTDOMAIN) .'</option>\n';	
+		$t_id = trim($typ['DataTypeID']);
+		echo '<option value="'.$t_id.'">'. __($type, rb_agencyinteract_TEXTDOMAIN) .'</option>\n';	
 	} 
 
 	echo "       </select>\n";
