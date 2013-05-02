@@ -25,6 +25,8 @@
 		$ProfileType				=stripslashes($data['ProfileType']);
 		echo "<form method=\"post\" enctype=\"multipart/form-data\" action=\"". get_bloginfo("wpurl") ."/profile-member/manage/\">\n";
 		echo "     <input type=\"hidden\" name=\"ProfileID\" value=\"". $ProfileID ."\" />\n";
+		
+		/* Phel Comment
 		echo " <table class=\"form-table\">\n";
 		echo "  <tbody>\n";
 		// Account Information	
@@ -35,7 +37,12 @@
 		echo "		</td>\n";
 		echo "	  </tr>\n";
 		echo "  </tbody>\n";
-		echo "</table>\n";
+		echo "</table>\n";*/
+
+		echo "<p>";
+		echo "<label style=\"width:200px; float:left;\" for=\"classification\">". __("Classification:", rb_agencyinteract_TEXTDOMAIN) ."</label>";
+		echo "		". __($ptype, rb_agencyinteract_TEXTDOMAIN);
+		echo "</p>";
 
 	/*
 	 *   added this new custom field display 
@@ -90,19 +97,19 @@
 			            if($rb_agency_option_unittype ==0){ // 0 = Metrics(ft/kg)
 						
 								if($data3['ProfileCustomOptions'] == 1){
-									 $measurements_label  ="<em>(cm)</em>";
+									 $measurements_label  ="<em> (cm)</em>";
 								}elseif($data3['ProfileCustomOptions'] == 2){
-									 $measurements_label  ="<em>(kg)</em>";
+									 $measurements_label  ="<em> (kg)</em>";
 								}elseif($data3['ProfileCustomOptions'] == 3){
-								  $measurements_label  ="<em>(In Inches/Feet)</em>";
+								  $measurements_label  ="<em> (In Inches/Feet)</em>";
 								}
 					    }elseif($rb_agency_option_unittype ==1){ //1 = Imperial(in/lb)
 								if($data3['ProfileCustomOptions'] == 1){
-									 $measurements_label  ="<em>(In Inches)</em>";
+									 $measurements_label  ="<em> (In Inches)</em>";
 								}elseif($data3['ProfileCustomOptions'] == 2){
-								  $measurements_label  ="<em>(In Pounds)</em>";
+								  $measurements_label  ="<em> (In Pounds)</em>";
 								}elseif($data3['ProfileCustomOptions'] == 3){
-								  $measurements_label  ="<em>(In Inches/Feet)</em>";
+								  $measurements_label  ="<em> (In Inches/Feet)</em>";
 								}
 						}
 
