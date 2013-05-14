@@ -25,14 +25,16 @@
 		echo "	<div class=\"manage-section gallery\">\n";
 		if(!empty($UploadMedia))
 		{
+			echo "<div id=\"message\" class=\"uploaded\">";
 			foreach ($UploadMedia as $mediaFile) {
 			
-			echo "<p><strong>".$mediaFile. " successfully uploaded!</strong></p>";
+			echo "<p>File <strong>".$mediaFile. "</strong> successfully uploaded!</p>";
 			
 			}
-			echo "<p><strong>You may continue uploading more files. If you are done, please click the EXIT link below to go back to homepage.</strong></p>";
+			echo "<p>You may continue uploading more files. If you are done, please click the EXIT link below to go back to homepage.</p>";
 			$back = $rb_agencyinteract_WPURL ."/profile-member/";
-			echo '<p><a class="button-primary" href='.$back.'>EXIT</a></p>';
+			echo '<p><a class="rb_button" href='.$back.'>EXIT</a></p>';
+			echo "</div>";
 		}
 		
 		echo "	<h3>". __("Gallery", rb_agencyinteract_TEXTDOMAIN) ."</h3>\n";
@@ -85,7 +87,7 @@
 					$countImg = mysql_num_rows($resultsImg);
 					while ($dataImg = mysql_fetch_array($resultsImg)) {
 					  if ($dataImg['ProfileMediaPrimary']) {
-						  $styleBackground = "#900000";
+						  $styleClass = "primary-picture";
 						  $isChecked = " checked";
 						  $isCheckedText = " Primary";
 						  $toDelete = "";
@@ -93,16 +95,16 @@
 						  $styleBackground = "#000000";
 						  $isChecked = "";
 						  $isCheckedText = " Select";
-						  $toDelete = "  <div class=\"delete\"><a href=\"javascript:;\"  onclick=\"confirmDelete('". $dataImg['ProfileMediaID'] ."','".$dataImg['ProfileMediaType']."');\"><span>Delete</span> &raquo;</a></div>\n";
+						  $toDelete = "  <div class=\"delete\"><a href=\"javascript:;\" class=\"btn-small-red\" onclick=\"confirmDelete('". $dataImg['ProfileMediaID'] ."','".$dataImg['ProfileMediaType']."');\"><span>Delete</span> &raquo;</a></div>\n";
 					  }
-						echo "<div class=\"profileimage\" style=\"background: ". $styleBackground ."; \">\n". $toDelete ."";
+						echo "<div class=\"profileimage\" class=\"". $styleClass ."\">\n". $toDelete ."";
                         
 						echo '<input type="hidden" name="pgallery" value="'.$ProfileGallery.'">';
 						
 						echo '<input type="hidden" name="pmedia_url" value="'.$dataImg['ProfileMediaURL'].'">';					
 
 						echo "  <img src=\"". rb_agency_UPLOADDIR . $ProfileGallery ."/". $dataImg['ProfileMediaURL'] ."\" style=\"width: 100px; z-index: 1; \" />\n";
-						echo "  <div class=\"primary\" style=\"background: ". $styleBackground ."; \"><label><input type=\"radio\" name=\"ProfileMediaPrimary\" value=\"". $dataImg['ProfileMediaID'] ."\" class=\"button-primary\"". $isChecked ." /> ". $isCheckedText ."</label></div>\n";
+						echo "  <div class=\"". $styleClass ." primary rb_button\"><label><input type=\"radio\" name=\"ProfileMediaPrimary\" value=\"". $dataImg['ProfileMediaID'] ."\" class=\"button-primary\"". $isChecked ." /> ". $isCheckedText ."</label></div>\n";
 
 						echo "</div>\n";
 					}
