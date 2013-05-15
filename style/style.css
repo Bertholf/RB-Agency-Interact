@@ -99,6 +99,9 @@ p.submit { margin-top: 15px!important; }
 #profile-featured .image-broken {  }
 #profile-featured .image-broken a {  }
 
+#message { padding: 15px; margin-bottom: 30px; background: #eee; border: 1px solid #ccc; }
+#message p:last-child { margin: 0; }
+
 .rb_button {
 	-moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
 	-webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
