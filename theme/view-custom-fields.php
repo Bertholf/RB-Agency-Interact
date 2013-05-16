@@ -28,14 +28,23 @@
 						}
 					}
 			 }
+			if ($ProfileCustomType == 1) { //TEXT
+			 echo "    <tr valign=\"top\">\n";
+			 echo "		<td scope=\"row\">";
+			 echo "				        <label for=\"ProfileCustomID". $data1['ProfileCustomID'] ."\">".__($data1['ProfileCustomTitle'].$measurements_label, rb_agency_TEXTDOMAIN)."</label>\n";
+				echo "		</td>\n";
+				echo "	<td>";
+
+						echo "<input type=\"text\" name=\"ProfileCustomID". $data1['ProfileCustomID'] ."\" value=\"". $ProfileCustomValue ."\" /><br />\n";
+				echo "		</td>\n";
+				;
+			} elseif ($ProfileCustomType == 2) { // Min Max
 			 echo "    <tr valign=\"top\">\n";
 			 echo "		<td scope=\"row\">";
 			 echo "				        <label for=\"ProfileCustomID". $data1['ProfileCustomID'] ."\">".__($data1['ProfileCustomTitle'].$measurements_label, rb_agency_TEXTDOMAIN)."</label>\n";
 			 echo "		</td>\n";
 			 echo "	<td>";
-			if ($ProfileCustomType == 1) { //TEXT
-						echo "<input type=\"text\" name=\"ProfileCustomID". $data1['ProfileCustomID'] ."\" value=\"". $ProfileCustomValue ."\" /><br />\n";
-			} elseif ($ProfileCustomType == 2) { // Min Max
+
 				$ProfileCustomOptions_String = str_replace(",",":",strtok(strtok($data1['ProfileCustomOptions'],"}"),"{"));
 				list($ProfileCustomOptions_Min_label,$ProfileCustomOptions_Min_value,$ProfileCustomOptions_Max_label,$ProfileCustomOptions_Max_value) = explode(":",$ProfileCustomOptions_String);
 
@@ -52,7 +61,15 @@
 						echo "<input type=\"text\" name=\"ProfileCustomID". $data1['ProfileCustomID'] ."\" value=\"".$_SESSION["ProfileCustomID". $data1['ProfileCustomID']]."\" /><br />\n";
 
 				}
+				echo "		</td>\n";
+			    echo "	</tr>";
 			} elseif ($ProfileCustomType == 3) {
+			 echo "    <tr valign=\"top\">\n";
+			 echo "		<td scope=\"row\">";
+			 echo "				        <label for=\"ProfileCustomID". $data1['ProfileCustomID'] ."\">".__($data1['ProfileCustomTitle'].$measurements_label, rb_agency_TEXTDOMAIN)."</label>\n";
+			 echo "		</td>\n";
+			 echo "	<td>";
+
 			  list($option1,$option2) = explode(":",$data1['ProfileCustomOptions']);	
 					$data = explode("|",$option1);
 					$data2 = explode("|",$option2);
@@ -89,16 +106,34 @@
 							echo "</select>\n";
 					
 					}
-			   
+						 echo "		</td>\n";
+						  echo "	</tr>";   
 				
 				
 			} 
 			elseif ($ProfileCustomType == 4) 
 			{
-				echo "<textarea style=\"width: 100%; min-height: 300px;\" name=\"ProfileCustomID". $data1['ProfileCustomID'] ."\">". $ProfileCustomValue ."</textarea>";
+
+				if(is_admin()){
+					echo "    <tr valign=\"top\">\n";
+					 echo "		<td scope=\"row\">";
+					 echo "				        <label for=\"ProfileCustomID". $data1['ProfileCustomID'] ."\">".__($data1['ProfileCustomTitle'].$measurements_label, rb_agency_TEXTDOMAIN)."</label>\n";
+					 echo "		</td>\n";
+					 echo "	<td>";
+
+					echo "<textarea style=\"width: 100%; min-height: 300px;\" name=\"ProfileCustomID". $data1['ProfileCustomID'] ."\">". $ProfileCustomValue ."</textarea>";
+					echo "		</td>\n";
+					echo "	</tr>";
+				}
 			}
 			 elseif ($ProfileCustomType == 5)
 			  {
+				  echo "    <tr valign=\"top\">\n";
+				 echo "		<td scope=\"row\">";
+				 echo "				        <label for=\"ProfileCustomID". $data1['ProfileCustomID'] ."\">".__($data1['ProfileCustomTitle'].$measurements_label, rb_agency_TEXTDOMAIN)."</label>\n";
+				 echo "		</td>\n";
+				 echo "	<td>";
+
 				   $array_customOptions_values = explode("|",$data1['ProfileCustomOptions']);
 				          echo "<div style=\"width:300px;float:left;\">";
 						  foreach($array_customOptions_values as $val){
@@ -112,9 +147,17 @@
 						  }
 						    echo "<input type=\"hidden\" value=\"\" name=\"ProfileCustomID". $data1['ProfileCustomID'] ."[]\"/>";
 						  echo "</div>";
+						  echo "		</td>\n";
+						  echo "	</tr>";
 			       
 			}
 			elseif ($ProfileCustomType == 6) {
+					 echo "    <tr valign=\"top\">\n";
+					 echo "		<td scope=\"row\">";
+					 echo "				        <label for=\"ProfileCustomID". $data1['ProfileCustomID'] ."\">".__($data1['ProfileCustomTitle'].$measurements_label, rb_agency_TEXTDOMAIN)."</label>\n";
+					 echo "		</td>\n";
+					 echo "	<td>";
+
 				  $array_customOptions_values = explode("|",$data1['ProfileCustomOptions']);
 				   echo "<div style=\"width:300px;float:left;\">";
 						  foreach($array_customOptions_values as $val){
@@ -128,6 +171,9 @@
 						  }
 						  echo "<input type=\"hidden\" value=\"\" name=\"ProfileCustomID". $data1['ProfileCustomID'] ."[]\"/>";
 						  echo "</div>";
+						  echo "		</td>\n";
+						  echo "	</tr>";
+		
 			       
 			}
 			
@@ -156,13 +202,19 @@
 							    }
 				   }else{
 */
-					   
+					   echo "    <tr valign=\"top\">\n";
+						 echo "		<td scope=\"row\">";
+						 echo "				        <label for=\"ProfileCustomID". $data1['ProfileCustomID'] ."\">".__($data1['ProfileCustomTitle'].$measurements_label, rb_agency_TEXTDOMAIN)."</label>\n";
+						 echo "		</td>\n";
+						 echo "	<td>";
+
 					  echo "<input type=\"text\" name=\"ProfileCustomID". $data1['ProfileCustomID'] ."\" value=\"". $ProfileCustomValue ."\" /><br />\n";
 					
 				 //  }
+				  echo "		</td>\n";
+				  echo "	</tr>";
+		
 				
 			}
-				 echo "		</td>\n";
-		echo "	</tr>";
-		
+				
 		?>

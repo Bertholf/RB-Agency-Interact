@@ -222,7 +222,7 @@ if (is_user_logged_in()) {
 		if (is_user_logged_in()) { 
 			
 			/// Show registration steps
-			echo "<div id=\"profile-steps\">Profile Setup: Step 3 of 4</div>\n";
+			echo "<div id=\"profile-steps\">Profile Setup: Step 3 of 3</div>\n";
 			
 			echo "<div id=\"profile-manage\" class=\"profile-media\">\n";
 			

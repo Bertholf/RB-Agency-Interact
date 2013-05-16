@@ -121,7 +121,7 @@ if (is_user_logged_in()) {
 			if(in_array(strtolower($ptype),$restrict)){
 				echo "<div id=\"profile-steps\">Profile Setup: Step 2 of 2</div>\n";
 			} else {
-				echo "<div id=\"profile-steps\">Profile Setup: Step 2 of 4</div>\n";
+				echo "<div id=\"profile-steps\">Profile Setup: Step 2 of 3</div>\n";
 			}
 
 			echo "<div id=\"profile-manage\" class=\"overview\">\n";
