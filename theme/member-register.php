@@ -133,15 +133,14 @@
 		// Bug Free!
 		if($have_error == false){
 			$new_user = wp_insert_user( $userdata );
-			$new_user_type = $_POST['profile_type'];
 			$gender = $_POST['ProfileGender'];
-			
+                        $new_user_type = implode(",", $_POST['profile_type']);
 			
 			// Model or Client
 			update_usermeta($new_user, 'rb_agency_interact_profiletype', $new_user_type);
-			update_usermeta($new_user, 'rb_agency_interact_pgender', $gender);
+			update_usermeta($new_user, 'rb_agency_interact_pgender', $ProfileGender);
 			
-			//Custom Fields
+                        //Custom Fields
 			$arr = array();
 			
 			foreach($_POST as $key => $value) {			         
@@ -175,7 +174,7 @@
 		// Log them in if no confirmation required.
 		if ($rb_agencyinteract_option_registerconfirm == 1) {
 			if($login){
-				header("Location: ". get_bloginfo("wpurl"). "/profile-member/");
+                             header("Location: ". get_bloginfo("wpurl"). "/profile-member/");
 			}
 		}
 
@@ -282,9 +281,8 @@
                 	
 	echo "       <p class=\"form-profile_type\">\n";
 	echo "       	<label for=\"profile_type\">". __("Type of Profile", rb_agencyinteract_TEXTDOMAIN) ."</label>\n";
-	echo "       		<select name=\"profile_type\">\n";
-    
-	/*
+	echo "<table><tr>"; 
+   	/*
 	 * This is the new version
 	 * for the sites registration
 	 * get the proper fields on
@@ -297,10 +295,10 @@
 	while ( $typ = mysql_fetch_array($result)){
 		$type = trim($typ['DataTypeTitle']);
 		$t_id = trim($typ['DataTypeID']);
-		echo '<option value="'.$t_id.'">'. __($type, rb_agencyinteract_TEXTDOMAIN) .'</option>\n';	
+		echo '<td><input type="checkbox" name="profile_type[]" value="'.$t_id.'"/>'. __($type, rb_agencyinteract_TEXTDOMAIN) .'</td> ';	
 	} 
+        echo "</tr></table>";
 
-	echo "       </select>\n";
 	echo "       </p><!-- .form-profile_type -->\n";
   	
 	echo "       <p class=\"form-profile_agree\">\n";

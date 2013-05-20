@@ -17,6 +17,18 @@
         $ptype = (int)get_user_meta($current_user->id, "rb_agency_interact_profiletype", true);
 	$ptype = retrieve_title($ptype);
         $ProfileGender = get_user_meta($current_user->id, "rb_agency_interact_pgender", true);
+        $ProfileTypeArray = array();
+        $profileType = ""; 
+        $ptype1 = get_user_meta($current_user->id, "rb_agency_interact_profiletype", true);
+        $ProfileTypeArray = explode(",", $ptype1);
+        $query3 = "SELECT * FROM " . table_agency_data_type . " ORDER BY DataTypeTitle";
+        $results3 = mysql_query($query3);
+        $count3 = mysql_num_rows($results3);
+        while ($data3 = mysql_fetch_array($results3)) {
+            if (in_array($data3['DataTypeID'], $ProfileTypeArray)){
+                 $profileType .=  " " . $data3['DataTypeTitle'] . "&nbsp;&nbsp;";
+            }
+        }
                 
 	while ($data = mysql_fetch_array($results)) {
 		$ProfileID					=$data['ProfileID'];
@@ -25,23 +37,9 @@
 		$ProfileType				=stripslashes($data['ProfileType']);
 		echo "<form method=\"post\" enctype=\"multipart/form-data\" action=\"". get_bloginfo("wpurl") ."/profile-member/manage/\">\n";
 		echo "     <input type=\"hidden\" name=\"ProfileID\" value=\"". $ProfileID ."\" />\n";
-		
-		/* Phel Comment
-		echo " <table class=\"form-table\">\n";
-		echo "  <tbody>\n";
-		// Account Information	
-		echo "    <tr valign=\"top\">\n";
-		echo "		<th scope=\"row\">". __("Classification:", rb_agencyinteract_TEXTDOMAIN) ."</th>\n";
-		echo "		<td>\n";
-		echo "		". __($ptype, rb_agencyinteract_TEXTDOMAIN);
-		echo "		</td>\n";
-		echo "	  </tr>\n";
-		echo "  </tbody>\n";
-		echo "</table>\n";*/
-
 		echo "<p>";
 		echo "<label style=\"width:200px; float:left;\" for=\"classification\">". __("Classification:", rb_agencyinteract_TEXTDOMAIN) ."</label>";
-		echo "		". __($ptype, rb_agencyinteract_TEXTDOMAIN);
+		echo "		".$profileType;
 		echo "</p>";
 
 	/*
