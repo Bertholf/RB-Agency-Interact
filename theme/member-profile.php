@@ -26,7 +26,7 @@ add_filter('wp_title', 'rb_agencyinteractive_override_title', 10, 2);
 	}   
 
 // Form Post
-if (isset($_POST['action'])) {
+if (isset($_POST['action'])) { 
 
 	$ProfileID					=$_POST['ProfileID'];
 	$ProfileUserLinked			=$_POST['ProfileUserLinked'];
@@ -140,7 +140,6 @@ if (is_user_logged_in()) {
 			$count = mysql_num_rows($results);
 			if ($count > 0) {
 			  	$data = mysql_fetch_array($results);
-
 				// Manage Profile
 				include("include-profilemanage.php"); 	
 			} else {

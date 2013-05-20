@@ -43,16 +43,18 @@ if (isset($_POST['action'])) {
 	$ProfileContactDisplay		=trim($_POST['ProfileContactDisplay']);
 
   	if (empty($ProfileContactDisplay)) {  // Probably a new record... 
-		if ($rb_agency_option_profilenaming == 0) {
+		if ($rb_agency_option_profilenaming == 0) { 
 			$ProfileContactDisplay = $ProfileContactNameFirst . " ". $ProfileContactNameLast;
-		} elseif ($rb_agency_option_profilenaming == 1) {
+		} elseif ($rb_agency_option_profilenaming == 1) { 
 			$ProfileContactDisplay = $ProfileContactNameFirst . " ". substr($ProfileContactNameLast, 0, 1);
-		} elseif ($rb_agency_option_profilenaming == 2) {
+		} elseif ($rb_agency_option_profilenaming == 2) { 
 			$error .= "<b><i>". __(LabelSingular ." must have a display name identified", rb_agencyinteract_TEXTDOMAIN) . ".</i></b><br>";
 			$have_error = true;
-		} elseif ($rb_agency_option_profilenaming == 3) {
+		} elseif ($rb_agency_option_profilenaming == 3) { // by firstname
 			$ProfileContactDisplay = "ID ". $ProfileID;
-		}
+		} elseif ($rb_agency_option_profilenaming == 4) {
+                        $ProfileContactDisplay = $ProfileContactNameFirst;
+                }
   	}
 
 	$ProfileGallery				=$_POST['ProfileGallery'];
@@ -113,7 +115,6 @@ if (isset($_POST['action'])) {
 	// Add Record
 	case 'addRecord':
 		if(!$have_error){
-			
 			$ProfileIsActive		= 3;
 			$ProfileIsFeatured	= 0;
 			$ProfileIsPromoted	= 0;
@@ -188,6 +189,7 @@ if (isset($_POST['action'])) {
 			update_usermeta( $current_user->id, 'nickname', esc_attr( $ProfileContactDisplay ) );
 			update_usermeta( $current_user->id, 'display_name', esc_attr( $ProfileContactDisplay ) );
 			update_usermeta( $current_user->id, 'user_email', esc_attr( $ProfileContactEmail ) );
+			update_usermeta( $current_user->id, 'rb_agency_interact_pgender', esc_attr( $ProfileGender ) );			
 			
 	#DEBUG
 	#echo "<script>alert('".$ProfileUsername."');<\/script>";		 
@@ -274,6 +276,7 @@ if (isset($_POST['action'])) {
 			update_usermeta( $current_user->id, 'nickname', esc_attr( $ProfileContactDisplay ) );
 			update_usermeta( $current_user->id, 'display_name', esc_attr( $ProfileContactDisplay ) );
 			update_usermeta( $current_user->id, 'user_email', esc_attr( $ProfileContactEmail ) );
+			update_usermeta( $current_user->id, 'rb_agency_interact_pgender', esc_attr( $ProfileGender ) );	
 
 			// Add New Custom Field Values			 
 			foreach($_POST as $key => $value) {

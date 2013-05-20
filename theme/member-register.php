@@ -133,14 +133,16 @@
 		// Bug Free!
 		if($have_error == false){
 			$new_user = wp_insert_user( $userdata );
+			$new_user_type = array();
+			$new_user_type =implode(",", $_POST['ProfileType']);
 			$gender = $_POST['ProfileGender'];
-                        $new_user_type = implode(",", $_POST['profile_type']);
+			
 			
 			// Model or Client
 			update_usermeta($new_user, 'rb_agency_interact_profiletype', $new_user_type);
-			update_usermeta($new_user, 'rb_agency_interact_pgender', $ProfileGender);
+			update_usermeta($new_user, 'rb_agency_interact_pgender', $gender);
 			
-                        //Custom Fields
+			//Custom Fields
 			$arr = array();
 			
 			foreach($_POST as $key => $value) {			         
@@ -174,7 +176,7 @@
 		// Log them in if no confirmation required.
 		if ($rb_agencyinteract_option_registerconfirm == 1) {
 			if($login){
-                             header("Location: ". get_bloginfo("wpurl"). "/profile-member/");
+				header("Location: ". get_bloginfo("wpurl"). "/profile-member/");
 			}
 		}
 
@@ -270,7 +272,6 @@
      	echo "		<label for=\"profile_gender\">". __("Gender", rb_agencyinteract_TEXTDOMAIN) ."</label>\n";
 					$query= "SELECT GenderID, GenderTitle FROM " .  table_agency_data_gender . " GROUP BY GenderTitle ";
 					echo "<select id='ProfileGender' name=\"ProfileGender\">";
-					echo "<option value=\"\">Not Specified</option>";
 					$queryShowGender = mysql_query($query);
 					while($dataShowGender = mysql_fetch_assoc($queryShowGender)){
 						echo "<option value=\"".$dataShowGender["GenderID"]."\" ". selected($ProfileGender ,$dataShowGender["GenderID"],false).">".$dataShowGender["GenderTitle"]."</option>";
@@ -279,26 +280,18 @@
 		echo "	  </p>";
  
                 	
-	echo "       <p class=\"form-profile_type\">\n";
+	echo "       <p class=\"form-profile_type\" >\n";
 	echo "       	<label for=\"profile_type\">". __("Type of Profile", rb_agencyinteract_TEXTDOMAIN) ."</label>\n";
-	echo "<table><tr>"; 
-   	/*
-	 * This is the new version
-	 * for the sites registration
-	 * get the proper fields on
-	 * profile types here
-	 */
-	$get_types = "SELECT * FROM ". table_agency_data_type;
-
-	$result = mysql_query($get_types);
-
-	while ( $typ = mysql_fetch_array($result)){
-		$type = trim($typ['DataTypeTitle']);
-		$t_id = trim($typ['DataTypeID']);
-		echo '<td><input type="checkbox" name="profile_type[]" value="'.$t_id.'"/>'. __($type, rb_agencyinteract_TEXTDOMAIN) .'</td> ';	
-	} 
-        echo "</tr></table>";
-
+	echo "<table><tr>";
+	$ProfileTypeArray = array();
+    $query3 = "SELECT * FROM " . table_agency_data_type . " ORDER BY DataTypeTitle";
+    $results3 = mysql_query($query3);
+    $count3 = mysql_num_rows($results3);
+    
+    while ($data3 = mysql_fetch_array($results3)) {
+            echo "<td><input type=\"checkbox\" name=\"ProfileType[]\" value=\"" . $data3['DataTypeID'] . "\" id=\"ProfileType[]\" /> " . $data3['DataTypeTitle'] . "</td>";
+     }
+	echo "</tr></table>";
 	echo "       </p><!-- .form-profile_type -->\n";
   	
 	echo "       <p class=\"form-profile_agree\">\n";

@@ -22,6 +22,8 @@
 	$results = mysql_query($query) or die ( __("Error, query failed", rb_agencyinteract_TEXTDOMAIN ));
 	$count = mysql_num_rows($results);
 	while ($data = mysql_fetch_array($results)) {
+		
+		// $ProfileGender =$data['ProfileGender'];
 		$ProfileID					=$data['ProfileID'];
 		$ProfileUserLinked			=$data['ProfileUserLinked'];
 		$ProfileGallery				=stripslashes($data['ProfileGallery']);
