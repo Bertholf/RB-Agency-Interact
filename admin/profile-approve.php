@@ -369,8 +369,37 @@ function rb_display_list() {
             $ProfileDateBirth = stripslashes($data['ProfileDateBirth']);
             $ProfileStatHits = stripslashes($data['ProfileStatHits']);
             $ProfileDateCreated = stripslashes($data['ProfileDateCreated']);
-            $DataTypeTitle = stripslashes($data['DataTypeTitle']);
+            
+			 $DataTypeTitle = stripslashes($data['ProfileType']);
 			
+			if(strpos($data['ProfileType'], ",") > 0){
+            $title = explode(",",$data['ProfileType']);
+            $new_title = "";
+            foreach($title as $t){
+                $id = (int)$t;
+                $get_title = "SELECT DataTypeTitle FROM " . table_agency_data_type .  
+                             " WHERE DataTypeID = " . $id;   
+                $resource = mysql_query($get_title);             
+                $get = mysql_fetch_assoc($resource);
+                if (mysql_num_rows($resource) > 0 ){
+                    $new_title .= "," . $get['DataTypeTitle']; 
+                }
+            }
+            $new_title = substr($new_title,1);
+        } else {
+                $new_title = "";
+                $id = (int)$data['ProfileType'];
+                $get_title = "SELECT DataTypeTitle FROM " . table_agency_data_type .  
+                             " WHERE DataTypeID = " . $id;   
+                $resource = mysql_query($get_title);             
+                $get = mysql_fetch_assoc($resource);
+                if (mysql_num_rows($resource) > 0 ){
+                    $new_title = $get['DataTypeTitle']; 
+                }
+        }
+         
+        
+        $DataTypeTitle = stripslashes($new_title);
 			$resultImageCount = mysql_query("SELECT * FROM " . table_agency_profile_media . " WHERE ProfileID='". $ProfileID ."' AND ProfileMediaType = 'Image'");
 			$profileImageCount = mysql_num_rows($resultImageCount);
 			
