@@ -73,6 +73,7 @@ if (isset($_POST['action'])) {
 	$ProfileContactPhoneCell	=$_POST['ProfileContactPhoneCell'];
 	$ProfileContactPhoneWork	=$_POST['ProfileContactPhoneWork'];
 	$ProfileGender    		=$_POST['ProfileGender'];
+	$ProfileType    		=$_POST['ProfileType'];
 	$ProfileDateBirth	    		=$_POST['ProfileDateBirth'];
 	$ProfileLocationStreet		=$_POST['ProfileLocationStreet'];
 	$ProfileLocationCity		=rb_agency_strtoproper($_POST['ProfileLocationCity']);
@@ -125,7 +126,7 @@ if (isset($_POST['action'])) {
 			// Create Record
 			$insert = "INSERT INTO " . table_agency_profile .
 			" (ProfileUserLinked,ProfileGallery,ProfileContactDisplay,ProfileContactNameFirst,ProfileContactNameLast,
-			   ProfileContactEmail,ProfileContactWebsite,ProfileGender,ProfileDateBirth,
+			   ProfileContactEmail,ProfileContactWebsite,ProfileGender,ProfileType, ProfileDateBirth,
 			   ProfileContactLinkFacebook,ProfileContactLinkTwitter,ProfileContactLinkYouTube,ProfileContactLinkFlickr,
 			   ProfileLocationStreet,ProfileLocationCity,ProfileLocationState,ProfileLocationZip,ProfileLocationCountry,
 			   ProfileContactPhoneHome, ProfileContactPhoneCell, ProfileContactPhoneWork,
@@ -137,8 +138,9 @@ if (isset($_POST['action'])) {
 					 $wpdb->escape($ProfileContactNameLast) . 
 					 "','" . $wpdb->escape($ProfileContactEmail) . "','" . 
 					 $wpdb->escape($ProfileContactWebsite) . "','" . 
-					 $wpdb->escape($ProfileGender) . 
-					 "','" . $wpdb->escape($ProfileDateBirth) . "','" . 
+					 $wpdb->escape($ProfileGender) .  "','" .
+                                         $wpdb->escape($ProfileType) .  "','" .
+                                         $wpdb->escape($ProfileDateBirth) . "','" . 
 					 $wpdb->escape($ProfileContactLinkFacebook) . "','" . 
 					 $wpdb->escape($ProfileContactLinkTwitter) . "','" . 
 					 $wpdb->escape($ProfileContactLinkYouTube) . "','" . 

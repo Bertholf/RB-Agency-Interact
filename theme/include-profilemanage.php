@@ -24,10 +24,18 @@
         $query3 = "SELECT * FROM " . table_agency_data_type . " ORDER BY DataTypeTitle";
         $results3 = mysql_query($query3);
         $count3 = mysql_num_rows($results3);
+		$i=1; 
         while ($data3 = mysql_fetch_array($results3)) {
+
             if (in_array($data3['DataTypeID'], $ProfileTypeArray)){
-                 $profileType .=  " " . $data3['DataTypeTitle'] . "&nbsp;&nbsp;";
-            }
+                 $profileType .=  $data3['DataTypeTitle'] ;
+		
+		 if($i<$count3){
+			
+				$profileType .=  "&nbsp;,&nbsp;";
+				  }
+               }
+			$i++; 
         }
                 
 	while ($data = mysql_fetch_array($results)) {
@@ -37,6 +45,9 @@
 		$ProfileType				=stripslashes($data['ProfileType']);
 		echo "<form method=\"post\" enctype=\"multipart/form-data\" action=\"". get_bloginfo("wpurl") ."/profile-member/manage/\">\n";
 		echo "     <input type=\"hidden\" name=\"ProfileID\" value=\"". $ProfileID ."\" />\n";
+		echo "     <input type=\"hidden\" name=\"ProfileType\" value=\"". $ptype1 ."\" />\n";
+		
+
 		echo "<p>";
 		echo "<label style=\"width:200px; float:left;\" for=\"classification\">". __("Classification:", rb_agencyinteract_TEXTDOMAIN) ."</label>";
 		echo "		".$profileType;
