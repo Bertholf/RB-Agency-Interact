@@ -355,6 +355,9 @@
 			}
 
 }
+
+if(!$registration){ echo "<p class='alert'>The administrator currently disabled the registration.<p>"; }
+
 echo "  </div><!-- #content -->\n";
 echo "</div><!-- #container -->\n";
    
