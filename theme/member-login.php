@@ -9,13 +9,13 @@ if ( $_SERVER['REQUEST_METHOD'] == "POST" && !empty( $_POST['action'] ) && $_POS
 	
     get_currentuserinfo();
     
-		if($login->ID) {
-        	wp_set_current_user($login->ID);  // populate
-		   	get_user_login_info();
-		}		
+	if($login->ID) {
+    	wp_set_current_user($login->ID);  // populate
+	   	get_user_login_info();
+	}		
 }
 
-function  get_user_login_info(){
+function get_user_login_info(){
     
     global $user_ID;  
 	$redirect = $_POST["lastviewed"];
@@ -30,11 +30,10 @@ function  get_user_login_info(){
 			header("Location: ". get_bloginfo("wpurl"). "/profile/".$redirect);
 		} else {
 
+			// If Admin, redirect to plugin
 			if( $user_info->user_level > 7) {
-				//header("Location: ". get_bloginfo("wpurl"). "/wp-admin/");
-				header("Location: ". get_bloginfo("wpurl"). "/dashboard/");
-
-			} 
+				header("Location: ". admin_url("admin.php?page=rb_agency_menu"));
+			}
 
 			// Message will show for 48hrs after registration
 			elseif( strtotime( $user_info->user_registered ) > ( time() - 172800 ) ) {
@@ -43,15 +42,13 @@ function  get_user_login_info(){
 				header("Location: ". get_bloginfo("wpurl"). "/profile-member/");
 			}
 	  	}
-	}
-	elseif(empty($_POST['user-name']) || empty($_POST['password']) ){
-					
-	}
-	else {
+	} elseif(empty($_POST['user-name']) || empty($_POST['password']) ){
+		// Nothing to show here
 
+	} else {
 		// Reload
         header("Location: ". get_bloginfo("wpurl")."/profile-login/");
-}
+	}
 }
 
 // ****************************************************************************************** //

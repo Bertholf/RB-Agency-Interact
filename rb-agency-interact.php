@@ -8,7 +8,7 @@
   Author URI: http://rob.bertholf.com/
   Version: 0.1
 */
-$rb_agencyinteract_VERSION = "0.1"; 
+$rb_agencyinteract_VERSION = "2.0.0"; 
 if (!session_id())
 session_start();
 if ( ! isset($GLOBALS['wp_version']) || version_compare($GLOBALS['wp_version'], '2.8', '<') ) { // if less than 2.8 

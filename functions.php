@@ -1,6 +1,7 @@
 <?php
 // *************************************************************************************************** //
 // Admin Head Section 
+
 	add_action('admin_head', 'rb_agencyinteract_admin_head');
 		function rb_agencyinteract_admin_head(){
 		  if( is_admin() ) {
@@ -10,6 +11,7 @@
 	
 // *************************************************************************************************** //
 // Page Head Section
+
 	add_action('wp_head', 'rb_agencyinteract_inserthead');
 		// Call Custom Code to put in header
 		function rb_agencyinteract_inserthead() {
@@ -25,6 +27,7 @@
 
 // *************************************************************************************************** //
 // Handle Folders
+
 	// Adding a new rule
 	add_filter('rewrite_rules_array','rb_agencyinteract_rewriteRules');
 		function rb_agencyinteract_rewriteRules($rules) {
@@ -78,7 +81,6 @@
 		}
 	
 	
-	
 	/*/
 	 *  Fix form post url for multi language.
 	/*/
@@ -96,8 +98,10 @@
 	    }
 	}
 	*/
+
 // *************************************************************************************************** //
 // Handle Emails
+
 	// Redefine user notification function  
 	if ( !function_exists('wp_new_user_notification') ) {  
 		function wp_new_user_notification( $user_id, $plaintext_pass = '' ) {  
@@ -138,8 +142,12 @@
 			}
 			return $ProfileGallery;
      }
+
+
+
 // *************************************************************************************************** //
 // Functions
+
 	// Move Login Page	
 	add_filter("login_init", "rb_agencyinteract_login_movepage", 10, 2);
 		function rb_agencyinteract_login_movepage( $url ) {
@@ -150,150 +158,37 @@
 				die;
 			}
 		}
-	
-	
+
 	// Rewrite Login
 	add_action( 'init', 'rb_agencyinteract_login_rewrite' );
 		function rb_agencyinteract_login_rewrite() {
 			add_rewrite_rule(get_bloginfo("wpurl"). "profile-register/?$", 'wp-login.php', 'top');
 		}
 		
-		
+
 	// Redirect after Login
 	add_filter('login_redirect', 'rb_agencyinteract_login_redirect', 10, 3);	
 		function rb_agencyinteract_login_redirect() {
-			global $user_ID;
+			global $user_ID, $current_user, $wp_roles;
 			if( $user_ID ) {
 				$user_info = get_userdata( $user_ID ); 
-				// If user_registered date/time is less than 48hrs from now
-				// Message will show for 48hrs after registration
-				if ( strtotime( $user_info->user_registered ) > ( time() - 172800 ) ) {
-					header("Location: ". get_bloginfo("wpurl"). "/profile-member/account/");
-				} elseif( current_user_can( 'manage_options' )) {
+
+				if( current_user_can( 'manage_options' )) {
 					header("Location: ". get_bloginfo("wpurl"). "/wp-admin/");
+				} elseif ( strtotime( $user_info->user_registered ) > ( time() - 172800 ) ) {
+					// If user_registered date/time is less than 48hrs from now
+					// Message will show for 48hrs after registration
+					header("Location: ". get_bloginfo("wpurl"). "/profile-member/account/");
 				} else {
 					header("Location: ". get_bloginfo("wpurl"). "/profile-member/");
 				}
 			}
 		}
-		
-    // function for checking male and female filter
-	if ( !function_exists('gender_filter') ) {  
-		function gender_filter($gender=0) {
-		    global $wpdb;
-			$wpdb->query('select * from my_plugin_table where foo = "bar"');
-			
-			$gender = "SELECT GenderTitle FROM rb_agency_data_gender WHERE GenderID = ". $gender ." LIMIT 1";
-			$results = $wpdb->get_results($gender);
-			
-			$gender_title = "";
-			foreach($results as $gname){
-				$gender_title = strtolower($gname->GenderTitle);
-			}
-			
-			if($gender_title == 'male'){
-				return "male_filter";
-			}elseif($gender_title == 'female'){
-				return "female_filter";
-			}else{
-				return "";
-			}
-		}
-	}
 
-	// retrieving value of saved fields for edit
-	if ( !function_exists('retrieve_datavalue') ) {  
-		function retrieve_datavalue($field="",$customID=0,$ID=0,$type="", $val="") {
-			global $wpdb;
-			/* 
-			 *    Get data for displaying and pass to array
-			 *    for comparison
-			 */
-			 if($ID != 0){
-					 
-					 if($type == "dropdown"){
 
-							 $result = mysql_query("SELECT ProfileCustomValue FROM "
-										. table_agency_customfield_mux .
-										" WHERE ProfileCustomID = ". $customID .
-										" AND ProfileCustomValue = '" . $val . "' "
-										." AND ProfileID = "
-										. $ID);
-					 
-					 } else {
-
-							 $result = mysql_query("SELECT ProfileCustomValue FROM "
-										. table_agency_customfield_mux .
-										" WHERE ProfileCustomID = ". $customID ." AND ProfileID = "
-										. $ID);
-
-					 }
-					 	
-						
-					  while($row = mysql_fetch_assoc($result)){
-
-						 if($type == "textbox"){
-						     return $row["ProfileCustomValue"];
-						 } elseif($type == "dropdown") {
-						     return "selected";
-						 }
-
-			          }
-
-					  if($type == "textbox"){
-						     return $field;
-					  } elseif($type == "dropdown") {
-						     return "";
-					  }
-					   
-			 } else {
-			 	
-			  if($type == "textbox"){
-					 return $field;
-			  } elseif($type == "dropdown") {
-					 return "";
-			  }
-				
-			 }
-		}
-	}	
-
-	// retrieving data type title
-	if ( !function_exists('retrieve_title') ) {  
-		function retrieve_title($id=0) {
-			   global $wpdb;
-			   /* 
-			    * return title
-				*/
-                $check_type = "SELECT DataTypeTitle FROM " . table_agency_data_type . 
-				              " WHERE DataTypeID = " . $id;
-				
-				$check_query = mysql_query($check_type) OR die(mysql_error());
-				
-				if(mysql_num_rows($check_query) > 0){
-				
-					$fetch = mysql_fetch_assoc($check_query);
-					
-					return $fetch['DataTypeTitle'];
-					    
-				} else {
-					
-					return false;
-									
-				}
-		}
-	}
-	
 	/*
-	add_filter('login_redirect', 'rb_agencyinteract_login_redirect');
-		function rb_agencyinteract_login_redirect() {
-			global $current_user, $wp_roles;
-			if ( current_user_can( 'create_users' ) ) {
-				return get_bloginfo("wpurl"). '/wp-admin/';
-			} else {
-				return get_bloginfo("wpurl"). '/profile-member/';
-			}
-		}
+
+	OBSOLETE  Just use for reference
 
 	add_filter("registration_redirect", "rb_agencyinteract_register_redirect");
 		function rb_agencyinteract_register_redirect() {
@@ -334,8 +229,99 @@
 		}
 	*/
 
-// *************************************************************************************************** //
-// Shortcodes
+
+
+    // function for checking male and female filter
+	if ( !function_exists('gender_filter') ) {  
+		function gender_filter($gender=0) {
+		    global $wpdb;
+			
+			$gender = "SELECT GenderTitle FROM rb_agency_data_gender WHERE GenderID = ". $gender ." LIMIT 1";
+			$results = $wpdb->get_results($gender);
+			
+			$gender_title = "";
+			foreach($results as $gname){
+				$gender_title = strtolower($gname->GenderTitle);
+			}
+			
+			if($gender_title == 'male'){
+				return "male_filter";
+			}elseif($gender_title == 'female'){
+				return "female_filter";
+			}else{
+				return "";
+			}
+		}
+	}
+
+	// retrieving value of saved fields for edit
+	if ( !function_exists('retrieve_datavalue') ) {  
+		function retrieve_datavalue($field="",$customID=0,$ID=0,$type="", $val="") {
+			global $wpdb;
+			/* 
+			 *    Get data for displaying and pass to array
+			 *    for comparison
+			 */
+			 if($ID != 0){
+					 
+				if($type == "dropdown"){
+					$result = mysql_query("SELECT ProfileCustomValue FROM "
+							. table_agency_customfield_mux .
+							" WHERE ProfileCustomID = ". $customID .
+							" AND ProfileCustomValue = '" . $val . "' "
+							." AND ProfileID = "
+							. $ID);
+				} else {
+					$result = mysql_query("SELECT ProfileCustomValue FROM "
+							. table_agency_customfield_mux .
+							" WHERE ProfileCustomID = ". $customID ." AND ProfileID = "
+							. $ID);
+				}
+
+				while($row = mysql_fetch_assoc($result)){
+					if($type == "textbox"){
+					 return $row["ProfileCustomValue"];
+					} elseif($type == "dropdown") {
+					 return "selected";
+					}
+				}
+
+				if($type == "textbox"){
+				     return $field;
+				} elseif($type == "dropdown") {
+				     return "";
+				}
+					   
+			 } else {
+			 	
+				if($type == "textbox"){
+					 return $field;
+				} elseif($type == "dropdown") {
+					 return "";
+				}
+				
+			 }
+		}
+	}	
+
+	// retrieving data type title
+	if ( !function_exists('retrieve_title') ) {  
+		function retrieve_title($id=0) {
+		   global $wpdb;
+		   /* 
+		    * return title
+			*/
+            $check_type = "SELECT DataTypeTitle FROM ". table_agency_data_type ." WHERE DataTypeID = " . $id;
+			$check_query = mysql_query($check_type) OR die(mysql_error());
+			if(mysql_num_rows($check_query) > 0){
+				$fetch = mysql_fetch_assoc($check_query);
+				return $fetch['DataTypeTitle'];
+			} else {
+				return false;
+			}
+		}
+	}
+	
 
 
 ?>
