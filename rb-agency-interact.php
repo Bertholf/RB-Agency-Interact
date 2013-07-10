@@ -111,7 +111,7 @@ if ( is_admin() ){
 		//Create Admin Menu
 		function set_rb_agencyinteract_menu(){
 			// Add Approve Users
-			add_submenu_page('users.php', __('Approve Users', rb_agencyinteract_TEXTDOMAIN), __('Approve Users', rb_agencyinteract_TEXTDOMAIN), 'edit_users', basename(__FILE__), 'rb_agencyinteract_menu_approvemembers');
+			add_submenu_page('users.php', __('Approve Users', rb_agencyinteract_TEXTDOMAIN), __('Approve Users', rb_agencyinteract_TEXTDOMAIN), 'edit_users', basename(__FILE__), 'rb_agencyinteract_approvemembers');
 			//add_filter('plugin_action_links', 'rb_agencyinteract_filter_plugin_actions', 10, 2);
 			
 		}
@@ -134,10 +134,10 @@ if ( is_admin() ){
 	/****************  Activate Admin Menu Hook ***********************/
 	
 		//Pages
-		function rb_agencyinteract_menu_settings(){
+		function rb_agencyinteract_settings(){
 			include_once('admin/settings.php');
 		}
-		function rb_agencyinteract_menu_approvemembers(){
+		function rb_agencyinteract_approvemembers(){
 			include_once('admin/profile-approve.php');
 		}
 	
