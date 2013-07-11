@@ -301,7 +301,7 @@
 	echo "       </p><!-- .form-profile_agree -->\n";
  
 	echo "       <p class=\"form-submit\">\n";
-	echo "       	<input name=\"adduser\" type=\"submit\" id=\"addusersub\" class=\"submit button\" value=\"";
+	echo "       	<input name=\"adduser\" type=\"submit\" id=\"addusersub\" class=\"submit button\" value='Register'/>";
 
 					if ( current_user_can("create_users") ) {  _e("Add User", rb_agencyinteract_TEXTDOMAIN); } else {  _e("Register", rb_agencyinteract_TEXTDOMAIN); } echo "\" />\n";
 					wp_nonce_field("add-user");

@@ -74,7 +74,7 @@ p.submit { margin-top: 15px!important; }
 /* Register */
 .rb-agency-interact {  }
 .rb-agency-interact p.alert { border-bottom: 3px solid #0C0; background:#fafafa; padding: 10px; }
-.rb-agency-interact h1 { margin-bottom:10px; }
+.rb-agency-interact h1 { margin-bottom:10px;text-align: left; }
 .rb-agency-interact form#adduser {  }
 .rb-agency-interact form#adduser p { padding: 10px; margin:0; overflow:hidden; }
 .rb-agency-interact form#adduser p input[type="text"],
@@ -85,7 +85,7 @@ p.submit { margin-top: 15px!important; }
 .rb-agency-interact form#adduser p input[type="email"] { width: 200px; }
 .rb-agency-interact form#adduser p select { width: 212px; }
 .rb-agency-interact form#adduser p input[type="checkbox"] { margin-left:150px; }
-.rb-agency-interact form#adduser p input[type="submit"] { float:left; margin-left: 292px; }
+.rb-agency-interact form#adduser p input[type="submit"] { float:left;margin-left:150px;}
 
 .inline-block { display: inline-block; }
 
