@@ -31,7 +31,14 @@
 	echo "    <tr valign=\"top\">\n";
 	echo "		<td scope=\"row\">". __("Phone", rb_agencyinteract_TEXTDOMAIN) ."</th>\n";
 	echo "		<td>\n";
-	echo "			<input type=\"text\" id=\"ProfileContactEmail\" name=\"ProfileContactPhoneHome\" />\n";
+	echo "			<label style=\"width: 50px;float:left;line-height: 24px;\">Home:</label> <input type=\"text\" style=\"width: 144px;\" id=\"ProfileContactPhoneHome\" name=\"ProfileContactPhoneHome\" value=\"". $ProfileContactPhoneHome ."\" /><br />\n";
+	echo "			<label style=\"width: 50px;float:left;line-height: 24px;\">Cell:</label> <input type=\"text\" style=\"width: 144px;\" id=\"ProfileContactPhoneCell\" name=\"ProfileContactPhoneCell\" value=\"". $ProfileContactPhoneCell ."\" /><br />\n";
+	echo "			<label style=\"width: 50px;float:left;line-height: 24px;\">Work:</label> <input type=\"text\" style=\"width: 144px;\" id=\"ProfileContactPhoneWork\" name=\"ProfileContactPhoneWork\" value=\"". $ProfileContactPhoneWork ."\" /><br />\n";
+	echo "		</td>\n";
+	echo "    <tr valign=\"top\">\n";
+	echo "		<td scope=\"row\">". __("Website", rb_agencyinteract_TEXTDOMAIN) ."</th>\n";
+	echo "		<td>\n";
+	echo "			<input type=\"text\" id=\"ProfileContactWebsite\" name=\"ProfileContactWebsite\" value=\"". $ProfileContactWebsite ."\" />\n";
 	echo "		</td>\n";
 	echo "	  </tr>\n";
 	// Public Information

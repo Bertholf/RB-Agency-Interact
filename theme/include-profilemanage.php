@@ -79,7 +79,8 @@
 		$result = mysql_query($get_types);
 		$types = "";				
 		while ( $p = mysql_fetch_array($result)){
-			$types = $p['ProfileCustomTypes'];			    
+		// 	$types = $p['ProfileCustomTypes'];		
+		$types = str_replace("_", " ", $p['ProfileCustomTypes']);	    
 		}
 		
 		if($types != "" || $types != NULL){
