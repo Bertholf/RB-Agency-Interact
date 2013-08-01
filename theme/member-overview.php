@@ -45,7 +45,7 @@ add_filter('wp_title', 'rb_agencyinteractive_override_title', 10, 2);
 /* Display Page ******************************************/ 
 get_header();
 	
-	echo "	<div id=\"container\" class=\"".$content_class." column rb-agency-interact rb-agency-interact-overview\">\n";
+	echo "	<div id=\"container\" class=\"".fullwidth_class()." column rb-agency-interact rb-agency-interact-overview\">\n";
 	echo "  	<div id=\"content\">\n";
 
 		// get profile Custom fields value
