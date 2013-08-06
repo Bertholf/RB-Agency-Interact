@@ -25,12 +25,6 @@ $rb_agencyinteract_option_overviewpagedetails 	= (int)$rb_agencyinteract_options
 $rb_agencyinteract_options_arr = get_option('rb_agencyinteract_options');
 $rb_agencyinteract_option_profilemanage_sidebar = $rb_agencyinteract_options_arr['rb_agencyinteract_option_profilemanage_sidebar'];
 $rb_subscription = $rb_agency_options_arr['rb_agency_option_profilelist_subscription'];
-$content_class = "";
-if (is_user_logged_in()) {
-	$content_class = "eight";
-} else {
-	$content_class = "twelve";
-}
 
 // Were they users or agents?
 $profiletype = (int)get_user_meta($current_user->id, "rb_agency_interact_profiletype", true);
@@ -45,7 +39,7 @@ add_filter('wp_title', 'rb_agencyinteractive_override_title', 10, 2);
 /* Display Page ******************************************/ 
 get_header();
 	
-	echo "	<div id=\"container\" class=\"".fullwidth_class()." column rb-agency-interact rb-agency-interact-overview\">\n";
+	echo "	<div id=\"primary\" class=\"col_12 column rb-agency-interact rb-agency-interact-overview\">\n";
 	echo "  	<div id=\"content\">\n";
 
 		// get profile Custom fields value
@@ -140,17 +134,7 @@ get_header();
 		}
 		
 	echo "  </div><!-- #content -->\n";
-	echo "</div><!-- #container -->\n";
-	
-	if (is_user_logged_in()) {
-
-		// Get Sidebar 
-		$LayoutType = "";
-		if ($rb_agencyinteract_option_profilemanage_sidebar) {
-			$LayoutType = "profile";
-			get_sidebar();
-		}
-	}
+	echo "</div><!-- #primary -->\n";
 
 // Get Footer
 get_footer();
