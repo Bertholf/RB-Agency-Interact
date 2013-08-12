@@ -321,18 +321,6 @@
 			}
 		}
 	}
-	
 
-function primary_class(){
-	return $class = "col_8";
-}
-
-function secondary_class(){
-	return $class = "col_4";
-}
-
-function fullwidth_class(){
-	return $class = "col_12";
-}
 
 ?>
