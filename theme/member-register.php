@@ -281,19 +281,16 @@
 		echo "	  </p>";
  
                 	
-	echo "       <p class=\"form-profile_type\" >\n";
-	echo "       	<label for=\"profile_type\">". __("Type of Profile", rb_agencyinteract_TEXTDOMAIN) ."</label>\n";
-	echo "<table><tr>";
+	echo "       	<fieldset class=\"form-profile_type\"><legend for=\"profile_type\">". __("Type of Profile", rb_agencyinteract_TEXTDOMAIN) ."</legend>\n";
 	$ProfileTypeArray = array();
     $query3 = "SELECT * FROM " . table_agency_data_type . " ORDER BY DataTypeTitle";
     $results3 = mysql_query($query3);
     $count3 = mysql_num_rows($results3);
     
     while ($data3 = mysql_fetch_array($results3)) {
-            echo "<td><input type=\"checkbox\" name=\"ProfileType[]\" value=\"" . $data3['DataTypeID'] . "\" id=\"ProfileType[]\" /> " . $data3['DataTypeTitle'] . "</td>";
+            echo "<input type=\"checkbox\" name=\"ProfileType[]\" value=\"" . $data3['DataTypeID'] . "\" id=\"ProfileType[]\" /> " . $data3['DataTypeTitle'] . "<br />";
      }
-	echo "</tr></table>";
-	echo "       </p><!-- .form-profile_type -->\n";
+	echo "</fieldset><!-- .form-profile_type -->\n";
   	
 	echo "       <p class=\"form-profile_agree\">\n";
 					$profile_agree = get_the_author_meta("profile_agree", $current_user->ID );

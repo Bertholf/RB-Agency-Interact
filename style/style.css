@@ -9,7 +9,7 @@ p.submit { margin-top: 15px!important; }
 
 #profile-steps { font-size: 22px; text-align: center; background: #eee; border-bottom: 3px solid #aaa; padding: 10px; }
 
-#profile-manage { overflow: hidden; }
+#profile-manage { overflow: hidden; margin: 20px 10px; }
 #profile-manage h2 { margin: 20px 0 10px 0; }
 #profile-manage table { border:none }
 #profile-manage table tr td { font-size: 13px; padding: 5px; }
@@ -39,7 +39,6 @@ p.submit { margin-top: 15px!important; }
 	/theme/include-profilemedia.php */
 #profile-manage .manage-section.upload div textarea { vertical-align: top; }
 #profile-manage .manage-section.upload p { margin: 15px 0; }
-
 #profile-manage .manage-section.media .media-video { display: inline-block; margin: 15px; width: 250px; }
 
 /* 	Overview - /profile-member/manage/
@@ -47,11 +46,11 @@ p.submit { margin-top: 15px!important; }
 #profile-manage .manage-profile p select { width: 165px; }
 
 /* Profile Gallery */
-#profile-manage .manage-section.gallery .profileimage { float: left; margin: 0 10px 10px 0; height: 150px; position: relative; overflow: hidden; background: #eee; }
-#profile-manage .manage-section.gallery .profileimage .delete a { display: block; text-align: center; }
-#profile-manage .manage-section.gallery .profileimage .primary { position: absolute; left: 0; right: 0; bottom: 0; padding: 5px 10px; border-radius: 0; font-weight: normal; font-size: 13px; }
+#profile-manage .manage-section.gallery .profileimage { float: left; margin: 0 10px 10px 0; height: 150px; position: relative; overflow: hidden; }
+#profile-manage .manage-section.gallery .profileimage .delete a { color: #fff; background: #fb2531; padding: 5px 10px; display: block; text-decoration: none; }
+#profile-manage .manage-section.gallery .profileimage .primary { position: absolute; left: 0; right: 0; bottom: 0; padding: 5px 10px; }
 #profile-manage .manage-section.gallery .profileimage .primary input { margin: 0; }
-#profile-manage .manage-section.gallery .profileimage .primary label { cursor: pointer; }
+#profile-manage .manage-section.gallery .profileimage .primary label { color: #fff; cursor: pointer; }
 
 /** Sign In - Register **/
 #rbsignin-register { text-align: center; vertical-align: top; }
@@ -68,13 +67,13 @@ p.submit { margin-top: 15px!important; }
 /* Register */
 #rbsignin-register .inline-block h3 { margin: 20px 0 10px 0; }
 #rbsignin-register .inline-block ul { padding: 0 0 0 15px; }
-#rbsignin-register .inline-block ul li { display: block; padding: 5px 0; }
+#rbsignin-register .inline-block ul li { padding: 5px 0; }
 #rbsignin-register .inline-block .register { margin-bottom: 15px; }
 
 /* Register */
 .rb-agency-interact {  }
 .rb-agency-interact p.alert { border-bottom: 3px solid #0C0; background:#fafafa; padding: 10px; }
-.rb-agency-interact h1 { margin-bottom:10px;text-align: left; }
+.rb-agency-interact h1 { margin-bottom:10px; }
 .rb-agency-interact form#adduser {  }
 .rb-agency-interact form#adduser p { padding: 10px; margin:0; overflow:hidden; }
 .rb-agency-interact form#adduser p input[type="text"],
@@ -85,7 +84,7 @@ p.submit { margin-top: 15px!important; }
 .rb-agency-interact form#adduser p input[type="email"] { width: 200px; }
 .rb-agency-interact form#adduser p select { width: 212px; }
 .rb-agency-interact form#adduser p input[type="checkbox"] { margin-left:150px; }
-.rb-agency-interact form#adduser p input[type="submit"] { float:left;margin-left:150px;}
+.rb-agency-interact form#adduser p input[type="submit"] { float:left; margin-left: 292px; }
 
 .inline-block { display: inline-block; }
 
@@ -93,11 +92,9 @@ p.submit { margin-top: 15px!important; }
 #profile-featured a { text-decoration: none; }
 #profile-featured .style { position: absolute; }
 #profile-featured .image { overflow: hidden; }
-#profile-featured .name { width: 100%; }
-#profile-featured .favorite { margin: 9px 0 0 0; font-size: 13px; background: #ccc; padding: 5px 0; }
+#profile-featured .title { top: 235px; left: 0; width: 200px; position: absolute; text-align: center;}
+#profile-featured .title .name { width: 200px; height: 30px; line-height: 30px; }
+#profile-featured .title .favorite { margin: 9px 0 0 0; font-size: 13px; background: #ccc; padding: 5px 0; }
 #profile-featured .image img {  }
 #profile-featured .image-broken {  }
 #profile-featured .image-broken a {  }
-
-#message { padding: 15px; margin-bottom: 30px; background: #eee; border: 1px solid #ccc; }
-#message p:last-child { margin: 0; }
