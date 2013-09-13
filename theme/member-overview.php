@@ -28,7 +28,9 @@ $rb_subscription = $rb_agency_options_arr['rb_agency_option_profilelist_subscrip
 
 // Were they users or agents?
 $profiletype = (int)get_user_meta($current_user->id, "rb_agency_interact_profiletype", true);
-if ($profiletype == 1) { $profiletypetext = __("Agent/Producer", rb_agencyinteract_TEXTDOMAIN); } else { $profiletypetext = __("Model/Talent", rb_agencyinteract_TEXTDOMAIN); }
+if(get_user_meta($current_user->ID, 'rb_agency_interact_clientdata', true)){ $profiletypetext = __("Agent/Producer", rb_agencyinteract_TEXTDOMAIN); } else { $profiletypetext = __("Model/Talent", rb_agencyinteract_TEXTDOMAIN); }
+
+
 
 // Change Title
 add_filter('wp_title', 'rb_agencyinteractive_override_title', 10, 2);
@@ -100,7 +102,7 @@ get_header();
 					
 				echo "<h1>". __("Welcome", rb_agencyinteract_TEXTDOMAIN) ." ". $current_user->first_name ."!</h1>";
 
-				if ($profiletype == 1) {
+				if(get_user_meta($current_user->ID, 'rb_agency_interact_clientdata', true)){
 					echo "". __("We have you registered as", rb_agencyinteract_TEXTDOMAIN) ." <strong>". $profiletypetext ."</strong>";
 					echo "<h2><a href=\"". $rb_agencyinteract_WPURL ."/profile-search/\">". __("Begin Your Search", rb_agencyinteract_TEXTDOMAIN) ."</a></h2>";
 					

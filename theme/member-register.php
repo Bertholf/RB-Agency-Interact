@@ -236,7 +236,7 @@
 			// Self Registration
 			if ( $registration || current_user_can("create_users") ) {
 
-	echo "    <form method=\"post\" id=\"adduser\" class=\"user-forms\" action=\"". $rb_agencyinteract_WPURL ."/profile-register/\">\n";
+	echo "    <form method=\"post\" id=\"adduser\" class=\"user-forms\" action=\"". $rb_agencyinteract_WPURL ."/profile-register/talent\">\n";
       echo "<h1 class=\"entry-title\">JOIN OUR TEAM</h1>";
 	echo "<p class=\"form-title\">To Join Our Team please complete the application below.</p>";		
 	//echo "    <h1>Register</h1>\n";
@@ -268,7 +268,7 @@
 	echo "       	<input class=\"text-input\" name=\"profile_email\" type=\"text\" id=\"profile_email\" value=\""; if ( $error ) echo wp_specialchars( $_POST['profile_email'], 1 ); echo "\" />\n";
 	echo "       </p><!-- .form-email -->\n";
 
-        echo "     <p class=\"form-profile_gender\">\n";
+        echo "     <p class=\"form-profile_gender\" style='display:block !important' >\n";
      	echo "		<label for=\"profile_gender\">". __("Gender", rb_agencyinteract_TEXTDOMAIN) ."</label>\n";
 					$query= "SELECT GenderID, GenderTitle FROM " .  table_agency_data_gender . " GROUP BY GenderTitle ";
 					echo "<select id='ProfileGender' name=\"ProfileGender\">";

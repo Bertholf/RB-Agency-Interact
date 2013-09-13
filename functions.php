@@ -36,7 +36,6 @@
 			$newrules['profile-member/(.*)/(.*)$'] = 'index.php?type=$matches[0]';
 			$newrules['profile-member'] = 'index.php?type=profileoverview';
 			$newrules['profile-register/(.*)$'] = 'index.php?type=profileregister&typeofprofile=$matches[1]';
-			$newrules['profile-register'] = 'index.php?type=profileregister';
 			
 			$newrules['profile-login'] = 'index.php?type=profilelogin';
 			return $newrules + $rules;
@@ -64,10 +63,12 @@
 				return dirname(__FILE__) . '/theme/member-profile.php'; 
 			  } elseif (get_query_var( 'type' ) == "media") {
 				return dirname(__FILE__) . '/theme/member-media.php'; 
-			  } elseif (get_query_var( 'type' ) == "profileregister") {
-				return dirname(__FILE__) . '/theme/member-register.php'; 
 			  } elseif (get_query_var( 'type' ) == "profilelogin") {
 				return dirname(__FILE__) . '/theme/member-login.php'; 
+			  } elseif (get_query_var( 'typeofprofile' ) == "client") {
+				return dirname(__FILE__) . '/theme/client-register.php'; 
+			  } elseif (get_query_var( 'typeofprofile' ) == "talent") {
+				return dirname(__FILE__) . '/theme/member-register.php'; 
 			  }
 			}
 			return $template;

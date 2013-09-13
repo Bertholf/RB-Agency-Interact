@@ -1,7 +1,19 @@
 <?php
     // profile type
-    $ptype = (int)get_user_meta($current_user->id, "rb_agency_interact_profiletype", true);
-    $ptype = retrieve_title($ptype);
+    $ptype = get_user_meta($current_user->id, "rb_agency_interact_profiletype", true);
+    
+	//check if array
+	if(strpos($ptype, ",") > 0){
+		$ptyp = explode(",",$ptype);
+		foreach($ptyp as $p){
+			$ptype_arr[] = str_replace(" ","_",retrieve_title($p));	 		
+		}
+		$ptype = array();
+		$ptype = $ptype_arr;
+	} else {
+		$ptype = str_replace(" ","_",retrieve_title($ptype));
+	}
+
     $ProfileGender = get_user_meta($current_user->id, "rb_agency_interact_pgender", true);
     echo '<input name="ProfileGender" type="hidden" value="'.$ProfileGender.'">'; 
 
@@ -141,7 +153,15 @@
 
                                 $types = explode(",",$types); 
 
-                                if(in_array($ptype,$types)){ $permit_type=true; }
+								// check ptype if array
+								if(is_array($ptype)){
+									$result = array_diff($ptype, $types);
+									if(count($result) != count($ptype)){
+										$permit_type = true;
+									} 	
+								} else {
+									if(in_array($ptype,$types)){ $permit_type = true; }
+								}
                                 
 				if ( ($data1["ProfileCustomShowGender"] == $ProfileGender) || ($data1["ProfileCustomShowGender"] == 0) 
                                       && $permit_type == true )  {

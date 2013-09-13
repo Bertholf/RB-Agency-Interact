@@ -23,7 +23,7 @@ $rb_agencyinteract_options_arr = get_option('rb_agencyinteract_options');
 
 // Were they users or agents?
 $profiletype = (int)get_user_meta($current_user->id, "rb_agency_interact_profiletype", true);
-if ($profiletype == 1) { $profiletypetext = __("Agent/Producer", rb_agencyinteract_TEXTDOMAIN); } else { $profiletypetext = __("Model/Talent", rb_agencyinteract_TEXTDOMAIN); }
+if(get_user_meta($current_user->ID, 'rb_agency_interact_clientdata', true)) { $profiletypetext = __("Agent/Producer", rb_agencyinteract_TEXTDOMAIN); } else { $profiletypetext = __("Model/Talent", rb_agencyinteract_TEXTDOMAIN); }
 
 
 	// Change Title

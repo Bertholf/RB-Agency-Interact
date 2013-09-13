@@ -14,7 +14,7 @@
 		echo " 			  <div class=\"subMenuTabBG\"><div class=\"subMenuTabBorders\"><div class=\"subMenuTabText\">".__("My Account", rb_agencyinteract_TEXTDOMAIN) ."</div></div></div>\n";
 		echo " 			</a>\n";
 		echo " 		</div>\n";
-		if ($profiletype == 1) {
+		if(get_user_meta($current_user->ID, 'rb_agency_interact_clientdata', true)) {
 		// Agents
 
 					if ( ($_SERVER["REQUEST_URI"]) == "/profile-favorite/") { $tabclass = "active"; } else { $tabclass = "inactive"; }
