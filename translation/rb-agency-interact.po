@@ -216,7 +216,7 @@ msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/member-register.php:87
-msgid "Please check your email address. That's where you'll recieve your login password.<br/> (It might go into your spam folder)"
+msgid "Please check your email address. That's where you'll receive your login password.<br/> (It might go into your spam folder)"
 msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB

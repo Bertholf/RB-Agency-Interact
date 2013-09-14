@@ -1022,7 +1022,7 @@ msgstr ""
 #~ msgstr "Met vriendelijke groet,"
 
 #~ msgid ""
-#~ "Please check your email address. That's where you'll recieve your login "
+#~ "Please check your email address. That's where you'll receive your login "
 #~ "password.<br/> (It might go into your spam folder)"
 #~ msgstr ""
 #~ "Controleer uw e-mailadres. Dat is waar ontvangt u uw login wachtwoord. "

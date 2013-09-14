@@ -838,7 +838,7 @@ msgstr "Abmelden"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/member-register.php:88
-msgid "Please check your email address. That's where you'll recieve your login password.<br/> (It might go into your spam folder)"
+msgid "Please check your email address. That's where you'll receive your login password.<br/> (It might go into your spam folder)"
 msgstr "Bitte kontrolliere Dein Mailbox. Deine Registrierungsdaten wurden gesendet.<br /> (schaue auch in Deinen Spam Ordner)"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB

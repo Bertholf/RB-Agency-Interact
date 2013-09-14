@@ -213,7 +213,7 @@
 				else 
 					printf( __("Thank you for registering, %1$s.", rb_agencyinteract_TEXTDOMAIN), $_POST['user-name'] );
 					echo "<br/>";
-					printf( __("Please check your email address. That's where you'll recieve your login password.<br/> (It might go into your spam folder)", rb_agencyinteract_TEXTDOMAIN) );
+					printf( __("Please check your email address. That's where you'll receive your login password.<br/> (It might go into your spam folder)", rb_agencyinteract_TEXTDOMAIN) );
 	echo "    </p><!-- .alert -->\n";
 
 		} else {
