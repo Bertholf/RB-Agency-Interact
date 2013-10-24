@@ -58,18 +58,18 @@ if (isset($_POST['action'])) {
                 }
   	}
 
-		echo(1);
-	echo($_POST['action']);
-	
-	die;
+		
 
 	$ProfileGallery				=$_POST['ProfileGallery'];
 
   	if (empty($ProfileGallery)) {  // Probably a new record... 
-		$ProfileGallery = rb_agency_safenames($ProfileContactDisplay); 
+		//$ProfileGallery = rb_agency_safenames($ProfileContactDisplay); 
   	}
 
-
+echo(1);
+	echo($_POST['action']);
+	
+	die;
 	$ProfileContactEmail		=$_POST['ProfileContactEmail'];
 	$ProfileContactWebsite		=$_POST['ProfileContactWebsite'];
 	$ProfileContactLinkFacebook	=$_POST['ProfileContactLinkFacebook'];
