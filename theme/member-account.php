@@ -33,6 +33,8 @@ if(get_user_meta($current_user->ID, 'rb_agency_interact_clientdata', true)) { $p
 
 // Form Post
 if (isset($_POST['action'])) {
+	echo($_POST['action']);
+	die;
 	$ProfileID					=$_POST['ProfileID'];
 	$ProfileUsername			=$_POST['ProfileUsername'];
 	$ProfilePassword			=$_POST['ProfilePassword'];
@@ -115,8 +117,6 @@ if (isset($_POST['action'])) {
 	// *************************************************************************************************** //
 	// Add Record
 	case 'addRecord':
-		echo('addrecord');
-	die;
 		if(!$have_error){
 			$ProfileIsActive		= 3;
 			$ProfileIsFeatured	= 0;
