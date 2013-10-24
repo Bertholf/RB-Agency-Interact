@@ -17,7 +17,7 @@ get_currentuserinfo();
 // Were they users or agents?
 $profiletype = (int)get_user_meta($current_user->id, "rb_agency_interact_profiletype", true);
 
-if(get_user_meta($current_user->ID, 'rb_agency_interact_clientdata', true)) { $profiletypetext = __("Agent/Producer", rb_agencyinteract_TEXTDOMAIN); } else { $profiletypetext = __("Model/Talent", rb_agencyinteract_TEXTDOMAIN); }
+if(get_user_meta($current_user->ID, 'rb_agency_interact_clientdata', true)) { $profiletypetext = __("Agent/Producer", rb_agency_interact_TEXTDOMAIN); } else { $profiletypetext = __("Model/Talent", rb_agency_interact_TEXTDOMAIN); }
 
 // Change Title
 add_filter('wp_title', 'rb_agencyinteractive_override_title', 10, 2);
@@ -76,11 +76,11 @@ if (isset($_POST['action'])) {
 			ProfileType='" . $wpdb->escape($ProfileType) . "'
 			WHERE ProfileID=$ProfileID";
 			$results = $wpdb->query($update);
-			$alerts = "<div id=\"message\" class=\"updated\"><p>". __("Profile updated successfully", rb_agencyinteract_TEXTDOMAIN) ."!</a></p></div>";
+			$alerts = "<div id=\"message\" class=\"updated\"><p>". __("Profile updated successfully", rb_agency_interact_TEXTDOMAIN) ."!</a></p></div>";
 		} else {
-			$alerts = "<div id=\"message\" class=\"error\"><p>". __("Error updating record, please ensure you have filled out all required fields.", rb_agencyinteract_TEXTDOMAIN) ."</p></div>"; 
+			$alerts = "<div id=\"message\" class=\"error\"><p>". __("Error updating record, please ensure you have filled out all required fields.", rb_agency_interact_TEXTDOMAIN) ."</p></div>"; 
 		}
-		wp_redirect( $rb_agencyinteract_WPURL ."/profile-member/media/" );
+		wp_redirect( $rb_agency_interact_WPURL ."/profile-member/media/" );
 		exit;
 	break;
 
@@ -95,8 +95,8 @@ if (isset($_POST['action'])) {
 get_header();
 
 // Check Sidebar
-$rb_agencyinteract_options_arr = get_option('rb_agencyinteract_options');
-$rb_agencyinteract_option_profilemanage_sidebar = $rb_agencyinteract_options_arr['rb_agencyinteract_option_profilemanage_sidebar'];
+$rb_agency_interact_options_arr = get_option('rb_agency_interact_options');
+$rb_agency_interact_option_profilemanage_sidebar = $rb_agency_interact_options_arr['rb_agency_interact_option_profilemanage_sidebar'];
 $content_class = "";
 if (is_user_logged_in()) {
 	$content_class = "eight";
@@ -145,7 +145,7 @@ if (is_user_logged_in()) {
 			} else {
 
 				// No Record Exists, register them
-				echo "<p>". __("Records show you are not currently linked to a model or agency profile.  Lets setup your profile now!", rb_agencyinteract_TEXTDOMAIN) ."</p>";
+				echo "<p>". __("Records show you are not currently linked to a model or agency profile.  Lets setup your profile now!", rb_agency_interact_TEXTDOMAIN) ."</p>";
 
 				// Register Profile
 				include("include-profileregister.php");
@@ -165,7 +165,7 @@ if (is_user_logged_in()) {
 
 		// Get Sidebar 
 		$LayoutType = "";
-		if ($rb_agencyinteract_option_profilemanage_sidebar) {
+		if ($rb_agency_interact_option_profilemanage_sidebar) {
 			$LayoutType = "profile";
 			get_sidebar();
 		}

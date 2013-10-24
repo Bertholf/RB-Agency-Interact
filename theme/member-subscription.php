@@ -16,14 +16,14 @@ get_currentuserinfo();
 
 
 // Get Data
-$rb_agencyinteract_options_arr = get_option('rb_agencyinteract_options');
-	$rb_agencyinteract_option_subscribeupsell = (int)$rb_agencyinteract_options_arr['rb_agencyinteract_option_subscribeupsell'];
-	$rb_agencyinteract_option_subscribepaypalemail = $rb_agencyinteract_options_arr['rb_agencyinteract_option_subscribepaypalemail'];
-	$rb_agencyinteract_option_subscribepagedetails = $rb_agencyinteract_options_arr['rb_agencyinteract_option_subscribepagedetails'];
+$rb_agency_interact_options_arr = get_option('rb_agency_interact_options');
+	$rb_agency_interact_option_subscribeupsell = (int)$rb_agency_interact_options_arr['rb_agency_interact_option_subscribeupsell'];
+	$rb_agency_interact_option_subscribepaypalemail = $rb_agency_interact_options_arr['rb_agency_interact_option_subscribepaypalemail'];
+	$rb_agency_interact_option_subscribepagedetails = $rb_agency_interact_options_arr['rb_agency_interact_option_subscribepagedetails'];
 
 // Were they users or agents?
 $profiletype = (int)get_user_meta($current_user->id, "rb_agency_interact_profiletype", true);
-if(get_user_meta($current_user->ID, 'rb_agency_interact_clientdata', true)) { $profiletypetext = __("Agent/Producer", rb_agencyinteract_TEXTDOMAIN); } else { $profiletypetext = __("Model/Talent", rb_agencyinteract_TEXTDOMAIN); }
+if(get_user_meta($current_user->ID, 'rb_agency_interact_clientdata', true)) { $profiletypetext = __("Agent/Producer", rb_agency_interact_TEXTDOMAIN); } else { $profiletypetext = __("Model/Talent", rb_agency_interact_TEXTDOMAIN); }
 
 
 	// Change Title
@@ -62,11 +62,11 @@ get_header();
 			
 					// Is there a subscription?
 					if (isset($SubscriberDateExpire)) {
-						echo "<h1>". $current_user->first_name .", ". __("enjoying your membership?", rb_agencyinteract_TEXTDOMAIN) ."</h1>";
-						echo "<h3>". __("Your membership expires on ", rb_agencyinteract_TEXTDOMAIN) ." ". $SubscriberDateExpire .", renew today!</h3>";
+						echo "<h1>". $current_user->first_name .", ". __("enjoying your membership?", rb_agency_interact_TEXTDOMAIN) ."</h1>";
+						echo "<h3>". __("Your membership expires on ", rb_agency_interact_TEXTDOMAIN) ." ". $SubscriberDateExpire .", renew today!</h3>";
 					} else {
-						echo "<h1>". $current_user->first_name .", ". __("are you ready to get discovered?", rb_agencyinteract_TEXTDOMAIN) ."</h1>";
-						echo "<h3>". __("Subscribe now, and start applying to Casting Calls, join the Talent Directory, and more.", rb_agencyinteract_TEXTDOMAIN) ."</h3>";
+						echo "<h1>". $current_user->first_name .", ". __("are you ready to get discovered?", rb_agency_interact_TEXTDOMAIN) ."</h1>";
+						echo "<h3>". __("Subscribe now, and start applying to Casting Calls, join the Talent Directory, and more.", rb_agency_interact_TEXTDOMAIN) ."</h3>";
 					}
 
 					// What are the rates?
@@ -82,13 +82,13 @@ get_header();
 							echo "  <div class=\"subscription-rate-button\">\n";
 							echo "    <form action=\"https://www.paypal.com/cgi-bin/webscr\" method=\"post\">\n";
 							echo "  	<input type=\"hidden\" name=\"cmd\" value=\"_xclick\" />\n";
-							echo "  	<input type=\"hidden\" name=\"business\" value=\"". $rb_agencyinteract_option_subscribepaypalemail ."\" />\n";
+							echo "  	<input type=\"hidden\" name=\"business\" value=\"". $rb_agency_interact_option_subscribepaypalemail ."\" />\n";
 							echo "  	<input type=\"hidden\" name=\"item_name\" value=\"". $data['SubscriptionRateTitle'] ."\" />\n";
 							echo "  	<input type=\"hidden\" name=\"item_number\" value=\"". $data['SubscriptionRateID'] ."\" />\n";
 							echo "  	<input type=\"hidden\" name=\"custom\" value=\"". $current_user->ID ."\" />\n";
 							echo "  	<input type=\"hidden\" name=\"amount\" value=\"". $data['SubscriptionRatePrice'] ."\" />\n";
 							echo "  	<input type=\"hidden\" name=\"return\" value=\"". get_bloginfo("wpurl") ."/profile-member/subscription/\" />\n";
-							echo "  	<input type=\"hidden\" name=\"notify_url\" value=\"". rb_agencyinteract_BASEDIR ."tasks/paypalIPN.php\" />\n";
+							echo "  	<input type=\"hidden\" name=\"notify_url\" value=\"". rb_agency_interact_BASEDIR ."tasks/paypalIPN.php\" />\n";
 							echo "  	<input type=\"hidden\" name=\"first_name\" value=\"". $current_user->first_name ."\" />\n";
 							echo "  	<input type=\"hidden\" name=\"last_name\" value=\"". $current_user->last_name ."\" />\n";
 							echo "  	<input type=\"hidden\" name=\"email\" value=\"". $current_user->user_email ."\" />\n";
@@ -105,7 +105,7 @@ get_header();
 					}		
 						
 					echo "  <div id=\"subscription-customtext\">\n";
-						$Page = get_page($rb_agencyinteract_option_subscribepagedetails);
+						$Page = get_page($rb_agency_interact_option_subscribepagedetails);
 						echo apply_filters('the_content', $Page->post_content);
 					echo " </div>";
 			
@@ -114,7 +114,7 @@ get_header();
 			} else {
 				
 				// No Record Exists, register them
-				echo "". __("Records show you are not currently linked to a model or agency profile.  Lets setup your profile now!", rb_agencyinteract_TEXTDOMAIN) ."";
+				echo "". __("Records show you are not currently linked to a model or agency profile.  Lets setup your profile now!", rb_agency_interact_TEXTDOMAIN) ."";
 				
 				// Register Profile
 				include("include-profileregister.php"); 	
@@ -125,7 +125,7 @@ get_header();
 			echo "</div>\n"; // #profile-manage
 		} else {
 			echo "<p class=\"warning\">\n";
-					_e('You must be logged in to edit your profile.', rb_agencyinteract_TEXTDOMAIN);
+					_e('You must be logged in to edit your profile.', rb_agency_interact_TEXTDOMAIN);
 			echo "</p><!-- .warning -->\n";
 			// Show Login Form
 			include("include-login.php"); 	
@@ -135,10 +135,10 @@ get_header();
 	echo "</div><!-- #container -->\n";
 	
 // Get Sidebar 
-$rb_agencyinteract_options_arr = get_option('rb_agencyinteract_options');
-	$rb_agencyinteract_option_profilemanage_sidebar = $rb_agencyinteract_options_arr['rb_agencyinteract_option_profilemanage_sidebar'];
+$rb_agency_interact_options_arr = get_option('rb_agency_interact_options');
+	$rb_agency_interact_option_profilemanage_sidebar = $rb_agency_interact_options_arr['rb_agency_interact_option_profilemanage_sidebar'];
 	$LayoutType = "";
-	if ($rb_agencyinteract_option_profilemanage_sidebar) {
+	if ($rb_agency_interact_option_profilemanage_sidebar) {
 		$LayoutType = "profile";
 		get_sidebar(); 
 	}

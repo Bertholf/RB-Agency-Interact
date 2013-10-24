@@ -72,8 +72,8 @@ function get_user_login_info(){
 				 get_user_login_info();	 
 			/*
 			echo "    <p class=\"alert\">\n";
-						printf( __('You have successfully logged in as <a href="%1$s" title="%2$s">%2$s</a>.', rb_agencyinteract_TEXTDOMAIN), "/profile-member/", $login->display_name );
-			echo "		 <a href=\"". wp_logout_url( get_permalink() ) ."\" title=\"". __('Log out of this account', rb_agencyinteract_TEXTDOMAIN) ."\">". __('Log out &raquo;', rb_agencyinteract_TEXTDOMAIN) ."</a>\n";
+						printf( __('You have successfully logged in as <a href="%1$s" title="%2$s">%2$s</a>.', rb_agency_interact_TEXTDOMAIN), "/profile-member/", $login->display_name );
+			echo "		 <a href=\"". wp_logout_url( get_permalink() ) ."\" title=\"". __('Log out of this account', rb_agency_interact_TEXTDOMAIN) ."\">". __('Log out &raquo;', rb_agency_interact_TEXTDOMAIN) ."</a>\n";
 			echo "    </p><!-- .alert -->\n";
 			*/
 	

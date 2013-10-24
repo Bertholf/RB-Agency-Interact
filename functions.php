@@ -2,25 +2,25 @@
 // *************************************************************************************************** //
 // Admin Head Section 
 
-	add_action('admin_head', 'rb_agencyinteract_admin_head');
-		function rb_agencyinteract_admin_head(){
+	add_action('admin_head', 'rb_agency_interact_admin_head');
+		function rb_agency_interact_admin_head(){
 		  if( is_admin() ) {
-			echo "<link rel=\"stylesheet\" href=\"". rb_agencyinteract_BASEDIR ."style/admin.css\" type=\"text/css\" media=\"screen\" />\n";
+			echo "<link rel=\"stylesheet\" href=\"". rb_agency_interact_BASEDIR ."style/admin.css\" type=\"text/css\" media=\"screen\" />\n";
 		  }
 		}
 	
 // *************************************************************************************************** //
 // Page Head Section
 
-	add_action('wp_head', 'rb_agencyinteract_inserthead');
+	add_action('wp_head', 'rb_agency_interact_inserthead');
 		// Call Custom Code to put in header
-		function rb_agencyinteract_inserthead() {
+		function rb_agency_interact_inserthead() {
 		  if( !is_admin() ) {
-			echo "<link rel=\"stylesheet\" href=\"". rb_agencyinteract_BASEDIR ."style/style.css\" type=\"text/css\" media=\"screen\" />\n";
-			echo "<script type=\"text/javascript\" src=\"". rb_agencyinteract_BASEDIR ."jquery-page.js\"></script>";
+			echo "<link rel=\"stylesheet\" href=\"". rb_agency_interact_BASEDIR ."style/style.css\" type=\"text/css\" media=\"screen\" />\n";
+			echo "<script type=\"text/javascript\" src=\"". rb_agency_interact_BASEDIR ."jquery-page.js\"></script>";
 		  }
 		  if(!wp_script_is('jquery')) {
-			echo "<script type=\"text/javascript\" src=\"". rb_agencyinteract_BASEDIR ."style/jquery.1.8.js\"></script>";
+			echo "<script type=\"text/javascript\" src=\"". rb_agency_interact_BASEDIR ."style/jquery.1.8.js\"></script>";
 			
 			} 
 		}
@@ -29,8 +29,8 @@
 // Handle Folders
 
 	// Adding a new rule
-	add_filter('rewrite_rules_array','rb_agencyinteract_rewriteRules');
-		function rb_agencyinteract_rewriteRules($rules) {
+	add_filter('rewrite_rules_array','rb_agency_interact_rewriteRules');
+		function rb_agency_interact_rewriteRules($rules) {
 			$newrules = array();
 			$newrules['profile-member/(.*)$'] = 'index.php?type=$matches[1]';
 			$newrules['profile-member/(.*)/(.*)$'] = 'index.php?type=$matches[0]';
@@ -42,16 +42,16 @@
 		}
 		
 	// Get Veriables & Identify View Type
-	add_action( 'query_vars', 'rb_agencyinteract_query_vars' );
-		function rb_agencyinteract_query_vars( $query_vars ) {
+	add_action( 'query_vars', 'rb_agency_interact_query_vars' );
+		function rb_agency_interact_query_vars( $query_vars ) {
 			$query_vars[] = 'type';
 			$query_vars[] = 'typeofprofile';
 			return $query_vars;
 		}
 	
 	// Set Custom Template
-	add_filter('template_include', 'rb_agencyinteract_template_include', 1, 1); 
-		function rb_agencyinteract_template_include( $template ) {
+	add_filter('template_include', 'rb_agency_interact_template_include', 1, 1); 
+		function rb_agency_interact_template_include( $template ) {
 			if ( get_query_var( 'type' ) ) {
 			  if (get_query_var( 'type' ) == "profileoverview") {
 				return dirname(__FILE__) . '/theme/member-overview.php'; 
@@ -75,8 +75,8 @@
 		}
 	
 	// Remember to flush_rules() when adding rules
-	add_filter('init','rb_agencyinteract_flushrules');
-		function rb_agencyinteract_flushRules() {
+	add_filter('init','rb_agency_interact_flushrules');
+		function rb_agency_interact_flushRules() {
 			global $wp_rewrite;
 			$wp_rewrite->flush_rules();
 		}
@@ -86,7 +86,7 @@
 	 *  Fix form post url for multi language.
 	/*/
 /*
-	function rb_agencyinteract_postURILanguage($request_URI){
+	function rb_agency_interact_postURILanguage($request_URI){
 	     if(!in_array(substr($_SERVER['REQUEST_URI'],1,2), array("en","nl"))){
 			if (function_exists('trans_getLanguage')) {
 				 if(qtrans_getLanguage()=='nl') {
@@ -135,7 +135,7 @@
 		}  
 	}  
 	// Make Directory for new profile
-     function rb_agencyinteract_checkdir($ProfileGallery){
+     function rb_agency_interact_checkdir($ProfileGallery){
 	      	
 			if (!is_dir(rb_agency_UPLOADPATH . $ProfileGallery)) {
 				mkdir(rb_agency_UPLOADPATH . $ProfileGallery, 0755);
@@ -150,8 +150,8 @@
 // Functions
 
 	// Move Login Page	
-	add_filter("login_init", "rb_agencyinteract_login_movepage", 10, 2);
-		function rb_agencyinteract_login_movepage( $url ) {
+	add_filter("login_init", "rb_agency_interact_login_movepage", 10, 2);
+		function rb_agency_interact_login_movepage( $url ) {
 			global $action;
 		
 			if (empty($action) || 'login' == $action) {
@@ -161,15 +161,15 @@
 		}
 
 	// Rewrite Login
-	add_action( 'init', 'rb_agencyinteract_login_rewrite' );
-		function rb_agencyinteract_login_rewrite() {
+	add_action( 'init', 'rb_agency_interact_login_rewrite' );
+		function rb_agency_interact_login_rewrite() {
 			add_rewrite_rule(get_bloginfo("wpurl"). "profile-register/?$", 'wp-login.php', 'top');
 		}
 		
 
 	// Redirect after Login
-	add_filter('login_redirect', 'rb_agencyinteract_login_redirect', 10, 3);	
-		function rb_agencyinteract_login_redirect() {
+	add_filter('login_redirect', 'rb_agency_interact_login_redirect', 10, 3);	
+		function rb_agency_interact_login_redirect() {
 			global $user_ID, $current_user, $wp_roles;
 			if( $user_ID ) {
 				$user_info = get_userdata( $user_ID ); 
@@ -191,12 +191,12 @@
 
 	OBSOLETE  Just use for reference
 
-	add_filter("registration_redirect", "rb_agencyinteract_register_redirect");
-		function rb_agencyinteract_register_redirect() {
+	add_filter("registration_redirect", "rb_agency_interact_register_redirect");
+		function rb_agency_interact_register_redirect() {
 			return "/profile-member/";
 		}
-	add_filter('register', 'rb_agencyinteract_register_movepage');
-		function rb_agencyinteract_register_movepage($link) {
+	add_filter('register', 'rb_agency_interact_register_movepage');
+		function rb_agency_interact_register_movepage($link) {
 			if(!is_user_logged_in()) {
 				$link = '<a href="/profile-register/">' . __('Register') . '</a>';
 			}
@@ -210,8 +210,8 @@
 			return preg_replace( $old, $new, $url, 1);
 		}
 	// Redirect after Registration
-	add_filter("register_redirect", "rb_agencyinteract_register_redirect");
-		function rb_agencyinteract_register_redirect() {
+	add_filter("register_redirect", "rb_agency_interact_register_redirect");
+		function rb_agency_interact_register_redirect() {
 			return "/profile-member/";
 		}
 		
@@ -223,8 +223,8 @@
 			$link = str_replace("Site Admin", "Your Account", $link);
 			return $link;
 		}
-	add_filter('register', 'rb_agencyinteract_register_changenames');
-		function rb_agencyinteract_register_changenames($link) {
+	add_filter('register', 'rb_agency_interact_register_changenames');
+		function rb_agency_interact_register_changenames($link) {
 			$link = str_replace(">Register<", ">Sign up<", $link);
 			return $link;
 		}
@@ -312,7 +312,7 @@
 		   /* 
 		    * return title
 			*/
-            $check_type = "SELECT DataTypeTitle FROM ". table_agency_data_type ." WHERE DataTypeID = " . $id;
+			$check_type = "SELECT DataTypeTitle FROM ". table_agency_data_type ." WHERE DataTypeID = " . $id;
 			$check_query = mysql_query($check_type) OR die(mysql_error());
 			if(mysql_num_rows($check_query) > 0){
 				$fetch = mysql_fetch_assoc($check_query);

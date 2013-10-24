@@ -17,18 +17,18 @@ get_currentuserinfo();
 // Get Settings
 $rb_agency_options_arr 							= get_option('rb_agency_options');
 $rb_agency_option_profilenaming 				= (int)$rb_agency_options_arr['rb_agency_option_profilenaming'];
-$rb_agencyinteract_options_arr 					= get_option('rb_agencyinteract_options');
-$rb_agencyinteract_option_registerallow 		= (int)$rb_agencyinteract_options_arr['rb_agencyinteract_option_registerallow'];
-$rb_agencyinteract_option_overviewpagedetails 	= (int)$rb_agencyinteract_options_arr['rb_agencyinteract_option_overviewpagedetails'];
+$rb_agency_interact_options_arr 					= get_option('rb_agency_interact_options');
+$rb_agency_interact_option_registerallow 		= (int)$rb_agency_interact_options_arr['rb_agency_interact_option_registerallow'];
+$rb_agency_interact_option_overviewpagedetails 	= (int)$rb_agency_interact_options_arr['rb_agency_interact_option_overviewpagedetails'];
 
 // Check Sidebar
-$rb_agencyinteract_options_arr = get_option('rb_agencyinteract_options');
-$rb_agencyinteract_option_profilemanage_sidebar = $rb_agencyinteract_options_arr['rb_agencyinteract_option_profilemanage_sidebar'];
+$rb_agency_interact_options_arr = get_option('rb_agency_interact_options');
+$rb_agency_interact_option_profilemanage_sidebar = $rb_agency_interact_options_arr['rb_agency_interact_option_profilemanage_sidebar'];
 $rb_subscription = $rb_agency_options_arr['rb_agency_option_profilelist_subscription'];
 
 // Were they users or agents?
 $profiletype = (int)get_user_meta($current_user->id, "rb_agency_interact_profiletype", true);
-if(get_user_meta($current_user->ID, 'rb_agency_interact_clientdata', true)){ $profiletypetext = __("Agent/Producer", rb_agencyinteract_TEXTDOMAIN); } else { $profiletypetext = __("Model/Talent", rb_agencyinteract_TEXTDOMAIN); }
+if(get_user_meta($current_user->ID, 'rb_agency_interact_clientdata', true)){ $profiletypetext = __("Agent/Producer", rb_agency_interact_TEXTDOMAIN); } else { $profiletypetext = __("Model/Talent", rb_agency_interact_TEXTDOMAIN); }
 
 
 
@@ -79,7 +79,7 @@ get_header();
 			$data = mysql_fetch_array($results);  // is there record?
 				  
 				echo "	 <div class=\"manage-section welcome\">\n";			
-				echo "	 <h1>". __("Welcome Back", rb_agencyinteract_TEXTDOMAIN) ." ". $current_user->first_name ."!</h1>";
+				echo "	 <h1>". __("Welcome Back", rb_agency_interact_TEXTDOMAIN) ." ". $current_user->first_name ."!</h1>";
 				// Record Exists
 			
 				/* Show account information here *****************************************/
@@ -100,30 +100,30 @@ get_header();
 			// No Record Exists, register them
 			} else {
 					
-				echo "<h1>". __("Welcome", rb_agencyinteract_TEXTDOMAIN) ." ". $current_user->first_name ."!</h1>";
+				echo "<h1>". __("Welcome", rb_agency_interact_TEXTDOMAIN) ." ". $current_user->first_name ."!</h1>";
 
 				if(get_user_meta($current_user->ID, 'rb_agency_interact_clientdata', true)){
-					echo "". __("We have you registered as", rb_agencyinteract_TEXTDOMAIN) ." <strong>". $profiletypetext ."</strong>";
-					echo "<h2><a href=\"". $rb_agencyinteract_WPURL ."/profile-search/\">". __("Begin Your Search", rb_agencyinteract_TEXTDOMAIN) ."</a></h2>";
+					echo "". __("We have you registered as", rb_agency_interact_TEXTDOMAIN) ." <strong>". $profiletypetext ."</strong>";
+					echo "<h2><a href=\"". $rb_agency_interact_WPURL ."/profile-search/\">". __("Begin Your Search", rb_agency_interact_TEXTDOMAIN) ."</a></h2>";
 					
 					echo " <div id=\"subscription-customtext\">\n";
-					$Page = get_page($rb_agencyinteract_option_subscribepagedetails);
+					$Page = get_page($rb_agency_interact_option_subscribepagedetails);
 					echo apply_filters('the_content', $Page->post_content);
 					echo " </div>";
 
 				} else {
-				  	if ($rb_agencyinteract_option_registerallow == 1) {
+				  	if ($rb_agency_interact_option_registerallow == 1) {
 
 						// Users CAN register themselves
-						echo "". __("We have you registered as", rb_agencyinteract_TEXTDOMAIN) ." <strong>". $profiletypetext ."</strong>";
-						echo "<h2>". __("Setup Your Profile", rb_agencyinteract_TEXTDOMAIN) ."</h2>";
+						echo "". __("We have you registered as", rb_agency_interact_TEXTDOMAIN) ." <strong>". $profiletypetext ."</strong>";
+						echo "<h2>". __("Setup Your Profile", rb_agency_interact_TEXTDOMAIN) ."</h2>";
 					
 						// Register Profile
 						include("include-profileregister.php");						
 				  	} else {
 					
 						// Cant register
-						echo "<strong>". __("Self registration is not permitted.", rb_agencyinteract_TEXTDOMAIN) ."</strong>";
+						echo "<strong>". __("Self registration is not permitted.", rb_agency_interact_TEXTDOMAIN) ."</strong>";
 				  	}
 				}					
 			}			

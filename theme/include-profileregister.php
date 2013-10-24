@@ -29,37 +29,37 @@
 	echo "		<td scope=\"row\" colspan=\"2\"><h3>". __("Contact Information", rb_agency_TEXTDOMAIN) ."</h3></th>\n";
 	echo "	  </tr>\n";
 	echo "    <tr valign=\"top\">\n";
-	echo "		<td scope=\"row\">". __("First Name", rb_agencyinteract_TEXTDOMAIN) ."</th>\n";
+	echo "		<td scope=\"row\">". __("First Name", rb_agency_interact_TEXTDOMAIN) ."</th>\n";
 	echo "		<td>\n";
 	echo "			<input type=\"text\" id=\"ProfileContactNameFirst\" name=\"ProfileContactNameFirst\" value=\"". $current_user->first_name ."\" />\n";
 	echo "		</td>\n";
 	echo "	  </tr>\n";
 	echo "    <tr valign=\"top\">\n";
-	echo "		<td scope=\"row\">". __("Last Name", rb_agencyinteract_TEXTDOMAIN) ."</th>\n";
+	echo "		<td scope=\"row\">". __("Last Name", rb_agency_interact_TEXTDOMAIN) ."</th>\n";
 	echo "		<td>\n";
 	echo "			<input type=\"text\" id=\"ProfileContactNameLast\" name=\"ProfileContactNameLast\" value=\"". $current_user->last_name ."\" />\n";
 	echo "		</td>\n";
 	echo "	  </tr>\n";
 	echo "    <tr valign=\"top\">\n";
-	echo "		<td scope=\"row\">". __("Phone", rb_agencyinteract_TEXTDOMAIN) ."</th>\n";
+	echo "		<td scope=\"row\">". __("Phone", rb_agency_interact_TEXTDOMAIN) ."</th>\n";
 	echo "		<td>\n";
 	echo "			<label style=\"width: 50px;float:left;line-height: 24px;\">Home:</label> <input type=\"text\" style=\"width: 144px;\" id=\"ProfileContactPhoneHome\" name=\"ProfileContactPhoneHome\" value=\"". $ProfileContactPhoneHome ."\" /><br />\n";
 	echo "			<label style=\"width: 50px;float:left;line-height: 24px;\">Cell:</label> <input type=\"text\" style=\"width: 144px;\" id=\"ProfileContactPhoneCell\" name=\"ProfileContactPhoneCell\" value=\"". $ProfileContactPhoneCell ."\" /><br />\n";
 	echo "			<label style=\"width: 50px;float:left;line-height: 24px;\">Work:</label> <input type=\"text\" style=\"width: 144px;\" id=\"ProfileContactPhoneWork\" name=\"ProfileContactPhoneWork\" value=\"". $ProfileContactPhoneWork ."\" /><br />\n";
 	echo "		</td>\n";
 	echo "    <tr valign=\"top\">\n";
-	echo "		<td scope=\"row\">". __("Website", rb_agencyinteract_TEXTDOMAIN) ."</th>\n";
+	echo "		<td scope=\"row\">". __("Website", rb_agency_interact_TEXTDOMAIN) ."</th>\n";
 	echo "		<td>\n";
 	echo "			<input type=\"text\" id=\"ProfileContactWebsite\" name=\"ProfileContactWebsite\" value=\"". $ProfileContactWebsite ."\" />\n";
 	echo "		</td>\n";
 	echo "	  </tr>\n";
 	// Public Information
 	echo "    <tr valign=\"top\">\n";
-	echo "		<td scope=\"row\" colspan=\"2\"><h3>". __("Public Information", rb_agencyinteract_TEXTDOMAIN) ."</h3>The following information may appear in profile pages.</th>\n";
+	echo "		<td scope=\"row\" colspan=\"2\"><h3>". __("Public Information", rb_agency_interact_TEXTDOMAIN) ."</h3>The following information may appear in profile pages.</th>\n";
 	echo "	  </tr>\n";
 	echo "    <tr valign=\"top\">\n";
 	echo "    <tr valign=\"top\">\n";
-	echo "		<td scope=\"row\">". __("Birthdate", rb_agencyinteract_TEXTDOMAIN) ."</th>\n";
+	echo "		<td scope=\"row\">". __("Birthdate", rb_agency_interact_TEXTDOMAIN) ."</th>\n";
 	echo "		<td>\n";
 				  /* Month */ 
 				  $monthName = array(1=> "January", "February", "March","April", "May", "June", "July", "August","September", "October", "November", "December"); 
@@ -86,35 +86,35 @@
 	echo "	  </tr>\n";
 	// Private Information
 	echo "    <tr valign=\"top\">\n";
-	echo "		<td scope=\"row\" colspan=\"2\"><h3>". __("Private Information", rb_agencyinteract_TEXTDOMAIN) ."</h3>". __("The following information will NOT appear in public areas and is for administrative use only.", rb_agencyinteract_TEXTDOMAIN) ."</th>\n";
+	echo "		<td scope=\"row\" colspan=\"2\"><h3>". __("Private Information", rb_agency_interact_TEXTDOMAIN) ."</h3>". __("The following information will NOT appear in public areas and is for administrative use only.", rb_agency_interact_TEXTDOMAIN) ."</th>\n";
 	echo "	  </tr>\n";
 
 	echo "    <tr valign=\"top\">\n";
-	echo "		<td scope=\"row\">". __("Street", rb_agencyinteract_TEXTDOMAIN) ."</th>\n";
+	echo "		<td scope=\"row\">". __("Street", rb_agency_interact_TEXTDOMAIN) ."</th>\n";
 	echo "		<td>\n";
 	echo "			<input type=\"text\" id=\"ProfileLocationStreet\" name=\"ProfileLocationStreet\" />\n";
 	echo "		</td>\n";
 	echo "	  </tr>\n";
 	echo "    <tr valign=\"top\">\n";
-	echo "		<td scope=\"row\">". __("City", rb_agencyinteract_TEXTDOMAIN) ."</th>\n";
+	echo "		<td scope=\"row\">". __("City", rb_agency_interact_TEXTDOMAIN) ."</th>\n";
 	echo "		<td>\n";
 	echo "			<input type=\"text\" id=\"ProfileLocationCity\" name=\"ProfileLocationCity\" />\n";
 	echo "		</td>\n";
 	echo "	  </tr>\n";
 	echo "    <tr valign=\"top\">\n";
-	echo "		<td scope=\"row\">". __("State", rb_agencyinteract_TEXTDOMAIN) ."</th>\n";
+	echo "		<td scope=\"row\">". __("State", rb_agency_interact_TEXTDOMAIN) ."</th>\n";
 	echo "		<td>\n";
 	echo "			<input type=\"text\" id=\"ProfileLocationState\" name=\"ProfileLocationState\" />\n";
 	echo "		</td>\n";
 	echo "	  </tr>\n";
 	echo "    <tr valign=\"top\">\n";
-	echo "		<td scope=\"row\">". __("Zip", rb_agencyinteract_TEXTDOMAIN) ."</th>\n";
+	echo "		<td scope=\"row\">". __("Zip", rb_agency_interact_TEXTDOMAIN) ."</th>\n";
 	echo "		<td>\n";
 	echo "			<input type=\"text\" id=\"ProfileLocationZip\" name=\"ProfileLocationZip\" />\n";
 	echo "		</td>\n";
 	echo "	  </tr>\n";
 	echo "    <tr valign=\"top\">\n";
-	echo "		<td scope=\"row\">". __("Country", rb_agencyinteract_TEXTDOMAIN) ."</th>\n";
+	echo "		<td scope=\"row\">". __("Country", rb_agency_interact_TEXTDOMAIN) ."</th>\n";
 	echo "		<td>\n";
 	echo "			<input type=\"text\" id=\"ProfileLocationCountry\" name=\"ProfileLocationCountry\" />\n";
 	echo "		</td>\n";
@@ -173,13 +173,13 @@
         
 
 	
-	$rb_agencyinteract_options_arr = get_option('rb_agencyinteract_options');
-	$rb_agencyinteract_option_registerallow = (int)$rb_agencyinteract_options_arr['rb_agencyinteract_option_registerallow'];
+	$rb_agency_interact_options_arr = get_option('rb_agency_interact_options');
+	$rb_agency_interact_option_registerallow = (int)$rb_agency_interact_options_arr['rb_agency_interact_option_registerallow'];
 
 	
-	  if ($rb_agencyinteract_option_registerallow  == 1) {
+	  if ($rb_agency_interact_option_registerallow  == 1) {
 		echo "    <tr valign=\"top\">\n";
-		echo "		<td scope=\"row\">". __("Username(cannot be changed.)", rb_agencyinteract_TEXTDOMAIN) ."</th>\n";
+		echo "		<td scope=\"row\">". __("Username(cannot be changed.)", rb_agency_interact_TEXTDOMAIN) ."</th>\n";
 		echo "		<td>\n";
 		if(isset($current_user->user_login)){
 		echo "			<input type=\"text\" id=\"ProfileUsername\"  disabled=\"disabled\" value=\"".$current_user->user_login."\" />\n";
@@ -192,13 +192,13 @@
 	 }
 	
 	echo "    <tr valign=\"top\">\n";
-	echo "		<td scope=\"row\">". __("Password (Leave blank to keep same password)", rb_agencyinteract_TEXTDOMAIN) ."</th>\n";
+	echo "		<td scope=\"row\">". __("Password (Leave blank to keep same password)", rb_agency_interact_TEXTDOMAIN) ."</th>\n";
 	echo "		<td>\n";
 	echo "			<input type=\"password\" id=\"ProfilePassword\" name=\"ProfilePassword\" />\n";
 	echo "		</td>\n";
 	echo "	  </tr>\n";
 	echo "    <tr valign=\"top\">\n";
-	echo "		<td scope=\"row\">". __("Password (Retype to Confirm)", rb_agencyinteract_TEXTDOMAIN) ."</th>\n";
+	echo "		<td scope=\"row\">". __("Password (Retype to Confirm)", rb_agency_interact_TEXTDOMAIN) ."</th>\n";
 	echo "		<td>\n";
 	echo "			<input type=\"password\" id=\"ProfilePasswordConfirm\" name=\"ProfilePasswordConfirm\" />\n";
 	echo "		</td>\n";

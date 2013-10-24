@@ -9,7 +9,7 @@
 		$rb_agency_option_locationtimezone 		= (int)$rb_agency_options_arr['rb_agency_option_locationtimezone'];
 	// Get Values
 	$query = "SELECT * FROM " . table_agency_profile . " WHERE ProfileUserLinked='$ProfileUserLinked'";
-	$results = mysql_query($query) or die ( __("Error, query failed", rb_agencyinteract_TEXTDOMAIN ));
+	$results = mysql_query($query) or die ( __("Error, query failed", rb_agency_interact_TEXTDOMAIN ));
 	$count = mysql_num_rows($results);
         /*
          * Get profile type and Gender
@@ -49,7 +49,7 @@
 		
 
 		echo "<p>";
-		echo "<label style=\"width:200px; float:left;\" for=\"classification\">". __("Classification:", rb_agencyinteract_TEXTDOMAIN) ."</label>";
+		echo "<label style=\"width:200px; float:left;\" for=\"classification\">". __("Classification:", rb_agency_interact_TEXTDOMAIN) ."</label>";
 		echo "		".$profileType;
 		echo "</p>";
 
@@ -131,7 +131,7 @@
 		       .gender_filter($data3['ProfileCustomShowGender'])."\">\n"; 
 		 
 		 echo "<label style='width:200px; float:left;' for=\"".strtolower(trim($data3['ProfileCustomTitle']))."\">"
-		       . __( $data3['ProfileCustomTitle'].$measurements_label, rb_agencyinteract_TEXTDOMAIN) 
+		       . __( $data3['ProfileCustomTitle'].$measurements_label, rb_agency_interact_TEXTDOMAIN) 
 			   ."</label>\n";		  
 		 
 		 if ($ProfileCustomType == 1) { //TEXT
@@ -304,7 +304,7 @@
 		echo " <table class=\"form-table\">\n";
 		echo "	<tbody>\n";
 		echo "    <tr valign=\"top\">\n";
-		echo "		<td scope=\"row\"><span style=\"width:185px;float:left;\">". __("Last updated ", rb_agencyinteract_TEXTDOMAIN) ." ". rb_agency_makeago(rb_agency_convertdatetime($ProfileDateUpdated), $rb_agency_option_locationtimezone) ."</span></th>\n";
+		echo "		<td scope=\"row\"><span style=\"width:185px;float:left;\">". __("Last updated ", rb_agency_interact_TEXTDOMAIN) ." ". rb_agency_makeago(rb_agency_convertdatetime($ProfileDateUpdated), $rb_agency_option_locationtimezone) ."</span></th>\n";
 		echo "		<td>\n";
 		echo "			<input type=\"hidden\" name=\"action\" value=\"editRecord\" />\n";
 		echo "			<input type=\"submit\" name=\"submit\" value=\"". __("Save and Continue", rb_restaurant_TEXTDOMAIN) ."\" class=\"button-primary\" />\n";

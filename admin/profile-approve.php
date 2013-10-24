@@ -48,10 +48,10 @@ if (isset($_POST['action'])) {
 					closedir($mydir);
 					
 				} else {
-					echo __("No valid record found.", rb_agencyinteract_TEXTDOMAIN);
+					echo __("No valid record found.", rb_agency_interact_TEXTDOMAIN);
 				}
 					
-			echo ('<div id="message" class="updated"><p>'. __("Profile deleted successfully!", rb_agencyinteract_TEXTDOMAIN) .'</p></div>');
+			echo ('<div id="message" class="updated"><p>'. __("Profile deleted successfully!", rb_agency_interact_TEXTDOMAIN) .'</p></div>');
 			} // is there record?
 			
 		}
@@ -75,9 +75,9 @@ function rb_display_list() {
 	$rb_agency_option_locationtimezone 		= (int)$rb_agency_options_arr['rb_agency_option_locationtimezone'];
   echo "<div class=\"wrap\">\n";
   echo "  <div id=\"rb-overview-icon\" class=\"icon32\"></div>\n";
-  echo "  <h2>". __("List", rb_agencyinteract_TEXTDOMAIN) ." ". LabelPlural ."</h2>\n";
+  echo "  <h2>". __("List", rb_agency_interact_TEXTDOMAIN) ." ". LabelPlural ."</h2>\n";
 	
-  echo "  <h3 class=\"title\">". __("All Records", rb_agencyinteract_TEXTDOMAIN) ."</h3>\n";
+  echo "  <h3 class=\"title\">". __("All Records", rb_agency_interact_TEXTDOMAIN) ."</h3>\n";
 		
 		// Sort By
         $sort = "";
@@ -177,10 +177,10 @@ function rb_display_list() {
 											closedir($mydir);
 											
 										} else {
-											echo __("No valid record found.", rb_agencyinteract_TEXTDOMAIN);
+											echo __("No valid record found.", rb_agency_interact_TEXTDOMAIN);
 										}
 											
-									echo ('<div id="message" class="updated"><p>'. __("Profile deleted successfully!", rb_agencyinteract_TEXTDOMAIN) .'</p></div>');
+									echo ('<div id="message" class="updated"><p>'. __("Profile deleted successfully!", rb_agency_interact_TEXTDOMAIN) .'</p></div>');
 									} // is there record?
 									
 						
@@ -207,7 +207,7 @@ function rb_display_list() {
 						
 						$profileLabel = '';
 						$countProfile > 1 ? $profileLabel = "$countProfile Profiles" : $profileLabel = "Profile" ;
-					echo ('<div id="message" class="updated"><p>'. __("$profileLabel Approved successfully!", rb_agencyinteract_TEXTDOMAIN) .'</p></div>');
+					echo ('<div id="message" class="updated"><p>'. __("$profileLabel Approved successfully!", rb_agency_interact_TEXTDOMAIN) .'</p></div>');
 						
 							
 					}
@@ -220,7 +220,7 @@ function rb_display_list() {
 			$queryApprove = "UPDATE ". table_agency_profile ." SET ProfileIsActive = 1 WHERE ProfileID =  ". $ProfileID;
 			$resultsApprove = mysql_query($queryApprove);
 			if($resultsApprove){ 
-				echo ('<div id="message" class="updated"><p>'. __("$profileLabel Approved successfully!", rb_agencyinteract_TEXTDOMAIN) .'</p></div>');
+				echo ('<div id="message" class="updated"><p>'. __("$profileLabel Approved successfully!", rb_agency_interact_TEXTDOMAIN) .'</p></div>');
 			}
 		}
 		
@@ -272,12 +272,12 @@ function rb_display_list() {
 		echo "        		<input type=\"hidden\" name=\"page_index\" id=\"page_index\" value=\"". $_GET['page_index'] ."\" />  \n";
 		echo "        		<input type=\"hidden\" name=\"page\" id=\"page\" value=\"". $_GET['page'] ."\" />\n";
 		echo "        		<input type=\"hidden\" name=\"type\" value=\"name\" />\n";
-		echo "        		". __("Search By", rb_agencyinteract_TEXTDOMAIN) .": \n";
-		echo "        		". __("First Name", rb_agencyinteract_TEXTDOMAIN) .": <input type=\"text\" name=\"ProfileContactNameFirst\" value=\"". $selectedNameFirst ."\" style=\"width: 100px;\" />\n";
-		echo "        		". __("Last Name", rb_agencyinteract_TEXTDOMAIN) .": <input type=\"text\" name=\"ProfileContactNameLast\" value=\"". $selectedNameLast ."\" style=\"width: 100px;\" />\n";
-		echo "        		". __("Location", rb_agencyinteract_TEXTDOMAIN) .": \n";
+		echo "        		". __("Search By", rb_agency_interact_TEXTDOMAIN) .": \n";
+		echo "        		". __("First Name", rb_agency_interact_TEXTDOMAIN) .": <input type=\"text\" name=\"ProfileContactNameFirst\" value=\"". $selectedNameFirst ."\" style=\"width: 100px;\" />\n";
+		echo "        		". __("Last Name", rb_agency_interact_TEXTDOMAIN) .": <input type=\"text\" name=\"ProfileContactNameLast\" value=\"". $selectedNameLast ."\" style=\"width: 100px;\" />\n";
+		echo "        		". __("Location", rb_agency_interact_TEXTDOMAIN) .": \n";
 		echo "        		<select name=\"ProfileLocationCity\">\n";
-		echo "				  <option value=\"\">". __("Any Location", rb_agencyinteract_TEXTDOMAIN) ."</option>";
+		echo "				  <option value=\"\">". __("Any Location", rb_agency_interact_TEXTDOMAIN) ."</option>";
 								$query = "SELECT DISTINCT ProfileLocationCity, ProfileLocationState FROM ". table_agency_profile ." ORDER BY ProfileLocationState, ProfileLocationCity ASC";
 								$results = mysql_query($query);
 								$count = mysql_num_rows($results);
@@ -287,9 +287,9 @@ function rb_display_list() {
 									}
 								} 
 		echo "        		</select>\n";
-		echo "        		". __("Category", rb_agencyinteract_TEXTDOMAIN) .":\n";
+		echo "        		". __("Category", rb_agency_interact_TEXTDOMAIN) .":\n";
 		echo "        		<select name=\"ProfileType\">\n";
-		echo "				  <option value=\"\">". __("Any Category", rb_agencyinteract_TEXTDOMAIN) ."</option>";
+		echo "				  <option value=\"\">". __("Any Category", rb_agency_interact_TEXTDOMAIN) ."</option>";
 								$query = "SELECT DataTypeID, DataTypeTitle FROM ". table_agency_data_type ." ORDER BY DataTypeTitle ASC";
 								$results = mysql_query($query);
 								$count = mysql_num_rows($results);
@@ -297,14 +297,14 @@ function rb_display_list() {
 									echo "<option value=\"". $data['DataTypeID'] ."\" ". selected($selectedCity, $data["DataTypeTitle"]) ."\">". $data['DataTypeTitle'] ."</option>\n";
 								} 
 		echo "        		</select>\n";
-		echo "        		<input type=\"submit\" value=\"". __("Filter", rb_agencyinteract_TEXTDOMAIN) ."\" class=\"button-primary\" />\n";
+		echo "        		<input type=\"submit\" value=\"". __("Filter", rb_agency_interact_TEXTDOMAIN) ."\" class=\"button-primary\" />\n";
 		echo "          </form>\n";
 		echo "        </td>\n";
 		echo "        <td style=\"width: 10%;\" nowrap=\"nowrap\">\n";
 		echo "        	<form method=\"GET\" action=\"". admin_url("admin.php?page=". $_GET['page']) ."\">\n";
 		echo "        		<input type=\"hidden\" name=\"page_index\" id=\"page_index\" value=\"". $_GET['page_index'] ."\" />  \n";
 		echo "        		<input type=\"hidden\" name=\"page\" id=\"page\" value=\"". $_GET['page'] ."\" />\n";
-		echo "        		<input type=\"submit\" value=\"". __("Clear Filters", rb_agencyinteract_TEXTDOMAIN) ."\" class=\"button-secondary\" />\n";
+		echo "        		<input type=\"submit\" value=\"". __("Clear Filters", rb_agency_interact_TEXTDOMAIN) ."\" class=\"button-secondary\" />\n";
 		echo "        	</form>\n";
 		echo "        </td>\n";
 		echo "        <td>&nbsp;</td>\n";
@@ -315,11 +315,11 @@ function rb_display_list() {
      
 		echo "<form method=\"post\" action=\"". admin_url("admin.php?page=". $_GET['page']) ."\" id=\"formMainBulk\">\n";	
 	    echo "        		<select name=\"BulkAction_ProfileApproval\">\n";
-		echo "              <option value=\"\"> ". __("Bulk Action", rb_agencyinteract_TEXTDOMAIN) ."<option\>\n";
-		echo "              <option value=\"Approve\"> ". __("Approve", rb_agencyinteract_TEXTDOMAIN) ."<option\>\n";
-		echo "              <option value=\"Delete\"> ". __("Delete", rb_agencyinteract_TEXTDOMAIN) ."<option\>\n";
+		echo "              <option value=\"\"> ". __("Bulk Action", rb_agency_interact_TEXTDOMAIN) ."<option\>\n";
+		echo "              <option value=\"Approve\"> ". __("Approve", rb_agency_interact_TEXTDOMAIN) ."<option\>\n";
+		echo "              <option value=\"Delete\"> ". __("Delete", rb_agency_interact_TEXTDOMAIN) ."<option\>\n";
 		echo "              </select>"; 
-		echo "    <input type=\"submit\" value=\"". __("Apply", rb_agencyinteract_TEXTDOMAIN) ."\" name=\"ProfileBulkAction\" class=\"button-secondary\"  />\n";
+		echo "    <input type=\"submit\" value=\"". __("Apply", rb_agency_interact_TEXTDOMAIN) ."\" name=\"ProfileBulkAction\" class=\"button-secondary\"  />\n";
 		echo "<table cellspacing=\"0\" class=\"widefat fixed\">\n";
 	    echo " <thead>\n";
 		echo "    <tr class=\"thead\">\n";
@@ -363,7 +363,7 @@ function rb_display_list() {
             $ProfileGallery = stripslashes($data['ProfileGallery']);
             $ProfileContactNameFirst = stripslashes($data['ProfileContactNameFirst']);
             $ProfileContactNameLast = stripslashes($data['ProfileContactNameLast']);
-            $ProfileLocationCity = rb_agency_strtoproper(stripslashes($data['ProfileLocationCity']));
+            $ProfileLocationCity = RBAgency_Common::format_propercase(stripslashes($data['ProfileLocationCity']));
             $ProfileLocationState = stripslashes($data['ProfileLocationState']);
             $ProfileGender = stripslashes($data['ProfileGender']);
             $ProfileDateBirth = stripslashes($data['ProfileDateBirth']);
@@ -414,10 +414,10 @@ function rb_display_list() {
 		echo "        <td class=\"ProfileContactNameFirst column-ProfileContactNameFirst\">\n";
 		echo "          ". $ProfileContactNameFirst ."\n";
 		echo "          <div class=\"row-actions\">\n";
-		echo "            <span class=\"allow\"><a href=\"". admin_url("admin.php?page=". $_GET['page'] ."&amp;action=approveRecord&amp;ProfileID=". $ProfileID) ."\" title=\"". __("Approve this Record", rb_agencyinteract_TEXTDOMAIN) . "\">". __("Approve", rb_agencyinteract_TEXTDOMAIN) . "</a> | </span>\n";
-		echo "            <span class=\"edit\"><a href=\"". admin_url("admin.php?page=rb_agency_menu_profiles&amp;action=editRecord&amp;ProfileID=". $ProfileID) ."\" title=\"". __("Edit this Record", rb_agencyinteract_TEXTDOMAIN) . "\">". __("Edit", rb_agencyinteract_TEXTDOMAIN) . "</a> | </span>\n";
-		echo "            <span class=\"view\"><a href=\"". rb_agency_PROFILEDIR . $rb_agency_UPLOADDIR . $ProfileGallery ."/\" title=\"". __("View", rb_agencyinteract_TEXTDOMAIN) . "\" target=\"_blank\">". __("View", rb_agencyinteract_TEXTDOMAIN) . "</a> | </span>\n";
-		//echo "            <span class=\"delete\"><a class=\"submitdelete\" href=\"". admin_url("admin.php?page=". $_GET['page']) ."&amp;action=deleteRecord&amp;ProfileID=". $ProfileID ."\"  onclick=\"if ( confirm('". __("You are about to delete the profile for ", rb_agencyinteract_TEXTDOMAIN) ." ". $ProfileContactNameFirst ." ". $ProfileContactNameLast ."'". __("Cancel", rb_agencyinteract_TEXTDOMAIN) . "\' ". __("to stop", rb_agencyinteract_TEXTDOMAIN) . ", \'". __("OK", rb_agencyinteract_TEXTDOMAIN) . "\' ". __("to delete", rb_agencyinteract_TEXTDOMAIN) . ".') ) { return true;}return false;\" title=\"". __("Delete this Record", rb_agencyinteract_TEXTDOMAIN) . "\">". __("Delete", rb_agencyinteract_TEXTDOMAIN) . "</a> </span>\n";
+		echo "            <span class=\"allow\"><a href=\"". admin_url("admin.php?page=". $_GET['page'] ."&amp;action=approveRecord&amp;ProfileID=". $ProfileID) ."\" title=\"". __("Approve this Record", rb_agency_interact_TEXTDOMAIN) . "\">". __("Approve", rb_agency_interact_TEXTDOMAIN) . "</a> | </span>\n";
+		echo "            <span class=\"edit\"><a href=\"". admin_url("admin.php?page=rb_agency_menu_profiles&amp;action=editRecord&amp;ProfileID=". $ProfileID) ."\" title=\"". __("Edit this Record", rb_agency_interact_TEXTDOMAIN) . "\">". __("Edit", rb_agency_interact_TEXTDOMAIN) . "</a> | </span>\n";
+		echo "            <span class=\"view\"><a href=\"". rb_agency_PROFILEDIR . $rb_agency_UPLOADDIR . $ProfileGallery ."/\" title=\"". __("View", rb_agency_interact_TEXTDOMAIN) . "\" target=\"_blank\">". __("View", rb_agency_interact_TEXTDOMAIN) . "</a> | </span>\n";
+		//echo "            <span class=\"delete\"><a class=\"submitdelete\" href=\"". admin_url("admin.php?page=". $_GET['page']) ."&amp;action=deleteRecord&amp;ProfileID=". $ProfileID ."\"  onclick=\"if ( confirm('". __("You are about to delete the profile for ", rb_agency_interact_TEXTDOMAIN) ." ". $ProfileContactNameFirst ." ". $ProfileContactNameLast ."'". __("Cancel", rb_agency_interact_TEXTDOMAIN) . "\' ". __("to stop", rb_agency_interact_TEXTDOMAIN) . ", \'". __("OK", rb_agency_interact_TEXTDOMAIN) . "\' ". __("to delete", rb_agency_interact_TEXTDOMAIN) . ".') ) { return true;}return false;\" title=\"". __("Delete this Record", rb_agency_interact_TEXTDOMAIN) . "\">". __("Delete", rb_agency_interact_TEXTDOMAIN) . "</a> </span>\n";
 		echo "          </div>\n";
 		echo "        </td>\n";
 		echo "        <td class=\"ProfileContactNameLast column-ProfileContactNameLast\">". $ProfileContactNameLast ."</td>\n";
@@ -459,11 +459,11 @@ function rb_display_list() {
 		echo "</table>\n";
 		
 		echo "        		<select name=\"BulkAction_ProfileApproval2\">\n";
-		echo "              <option value=\"\"> ". __("Bulk Action", rb_agencyinteract_TEXTDOMAIN) ."<option\>\n";
-		echo "              <option value=\"Approve\"> ". __("Approve", rb_agencyinteract_TEXTDOMAIN) ."<option\>\n";
-		echo "              <option value=\"Delete\"> ". __("Delete", rb_agencyinteract_TEXTDOMAIN) ."<option\>\n";
+		echo "              <option value=\"\"> ". __("Bulk Action", rb_agency_interact_TEXTDOMAIN) ."<option\>\n";
+		echo "              <option value=\"Approve\"> ". __("Approve", rb_agency_interact_TEXTDOMAIN) ."<option\>\n";
+		echo "              <option value=\"Delete\"> ". __("Delete", rb_agency_interact_TEXTDOMAIN) ."<option\>\n";
 		echo "              </select>"; 
-		echo "    <input type=\"submit\" value=\"". __("Apply", rb_agencyinteract_TEXTDOMAIN) ."\" name=\"ProfileBulkAction\" class=\"button-secondary\"  />\n";
+		echo "    <input type=\"submit\" value=\"". __("Apply", rb_agency_interact_TEXTDOMAIN) ."\" name=\"ProfileBulkAction\" class=\"button-secondary\"  />\n";
 		
 		echo "<div class=\"tablenav\">\n";
 		echo "  <div class='tablenav-pages'>\n";
