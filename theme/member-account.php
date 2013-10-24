@@ -115,6 +115,8 @@ if (isset($_POST['action'])) {
 	// *************************************************************************************************** //
 	// Add Record
 	case 'addRecord':
+		echo('addrecord');
+	die;
 		if(!$have_error){
 			$ProfileIsActive		= 3;
 			$ProfileIsFeatured	= 0;
