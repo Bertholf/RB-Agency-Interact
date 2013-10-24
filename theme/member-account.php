@@ -33,7 +33,6 @@ if(get_user_meta($current_user->ID, 'rb_agency_interact_clientdata', true)) { $p
 
 // Form Post
 if (isset($_POST['action'])) {
-	
 	$ProfileID					=$_POST['ProfileID'];
 	$ProfileUsername			=$_POST['ProfileUsername'];
 	$ProfilePassword			=$_POST['ProfilePassword'];
@@ -58,18 +57,12 @@ if (isset($_POST['action'])) {
                 }
   	}
 
-		
-
 	$ProfileGallery				=$_POST['ProfileGallery'];
 
   	if (empty($ProfileGallery)) {  // Probably a new record... 
-		//$ProfileGallery = rb_agency_safenames($ProfileContactDisplay); 
+		$ProfileGallery = rb_agency_safenames($ProfileContactDisplay); 
   	}
 
-echo(2);
-	echo($_POST['action']);
-	
-	die;
 	$ProfileContactEmail		=$_POST['ProfileContactEmail'];
 	$ProfileContactWebsite		=$_POST['ProfileContactWebsite'];
 	$ProfileContactLinkFacebook	=$_POST['ProfileContactLinkFacebook'];
