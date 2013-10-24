@@ -63,7 +63,9 @@ if (isset($_POST['action'])) {
   	if (empty($ProfileGallery)) {  // Probably a new record... 
 		$ProfileGallery = rb_agency_safenames($ProfileContactDisplay); 
   	}
+	echo(1);
 	echo($_POST['action']);
+	
 	die;
 
 	$ProfileContactEmail		=$_POST['ProfileContactEmail'];
