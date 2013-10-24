@@ -66,7 +66,7 @@ if (isset($_POST['action'])) {
 		//$ProfileGallery = rb_agency_safenames($ProfileContactDisplay); 
   	}
 
-echo(1);
+echo(2);
 	echo($_POST['action']);
 	
 	die;
