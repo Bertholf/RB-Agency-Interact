@@ -86,7 +86,8 @@ if (isset($_POST['action'])) {
 
 	case 'addRecord':
 		if (!$have_error){
-		
+				echo('addrecord1');
+	die;
 		}
 	}
 }
