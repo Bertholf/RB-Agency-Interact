@@ -350,7 +350,7 @@ if (is_user_logged_in()) {
 				echo "<div id=\"profile-steps\">Profile Setup: Step 1 of 3</div>\n";
 			}
 			
-			
+			echo('profile-manage');
 			echo "<div id=\"profile-manage\" class=\"profile-account\">\n";
 			$rb_agency_new_registeredUser = get_user_meta($current_user->id,'rb_agency_new_registeredUser');
 			
@@ -361,7 +361,8 @@ if (is_user_logged_in()) {
 			echo $alerts;
 			/* Check if the user is regsitered *****************************************/ 
 			// Verify Record
-			$sql = "SELECT ProfileID FROM ". table_agency_profile ." WHERE ProfileUserLinked =  ". $current_user->ID ."";
+			echo($sql);
+			$sql = "SELECT ProfileID FROM ". table_agency_profile ." WHERE ProfileUserLinked =  '". $current_user->ID ."'";
 			$results = mysql_query($sql);
 			$count = mysql_num_rows($results);
 			if ($count > 0) {
