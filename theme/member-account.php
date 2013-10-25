@@ -361,8 +361,9 @@ if (is_user_logged_in()) {
 			echo $alerts;
 			/* Check if the user is regsitered *****************************************/ 
 			// Verify Record
-			echo($sql);
+			;
 			$sql = "SELECT ProfileID FROM ". table_agency_profile ." WHERE ProfileUserLinked =  '". $current_user->ID ."'";
+			echo($sql)
 			$results = mysql_query($sql);
 			$count = mysql_num_rows($results);
 			if ($count > 0) {
