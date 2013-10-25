@@ -8,10 +8,10 @@
 	
 	
 	/* Get Options */
-	$rb_agency_interact_options_arr = get_option('rb_agency_interact_options');
+	$rb_agency_interact_options_arr = get_option('rb_agencyinteract_options');
 
 		//Sidebar
-		$rb_agency_interact_option_profilemanage_sidebar = $rb_agency_interact_options_arr['rb_agency_interact_option_profilemanage_sidebar'];
+		$rb_agency_interact_option_profilemanage_sidebar = $rb_agency_interact_options_arr['rb_agencyinteract_option_profilemanage_sidebar'];
 		if($rb_agency_interact_option_profilemanage_sidebar){
 			$columnWidth = "nine";
 		} else {
@@ -19,17 +19,17 @@
 		}
 		
 		//Facebook Integration
-		$rb_agency_interact_option_fb_app_id = $rb_agency_interact_options_arr['rb_agency_interact_option_fb_app_id'];
-		$rb_agency_interact_option_fb_app_secret = $rb_agency_interact_options_arr['rb_agency_interact_option_fb_app_secret'];
-		$rb_agency_interact_option_fb_app_register_uri = $rb_agency_interact_options_arr['rb_agency_interact_option_fb_app_register_uri'];
-	    $rb_agency_interact_option_fb_registerallow = $rb_agency_interact_options_arr['rb_agency_interact_option_fb_registerallow'];
+		$rb_agency_interact_option_fb_app_id = $rb_agency_interact_options_arr['rb_agencyinteract_option_fb_app_id'];
+		$rb_agency_interact_option_fb_app_secret = $rb_agency_interact_options_arr['rb_agencyinteract_option_fb_app_secret'];
+		$rb_agency_interact_option_fb_app_register_uri = $rb_agency_interact_options_arr['rb_agencyinteract_option_fb_app_register_uri'];
+	    $rb_agency_interact_option_fb_registerallow = $rb_agency_interact_options_arr['rb_agencyinteract_option_fb_registerallow'];
 
 	    //+Registration
 	    // - show/hide registration for Agent/Producers
-		$rb_agency_interact_option_registerallowAgentProducer = $registration['rb_agency_interact_option_registerallowAgentProducer'];
+		$rb_agency_interact_option_registerallowAgentProducer = $registration['rb_agencyinteract_option_registerallowAgentProducer'];
 
 		// - show/hide  self-generate password
-		$rb_agency_interact_option_registerconfirm = (int)$rb_agency_interact_options_arr['rb_agency_interact_option_registerconfirm'];
+		$rb_agency_interact_option_registerconfirm = (int)$rb_agency_interact_options_arr['rb_agencyinteract_option_registerconfirm'];
 		
 	   	if($rb_agency_interact_option_fb_registerallow == 1){
 		 	if(!class_exists("FacebookApiException")){   

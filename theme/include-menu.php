@@ -52,8 +52,8 @@
 		echo " 		</div>\n";
 		}
                 
-		$rb_agency_interact_options_arr = get_option('rb_agency_interact_options');
-			$rb_agency_interact_option_subscribeupsell = (int)$rb_agency_interact_options_arr['rb_agency_interact_option_subscribeupsell'];
+		$rb_agency_interact_options_arr = get_option('rb_agencyinteract_options');
+			$rb_agency_interact_option_subscribeupsell = (int)$rb_agency_interact_options_arr['rb_agencyinteract_option_subscribeupsell'];
 
 		if ($rb_agency_interact_option_subscribeupsell) {
 			// Is there a subscription?

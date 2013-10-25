@@ -25,8 +25,8 @@
 		$rb_agency_option_profilenaming 		= (int)$rb_agency_options_arr['rb_agency_option_profilenaming'];
 		$rb_agency_option_locationtimezone 		= (int)$rb_agency_options_arr['rb_agency_option_locationtimezone'];
       
-	$rb_agency_interact_options_arr = get_option('rb_agency_interact_options');
-	$rb_agency_interact_option_registerallow = (int)$rb_agency_interact_options_arr['rb_agency_interact_option_registerallow'];
+	$rb_agency_interact_options_arr = get_option('rb_agencyinteract_options');
+	$rb_agency_interact_option_registerallow = (int)$rb_agency_interact_options_arr['rb_agencyinteract_option_registerallow'];
 
 	// Get Data
 	$query = "SELECT * FROM " . table_agency_profile . " WHERE ProfileUserLinked='$ProfileUserLinked'";

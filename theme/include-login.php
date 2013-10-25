@@ -3,14 +3,14 @@
 	require_once( ABSPATH . WPINC . '/registration.php' );
 	
 	/* Check if users can register. */
-	$registration = get_option( 'rb_agency_interact_options' );
-	$rb_agency_interact_option_registerallow = $registration["rb_agency_interact_option_registerallow"];
+	$registration = get_option( 'rb_agencyinteract_options' );
+	$rb_agency_interact_option_registerallow = $registration["rb_agencyinteract_option_registerallow"];
 	// Facebook Login Integration
-	$rb_agency_interact_option_fb_registerallow = $registration['rb_agency_interact_option_fb_registerallow'];
-	$rb_agency_interact_option_fb_app_id = $registration['rb_agency_interact_option_fb_app_id'];
-	$rb_agency_interact_option_fb_app_secret = $registration['rb_agency_interact_option_fb_app_secret'];
-	$rb_agency_interact_option_fb_app_uri = $registration['rb_agency_interact_option_fb_app_uri'];
-      $rb_agency_interact_option_registerallowAgentProducer = $registration['rb_agency_interact_option_registerallowAgentProducer'];
+	$rb_agency_interact_option_fb_registerallow = $registration['rb_agencyinteract_option_fb_registerallow'];
+	$rb_agency_interact_option_fb_app_id = $registration['rb_agencyinteract_option_fb_app_id'];
+	$rb_agency_interact_option_fb_app_secret = $registration['rb_agencyinteract_option_fb_app_secret'];
+	$rb_agency_interact_option_fb_app_uri = $registration['rb_agencyinteract_option_fb_app_uri'];
+      $rb_agency_interact_option_registerallowAgentProducer = $registration['rb_agencyinteract_option_registerallowAgentProducer'];
 	if (( current_user_can("create_users") || $rb_agency_interact_option_registerallow )) {
 		$widthClass = "half";
 	} else {

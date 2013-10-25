@@ -16,10 +16,10 @@ get_currentuserinfo();
 
 
 // Get Data
-$rb_agency_interact_options_arr = get_option('rb_agency_interact_options');
-	$rb_agency_interact_option_subscribeupsell = (int)$rb_agency_interact_options_arr['rb_agency_interact_option_subscribeupsell'];
-	$rb_agency_interact_option_subscribepaypalemail = $rb_agency_interact_options_arr['rb_agency_interact_option_subscribepaypalemail'];
-	$rb_agency_interact_option_subscribepagedetails = $rb_agency_interact_options_arr['rb_agency_interact_option_subscribepagedetails'];
+$rb_agency_interact_options_arr = get_option('rb_agencyinteract_options');
+	$rb_agency_interact_option_subscribeupsell = (int)$rb_agency_interact_options_arr['rb_agencyinteract_option_subscribeupsell'];
+	$rb_agency_interact_option_subscribepaypalemail = $rb_agency_interact_options_arr['rb_agencyinteract_option_subscribepaypalemail'];
+	$rb_agency_interact_option_subscribepagedetails = $rb_agency_interact_options_arr['rb_agencyinteract_option_subscribepagedetails'];
 
 // Were they users or agents?
 $profiletype = (int)get_user_meta($current_user->id, "rb_agency_interact_profiletype", true);
@@ -135,8 +135,8 @@ get_header();
 	echo "</div><!-- #container -->\n";
 	
 // Get Sidebar 
-$rb_agency_interact_options_arr = get_option('rb_agency_interact_options');
-	$rb_agency_interact_option_profilemanage_sidebar = $rb_agency_interact_options_arr['rb_agency_interact_option_profilemanage_sidebar'];
+$rb_agency_interact_options_arr = get_option('rb_agencyinteract_options');
+	$rb_agency_interact_option_profilemanage_sidebar = $rb_agency_interact_options_arr['rb_agencyinteract_option_profilemanage_sidebar'];
 	$LayoutType = "";
 	if ($rb_agency_interact_option_profilemanage_sidebar) {
 		$LayoutType = "profile";

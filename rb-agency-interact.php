@@ -158,15 +158,15 @@ class RBAgencyInteract {
 			 */
 
 				// Update the options in the database
-				if(!get_option("rb_agency_interact_options")) {
+				if(!get_option("rb_agencyinteract_options")) {
 
 					// Set Default Options
 					$rb_agency_interact_options_arr = array(
-						"rb_agency_interact_option_registerapproval" => 1,
-						"rb_agency_interact_option_registerallow" => 1
+						"rb_agencyinteract_option_registerapproval" => 1,
+						"rb_agencyinteract_option_registerallow" => 1
 						);
 					// Add Options
-					update_option("rb_agency_interact_options",$rb_agency_interact_options_arr);
+					update_option("rb_agencyinteract_options",$rb_agency_interact_options_arr);
 				}
 
 			/*
@@ -219,7 +219,7 @@ class RBAgencyInteract {
 			//$wpdb->query("DROP TABLE " . table_agency_interact_temp);
 
 			// Delete Saved Settings
-			delete_option('rb_agency_interact_options');
+			delete_option('rb_agencyinteract_options');
 
 			$thepluginfile = "rb-agency-interact/rb-agency-interact.php";
 			$current = get_settings('active_plugins');
@@ -278,7 +278,7 @@ class RBAgencyInteract {
 	 */
 
 		public static function do_register_settings() {
-			register_setting('rb-agencyinteract-settings-group', 'rb_agency_interact_options'); //, 'rb_agency_interact_options_validate'
+			register_setting('rb-agencyinteract-settings-group', 'rb_agencyinteract_options'); //, 'rb_agency_interact_options_validate'
 		}
 
 }
