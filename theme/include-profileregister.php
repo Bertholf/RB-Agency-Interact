@@ -1,5 +1,4 @@
 <?php
-	echo('in include-profileregister.php');
     // profile type
     $ptype = get_user_meta($current_user->id, "rb_agency_interact_profiletype", true);
     
@@ -14,7 +13,7 @@
 	} else {
 		$ptype = str_replace(" ","_",retrieve_title($ptype));
 	}
-
+	echo('reached b4 query0');
     $ProfileGender = get_user_meta($current_user->id, "rb_agency_interact_pgender", true);
     echo '<input name="ProfileGender" type="hidden" value="'.$ProfileGender.'">'; 
 
@@ -126,11 +125,11 @@
 	 *
 	 */
 		    $ProfileInformation = "1"; // Private fields only
-
+			echo('reached b4 query');
 			$query1 = "SELECT ProfileCustomID, ProfileCustomTitle, ProfileCustomType, ProfileCustomOptions, ProfileCustomOrder, ProfileCustomView, ProfileCustomShowGender, ProfileCustomShowProfile, ProfileCustomShowSearch, 
 			                  ProfileCustomShowLogged, ProfileCustomShowAdmin,ProfileCustomShowRegistration FROM "
 			         . table_agency_customfields ." WHERE ProfileCustomView = ". $ProfileInformation ." ORDER BY ProfileCustomOrder ASC";
-			
+			echo($query1);
 			$results1 = mysql_query($query1);
 			$count1 = mysql_num_rows($results1);
 			$pos = 0;

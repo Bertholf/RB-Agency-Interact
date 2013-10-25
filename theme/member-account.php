@@ -378,10 +378,10 @@ if (is_user_logged_in()) {
 				
 				// No Record Exists, register them
 				echo "<p>". __("Records show you are not currently linked to a model or agency profile.  Lets setup your profile now!", rb_agency_interact_TEXTDOMAIN) ."</p>";
-				echo('before include-profileregister.php');
+				
 				// Register Profile
 				include("include-profileregister.php"); 	
-				echo('after include-profileregister.php');
+				
 				
 			  } else {
 				// Cant register
