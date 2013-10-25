@@ -313,7 +313,6 @@
 		    * return title
 			*/
 			$check_type = "SELECT DataTypeTitle FROM ". table_agency_data_type ." WHERE DataTypeID = " . $id;
-			echo($check_type);
 			$check_query = mysql_query($check_type) OR die(mysql_error());
 			if(mysql_num_rows($check_query) > 0){
 				$fetch = mysql_fetch_assoc($check_query);
