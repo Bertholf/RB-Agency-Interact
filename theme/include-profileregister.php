@@ -1,4 +1,5 @@
 <?php
+	echo('in include-profileregister.php');
     // profile type
     $ptype = get_user_meta($current_user->id, "rb_agency_interact_profiletype", true);
     
