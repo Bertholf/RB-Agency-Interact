@@ -1,6 +1,6 @@
 <?php
     // profile type
-    $ptype = get_user_meta($current_user->id, "rb_agencyinteract_profiletype", true);
+    $ptype = get_user_meta($current_user->id, "rb_agency_interact_profiletype", true);
     
 	//check if array
 	if(strpos($ptype, ",") > 0){
