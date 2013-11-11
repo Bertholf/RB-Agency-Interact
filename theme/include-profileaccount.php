@@ -5,7 +5,7 @@
 	$ProfileUserLinked = $current_user->id;
         $ptype = get_user_meta($current_user->id, "rb_agency_interact_profiletype", true);
 		//check if array
-		if(strpos($ptype, ",") > 0){
+		if(strpos($ptype, ",") > -1){
 			$ptyp = explode(",",$ptype);
 			foreach($ptyp as $p){
 				$ptype_arr[] = str_replace(" ","_",retrieve_title($p));	 		
