@@ -5,6 +5,7 @@
 	$ProfileUserLinked = $current_user->id;
         $ptype = get_user_meta($current_user->id, "rb_agency_interact_profiletype", true);
 		//check if array
+        if($ptype != ''){
 		if(strpos($ptype, ",") > -1){
 			$ptyp = explode(",",$ptype);
 			foreach($ptyp as $p){
@@ -13,8 +14,9 @@
 			$ptype = array();
 			$ptype = $ptype_arr;
 		} else {
-			$ptype = str_replace(" ","_",retrieve_title($ptype));
+    			$ptype = str_replace(" ","_",retrieve_title($ptype));
 		}
+        }        
 
 	$ProfileGender  = get_user_meta($current_user->id, "rb_agency_interact_pgender", true);
 
