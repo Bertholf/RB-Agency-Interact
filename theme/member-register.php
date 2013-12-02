@@ -282,7 +282,7 @@
 				$count3 = mysql_num_rows($results3);
 	echo "		<div>";
 				while ($data3 = mysql_fetch_array($results3)) {
-					echo "<input type=\"checkbox\" name=\"ProfileType[]\" value=\"" . $data3['DataTypeID'] . "\" id=\"ProfileType[]\" /> " . $data3['DataTypeTitle'] . "<br />";
+					echo "<div><label><input type=\"checkbox\" name=\"ProfileType[]\" value=\"" . $data3['DataTypeID'] . "\" id=\"ProfileType[]\" /><span> " . $data3['DataTypeTitle'] . "</span></label></div>";
 				}
 	echo "		</div>";
 	echo "</fieldset><!-- #profile-gender -->\n";
