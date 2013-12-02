@@ -224,11 +224,17 @@
 				 									$data3['ProfileCustomID'],$ProfileID,"textbox") ."</textarea>";
 
 			} elseif ($ProfileCustomType == 5) {
+				$xplode =array(); 
+				$myquery = "SELECT ProfileCustomValue FROM " . table_agency_customfield_mux . " WHERE ProfileID=".$ProfileID." and ProfileCustomID=".$data3['ProfileCustomID']." ";
+				$myresults = mysql_query($myquery) or die ( __("Error, query failed", rb_agencyinteract_TEXTDOMAIN ));
+				while ($mydata = mysql_fetch_array($myresults)) {
+					$xplode = explode(",",$mydata['ProfileCustomValue']);
+				}
 
 				$array_customOptions_values = explode("|",$data3['ProfileCustomOptions']);
 				echo "<div style=\"width:300px;float:left;\">";
 				foreach($array_customOptions_values as $val){
-					 $xplode = explode(",",$_REQUEST["ProfileCustomID". $data3['ProfileCustomID']]);
+					if(isset($val) && $val!=""){
 					 echo "<label><input type=\"checkbox\" value=\"". $val."\"   "; 
 					 
 					 if(in_array($val,$xplode)){ echo "checked=\"checked\""; } 
@@ -236,6 +242,7 @@
 					 echo" name=\"ProfileCustomID". $data3['ProfileCustomID'] ."[]\" />";
 					 
 					 echo "". $val."</label>";
+					 }
 				}    
 				
 				echo "<br/>";
