@@ -230,10 +230,9 @@
 	echo "  <header class=\"entry-header\">";
 	echo "  	<h1 class=\"entry-title\">Join Our Team</h1>";
 	echo "  </header>";
-	echo "  <form method=\"post\" id=\"profile-register\" class=\"rbform\" action=\"". $rb_agency_interact_WPURL ."/profile-register/talent\">\n";    
-	echo "		<p class=\"form-title\">To Join Our Team please complete the application below.</p>";		
-	//echo "    <h1>Register</h1>\n";
-				
+	echo "  <div id=\"member-register\" class=\"rbform\">";
+	echo "	<p class=\"rbform-description\">To Join Our Team please complete the application below.</p>";
+	echo "  <form method=\"post\" action=\"". $rb_agency_interact_WPURL ."/profile-register/talent\">\n";    				
 	echo "       <div id=\"profile-username\" class=\"rbfield rbtext rbsingle\">\n";
 	echo "       	<label for=\"profile_user_name\">". __("Username (required)", rb_agency_interact_TEXTDOMAIN) ."</label>\n";
 	echo "       	<div><input class=\"text-input\" name=\"profile_user_name\" type=\"text\" id=\"profile_user_name\" value=\""; if ( $error ) echo wp_specialchars( $_POST['profile_user_name'], 1 ); echo "\" /></div>\n";
@@ -344,7 +343,8 @@
          
      
 <?php	
-	echo "   </form><!-- #adduser -->\n";
+	echo "   </form>\n";
+	echo "   </div><!-- .rbform -->\n";
 
 			}
 
