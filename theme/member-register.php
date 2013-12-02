@@ -3,39 +3,37 @@
 // Prepare Page
 
 	/* Load registration file. */
-	//require_once( ABSPATH . WPINC . '/registration.php' );
-   
-	
+	//require_once( ABSPATH . WPINC . '/registration.php' );	
 	
 	/* Get Options */
 	$rb_agency_interact_options_arr = get_option('rb_agencyinteract_options');
 
-		//Sidebar
-		$rb_agency_interact_option_profilemanage_sidebar = $rb_agency_interact_options_arr['rb_agencyinteract_option_profilemanage_sidebar'];
-		if($rb_agency_interact_option_profilemanage_sidebar){
-			$columnWidth = "nine";
-		} else {
-			$columnWidth = "twelve";
-		}
-		
-		//Facebook Integration
-		$rb_agency_interact_option_fb_app_id = $rb_agency_interact_options_arr['rb_agencyinteract_option_fb_app_id'];
-		$rb_agency_interact_option_fb_app_secret = $rb_agency_interact_options_arr['rb_agencyinteract_option_fb_app_secret'];
-		$rb_agency_interact_option_fb_app_register_uri = $rb_agency_interact_options_arr['rb_agencyinteract_option_fb_app_register_uri'];
-	    $rb_agency_interact_option_fb_registerallow = $rb_agency_interact_options_arr['rb_agencyinteract_option_fb_registerallow'];
+	//Sidebar
+	$rb_agency_interact_option_profilemanage_sidebar = $rb_agency_interact_options_arr['rb_agencyinteract_option_profilemanage_sidebar'];
+	if($rb_agency_interact_option_profilemanage_sidebar){
+		$columnWidth = "nine";
+	} else {
+		$columnWidth = "twelve";
+	}
+	
+	//Facebook Integration
+	$rb_agency_interact_option_fb_app_id = $rb_agency_interact_options_arr['rb_agencyinteract_option_fb_app_id'];
+	$rb_agency_interact_option_fb_app_secret = $rb_agency_interact_options_arr['rb_agencyinteract_option_fb_app_secret'];
+	$rb_agency_interact_option_fb_app_register_uri = $rb_agency_interact_options_arr['rb_agencyinteract_option_fb_app_register_uri'];
+    $rb_agency_interact_option_fb_registerallow = $rb_agency_interact_options_arr['rb_agencyinteract_option_fb_registerallow'];
 
-	    //+Registration
-	    // - show/hide registration for Agent/Producers
-		$rb_agency_interact_option_registerallowAgentProducer = $registration['rb_agencyinteract_option_registerallowAgentProducer'];
+    //+Registration
+    // - show/hide registration for Agent/Producers
+	$rb_agency_interact_option_registerallowAgentProducer = $registration['rb_agencyinteract_option_registerallowAgentProducer'];
 
-		// - show/hide  self-generate password
-		$rb_agency_interact_option_registerconfirm = (int)$rb_agency_interact_options_arr['rb_agencyinteract_option_registerconfirm'];
-		
-	   	if($rb_agency_interact_option_fb_registerallow == 1){
-		 	if(!class_exists("FacebookApiException")){   
-		   		require_once(ABSPATH."wp-content/plugins/".rb_agency_interact_TEXTDOMAIN."/tasks/facebook.php");
-		 	}
-	    }
+	// - show/hide  self-generate password
+	$rb_agency_interact_option_registerconfirm = (int)$rb_agency_interact_options_arr['rb_agencyinteract_option_registerconfirm'];
+	
+   	if($rb_agency_interact_option_fb_registerallow == 1){
+	 	if(!class_exists("FacebookApiException")){   
+	   		require_once(ABSPATH."wp-content/plugins/".rb_agency_interact_TEXTDOMAIN."/tasks/facebook.php");
+	 	}
+    }
 
 	/* Check if users can register. */
 	$registration = get_option( 'users_can_register' );	
@@ -131,12 +129,11 @@
 		}
 	
 		// Bug Free!
-		if($have_error == false){
+		if($have_error == false) {
 			$new_user = wp_insert_user( $userdata );
 			$new_user_type = array();
 			$new_user_type =implode(",", $_POST['ProfileType']);
-			$gender = $_POST['ProfileGender'];
-			
+			$gender = $_POST['ProfileGender'];			
 			
 			// Model or Client
 			update_usermeta($new_user, 'rb_agency_interact_profiletype', $new_user_type);
@@ -169,8 +166,7 @@
 				$login = wp_signon( array( 'user_login' => $user_login, 'user_password' => $user_pass, 'remember' => 1 ), false );	
 			}				
 				// Notify admin and user
-				wp_new_user_notification($new_user, $user_pass);	
-			
+				wp_new_user_notification($new_user, $user_pass);
 		}
 		
 		// Log them in if no confirmation required.
@@ -178,9 +174,7 @@
 			if($login){
 				header("Location: ". get_bloginfo("wpurl"). "/profile-member/");
 			}
-		}
-
-	
+		}	
 	}
  
 
@@ -191,12 +185,11 @@
 
 	echo "<div id=\"primary\" class=\"".$columnWidth." column rb-agency-interact rb-agency-interact-register\">\n";
 	echo "  <div id=\"content\">\n";
-
    
-		// ****************************************************************************************** //
-		// Already logged in 
-			
-		if ( is_user_logged_in() && !current_user_can( 'create_users' ) ) {
+	// ****************************************************************************************** //
+	// Already logged in 
+
+	if ( is_user_logged_in() && !current_user_can( 'create_users' ) ) {
 
 	echo "    <p class=\"log-in-out alert\">\n";
 	echo "		". __("You are currently logged in as .", rb_agency_interact_TEXTDOMAIN) ." <a href=\"/profile-member/\" title=\"". $login->display_name ."\">". $login->display_name ."</a>\n";
@@ -204,8 +197,7 @@
 	echo "		 <a href=\"". wp_logout_url( get_permalink() ) ."\" title=\"". __("Log out of this account", rb_agency_interact_TEXTDOMAIN) ."\">". __("Log out", rb_agency_interact_TEXTDOMAIN) ." &raquo;</a>\n";
 	echo "    </p><!-- .alert -->\n";
 
-
-		} elseif ( $new_user ) {
+	} elseif ( $new_user ) {
 
 	echo "    <p class=\"alert\">\n";
 				if ( current_user_can( 'create_users' ) )
@@ -216,88 +208,92 @@
 					printf( __("Please check your email address. That's where you'll receive your login password.<br/> (It might go into your spam folder)", rb_agency_interact_TEXTDOMAIN) );
 	echo "    </p><!-- .alert -->\n";
 
-		} else {
+	} else {
 
-			if ( $error ) {
-				echo "<p class=\"error\">". $error ."</p>\n";
-			}
+		if ( $error ) {
+			echo "<p class=\"error\">". $error ."</p>\n";
+		}
+		// Show some admin loving.... (Admins can create)
+		if ( current_user_can("create_users") && $registration ) {
 
-			// Show some admin loving.... (Admins can create)
-			if ( current_user_can("create_users") && $registration ) {
 	echo "    <p class=\"alert\">\n";
 	echo "      ". __("Users can register themselves or you can manually create users here.", rb_agency_interact_TEXTDOMAIN);
 	echo "    </p><!-- .alert -->\n";
-			} elseif ( current_user_can("create_users")) {
+		} elseif ( current_user_can("create_users")) {
 	echo "    <p class=\"alert\">\n";
 	echo "      ". __("Users cannot currently register themselves, but you can manually create users here.", rb_agency_interact_TEXTDOMAIN);
 	echo "    </p><!-- .alert -->\n";
-			}	
+		}
 
-			// Self Registration
-			if ( $registration || current_user_can("create_users") ) {
-
-	echo "    <form method=\"post\" id=\"adduser\" class=\"user-forms\" action=\"". $rb_agency_interact_WPURL ."/profile-register/talent\">\n";
-      echo "<h1 class=\"entry-title\">JOIN OUR TEAM</h1>";
-	echo "<p class=\"form-title\">To Join Our Team please complete the application below.</p>";		
+	// Self Registration
+	if ( $registration || current_user_can("create_users") ) {
+	echo "  <header class=\"entry-header\">";
+	echo "  	<h1 class=\"entry-title\">Join Our Team</h1>";
+	echo "  </header>";
+	echo "  <form method=\"post\" id=\"profile-register\" class=\"rbform\" action=\"". $rb_agency_interact_WPURL ."/profile-register/talent\">\n";    
+	echo "		<p class=\"form-title\">To Join Our Team please complete the application below.</p>";		
 	//echo "    <h1>Register</h1>\n";
 				
-	echo "       <p class=\"form-username\">\n";
+	echo "       <div id=\"profile-username\" class=\"rbfield rbtext rbsingle\">\n";
 	echo "       	<label for=\"profile_user_name\">". __("Username (required)", rb_agency_interact_TEXTDOMAIN) ."</label>\n";
-	echo "       	<input class=\"text-input\" name=\"profile_user_name\" type=\"text\" id=\"profile_user_name\" value=\""; if ( $error ) echo wp_specialchars( $_POST['profile_user_name'], 1 ); echo "\" />\n";
-	echo "       </p><!-- .form-username -->\n";
+	echo "       	<div><input class=\"text-input\" name=\"profile_user_name\" type=\"text\" id=\"profile_user_name\" value=\""; if ( $error ) echo wp_specialchars( $_POST['profile_user_name'], 1 ); echo "\" /></div>\n";
+	echo "       </div><!-- #rofile-username -->\n";
 			
 	if ($rb_agency_interact_option_registerconfirm == 1) {
-	echo "       <p class=\"form-password\">\n";
+	echo "       <div id=\"profile-password\" class=\"rbfield rbpassword rbsingle\">\n";
 	echo "       	<label for=\"profile_password\">". __("Password (required)", rb_agency_interact_TEXTDOMAIN) ."</label>\n";
 	echo "       	<input class=\"text-input\" name=\"profile_password\" type=\"password\" id=\"profile_password\" value=\""; if ( $error ) echo wp_specialchars( $_POST['profile_password'], 1 ); echo "\" />\n";
-	echo "       </p><!-- .form-username -->\n";
+	echo "       </div><!-- #profile-password -->\n";
 	}
 				
-	echo "       <p class=\"profile_first_name\">\n";
+	echo "       <div id=\"profile-first-name\" class=\"rbfield rbtext rbsingle\">\n";
 	echo "       	<label for=\"profile_first_name\">". __("First Name", rb_agency_interact_TEXTDOMAIN) ."</label>\n";
 	echo "       	<input class=\"text-input\" name=\"profile_first_name\" type=\"text\" id=\"profile_first_name\" value=\""; if ( $error ) echo wp_specialchars( $_POST['profile_first_name'], 1 ); echo "\" />\n";
-	echo "       </p><!-- .profile_first_name -->\n";
+	echo "       </div><!-- #profile-first-name -->\n";
 				
-	echo "       <p class=\"profile_last_name\">\n";
+	echo "       <div id=\"profile-last-name\" class=\"rbfield rbtext rbsingle\">\n";
 	echo "       	<label for=\"profile_last_name\">". __("Last Name", rb_agency_interact_TEXTDOMAIN) ."</label>\n";
 	echo "       	<input class=\"text-input\" name=\"profile_last_name\" type=\"text\" id=\"profile_last_name\" value=\""; if ( $error ) echo wp_specialchars( $_POST['profile_last_name'], 1 ); echo "\" />\n";
-	echo "       </p><!-- .profile_last_name -->\n";
+	echo "       </div><!-- #profile_last_name -->\n";
 				
-	echo "       <p class=\"form-email\">\n";
+	echo "       <div id=\"profile-email\" class=\"rbfield rbemail rbsingle\">\n";
 	echo "       	<label for=\"email\">". __("E-mail (required)", rb_agency_interact_TEXTDOMAIN) ."</label>\n";
 	echo "       	<input class=\"text-input\" name=\"profile_email\" type=\"text\" id=\"profile_email\" value=\""; if ( $error ) echo wp_specialchars( $_POST['profile_email'], 1 ); echo "\" />\n";
-	echo "       </p><!-- .form-email -->\n";
+	echo "       </div><!-- #profile-email -->\n";
 
-        echo "     <p class=\"form-profile_gender\" style='display:block !important' >\n";
-     	echo "		<label for=\"profile_gender\">". __("Gender", rb_agency_interact_TEXTDOMAIN) ."</label>\n";
+    echo "       <div id=\"profile-gender\" class=\"rbfield rbtext rbsingle\">\n";
+ 	echo "			<label for=\"profile_gender\">". __("Gender", rb_agency_interact_TEXTDOMAIN) ."</label>\n";
 					$query= "SELECT GenderID, GenderTitle FROM " .  table_agency_data_gender . " GROUP BY GenderTitle ";
-					echo "<select id='ProfileGender' name=\"ProfileGender\">";
-					$queryShowGender = mysql_query($query);
-					echo "<option value=''>--Please Select--</option>";
-					while($dataShowGender = mysql_fetch_assoc($queryShowGender)){
-						echo "<option value=\"".$dataShowGender["GenderID"]."\" ". selected($ProfileGender ,$dataShowGender["GenderID"],false).">".$dataShowGender["GenderTitle"]."</option>";
-					}
-					echo "</select>";
-		echo "	  </p>";
+	echo "			<select id='ProfileGender' name=\"ProfileGender\">";
+						$queryShowGender = mysql_query($query);
+						echo "<option value=''>--Please Select--</option>";
+						while($dataShowGender = mysql_fetch_assoc($queryShowGender)){
+							echo "<option value=\"".$dataShowGender["GenderID"]."\" ". selected($ProfileGender ,$dataShowGender["GenderID"],false).">".$dataShowGender["GenderTitle"]."</option>";
+						}
+	echo "			</select>";
+	echo "	  </div><!-- #profile-gender -->\n";
  
                 	
-	echo "       	<fieldset class=\"form-profile_type\"><legend for=\"profile_type\">". __("Type of Profile", rb_agency_interact_TEXTDOMAIN) ."</legend>\n";
-	$ProfileTypeArray = array();
-    $query3 = "SELECT * FROM " . table_agency_data_type . " ORDER BY DataTypeTitle";
-    $results3 = mysql_query($query3);
-    $count3 = mysql_num_rows($results3);
-    
-    while ($data3 = mysql_fetch_array($results3)) {
-            echo "<input type=\"checkbox\" name=\"ProfileType[]\" value=\"" . $data3['DataTypeID'] . "\" id=\"ProfileType[]\" /> " . $data3['DataTypeTitle'] . "<br />";
-     }
-	echo "</fieldset><!-- .form-profile_type -->\n";
+	echo "	<fieldset id=\"profile-gender\" class=\"rbfield rbcheckbox rbmulti\">\n";
+	echo "		<legend for=\"profile_type\">". __("Type of Profile", rb_agency_interact_TEXTDOMAIN) ."</legend>\n";
+				$ProfileTypeArray = array();
+				$query3 = "SELECT * FROM " . table_agency_data_type . " ORDER BY DataTypeTitle";
+				$results3 = mysql_query($query3);
+				$count3 = mysql_num_rows($results3);
+	echo "		<div>";
+				while ($data3 = mysql_fetch_array($results3)) {
+					echo "<input type=\"checkbox\" name=\"ProfileType[]\" value=\"" . $data3['DataTypeID'] . "\" id=\"ProfileType[]\" /> " . $data3['DataTypeTitle'] . "<br />";
+				}
+	echo "		</div>";
+	echo "</fieldset><!-- #profile-gender -->\n";
   	
-	echo "       <p class=\"form-profile_agree\">\n";
+	echo "      <div id=\"profile-agree\" class=\"rbfield rbtext rbsingle\">\n";
 					$profile_agree = get_the_author_meta("profile_agree", $current_user->ID );
-	echo "       		<input type=\"checkbox\" name=\"profile_agree\" value=\"yes\" /> ". sprintf(__("I agree to the %s terms of service", rb_agency_interact_TEXTDOMAIN), "<a href=\"/terms-of-use/\" target=\"_blank\">") ."</a>\n";
-	echo "       </p><!-- .form-profile_agree -->\n";
+	echo "      	<label></label>\n";
+	echo "      	<input type=\"checkbox\" name=\"profile_agree\" value=\"yes\" /> ". sprintf(__("I agree to the %s terms of service", rb_agency_interact_TEXTDOMAIN), "<a href=\"/terms-of-use/\" target=\"_blank\">") ."</a>\n";
+	echo "      </div><!-- #profile-agree -->\n";
  
-	echo "       <p class=\"form-submit\">\n";
+	echo "      <div id=\"profile-submit\" class=\"rbfield rbsubmit rbsingle\">\n";
 	echo "       	<input name=\"adduser\" type=\"submit\" id=\"addusersub\" class=\"submit button\" value='Register'/>";
 
 					// if ( current_user_can("create_users") ) {  _e("Add User", rb_agency_interact_TEXTDOMAIN); } else {  _e("Register", rb_agency_interact_TEXTDOMAIN); } echo "\" />\n";
@@ -341,7 +337,7 @@
 					}
 					
 	echo "       	<input name=\"action\" type=\"hidden\" id=\"action\" value=\"adduser\" />\n";
-	echo "       </p><!-- .form-submit -->\n";
+	echo "       </div><!-- #profile-submit -->\n";
 	// Facebook connect
 	?>
     
