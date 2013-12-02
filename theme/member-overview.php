@@ -103,7 +103,7 @@ get_header();
 				echo "<h1>". __("Welcome", rb_agency_interact_TEXTDOMAIN) ." ". $current_user->first_name ."!</h1>";
 
 				if(get_user_meta($current_user->ID, 'rb_agency_interact_clientdata', true)){
-					echo "". __("We have you registered as", rb_agency_interact_TEXTDOMAIN) ." <strong>". $profiletypetext ."</strong>";
+					echo "<p>". __("We have you registered as", rb_agency_interact_TEXTDOMAIN) ." <strong>". $profiletypetext ."</strong></p>";
 					echo "<h2><a href=\"". $rb_agency_interact_WPURL ."/profile-search/\">". __("Begin Your Search", rb_agency_interact_TEXTDOMAIN) ."</a></h2>";
 					
 					echo " <div id=\"subscription-customtext\">\n";
