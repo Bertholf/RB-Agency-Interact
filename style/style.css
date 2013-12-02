@@ -70,22 +70,6 @@ p.submit { margin-top: 15px!important; }
 #rbsignin-register .inline-block ul li { padding: 5px 0; }
 #rbsignin-register .inline-block .register { margin-bottom: 15px; }
 
-/* Register */
-.rb-agency-interact {  }
-.rb-agency-interact p.alert { border-bottom: 3px solid #0C0; background:#fafafa; padding: 10px; }
-.rb-agency-interact h1 { margin-bottom:10px; }
-.rb-agency-interact form#adduser {  }
-.rb-agency-interact form#adduser p { padding: 10px; margin:0; overflow:hidden; }
-.rb-agency-interact form#adduser p input[type="text"],
-.rb-agency-interact form#adduser p input[type="email"],
-.rb-agency-interact form#adduser p select { float:left; padding: 5px; }
-.rb-agency-interact form#adduser p label { width:150px; float:left; line-height: 28px; }
-.rb-agency-interact form#adduser p input[type="text"],
-.rb-agency-interact form#adduser p input[type="email"] { width: 200px; }
-.rb-agency-interact form#adduser p select { width: 212px; }
-.rb-agency-interact form#adduser p input[type="checkbox"] { margin-left:150px; }
-.rb-agency-interact form#adduser p input[type="submit"] { float:left; margin-left: 292px; }
-
 .inline-block { display: inline-block; }
 
 /* Featured Image Widget */
@@ -98,3 +82,4 @@ p.submit { margin-top: 15px!important; }
 #profile-featured .image img {  }
 #profile-featured .image-broken {  }
 #profile-featured .image-broken a {  }
+

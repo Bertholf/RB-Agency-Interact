@@ -259,61 +259,62 @@
 
 			// Self Registration
 			if ( $registration || current_user_can("create_users") ) {
-
+	echo "  <header class=\"entry-header\">";
+	echo "  	<h1 class=\"entry-title\">Join Our Team</h1>";
+	echo "  </header>";
 	echo "    <form method=\"post\" id=\"adduser\" class=\"user-forms\" action=\"". $rb_agency_interact_WPURL ."/profile-register/client\">\n";
-      echo "<h1 class=\"entry-title\">JOIN OUR TEAM</h1>";
 	echo "<p class=\"form-title\">To Join Our Team please complete the application below.</p>";		
 	//echo "    <h1>Register</h1>\n";
 				
-	echo "       <p class=\"form-username\">\n";
+	echo "       <div id=\"profile-username\" class=\"rbfield rbtext rbsingle\">\n";
 	echo "       	<label for=\"profile_user_name\">". __("Username (required)", rb_agency_interact_TEXTDOMAIN) ."</label>\n";
-	echo "       	<input class=\"text-input\" name=\"profile_user_name\" type=\"text\" id=\"profile_user_name\" value=\""; if ( $error ) echo wp_specialchars( $_POST['profile_user_name'], 1 ); echo "\" />\n";
-	echo "       </p><!-- .form-username -->\n";
+	echo "       	<div><input class=\"text-input\" name=\"profile_user_name\" type=\"text\" id=\"profile_user_name\" value=\""; if ( $error ) echo wp_specialchars( $_POST['profile_user_name'], 1 ); echo "\" /></div>\n";
+	echo "       </div><!-- #rofile-username -->\n";
 			
 	if ($rb_agency_interact_option_registerconfirm == 1) {
-	echo "       <p class=\"form-password\">\n";
+	echo "       <div id=\"profile-password\" class=\"rbfield rbpassword rbsingle\">\n";
 	echo "       	<label for=\"profile_password\">". __("Password (required)", rb_agency_interact_TEXTDOMAIN) ."</label>\n";
-	echo "       	<input class=\"text-input\" name=\"profile_password\" type=\"password\" id=\"profile_password\" value=\""; if ( $error ) echo wp_specialchars( $_POST['profile_password'], 1 ); echo "\" />\n";
-	echo "       </p><!-- .form-username -->\n";
+	echo "       	<div><input class=\"text-input\" name=\"profile_password\" type=\"password\" id=\"profile_password\" value=\""; if ( $error ) echo wp_specialchars( $_POST['profile_password'], 1 ); echo "\" /></div>\n";
+	echo "       </div><!-- #profile-password -->\n";
 	}
 				
-	echo "       <p class=\"profile_first_name\">\n";
+	echo "       <div id=\"profile-first-name\" class=\"rbfield rbtext rbsingle\">\n";
 	echo "       	<label for=\"profile_first_name\">". __("First Name", rb_agency_interact_TEXTDOMAIN) ."</label>\n";
-	echo "       	<input class=\"text-input\" name=\"profile_first_name\" type=\"text\" id=\"profile_first_name\" value=\""; if ( $error ) echo wp_specialchars( $_POST['profile_first_name'], 1 ); echo "\" />\n";
-	echo "       </p><!-- .profile_first_name -->\n";
+	echo "       	<div><input class=\"text-input\" name=\"profile_first_name\" type=\"text\" id=\"profile_first_name\" value=\""; if ( $error ) echo wp_specialchars( $_POST['profile_first_name'], 1 ); echo "\" /></div>\n";
+	echo "       </div><!-- #profile-first-name -->\n";
 				
-	echo "       <p class=\"profile_last_name\">\n";
+	echo "       <div id=\"profile-last-name\" class=\"rbfield rbtext rbsingle\">\n";
 	echo "       	<label for=\"profile_last_name\">". __("Last Name", rb_agency_interact_TEXTDOMAIN) ."</label>\n";
-	echo "       	<input class=\"text-input\" name=\"profile_last_name\" type=\"text\" id=\"profile_last_name\" value=\""; if ( $error ) echo wp_specialchars( $_POST['profile_last_name'], 1 ); echo "\" />\n";
-	echo "       </p><!-- .profile_last_name -->\n";
+	echo "       	<div><input class=\"text-input\" name=\"profile_last_name\" type=\"text\" id=\"profile_last_name\" value=\""; if ( $error ) echo wp_specialchars( $_POST['profile_last_name'], 1 ); echo "\" /></div>\n";
+	echo "       </div><!-- #profile_last_name -->\n";
 				
-	echo "       <p class=\"form-email\">\n";
+	echo "       <div id=\"profile-email\" class=\"rbfield rbemail rbsingle\">\n";
 	echo "       	<label for=\"email\">". __("E-mail (required)", rb_agency_interact_TEXTDOMAIN) ."</label>\n";
-	echo "       	<input class=\"text-input\" name=\"profile_email\" type=\"text\" id=\"profile_email\" value=\""; if ( $error ) echo wp_specialchars( $_POST['profile_email'], 1 ); echo "\" />\n";
-	echo "       </p><!-- .form-email -->\n";
+	echo "       	<div><input class=\"text-input\" name=\"profile_email\" type=\"text\" id=\"profile_email\" value=\""; if ( $error ) echo wp_specialchars( $_POST['profile_email'], 1 ); echo "\" /></div>\n";
+	echo "       </div><!-- #profile-email -->\n";
 
-	echo "       <p class=\"form-email\">\n";
-	echo "       	<label for=\"email\">". __("Company", rb_agency_interact_TEXTDOMAIN) ."</label>\n";
-	echo "       	<input class=\"text-input\" name=\"profile_company\" type=\"text\" id=\"profile_email\" value=\""; if ( $error ) echo wp_specialchars( $_POST['profile_company'], 1 ); echo "\" />\n";
-	echo "       </p><!-- .form-email -->\n";
+	echo "       <div id=\"profile-company\" class=\"rbfield rbtext rbsingle\">\n";
+	echo "       	<label for=\"company\">". __("Company", rb_agency_interact_TEXTDOMAIN) ."</label>\n";
+	echo "       	<div><input class=\"text-input\" name=\"profile_company\" type=\"text\" id=\"profile_email\" value=\""; if ( $error ) echo wp_specialchars( $_POST['profile_company'], 1 ); echo "\" /></div>\n";
+	echo "       </div><!-- #profile-company -->\n";
 
-	echo "       <p class=\"form-email\">\n";
-	echo "       	<label for=\"email\">". __("Website", rb_agency_interact_TEXTDOMAIN) ."</label>\n";
-	echo "       	<input class=\"text-input\" name=\"profile_website\" type=\"text\" id=\"profile_email\" value=\""; if ( $error ) echo wp_specialchars( $_POST['profile_website'], 1 ); echo "\" />\n";
-	echo "       </p><!-- .form-email -->\n";
+	echo "       <div id=\"profile-website\" class=\"rbfield rbtext rbsingle\">\n";
+	echo "       	<label for=\"website\">". __("Website", rb_agency_interact_TEXTDOMAIN) ."</label>\n";
+	echo "       	<div><input class=\"text-input\" name=\"profile_website\" type=\"text\" id=\"profile_email\" value=\""; if ( $error ) echo wp_specialchars( $_POST['profile_website'], 1 ); echo "\" /></div>\n";
+	echo "       </div><!-- #profile-website -->\n";
 	
-	echo "       <p class=\"form-email\">\n";
-	echo "       	<label for=\"email\">". __("Street Address", rb_agency_interact_TEXTDOMAIN) ."</label>\n";
-	echo "       	<input class=\"text-input\" name=\"profile_address\" type=\"text\" value=\""; if ( $error ) echo wp_specialchars( $_POST['profile_address'], 1 ); echo "\" />\n";
-	echo "       </p><!-- .form-email -->\n";			
+	echo "       <div id=\"profile-street-address\" class=\"rbfield rbtext rbsingle\">\n";
+	echo "       	<label for=\"street-address\">". __("Street Address", rb_agency_interact_TEXTDOMAIN) ."</label>\n";
+	echo "       	<div><input class=\"text-input\" name=\"profile_address\" type=\"text\" value=\""; if ( $error ) echo wp_specialchars( $_POST['profile_address'], 1 ); echo "\" /></div>\n";
+	echo "       </div><!-- #profile-street-address -->\n";
 
-	echo "       <p class=\"form-email\">\n";
-	echo "       	<label for=\"email\">". __("City", rb_agency_interact_TEXTDOMAIN) ."</label>\n";
-	echo "       	<input class=\"text-input\" name=\"profile_city\" type=\"text\" id=\"profile_email\" value=\""; if ( $error ) echo wp_specialchars( $_POST['profile_city'], 1 ); echo "\" />\n";
-	echo "       </p><!-- .form-email -->\n";	
+	echo "       <div id=\"profile-city\" class=\"rbfield rbtext rbsingle\">\n";
+	echo "       	<label for=\"city\">". __("City", rb_agency_interact_TEXTDOMAIN) ."</label>\n";
+	echo "       	<div><input class=\"text-input\" name=\"profile_city\" type=\"text\" id=\"profile_email\" value=\""; if ( $error ) echo wp_specialchars( $_POST['profile_city'], 1 ); echo "\" /></div>\n";
+	echo "       </div><!-- #profile-city -->\n";	
 
-	echo "       <p class=\"form-email\">\n";
-	echo "       	<label for=\"email\">". __("State", rb_agency_interact_TEXTDOMAIN) ."</label>\n";
+	echo "       <div id=\"profile-state\" class=\"rbfield rbselect rbsingle\">\n";
+	echo "       	<label for=\"state\">". __("State", rb_agency_interact_TEXTDOMAIN) ."</label>\n";
 
 	$state_list = array('AL'=>"Alabama", 'AK'=>"Alaska", 'AZ'=>"Arizona", 'AR'=>"Arkansas", 'CA'=>"California",  'CO'=>"Colorado",  
 						'CT'=>"Connecticut", 'DE'=>"Delaware", 'DC'=>"District Of Columbia", 'FL'=>"Florida",  
@@ -328,7 +329,7 @@
 						'VT'=>"Vermont", 'VA'=>"Virginia", 'WA'=>"Washington", 'WV'=>"West Virginia",  
 						'WI'=>"Wisconsin", 'WY'=>"Wyoming");				
    
-   echo '<select name="profile_state">';
+   echo '<div><select name="profile_state">';
    
    echo '<option value="">Choose One</option>';
    
@@ -339,27 +340,28 @@
 		echo '<option value="'.$key.'" '. selected($key ,$selected, false). '>'.$val.'</option>';
    
    }
-	echo "    </select>";
+	echo "    </select></div>";
 
-	echo "       </p><!-- .form-email -->\n";	
+	echo "       </div><!-- #profile-state -->\n";
 
-	echo "       <p class=\"form-email\">\n";
-	echo "       	<label for=\"email\">". __("Zip", rb_agency_interact_TEXTDOMAIN) ."</label>\n";
-	echo "       	<input class=\"text-input\" name=\"profile_zip\" type=\"text\" id=\"profile_email\" value=\""; if ( $error ) echo wp_specialchars( $_POST['profile_zip'], 1 ); echo "\" />\n";
-	echo "       </p><!-- .form-email -->\n";	
+	echo "       <div id=\"profile-zip\" class=\"rbfield rbtext rbsingle\">\n";
+	echo "       	<label for=\"zip\">". __("Zip", rb_agency_interact_TEXTDOMAIN) ."</label>\n";
+	echo "       	<div><input class=\"text-input\" name=\"profile_zip\" type=\"text\" id=\"profile_email\" value=\""; if ( $error ) echo wp_specialchars( $_POST['profile_zip'], 1 ); echo "\" /></div>\n";
+	echo "       </div><!-- #profile-zip -->\n";
 
-	echo "       <p class=\"form-email\">\n";
-	echo "       	<label for=\"email\">". __("Country", rb_agency_interact_TEXTDOMAIN) ."</label>\n";
+	echo "       <div id=\"profile-country\" class=\"rbfield rbtext rbsingle\">\n";
+	echo "       	<label for=\"country\">". __("Country", rb_agency_interact_TEXTDOMAIN) ."</label>\n";
 	echo "       	<input class=\"text-input\" name=\"profile_country\" type=\"text\" id=\"profile_email\" value=\""; if ( $error ) echo wp_specialchars( $_POST['profile_country'], 1 ); echo "\" />\n";
-	echo "       </p><!-- .form-email -->\n";	
+	echo "       </div><!-- #profile-country -->\n";
 
 	
-	echo "       <p class=\"form-profile_agree\">\n";
+	echo "       <div id=\"profile-argee\" class=\"rbfield rbcheckbox rbsingle\">\n";
 					$profile_agree = get_the_author_meta("profile_agree", $current_user->ID );
-	echo "       		<input type=\"checkbox\" name=\"profile_agree\" value=\"yes\" /> ". sprintf(__("I agree to the %s terms of service", rb_agency_interact_TEXTDOMAIN), "<a href=\"/terms-of-use/\" target=\"_blank\">") ."</a>\n";
-	echo "       </p><!-- .form-profile_agree -->\n";
+	echo "       	<label></label>\n";
+	echo "       	<div><input type=\"checkbox\" name=\"profile_agree\" value=\"yes\" /> ". sprintf(__("I agree to the %s terms of service", rb_agency_interact_TEXTDOMAIN), "<a href=\"/terms-of-use/\" target=\"_blank\">") ."</a></div>\n";
+	echo "       </div><!-- #profile-agree -->\n";
  
-	echo "       <p class=\"form-submit\">\n";
+	echo "       <div id=\"profile-submit\" class=\"rbfield rbsubmit rbsingle\">\n";
 	echo "       	<input name=\"adduser\" type=\"submit\" id=\"addusersub\" class=\"submit button\" value='Register'/>";
 
 					// if ( current_user_can("create_users") ) {  _e("Add User", rb_agency_interact_TEXTDOMAIN); } else {  _e("Register", rb_agency_interact_TEXTDOMAIN); } echo "\" />\n";
@@ -403,7 +405,7 @@
 					}
 					
 	echo "       	<input name=\"action\" type=\"hidden\" id=\"action\" value=\"adduser\" />\n";
-	echo "       </p><!-- .form-submit -->\n";
+	echo "       </div><!-- #profile-submit -->\n";
 	// Facebook connect
 	?>
     

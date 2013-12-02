@@ -242,35 +242,35 @@
 	if ($rb_agency_interact_option_registerconfirm == 1) {
 	echo "       <div id=\"profile-password\" class=\"rbfield rbpassword rbsingle\">\n";
 	echo "       	<label for=\"profile_password\">". __("Password (required)", rb_agency_interact_TEXTDOMAIN) ."</label>\n";
-	echo "       	<input class=\"text-input\" name=\"profile_password\" type=\"password\" id=\"profile_password\" value=\""; if ( $error ) echo wp_specialchars( $_POST['profile_password'], 1 ); echo "\" />\n";
+	echo "       	<div><input class=\"text-input\" name=\"profile_password\" type=\"password\" id=\"profile_password\" value=\""; if ( $error ) echo wp_specialchars( $_POST['profile_password'], 1 ); echo "\" /></div>\n";
 	echo "       </div><!-- #profile-password -->\n";
 	}
 				
 	echo "       <div id=\"profile-first-name\" class=\"rbfield rbtext rbsingle\">\n";
 	echo "       	<label for=\"profile_first_name\">". __("First Name", rb_agency_interact_TEXTDOMAIN) ."</label>\n";
-	echo "       	<input class=\"text-input\" name=\"profile_first_name\" type=\"text\" id=\"profile_first_name\" value=\""; if ( $error ) echo wp_specialchars( $_POST['profile_first_name'], 1 ); echo "\" />\n";
+	echo "       	<div><input class=\"text-input\" name=\"profile_first_name\" type=\"text\" id=\"profile_first_name\" value=\""; if ( $error ) echo wp_specialchars( $_POST['profile_first_name'], 1 ); echo "\" /></div>\n";
 	echo "       </div><!-- #profile-first-name -->\n";
 				
 	echo "       <div id=\"profile-last-name\" class=\"rbfield rbtext rbsingle\">\n";
 	echo "       	<label for=\"profile_last_name\">". __("Last Name", rb_agency_interact_TEXTDOMAIN) ."</label>\n";
-	echo "       	<input class=\"text-input\" name=\"profile_last_name\" type=\"text\" id=\"profile_last_name\" value=\""; if ( $error ) echo wp_specialchars( $_POST['profile_last_name'], 1 ); echo "\" />\n";
+	echo "       	<div><input class=\"text-input\" name=\"profile_last_name\" type=\"text\" id=\"profile_last_name\" value=\""; if ( $error ) echo wp_specialchars( $_POST['profile_last_name'], 1 ); echo "\" /></div>\n";
 	echo "       </div><!-- #profile_last_name -->\n";
 				
 	echo "       <div id=\"profile-email\" class=\"rbfield rbemail rbsingle\">\n";
 	echo "       	<label for=\"email\">". __("E-mail (required)", rb_agency_interact_TEXTDOMAIN) ."</label>\n";
-	echo "       	<input class=\"text-input\" name=\"profile_email\" type=\"text\" id=\"profile_email\" value=\""; if ( $error ) echo wp_specialchars( $_POST['profile_email'], 1 ); echo "\" />\n";
+	echo "       	<div><input class=\"text-input\" name=\"profile_email\" type=\"text\" id=\"profile_email\" value=\""; if ( $error ) echo wp_specialchars( $_POST['profile_email'], 1 ); echo "\" /></div>\n";
 	echo "       </div><!-- #profile-email -->\n";
 
-    echo "       <div id=\"profile-gender\" class=\"rbfield rbtext rbsingle\">\n";
+    echo "       <div id=\"profile-gender\" class=\"rbfield rbselect rbsingle\">\n";
  	echo "			<label for=\"profile_gender\">". __("Gender", rb_agency_interact_TEXTDOMAIN) ."</label>\n";
 					$query= "SELECT GenderID, GenderTitle FROM " .  table_agency_data_gender . " GROUP BY GenderTitle ";
-	echo "			<select id='ProfileGender' name=\"ProfileGender\">";
+	echo "			<div><select id='ProfileGender' name=\"ProfileGender\">";
 						$queryShowGender = mysql_query($query);
 						echo "<option value=''>--Please Select--</option>";
 						while($dataShowGender = mysql_fetch_assoc($queryShowGender)){
 							echo "<option value=\"".$dataShowGender["GenderID"]."\" ". selected($ProfileGender ,$dataShowGender["GenderID"],false).">".$dataShowGender["GenderTitle"]."</option>";
 						}
-	echo "			</select>";
+	echo "			</select></div>";
 	echo "	  </div><!-- #profile-gender -->\n";
  
                 	
@@ -290,7 +290,7 @@
 	echo "      <div id=\"profile-agree\" class=\"rbfield rbtext rbsingle\">\n";
 					$profile_agree = get_the_author_meta("profile_agree", $current_user->ID );
 	echo "      	<label></label>\n";
-	echo "      	<input type=\"checkbox\" name=\"profile_agree\" value=\"yes\" /> ". sprintf(__("I agree to the %s terms of service", rb_agency_interact_TEXTDOMAIN), "<a href=\"/terms-of-use/\" target=\"_blank\">") ."</a>\n";
+	echo "      	<div><input type=\"checkbox\" name=\"profile_agree\" value=\"yes\" /> ". sprintf(__("I agree to the %s terms of service", rb_agency_interact_TEXTDOMAIN), "<a href=\"/terms-of-use/\" target=\"_blank\">") ."</a></div>\n";
 	echo "      </div><!-- #profile-agree -->\n";
  
 	echo "      <div id=\"profile-submit\" class=\"rbfield rbsubmit rbsingle\">\n";
