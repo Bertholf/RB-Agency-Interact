@@ -221,7 +221,7 @@
 			} else {
 			echo "			<input type=\"text\" id=\"ProfileUsername\"  name=\"ProfileUsername\" value=\"\" />\n";	
 			}
-			echo "			<span class=\"rbfield-note\">Cannot be changed</span>";	
+			echo "			<small class=\"rbfield-note\">Cannot be changed</small>";
 			echo "		</div>\n";
 			echo "  </div>\n";
 	 	}
@@ -229,14 +229,14 @@
 		echo "		<label>". __("Password", rb_agency_interact_TEXTDOMAIN) ."</label>\n";
 		echo "		<div>";
 		echo "			<input type=\"password\" id=\"ProfilePassword\" name=\"ProfilePassword\" />\n";
-		echo "			<span class=\"rbfield-note\">Leave blank to keep same password</span>";	
+		echo "			<small class=\"rbfield-note\">Leave blank to keep same password</small>";	
 		echo "	 	</div>\n";
 		echo "	</div>\n";
 		echo "	<div id=\"rbprofile-retype-password\" class=\"rbfield rbtext rbsingle\">\n";
 		echo "		<label>". __("Retype Password", rb_agency_interact_TEXTDOMAIN) ."</label>\n";
 		echo "		<div>";
 		echo "			<input type=\"password\" id=\"ProfilePasswordConfirm\" name=\"ProfilePasswordConfirm\" />";
-		echo "			<span class=\"rbfield-note\">Retype to Confirm</span>";	
+		echo "			<small class=\"rbfield-note\">Retype to Confirm</small>";	
 		echo "		</div>\n";
 		echo "	</div>\n";
 		echo "	<div id=\"rbform-last-updated\" class=\"rbfield rbtext rbsingle\">\n";
