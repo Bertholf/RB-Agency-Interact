@@ -26,7 +26,7 @@ p.submit { margin-top: 15px!important; }
 #profile-manage table tr td input[type="text"], #profile-manage table tr td input[type="email"], #profile-manage table tr td input[type="password"] { width: 194px; }
 #profile-manage .profile-manage-menu { overflow: hidden; margin: 20px 0 0 0; }
 #profile-manage .profile-manage-menu #subMenuTab { overflow: hidden; }
-#profile-manage .profile-manage-menu #subMenuTab a { float: left; border-left: 1px solid #fff; padding: 10px 20px; color: #555; background: url(/wp-content/uploads/2012/01/bg-tab.png) repeat-x }
+#profile-manage .profile-manage-menu #subMenuTab a { float: left; border-left: 1px solid #fff; padding: 10px 20px; color: #555; background: url(/wp-content/uploads/2012/01/bg-tab.png) repeat-x; text-decoration: none; }
 #profile-manage .profile-manage-menu #subMenuTab a:hover { color: #444; background: url(/wp-content/uploads/2012/01/bg-tab.png) 0 -38px repeat-x  }
 #profile-manage .profile-manage-menu #subMenuTab div.tab-inner, #profile-manage .profile-manage-menu #subMenuTab .tab-left, #profile-manage .profile-manage-menu #subMenuTab .tab-right { float: left; border-left: 1px solid #d1d1d1; border-top: 1px solid #d1d1d1; border-right: 1px solid #d1d1d1; }
 #profile-manage .profile-manage-menu #subMenuTab div.tab-inner, #profile-manage .profile-manage-menu #subMenuTab .tab-right { border-left: none; }
@@ -35,7 +35,7 @@ p.submit { margin-top: 15px!important; }
 #profile-manage .profile-manage-menu #subMenuTab .tab-left a { border: none; }
 #profile-manage .profile-manage-menu #subMenuTab .tab-right { -webkit-border-top-right-radius: 5px; -moz-border-radius-topright: 5px; border-top-right-radius: 5px; }
 #profile-manage .profile-manage-menu #subMenuTab .tab-right a { -webkit-border-top-right-radius: 5px; -moz-border-radius-topright: 5px; border-top-right-radius: 5px; }
-#profile-manage .profile-manage-menu #subMenuTab .tab-active, #profile-manage .profile-manage-menu #subMenuTab .tab-active a { background: #fff; border-bottom: 1px solid #fff; }
+#profile-manage .profile-manage-menu #subMenuTab .tab-active, #profile-manage .profile-manage-menu #subMenuTab .tab-active a { background: #fff; border-bottom: 1px solid #fff; font-weight: bold; }
 
 /* 	Overview - /profile-member/
 	/theme/member-overview.php */
