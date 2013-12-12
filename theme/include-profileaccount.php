@@ -73,7 +73,7 @@
 						echo "<input type=\"hidden\" id=\"ProfileGallery\" name=\"ProfileGallery\" value=\"". $ProfileGallery ."\" />\n";
 					} else {
 						echo "<input type=\"text\" id=\"ProfileGallery\" name=\"ProfileGallery\" value=\"". $ProfileGallery ."\" />\n";
-						echo "<span class=\"error\">". __("Folder Pending Creation", rb_agency_interact_TEXTDOMAIN) ."</span>\n";
+						echo "<small class=\"rbfield-note error\">". __("Folder Pending Creation", rb_agency_interact_TEXTDOMAIN) ."</small>\n";
 					}		
 		echo "		</div>\n";
 		echo "	</div>\n";
