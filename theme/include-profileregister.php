@@ -51,30 +51,35 @@
 	// Public Information
 	echo "	<h3>". __("Public Information", rb_agency_interact_TEXTDOMAIN) ."</h3>\n";
 	echo "	<p>The following information may appear in profile pages.</p>\n";
-	echo "	<div id=\"profile-birthdate\" class=\"rbfield rbselect rbsingle\">\n";
+	echo "	<div id=\"profile-birthdate\" class=\"rbfield rbselect rbmulti rbblock\">\n";
 	echo "		<label>". __("Birthdate", rb_agency_interact_TEXTDOMAIN) ."</label>\n";
 	echo "		<div>\n";
 				  /* Month */ 
+	echo "		<div>\n";				  
 				  $monthName = array(1=> "January", "February", "March","April", "May", "June", "July", "August","September", "October", "November", "December"); 
 	echo "		  <select name=\"ProfileDateBirth_Month\" id=\"ProfileDateBirth_Month\">\n";
 					for ($currentMonth = 1; $currentMonth <= 12; $currentMonth++ ) { 	
 	echo "			<option value=\"". $currentMonth ."\">". $monthName[$currentMonth] ."</option>\n";
 					}
 	echo "		  </select>\n";
-
+	echo "		</div>\n";	
 				  /* Day */ 
+	echo "		<div>\n";				  
 	echo "		  <select name=\"ProfileDateBirth_Day\" id=\"ProfileDateBirth_Day\">\n";
 					for ($currentDay = 1; $currentDay <= 31; $currentDay++ ) { 	
 	echo "			<option value=\"". $currentDay ."\">". $currentDay ."</option>\n";
 					}
 	echo "		  </select>\n";
+	echo "		</div>\n";
 
 				  /* Year */ 
+	echo "		<div>\n";
 	echo "		  <select name=\"ProfileDateBirth_Year\" id=\"ProfileDateBirth_Year\">\n";
 					for ($currentYear = 1940; $currentYear <= 2010; $currentYear++ ) { 	
 	echo "			<option value=\"". $currentYear ."\">". $currentYear ."</option>\n";
 					}
 	echo "		  </select>\n";
+	echo "		</div>\n";
 	echo "		</div>\n";
 	echo "	  </div>\n";
 
