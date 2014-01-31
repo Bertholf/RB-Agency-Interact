@@ -38,9 +38,9 @@
 	echo "	<div id=\"profile-phone\" class=\"rbfield rbtext rbmulti rbblock\">\n";
 	echo "		<label>". __("Phone", rb_agency_interact_TEXTDOMAIN) ."</label>\n";
 	echo "		<div>\n";
-	echo "			<div><label>Home:</label> <input type=\"text\" id=\"ProfileContactPhoneHome\" name=\"ProfileContactPhoneHome\" value=\"". $ProfileContactPhoneHome ."\" />\n";
-	echo "			<div><label>Cell:</label> <input type=\"text\" id=\"ProfileContactPhoneCell\" name=\"ProfileContactPhoneCell\" value=\"". $ProfileContactPhoneCell ."\" />\n";
-	echo "			<div><label>Work:</label> <input type=\"text\" id=\"ProfileContactPhoneWork\" name=\"ProfileContactPhoneWork\" value=\"". $ProfileContactPhoneWork ."\" />\n";
+	echo "			<div><label>Home:</label><div><input type=\"text\" id=\"ProfileContactPhoneHome\" name=\"ProfileContactPhoneHome\" value=\"". $ProfileContactPhoneHome ."\" /></div></div>\n";
+	echo "			<div><label>Cell:</label><div><input type=\"text\" id=\"ProfileContactPhoneCell\" name=\"ProfileContactPhoneCell\" value=\"". $ProfileContactPhoneCell ."\" /></div></div>\n";
+	echo "			<div><label>Work:</label><div><input type=\"text\" id=\"ProfileContactPhoneWork\" name=\"ProfileContactPhoneWork\" value=\"". $ProfileContactPhoneWork ."\" /></div></div>\n";
 	echo "		</div>\n";
 	echo "	</div>\n";
 	echo "	<div id=\"profile-website\" class=\"rbfield rbtext rbsingle\">\n";
