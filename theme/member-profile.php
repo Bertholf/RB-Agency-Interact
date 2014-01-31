@@ -141,7 +141,7 @@ if (is_user_logged_in()) {
 			if ($count > 0) {
 			  	$data = mysql_fetch_array($results);
 				// Manage Profile
-				//include("include-profilemanage.php"); 	
+				include("include-profilemanage.php"); 	
 			} else {
 
 				// No Record Exists, register them
