@@ -7,13 +7,13 @@
 	/* Get Options */
 	$rb_agency_interact_options_arr = get_option('rb_agencyinteract_options');
 
-		//Sidebar
-		$rb_agency_interact_option_profilemanage_sidebar = $rb_agency_interact_options_arr['rb_agencyinteract_option_profilemanage_sidebar'];
-		if($rb_agency_interact_option_profilemanage_sidebar){
-			$columnWidth = "nine";
-		} else {
-			$columnWidth = "twelve";
-		}
+	//Sidebar
+	$rb_agency_interact_option_profilemanage_sidebar = $rb_agency_interact_options_arr['rb_agencyinteract_option_profilemanage_sidebar'];
+	if($rb_agency_interact_option_profilemanage_sidebar){
+		$column_class = primary_class();
+	} else {
+		$column_class = fullwidth_class();
+	}
 		
 		//Facebook Integration
 		$rb_agency_interact_option_fb_app_id = $rb_agency_interact_options_arr['rb_agencyinteract_option_fb_app_id'];
@@ -213,7 +213,7 @@
 
     get_header();
 
-	echo "<div id=\"primary\" class=\"".$columnWidth." column rb-agency-interact rb-agency-interact-register\">\n";
+	echo "<div id=\"primary\" class=\"".$column_class." column rb-agency-interact rb-agency-interact-register\">\n";
 	echo "  <div id=\"content\">\n";
 
    
