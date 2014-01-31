@@ -148,7 +148,7 @@ if (is_user_logged_in()) {
 				echo "<p>". __("Records show you are not currently linked to a model or agency profile.  Lets setup your profile now!", rb_agency_interact_TEXTDOMAIN) ."</p>";
 
 				// Register Profile
-				include("include-profileregister.php");
+				//include("include-profileregister.php");
 			}
 			echo " </div>\n"; // .profile-manage-inner
 			echo "</div>\n"; // #profile-manage
