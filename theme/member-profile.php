@@ -97,14 +97,14 @@ get_header();
 // Check Sidebar
 $rb_agency_interact_options_arr = get_option('rb_agencyinteract_options');
 $rb_agency_interact_option_profilemanage_sidebar = $rb_agency_interact_options_arr['rb_agencyinteract_option_profilemanage_sidebar'];
-$content_class = "";
-if (is_user_logged_in()) {
-	$content_class = "col_8";
+
+if($rb_agency_interact_option_profilemanage_sidebar){
+	$column_class = primary_class();
 } else {
-	$content_class = "col_12";
+	$column_class = fullwidth_class();
 }
 
-	echo "<div id=\"container\" class=\"".$content_class." column rb-agency-interact rb-agency-interact-profile\">\n";
+	echo "<div id=\"container\" class=\"".$column_class." column rb-agency-interact rb-agency-interact-profile\">\n";
 	echo "  <div id=\"content\">\n";
 
 		// ****************************************************************************************** //
