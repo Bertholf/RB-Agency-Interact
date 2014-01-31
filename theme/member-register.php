@@ -11,9 +11,9 @@
 	//Sidebar
 	$rb_agency_interact_option_profilemanage_sidebar = $rb_agency_interact_options_arr['rb_agencyinteract_option_profilemanage_sidebar'];
 	if($rb_agency_interact_option_profilemanage_sidebar){
-		$columnWidth = "nine";
+		$column_class = primary_class();
 	} else {
-		$columnWidth = "twelve";
+		$column_class = fullwidth_class();
 	}
 	
 	//Facebook Integration
@@ -183,7 +183,7 @@
 
     get_header();
 
-	echo "<div id=\"primary\" class=\"".$columnWidth." column rb-agency-interact rb-agency-interact-register\">\n";
+	echo "<div id=\"primary\" class=\"".$column_class." column rb-agency-interact rb-agency-interact-register\">\n";
 	echo "  <div id=\"content\">\n";
    
 	// ****************************************************************************************** //
