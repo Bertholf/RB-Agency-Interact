@@ -12,16 +12,16 @@ if ( $_SERVER['REQUEST_METHOD'] == "POST" && !empty( $_POST['action'] ) && $_POS
 	if($login->ID) {
     	wp_set_current_user($login->ID);  // populate
 	   	get_user_login_info();
-	}		
+	}
 }
 
 function get_user_login_info(){
-    
-    global $user_ID;  
+
+    global $user_ID;
 	$redirect = $_POST["lastviewed"];
 	get_currentuserinfo();
-	$user_info = get_userdata( $user_ID ); 
-				
+	$user_info = get_userdata( $user_ID );
+
 	if($user_ID){
 		
 		// If user_registered date/time is less than 48hrs from now

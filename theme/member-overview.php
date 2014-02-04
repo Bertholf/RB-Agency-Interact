@@ -55,17 +55,17 @@ get_header();
 			 * Set Media to not show to
 			 * client/s, agents, producers,
 			 */
-                        $ptype = (int)get_user_meta($current_user->id, "rb_agency_interact_profiletype", true);
-	                $ptype = retrieve_title($ptype);
+			$ptype = (int)get_user_meta($current_user->id, "rb_agency_interact_profiletype", true);
+			$ptype = retrieve_title($ptype);
 			$restrict = array('client','clients','agents','agent','producer','producers');
 			if(in_array(strtolower($ptype),$restrict)){
 				echo "<div id=\"profile-steps\">Profile Setup: Step 1 of 2</div>\n";
 			} else {
 				echo "<div id=\"profile-steps\">Profile Setup: Step 1 of 3</div>\n";
 			}
-                        
+
 			echo "	<div id=\"profile-manage\" class=\"profile-overview\">\n";
-				
+
 			/* Check if the user is regsitered *****************************************/ 
 			$sql = "SELECT ProfileID FROM ". table_agency_profile ." WHERE ProfileUserLinked =  ". $current_user->ID ."";
 			$results = mysql_query($sql);
@@ -73,12 +73,12 @@ get_header();
 			if ($count > 0) {
 
 			// Menu
-			include("include-menu.php"); 	
+			include("include-menu.php");
 			echo " <div class=\"manage-overview manage-content\">\n";
 			  
 			$data = mysql_fetch_array($results);  // is there record?
 				  
-				echo "	 <div class=\"manage-section welcome\">\n";			
+				echo "	 <div class=\"manage-section welcome\">\n";
 				echo "	 <h1>". __("Welcome Back", rb_agency_interact_TEXTDOMAIN) ." ". $current_user->first_name ."!</h1>";
 				// Record Exists
 			
@@ -112,27 +112,27 @@ get_header();
 					echo " </div>";
 
 				} else {
-				  	if ($rb_agency_interact_option_registerallow == 1) {
+					if ($rb_agency_interact_option_registerallow == 1) {
 
 						// Users CAN register themselves
 						echo "". __("We have you registered as", rb_agency_interact_TEXTDOMAIN) ." <strong>". $profiletypetext ."</strong>";
 						echo "<h2>". __("Setup Your Profile", rb_agency_interact_TEXTDOMAIN) ."</h2>";
 					
 						// Register Profile
-						include("include-profileregister.php");						
-				  	} else {
+						include("include-profileregister.php");
+					} else {
 					
 						// Cant register
 						echo "<strong>". __("Self registration is not permitted.", rb_agency_interact_TEXTDOMAIN) ."</strong>";
-				  	}
-				}					
-			}			
+					}
+				}
+			}
 			echo "</div><!-- #profile-manage -->\n";
 
 		} else {
 
 			// Show Login Form
-			include("include-login.php"); 	
+			include("include-login.php");
 		}
 		
 	echo "  </div><!-- #content -->\n";

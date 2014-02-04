@@ -23,55 +23,46 @@
 					echo "<input type=\"text\" name=\"ProfileCustomID". $data1['ProfileCustomID'] ."\" value=\"".$_SESSION["ProfileCustomID". $data1['ProfileCustomID']]."\" />\n";
 				    echo "<br /><br /><br /><label for=\"ProfileCustomLabel_min\" style=\"text-align:right;\">". __("Max", rb_agency_TEXTDOMAIN) . "&nbsp;&nbsp;</label>\n";
 					echo "<input type=\"text\" name=\"ProfileCustomID". $data1['ProfileCustomID'] ."\" value=\"".$_SESSION["ProfileCustomID". $data1['ProfileCustomID']]."\" /><br />\n";
-		
-			   
+
 			}
-		 
+
 		} elseif ($ProfileCustomType == 3) { // Dropdown
-			
-			
-			
-		  list($option1,$option2) = explode(":",$data1['ProfileCustomOptions']);	
-				
+
+			list($option1,$option2) = explode(":",$data1['ProfileCustomOptions']);
+
 				$data1 = explode("|",$option1);
 				$data2 = explode("|",$option2);
-				
-				
-	
+
 				echo "<label>".__($data1[0], rb_agency_TEXTDOMAIN) ."</label>";
 				echo "<select name=\"ProfileCustomID". $ProfileCustomID  ."[]\">\n";
-				   
+
 					foreach($data1 as $val1){
-						
-						
+
 								if($val1 != end($data1) && $val1 != $data1[0]){
-								
-									  if(in_array($val1,explode(",",$ProfileCustomValue))){
+										if(in_array($val1,explode(",",$ProfileCustomValue))){
 											$isSelected = "selected=\"selected\"";
 											echo "<option value=\"".$val1."\" ".$isSelected .">".$val1."</option>";  
-									   }else{
+										}else{
 											echo "<option value=\"".$val1."\">".$val1."</option>";
-									   }
+										}
 								}
 					}
-				  	echo "</select>\n";
-					
-					
+					echo "</select>\n";
+
 				if(!empty($data2) && !empty($option2)){
 						echo "<label>".__($data2[0], rb_agency_TEXTDOMAIN) ."</label>";
-				
-				 		
+
 						echo "<select name=\"ProfileCustomID". $ProfileCustomID  ."[]\">\n";
 						foreach($data2 as $val2){
-							  
+
 								if($val2 != end($data2) && $val2 != $data2[0]){
-								    echo "lol$val2 == $ProfileCustomValue";
-									  if(in_array($val2,explode(",",$ProfileCustomValue))){
+									echo "lol$val2 == $ProfileCustomValue";
+										if(in_array($val2,explode(",",$ProfileCustomValue))){
 											$isSelected = "selected=\"selected\"";
 											echo "<option value=\"".$val2."\" ".$isSelected .">".$val2."</option>";  
-									   }else{
+										}else{
 											echo "<option value=\"".$val2."\">".$val2."</option>";
-									   }
+										}
 								}
 								
 							}

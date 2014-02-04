@@ -87,7 +87,11 @@ echo "              <li><a href=\"". get_bloginfo("wpurl") ."/profile-register/t
 echo "            </ul>\n";
 echo "          </div> <!-- talent-register -->\n";
 echo "          <div class=\"clear line\"></div>\n";
-if($rb_agency_interact_option_registerallowAgentProducer == 1){
+
+				/*
+				 * Casting Integratino
+				 */
+				if (is_plugin_active('rb-agency-casting/rb-agency-casting.php')) {
 echo "          <div id=\"agent-register\" class=\"register\">\n";
 echo "            <h3>". __("Casting Agents & Producers", rb_agency_interact_TEXTDOMAIN). "</h3>\n";
 echo "            <ul>\n";
@@ -96,7 +100,7 @@ echo "              <li>". __("Contact People in the Talent Directory", rb_agenc
 echo "              <li><a href=\"". get_bloginfo("wpurl") ."/profile-register/client\" class=\"rb_button\">". __("Register as Agent / Producer", rb_agency_interact_TEXTDOMAIN). "</a></li>\n";
 echo "            </ul>\n";
 echo "          </div> <!-- talent-register -->\n";
-}
+				}
 echo "        </div> <!-- rbsign-up -->\n";
 			}
 			

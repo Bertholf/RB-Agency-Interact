@@ -133,7 +133,7 @@
 			$new_user = wp_insert_user( $userdata );
 			$new_user_type = array();
 			$new_user_type =implode(",", $_POST['ProfileType']);
-			$gender = $_POST['ProfileGender'];			
+			$gender = $_POST['ProfileGender'];
 			
 			// Model or Client
 			update_usermeta($new_user, 'rb_agency_interact_profiletype', $new_user_type);
@@ -142,7 +142,7 @@
 			//Custom Fields
 			$arr = array();
 			
-			foreach($_POST as $key => $value) {			         
+			foreach($_POST as $key => $value) {
 				if ((substr($key, 0, 15) == "ProfileCustomID") && (isset($value) && !empty($value))) {
 					$ProfileCustomID = substr($key, 15);
 					if(is_array($value)){
@@ -155,7 +155,7 @@
 				}
 			}
 			
-			add_user_meta($new_user, 'rb_agency_new_registeredUser',$arr);			
+			add_user_meta($new_user, 'rb_agency_new_registeredUser',$arr);
 			
 			// Log them in if no confirmation required.			
 			if ($rb_agency_interact_option_registerconfirm == 1) {

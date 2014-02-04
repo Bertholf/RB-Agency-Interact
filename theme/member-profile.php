@@ -111,7 +111,7 @@ if($rb_agency_interact_option_profilemanage_sidebar){
 		// Check if User is Logged in or not
 		if (is_user_logged_in()) { 
 
-                        /*
+            /*
 			 * Set Media to not show to
 			 * client/s, agents, producers,
 			 */
@@ -141,7 +141,7 @@ if($rb_agency_interact_option_profilemanage_sidebar){
 			if ($count > 0) {
 			  	$data = mysql_fetch_array($results);
 				// Manage Profile
-				include("include-profilemanage.php"); 	
+				include("include-profilemanage.php");
 			} else {
 
 				// No Record Exists, register them
@@ -155,7 +155,7 @@ if($rb_agency_interact_option_profilemanage_sidebar){
 		} else {
 			
 			// Show Login Form
-			include("include-login.php"); 	
+			include("include-login.php");
 		}
 	echo "    <div style=\"clear: both; \"></div>\n";
 	echo "  </div><!-- #content -->\n";
