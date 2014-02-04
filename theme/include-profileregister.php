@@ -139,7 +139,7 @@
                                 $result = mysql_query($get_types);
 
                                 while ( $p = mysql_fetch_array($result)){
-                                        $types = $p['ProfileCustomTypes'];			    
+                                        $types = $p['ProfileCustomTypes'];
                                 }
 
                                 $types = explode(",",$types); 

@@ -96,19 +96,16 @@
 		}
 		elseif ($ProfileCustomType == 6) {
 			   $array_customOptions_values = explode("|",$data1['ProfileCustomOptions']);
-			      
-					  foreach($array_customOptions_values as $val){
-						   
-							    if($val == $ProfileCustomValue){
-								  $isChecked = "checked=\"checked\" ";
-								    echo "<input type=\"radio\" value=\"". $val."\"  $isChecked  name=\"ProfileCustomID". $data1['ProfileCustomID'] ."\" />";
-							 	    echo "<span style=\"color:white;\">". $val."</span><br/>";   
-							   }else{
-							 		echo "<input type=\"radio\" value=\"". $val."\"  name=\"ProfileCustomID". $data1['ProfileCustomID'] ."\" />";
-							 		echo "<span style=\"color:white;\">". $val."</span><br/>";
-							   }
-					  }
-		       
+					foreach($array_customOptions_values as $val){
+						if($val == $ProfileCustomValue){
+							$isChecked = "checked=\"checked\" ";
+							echo "<input type=\"radio\" value=\"". $val."\"  $isChecked  name=\"ProfileCustomID". $data1['ProfileCustomID'] ."\" />";
+							echo "<span style=\"color:white;\">". $val."</span><br/>";   
+						}else{
+							echo "<input type=\"radio\" value=\"". $val."\"  name=\"ProfileCustomID". $data1['ProfileCustomID'] ."\" />";
+							echo "<span style=\"color:white;\">". $val."</span><br/>";
+						}
+					}
 		}
 		
 		else {
