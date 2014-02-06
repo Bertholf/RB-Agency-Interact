@@ -1,10 +1,10 @@
 <?php
-    // profile type
-    $ptype = get_user_meta($current_user->id, "rb_agency_interact_profiletype", true);
-    
-    echo "<div class=\"rbform\">";
+	// profile type
+	$ptype = get_user_meta($current_user->id, "rb_agency_interact_profiletype", true);
+	
+	echo "<div class=\"rbform\">";
 	//check if array
-    if($ptype != ''){
+	if($ptype != ''){
 		if(strpos($ptype, ",") > -1){
 			$ptyp = explode(",",$ptype);
 			foreach($ptyp as $p){
@@ -15,15 +15,15 @@
 		} else {
 				$ptype = str_replace(" ","_",retrieve_title($ptype));
 		}
-    }     
+	}     
 
-    $ProfileGender = get_user_meta($current_user->id, "rb_agency_interact_pgender", true);
-    echo '<input name="ProfileGender" type="hidden" value="'.$ProfileGender.'">'; 
+	$ProfileGender = get_user_meta($current_user->id, "rb_agency_interact_pgender", true);
+	echo '<input name="ProfileGender" type="hidden" value="'.$ProfileGender.'">'; 
 
-    echo "<form method=\"post\" enctype=\"multipart/form-data\" action=\"". get_bloginfo("wpurl") ."/profile-member/account/\">\n";
+	echo "<form method=\"post\" enctype=\"multipart/form-data\" action=\"". get_bloginfo("wpurl") ."/profile-member/account/\">\n";
 	echo "<input type=\"hidden\" id=\"ProfileContactEmail\" name=\"ProfileContactEmail\" value=\"". $current_user->user_email ."\" />\n";
 	echo "<input type=\"hidden\" id=\"ProfileUserLinked\" name=\"ProfileUserLinked\" value=\"". $current_user->id ."\" />\n";
-    echo "<input type=\"hidden\" id=\"ProfileGender\" name=\"ProfileGender\" value=\"".$ProfileGender ."\" />\n";
+	echo "<input type=\"hidden\" id=\"ProfileGender\" name=\"ProfileGender\" value=\"".$ProfileGender ."\" />\n";
 	echo "<input type=\"hidden\" id=\"ProfileType\" name=\"ProfileType\" value=\"".get_user_meta($current_user->id, "rb_agency_interact_profiletype", true) ."\" />\n";
 	
 	echo "	<h3>". __("Contact Information", rb_agency_TEXTDOMAIN) ."</h3>\n";	
@@ -59,8 +59,8 @@
 				  $monthName = array(1=> "January", "February", "March","April", "May", "June", "July", "August","September", "October", "November", "December"); 
 	echo "		  <select name=\"ProfileDateBirth_Month\" id=\"ProfileDateBirth_Month\">\n";
 	echo "			<option value=\"\"> -- Select Month -- </option>\n";
-        for ($currentMonth = 1; $currentMonth <= 12; $currentMonth++ ) { 	
-            echo "			<option value=\"". $currentMonth ."\">". $monthName[$currentMonth] ."</option>\n";
+		for ($currentMonth = 1; $currentMonth <= 12; $currentMonth++ ) { 	
+			echo "			<option value=\"". $currentMonth ."\">". $monthName[$currentMonth] ."</option>\n";
 	}
 	echo "		  </select>\n";
 	echo "		</div>\n";	
@@ -68,9 +68,9 @@
 	echo "		<div>\n";				  
 	echo "		  <select name=\"ProfileDateBirth_Day\" id=\"ProfileDateBirth_Day\">\n";
 	echo "			<option value=\"\"> -- Select Day -- </option>\n";
-        for ($currentDay = 1; $currentDay <= 31; $currentDay++ ) { 	
-            echo "			<option value=\"". $currentDay ."\">". $currentDay ."</option>\n";
-        }
+		for ($currentDay = 1; $currentDay <= 31; $currentDay++ ) { 	
+			echo "			<option value=\"". $currentDay ."\">". $currentDay ."</option>\n";
+		}
 	echo "		  </select>\n";
 	echo "		</div>\n";
 
@@ -78,8 +78,8 @@
 	echo "		<div>\n";
 	echo "		  <select name=\"ProfileDateBirth_Year\" id=\"ProfileDateBirth_Year\">\n";
 	echo "			<option value=\"\"> -- Select Year -- </option>\n";
-        for ($currentYear = 1940; $currentYear <= 2010; $currentYear++ ) { 	
-            echo "			<option value=\"". $currentYear ."\">". $currentYear ."</option>\n";
+		for ($currentYear = 1940; $currentYear <= 2010; $currentYear++ ) { 	
+			echo "			<option value=\"". $currentYear ."\">". $currentYear ."</option>\n";
 	}
 	echo "		  </select>\n";
 	echo "		</div>\n";
@@ -90,6 +90,42 @@
 	echo "	<h3>". __("Private Information", rb_agency_interact_TEXTDOMAIN) ."</h3>";
 	echo "	<p>". __("The following information will NOT appear in public areas and is for administrative use only.", rb_agency_interact_TEXTDOMAIN) ."</p>\n";
 
+	echo "    <tr valign=\"top\">\n";
+	echo "      <th scope=\"row\">" . __("Country", rb_agency_TEXTDOMAIN) . "</th>\n";
+	echo "      <td>\n";
+	
+	$query_get ="SELECT * FROM `". table_agency_data_country ."` ORDER BY CountryTitle ASC" ;
+	$result_query_get = $wpdb->get_results($query_get);
+	$location= site_url();
+	
+	echo '<input type="hidden" id="url" value="'.$location.'">';
+	echo "<select name=\"ProfileLocationCountry\" id=\"ProfileLocationCountry\"  onchange='javascript:populateStates(\"ProfileLocationCountry\",\"ProfileLocationState\");'>";
+	echo '<option value="">'. __("Select country", rb_agency_TEXTDOMAIN) .'</option>';
+	 foreach($result_query_get as $r){
+		  $selected =$ProfileLocationCountry==$r->CountryID?"selected=selected":"";
+		echo '<option '.$selected.' value='.$r->CountryID.' >'.$r->CountryTitle.'</option>';
+	 }
+	echo '</select>';
+	echo "      </td>\n";
+	echo "    </tr>\n";
+	
+	
+	echo "    <tr valign=\"top\">\n";
+	echo "      <th scope=\"row\">" . __("State", rb_agency_TEXTDOMAIN) . "</th>\n";
+	echo "      <td>\n";
+	$query_get ="SELECT * FROM `".table_agency_data_state."` ORDER BY StateTitle ASC" ;
+	$result_query_get = $wpdb->get_results($query_get);
+	echo '<select name="ProfileLocationState" id="ProfileLocationState">';
+	echo '<option value="">'. __("Select state", rb_agency_TEXTDOMAIN) .'</option>';
+	 foreach($result_query_get as $r){
+		 $selected =$ProfileLocationState==$r->StateID?"selected=selected":"";
+		echo '<option '.$selected.' value='.$r->StateID.' >'.$r->StateTitle.'</option>';
+	 }
+	echo '</select>';
+	
+	echo "      </td>\n";
+	echo "    </tr>\n";
+
 	echo "	<div id=\"profile-street\" class=\"rbfield rbtext rbsingle\">\n";
 	echo "		<label>". __("Street", rb_agency_interact_TEXTDOMAIN) ."</label>\n";
 	echo "		<div><input type=\"text\" id=\"ProfileLocationStreet\" name=\"ProfileLocationStreet\" /></div>\n";
@@ -98,51 +134,43 @@
 	echo "		<label>". __("City", rb_agency_interact_TEXTDOMAIN) ."</label>\n";	
 	echo "		<div><input type=\"text\" id=\"ProfileLocationCity\" name=\"ProfileLocationCity\" /></div>\n";
 	echo "	</div>\n";
-	echo "	<div id=\"profile-state\" class=\"rbfield rbtext rbsingle\">\n";
-	echo "		<label>". __("State", rb_agency_interact_TEXTDOMAIN) ."</label>\n";
-	echo "		<div><input type=\"text\" id=\"ProfileLocationState\" name=\"ProfileLocationState\" /></div>\n";
-	echo "	  </div>\n";
 	echo "	<div id=\"profile-zip\" class=\"rbfield rbtext rbsingle\">\n";
 	echo "		<label>". __("Zip", rb_agency_interact_TEXTDOMAIN) ."</label>\n";
 	echo "		<div><input type=\"text\" id=\"ProfileLocationZip\" name=\"ProfileLocationZip\" /></div>\n";
-	echo "	</div>\n";
-	echo "	<div id=\"profile-country\" class=\"rbfield rbtext rbsingle\">\n";
-	echo "		<label>". __("Country", rb_agency_interact_TEXTDOMAIN) ."</label>\n";
-	echo "		<div><input type=\"text\" id=\"ProfileLocationCountry\" name=\"ProfileLocationCountry\" /></div>\n";
 	echo "	</div>\n";
 
 	/*
 	 * Get Private custom Fields Here
 	 *
 	 */
-		    $ProfileInformation = "1"; // Private fields only
+			$ProfileInformation = "1"; // Private fields only
 
 			$query1 = "SELECT ProfileCustomID, ProfileCustomTitle, ProfileCustomType, ProfileCustomOptions, ProfileCustomOrder, ProfileCustomView, ProfileCustomShowGender, ProfileCustomShowProfile, ProfileCustomShowSearch, 
-			                  ProfileCustomShowLogged, ProfileCustomShowAdmin,ProfileCustomShowRegistration FROM "
-			         . table_agency_customfields ." WHERE ProfileCustomView = ". $ProfileInformation ." ORDER BY ProfileCustomOrder ASC";
+							  ProfileCustomShowLogged, ProfileCustomShowAdmin,ProfileCustomShowRegistration FROM "
+					 . table_agency_customfields ." WHERE ProfileCustomView = ". $ProfileInformation ." ORDER BY ProfileCustomOrder ASC";
 			
 			$results1 = mysql_query($query1);
 			$count1 = mysql_num_rows($results1);
 			$pos = 0;
 			while ($data1 = mysql_fetch_array($results1)) { 
-                               /*
-                                * Get Profile Types to
-                                * filter models from clients
-                                */
-                                $permit_type = false;
+							   /*
+								* Get Profile Types to
+								* filter models from clients
+								*/
+								$permit_type = false;
 
-                                $PID = $data1['ProfileCustomID'];
+								$PID = $data1['ProfileCustomID'];
 
-                                $get_types = "SELECT ProfileCustomTypes FROM ". table_agency_customfields_types .
-                                            " WHERE ProfileCustomID = " . $PID;
+								$get_types = "SELECT ProfileCustomTypes FROM ". table_agency_customfields_types .
+											" WHERE ProfileCustomID = " . $PID;
 
-                                $result = mysql_query($get_types);
+								$result = mysql_query($get_types);
 
-                                while ( $p = mysql_fetch_array($result)){
-                                        $types = $p['ProfileCustomTypes'];
-                                }
+								while ( $p = mysql_fetch_array($result)){
+										$types = $p['ProfileCustomTypes'];
+								}
 
-                                $types = explode(",",$types); 
+								$types = explode(",",$types); 
 
 								// check ptype if array
 								if(is_array($ptype)){
@@ -153,15 +181,15 @@
 								} else {
 									if(in_array($ptype,$types)){ $permit_type = true; }
 								}
-                                
+								
 				if ( ($data1["ProfileCustomShowGender"] == $ProfileGender) || ($data1["ProfileCustomShowGender"] == 0) 
-                                      && $permit_type == true )  {
+									  && $permit_type == true )  {
 
 					include("view-custom-fields.php");
 
 				}
 			}
-        
+		
 
 	
 	$rb_agency_interact_options_arr = get_option('rb_agencyinteract_options');
