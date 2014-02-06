@@ -15,14 +15,15 @@
 	add_action('wp_head', 'rb_agency_interact_inserthead');
 		// Call Custom Code to put in header
 		function rb_agency_interact_inserthead() {
+			 if(!wp_script_is('jquery')) {
+			echo "<script type=\"text/javascript\" src=\"". rb_agency_interact_BASEDIR ."style/jquery.1.8.js\"></script>";
+			
+			} 
 		  if( !is_admin() ) {
 			echo "<link rel=\"stylesheet\" href=\"". rb_agency_interact_BASEDIR ."style/style.css\" type=\"text/css\" media=\"screen\" />\n";
 			echo "<script type=\"text/javascript\" src=\"". rb_agency_interact_BASEDIR ."jquery-page.js\"></script>";
 		  }
-		  if(!wp_script_is('jquery')) {
-			echo "<script type=\"text/javascript\" src=\"". rb_agency_interact_BASEDIR ."style/jquery.1.8.js\"></script>";
-			
-			} 
+		 
 		}
 
 // *************************************************************************************************** //
