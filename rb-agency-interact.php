@@ -6,9 +6,9 @@ Plugin URI: http://rbplugin.com/wordpress/model-talent-agency-software/
 Description: Enhancement to the RB Agency software allowing models to interact directly.
 Author: Rob Bertholf
 Author URI: http://rob.bertholf.com/
-Version: 2.0.1
+Version: 2.1
 */
-$rb_agency_interact_VERSION = "2.0.1"; 
+$rb_agency_interact_VERSION = "2.1"; 
 /*
 License: CF Commercial-to-GPL License
 Copyright 2007-2013 Rob Bertholf
