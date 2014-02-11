@@ -2,7 +2,7 @@
 
 // *************************************************************************************************** //
 // Setup Functions 
-
+include(rb_agency_BASEREL ."app/profile.class.php");
 	// Gobble Up The Variables, Set em' Sessions
 		foreach ($_GET as $key => $value) {
 		  if (substr($key, 0, 9) != "ProfileID") {
@@ -148,7 +148,10 @@ if (isset($curauth->user_login)) {
 	
 	echo "  <div id=\"search\">\n";
 	echo "    <h2>Search Database</h2>\n";
-	include ("include-profile-search.php"); 	
+//set to simple layout
+			$profilesearch_layout == 'condensed';
+	
+			echo RBAgency_Profile::search_form("", "", 0);
 	echo "  </div>\n";
 }
 	/* GET ROLE
