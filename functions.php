@@ -70,7 +70,9 @@
 				return dirname(__FILE__) . '/theme/client-register.php'; 
 			  } elseif (get_query_var( 'typeofprofile' ) == "talent") {
 				return dirname(__FILE__) . '/theme/member-register.php'; 
-			  }
+			  } elseif (get_query_var( 'type' ) == "dashboard") {
+					return dirname(__FILE__) . '/theme/view-dashboard.php';
+			 }
 			}
 			return $template;
 		}
