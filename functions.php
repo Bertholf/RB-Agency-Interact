@@ -326,5 +326,128 @@
 		}
 	}
 
+	// Remove user Profile
 
+	function Profile_Account(){  
+	    global $rb_profile_delete;
+	    echo "<h2>Account Settings</h2><br/>";
+		echo "<input type='hidden' id='delete_opt' value='".$rb_profile_delete."'>";
+	    echo "<input id='self_del' type='button' name='remove' value='Remove My Profile' class='btn-primary'>";
+		
+	}
+
+	function Delete_Owner(){
+		
+		$page_title = 'RB Account';
+	 	$menu_title = 'Account';
+		$capability = 'subscriber';
+		$menu_slug = 'delete_profile';
+
+		add_object_page( $page_title, 
+		                 $menu_title, 
+				 $capability, 
+				 $menu_slug,
+				 'Profile_Account');
+		
+	}
+
+	/*
+	 * Self Delete Process for 
+	 * Users
+	 */
+
+	$rb_profile_delete = isset($rb_agency_options_arr['rb_agency_option_profiledeletion']) ? $rb_agency_options_arr['rb_agency_option_profiledeletion'] : 1;
+	 
+	if($rb_profile_delete == 2 || $rb_profile_delete == 3){
+			
+			add_action('admin_menu', 'Delete_Owner');	
+			
+			add_action('wp_before_admin_bar_render', 'self_delete');
+			if(is_admin()){
+				add_action( 'admin_print_footer_scripts', 'delete_script' );
+			} else {
+				add_action('wp_footer', 'delete_script');
+			}
+	}
+
+	
+
+
+function delete_script() {?>
+
+    <script type="text/javascript">
+        jQuery(document).ready(function(){
+
+            jQuery("#self_del").click(function(){
+
+                var continue_delete = confirm("Are you sure you want to delete your profile?");
+
+                if (continue_delete) {	
+                        // ajax delete
+					// alert(jQuery('#delete_opt').val());	
+                    jQuery.ajax({
+                        type: "POST",
+                        url: '<?php echo plugins_url( 'rb-agency-interact/theme/userdelete.php' , dirname(__FILE__) ); ?>',
+                        dataType: "html",
+                        data: { ID : "<?php echo rb_agency_get_current_userid(); ?>", OPT: jQuery('#delete_opt').val() },
+
+                        beforeSend: function() {
+                        },
+
+                        error: function() {
+                            setTimeout(function(){
+                            alert("Process Failed. Please try again later.");	
+                            }, 1000);
+                        },	
+
+                        success: function(data) {
+                            if (data != "") {
+                                setTimeout(function(){
+                                	// alert(data);
+									//alert("Deletion success! You will now be redirected to our homepage.");
+                                    window.location.href = "<?php echo get_bloginfo('wpurl'); ?>";
+                                }, 1000);
+                            } else {
+                                setTimeout(function(){
+                                    alert("Failed. Please try again later.");
+                                }, 1000);
+                            }
+                        }
+                    });
+                }
+            });	
+        });
+    </script>
+	<?php
+}
+
+function self_delete() {
+
+	global $wp_admin_bar;
+
+	$href = get_bloginfo('wpurl');
+	$title = '<div>' . '<div class="ab-item">User Profile</div></div>';
+	$prof_href = $href . '/wp-admin/profile.php'; 
+	$account = $href . '/wp-admin/admin.php?page=delete_profile';
+
+	$wp_admin_bar->add_menu( array(
+		'parent' => false,
+		'id' => 'self_delete',
+		'title' => __($title)
+	));
+
+	$wp_admin_bar->add_menu(array(
+		'parent' => 'self_delete',
+		'id' => 'profile_manage',
+		'title' => __('<a class="ab-item" href="'.$prof_href.'">Manage Profile</a>'),
+	)); 
+	$wp_admin_bar->add_menu(array(
+		'parent' => 'self_delete',
+		'id' => 'actual_delete',
+		'title' => __('<a class="ab-item"  href="'.$account.'">Account Settings</a>'),
+	));
+
+}
+
+	
 ?>
