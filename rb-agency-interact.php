@@ -65,6 +65,8 @@ See license.txt for full details.
 
 	if (!defined("table_agency_interact_temp"))
 		define("table_agency_interact_temp", "{$wpdb->prefix}agency_interact_temp");
+	if (!defined("table_agencyinteract_subscription_rates"))
+		define("table_agencyinteract_subscription_rates", "{$wpdb->prefix}agencyinteract_subscription_rates");
 
 
 // *************************************************************************************************** //
@@ -173,7 +175,17 @@ class RBAgencyInteract {
 			 * Install Schema
 			 */
 
-				// TODO: 
+				// agencyinteract Subscription 
+				$sql = "CREATE TABLE IF NOT EXISTS ".table_agencyinteract_subscription_rates." (
+						SubscriptionRateID int(11) NOT NULL AUTO_INCREMENT,
+						SubscriptionRateTitle varchar(200) NOT NULL,
+						SubscriptionRateType int(11) NOT NULL,
+						SubscriptionRateText text NOT NULL,
+						SubscriptionRatePrice int(11) NOT NULL,
+						SubscriptionRateTerm int(11) NOT NULL,
+						  PRIMARY KEY (SubscriptionRateID)
+					);";
+				dbDelta($sql);
 
 
 			/*
@@ -192,7 +204,10 @@ class RBAgencyInteract {
 
 		public static function unistall(){
 
-			// TODO
+			// Permission Granted... Remove
+			global $wpdb; // Required for all WordPress database manipulations
+			// Drop the tables
+			$wpdb->query("DROP TABLE " . table_agencyinteract_subscription_rates);
 		}
 
 
