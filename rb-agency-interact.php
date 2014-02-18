@@ -269,23 +269,6 @@ class RBAgencyInteract {
 		}
 
 
-	/*
-	 * Administrative Menu
-	 * Create the admin menu items
-	 */
-
-		//Create Admin Menu
-		public static function menu_admin(){
-			//add_submenu_page('users.php', __('Approve Users', rb_agency_interact_TEXTDOMAIN), __('Approve Users', rb_agency_interact_TEXTDOMAIN), 'edit_users', basename(__FILE__), 'rb_agency_interact_approvemembers');
-		}
-
-		//Pages
-		public static function rb_agency_interact_settings(){
-			include_once('admin/settings.php');
-		}
-		public static function rb_agency_interact_approvemembers(){
-			include_once('admin/profile-approve.php');
-		}
 
 	/*
 	 * Register Settings
@@ -297,6 +280,23 @@ class RBAgencyInteract {
 		}
 
 }
+
+
+	/*
+	 * Administrative Menu
+	 * Create the admin menu items
+	 */
+
+		// Dont Delete this...
+		function rb_agency_interact_menu() {
+			return true;
+		}
+
+		//Pages
+		function rb_agency_interact_approvemembers(){
+			include_once('admin/profile-approve.php');
+		}
+
 
 
 // *************************************************************************************************** //
@@ -332,7 +332,7 @@ class RBAgencyInteract {
 				$widget_ops = array('classname' => 'rb_agency_interact_widget_profileaction', 'description' => __("Displays profile actions such as login and links to edit", rb_agency_interact_TEXTDOMAIN) );
 				$this->WP_Widget('rb_agency_interact_widget_profileaction', __("Agency Interact Login", rb_agency_interact_TEXTDOMAIN), $widget_ops);
 			}
-		
+
 			// What Displays
 			function widget($args, $instance) {
 				extract($args, EXTR_SKIP);
@@ -342,63 +342,63 @@ class RBAgencyInteract {
 				# $title = empty($instance['title']) ? ' ' : apply_filters('widget_title', $instance['title']);
 				# $entry_title = empty($instance['entry_title']) ? ' ' : apply_filters('widget_entry_title', $instance['entry_title']);
 				# $comments_title = empty($instance['comments_title']) ? ' ' : apply_filters('widget_comments_title', $instance['comments_title']);
-				
+
 				$atts = array('count' => $count);
- 				
-				   if(!is_user_logged_in()){					   
-					     
-					if ( !empty( $title ) ) { echo $before_title . $title . $after_title; };    
-							echo "	<div class=\"rbform\">\n";
-							echo "  	<form name=\"loginform\" id=\"rbform-login\" action=\"". network_site_url("/") ."profile-login/\" method=\"post\">\n";
-							echo "      	<div class=\"rbfield rbtext rbsingle\">\n";
-							echo "          	<label for=\"user-name\">". __("Username", rb_agency_interact_TEXTDOMAIN). "</label>";
-							echo "				<div><input type=\"text\" name=\"user-name\" value=\"". wp_specialchars( $_POST['user-name'], 1 ) ."\" id=\"user-name\" /></div>\n";
-							echo "          </div>\n";
-							echo "          <div class=\"rbfield rbpassrword rbsingle\">\n";
-							echo "             	<label for=\"password\">". __("Password", rb_agency_interact_TEXTDOMAIN). "</label>";
-							echo "				<div>";
-							echo "					<input type=\"password\" name=\"password\" value=\"\" id=\"password\" />";
-							echo "					<small class=\"rbfield-note\"><a href=\"". get_bloginfo('wpurl') ."/wp-login.php?action=lostpassword\">". __("forgot password", rb_agency_interact_TEXTDOMAIN). "?</a></small>\n";
-							echo "          	</div>\n";
-							echo "          </div>\n";
-							echo "          <div class=\"rbfield rbcheckbox rbsingle\">\n";
-							echo "          	<label></label>\n";
-							echo "              <div><label><input type=\"checkbox\" name=\"remember-me\" value=\"forever\" /> ". __("Keep me signed in", rb_agency_interact_TEXTDOMAIN). "</label></div>\n";
-							echo "          </div>\n";
-							echo "          <div class=\"rbfield rbsubmit rbsingle\">\n";														
-							echo "         		<input type=\"hidden\" name=\"action\" value=\"log-in\" />\n";
-							echo "             	<input type=\"submit\" value=\"". __("Sign In", rb_agency_interact_TEXTDOMAIN). "\" />\n";
-							echo "          </div>\n";
-							echo "  	</form>\n";     
-							echo "	</div>\n";     
-						 
-					 } else {
-						   if(current_user_can('level_10')){
-							  if ( !empty( $title ) ) { echo $before_title . "RB Agency Settings" . $after_title; };
-							  echo "<ul>";
-							  echo "<li><a href=\"".admin_url("admin.php?page=rb_agency_menu")."\">Overview</a></li>";
-							  echo "<li><a href=\"".admin_url("admin.php?page=rb_agency_menu_profiles")."\">Manage Profiles</a></li>";
-							  echo "<li><a href=\"".admin_url("admin.php?page=rb_agency_interact_menu_approvemembers")."\">Approve Profiles</a></li>";
-							  echo "<li><a href=\"".admin_url("admin.php?page=rb_agency_menu_search")."\">Search Profiles</a></li>";
-							  echo "<li><a href=\"".admin_url("admin.php?page=rb_agency_menu_searchsaved")."\">Saved Searches</a></li>";
-							  echo "<li><a href=\"".admin_url("admin.php?page=rb_agency_menu_reports")."\">Tools &amp; Reports</a></li>";
-							  echo "<li><a href=\"".admin_url("admin.php?page=rb_agency_menu_settings")."\">Settings</a></li>";
-							  echo "<li><a href=\"/wp-login.php?action=logout&_wpnonce=3bb3c87a3d\">Logout</a></li>";	    
-								  echo "</ul>";
-							
-							 } else{
-							  
-								rb_agency_profilesearch(array("profilesearch_layout" =>"simple"));   
-								   
-							 }
-							 
-					 }
-		   
+
+				if(!is_user_logged_in()){
+
+						if ( !empty( $title ) ) { echo $before_title . $title . $after_title; };
+						echo "	<div class=\"rbform\">\n";
+						echo "  	<form name=\"loginform\" id=\"rbform-login\" action=\"". network_site_url("/") ."profile-login/\" method=\"post\">\n";
+						echo "      	<div class=\"rbfield rbtext rbsingle\">\n";
+						echo "          	<label for=\"user-name\">". __("Username", rb_agency_interact_TEXTDOMAIN). "</label>";
+						echo "				<div><input type=\"text\" name=\"user-name\" value=\"". wp_specialchars( $_POST['user-name'], 1 ) ."\" id=\"user-name\" /></div>\n";
+						echo "          </div>\n";
+						echo "          <div class=\"rbfield rbpassrword rbsingle\">\n";
+						echo "             	<label for=\"password\">". __("Password", rb_agency_interact_TEXTDOMAIN). "</label>";
+						echo "				<div>";
+						echo "					<input type=\"password\" name=\"password\" value=\"\" id=\"password\" />";
+						echo "					<small class=\"rbfield-note\"><a href=\"". get_bloginfo('wpurl') ."/wp-login.php?action=lostpassword\">". __("forgot password", rb_agency_interact_TEXTDOMAIN). "?</a></small>\n";
+						echo "          	</div>\n";
+						echo "          </div>\n";
+						echo "          <div class=\"rbfield rbcheckbox rbsingle\">\n";
+						echo "          	<label></label>\n";
+						echo "              <div><label><input type=\"checkbox\" name=\"remember-me\" value=\"forever\" /> ". __("Keep me signed in", rb_agency_interact_TEXTDOMAIN). "</label></div>\n";
+						echo "          </div>\n";
+						echo "          <div class=\"rbfield rbsubmit rbsingle\">\n";
+						echo "         		<input type=\"hidden\" name=\"action\" value=\"log-in\" />\n";
+						echo "             	<input type=\"submit\" value=\"". __("Sign In", rb_agency_interact_TEXTDOMAIN). "\" />\n";
+						echo "          </div>\n";
+						echo "  	</form>\n";
+						echo "	</div>\n";
+
+				} else {
+					if(current_user_can('level_10')){
+						if ( !empty( $title ) ) { echo $before_title . "RB Agency Settings" . $after_title; };
+						echo "<ul>";
+						echo "<li><a href=\"".admin_url("admin.php?page=rb_agency_menu")."\">Overview</a></li>";
+						echo "<li><a href=\"".admin_url("admin.php?page=rb_agency_menu_profiles")."\">Manage Profiles</a></li>";
+						echo "<li><a href=\"".admin_url("admin.php?page=rb_agency_interact_menu_approvemembers")."\">Approve Profiles</a></li>";
+						echo "<li><a href=\"".admin_url("admin.php?page=rb_agency_menu_search")."\">Search Profiles</a></li>";
+						echo "<li><a href=\"".admin_url("admin.php?page=rb_agency_menu_searchsaved")."\">Saved Searches</a></li>";
+						echo "<li><a href=\"".admin_url("admin.php?page=rb_agency_menu_reports")."\">Tools &amp; Reports</a></li>";
+						echo "<li><a href=\"".admin_url("admin.php?page=rb_agency_menu_settings")."\">Settings</a></li>";
+						echo "<li><a href=\"/wp-login.php?action=logout&_wpnonce=3bb3c87a3d\">Logout</a></li>";	    
+						echo "</ul>";
+
+					} else{
+
+						rb_agency_profilesearch(array("layout" =>"simple"));
+
+					}
+
+				}
+
 				echo $after_widget;
 			}
-		
+
 			// Update
-			function update($new_instance, $old_instance) {				
+			function update($new_instance, $old_instance) {
 				$instance = $old_instance;
 				$instance['title'] = strip_tags($new_instance['title']);
 				$instance['trendShowCount'] = strip_tags($new_instance['trendShowCount']);
