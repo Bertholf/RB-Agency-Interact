@@ -10,7 +10,7 @@
 	$rb_agency_interact_option_fb_app_id = $registration['rb_agencyinteract_option_fb_app_id'];
 	$rb_agency_interact_option_fb_app_secret = $registration['rb_agencyinteract_option_fb_app_secret'];
 	$rb_agency_interact_option_fb_app_uri = $registration['rb_agencyinteract_option_fb_app_uri'];
-      $rb_agency_interact_option_registerallowAgentProducer = $registration['rb_agencyinteract_option_registerallowAgentProducer'];
+	$rb_agency_interact_option_registerallowAgentProducer = $registration['rb_agencyinteract_option_registerallowAgentProducer'];
 	if (( current_user_can("create_users") || $rb_agency_interact_option_registerallow )) {
 		$widthClass = "half";
 	} else {
@@ -25,8 +25,6 @@ echo "     <div id=\"rbsignin-register\" class=\"rbinteract\">\n";
 			if ( $error ) {
 			echo "<p class=\"error\">". $error ."</p>\n";
 			}
-			
-	
 
 echo "        <div id=\"rbsign-in\" class=\"inline-block\">\n";
 echo "          <h1>". __("Members Sign in", rb_agency_interact_TEXTDOMAIN). "</h1>\n";
@@ -91,7 +89,7 @@ echo "          <div class=\"clear line\"></div>\n";
 				/*
 				 * Casting Integratino
 				 */
-				if (is_plugin_active('rb-agency-casting/rb-agency-casting.php')) {
+				if(function_exists('rb_agency_casting_menu')){
 echo "          <div id=\"agent-register\" class=\"register\">\n";
 echo "            <h3>". __("Casting Agents & Producers", rb_agency_interact_TEXTDOMAIN). "</h3>\n";
 echo "            <ul>\n";
@@ -103,7 +101,7 @@ echo "          </div> <!-- talent-register -->\n";
 				}
 echo "        </div> <!-- rbsign-up -->\n";
 			}
-			
+
 echo "      <div class=\"clear line\"></div>\n";
 echo "      </div>\n";
 ?>
