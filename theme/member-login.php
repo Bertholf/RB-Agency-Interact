@@ -38,13 +38,13 @@ function get_user_login_info(){
 			// Message will show for 48hrs after registration
 			elseif( strtotime( $user_info->user_registered ) > ( time() - 172800 ) ) {
 				if(get_user_meta($user_ID, 'rb_agency_interact_clientdata', true)){
-						header("Location: ". get_bloginfo("wpurl"). "/dashboard/");
+						header("Location: ". get_bloginfo("wpurl"). "/casting-dashboard/");
 				} else {
 						header("Location: ". get_bloginfo("wpurl"). "/profile-member/");
 				}
 			} else {
 				if(get_user_meta($user_ID, 'rb_agency_interact_clientdata', true)){
-						header("Location: ". get_bloginfo("wpurl"). "/dashboard/");
+						header("Location: ". get_bloginfo("wpurl"). "/casting-dashboard/");
 				} else {
 						header("Location: ". get_bloginfo("wpurl"). "/profile-member/");
 				}
@@ -56,7 +56,7 @@ function get_user_login_info(){
 	} else {
 		// Reload
 		if(get_user_meta($user_ID, 'rb_agency_interact_clientdata', true)){
-							header("Location: ". get_bloginfo("wpurl"). "/dashboard/");
+							header("Location: ". get_bloginfo("wpurl"). "/casting-dashboard/");
 				} else {
 						header("Location: ". get_bloginfo("wpurl"). "/profile-member/");
 				}
