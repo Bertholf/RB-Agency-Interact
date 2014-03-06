@@ -92,7 +92,7 @@ get_header();
 				if($rb_subscription){
 				echo "      <li><a href=\"subscription/\">Manage your Subscription</a></li>\n";
 				}
-				if(function_exists(rb_agency_casting_menu)){
+				if(function_exists('rb_agency_casting_menu')){
 				echo "      <li><a href=\"".get_bloginfo('wpurl')."/browse-jobs/\">Browse and Apply for a Job</a></li>\n";
 				}
 				echo "	</ul>\n";
