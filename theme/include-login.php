@@ -95,7 +95,7 @@ if (function_exists('rb_agency_casting_menu')) {
 		echo "            <ul>\n";
 		echo "              <li>". __("List Auditions & Jobs free", rb_agency_interact_TEXTDOMAIN). "</li>\n";
 		echo "              <li>". __("Contact People in the Talent Directory", rb_agency_interact_TEXTDOMAIN). "</li>\n";
-		echo "              <li><a href=\"". get_bloginfo("wpurl") ."/casting-register\" class=\"rb_button\">". __("Register as Agent / Producer", rb_agency_interact_TEXTDOMAIN). "</a></li>\n";
+		echo "              <li><a href=\"". get_bloginfo("wpurl") ."/casting-register/\" class=\"rb_button\">". __("Register as Agent / Producer", rb_agency_interact_TEXTDOMAIN). "</a></li>\n";
 		echo "            </ul>\n";
 		echo "          </div> <!-- talent-register -->\n";
 }
