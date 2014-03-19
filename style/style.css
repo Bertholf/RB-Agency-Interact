@@ -67,9 +67,9 @@ p.submit { margin-top: 15px!important; }
 /* Profile Gallery */
 #profile-manage .manage-section.gallery .profileimage { float: left; margin: 0 10px 10px 0; height: 150px; position: relative; overflow: hidden; }
 #profile-manage .manage-section.gallery .profileimage .delete a { color: #fff; background: #fb2531; padding: 5px 10px; display: block; text-decoration: none; }
-#profile-manage .manage-section.gallery .profileimage .primary { position: absolute; left: 0; right: 0; bottom: 0; padding: 5px 10px; }
-#profile-manage .manage-section.gallery .profileimage .primary input { margin: 0; }
-#profile-manage .manage-section.gallery .profileimage .primary label { color: #fff; cursor: pointer; }
+#profile-manage .manage-section.gallery .profileimage .make-primary { position: absolute; left: 0; right: 0; bottom: 0; padding: 5px 10px; background: #aaa; }
+#profile-manage .manage-section.gallery .profileimage .make-primary input { margin: 0; }
+#profile-manage .manage-section.gallery .profileimage .make-primary label { color: #fff; cursor: pointer; line-height: normal; }
 
 /** Sign In - Register **/
 #rbsignin-register { text-align: center; vertical-align: top; }

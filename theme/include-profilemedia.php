@@ -87,12 +87,13 @@
 					$countImg = mysql_num_rows($resultsImg);
 					while ($dataImg = mysql_fetch_array($resultsImg)) {
 					  if ($dataImg['ProfileMediaPrimary']) {
-						  $styleClass = "primary-picture";
+						  $styleClass = "primary-picture ";
 						  $isChecked = " checked";
 						  $isCheckedText = " Primary";
 						  $toDelete = "";
 					  } else {
 						  $styleBackground = "#000000";
+						  $styleClass = "";
 						  $isChecked = "";
 						  $isCheckedText = " Select";
 						  $toDelete = "  <div class=\"delete\"><a href=\"javascript:;\" class=\"btn-small-red\" onclick=\"confirmDelete('". $dataImg['ProfileMediaID'] ."','".$dataImg['ProfileMediaType']."');\"><span>Delete</span> &raquo;</a></div>\n";
@@ -104,7 +105,7 @@
 						echo '<input type="hidden" name="pmedia_url" value="'.$dataImg['ProfileMediaURL'].'">';					
 
 						echo "  <img src=\"". rb_agency_UPLOADDIR . $ProfileGallery ."/". $dataImg['ProfileMediaURL'] ."\" style=\"width: 100px; z-index: 1; \" />\n";
-						echo "  <div class=\"". $styleClass ." primary rb_button\"><label><input type=\"radio\" name=\"ProfileMediaPrimary\" value=\"". $dataImg['ProfileMediaID'] ."\" class=\"button-primary\"". $isChecked ." /> ". $isCheckedText ."</label></div>\n";
+						echo "  <div class=\"". $styleClass ."make-primary\"><label><input type=\"radio\" name=\"ProfileMediaPrimary\" value=\"". $dataImg['ProfileMediaID'] ."\" class=\"button-primary\"". $isChecked ." /> ". $isCheckedText ."</label></div>\n";
 
 						echo "</div>\n";
 					}
