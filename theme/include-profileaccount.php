@@ -197,19 +197,19 @@
 		echo "	<h3>". __("Social Media Profiles", rb_agency_interact_TEXTDOMAIN) ."</h3>\n";
 		echo "	<div id=\"profile-facebook\" class=\"rbfield rbtext rbsingle\">\n";
 		echo "		<label>". __("Facebook", rb_agency_interact_TEXTDOMAIN) ."</label>\n";
-		echo "		<input type=\"text\" id=\"ProfileContactLinkFacebook\" name=\"ProfileContactLinkFacebook\" value=\"". $ProfileContactLinkFacebook ."\" />\n";
+		echo "		<div><input type=\"text\" id=\"ProfileContactLinkFacebook\" name=\"ProfileContactLinkFacebook\" value=\"". $ProfileContactLinkFacebook ."\" /></div>\n";
 		echo "	</div>\n";
 		echo "	<div id=\"profile-twitter\" class=\"rbfield rbtext rbsingle\">\n";
 		echo "		<label>". __("Twitter", rb_agency_interact_TEXTDOMAIN) ."</label>\n";
-		echo "		<input type=\"text\" id=\"ProfileContactLinkTwitter\" name=\"ProfileContactLinkTwitter\" value=\"". $ProfileContactLinkTwitter ."\" />\n";
+		echo "		<div><input type=\"text\" id=\"ProfileContactLinkTwitter\" name=\"ProfileContactLinkTwitter\" value=\"". $ProfileContactLinkTwitter ."\" /></div>\n";
 		echo "	</div>\n";
 		echo "	<div id=\"profile-youtube\" class=\"rbfield rbtext rbsingle\">\n";
 		echo "		<label>". __("YouTube", rb_agency_interact_TEXTDOMAIN) ."</label>\n";
-		echo "		<input type=\"text\" id=\"ProfileContactLinkYouTube\" name=\"ProfileContactLinkYouTube\" value=\"". $ProfileContactLinkYouTube ."\" />\n";
+		echo "		<div><input type=\"text\" id=\"ProfileContactLinkYouTube\" name=\"ProfileContactLinkYouTube\" value=\"". $ProfileContactLinkYouTube ."\" /></div>\n";
 		echo "  </div>\n";
 		echo "	<div id=\"profile-flickr\" class=\"rbfield rbtext rbsingle\">\n";
 		echo "		<label>". __("Flickr", rb_agency_interact_TEXTDOMAIN) ."</label>\n";
-		echo "		<input type=\"text\" id=\"ProfileContactLinkFlickr\" name=\"ProfileContactLinkFlickr\" value=\"". $ProfileContactLinkFlickr ."\" />\n";
+		echo "		<div><input type=\"text\" id=\"ProfileContactLinkFlickr\" name=\"ProfileContactLinkFlickr\" value=\"". $ProfileContactLinkFlickr ."\" /></div>\n";
 		echo "	</div>\n";
 		} 
 		if ($rb_agency_interact_option_registerallow  == 1) {

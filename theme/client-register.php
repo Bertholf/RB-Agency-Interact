@@ -222,7 +222,7 @@
 			
 		if ( is_user_logged_in() && !current_user_can( 'create_users' ) ) {
 
-	echo "    <p class=\"log-in-out alert\">\n";
+	echo "    <p class=\"log-in-out rbalert\">\n";
 	echo "		". __("You are currently logged in as .", rb_agency_interact_TEXTDOMAIN) ." <a href=\"/profile-member/\" title=\"". $login->display_name ."\">". $login->display_name ."</a>\n";
 				//printf( __("You are logged in as <a href="%1$s" title="%2$s">%2$s</a>.  You don\'t need another account.', rb_agency_interact_TEXTDOMAIN), get_author_posts_url( $curauth->ID ), $user_identity );
 	echo "		 <a href=\"". wp_logout_url( get_permalink() ) ."\" title=\"". __("Log out of this account", rb_agency_interact_TEXTDOMAIN) ."\">". __("Log out", rb_agency_interact_TEXTDOMAIN) ." &raquo;</a>\n";
@@ -231,7 +231,7 @@
 
 		} elseif ( $new_user ) {
 
-	echo "    <p class=\"alert\">\n";
+	echo "    <p class=\"rbalert\">\n";
 				if ( current_user_can( 'create_users' ) )
 					printf( __("A user account for %1$s has been created.", rb_agency_interact_TEXTDOMAIN), $_POST['user-name'] );
 				else 
@@ -243,16 +243,16 @@
 		} else {
 
 			if ( $error ) {
-				echo "<p class=\"error\">". $error ."</p>\n";
+				echo "<p class=\"rberror\">". $error ."</p>\n";
 			}
 
 			// Show some admin loving.... (Admins can create)
 			if ( current_user_can("create_users") && $registration ) {
-	echo "    <p class=\"alert\">\n";
+	echo "    <p class=\"rbalert\">\n";
 	echo "      ". __("Users can register themselves or you can manually create users here.", rb_agency_interact_TEXTDOMAIN);
 	echo "    </p><!-- .alert -->\n";
 			} elseif ( current_user_can("create_users")) {
-	echo "    <p class=\"alert\">\n";
+	echo "    <p class=\"rbalert\">\n";
 	echo "      ". __("Users cannot currently register themselves, but you can manually create users here.", rb_agency_interact_TEXTDOMAIN);
 	echo "    </p><!-- .alert -->\n";
 			}	
@@ -418,7 +418,7 @@
 
 }
 
-if(!$registration){ echo "<p class='alert'>The administrator currently disabled the registration.<p>"; }
+if(!$registration){ echo "<p class='rbalert'>The administrator currently disabled the registration.<p>"; }
 
 echo "  </div><!-- #content -->\n";
 echo "</div><!-- #container -->\n";

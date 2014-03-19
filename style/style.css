@@ -1,4 +1,13 @@
-.rb-agency-interact p.rbalert {	
+.rbwarning {
+	padding: 15px;
+	background:#ddd;
+	border: 1px solid #fff;
+}
+.rb-agency-interact p.rberror {
+	color: #000;
+}
+.rb-agency-interact p.rbalert,
+.rb-agency-interact p.rberror {	
 	padding: 10px;
 	background: #fafafa;
 	margin-bottom: 15px;	
@@ -6,13 +15,15 @@
 	border-bottom: 3px solid #0C0;
 }
 
-#profile-manage .manage-content { padding: 15px; background: #fff; }
+#profile-manage .manage-content { padding: 15px; background: #fff; overflow: hidden; }
 #profile-manage .manage-content h1,
 #profile-manage .manage-content h3 { margin-bottom: 15px; }
 #profile-manage .manage-content p { margin: 0 0 15px 0; line-height: 18px; }
 #profile-manage .manage-content select { padding: 3px; }
 #profile-manage .manage-section { overflow: hidden; margin-bottom: 15px; }
 #profile-manage .manage-section .section-content { overflow: hidden; }
+#profile-manage .manage-section.upload > div { padding: 5px 0px }
+#profile-manage .manage-section.upload > div select { margin-right: 5px; }
 p.submit { margin-top: 15px!important; }
 
 #profile-steps { font-size: 22px; text-align: center; background: #eee; border-bottom: 3px solid #aaa; padding: 10px; }

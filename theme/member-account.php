@@ -392,7 +392,7 @@ if (is_user_logged_in()) {
 			echo " </div>\n"; // .manage-account
 			echo "</div>\n"; // #profile-manage
 		} else {
-			echo "<p class=\"warning\">\n";
+			echo "<p class=\"rbwarning\">\n";
 					_e('You must be logged in to edit your profile.', 'frontendprofile');
 			echo "</p><!-- .warning -->\n";
 			// Show Login Form

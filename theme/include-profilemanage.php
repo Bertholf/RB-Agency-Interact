@@ -108,15 +108,15 @@
 					}elseif($data3['ProfileCustomOptions'] == 2){
 						$measurements_label  ="<em> (kg)</em>";
 					}elseif($data3['ProfileCustomOptions'] == 3){
-						$measurements_label  ="<em> (In Inches/Feet)</em>";
+						$measurements_label  ="<em> (Inches/Feet)</em>";
 					}
 				} elseif($rb_agency_option_unittype ==1){ //1 = Imperial(in/lb)
 					if($data3['ProfileCustomOptions'] == 1){
-						$measurements_label  ="<em> (In Inches)</em>";
+						$measurements_label  ="<em> (Inches)</em>";
 					}elseif($data3['ProfileCustomOptions'] == 2){
-						$measurements_label  ="<em> (In Pounds)</em>";
+						$measurements_label  ="<em> (Pounds)</em>";
 					}elseif($data3['ProfileCustomOptions'] == 3){
-						$measurements_label  ="<em> (In Inches/Feet)</em>";
+						$measurements_label  ="<em> (Inches/Feet)</em>";
 					}
 				}
 			}

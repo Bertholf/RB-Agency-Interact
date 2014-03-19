@@ -90,9 +90,9 @@
 	echo "	<h3>". __("Private Information", rb_agency_interact_TEXTDOMAIN) ."</h3>";
 	echo "	<p>". __("The following information will NOT appear in public areas and is for administrative use only.", rb_agency_interact_TEXTDOMAIN) ."</p>\n";
 
-	echo "    <tr valign=\"top\">\n";
-	echo "      <th scope=\"row\">" . __("Country", rb_agency_TEXTDOMAIN) . "</th>\n";
-	echo "      <td>\n";
+	echo "	<div id=\"profile-country\" class=\"rbfield rbselect rbsingle\">\n";
+	echo "      <label>" . __("Country", rb_agency_TEXTDOMAIN) . "</label>\n";
+	echo "      <div>\n";
 	
 	$query_get ="SELECT * FROM `". table_agency_data_country ."` ORDER BY CountryTitle ASC" ;
 	$result_query_get = $wpdb->get_results($query_get);
@@ -106,13 +106,13 @@
 		echo '<option '.$selected.' value='.$r->CountryID.' >'.$r->CountryTitle.'</option>';
 	 }
 	echo '</select>';
-	echo "      </td>\n";
-	echo "    </tr>\n";
+	echo "      </div>\n";
+	echo "    </div>\n";
 	
 	
-	echo "    <tr valign=\"top\">\n";
-	echo "      <th scope=\"row\">" . __("State", rb_agency_TEXTDOMAIN) . "</th>\n";
-	echo "      <td>\n";
+	echo "	<div id=\"profile-state\" class=\"rbfield rbtext rbsingle\">\n";
+	echo "      <label>" . __("State", rb_agency_TEXTDOMAIN) . "</label>\n";
+	echo "      <div>\n";
 	$query_get ="SELECT * FROM `".table_agency_data_state."` ORDER BY StateTitle ASC" ;
 	$result_query_get = $wpdb->get_results($query_get);
 	echo '<select name="ProfileLocationState" id="ProfileLocationState">';
@@ -123,8 +123,8 @@
 	 }
 	echo '</select>';
 	
-	echo "      </td>\n";
-	echo "    </tr>\n";
+	echo "      </div>\n";
+	echo "    </div>\n";
 
 	echo "	<div id=\"profile-street\" class=\"rbfield rbtext rbsingle\">\n";
 	echo "		<label>". __("Street", rb_agency_interact_TEXTDOMAIN) ."</label>\n";
