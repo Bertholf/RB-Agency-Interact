@@ -124,7 +124,7 @@ class RBAgencyInteract {
 
 
 				// Load Menus
-				add_action('admin_menu', array('RBAgencyInteract', 'menu_admin'));
+				//add_action('admin_menu', array('RBAgency', 'menu_admin'));
 
 				// Register Settings
 				add_action('admin_init', array('RBAgencyInteract', 'do_register_settings') );
