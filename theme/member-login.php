@@ -4,12 +4,12 @@
 if ( $_SERVER['REQUEST_METHOD'] == "POST" && !empty( $_POST['action'] ) && $_POST['action'] == 'log-in' ) {
 
 	global $error;
-	$login = wp_login( $_POST['user-name'], $_POST['password'] );
-	$login = wp_signon( array( 'user_login' => $_POST['user-name'], 'user_password' => $_POST['password'], 'remember' => $_POST['remember-me'] ), false );
+//	$login = wp_login( $_POST['user-name'], $_POST['password'] );
+	$login = wp_signon( array( 'user_login' => $_POST['user-name'], 'user_password' => $_POST['password'], 'remember' => (isset($_POST['remember-me'])?:false) ), false );
 	
     get_currentuserinfo();
     
-	if($login->ID) {
+	if(!is_wp_error($login)) {
     	wp_set_current_user($login->ID);  // populate
 	   	get_user_login_info();
 	}
@@ -18,7 +18,7 @@ if ( $_SERVER['REQUEST_METHOD'] == "POST" && !empty( $_POST['action'] ) && $_POS
 function get_user_login_info(){
 
     global $user_ID;
-	$redirect = $_POST["lastviewed"];
+	$redirect = isset($_POST["lastviewed"])?:"";
 	get_currentuserinfo();
 	$user_info = get_userdata( $user_ID );
 

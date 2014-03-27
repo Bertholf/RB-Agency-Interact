@@ -162,7 +162,7 @@
 
 				global $error;
 				
-				$login = wp_login( $user_login, $user_pass );
+				//$login = wp_login( $user_login, $user_pass );
 				$login = wp_signon( array( 'user_login' => $user_login, 'user_password' => $user_pass, 'remember' => 1 ), false );	
 			}				
 				// Notify admin and user

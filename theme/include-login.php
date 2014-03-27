@@ -1,14 +1,16 @@
 <?php
 	/* Load registration file. */
-	require_once( ABSPATH . WPINC . '/registration.php' );
+	//require_once( ABSPATH . WPINC . '/registration.php' );
 	
 	/* Check if users can register. */
 	$registration = get_option( 'rb_agencyinteract_options' );
 	$rb_agency_interact_option_registerallow = $registration["rb_agencyinteract_option_registerallow"];
 	// Facebook Login Integration
+	if(isset($registration['rb_agencyinteract_option_fb_registerallow']))
 	$rb_agency_interact_option_fb_registerallow = $registration['rb_agencyinteract_option_fb_registerallow'];
 	$rb_agency_interact_option_fb_app_id = $registration['rb_agencyinteract_option_fb_app_id'];
 	$rb_agency_interact_option_fb_app_secret = $registration['rb_agencyinteract_option_fb_app_secret'];
+	if(isset($registration['rb_agencyinteract_option_fb_app_uri']))
 	$rb_agency_interact_option_fb_app_uri = $registration['rb_agencyinteract_option_fb_app_uri'];
 	$rb_agency_interact_option_registerallowAgentProducer = $registration['rb_agencyinteract_option_registerallowAgentProducer'];
 	if (( current_user_can("create_users") || $rb_agency_interact_option_registerallow )) {
@@ -30,7 +32,7 @@ echo "        <div id=\"rbsign-in\" class=\"inline-block\">\n";
 echo "          <h1>". __("Members Sign in", rb_agency_interact_TEXTDOMAIN). "</h1>\n";
 echo "          <form name=\"loginform\" id=\"login\" action=\"". network_site_url("/"). "profile-login/\" method=\"post\">\n";
 echo "            <div class=\"field-row\">\n";
-echo "              <label for=\"user-name\">". __("Username", rb_agency_interact_TEXTDOMAIN). "</label><input type=\"text\" name=\"user-name\" value=\"". wp_specialchars( $_POST['user-name'], 1 ) ."\" id=\"user-name\" />\n";
+echo "              <label for=\"user-name\">". __("Username", rb_agency_interact_TEXTDOMAIN). "</label><input type=\"text\" name=\"user-name\" value=\"". (isset($_POST['user-name']) ? esc_html($_POST['user-name']):"") ."\" id=\"user-name\" />\n";
 echo "            </div>\n";
 echo "            <div class=\"field-row\">\n";
 echo "              <label for=\"password\">". __("Password", rb_agency_interact_TEXTDOMAIN). "</label><input type=\"password\" name=\"password\" value=\"\" id=\"password\" /> <a href=\"". get_bloginfo('wpurl') ."/wp-login.php?action=lostpassword\">". __("forgot password", rb_agency_interact_TEXTDOMAIN). "?</a>\n";
@@ -41,7 +43,7 @@ echo "            </div>\n";
 echo "            <div class=\"field-row submit-row\">\n";
 echo "              <input type=\"hidden\" name=\"action\" value=\"log-in\" />\n";
 echo "              <input type=\"submit\" value=\"". __("Sign In", rb_agency_interact_TEXTDOMAIN). "\" /><br />\n";
-		if($rb_agency_interact_option_fb_registerallow == 1){
+		if(isset($rb_agency_interact_option_fb_registerallow) && $rb_agency_interact_option_fb_registerallow == 1){
 				echo " <div class=\"fb-login-button\" scope=\"email\" data-show-faces=\"false\" data-width=\"200\" data-max-rows=\"1\"></div>";
 						echo "  <div id=\"fb-root\"></div>
 						
