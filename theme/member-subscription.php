@@ -17,9 +17,9 @@ get_currentuserinfo();
 
 // Get Data
 $rb_agency_interact_options_arr = get_option('rb_agencyinteract_options');
-	$rb_agency_interact_option_subscribeupsell = (int)$rb_agency_interact_options_arr['rb_agencyinteract_option_subscribeupsell'];
-	$rb_agency_interact_option_subscribepaypalemail = $rb_agency_interact_options_arr['rb_agencyinteract_option_subscribepaypalemail'];
-	$rb_agency_interact_option_subscribepagedetails = $rb_agency_interact_options_arr['rb_agencyinteract_option_subscribepagedetails'];
+	$rb_agencyinteract_option_subscribeupsell = (int)$rb_agency_interact_options_arr['rb_agencyinteract_option_subscribeupsell'];
+	$rb_agencyinteract_option_subscribepaypalemail = $rb_agency_interact_options_arr['rb_agencyinteract_option_subscribepaypalemail'];
+	$rb_agencyinteract_option_subscribepagedetails = $rb_agency_interact_options_arr['rb_agencyinteract_option_subscribepagedetails'];
 
 // Were they users or agents?
 $profiletype = (int)get_user_meta($current_user->id, "rb_agency_interact_profiletype", true);
@@ -82,7 +82,7 @@ get_header();
 							echo "  <div class=\"subscription-rate-button\">\n";
 							echo "    <form action=\"https://www.paypal.com/cgi-bin/webscr\" method=\"post\">\n";
 							echo "  	<input type=\"hidden\" name=\"cmd\" value=\"_xclick\" />\n";
-							echo "  	<input type=\"hidden\" name=\"business\" value=\"". $rb_agency_interact_option_subscribepaypalemail ."\" />\n";
+							echo "  	<input type=\"hidden\" name=\"business\" value=\"". $rb_agencyinteract_option_subscribepaypalemail ."\" />\n";
 							echo "  	<input type=\"hidden\" name=\"item_name\" value=\"". $data['SubscriptionRateTitle'] ."\" />\n";
 							echo "  	<input type=\"hidden\" name=\"item_number\" value=\"". $data['SubscriptionRateID'] ."\" />\n";
 							echo "  	<input type=\"hidden\" name=\"custom\" value=\"". $current_user->ID ."\" />\n";
@@ -105,7 +105,7 @@ get_header();
 					}		
 						
 					echo "  <div id=\"subscription-customtext\">\n";
-						$Page = get_page($rb_agency_interact_option_subscribepagedetails);
+						$Page = get_page($rb_agencyinteract_option_subscribepagedetails);
 						echo apply_filters('the_content', $Page->post_content);
 					echo " </div>";
 			
@@ -136,9 +136,9 @@ get_header();
 	
 // Get Sidebar 
 $rb_agency_interact_options_arr = get_option('rb_agencyinteract_options');
-	$rb_agency_interact_option_profilemanage_sidebar = $rb_agency_interact_options_arr['rb_agencyinteract_option_profilemanage_sidebar'];
+	$rb_agencyinteract_option_profilemanage_sidebar = $rb_agency_interact_options_arr['rb_agencyinteract_option_profilemanage_sidebar'];
 	$LayoutType = "";
-	if ($rb_agency_interact_option_profilemanage_sidebar) {
+	if ($rb_agencyinteract_option_profilemanage_sidebar) {
 		$LayoutType = "profile";
 		get_sidebar(); 
 	}

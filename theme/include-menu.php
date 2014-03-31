@@ -53,9 +53,9 @@
 		}
                 
 		$rb_agency_interact_options_arr = get_option('rb_agencyinteract_options');
-			$rb_agency_interact_option_subscribeupsell = (int)$rb_agency_interact_options_arr['rb_agencyinteract_option_subscribeupsell'];
+			$rb_agencyinteract_option_subscribeupsell = (int)$rb_agency_interact_options_arr['rb_agencyinteract_option_subscribeupsell'];
 
-		if ($rb_agency_interact_option_subscribeupsell) {
+		if ($rb_agencyinteract_option_subscribeupsell) {
 			// Is there a subscription?
 			$sql = "SELECT SubscriberDateExpire FROM ". table_agencyinteract_subscription ." WHERE SubscriberDateExpire >= NOW() AND ProfileID =  ". $current_user->ID ." ORDER BY SubscriberDateExpire DESC LIMIT 1";
 			$results = mysql_query($sql);

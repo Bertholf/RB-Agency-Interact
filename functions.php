@@ -155,10 +155,10 @@
 		function rb_agency_interact_login_movepage( $url ) {
 			global $action;
 			$rb_agency_options_arr = get_option('rb_agency_options');
-			$rb_agency_option_redirect_custom_logins = (int)$rb_agency_options_arr["rb_agency_option_redirect_custom_login"];
+				$rb_agency_option_redirect_custom_logins = isset($rb_agency_options_arr['rb_agency_option_redirect_custom_login']) ? $rb_agency_options_arr['rb_agency_option_redirect_custom_login'] :0;
 
 			if (empty($action) || 'login' == $action) {
-				if($rb_agency_option_redirect_custom_logins == 1){
+				if($rb_agency_option_redirect_custom_logins == 0){
 					wp_safe_redirect(get_bloginfo("wpurl"). "/profile-login/");
 				}
 				die;
@@ -166,6 +166,7 @@
 		}
 
 	// Rewrite Login
+	// TODO : Refactor
 	add_action( 'init', 'rb_agency_interact_login_rewrite' );
 		function rb_agency_interact_login_rewrite() {
 			add_rewrite_rule(get_bloginfo("wpurl"). "profile-register/?$", 'wp-login.php', 'top');
@@ -183,8 +184,10 @@
 				$user_info = get_userdata( $user_ID ); 
 
 				if( current_user_can( 'manage_options' )) {
-					header("Location: ". get_bloginfo("wpurl"). "/wp-admin/");
+					// Is Admin, Redirect to Admin Area
+					wp_safe_redirect(get_bloginfo("wpurl"). "/wp-admin/");
 				} elseif ( strtotime( $user_info->user_registered ) > ( time() - 172800 ) ) {
+					// TODO REFACTOR
 					// If user_registered date/time is less than 48hrs from now
 					// Message will show for 48hrs after registration
 					header("Location: ". get_bloginfo("wpurl"). "/profile-member/account/");
@@ -241,7 +244,7 @@
 
 
 	// function for checking male and female filter
-	if ( !function_exists('gender_filter') ) {  
+	if ( !function_exists('gender_filter') ) {
 		function gender_filter($gender=0) {
 			global $wpdb;
 			

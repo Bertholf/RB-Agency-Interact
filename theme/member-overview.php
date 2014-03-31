@@ -18,12 +18,12 @@ get_currentuserinfo();
 $rb_agency_options_arr 							= get_option('rb_agency_options');
 $rb_agency_option_profilenaming 				= (int)$rb_agency_options_arr['rb_agency_option_profilenaming'];
 $rb_agency_interact_options_arr 					= get_option('rb_agencyinteract_options');
-$rb_agency_interact_option_registerallow 		= (int)$rb_agency_interact_options_arr['rb_agencyinteract_option_registerallow'];
-$rb_agency_interact_option_overviewpagedetails 	= (int)$rb_agency_interact_options_arr['rb_agencyinteract_option_overviewpagedetails'];
+$rb_agencyinteract_option_registerallow 		= (int)$rb_agency_interact_options_arr['rb_agencyinteract_option_registerallow'];
+$rb_agencyinteract_option_overviewpagedetails 	= (int)$rb_agency_interact_options_arr['rb_agencyinteract_option_overviewpagedetails'];
 
 // Check Sidebar
 $rb_agency_interact_options_arr = get_option('rb_agencyinteract_options');
-$rb_agency_interact_option_profilemanage_sidebar = $rb_agency_interact_options_arr['rb_agencyinteract_option_profilemanage_sidebar'];
+$rb_agencyinteract_option_profilemanage_sidebar = $rb_agency_interact_options_arr['rb_agencyinteract_option_profilemanage_sidebar'];
 $rb_subscription = $rb_agency_options_arr['rb_agencyinteract_option_profilelist_subscription'];
 
 // Were they users or agents?
@@ -110,12 +110,12 @@ get_header();
 					echo "<h2><a href=\"". $rb_agency_interact_WPURL ."/profile-search/\">". __("Begin Your Search", rb_agency_interact_TEXTDOMAIN) ."</a></h2>";
 					
 					echo " <div id=\"subscription-customtext\">\n";
-					$Page = get_page($rb_agency_interact_option_subscribepagedetails);
+					$Page = get_page($rb_agencyinteract_option_subscribepagedetails);
 					echo apply_filters('the_content', $Page->post_content);
 					echo " </div>";
 
 				} else {
-					if ($rb_agency_interact_option_registerallow == 1) {
+					if ($rb_agencyinteract_option_registerallow == 1) {
 
 						// Users CAN register themselves
 						echo "". __("We have you registered as", rb_agency_interact_TEXTDOMAIN) ." <strong>". $profiletypetext ."</strong>";

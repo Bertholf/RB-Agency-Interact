@@ -28,7 +28,7 @@
 		$rb_agency_option_locationtimezone 		= (int)$rb_agency_options_arr['rb_agency_option_locationtimezone'];
       
 	$rb_agency_interact_options_arr = get_option('rb_agencyinteract_options');
-	$rb_agency_interact_option_registerallow = (int)$rb_agency_interact_options_arr['rb_agencyinteract_option_registerallow'];
+	$rb_agencyinteract_option_registerallow = (int)$rb_agency_interact_options_arr['rb_agencyinteract_option_registerallow'];
 
 	// Get Data
 	$query = "SELECT * FROM " . table_agency_profile . " WHERE ProfileUserLinked='$ProfileUserLinked'";
@@ -212,7 +212,7 @@
 		echo "		<div><input type=\"text\" id=\"ProfileContactLinkFlickr\" name=\"ProfileContactLinkFlickr\" value=\"". $ProfileContactLinkFlickr ."\" /></div>\n";
 		echo "	</div>\n";
 		} 
-		if ($rb_agency_interact_option_registerallow  == 1) {
+		if ($rb_agencyinteract_option_registerallow  == 1) {
 			echo "	<div id=\"profile-username\" class=\"rbfield rbtext rbsingle\">\n";
 			echo "		<label>". __("Username", rb_agency_interact_TEXTDOMAIN) ."</label>\n";
 			echo "		<div>\n";

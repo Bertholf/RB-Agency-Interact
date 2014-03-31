@@ -15,7 +15,7 @@ get_currentuserinfo();
 $rb_agency_options_arr = get_option('rb_agency_options');
 	$rb_agency_option_profilenaming 		= (int)$rb_agency_options_arr['rb_agency_option_profilenaming'];
 $rb_agency_interact_options_arr = get_option('rb_agencyinteract_options');
-	$rb_agency_interact_option_registerallow = (int)$rb_agency_interact_options_arr['rb_agencyinteract_option_registerallow'];
+	$rb_agencyinteract_option_registerallow = (int)$rb_agency_interact_options_arr['rb_agencyinteract_option_registerallow'];
 
 // Were they users or agents?
 $profiletype = (int)get_user_meta($current_user->id, "rb_agency_interact_profiletype", true);
@@ -82,7 +82,7 @@ if (isset($_POST['action'])) {
 	$ProfileLocationCountry		=$_POST['ProfileLocationCountry'];
 	$ProfileLanguage			=$_POST['ProfileLanguage'];
 
-	if ($rb_agency_interact_option_registerapproval == 1) {
+	if ($rb_agencyinteract_option_registerapproval == 1) {
 
 		// 0 Inactive | 1 Active | 2 Archived | 3 Pending Approval
 		$ProfileIsActive			= 0; 
@@ -321,7 +321,7 @@ get_header();
 
 // Check Sidebar
 $rb_agency_interact_options_arr = get_option('rb_agencyinteract_options');
-$rb_agency_interact_option_profilemanage_sidebar = $rb_agency_interact_options_arr['rb_agencyinteract_option_profilemanage_sidebar'];
+$rb_agencyinteract_option_profilemanage_sidebar = $rb_agency_interact_options_arr['rb_agencyinteract_option_profilemanage_sidebar'];
 $content_class = "";
 if (is_user_logged_in()) {
 	$content_class = "eight";
@@ -373,7 +373,7 @@ if (is_user_logged_in()) {
 						
 			  	} // is there record?
 			} else {
-			  if ($rb_agency_interact_option_registerallow  == 1) {
+			  if ($rb_agencyinteract_option_registerallow  == 1) {
 				// Users CAN register themselves
 				
 				// No Record Exists, register them
@@ -406,7 +406,7 @@ if (is_user_logged_in()) {
 
 		// Get Sidebar 
 		$LayoutType = "";
-		if ($rb_agency_interact_option_profilemanage_sidebar) {
+		if ($rb_agencyinteract_option_profilemanage_sidebar) {
 			$LayoutType = "profile";
 			get_sidebar();
 		}

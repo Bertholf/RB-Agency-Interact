@@ -96,9 +96,9 @@ get_header();
 
 // Check Sidebar
 $rb_agency_interact_options_arr = get_option('rb_agencyinteract_options');
-$rb_agency_interact_option_profilemanage_sidebar = $rb_agency_interact_options_arr['rb_agencyinteract_option_profilemanage_sidebar'];
+$rb_agencyinteract_option_profilemanage_sidebar = $rb_agency_interact_options_arr['rb_agencyinteract_option_profilemanage_sidebar'];
 
-if($rb_agency_interact_option_profilemanage_sidebar){
+if($rb_agencyinteract_option_profilemanage_sidebar){
 	$column_class = primary_class();
 } else {
 	$column_class = fullwidth_class();
@@ -165,7 +165,7 @@ if($rb_agency_interact_option_profilemanage_sidebar){
 
 		// Get Sidebar 
 		$LayoutType = "";
-		if ($rb_agency_interact_option_profilemanage_sidebar) {
+		if ($rb_agencyinteract_option_profilemanage_sidebar) {
 			$LayoutType = "profile";
 			get_sidebar();
 		}
