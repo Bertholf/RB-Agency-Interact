@@ -156,9 +156,15 @@
 	add_filter("login_init", "rb_agency_interact_login_movepage", 10, 2);
 		function rb_agency_interact_login_movepage( $url ) {
 			global $action;
-		
+			$rb_agency_options_arr = get_option('rb_agency_options');
+			$rb_agency_option_redirect_custom_logins = (int)$rb_agency_options_arr["rb_agency_option_redirect_custom_login"];
+	        
+		    
 			if (empty($action) || 'login' == $action) {
-				wp_safe_redirect(get_bloginfo("wpurl"). "/profile-login/");
+				if($rb_agency_option_redirect_custom_logins == 1){
+					wp_safe_redirect(get_bloginfo("wpurl"). "/profile-login/");
+				
+				}
 				die;
 			}
 		}
@@ -174,6 +180,11 @@
 	add_filter('login_redirect', 'rb_agency_interact_login_redirect', 10, 3);	
 		function rb_agency_interact_login_redirect() {
 			global $user_ID, $current_user, $wp_roles;
+			$rb_agency_options_arr = get_option('rb_agency_options');
+			$rb_agency_option_redirect_custom_logins = $rb_agency_options_arr["rb_agency_option_redirect_custom_login"];
+	    
+
+			 
 			if( $user_ID ) {
 				$user_info = get_userdata( $user_ID ); 
 
