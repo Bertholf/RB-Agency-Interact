@@ -193,10 +193,10 @@
 
 	
 	$rb_agency_interact_options_arr = get_option('rb_agencyinteract_options');
-	$rb_agency_interact_option_registerallow = (int)$rb_agency_interact_options_arr['rb_agency_interact_option_registerallow'];
+	$rb_agencyinteract_option_registerallow = (int)$rb_agency_interact_options_arr['rb_agencyinteract_option_registerallow'];
 
 	
-	  if ($rb_agency_interact_option_registerallow  == 1) {
+	  if ($rb_agencyinteract_option_registerallow  == 1) {
 		echo "	<div id=\"profile-username\" class=\"rbfield rbtext rbsingle\">\n";
 		echo "		<label>". __("Username", rb_agency_interact_TEXTDOMAIN) ."</label>\n";
 		echo "		<div>\n";

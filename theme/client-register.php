@@ -8,38 +8,23 @@
 	$rb_agency_interact_options_arr = get_option('rb_agencyinteract_options');
 
 	//Sidebar
-	$rb_agency_interact_option_profilemanage_sidebar = $rb_agency_interact_options_arr['rb_agencyinteract_option_profilemanage_sidebar'];
-	if($rb_agency_interact_option_profilemanage_sidebar){
+	$rb_agencyinteract_option_profilemanage_sidebar = $rb_agency_interact_options_arr['rb_agencyinteract_option_profilemanage_sidebar'];
+	if($rb_agencyinteract_option_profilemanage_sidebar){
 		$column_class = primary_class();
 	} else {
 		$column_class = fullwidth_class();
 	}
-		
-		//Facebook Integration
-		$rb_agency_interact_option_fb_app_id = $rb_agency_interact_options_arr['rb_agencyinteract_option_fb_app_id'];
-		$rb_agency_interact_option_fb_app_secret = $rb_agency_interact_options_arr['rb_agencyinteract_option_fb_app_secret'];
-		$rb_agency_interact_option_fb_app_register_uri = $rb_agency_interact_options_arr['rb_agencyinteract_option_fb_app_register_uri'];
-	    $rb_agency_interact_option_fb_registerallow = $rb_agency_interact_options_arr['rb_agencyinteract_option_fb_registerallow'];
 
 	    //+Registration
 	    // - show/hide registration for Agent/Producers
-		$rb_agency_interact_option_registerallowAgentProducer = $registration['rb_agencyinteract_option_registerallowAgentProducer'];
+		$rb_agencyinteract_option_registerallowAgentProducer = isset($rb_agency_interact_options_arr['rb_agencyinteract_option_registerallowAgentProducer'])?$rb_agency_interact_options_arr['rb_agencyinteract_option_registerallowAgentProducer']:0;
 
 		// - show/hide  self-generate password
-		$rb_agency_interact_option_registerconfirm = (int)$rb_agency_interact_options_arr['rb_agencyinteract_option_registerconfirm'];
-		
-	   	if($rb_agency_interact_option_fb_registerallow == 1){
-		 	if(!class_exists("FacebookApiException")){   
-		   		require_once(ABSPATH."wp-content/plugins/".rb_agency_interact_TEXTDOMAIN."/tasks/facebook.php");
-		 	}
-	    }
+		$rb_agencyinteract_option_registerconfirm = (int)$rb_agency_interact_options_arr['rb_agencyinteract_option_registerconfirm'];
 
 	/* Check if users can register. */
-	$registration = get_option( 'users_can_register' );	
-	
-	define('FACEBOOK_APP_ID', $rb_agency_interact_option_fb_app_id);
-	define('FACEBOOK_SECRET', $rb_agency_interact_option_fb_app_secret);
-	
+	$registration = get_option( 'users_can_register' );
+
 	function parse_signed_request($signed_request, $secret) {
 		list($encoded_sig, $payload) = explode('.', $signed_request, 2); 
 		
@@ -75,7 +60,7 @@
 		$ProfileGender = $_POST['ProfileGender'];
 		$user_pass  = NULL;
 		
-		if ($rb_agency_interact_option_registerconfirm == 1) {
+		if ($rb_agencyinteract_option_registerconfirm == 1) {
 			$user_pass = $_POST['profile_password'];
 		} else {
 			$user_pass = wp_generate_password();
@@ -185,7 +170,7 @@
 			add_user_meta($new_user, 'rb_agency_new_registeredUser',$arr);			
 			
 			// Log them in if no confirmation required.			
-			if ($rb_agency_interact_option_registerconfirm == 1) {
+			if ($rb_agencyinteract_option_registerconfirm == 1) {
 
 				global $error;
 				
@@ -198,7 +183,7 @@
 		}
 		
 		// Log them in if no confirmation required.
-		if ($rb_agency_interact_option_registerconfirm == 1) {
+		if ($rb_agencyinteract_option_registerconfirm == 1) {
 			if($login){
 				header("Location: ". get_bloginfo("wpurl"). "/profile-member/");
 			}
@@ -270,7 +255,7 @@
 	echo "       	<div><input class=\"text-input\" name=\"profile_user_name\" type=\"text\" id=\"profile_user_name\" value=\""; if ( $error ) echo wp_specialchars( $_POST['profile_user_name'], 1 ); echo "\" /></div>\n";
 	echo "       </div><!-- #rofile-username -->\n";
 			
-	if ($rb_agency_interact_option_registerconfirm == 1) {
+	if ($rb_agencyinteract_option_registerconfirm == 1) {
 	echo "       <div id=\"profile-password\" class=\"rbfield rbpassword rbsingle\">\n";
 	echo "       	<label for=\"profile_password\">". __("Password (required)", rb_agency_interact_TEXTDOMAIN) ."</label>\n";
 	echo "       	<div><input class=\"text-input\" name=\"profile_password\" type=\"password\" id=\"profile_password\" value=\""; if ( $error ) echo wp_specialchars( $_POST['profile_password'], 1 ); echo "\" /></div>\n";
@@ -366,43 +351,7 @@
 					// if ( current_user_can("create_users") ) {  _e("Add User", rb_agency_interact_TEXTDOMAIN); } else {  _e("Register", rb_agency_interact_TEXTDOMAIN); } echo "\" />\n";
 					
 					wp_nonce_field("add-user");
-					$fb_app_register_uri = "";
 
-					if($rb_agency_interact_option_fb_app_register_uri == 1){
-						$fb_app_register_uri = $rb_agency_interact_option_fb_app_register_uri;
-					}else{
-						$fb_app_register_uri = network_site_url("/")."profile-register/";
-					}
-
-					// Allow facebook login/registration
-					if($rb_agency_interact_option_fb_registerallow ==1){
-						echo "<div>\n";
-						echo "<span>Or</span>\n";
-						echo "<div id=\"fb_RegistrationForm\">\n";
-						if ($rb_agency_interact_option_registerconfirm == 1) {	 // With custom password fields
-							echo "<iframe src=\"https://www.facebook.com/plugins/registration?client_id=".$rb_agency_interact_option_fb_app_id."&redirect_uri=".$fb_app_register_uri."&fields=[ {'name':'name'}, {'name':'email'}, {'name':'location'}, {'name':'gender'}, {'name':'birthday'}, {'name':'username',  'description':'Username',  'type':'text'},{'name':'password'},{'name':'tos','description':'I agree to the terms of service','type':'checkbox'}]\"		 
-								  scrolling=\"auto\"
-								  frameborder=\"no\"
-								  style=\"border:none\"
-								  allowTransparency=\"true\"
-								  width=\"100%\"
-								  height=\"330\">
-							</iframe>";
-						}else{
-							echo "<iframe src=\"https://www.facebook.com/plugins/registration?client_id=".$rb_agency_interact_option_fb_app_id."&redirect_uri=".$fb_app_register_uri."&fields=[ {'name':'name'}, {'name':'email'}, {'name':'location'}, {'name':'gender'}, {'name':'birthday'}, {'name':'username',  'description':'Username',  'type':'text'},{'name':'password'},{'name':'tos','description':'I agree to the terms of service','type':'checkbox'}]\"		 
-								  scrolling=\"auto\"
-								  frameborder=\"no\"
-								  style=\"border:none\"
-								  allowTransparency=\"true\"
-								  width=\"100%\"
-								  height=\"330\">
-							</iframe>";
-						}
-					
-						echo "</div>\n";
-						
-					}
-					
 	echo "       	<input name=\"action\" type=\"hidden\" id=\"action\" value=\"adduser\" />\n";
 	echo "       </div><!-- #profile-submit -->\n";
 	// Facebook connect
@@ -425,7 +374,7 @@ echo "</div><!-- #container -->\n";
    
 // Get Sidebar 
 	$LayoutType = "";
-	if ($rb_agency_interact_option_profilemanage_sidebar) {
+	if ($rb_agencyinteract_option_profilemanage_sidebar) {
 		$LayoutType = "profile";
 		get_sidebar(); 
 	}
