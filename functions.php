@@ -4,26 +4,24 @@
 
 	add_action('admin_head', 'rb_agency_interact_admin_head');
 		function rb_agency_interact_admin_head(){
-		  if( is_admin() ) {
-			echo "<link rel=\"stylesheet\" href=\"". rb_agency_interact_BASEDIR ."style/admin.css\" type=\"text/css\" media=\"screen\" />\n";
-		  }
+			if( is_admin() ) {
+				echo "<link rel=\"stylesheet\" href=\"". rb_agency_interact_BASEDIR ."style/admin.css\" type=\"text/css\" media=\"screen\" />\n";
+			}
 		}
-	
+
 // *************************************************************************************************** //
 // Page Head Section
 
 	add_action('wp_head', 'rb_agency_interact_inserthead');
 		// Call Custom Code to put in header
 		function rb_agency_interact_inserthead() {
-			 if(!wp_script_is('jquery')) {
-			echo "<script type=\"text/javascript\" src=\"". rb_agency_interact_BASEDIR ."style/jquery.1.8.js\"></script>";
-			
-			} 
-		  if( !is_admin() ) {
-			echo "<link rel=\"stylesheet\" href=\"". rb_agency_interact_BASEDIR ."style/style.css\" type=\"text/css\" media=\"screen\" />\n";
-			echo "<script type=\"text/javascript\" src=\"". rb_agency_interact_BASEDIR ."jquery-page.js\"></script>";
-		  }
-		 
+			if(!wp_script_is('jquery')) {
+				echo "<script type=\"text/javascript\" src=\"". rb_agency_interact_BASEDIR ."style/jquery.1.8.js\"></script>";
+			}
+			if( !is_admin() ) {
+				echo "<link rel=\"stylesheet\" href=\"". rb_agency_interact_BASEDIR ."style/style.css\" type=\"text/css\" media=\"screen\" />\n";
+				echo "<script type=\"text/javascript\" src=\"". rb_agency_interact_BASEDIR ."jquery-page.js\"></script>";
+			}
 		}
 
 // *************************************************************************************************** //
@@ -37,11 +35,11 @@
 			$newrules['profile-member/(.*)/(.*)$'] = 'index.php?type=$matches[0]';
 			$newrules['profile-member'] = 'index.php?type=profileoverview';
 			$newrules['profile-register/(.*)$'] = 'index.php?type=profileregister&typeofprofile=$matches[1]';
-			
+
 			$newrules['profile-login'] = 'index.php?type=profilelogin';
 			return $newrules + $rules;
 		}
-		
+
 	// Get Veriables & Identify View Type
 	add_action( 'query_vars', 'rb_agency_interact_query_vars' );
 		function rb_agency_interact_query_vars( $query_vars ) {
@@ -49,48 +47,48 @@
 			$query_vars[] = 'typeofprofile';
 			return $query_vars;
 		}
-	
+
 	// Set Custom Template
 	add_filter('template_include', 'rb_agency_interact_template_include', 1, 1); 
 		function rb_agency_interact_template_include( $template ) {
 			if ( get_query_var( 'type' ) ) {
-			  if (get_query_var( 'type' ) == "profileoverview") {
-				return dirname(__FILE__) . '/theme/member-overview.php'; 
-			  } elseif (get_query_var( 'type' ) == "account") {
-				return dirname(__FILE__) . '/theme/member-account.php'; 
-			  } elseif (get_query_var( 'type' ) == "subscription") {
-				return dirname(__FILE__) . '/theme/member-subscription.php'; 
-			  } elseif (get_query_var( 'type' ) == "manage") {
-				return dirname(__FILE__) . '/theme/member-profile.php'; 
-			  } elseif (get_query_var( 'type' ) == "media") {
-				return dirname(__FILE__) . '/theme/member-media.php'; 
-			  } elseif (get_query_var( 'type' ) == "profilelogin") {
-				return dirname(__FILE__) . '/theme/member-login.php'; 
-			  } elseif (get_query_var( 'typeofprofile' ) == "client") {
-				return dirname(__FILE__) . '/theme/client-register.php'; 
-			  } elseif (get_query_var( 'typeofprofile' ) == "talent") {
-				return dirname(__FILE__) . '/theme/member-register.php'; 
-			  } elseif (get_query_var( 'type' ) == "dashboard") {
+				if (get_query_var( 'type' ) == "profileoverview") {
+					return dirname(__FILE__) . '/theme/member-overview.php'; 
+				} elseif (get_query_var( 'type' ) == "account") {
+					return dirname(__FILE__) . '/theme/member-account.php'; 
+				} elseif (get_query_var( 'type' ) == "subscription") {
+					return dirname(__FILE__) . '/theme/member-subscription.php'; 
+				} elseif (get_query_var( 'type' ) == "manage") {
+					return dirname(__FILE__) . '/theme/member-profile.php'; 
+				} elseif (get_query_var( 'type' ) == "media") {
+					return dirname(__FILE__) . '/theme/member-media.php'; 
+				} elseif (get_query_var( 'type' ) == "profilelogin") {
+					return dirname(__FILE__) . '/theme/member-login.php'; 
+				} elseif (get_query_var( 'typeofprofile' ) == "client") {
+					return dirname(__FILE__) . '/theme/client-register.php'; 
+				} elseif (get_query_var( 'typeofprofile' ) == "talent") {
+					return dirname(__FILE__) . '/theme/member-register.php'; 
+				} elseif (get_query_var( 'type' ) == "dashboard") {
 					return dirname(__FILE__) . '/theme/view-dashboard.php';
-			 }
+				}
 			}
 			return $template;
 		}
-	
+
 	// Remember to flush_rules() when adding rules
 	add_filter('init','rb_agency_interact_flushrules');
 		function rb_agency_interact_flushRules() {
 			global $wp_rewrite;
 			$wp_rewrite->flush_rules();
 		}
-	
-	
+
+
 	/*/
 	 *  Fix form post url for multi language.
 	/*/
 /*
 	function rb_agency_interact_postURILanguage($request_URI){
-	     if(!in_array(substr($_SERVER['REQUEST_URI'],1,2), array("en","nl"))){
+		 if(!in_array(substr($_SERVER['REQUEST_URI'],1,2), array("en","nl"))){
 			if (function_exists('trans_getLanguage')) {
 				 if(qtrans_getLanguage()=='nl') {
 					return "/".qtrans_getLanguage();
@@ -99,7 +97,7 @@
 					return "/".qtrans_getLanguage();
 				}
 			 }
-	    }
+		}
 	}
 	*/
 
@@ -110,16 +108,16 @@
 	if ( !function_exists('wp_new_user_notification') ) {  
 		function wp_new_user_notification( $user_id, $plaintext_pass = '' ) {  
 			$user = new WP_User($user_id);  
-	  
+
 			$user_login = stripslashes($user->user_login);  
 			$user_email = stripslashes($user->user_email);  
-	  
+
 			$message  = sprintf(__('New user registration on your blog %s:'), get_option('blogname')) . "\r\n\r\n";  
 			$message .= sprintf(__('Username: %s'), $user_login) . "\r\n\r\n";  
 			$message .= sprintf(__('E-mail: %s'), $user_email) . "\r\n";  
-	  
+
 			@wp_mail(get_option('admin_email'), sprintf(__('[%s] New User Registration'), get_option('blogname')), $message);  
-	  
+
 			if ( empty($plaintext_pass) )  
 				return;  
 			$message  = __('Hi there,') . "\r\n\r\n";  
@@ -131,39 +129,37 @@
 			$message .= __('Regards,')."\r\n";
 			$message .= get_option('blogname') . __(' Team') ."\r\n"; 
 			$message .= get_option('home') ."\r\n"; 
-	 
-	 		$headers = 'From: '. get_option('blogname') .' <'. get_option('admin_email') .'>' . "\r\n";
+
+			$headers = 'From: '. get_option('blogname') .' <'. get_option('admin_email') .'>' . "\r\n";
 			wp_mail($user_email, sprintf(__('%s Registration Successful! Login Details'), get_option('blogname')), $message, $headers);  
-	  
-		}  
-	}  
+
+		}
+	}
 	// Make Directory for new profile
-     function rb_agency_interact_checkdir($ProfileGallery){
-	      	
-			if (!is_dir(rb_agency_UPLOADPATH . $ProfileGallery)) {
-				mkdir(rb_agency_UPLOADPATH . $ProfileGallery, 0755);
-				chmod(rb_agency_UPLOADPATH . $ProfileGallery, 0777);
-			}
-			return $ProfileGallery;
-     }
+	function rb_agency_interact_checkdir($ProfileGallery){
+
+		if (!is_dir(rb_agency_UPLOADPATH . $ProfileGallery)) {
+			mkdir(rb_agency_UPLOADPATH . $ProfileGallery, 0755);
+			chmod(rb_agency_UPLOADPATH . $ProfileGallery, 0777);
+		}
+		return $ProfileGallery;
+	}
 
 
 
 // *************************************************************************************************** //
 // Functions
 
-	// Move Login Page	
+	// Move Login Page
 	add_filter("login_init", "rb_agency_interact_login_movepage", 10, 2);
 		function rb_agency_interact_login_movepage( $url ) {
 			global $action;
 			$rb_agency_options_arr = get_option('rb_agency_options');
 			$rb_agency_option_redirect_custom_logins = (int)$rb_agency_options_arr["rb_agency_option_redirect_custom_login"];
-	        
-		    
+
 			if (empty($action) || 'login' == $action) {
 				if($rb_agency_option_redirect_custom_logins == 1){
 					wp_safe_redirect(get_bloginfo("wpurl"). "/profile-login/");
-				
 				}
 				die;
 			}
@@ -174,17 +170,15 @@
 		function rb_agency_interact_login_rewrite() {
 			add_rewrite_rule(get_bloginfo("wpurl"). "profile-register/?$", 'wp-login.php', 'top');
 		}
-		
+
 
 	// Redirect after Login
-	add_filter('login_redirect', 'rb_agency_interact_login_redirect', 10, 3);	
+	add_filter('login_redirect', 'rb_agency_interact_login_redirect', 10, 3);
 		function rb_agency_interact_login_redirect() {
 			global $user_ID, $current_user, $wp_roles;
 			$rb_agency_options_arr = get_option('rb_agency_options');
 			$rb_agency_option_redirect_custom_logins = $rb_agency_options_arr["rb_agency_option_redirect_custom_login"];
-	    
 
-			 
 			if( $user_ID ) {
 				$user_info = get_userdata( $user_ID ); 
 
@@ -246,10 +240,10 @@
 
 
 
-    // function for checking male and female filter
+	// function for checking male and female filter
 	if ( !function_exists('gender_filter') ) {  
 		function gender_filter($gender=0) {
-		    global $wpdb;
+			global $wpdb;
 			
 			$gender = "SELECT GenderTitle FROM rb_agency_data_gender WHERE GenderID = ". $gender ." LIMIT 1";
 			$results = $wpdb->get_results($gender);
@@ -277,7 +271,7 @@
 			 *    Get data for displaying and pass to array
 			 *    for comparison
 			 */
-			 if($ID != 0){
+			if($ID != 0){
 					 
 				if($type == "dropdown"){
 					$result = mysql_query("SELECT ProfileCustomValue FROM "
@@ -295,38 +289,36 @@
 
 				while($row = mysql_fetch_assoc($result)){
 					if($type == "textbox"){
-					 return $row["ProfileCustomValue"];
+						return $row["ProfileCustomValue"];
 					} elseif($type == "dropdown") {
-					 return "selected";
+						return "selected";
 					}
 				}
 
 				if($type == "textbox"){
-				     return $field;
+					return $field;
 				} elseif($type == "dropdown") {
-				     return "";
+					return "";
 				}
-					   
-			 } else {
-			 	
+
+			} else {
 				if($type == "textbox"){
-					 return $field;
+					return $field;
 				} elseif($type == "dropdown") {
-					 return "";
+					return "";
 				}
-				
-			 }
+			}
 		}
-	}	
+	}
 
 	// retrieving data type title
 	if ( !function_exists('retrieve_title') ) {  
 		function retrieve_title($id=0) {
-		   global $wpdb;
-		   /* 
-		    * return title
-			*/
+			global $wpdb;
+
+			//return title
 			$check_type = "SELECT DataTypeTitle FROM ". table_agency_data_type ." WHERE DataTypeID = " . $id;
+
 			$check_query = mysql_query($check_type);
 			if(mysql_num_rows($check_query) > 0){
 				$fetch = mysql_fetch_assoc($check_query);
@@ -340,26 +332,22 @@
 	// Remove user Profile
 
 	function Profile_Account(){  
-	    global $rb_profile_delete;
-	    echo "<h2>Account Settings</h2><br/>";
+		global $rb_profile_delete;
+		echo "<h2>Account Settings</h2><br/>";
 		echo "<input type='hidden' id='delete_opt' value='".$rb_profile_delete."'>";
-	    echo "<input id='self_del' type='button' name='remove' value='Remove My Profile' class='btn-primary'>";
-		
+		echo "<input id='self_del' type='button' name='remove' value='Remove My Profile' class='btn-primary'>";
+
 	}
 
 	function Delete_Owner(){
-		
+
 		$page_title = 'RB Account';
-	 	$menu_title = 'Account';
+		$menu_title = 'Account';
 		$capability = 'subscriber';
 		$menu_slug = 'delete_profile';
 
-		add_object_page( $page_title, 
-		                 $menu_title, 
-				 $capability, 
-				 $menu_slug,
-				 'Profile_Account');
-		
+		add_object_page( $page_title, $menu_title, $capability, $menu_slug, 'Profile_Account');
+
 	}
 
 	/*
@@ -368,11 +356,11 @@
 	 */
 
 	$rb_profile_delete = isset($rb_agency_options_arr['rb_agency_option_profiledeletion']) ? $rb_agency_options_arr['rb_agency_option_profiledeletion'] : 1;
-	 
+
 	if($rb_profile_delete == 2 || $rb_profile_delete == 3){
-			
-			add_action('admin_menu', 'Delete_Owner');	
-			
+
+			add_action('admin_menu', 'Delete_Owner');
+
 			add_action('wp_before_admin_bar_render', 'self_delete');
 			if(is_admin()){
 				add_action( 'admin_print_footer_scripts', 'delete_script' );
@@ -381,54 +369,53 @@
 			}
 	}
 
-	
 
 
 function delete_script() {?>
 
-    <script type="text/javascript">
-        jQuery(document).ready(function(){
+	<script type="text/javascript">
+		jQuery(document).ready(function(){
 
-            jQuery("#self_del").click(function(){
+			jQuery("#self_del").click(function(){
 
-                var continue_delete = confirm("Are you sure you want to delete your profile?");
+				var continue_delete = confirm("Are you sure you want to delete your profile?");
 
-                if (continue_delete) {	
-                        // ajax delete
-					// alert(jQuery('#delete_opt').val());	
-                    jQuery.ajax({
-                        type: "POST",
-                        url: '<?php echo plugins_url( 'rb-agency-interact/theme/userdelete.php' , dirname(__FILE__) ); ?>',
-                        dataType: "html",
-                        data: { ID : "<?php echo rb_agency_get_current_userid(); ?>", OPT: jQuery('#delete_opt').val() },
+				if (continue_delete) {
+					// ajax delete
+					// alert(jQuery('#delete_opt').val());
+					jQuery.ajax({
+						type: "POST",
+						url: '<?php echo plugins_url( 'rb-agency-interact/theme/userdelete.php' , dirname(__FILE__) ); ?>',
+						dataType: "html",
+						data: { ID : "<?php echo rb_agency_get_current_userid(); ?>", OPT: jQuery('#delete_opt').val() },
 
-                        beforeSend: function() {
-                        },
+						beforeSend: function() {
+						},
 
-                        error: function() {
-                            setTimeout(function(){
-                            alert("Process Failed. Please try again later.");	
-                            }, 1000);
-                        },	
+						error: function() {
+							setTimeout(function(){
+							alert("Process Failed. Please try again later.");
+							}, 1000);
+						},
 
-                        success: function(data) {
-                            if (data != "") {
-                                setTimeout(function(){
-                                	// alert(data);
+						success: function(data) {
+							if (data != "") {
+								setTimeout(function(){
+									// alert(data);
 									//alert("Deletion success! You will now be redirected to our homepage.");
-                                    window.location.href = "<?php echo get_bloginfo('wpurl'); ?>";
-                                }, 1000);
-                            } else {
-                                setTimeout(function(){
-                                    alert("Failed. Please try again later.");
-                                }, 1000);
-                            }
-                        }
-                    });
-                }
-            });	
-        });
-    </script>
+									window.location.href = "<?php echo get_bloginfo('wpurl'); ?>";
+								}, 1000);
+							} else {
+								setTimeout(function(){
+									alert("Failed. Please try again later.");
+								}, 1000);
+							}
+						}
+					});
+				}
+			});	
+		});
+	</script>
 	<?php
 }
 
@@ -460,5 +447,4 @@ function self_delete() {
 
 }
 
-	
 ?>
