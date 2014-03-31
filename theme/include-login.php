@@ -5,8 +5,7 @@
 	/* Check if users can register. */
 	$registration = get_option( 'rb_agencyinteract_options' );
 	$rb_agencyinteract_option_registerallow = $registration["rb_agencyinteract_option_registerallow"];
-
-	$rb_agencyinteract_option_registerallowAgentProducer = $registration['rb_agencyinteract_option_registerallowAgentProducer'];
+	$rb_agencyinteract_option_registerallowAgentProducer = isset($registration['rb_agencyinteract_option_registerallowAgentProducer'])?$registration['rb_agencyinteract_option_registerallowAgentProducer']:0;
 	if (( current_user_can("create_users") || $rb_agencyinteract_option_registerallow )) {
 		$widthClass = "half";
 	} else {
