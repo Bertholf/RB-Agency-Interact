@@ -2,7 +2,7 @@
 	global $user_ID; 
 	global $current_user;
 	get_currentuserinfo();
-	$ProfileUserLinked = $current_user->id;
+	$ProfileUserLinked = $current_user->ID;
 
 	$query1 = "SELECT * FROM " . table_agency_profile . " WHERE ProfileUserLinked='$ProfileUserLinked'";
 	$results1 = mysql_query($query1) or die ( __("Error, query failed", rb_agency_interact_TEXTDOMAIN ));

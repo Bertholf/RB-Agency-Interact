@@ -18,7 +18,7 @@ $rb_agency_interact_options_arr = get_option('rb_agencyinteract_options');
 	$rb_agencyinteract_option_registerallow = (int)$rb_agency_interact_options_arr['rb_agencyinteract_option_registerallow'];
 
 // Were they users or agents?
-$profiletype = (int)get_user_meta($current_user->id, "rb_agency_interact_profiletype", true);
+$profiletype = (int)get_user_meta($current_user->ID, "rb_agency_interact_profiletype", true);
 if(get_user_meta($current_user->ID, 'rb_agency_interact_clientdata', true)) { $profiletypetext = __("Agent/Producer", rb_agency_interact_TEXTDOMAIN); } else { $profiletypetext = __("Model/Talent", rb_agency_interact_TEXTDOMAIN); }
 
 	// Change Title
@@ -101,7 +101,7 @@ if (isset($_POST['action'])) {
 	/* Update user password. */
 	if ( !empty($ProfilePassword) && !empty($ProfilePasswordConfirm) ) {
 		if ( $ProfilePassword == $ProfilePasswordConfirm ) {
-			wp_update_user( array( 'ID' => $current_user->id, 'user_pass' => esc_attr( $ProfilePassword ) ) );
+			wp_update_user( array( 'ID' => $current_user->ID, 'user_pass' => esc_attr( $ProfilePassword ) ) );
 		} else {
 			$have_error = true;
 			$error .= __("The passwords you entered do not match.  Your password was not updated.", rb_agency_interact_TEXTDOMAIN);
@@ -186,12 +186,12 @@ if (isset($_POST['action'])) {
 				}
 			}
 			/* Update WordPress user information. */
-			update_usermeta( $current_user->id, 'first_name', esc_attr( $ProfileContactNameFirst ) );
-			update_usermeta( $current_user->id, 'last_name', esc_attr( $ProfileContactNameLast ) );
-			update_usermeta( $current_user->id, 'nickname', esc_attr( $ProfileContactDisplay ) );
-			update_usermeta( $current_user->id, 'display_name', esc_attr( $ProfileContactDisplay ) );
-			update_usermeta( $current_user->id, 'user_email', esc_attr( $ProfileContactEmail ) );
-			update_usermeta( $current_user->id, 'rb_agency_interact_pgender', esc_attr( $ProfileGender ) );			
+			update_usermeta( $current_user->ID, 'first_name', esc_attr( $ProfileContactNameFirst ) );
+			update_usermeta( $current_user->ID, 'last_name', esc_attr( $ProfileContactNameLast ) );
+			update_usermeta( $current_user->ID, 'nickname', esc_attr( $ProfileContactDisplay ) );
+			update_usermeta( $current_user->ID, 'display_name', esc_attr( $ProfileContactDisplay ) );
+			update_usermeta( $current_user->ID, 'user_email', esc_attr( $ProfileContactEmail ) );
+			update_usermeta( $current_user->ID, 'rb_agency_interact_pgender', esc_attr( $ProfileGender ) );			
 			
 	#DEBUG
 	#echo "<script>alert('".$ProfileUsername."');<\/script>";		 
@@ -208,7 +208,7 @@ if (isset($_POST['action'])) {
 				    die(mysql_error());	 				    				}
 			} else {
 				$user_data = array(
-				    'ID' => $current_user->id,
+				    'ID' => $current_user->ID,
 				    'user_pass' => wp_generate_password(),
 				    'user_login' => $ProfileUsername,
 				    'user_email' => $ProfileContactEmail,
@@ -273,12 +273,12 @@ if (isset($_POST['action'])) {
 		    $results = $wpdb->query($update);             
 		    
 			/* Update WordPress user information. */
-			update_usermeta( $current_user->id, 'first_name', esc_attr( $ProfileContactNameFirst ) );
-			update_usermeta( $current_user->id, 'last_name', esc_attr( $ProfileContactNameLast ) );
-			update_usermeta( $current_user->id, 'nickname', esc_attr( $ProfileContactDisplay ) );
-			update_usermeta( $current_user->id, 'display_name', esc_attr( $ProfileContactDisplay ) );
-			update_usermeta( $current_user->id, 'user_email', esc_attr( $ProfileContactEmail ) );
-			update_usermeta( $current_user->id, 'rb_agency_interact_pgender', esc_attr( $ProfileGender ) );	
+			update_usermeta( $current_user->ID, 'first_name', esc_attr( $ProfileContactNameFirst ) );
+			update_usermeta( $current_user->ID, 'last_name', esc_attr( $ProfileContactNameLast ) );
+			update_usermeta( $current_user->ID, 'nickname', esc_attr( $ProfileContactDisplay ) );
+			update_usermeta( $current_user->ID, 'display_name', esc_attr( $ProfileContactDisplay ) );
+			update_usermeta( $current_user->ID, 'user_email', esc_attr( $ProfileContactEmail ) );
+			update_usermeta( $current_user->ID, 'rb_agency_interact_pgender', esc_attr( $ProfileGender ) );	
 
 			// Add New Custom Field Values			 
 			foreach($_POST as $key => $value) {
@@ -341,7 +341,7 @@ if (is_user_logged_in()) {
 			 * Set Media to not show to
 			 * client/s, agents, producers,
 			 */
-			$ptype = (int)get_user_meta($current_user->id, "rb_agency_interact_profiletype", true);
+			$ptype = (int)get_user_meta($current_user->ID, "rb_agency_interact_profiletype", true);
 	                $ptype = retrieve_title($ptype);
 			$restrict = array('client','clients','agents','agent','producer','producers');
 			if(in_array(strtolower($ptype),$restrict)){
@@ -352,7 +352,7 @@ if (is_user_logged_in()) {
 			
 			
 			echo "<div id=\"profile-manage\" class=\"profile-account\">\n";
-			$rb_agency_new_registeredUser = get_user_meta($current_user->id,'rb_agency_new_registeredUser');
+			$rb_agency_new_registeredUser = get_user_meta($current_user->ID,'rb_agency_new_registeredUser');
 			
 			// Menu
 			include("include-menu.php"); 	

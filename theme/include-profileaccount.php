@@ -2,14 +2,14 @@
 	global $user_ID; 
 	global $current_user;
 	get_currentuserinfo();
-	$ProfileUserLinked = $current_user->id;
-        $ptype = get_user_meta($current_user->id, "rb_agency_interact_profiletype", true);
+	$ProfileUserLinked = $current_user->ID;
+        $ptype = get_user_meta($current_user->ID, "rb_agency_interact_profiletype", true);
 		//check if array
         if($ptype != ''){
 		if(strpos($ptype, ",") > -1){
 			$ptyp = explode(",",$ptype);
 			foreach($ptyp as $p){
-				$ptype_arr[] = str_replace(" ","_",retrieve_title($p));	 		
+				$ptype_arr[] = str_replace(" ","_",retrieve_title($p));
 			}
 			$ptype = array();
 			$ptype = $ptype_arr;
@@ -18,7 +18,7 @@
 		}
         }        
 
-	$ProfileGender  = get_user_meta($current_user->id, "rb_agency_interact_pgender", true);
+	$ProfileGender  = get_user_meta($current_user->ID, "rb_agency_interact_pgender", true);
 
 	// Get Settings
 	$rb_agency_options_arr = get_option('rb_agency_options');

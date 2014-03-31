@@ -27,7 +27,7 @@ $rb_agencyinteract_option_profilemanage_sidebar = $rb_agency_interact_options_ar
 $rb_subscription = $rb_agency_options_arr['rb_agencyinteract_option_profilelist_subscription'];
 
 // Were they users or agents?
-$profiletype = (int)get_user_meta($current_user->id, "rb_agency_interact_profiletype", true);
+$profiletype = (int)get_user_meta($current_user->ID, "rb_agency_interact_profiletype", true);
 if(get_user_meta($current_user->ID, 'rb_agency_interact_clientdata', true)){ $profiletypetext = __("Agent/Producer", rb_agency_interact_TEXTDOMAIN); } else { $profiletypetext = __("Model/Talent", rb_agency_interact_TEXTDOMAIN); }
 
 
@@ -45,7 +45,7 @@ get_header();
 	echo "  	<div id=\"content\">\n";
 
 		// get profile Custom fields value
-		$rb_agency_new_registeredUser = get_user_meta($current_user->id,'rb_agency_new_registeredUser',true);
+		$rb_agency_new_registeredUser = get_user_meta($current_user->ID,'rb_agency_new_registeredUser',true);
 	
 		// ****************************************************************************************** //
 		// Check if User is Logged in or not
@@ -55,7 +55,7 @@ get_header();
 			 * Set Media to not show to
 			 * client/s, agents, producers,
 			 */
-			$ptype = (int)get_user_meta($current_user->id, "rb_agency_interact_profiletype", true);
+			$ptype = (int)get_user_meta($current_user->ID, "rb_agency_interact_profiletype", true);
 			$ptype = retrieve_title($ptype);
 			$restrict = array('client','clients','agents','agent','producer','producers');
 			if(in_array(strtolower($ptype),$restrict)){

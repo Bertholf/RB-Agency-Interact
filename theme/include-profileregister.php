@@ -1,6 +1,6 @@
 <?php
 	// profile type
-	$ptype = get_user_meta($current_user->id, "rb_agency_interact_profiletype", true);
+	$ptype = get_user_meta($current_user->ID, "rb_agency_interact_profiletype", true);
 	
 	echo "<div class=\"rbform\">";
 	//check if array
@@ -17,14 +17,14 @@
 		}
 	}     
 
-	$ProfileGender = get_user_meta($current_user->id, "rb_agency_interact_pgender", true);
+	$ProfileGender = get_user_meta($current_user->ID, "rb_agency_interact_pgender", true);
 	echo '<input name="ProfileGender" type="hidden" value="'.$ProfileGender.'">'; 
 
 	echo "<form method=\"post\" enctype=\"multipart/form-data\" action=\"". get_bloginfo("wpurl") ."/profile-member/account/\">\n";
 	echo "<input type=\"hidden\" id=\"ProfileContactEmail\" name=\"ProfileContactEmail\" value=\"". $current_user->user_email ."\" />\n";
-	echo "<input type=\"hidden\" id=\"ProfileUserLinked\" name=\"ProfileUserLinked\" value=\"". $current_user->id ."\" />\n";
+	echo "<input type=\"hidden\" id=\"ProfileUserLinked\" name=\"ProfileUserLinked\" value=\"". $current_user->ID ."\" />\n";
 	echo "<input type=\"hidden\" id=\"ProfileGender\" name=\"ProfileGender\" value=\"".$ProfileGender ."\" />\n";
-	echo "<input type=\"hidden\" id=\"ProfileType\" name=\"ProfileType\" value=\"".get_user_meta($current_user->id, "rb_agency_interact_profiletype", true) ."\" />\n";
+	echo "<input type=\"hidden\" id=\"ProfileType\" name=\"ProfileType\" value=\"".get_user_meta($current_user->ID, "rb_agency_interact_profiletype", true) ."\" />\n";
 	
 	echo "	<h3>". __("Contact Information", rb_agency_TEXTDOMAIN) ."</h3>\n";	
 	echo "	<div id=\"profile-firstname\" class=\"rbfield rbtext rbsingle\">\n";

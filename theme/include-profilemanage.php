@@ -2,7 +2,7 @@
 	global $user_ID; 
 	global $current_user;
 	get_currentuserinfo();
-	$ProfileUserLinked = $current_user->id;
+	$ProfileUserLinked = $current_user->ID;
 	// Get Settings
 	$rb_agency_options_arr = get_option('rb_agency_options');
 		$rb_agency_option_unittype  			= $rb_agency_options_arr['rb_agency_option_unittype'];
@@ -14,12 +14,12 @@
 		/*
 		 * Get profile type and Gender
 		 */
-		$ptype = (int)get_user_meta($current_user->id, "rb_agency_interact_profiletype", true);
+		$ptype = (int)get_user_meta($current_user->ID, "rb_agency_interact_profiletype", true);
 		$ptype = retrieve_title($ptype);
-		$ProfileGender = get_user_meta($current_user->id, "rb_agency_interact_pgender", true);
+		$ProfileGender = get_user_meta($current_user->ID, "rb_agency_interact_pgender", true);
 		$ProfileTypeArray = array();
 		$profileType = ""; 
-		$ptype1 = get_user_meta($current_user->id, "rb_agency_interact_profiletype", true);
+		$ptype1 = get_user_meta($current_user->ID, "rb_agency_interact_profiletype", true);
 		$ProfileTypeArray = explode(",", $ptype1);
 		$query3 = "SELECT * FROM " . table_agency_data_type . " ORDER BY DataTypeTitle";
 		$results3 = mysql_query($query3);

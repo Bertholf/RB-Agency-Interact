@@ -22,7 +22,7 @@ $rb_agency_interact_options_arr = get_option('rb_agencyinteract_options');
 	$rb_agencyinteract_option_subscribepagedetails = $rb_agency_interact_options_arr['rb_agencyinteract_option_subscribepagedetails'];
 
 // Were they users or agents?
-$profiletype = (int)get_user_meta($current_user->id, "rb_agency_interact_profiletype", true);
+$profiletype = (int)get_user_meta($current_user->ID, "rb_agency_interact_profiletype", true);
 if(get_user_meta($current_user->ID, 'rb_agency_interact_clientdata', true)) { $profiletypetext = __("Agent/Producer", rb_agency_interact_TEXTDOMAIN); } else { $profiletypetext = __("Model/Talent", rb_agency_interact_TEXTDOMAIN); }
 
 
