@@ -5,8 +5,9 @@ Template Name: Edit Member Details
 * @type		PHP page
 * @desc		Edit Member Details
 */
-session_start();
+if (!headers_sent()) {
 header("Cache-control: private"); //IE 6 Fix
+}
 global $wpdb;
 /* Get User Info ******************************************/ 
 global $current_user, $wp_roles;
@@ -16,6 +17,8 @@ $rb_agency_options_arr = get_option('rb_agency_options');
 	$rb_agency_option_profilenaming 		= (int)$rb_agency_options_arr['rb_agency_option_profilenaming'];
 $rb_agency_interact_options_arr = get_option('rb_agencyinteract_options');
 	$rb_agencyinteract_option_registerallow = (int)$rb_agency_interact_options_arr['rb_agencyinteract_option_registerallow'];
+// Declare alert
+$alert = "";
 
 // Were they users or agents?
 $profiletype = (int)get_user_meta($current_user->ID, "rb_agency_interact_profiletype", true);
@@ -28,7 +31,7 @@ if(get_user_meta($current_user->ID, 'rb_agency_interact_clientdata', true)) { $p
 		}   
 	
 	/* Load the registration file. */
-	require_once( ABSPATH . WPINC . '/registration.php' );
+	//require_once( ABSPATH . WPINC . '/registration.php' );
 	require_once( ABSPATH . 'wp-admin/includes' . '/template.php' ); // this is only for the selected() function
 
 // Form Post
@@ -67,7 +70,7 @@ if (isset($_POST['action'])) {
 	$ProfileContactWebsite		=$_POST['ProfileContactWebsite'];
 	$ProfileContactLinkFacebook	=$_POST['ProfileContactLinkFacebook'];
 	$ProfileContactLinkTwitter	=$_POST['ProfileContactLinkTwitter'];
-	$ProfileContactLinkYouTube	=$_POST['ProfileContactLinkYouTube'];
+	$ProfileContactLinkYouTube	=$_POST['ProfileContactLinkYoutube'];
 	$ProfileContactLinkFlickr	=$_POST['ProfileContactLinkFlickr'];
 	$ProfileContactPhoneHome	=$_POST['ProfileContactPhoneHome'];
 	$ProfileContactPhoneCell	=$_POST['ProfileContactPhoneCell'];
@@ -91,7 +94,6 @@ if (isset($_POST['action'])) {
 	}
 
 	// Error checking
-	$error = "";
 	$have_error = false;
 	if(trim($ProfileContactNameFirst) == ""){
 		$error .= "<b><i>".__("Name is required.", rb_agency_interact_TEXTDOMAIN) ."</i></b><br>";
@@ -329,6 +331,7 @@ if (is_user_logged_in()) {
 	$content_class = "twelve";
 }
 
+
 		// get profile Custom fields value
 	echo "<div id=\"container\" class=\"col_12 column rb-agency-interact-account\">\n";
 	echo "  <div id=\"content\">\n";
@@ -358,6 +361,7 @@ if (is_user_logged_in()) {
 			include("include-menu.php"); 	
 			echo " <div class=\"manage-account manage-content\">\n";
 			// Show Errors & Alerts
+			if(!empty($alerts))
 			echo $alerts;
 			/* Check if the user is regsitered *****************************************/ 
 			// Verify Record

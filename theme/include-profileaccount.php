@@ -47,7 +47,7 @@
 		$ProfileContactWebsite		=stripslashes($data['ProfileContactWebsite']);
 		$ProfileContactLinkFacebook	=stripslashes($data['ProfileContactLinkFacebook']);
 		$ProfileContactLinkTwitter	=stripslashes($data['ProfileContactLinkTwitter']);
-		$ProfileContactLinkYouTube	=stripslashes($data['ProfileContactLinkYouTube']);
+		$ProfileContactLinkYouTube	=stripslashes($data['ProfileContactLinkYoutube']);
 		$ProfileContactLinkFlickr	=stripslashes($data['ProfileContactLinkFlickr']);
 		$ProfileContactPhoneHome	=stripslashes($data['ProfileContactPhoneHome']);
 		$ProfileContactPhoneCell	=stripslashes($data['ProfileContactPhoneCell']);
@@ -245,7 +245,7 @@
 		echo "	</div>\n";
 		echo "	<div id=\"rbform-submit\" class=\"rbfield rbsubmit rbsingle\">\n";
 		echo "		<input type=\"hidden\" name=\"action\" value=\"editRecord\" />\n";
-		echo "		<input type=\"submit\" name=\"submit\" value=\"". __("Save and Continue", rb_restaurant_TEXTDOMAIN) ."\" class=\"button-primary\" />\n";
+		echo "		<input type=\"submit\" name=\"submit\" value=\"". __("Save and Continue", rb_agency_interact_TEXTDOMAIN) ."\" class=\"button-primary\" />\n";
 		echo "	</div>\n";
 		echo "</form>\n";
 		echo "</div>\n";
