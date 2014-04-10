@@ -5,8 +5,8 @@
 	$ProfileUserLinked = $current_user->ID;
 	// Get Settings
 	$rb_agency_options_arr = get_option('rb_agency_options');
-		$rb_agency_option_unittype  			= $rb_agency_options_arr['rb_agency_option_unittype'];
-		$rb_agency_option_locationtimezone 		= (int)$rb_agency_options_arr['rb_agency_option_locationtimezone'];
+		$rb_agency_option_unittype  			= isset($rb_agency_options_arr['rb_agency_option_unittype'])?$rb_agency_options_arr['rb_agency_option_unittype']:0;
+		$rb_agency_option_locationtimezone 		= isset($rb_agency_options_arr['rb_agency_option_locationtimezone'])? (int)$rb_agency_options_arr['rb_agency_option_locationtimezone']:0;
 	// Get Values
 	$query = "SELECT * FROM " . table_agency_profile . " WHERE ProfileUserLinked='$ProfileUserLinked'";
 	$results = mysql_query($query) or die ( __("Error, query failed", rb_agency_interact_TEXTDOMAIN ));
@@ -55,7 +55,7 @@
 	/*
 	 *   added this new custom field display 
 	 */
-	$rb_agency_option_profilenaming 		= (int)$rb_agency_options_arr['rb_agency_option_profilenaming'];
+	$rb_agency_option_profilenaming 		= isset($rb_agency_options_arr['rb_agency_option_profilenaming']) ?(int)$rb_agency_options_arr['rb_agency_option_profilenaming']:0;
 		
 	$query3 = "SELECT * FROM ". table_agency_customfields ." 
 			   WHERE ProfileCustomView = 0 AND ProfileCustomShowRegistration = 1 ORDER BY ProfileCustomOrder";
@@ -128,7 +128,7 @@
 			   . __( $data3['ProfileCustomTitle'].$measurements_label, rb_agency_interact_TEXTDOMAIN) 
 			   ."</label>\n";
 			echo '<div><input type="text" name="ProfileCustomID'. $data3['ProfileCustomID'] 
-				 .'" value="'. retrieve_datavalue($_REQUEST["ProfileCustomID". $data3['ProfileCustomID']],
+				 .'" value="'. retrieve_datavalue(isset($_REQUEST["ProfileCustomID". $data3['ProfileCustomID']])?$_REQUEST["ProfileCustomID". $data3['ProfileCustomID']]:"",
 													$data3['ProfileCustomID'],$ProfileID,"textbox") 
 				 .'" /></div>';
 			echo "</div>";
@@ -185,8 +185,8 @@
 			echo "<label for=\"".strtolower(trim($data3['ProfileCustomTitle']))."\">"
 			   . __( $data3['ProfileCustomTitle'].$measurements_label, rb_agency_interact_TEXTDOMAIN) 
 			   ."</label>\n";
-		
-				list($option1,$option2) = explode(":",$data3['ProfileCustomOptions']);	
+		          
+				@list($option1,$option2) = @explode(":",$data3['ProfileCustomOptions']);	
 		
 				$data = explode("|",$option1);
 				$data2 = explode("|",$option2);
@@ -229,7 +229,7 @@
 			   . __( $data3['ProfileCustomTitle'].$measurements_label, rb_agency_interact_TEXTDOMAIN) 
 			   ."</label>\n";
 				echo "<div><textarea name=\"ProfileCustomID". $data3['ProfileCustomID'] ."\">"
-					 . retrieve_datavalue($_REQUEST["ProfileCustomID". $data3['ProfileCustomID']],
+					 . retrieve_datavalue(isset($_REQUEST["ProfileCustomID". $data3['ProfileCustomID']])?$_REQUEST["ProfileCustomID". $data3['ProfileCustomID']]:"",
 													$data3['ProfileCustomID'],$ProfileID,"textbox") ."</textarea></div>";
 				echo "</div>";
 			} elseif ($ProfileCustomType == 5) {
@@ -318,7 +318,7 @@
 			   }	else {		       	
 			   
 			 echo '<div><input type="text" name="ProfileCustomID'. $data3['ProfileCustomID'] 
-				 .'" value="'. retrieve_datavalue($_REQUEST["ProfileCustomID". $data3['ProfileCustomID']],
+				 .'" value="'. retrieve_datavalue(isset($_REQUEST["ProfileCustomID". $data3['ProfileCustomID']])?$_REQUEST["ProfileCustomID". $data3['ProfileCustomID']]:"",
 													$data3['ProfileCustomID'],$ProfileID, 'textbox') 
 				 .'" /></div>';
 				 ;					
@@ -336,7 +336,7 @@
 		echo "	</div>\n";
 		echo "	<div id=\"rbfield-submit\" class=\"rbfield rbsubmit rbsingle\">";
 		echo "		<input type=\"hidden\" name=\"action\" value=\"editRecord\" />\n";
-		echo "		<input type=\"submit\" name=\"submit\" value=\"". __("Save and Continue", rb_restaurant_TEXTDOMAIN) ."\" class=\"button-primary\" />\n";
+		echo "		<input type=\"submit\" name=\"submit\" value=\"". __("Save and Continue", rb_agency_interact_TEXTDOMAIN) ."\" class=\"button-primary\" />\n";
 		echo "	</div>\n";
 		echo "</form>\n";
 		echo "</div>\n";

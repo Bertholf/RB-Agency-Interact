@@ -49,15 +49,25 @@
 				echo "  }\n";
 				echo "}\n";
 				echo "</script>\n";
+
+				 	 $outLinkVoiceDemo = "";
+					 $outLinkResume= "";
+					 $outLinkHeadShot= "";
+					 $outLinkComCard= "";
+					 $outCustomMediaLink= "";
+					 $outVideoMedia= "";
+					
 				
 				// Are we deleting?
-				if ($_POST["actionsub"] == "photodelete") {
+				if (isset($_POST["actionsub"]) && $_POST["actionsub"] == "photodelete") {
 					$deleteTargetID = $_POST["targetid"];
 					
 					// Verify Record
 					$queryImgConfirm = "SELECT * FROM ". table_agency_profile_media ." WHERE ProfileID =  \"". $ProfileID ."\" AND ProfileMediaID =  \"". $deleteTargetID ."\"";
 					$resultsImgConfirm = mysql_query($queryImgConfirm);
 					$countImgConfirm = mysql_num_rows($resultsImgConfirm);
+
+
 					while ($dataImgConfirm = mysql_fetch_array($resultsImgConfirm)) {
 						$ProfileMediaID = $dataImgConfirm['ProfileMediaID'];
 						$ProfileMediaType = $dataImgConfirm['ProfileMediaType'];
@@ -178,8 +188,8 @@
 		echo "     <input type=\"hidden\" name=\"ProfileID\" value=\"". $ProfileID ."\" />\n";
 		echo "     <input type=\"hidden\" name=\"ProfileGallery\" value=\"". $ProfileGallery ."\" />\n";
 		echo "     <input type=\"hidden\" name=\"action\" value=\"editRecord\" />\n";
-		echo "     <input type=\"submit\" name=\"submit\" value=\"". __("Save and Continue", rb_restaurant_TEXTDOMAIN) ."\" class=\"button-primary\" onClick=\"this.value = 'Please Wait...'\"/>\n";
-		echo "     <input type=\"button\" name=\"back\" value=\"". __("Back to Overview", rb_restaurant_TEXTDOMAIN) ."\" class=\"button-primary\" onClick=\"location.href = '/profile-member/';\"/>\n";
+		echo "     <input type=\"submit\" name=\"submit\" value=\"". __("Save and Continue", rb_agency_interact_TEXTDOMAIN) ."\" class=\"button-primary\" onClick=\"this.value = 'Please Wait...'\"/>\n";
+		echo "     <input type=\"button\" name=\"back\" value=\"". __("Back to Overview", rb_agency_interact_TEXTDOMAIN) ."\" class=\"button-primary\" onClick=\"location.href = '/profile-member/';\"/>\n";
 		echo "</p>\n";
 		echo "</form>\n";
 	}

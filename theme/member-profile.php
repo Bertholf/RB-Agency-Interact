@@ -1,13 +1,13 @@
-<?php
+<?php 
 /*
 Template Name: Member Details
  * @name		Member Details
  * @type		PHP page
  * @desc		Member Details
 */
-
-session_start();
+if (!headers_sent()) {
 header("Cache-control: private"); //IE 6 Fix
+}
 global $wpdb;
 
 /* Get User Info ******************************************/ 
@@ -24,6 +24,9 @@ add_filter('wp_title', 'rb_agencyinteractive_override_title', 10, 2);
 	function rb_agencyinteractive_override_title(){
 		return "Manage Profile";
 	}   
+
+// declare alert
+$alerts = "";
 
 // Form Post
 if (isset($_POST['action'])) { 
@@ -62,6 +65,7 @@ if (isset($_POST['action'])) {
 	$error = "";
 	$have_error = false;
 
+
 	// Get Post State
 	$action = $_POST['action'];
 	switch($action) {
@@ -96,7 +100,7 @@ get_header();
 
 // Check Sidebar
 $rb_agency_interact_options_arr = get_option('rb_agencyinteract_options');
-$rb_agencyinteract_option_profilemanage_sidebar = $rb_agency_interact_options_arr['rb_agencyinteract_option_profilemanage_sidebar'];
+$rb_agencyinteract_option_profilemanage_sidebar = isset($rb_agency_interact_options_arr['rb_agencyinteract_option_profilemanage_sidebar']) ?$rb_agency_interact_options_arr['rb_agencyinteract_option_profilemanage_sidebar']:0;
 
 if($rb_agencyinteract_option_profilemanage_sidebar){
 	$column_class = primary_class();

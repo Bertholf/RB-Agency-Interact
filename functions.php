@@ -1,5 +1,13 @@
 <?php
 // *************************************************************************************************** //
+// Init - Remove Seasion already sent
+	add_action('init', 'rb_agency_interact_init_sessions');
+		function rb_agency_interact_init_sessions() {
+			if (!session_id()) {
+				session_start();
+			}
+		}
+// *************************************************************************************************** //
 // Admin Head Section 
 
 	add_action('admin_head', 'rb_agency_interact_admin_head');
@@ -248,8 +256,8 @@
 		function gender_filter($gender=0) {
 			global $wpdb;
 			
-			$gender = "SELECT GenderTitle FROM rb_agency_data_gender WHERE GenderID = ". $gender ." LIMIT 1";
-			$results = $wpdb->get_results($gender);
+			$query_gender = "SELECT GenderTitle FROM ".table_agency_data_gender." WHERE GenderID = %d  LIMIT 1";
+			$results = $wpdb->get_results($wpdb->prepare($query_gender,$gender));
 			
 			$gender_title = "";
 			foreach($results as $gname){

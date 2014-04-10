@@ -6,8 +6,9 @@ Template Name: Member Details
  * @desc		Member Details
 */
 
-session_start();
+if (!headers_sent()) {
 header("Cache-control: private"); //IE 6 Fix
+}
 global $wpdb;
 
 /* Get User Info ******************************************/ 
