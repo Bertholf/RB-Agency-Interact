@@ -9,7 +9,7 @@
 	$rb_agency_interact_options_arr = get_option('rb_agencyinteract_options');
 
 	//Sidebar
-	$rb_agencyinteract_option_profilemanage_sidebar = $rb_agency_interact_options_arr['rb_agencyinteract_option_profilemanage_sidebar'];
+	$rb_agencyinteract_option_profilemanage_sidebar = isset($rb_agency_interact_options_arr['rb_agencyinteract_option_profilemanage_sidebar'])?$rb_agency_interact_options_arr['rb_agencyinteract_option_profilemanage_sidebar']:0;
 	if($rb_agencyinteract_option_profilemanage_sidebar){
 		$column_class = primary_class();
 	} else {
@@ -21,7 +21,7 @@
 	$rb_agencyinteract_option_registerallowAgentProducer = isset($registration['rb_agencyinteract_option_registerallowAgentProducer'])?$registration['rb_agencyinteract_option_registerallowAgentProducer']:0;
 
 	// - show/hide  self-generate password
-	$rb_agencyinteract_option_registerconfirm = (int)$rb_agency_interact_options_arr['rb_agencyinteract_option_registerconfirm'];
+	$rb_agencyinteract_option_registerconfirm = isset($rb_agency_interact_options_arr['rb_agencyinteract_option_registerconfirm'])?(int)$rb_agency_interact_options_arr['rb_agencyinteract_option_registerconfirm']:0;
 
 	/* Check if users can register. */
 	$registration = get_option( 'users_can_register' );
@@ -100,7 +100,7 @@
 			$error .= __("Sorry, that username already exists!<br />", rb_agency_interact_TEXTDOMAIN);
 			$have_error = true;
 		}
-		if ( !is_email($userdata['user_email'], true)) {
+		if ( !is_email($userdata['user_email'])) {
 			$error .= __("You must enter a valid email address.<br />", rb_agency_interact_TEXTDOMAIN);
 			$have_error = true;
 		}
@@ -186,9 +186,9 @@
 
 	echo "    <p class=\"rbalert\">\n";
 				if ( current_user_can( 'create_users' ) )
-					printf( __("A user account for %1$s has been created.", rb_agency_interact_TEXTDOMAIN), $_POST['user-name'] );
+					printf( __("A user account for %1$s has been created.", rb_agency_interact_TEXTDOMAIN), $_POST['profile_user_name'] );
 				else 
-					printf( __("Thank you for registering, %1$s.", rb_agency_interact_TEXTDOMAIN), $_POST['user-name'] );
+					printf( __("Thank you for registering, %1$s.", rb_agency_interact_TEXTDOMAIN), $_POST['profile_user_name'] );
 					echo "<br/>";
 					printf( __("Please check your email address. That's where you'll receive your login password.<br/> (It might go into your spam folder)", rb_agency_interact_TEXTDOMAIN) );
 	echo "    </p><!-- .rbalert -->\n";
@@ -220,29 +220,29 @@
 	echo "  <form method=\"post\" action=\"". $rb_agency_interact_WPURL ."/profile-register/talent\">\n";    				
 	echo "       <div id=\"profile-username\" class=\"rbfield rbtext rbsingle\">\n";
 	echo "       	<label for=\"profile_user_name\">". __("Username (required)", rb_agency_interact_TEXTDOMAIN) ."</label>\n";
-	echo "       	<div><input class=\"text-input\" name=\"profile_user_name\" type=\"text\" id=\"profile_user_name\" value=\""; if ( $error ) echo wp_specialchars( $_POST['profile_user_name'], 1 ); echo "\" /></div>\n";
+	echo "       	<div><input class=\"text-input\" name=\"profile_user_name\" type=\"text\" id=\"profile_user_name\" value=\""; if ( $error ) echo esc_html( $_POST['profile_user_name'], 1 ); echo "\" /></div>\n";
 	echo "       </div><!-- #rofile-username -->\n";
 			
 	if ($rb_agencyinteract_option_registerconfirm == 1) {
 	echo "       <div id=\"profile-password\" class=\"rbfield rbpassword rbsingle\">\n";
 	echo "       	<label for=\"profile_password\">". __("Password (required)", rb_agency_interact_TEXTDOMAIN) ."</label>\n";
-	echo "       	<div><input class=\"text-input\" name=\"profile_password\" type=\"password\" id=\"profile_password\" value=\""; if ( $error ) echo wp_specialchars( $_POST['profile_password'], 1 ); echo "\" /></div>\n";
+	echo "       	<div><input class=\"text-input\" name=\"profile_password\" type=\"password\" id=\"profile_password\" value=\""; if ( $error ) echo esc_html( $_POST['profile_password'], 1 ); echo "\" /></div>\n";
 	echo "       </div><!-- #profile-password -->\n";
 	}
 
 	echo "       <div id=\"profile-first-name\" class=\"rbfield rbtext rbsingle\">\n";
 	echo "       	<label for=\"profile_first_name\">". __("First Name", rb_agency_interact_TEXTDOMAIN) ."</label>\n";
-	echo "       	<div><input class=\"text-input\" name=\"profile_first_name\" type=\"text\" id=\"profile_first_name\" value=\""; if ( $error ) echo wp_specialchars( $_POST['profile_first_name'], 1 ); echo "\" /></div>\n";
+	echo "       	<div><input class=\"text-input\" name=\"profile_first_name\" type=\"text\" id=\"profile_first_name\" value=\""; if ( $error ) echo esc_html( $_POST['profile_first_name'], 1 ); echo "\" /></div>\n";
 	echo "       </div><!-- #profile-first-name -->\n";
 
 	echo "       <div id=\"profile-last-name\" class=\"rbfield rbtext rbsingle\">\n";
 	echo "       	<label for=\"profile_last_name\">". __("Last Name", rb_agency_interact_TEXTDOMAIN) ."</label>\n";
-	echo "       	<div><input class=\"text-input\" name=\"profile_last_name\" type=\"text\" id=\"profile_last_name\" value=\""; if ( $error ) echo wp_specialchars( $_POST['profile_last_name'], 1 ); echo "\" /></div>\n";
+	echo "       	<div><input class=\"text-input\" name=\"profile_last_name\" type=\"text\" id=\"profile_last_name\" value=\""; if ( $error ) echo esc_html( $_POST['profile_last_name'], 1 ); echo "\" /></div>\n";
 	echo "       </div><!-- #profile_last_name -->\n";
 
 	echo "       <div id=\"profile-email\" class=\"rbfield rbemail rbsingle\">\n";
 	echo "       	<label for=\"email\">". __("E-mail (required)", rb_agency_interact_TEXTDOMAIN) ."</label>\n";
-	echo "       	<div><input class=\"text-input\" name=\"profile_email\" type=\"text\" id=\"profile_email\" value=\""; if ( $error ) echo wp_specialchars( $_POST['profile_email'], 1 ); echo "\" /></div>\n";
+	echo "       	<div><input class=\"text-input\" name=\"profile_email\" type=\"text\" id=\"profile_email\" value=\""; if ( $error ) echo esc_html( $_POST['profile_email'], 1 ); echo "\" /></div>\n";
 	echo "       </div><!-- #profile-email -->\n";
 
 	echo "       <div id=\"profile-gender\" class=\"rbfield rbselect rbsingle\">\n";
