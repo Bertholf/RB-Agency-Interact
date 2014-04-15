@@ -18,7 +18,7 @@
 
 	//+Registration
 	// - show/hide registration for Agent/Producers
-	$rb_agencyinteract_option_registerallowAgentProducer = $registration['rb_agencyinteract_option_registerallowAgentProducer'];
+	$rb_agencyinteract_option_registerallowAgentProducer = isset($registration['rb_agencyinteract_option_registerallowAgentProducer'])?$registration['rb_agencyinteract_option_registerallowAgentProducer']:0;
 
 	// - show/hide  self-generate password
 	$rb_agencyinteract_option_registerconfirm = (int)$rb_agency_interact_options_arr['rb_agencyinteract_option_registerconfirm'];
@@ -182,7 +182,7 @@
 	echo "		 <a href=\"". wp_logout_url( get_permalink() ) ."\" title=\"". __("Log out of this account", rb_agency_interact_TEXTDOMAIN) ."\">". __("Log out", rb_agency_interact_TEXTDOMAIN) ." &raquo;</a>\n";
 	echo "    </p><!-- .rbalert -->\n";
 
-	} elseif ( $new_user ) {
+	} elseif ( isset($new_user) ) {
 
 	echo "    <p class=\"rbalert\">\n";
 				if ( current_user_can( 'create_users' ) )

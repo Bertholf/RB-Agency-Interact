@@ -34,9 +34,7 @@ if (isset($_POST['action'])) {
 	$ProfileUserLinked			=$_POST['ProfileUserLinked'];
 	$ProfileGallery				=$_POST['ProfileGallery'];
 
-    
-
-	// Get Primary Image
+   // Get Primary Image
 	$ProfileMediaPrimaryID		=$_POST['ProfileMediaPrimary'];
 
 	// Error checking
@@ -64,10 +62,9 @@ if (isset($_POST['action'])) {
 
 					$uploadMediaType = $_POST['profileMedia'. $i .'Type'];					
 					if ($have_error != true) {
-
-						// Upload if it doesnt exist already
+					// Upload if it doesnt exist already
 						$path_parts = pathinfo($_FILES['profileMedia'. $i]['name']);
-						$safeProfileMediaFilename =  RBAgency_Common::format_stripchars($path_parts['filename'].".".$path_parts['extension']);
+						$safeProfileMediaFilename =  RBAgency_Common::format_stripchars($path_parts['filename'] ."_". RBAgency_Common::generate_random_string(6) . ".".$path_parts['extension']);
 						$results = mysql_query("SELECT * FROM " . table_agency_profile_media . " WHERE ProfileID='". $ProfileID ."' AND ProfileMediaURL = '".$safeProfileMediaFilename ."'");
 						$count = mysql_num_rows($results);
 
