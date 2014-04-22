@@ -53,6 +53,8 @@
 		function rb_agency_interact_query_vars( $query_vars ) {
 			$query_vars[] = 'type';
 			$query_vars[] = 'typeofprofile';
+			$query_vars[] = 'ref';
+			
 			return $query_vars;
 		}
 
@@ -162,7 +164,7 @@
 	add_filter("login_init", "rb_agency_interact_login_movepage", 10, 2);
 		function rb_agency_interact_login_movepage( $url ) {
 			global $action;
-			$rb_agency_options_arr = get_option('rb_agency_options');
+				$rb_agency_options_arr = get_option('rb_agency_options');
 				$rb_agency_option_redirect_custom_logins = isset($rb_agency_options_arr['rb_agency_option_redirect_custom_login']) ? $rb_agency_options_arr['rb_agency_option_redirect_custom_login'] :0;
 
 			if (empty($action) || 'login' == $action) {

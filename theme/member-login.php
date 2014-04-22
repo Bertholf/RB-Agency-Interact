@@ -1,16 +1,24 @@
 <?php
 // *************************************************************************************************** //
 // Respond to Login Request
+$error = "";
+$have_error = false;
 if ( $_SERVER['REQUEST_METHOD'] == "POST" && !empty( $_POST['action'] ) && $_POST['action'] == 'log-in' ) {
 
 	global $error;
     $login = wp_signon( array( 'user_login' => $_POST['user-name'], 'user_password' => $_POST['password'], 'remember' => isset($_POST['remember-me'])?$_POST['remember-me']:false ), false );
 	
     get_currentuserinfo();
-    
+
+		
 	if(!is_wp_error($login)) {
     	wp_set_current_user($login->ID);  // populate
 	   	get_user_login_info();
+	}else{
+			$error .= __( $login->get_error_message(), rb_agency_interact_TEXTDOMAIN);
+			$have_error = true;
+			
+		
 	}
 }
 
@@ -20,6 +28,8 @@ function get_user_login_info(){
 	$redirect = isset($_POST["lastviewed"])?$_POST["lastviewed"]:"";
 	get_currentuserinfo();
 	$user_info = get_userdata( $user_ID );
+
+
 
 	if($user_ID){
 		

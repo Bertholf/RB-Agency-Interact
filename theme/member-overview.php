@@ -6,8 +6,9 @@ Template Name: 	Member Details
  * @desc		Member Details
 */
 
-session_start();
+if (!headers_sent()) {
 header("Cache-control: private"); //IE 6 Fix
+}
 global $wpdb;
 
 /* Get User Info ******************************************/ 
@@ -16,15 +17,15 @@ get_currentuserinfo();
 
 // Get Settings
 $rb_agency_options_arr 							= get_option('rb_agency_options');
-$rb_agency_option_profilenaming 				= (int)$rb_agency_options_arr['rb_agency_option_profilenaming'];
+$rb_agency_option_profilenaming 				= isset($rb_agency_options_arr['rb_agency_option_profilenaming']) ?(int)$rb_agency_options_arr['rb_agency_option_profilenaming']:"";
 $rb_agency_interact_options_arr 					= get_option('rb_agencyinteract_options');
-$rb_agencyinteract_option_registerallow 		= (int)$rb_agency_interact_options_arr['rb_agencyinteract_option_registerallow'];
-$rb_agencyinteract_option_overviewpagedetails 	= (int)$rb_agency_interact_options_arr['rb_agencyinteract_option_overviewpagedetails'];
+$rb_agencyinteract_option_registerallow 		= isset($rb_agency_interact_options_arr['rb_agencyinteract_option_registerallow']) ?(int)$rb_agency_interact_options_arr['rb_agencyinteract_option_registerallow']:"";
+$rb_agencyinteract_option_overviewpagedetails 	= isset($rb_agency_interact_options_arr['rb_agencyinteract_option_overviewpagedetails']) ? (int)$rb_agency_interact_options_arr['rb_agencyinteract_option_overviewpagedetails']:"";
 
 // Check Sidebar
 $rb_agency_interact_options_arr = get_option('rb_agencyinteract_options');
-$rb_agencyinteract_option_profilemanage_sidebar = $rb_agency_interact_options_arr['rb_agencyinteract_option_profilemanage_sidebar'];
-$rb_subscription = $rb_agency_options_arr['rb_agencyinteract_option_profilelist_subscription'];
+$rb_agencyinteract_option_profilemanage_sidebar = isset($rb_agency_interact_options_arr['rb_agencyinteract_option_profilemanage_sidebar']) ?$rb_agency_interact_options_arr['rb_agencyinteract_option_profilemanage_sidebar']:"";
+$rb_subscription = isset($rb_agency_options_arr['rb_agencyinteract_option_profilelist_subscription']) ?$rb_agency_options_arr['rb_agencyinteract_option_profilelist_subscription']:"";
 
 // Were they users or agents?
 $profiletype = (int)get_user_meta($current_user->ID, "rb_agency_interact_profiletype", true);

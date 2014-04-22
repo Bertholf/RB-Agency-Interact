@@ -30,12 +30,12 @@ add_filter('wp_title', 'rb_agencyinteractive_override_title', 10, 2);
 // Form Post
 if (isset($_POST['action'])) {
 
-	$ProfileID					=$_POST['ProfileID'];
-	$ProfileUserLinked			=$_POST['ProfileUserLinked'];
-	$ProfileGallery				=$_POST['ProfileGallery'];
+	$ProfileID					= isset($_POST['ProfileID'])?$_POST['ProfileID']:"";
+	$ProfileUserLinked			= isset($_POST['ProfileUserLinked']) ?$_POST['ProfileUserLinked']:"";
+	$ProfileGallery				= isset($_POST['ProfileGallery']) ?$_POST['ProfileGallery']:"";
 
    // Get Primary Image
-	$ProfileMediaPrimaryID		=$_POST['ProfileMediaPrimary'];
+	$ProfileMediaPrimaryID		= isset($_POST['ProfileMediaPrimary']) ?$_POST['ProfileMediaPrimary']:"";
 
 	// Error checking
 	$error = "";
@@ -56,7 +56,7 @@ if (isset($_POST['action'])) {
 		// Upload Image & Add to Database
 			$i = 1;
 			while ($i <= 10) {
-				if($_FILES['profileMedia'. $i]['tmp_name'] != ""){
+				if(isset($_FILES['profileMedia'. $i]['tmp_name']) && $_FILES['profileMedia'. $i]['tmp_name'] != ""){
 					
 					$UploadMedia[] = $_FILES['profileMedia'. $i]['name'];
 
@@ -204,7 +204,7 @@ get_header();
 
 // Check Sidebar
 $rb_agency_interact_options_arr = get_option('rb_agencyinteract_options');
-$rb_agencyinteract_option_profilemanage_sidebar = $rb_agency_interact_options_arr['rb_agencyinteract_option_profilemanage_sidebar'];
+$rb_agencyinteract_option_profilemanage_sidebar = isset($rb_agency_interact_options_arr['rb_agencyinteract_option_profilemanage_sidebar'])?$rb_agency_interact_options_arr['rb_agencyinteract_option_profilemanage_sidebar']:"";
 $content_class = "";
 if (is_user_logged_in()) {
 	$content_class = "rbcol-12";

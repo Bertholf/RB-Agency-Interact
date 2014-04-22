@@ -38,14 +38,14 @@
 	echo "	<div id=\"profile-phone\" class=\"rbfield rbtext rbmulti rbblock\">\n";
 	echo "		<label>". __("Phone", rb_agency_interact_TEXTDOMAIN) ."</label>\n";
 	echo "		<div>\n";
-	echo "			<div><label>Home:</label><div><input type=\"text\" id=\"ProfileContactPhoneHome\" name=\"ProfileContactPhoneHome\" value=\"". $ProfileContactPhoneHome ."\" /></div></div>\n";
-	echo "			<div><label>Cell:</label><div><input type=\"text\" id=\"ProfileContactPhoneCell\" name=\"ProfileContactPhoneCell\" value=\"". $ProfileContactPhoneCell ."\" /></div></div>\n";
-	echo "			<div><label>Work:</label><div><input type=\"text\" id=\"ProfileContactPhoneWork\" name=\"ProfileContactPhoneWork\" value=\"". $ProfileContactPhoneWork ."\" /></div></div>\n";
+	echo "			<div><label>Home:</label><div><input type=\"text\" id=\"ProfileContactPhoneHome\" name=\"ProfileContactPhoneHome\" value=\"". (isset($ProfileContactPhoneHome)?$ProfileContactPhoneHome:"") ."\" /></div></div>\n";
+	echo "			<div><label>Cell:</label><div><input type=\"text\" id=\"ProfileContactPhoneCell\" name=\"ProfileContactPhoneCell\" value=\"". (isset($ProfileContactPhoneCell)?$ProfileContactPhoneCell:"") ."\" /></div></div>\n";
+	echo "			<div><label>Work:</label><div><input type=\"text\" id=\"ProfileContactPhoneWork\" name=\"ProfileContactPhoneWork\" value=\"". (isset($ProfileContactPhoneWork)?$ProfileContactPhoneWork:"") ."\" /></div></div>\n";
 	echo "		</div>\n";
 	echo "	</div>\n";
 	echo "	<div id=\"profile-website\" class=\"rbfield rbtext rbsingle\">\n";
 	echo "		<label>". __("Website", rb_agency_interact_TEXTDOMAIN) ."</label>\n";
-	echo "		<div><input type=\"text\" id=\"ProfileContactWebsite\" name=\"ProfileContactWebsite\" value=\"". $ProfileContactWebsite ."\" /></div>\n";
+	echo "		<div><input type=\"text\" id=\"ProfileContactWebsite\" name=\"ProfileContactWebsite\" value=\"". (isset($ProfileContactWebsite)? $ProfileContactWebsite:"") ."\" /></div>\n";
 	echo "	  </div>\n";
 
 	// Public Information
@@ -227,7 +227,7 @@
 	echo "	</div>\n";
 	echo "	<div id=\"profile-submit\" class=\"rbfield rbsubmit rbsingle\">\n";
 	echo "     <input type=\"hidden\" name=\"action\" value=\"addRecord\" />\n";
-	echo "     <input type=\"submit\" name=\"submit\" value=\"". __("Save and Continue", rb_restaurant_TEXTDOMAIN) ."\" class=\"button-primary\" />\n";
+	echo "     <input type=\"submit\" name=\"submit\" value=\"". __("Save and Continue", rb_agency_interact_TEXTDOMAIN) ."\" class=\"button-primary\" />\n";
 	echo "	</div>\n";
 	echo "</form>\n";
 	echo "</div>\n";
