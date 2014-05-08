@@ -78,7 +78,7 @@
 	echo "		<div>\n";
 	echo "		  <select name=\"ProfileDateBirth_Year\" id=\"ProfileDateBirth_Year\">\n";
 	echo "			<option value=\"\"> -- Select Year -- </option>\n";
-		for ($currentYear = 1940; $currentYear <= 2010; $currentYear++ ) { 	
+		for ($currentYear = 1940; $currentYear <= date("Y")+6; $currentYear++ ) { 	
 			echo "			<option value=\"". $currentYear ."\">". $currentYear ."</option>\n";
 	}
 	echo "		  </select>\n";
