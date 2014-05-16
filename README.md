@@ -1,18 +1,9 @@
-=== RB Agency Interact ===
-Contributors: bertholf 
-Tags: modeling agency, model agency, talent agency, model self management, escort, escort agency
-Requires at least: 2.8
-Tested up to: 3.3
-Stable tag: 
+# RB Agency Interact
+Allows profiles to self regsiter and manage their information.
 
-Enhancement to the RB Agency software allowing models ot manage their own information.
+### Current Version 2.1
 
-== Description ==
 
-Enhancement to the RB Agency software allowing models ot manage their own information.
+## Change Log
 
- 
-
-== Installation ==
-
-Extract the zip file and just drop the contents in the wp-content/plugins/ directory of your WordPress installation and then activate the Plugin from Plugins page. `[vimeo http://vimeo.com/27752740]`
+### 2.1
