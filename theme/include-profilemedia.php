@@ -51,11 +51,12 @@
 				echo "</script>\n";
 
 				 	 $outLinkVoiceDemo = "";
-					 $outLinkResume= "";
-					 $outLinkHeadShot= "";
-					 $outLinkComCard= "";
-					 $outCustomMediaLink= "";
-					 $outVideoMedia= "";
+					 $outLinkResume = "";
+					 $outLinkHeadShot = "";
+					 $outLinkComCard = "";
+					 $outCustomMediaLink = "";
+					 $outVideoMedia = "";
+					 $outSoundCloud = "";
 					
 				
 				// Are we deleting?
@@ -151,6 +152,10 @@
 							$outLinkHeadShot .= "<div>". $dataMedia['ProfileMediaType'] .": <a href=\"". rb_agency_UPLOADDIR . $ProfileGallery ."/". $dataMedia['ProfileMediaURL'] ."\" target=\"_blank\">". $dataMedia['ProfileMediaTitle'] ."</a> [<a href=\"javascript:confirmDelete('". $dataMedia['ProfileMediaID'] ."','".$dataMedia['ProfileMediaType']."')\">DELETE</a>]</div>\n";
 						}elseif ($dataMedia['ProfileMediaType'] == "CompCard") {
 							$outLinkComCard .= "<div>". $dataMedia['ProfileMediaType'] .": <a href=\"". rb_agency_UPLOADDIR . $ProfileGallery ."/". $dataMedia['ProfileMediaURL'] ."\" target=\"_blank\">". $dataMedia['ProfileMediaTitle'] ."</a> [<a href=\"javascript:confirmDelete('". $dataMedia['ProfileMediaID'] ."','".$dataMedia['ProfileMediaType']."')\">DELETE</a>]</div>\n";
+						}elseif ($dataMedia['ProfileMediaType'] == "SoundCloud") {
+										
+										$outSoundCloud .= RBAgency_Common::rb_agency_embed_soundcloud($dataMedia['ProfileMediaURL']);
+								
 						}else{
 							$outCustomMediaLink .= "<div>". $dataMedia['ProfileMediaType'] .": <a href=\"". rb_agency_UPLOADDIR . $ProfileGallery ."/". $dataMedia['ProfileMediaURL'] ."\" target=\"_blank\">". $dataMedia['ProfileMediaTitle'] ."</a> [<a href=\"javascript:confirmDelete('". $dataMedia['ProfileMediaID'] ."','".$dataMedia['ProfileMediaType']."')\">DELETE</a>]</div>\n";
 						}
@@ -170,7 +175,11 @@
 					echo '<p>';
 					echo $outCustomMediaLink;
 					echo '</p>';
+					echo '<p>';
+					echo $outSoundCloud;
+					echo '</p>';
 					echo $outVideoMedia;
+
 					if ($countMedia < 1) {
 						echo "<p><em>". __("There are no additional media linked", rb_agency_interact_TEXTDOMAIN) ."</em></p>\n";
 					}
