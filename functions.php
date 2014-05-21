@@ -207,6 +207,26 @@
 			}
 		}
 
+		/**
+		 * Switch profile-login sidebars to widget
+		 *
+		 */
+		function rb_profilelogin_widgets_init() {
+			$rb_agencyinteract_options_arr = get_option('rb_agencyinteract_options');
+			$rb_agencyinteract_option_switch_sidebar = isset($rb_agencyinteract_options_arr["rb_agencyinteract_option_switch_sidebar"])?(int)$rb_agencyinteract_options_arr["rb_agencyinteract_option_switch_sidebar"]:"";
+			if(isset($rb_agencyinteract_option_switch_sidebar) && $rb_agencyinteract_option_switch_sidebar == 1){
+				register_sidebar( array(
+					'name' => 'RB Agency Interact: Login Sidebar',
+					'id' => 'rb-agency-interact-login-sidebar',
+					'before_widget' => '<div>',
+					'after_widget' => '</div>',
+					'before_title' => '<h3>',
+					'after_title' => '</h3>',
+				) );
+			}
+		}
+		add_action( 'widgets_init', 'rb_profilelogin_widgets_init' );
+
 
 	/*
 

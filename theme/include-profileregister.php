@@ -182,8 +182,7 @@
 									if(in_array($ptype,$types)){ $permit_type = true; }
 								}
 								
-				if ( ($data1["ProfileCustomShowGender"] == $ProfileGender) || ($data1["ProfileCustomShowGender"] == 0) 
-									  && $permit_type == true )  {
+				if ( ($data1["ProfileCustomShowGender"] == $ProfileGender) || ($data1["ProfileCustomShowGender"] == 0)   && $permit_type == true )  {
 
 					include("view-custom-fields.php");
 

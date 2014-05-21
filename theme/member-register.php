@@ -108,7 +108,7 @@
 			$error .= __("Sorry, that email address is already used!<br />", rb_agency_interact_TEXTDOMAIN);
 			$have_error = true;
 		}
-		if ( $_POST['profile_agree'] <> "yes") {
+		if ( isset($_POST['profile_agree']) &&  $_POST['profile_agree'] <> "yes") {
 			$error .= __("You must agree to the terms and conditions to register.<br />", rb_agency_interact_TEXTDOMAIN);
 			$have_error = true;
 		}
@@ -121,8 +121,8 @@
 			$gender = $_POST['ProfileGender'];
 			
 			// Model or Client
-			update_usermeta($new_user, 'rb_agency_interact_profiletype', $new_user_type);
-			update_usermeta($new_user, 'rb_agency_interact_pgender', $gender);
+			update_user_meta($new_user, 'rb_agency_interact_profiletype', $new_user_type);
+			update_user_meta($new_user, 'rb_agency_interact_pgender', $gender);
 			
 			//Custom Fields
 			$arr = array();

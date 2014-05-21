@@ -36,7 +36,7 @@ function get_user_login_info(){
 		// If user_registered date/time is less than 48hrs from now
 			
 		if(!empty($redirect)){
-			header("Location: ". get_bloginfo("wpurl"). "/profile/".$redirect);
+			header("Location: ". $redirect);
 		} else {
 
 			// If Admin, redirect to plugin

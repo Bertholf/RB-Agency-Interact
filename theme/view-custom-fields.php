@@ -1,4 +1,7 @@
 <?php
+global $wpdb;
+global $current_user;
+$ProfileID = $current_user->ID;
 $ProfileCustomTitle = $data1['ProfileCustomTitle'];
 $ProfileCustomType = $data1['ProfileCustomType'];
 $qProfileCustomValue = mysql_query("SELECT * FROM ".table_agency_customfield_mux." WHERE ProfileID = '".$ProfileID."' AND ProfileCustomID = '".$data1['ProfileCustomID']."'") or die(mysql_error());

@@ -6,6 +6,8 @@
 	$registration = get_option( 'rb_agencyinteract_options' );
 	$rb_agencyinteract_option_registerallow = isset($registration["rb_agencyinteract_option_registerallow"]) ?$registration["rb_agencyinteract_option_registerallow"]:"";
 	$rb_agencyinteract_option_registerallowAgentProducer = isset($registration['rb_agencyinteract_option_registerallowAgentProducer'])?$registration['rb_agencyinteract_option_registerallowAgentProducer']:0;
+	$rb_agencyinteract_option_switch_sidebar = isset($registration["rb_agencyinteract_option_switch_sidebar"])?(int)$registration["rb_agencyinteract_option_switch_sidebar"]:"";
+			
 	if (( current_user_can("create_users") || $rb_agencyinteract_option_registerallow )) {
 		$widthClass = "half";
 	} else {
@@ -46,34 +48,46 @@ echo "            </div>\n";
 echo "          </form>\n";
 echo "        </div> <!-- rbsign-in -->\n";
 
+if(isset($rb_agencyinteract_option_switch_sidebar) && $rb_agencyinteract_option_switch_sidebar == 0){
+			echo "        <div id=\"rbsign-up\" class=\"inline-block\">\n";
 			if (( current_user_can("create_users") || $rb_agencyinteract_option_registerallow == 1)) {
 
-echo "        <div id=\"rbsign-up\" class=\"inline-block\">\n";
-echo "          <div id=\"talent-register\" class=\"register\">\n";
-echo "            <h1>". __("Not a member", rb_agency_interact_TEXTDOMAIN). "?</h1>\n";
-echo "            <h3>". __("Talent", rb_agency_interact_TEXTDOMAIN). " - ". __("Register here", rb_agency_interact_TEXTDOMAIN). "</h3>\n";
-echo "            <ul>\n";
-echo "              <li>". __("Create your free profile page", rb_agency_interact_TEXTDOMAIN). "</li>\n";
-echo "              <li>". __("Apply to Auditions & Jobs", rb_agency_interact_TEXTDOMAIN). "</li>\n";
-echo "              <li><a href=\"". get_bloginfo("wpurl") ."/profile-register/talent\" class=\"rb_button\">". __("Register as Talent / Model", rb_agency_interact_TEXTDOMAIN). "</a></li>\n";
-echo "            </ul>\n";
-echo "          </div> <!-- talent-register -->\n";
-echo "          <div class=\"clear line\"></div>\n";
+				echo "          <div id=\"talent-register\" class=\"register\">\n";
+				echo "            <h1>". __("Not a member", rb_agency_interact_TEXTDOMAIN). "?</h1>\n";
+				echo "            <h3>". __("Talent", rb_agency_interact_TEXTDOMAIN). " - ". __("Register here", rb_agency_interact_TEXTDOMAIN). "</h3>\n";
+				echo "            <ul>\n";
+				echo "              <li>". __("Create your free profile page", rb_agency_interact_TEXTDOMAIN). "</li>\n";
+				echo "              <li>". __("Apply to Auditions & Jobs", rb_agency_interact_TEXTDOMAIN). "</li>\n";
+				echo "              <li><a href=\"". get_bloginfo("wpurl") ."/profile-register/talent\" class=\"rb_button\">". __("Register as Talent / Model", rb_agency_interact_TEXTDOMAIN). "</a></li>\n";
+				echo "            </ul>\n";
+				echo "          </div> <!-- talent-register -->\n";
+				echo "          <div class=\"clear line\"></div>\n";
 
-/*
- * Casting Integratino
- */
-if (function_exists('rb_agency_casting_menu')) {
-		echo "          <div id=\"agent-register\" class=\"register\">\n";
-		echo "            <h3>". __("Casting Agents & Producers", rb_agency_interact_TEXTDOMAIN). "</h3>\n";
-		echo "            <ul>\n";
-		echo "              <li>". __("List Auditions & Jobs free", rb_agency_interact_TEXTDOMAIN). "</li>\n";
-		echo "              <li>". __("Contact People in the Talent Directory", rb_agency_interact_TEXTDOMAIN). "</li>\n";
-		echo "              <li><a href=\"". get_bloginfo("wpurl") ."/casting-register/\" class=\"rb_button\">". __("Register as Agent / Producer", rb_agency_interact_TEXTDOMAIN). "</a></li>\n";
-		echo "            </ul>\n";
-		echo "          </div> <!-- talent-register -->\n";
+						/*
+						 * Casting Integratino
+						 */
+						if (function_exists('rb_agency_casting_menu')) {
+								echo "          <div id=\"agent-register\" class=\"register\">\n";
+								echo "            <h3>". __("Casting Agents & Producers", rb_agency_interact_TEXTDOMAIN). "</h3>\n";
+								echo "            <ul>\n";
+								echo "              <li>". __("List Auditions & Jobs free", rb_agency_interact_TEXTDOMAIN). "</li>\n";
+								echo "              <li>". __("Contact People in the Talent Directory", rb_agency_interact_TEXTDOMAIN). "</li>\n";
+								echo "              <li><a href=\"". get_bloginfo("wpurl") ."/casting-register/\" class=\"rb_button\">". __("Register as Agent / Producer", rb_agency_interact_TEXTDOMAIN). "</a></li>\n";
+								echo "            </ul>\n";
+								echo "          </div> <!-- talent-register -->\n";
+						}
+				
+				}
+			echo "        </div> <!-- rbsign-up -->\n";
 }
-echo "        </div> <!-- rbsign-up -->\n";
+else{
+	echo "        <div id=\"rbsign-up\" class=\"inline-block\">\n";
+	echo "          <div id=\"talent-register\" class=\"register\">\n";
+	 if ( dynamic_sidebar('rb-agency-interact-login-sidebar') ) :endif; 
+	echo "          </div> <!-- talent-register -->\n";
+	echo "          <div class=\"clear line\"></div>\n";
+	echo "        </div> <!-- rbsign-up -->\n";
+
 }
 
 echo "      <div class=\"clear line\"></div>\n";
