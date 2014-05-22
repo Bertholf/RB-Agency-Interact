@@ -22,6 +22,7 @@
 		// - show/hide  self-generate password
 		$rb_agencyinteract_option_registerconfirm = (int)$rb_agency_interact_options_arr['rb_agencyinteract_option_registerconfirm'];
 
+		$rb_agencyinteract_option_registerapproval = isset($rb_agency_interact_options_arr['rb_agencyinteract_option_registerapproval'])?(int)$rb_agency_interact_options_arr['rb_agencyinteract_option_registerapproval']:0;
 	/* Check if users can register. */
 	$registration = get_option( 'users_can_register' );
 
@@ -169,7 +170,7 @@
 			
 			add_user_meta($new_user, 'rb_agency_new_registeredUser',$arr);			
 			
-			// Log them in if no confirmation required.			
+			//  Log them in if register auto approval		
 			if ($rb_agencyinteract_option_registerconfirm == 1) {
 
 				global $error;
@@ -182,7 +183,7 @@
 			
 		}
 		
-		// Log them in if no confirmation required.
+		// Log them in if register auto approval.
 		if ($rb_agencyinteract_option_registerconfirm == 1) {
 			if($login){
 				header("Location: ". get_bloginfo("wpurl"). "/profile-member/");

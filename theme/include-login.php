@@ -48,7 +48,7 @@ echo "            </div>\n";
 echo "          </form>\n";
 echo "        </div> <!-- rbsign-in -->\n";
 
-if(isset($rb_agencyinteract_option_switch_sidebar) && $rb_agencyinteract_option_switch_sidebar == 0){
+if(isset($rb_agencyinteract_option_switch_sidebar) && $rb_agencyinteract_option_switch_sidebar == 1){
 			echo "        <div id=\"rbsign-up\" class=\"inline-block\">\n";
 			if (( current_user_can("create_users") || $rb_agencyinteract_option_registerallow == 1)) {
 
