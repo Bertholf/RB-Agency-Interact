@@ -214,7 +214,7 @@
 		function rb_profilelogin_widgets_init() {
 			$rb_agencyinteract_options_arr = get_option('rb_agencyinteract_options');
 			$rb_agencyinteract_option_switch_sidebar = isset($rb_agencyinteract_options_arr["rb_agencyinteract_option_switch_sidebar"])?(int)$rb_agencyinteract_options_arr["rb_agencyinteract_option_switch_sidebar"]:"";
-			if(isset($rb_agencyinteract_option_switch_sidebar) && $rb_agencyinteract_option_switch_sidebar == 1){
+			if(isset($rb_agencyinteract_option_switch_sidebar) && $rb_agencyinteract_option_switch_sidebar == 0){
 				register_sidebar( array(
 					'name' => 'RB Agency Interact: Login Sidebar',
 					'id' => 'rb-agency-interact-login-sidebar',
