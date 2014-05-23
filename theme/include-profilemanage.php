@@ -24,24 +24,26 @@
 		$query3 = "SELECT * FROM " . table_agency_data_type . " ORDER BY DataTypeTitle";
 		$results3 = mysql_query($query3);
 		$count3 = mysql_num_rows($results3);
-		$i=1; 
-		while ($data3 = mysql_fetch_array($results3)) {
-
-			if (in_array($data3['DataTypeID'], $ProfileTypeArray)){
-				$profileType .=  $data3['DataTypeTitle'] ;
-
-				if($i<$count3){
-					$profileType .=  "&nbsp;,&nbsp;";
-				}
-			}
-			$i++;
-		}
-				
+		
 	while ($data = mysql_fetch_array($results)) {
 		$ProfileID					=$data['ProfileID'];
 		$ProfileUserLinked			=$data['ProfileUserLinked'];
 		$ProfileDateUpdated			=stripslashes($data['ProfileDateUpdated']);
 		$ProfileType				=stripslashes($data['ProfileType']);
+
+		$i=1; 
+		while ($data3 = mysql_fetch_array($results3)) {
+
+			if (in_array($data3['DataTypeID'], $ProfileTypeArray)){
+				$profileType .=  "<input type=\"checkbox\" name=\"ProfileType[]\" value=\"".$data3['DataTypeID']."\" ".checked($ProfileType,$data3['DataTypeID'])."/>".$data3['DataTypeTitle'] ;
+
+				if($i<$count3){
+					$profileType .=  "</br>";
+				}
+			}
+			$i++;
+		}
+				
 		echo "<div class=\"rbform\">";
 		echo "<form method=\"post\" enctype=\"multipart/form-data\" action=\"". get_bloginfo("wpurl") ."/profile-member/manage/\">\n";
 		echo "     <input type=\"hidden\" name=\"ProfileID\" value=\"". $ProfileID ."\" />\n";
@@ -87,6 +89,7 @@
 		} 
 		
 		echo'<input type="hidden" name="aps12" value="'.$data3["ProfileCustomShowGender"].'" >';
+		echo'<input type="hidden" name="ctype" value="'.$ProfileCustomType.'" >';
 		
 		if (($data3["ProfileCustomShowGender"] == $ProfileGender) || ($data3["ProfileCustomShowGender"] == 0) 
 			&& $permit_type == true ) {
