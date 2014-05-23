@@ -220,7 +220,7 @@ function rb_display_list() {
 			$queryApprove = "UPDATE ". table_agency_profile ." SET ProfileIsActive = 1 WHERE ProfileID =  ". $ProfileID;
 			$resultsApprove = mysql_query($queryApprove);
 			if($resultsApprove){ 
-				echo ('<div id="message" class="updated"><p>'. __("$profileLabel Approved successfully!", rb_agency_interact_TEXTDOMAIN) .'</p></div>');
+				echo ('<div id="message" class="updated"><p>'. __(" ".(isset($profileLabel)?$profileLabel:"")." Approved successfully!", rb_agency_interact_TEXTDOMAIN) .'</p></div>');
 			}
 		}
 		
@@ -230,8 +230,8 @@ function rb_display_list() {
 			$p = new rb_agency_pagination;
 			$p->items($items);
 			$p->limit(50); // Limit entries per page
-			$p->target("admin.php?page=". $_GET['page'] .$query);
-			$p->currentPage($_GET[$p->paging]); // Gets and validates the current page
+			$p->target("admin.php?page=". (isset($_GET['page'])?$_GET['page']:"") .(isset($query)?$query:""));
+			$p->currentPage((isset($_GET[(isset($p->paging)?$p->paging:"")])?$_GET[$p->paging]:"")); // Gets and validates the current page
 			$p->calculate(); // Calculates what to show
 			$p->parameterName('paging');
 			$p->adjacents(1); //No. of page away from the current page
@@ -268,13 +268,13 @@ function rb_display_list() {
        
 	
 	
-		echo "        	<form method=\"GET\" action=\"". admin_url("admin.php?page=". $_GET['page']) ."\">\n";
-		echo "        		<input type=\"hidden\" name=\"page_index\" id=\"page_index\" value=\"". $_GET['page_index'] ."\" />  \n";
+		echo "        	<form method=\"GET\" action=\"". admin_url("admin.php?page=". (isset($_GET['page'])?$_GET["page"]:"")) ."\">\n";
+		echo "        		<input type=\"hidden\" name=\"page_index\" id=\"page_index\" value=\"". (isset($_GET['page_index'])?$_GET["page_index"]:"") ."\" />  \n";
 		echo "        		<input type=\"hidden\" name=\"page\" id=\"page\" value=\"". $_GET['page'] ."\" />\n";
 		echo "        		<input type=\"hidden\" name=\"type\" value=\"name\" />\n";
 		echo "        		". __("Search By", rb_agency_interact_TEXTDOMAIN) .": \n";
-		echo "        		". __("First Name", rb_agency_interact_TEXTDOMAIN) .": <input type=\"text\" name=\"ProfileContactNameFirst\" value=\"". $selectedNameFirst ."\" style=\"width: 100px;\" />\n";
-		echo "        		". __("Last Name", rb_agency_interact_TEXTDOMAIN) .": <input type=\"text\" name=\"ProfileContactNameLast\" value=\"". $selectedNameLast ."\" style=\"width: 100px;\" />\n";
+		echo "        		". __("First Name", rb_agency_interact_TEXTDOMAIN) .": <input type=\"text\" name=\"ProfileContactNameFirst\" value=\"". (isset($selectedNameFirst)?$selectedNameFirst:"") ."\" style=\"width: 100px;\" />\n";
+		echo "        		". __("Last Name", rb_agency_interact_TEXTDOMAIN) .": <input type=\"text\" name=\"ProfileContactNameLast\" value=\"". (isset($selectedNameLast)?$selectedNameLast:"") ."\" style=\"width: 100px;\" />\n";
 		echo "        		". __("Location", rb_agency_interact_TEXTDOMAIN) .": \n";
 		echo "        		<select name=\"ProfileLocationCity\">\n";
 		echo "				  <option value=\"\">". __("Any Location", rb_agency_interact_TEXTDOMAIN) ."</option>";
@@ -283,7 +283,7 @@ function rb_display_list() {
 								$count = mysql_num_rows($results);
 								while ($data = mysql_fetch_array($results)) {
 									if (isset($data['ProfileLocationCity']) && !empty($data['ProfileLocationCity'])) {
-									echo "<option value=\"". $data['ProfileLocationCity'] ."\" ". selected($selectedCity, $data["ProfileLocationCity"]) ."\">". $data['ProfileLocationCity'] .", ". strtoupper($dataLocation["ProfileLocationState"]) ."</option>\n";
+									echo "<option value=\"". $data['ProfileLocationCity'] ."\" ". selected((isset($selectedCity)?$selectedCity:""), $data["ProfileLocationCity"]) ."\">". $data['ProfileLocationCity'] .", ". strtoupper(isset($dataLocation["ProfileLocationState"])?$dataLocation["ProfileLocationState"]:"") ."</option>\n";
 									}
 								} 
 		echo "        		</select>\n";
@@ -294,7 +294,7 @@ function rb_display_list() {
 								$results = mysql_query($query);
 								$count = mysql_num_rows($results);
 								while ($data = mysql_fetch_array($results)) {
-									echo "<option value=\"". $data['DataTypeID'] ."\" ". selected($selectedCity, $data["DataTypeTitle"]) ."\">". $data['DataTypeTitle'] ."</option>\n";
+									echo "<option value=\"". $data['DataTypeID'] ."\" ". selected((isset($selectedCity)?$selectedCity:""), $data["DataTypeTitle"]) ."\">". $data['DataTypeTitle'] ."</option>\n";
 								} 
 		echo "        		</select>\n";
 		echo "        		<input type=\"submit\" value=\"". __("Filter", rb_agency_interact_TEXTDOMAIN) ."\" class=\"button-primary\" />\n";
@@ -302,7 +302,7 @@ function rb_display_list() {
 		echo "        </td>\n";
 		echo "        <td style=\"width: 10%;\" nowrap=\"nowrap\">\n";
 		echo "        	<form method=\"GET\" action=\"". admin_url("admin.php?page=". $_GET['page']) ."\">\n";
-		echo "        		<input type=\"hidden\" name=\"page_index\" id=\"page_index\" value=\"". $_GET['page_index'] ."\" />  \n";
+		echo "        		<input type=\"hidden\" name=\"page_index\" id=\"page_index\" value=\"". (isset($_GET['page_index'])?$_GET['page_index']:"") ."\" />  \n";
 		echo "        		<input type=\"hidden\" name=\"page\" id=\"page\" value=\"". $_GET['page'] ."\" />\n";
 		echo "        		<input type=\"submit\" value=\"". __("Clear Filters", rb_agency_interact_TEXTDOMAIN) ."\" class=\"button-secondary\" />\n";
 		echo "        	</form>\n";
@@ -406,7 +406,7 @@ function rb_display_list() {
 			$resultProfileGender = mysql_query("SELECT * FROM ".table_agency_data_gender." WHERE GenderID = '".$ProfileGender."' ");
 			$fetchProfileGender = mysql_fetch_assoc($resultProfileGender);
 			$ProfileGender  = $fetchProfileGender["GenderTitle"];
-		echo "    <tr". $rowColor .">\n";
+		echo "    <tr". (isset($rowColor)?$rowColor:"") .">\n";
 		echo "        <th class=\"check-column\" scope=\"row\">\n";
 		echo "          <input type=\"checkbox\" value=\"". $ProfileID ."\" class=\"administrator\" id=\"". $ProfileID ."\" name=\"profileID[". $ProfileID ."]\"/>\n";
 		echo "        </th>\n";
@@ -416,7 +416,7 @@ function rb_display_list() {
 		echo "          <div class=\"row-actions\">\n";
 		echo "            <span class=\"allow\"><a href=\"". admin_url("admin.php?page=". $_GET['page'] ."&amp;action=approveRecord&amp;ProfileID=". $ProfileID) ."\" title=\"". __("Approve this Record", rb_agency_interact_TEXTDOMAIN) . "\">". __("Approve", rb_agency_interact_TEXTDOMAIN) . "</a> | </span>\n";
 		echo "            <span class=\"edit\"><a href=\"". admin_url("admin.php?page=rb_agency_menu_profiles&amp;action=editRecord&amp;ProfileID=". $ProfileID) ."\" title=\"". __("Edit this Record", rb_agency_interact_TEXTDOMAIN) . "\">". __("Edit", rb_agency_interact_TEXTDOMAIN) . "</a> | </span>\n";
-		echo "            <span class=\"view\"><a href=\"". rb_agency_PROFILEDIR . $rb_agency_UPLOADDIR . $ProfileGallery ."/\" title=\"". __("View", rb_agency_interact_TEXTDOMAIN) . "\" target=\"_blank\">". __("View", rb_agency_interact_TEXTDOMAIN) . "</a> | </span>\n";
+		echo "            <span class=\"view\"><a href=\"../profile/" . $ProfileGallery ."/\" title=\"". __("View", rb_agency_interact_TEXTDOMAIN) . "\" target=\"_blank\">". __("View", rb_agency_interact_TEXTDOMAIN) . "</a> | </span>\n";
 		//echo "            <span class=\"delete\"><a class=\"submitdelete\" href=\"". admin_url("admin.php?page=". $_GET['page']) ."&amp;action=deleteRecord&amp;ProfileID=". $ProfileID ."\"  onclick=\"if ( confirm('". __("You are about to delete the profile for ", rb_agency_interact_TEXTDOMAIN) ." ". $ProfileContactNameFirst ." ". $ProfileContactNameLast ."'". __("Cancel", rb_agency_interact_TEXTDOMAIN) . "\' ". __("to stop", rb_agency_interact_TEXTDOMAIN) . ", \'". __("OK", rb_agency_interact_TEXTDOMAIN) . "\' ". __("to delete", rb_agency_interact_TEXTDOMAIN) . ".') ) { return true;}return false;\" title=\"". __("Delete this Record", rb_agency_interact_TEXTDOMAIN) . "\">". __("Delete", rb_agency_interact_TEXTDOMAIN) . "</a> </span>\n";
 		echo "          </div>\n";
 		echo "        </td>\n";
