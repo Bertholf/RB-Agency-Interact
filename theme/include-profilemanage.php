@@ -89,10 +89,9 @@
 		} 
 		
 		echo'<input type="hidden" name="aps12" value="'.$data3["ProfileCustomShowGender"].'" >';
-		echo'<input type="hidden" name="ctype" value="'.$ProfileCustomType.'" >';
+		echo'<input type="hidden" name="ctype" value="'.(isset($ProfileCustomType)?$ProfileCustomType:"").'" >';
 		
-		if (($data3["ProfileCustomShowGender"] == $ProfileGender) || ($data3["ProfileCustomShowGender"] == 0) 
-			&& $permit_type == true ) {
+		if (($data3["ProfileCustomShowGender"] == $ProfileGender) || ($data3["ProfileCustomShowGender"] == 0)  && $permit_type == true ) {
 
 			$ProfileCustomTitle = $data3['ProfileCustomTitle'];
 			$ProfileCustomType  = $data3['ProfileCustomType'];
