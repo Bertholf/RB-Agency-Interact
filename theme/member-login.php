@@ -24,14 +24,16 @@ if ( $_SERVER['REQUEST_METHOD'] == "POST" && !empty( $_POST['action'] ) && $_POS
 
 function get_user_login_info(){
 
-    global $user_ID;
+    global $user_ID, $wpdb;
 	$redirect = isset($_POST["lastviewed"])?$_POST["lastviewed"]:"";
 	get_currentuserinfo();
 	$user_info = get_userdata( $user_ID );
 
+    // Check if user is registered as Model/Talent
+    //$is_model_or_talent = $wpdb->get_row($wpdb->prepare("SELECT * FROM ".table_agency_profile." WHERE ProfileUserLinked = %d",$user_ID));
 
-
-	if($user_ID){
+     
+	if(isset($user_ID)){
 		
 		// If user_registered date/time is less than 48hrs from now
 			
