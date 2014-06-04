@@ -72,6 +72,8 @@ function get_user_login_info(){
 		}
 }
 
+add_filter('login_redirect', 'rb_agency_interact_login_redirect', 10, 3);
+	
 // ****************************************************************************************** //
 // Already logged in 
 	if (is_user_logged_in()) {
