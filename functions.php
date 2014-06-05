@@ -39,12 +39,12 @@
 	add_filter('rewrite_rules_array','rb_agency_interact_rewriteRules');
 		function rb_agency_interact_rewriteRules($rules) {
 			$newrules = array();
-			$newrules['profile-member/(.*)$'] = 'index.php?type=$matches[1]';
-			$newrules['profile-member/(.*)/(.*)$'] = 'index.php?type=$matches[0]';
-			$newrules['profile-member'] = 'index.php?type=profileoverview';
-			$newrules['profile-register/(.*)$'] = 'index.php?type=profileregister&typeofprofile=$matches[1]';
+			$newrules['profile-member/(.*)$'] = 'index.php?type=$matches[1]&rbgroup=models';
+			$newrules['profile-member/(.*)/(.*)$'] = 'index.php?type=$matches[0]&rbgroup=models';
+			$newrules['profile-member'] = 'index.php?type=profileoverview&rbgroup=models';
+			$newrules['profile-register/(.*)$'] = 'index.php?type=profileregister&typeofprofile=$matches[1]&rbgroup=models';
 
-			$newrules['profile-login'] = 'index.php?type=profilelogin';
+			$newrules['profile-login'] = 'index.php?type=profilelogin&rbgroup=models';
 			return $newrules + $rules;
 		}
 
@@ -54,6 +54,7 @@
 			$query_vars[] = 'type';
 			$query_vars[] = 'typeofprofile';
 			$query_vars[] = 'ref';
+			$query_vars[] = 'rbgroup';
 			
 			return $query_vars;
 		}
@@ -61,7 +62,10 @@
 	// Set Custom Template
 	add_filter('template_include', 'rb_agency_interact_template_include', 1, 1); 
 		function rb_agency_interact_template_include( $template ) {
-			if ( get_query_var( 'type' ) ) {
+			if ( get_query_var( 'type' ) && get_query_var( 'rbgroup' ) == "models") {
+				
+				rb_agency_group_permission(get_query_var( 'rbgroup' ));
+
 				if (get_query_var( 'type' ) == "profileoverview") {
 					return dirname(__FILE__) . '/theme/member-overview.php'; 
 				} elseif (get_query_var( 'type' ) == "account") {
