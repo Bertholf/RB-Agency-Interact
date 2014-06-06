@@ -5,7 +5,10 @@
 	/* Load registration file. */
 	//require_once( ABSPATH . WPINC . '/registration.php' );
 	/* Get Options */
+	$rb_agency_options_arr = get_option('rb_agency_options');
 	$rb_agency_interact_options_arr = get_option('rb_agencyinteract_options');
+	$rb_agency_option_model_toc = isset($rb_agency_options_arr['rb_agency_option_agency_model_toc'])?$rb_agency_options_arr['rb_agency_option_agency_model_toc']: "/models-terms-of-conditions";
+	
 
 	//Sidebar
 	$rb_agencyinteract_option_profilemanage_sidebar = $rb_agency_interact_options_arr['rb_agencyinteract_option_profilemanage_sidebar'];
@@ -343,7 +346,7 @@
 	echo "       <div id=\"profile-argee\" class=\"rbfield rbcheckbox rbsingle\">\n";
 					$profile_agree = get_the_author_meta("profile_agree", $current_user->ID );
 	echo "       	<label></label>\n";
-	echo "       	<div><input type=\"checkbox\" name=\"profile_agree\" value=\"yes\" /> ". sprintf(__("I agree to the %s terms of service", rb_agency_interact_TEXTDOMAIN), "<a href=\"/terms-of-use/\" target=\"_blank\">") ."</a></div>\n";
+	echo "       	<div><input type=\"checkbox\" name=\"profile_agree\" value=\"yes\" /> ". sprintf(__("I agree to the %s terms of service", rb_agency_interact_TEXTDOMAIN), "<a href=\"".$rb_agency_option_model_toc ."\" target=\"_blank\">") ."</a></div>\n";
 	echo "       </div><!-- #profile-agree -->\n";
  
 	echo "       <div id=\"profile-submit\" class=\"rbfield rbsubmit rbsingle\">\n";
