@@ -35,7 +35,7 @@
 		while ($data3 = mysql_fetch_array($results3)) {
 
 			if (in_array($data3['DataTypeID'], $ProfileTypeArray)){
-				$profileType .=  "<input type=\"checkbox\" name=\"ProfileType[]\" value=\"".$data3['DataTypeID']."\" ".checked($ProfileType,$data3['DataTypeID'])."/>".$data3['DataTypeTitle'] ;
+				$profileType .=  "<input type=\"checkbox\" name=\"ProfileType[]\" value=\"".$data3['DataTypeID']."\" ".($ProfileType == $data3['DataTypeID']?"checked=\"checked\"":"")."/>".$data3['DataTypeTitle'] ;
 
 				if($i<$count3){
 					$profileType .=  "</br>";
