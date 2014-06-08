@@ -66,6 +66,7 @@ if(isset($rb_agencyinteract_option_switch_sidebar) && $rb_agencyinteract_option_
 						/*
 						 * Casting Integratino
 						 */
+						/*
 						if (function_exists('rb_agency_casting_menu')) {
 								echo "          <div id=\"agent-register\" class=\"register\">\n";
 								echo "            <h3>". __("Casting Agents & Producers", rb_agency_interact_TEXTDOMAIN). "</h3>\n";
@@ -75,7 +76,7 @@ if(isset($rb_agencyinteract_option_switch_sidebar) && $rb_agencyinteract_option_
 								echo "              <li><a href=\"". get_bloginfo("wpurl") ."/casting-register/\" class=\"rb_button\">". __("Register as Agent / Producer", rb_agency_interact_TEXTDOMAIN). "</a></li>\n";
 								echo "            </ul>\n";
 								echo "          </div> <!-- talent-register -->\n";
-						}
+						}*/
 				
 				}
 			echo "        </div> <!-- rbsign-up -->\n";
