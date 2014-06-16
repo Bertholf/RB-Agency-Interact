@@ -58,8 +58,8 @@ if(isset($rb_agencyinteract_option_switch_sidebar) && $rb_agencyinteract_option_
 				echo "            <ul>\n";
 				echo "              <li>". __("Create your free profile page", rb_agency_interact_TEXTDOMAIN). "</li>\n";
 				echo "              <li>". __("Apply to Auditions & Jobs", rb_agency_interact_TEXTDOMAIN). "</li>\n";
-				echo "              <li><a href=\"". get_bloginfo("wpurl") ."/profile-register/talent\" class=\"rb_button\">". __("Register as Talent / Model", rb_agency_interact_TEXTDOMAIN). "</a></li>\n";
 				echo "            </ul>\n";
+				echo "              <a href=\"". get_bloginfo("wpurl") ."/profile-register/talent\" class=\"rb_button\">". __("Register as Talent / Model", rb_agency_interact_TEXTDOMAIN). "</a>\n";
 				echo "          </div> <!-- talent-register -->\n";
 				echo "          <div class=\"clear line\"></div>\n";
 
