@@ -151,6 +151,65 @@
 			wp_mail($user_email, sprintf(__('%s Registration Successful! Login Details'), get_option('blogname')), $message, $headers);  
 
 		}
+
+		
+	}
+
+	if ( !function_exists('wp_new_user_notification_pending') ) {  
+		function wp_new_user_notification_pending( $user_id) {  
+				$user = new WP_User($user_id);  
+
+				$user_login = stripslashes($user->user_login);  
+				$user_email = stripslashes($user->user_email);  
+
+				$message  = sprintf(__('New user registration on your blog %s:'), get_option('blogname')) . "\r\n\r\n";  
+				$message .= sprintf(__('Username: %s'), $user_login) . "\r\n\r\n";  
+				$message .= sprintf(__('E-mail: %s'), $user_email) . "\r\n";  
+
+				@wp_mail(get_option('admin_email'), sprintf(__('[%s] New User Registration'), get_option('blogname')), $message);  
+
+				$message  = __('Hi there,') . "\r\n\r\n";  
+				$message .= sprintf(__("Thanks for joining %s! "), get_option('blogname')) . "\r\n\r\n"; 
+				$message .= sprintf(__('Your account is pending for approval. We will send your login once account is approved.'), $user_login) . "\r\n"; 
+				$message .= sprintf(__('If you have any problems, please contact us at %s.'), get_option('admin_email')) . "\r\n\r\n"; 
+				$message .= __('Regards,')."\r\n";
+				$message .= get_option('blogname') . __(' Team') ."\r\n"; 
+				$message .= get_option('home') ."\r\n"; 
+
+				$headers = 'From: '. get_option('blogname') .' <'. get_option('admin_email') .'>' . "\r\n";
+				wp_mail($user_email, sprintf(__('%s Registration Successful!  Account is pending for approval'), get_option('blogname')), $message, $headers);  
+
+		}
+	}
+
+	if ( !function_exists('wp_new_user_notification_approve') ) {  
+		function wp_new_user_notification_approve( $user_id) {  
+				$user = get_userdata($user_id);  
+
+				if($user){
+					$user_login = stripslashes($user->user_login);  
+					$user_email = stripslashes($user->user_email);  
+
+					$new_pass = wp_generate_password();
+					 wp_set_password( $new_pass, $user_id );
+					 $user_pass = $new_pass;
+
+					$message  = __('Hi there,') . "\r\n\r\n";  
+					$message .= sprintf(__('Congratulations! Your account is approved. Below is your login information.'), $user_login) . "\r\n"; 
+					$message .= sprintf(__("Here's how to log in:"), get_option('blogname')) . "\r\n\r\n"; 
+					$message .= get_option('home') ."/profile-login/\r\n"; 
+					$message .= sprintf(__('Username: %s'), $user_login) . "\r\n"; 
+					$message .= sprintf(__('Password: %s'), $user_pass) . "\r\n\r\n"; 
+			
+					$message .= sprintf(__('If you have any problems, please contact us at %s.'), get_option('admin_email')) . "\r\n\r\n"; 
+					$message .= __('Regards,')."\r\n";
+					$message .= get_option('blogname') . __(' Team') ."\r\n"; 
+					$message .= get_option('home') ."\r\n"; 
+
+					$headers = 'From: '. get_option('blogname') .' <'. get_option('admin_email') .'>' . "\r\n";
+					wp_mail($user_email, sprintf(__('%s Congratulations! Your account is approved.'), get_option('blogname')), $message, $headers);  
+				}
+		}
 	}
 	// Make Directory for new profile
 	function rb_agency_interact_checkdir($ProfileGallery){
@@ -175,7 +234,7 @@
 				$rb_agency_option_redirect_custom_logins = isset($rb_agency_options_arr['rb_agencyinteract_option_redirect_custom_login']) ? $rb_agency_options_arr['rb_agencyinteract_option_redirect_custom_login'] :0;
 
 			if (empty($action) || 'login' == $action) {
-				if($rb_agency_option_redirect_custom_logins == 0){
+				if($rb_agency_option_redirect_custom_logins == 0 || $rb_agency_option_redirect_custom_logins == 2){
 					wp_safe_redirect(get_bloginfo("wpurl"). "/profile-login/");
 				}
 			}
@@ -328,6 +387,8 @@
 					if($type == "textbox"){
 						return $row["ProfileCustomValue"];
 					} elseif($type == "dropdown") {
+						return "selected";
+					}elseif($type == "multiple" && in_array($val,explode(",",$row["ProfileCustomValue"]))) {
 						return "selected";
 					}
 				}
@@ -484,4 +545,15 @@ function self_delete() {
 
 }
 
+
+function rb_get_user_linkedID($ProfileID){
+	   global $wpdb;
+
+	    $result = $wpdb->get_row($wpdb->prepare("SELECT ProfileUserLinked FROM ".table_agency_profile." WHERE ProfileID = %d",$ProfileID));
+        $found = $wpdb->num_rows;
+        if($found > 0)
+	    return $result->ProfileUserLinked;
+        else
+        return 0;
+}
 ?>
