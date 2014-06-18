@@ -42,23 +42,27 @@ function get_user_login_info(){
 		} else {
 
 			// If Admin, redirect to plugin
-			if( $user_info->user_level > 7) {
+			if(current_user_can("manage_options")) {
 				header("Location: ". admin_url("admin.php?page=rb_agency_menu"));
 			}
 
 			// Message will show for 48hrs after registration
-			elseif( strtotime( $user_info->user_registered ) > ( time() - 172800 ) ) {
+			/*elseif( strtotime( $user_info->user_registered ) > ( time() - 172800 ) ) {
 				if(get_user_meta($user_ID, 'rb_agency_interact_clientdata', true)){
 						header("Location: ". get_bloginfo("wpurl"). "/casting-dashboard/");
 				} else {
+
 						header("Location: ". get_bloginfo("wpurl"). "/profile-member/");
 				}
-			} else {
-				if(get_user_meta($user_ID, 'rb_agency_interact_clientdata', true)){
-						header("Location: ". get_bloginfo("wpurl"). "/casting-dashboard/");
-				} else {
-						header("Location: ". get_bloginfo("wpurl"). "/profile-member/");
-				}
+			} */else {
+					$rb_agency_new_registeredUser = get_user_meta($user_ID,'rb_agency_new_registeredUser',true);
+					/*if(!empty($rb_agency_new_registeredUser)){
+							header("Location: ". get_bloginfo("wpurl"). "/welcome/");
+					}else*/if(get_user_meta($user_ID, 'rb_agency_interact_clientdata', true)){
+							header("Location: ". get_bloginfo("wpurl"). "/casting-dashboard/");
+					} else {
+							header("Location: ". get_bloginfo("wpurl"). "/profile-member/");
+					}
 			}
 	  	}
 	} elseif(empty($_POST['user-name']) || empty($_POST['password']) ){
@@ -66,11 +70,19 @@ function get_user_login_info(){
 
 	} else {
 		// Reload
-		if(get_user_meta($user_ID, 'rb_agency_interact_clientdata', true)){
-							header("Location: ". get_bloginfo("wpurl"). "/casting-dashboard/");
-				} else {
+				/*if(get_user_meta($user_ID, 'rb_agency_interact_clientdata', true)){
+									header("Location: ". get_bloginfo("wpurl"). "/casting-dashboard/");
+						} else {
 						header("Location: ". get_bloginfo("wpurl"). "/profile-member/");
-				}
+				}*/
+				$rb_agency_new_registeredUser = get_user_meta($user_ID,'rb_agency_new_registeredUser',true);
+			/*		if(!empty($rb_agency_new_registeredUser)){
+							header("Location: ". get_bloginfo("wpurl"). "/welcome/");
+					}else*/if(get_user_meta($user_ID, 'rb_agency_interact_clientdata', true)){
+							header("Location: ". get_bloginfo("wpurl"). "/casting-dashboard/");
+					} else {
+							header("Location: ". get_bloginfo("wpurl"). "/profile-member/");
+					}
 		}
 }
 

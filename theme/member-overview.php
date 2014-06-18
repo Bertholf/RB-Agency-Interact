@@ -47,6 +47,7 @@ get_header();
 
 		// get profile Custom fields value
 		$rb_agency_new_registeredUser = get_user_meta($current_user->ID,'rb_agency_new_registeredUser',true);
+		
 	
 		// ****************************************************************************************** //
 		// Check if User is Logged in or not
