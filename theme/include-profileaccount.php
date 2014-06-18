@@ -31,7 +31,7 @@
 	$rb_agencyinteract_option_registerallow = (int)$rb_agency_interact_options_arr['rb_agencyinteract_option_registerallow'];
 
 	// Get Data
-	$query = "SELECT * FROM " . table_agency_profile . " WHERE ProfileUserLinked='$ProfileUserLinked'";
+	$query = "SELECT * FROM " . table_agency_profile . " WHERE ProfileUserLinked='$ProfileUserLinked' LIMIT 1";
 	$results = mysql_query($query) or die ( __("Error, query failed", rb_agency_interact_TEXTDOMAIN ));
 	$count = mysql_num_rows($results);
 	while ($data = mysql_fetch_array($results)) {
