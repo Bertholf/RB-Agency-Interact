@@ -45,7 +45,7 @@ if (isset($_POST['action'])) {
 	$ProfileContactNameLast		=trim($_POST['ProfileContactNameLast']);
 	$ProfileContactDisplay		=trim($_POST['ProfileContactDisplay']);
 
-  	if (empty($ProfileContactDisplay)) {  // Probably a new record... 
+  //	if (empty($ProfileContactDisplay)) {  // Probably a new record... 
 		if ($rb_agency_option_profilenaming == 0) { 
 			$ProfileContactDisplay = $ProfileContactNameFirst . " ". $ProfileContactNameLast;
 		} elseif ($rb_agency_option_profilenaming == 1) { 
@@ -58,7 +58,7 @@ if (isset($_POST['action'])) {
 		} elseif ($rb_agency_option_profilenaming == 4) {
                         $ProfileContactDisplay = $ProfileContactNameFirst;
                 }
-  	}
+  //	}
 
 	$ProfileGallery				=$_POST['ProfileGallery'];
 
@@ -123,8 +123,8 @@ if (isset($_POST['action'])) {
 			$ProfileIsPromoted	= 0;
 			$ProfileStatHits		= 0;
 			$ProfileDateBirth	    	= $_POST['ProfileDateBirth_Year'] ."-". $_POST['ProfileDateBirth_Month'] ."-". $_POST['ProfileDateBirth_Day'];
-			$ProfileGallery 		= rb_agency_interact_checkdir($ProfileGallery); // Check directory existence , create if does not exist.
-
+			//$ProfileGallery 		= rb_agency_interact_checkdir($ProfileGallery); // Check directory existence , create if does not exist.
+			$ProfileGallery = rb_agency_createdir($ProfileGallery);
 			// Create Record
 			$insert = "INSERT INTO " . table_agency_profile .
 			" (ProfileUserLinked,ProfileGallery,ProfileContactDisplay,ProfileContactNameFirst,ProfileContactNameLast,
@@ -204,7 +204,7 @@ if (isset($_POST['action'])) {
 				$isLinked =  mysql_query("UPDATE ". table_agency_profile ." SET ProfileUserLinked =  ". $current_user->ID ." WHERE ProfileID = ".$ProfileID." ");
 				if($isLinked){
 
-					wp_redirect(get_bloginfo("wpurl") . "/profile-member/media/");
+					wp_redirect(get_bloginfo("wpurl") . "/profile-member/manage/");
 
 				}  else {
 				    die(mysql_error());	 				    				}
@@ -224,12 +224,38 @@ if (isset($_POST['action'])) {
 			}
 
 			// Set Display Name as Record ID (We have to do this after so we know what record ID to use... right ;)
-			if ($rb_agency_option_profilenaming == 3) {
-				$ProfileContactDisplay = "ID-". $ProfileID;
-				$ProfileGallery = "ID". $ProfileID."-";
-				$update = $wpdb->query("UPDATE " . table_agency_profile . " SET ProfileContactDisplay='". $ProfileContactDisplay. "', ProfileGallery='". $ProfileGallery. "' WHERE ProfileID='". $ProfileID ."'");
+			//if ($rb_agency_option_profilenaming == 3) {
+				/*$ProfileContactDisplay = "ID-". $ProfileID;
+				$ProfileGallery = "ID". $ProfileID."-";*/
+
+				if (empty($ProfileContactDisplay)) {  // Probably a new record... 
+					if ($rb_agency_option_profilenaming == 0) {
+						$ProfileContactDisplay = $ProfileContactNameFirst . " " . $ProfileContactNameLast;
+					} elseif ($rb_agency_option_profilenaming == 1) {
+						// If John-D already exists, make John-D-1
+						for ($i = 'a', $j = 1; $j <= 26; $i++, $j++) {
+							if (isset($ar) && in_array($i, $ar)){
+								$ProfileContactDisplay = $ProfileContactNameFirst . " " . $i .'-'. $j;
+							} else {
+								$ProfileContactDisplay = $ProfileContactNameFirst . " " . substr($ProfileContactNameLast, 0, 1);
+							}
+						}
+
+					} elseif ($rb_agency_option_profilenaming == 2) {
+						$errorValidation['rb_agency_option_profilenaming'] = "<b><i>" . __(LabelSingular . " must have a display name identified", rb_agency_TEXTDOMAIN) . ".</i></b><br>";
+						$have_error = true;
+					} elseif ($rb_agency_option_profilenaming == 3) {
+						$ProfileContactDisplay = "ID " . $ProfileID;
+					} elseif ($rb_agency_option_profilenaming == 4) {
+						$ProfileContactDisplay = $ProfileContactNameFirst;
+					} elseif ($rb_agency_option_profilenaming == 5) {
+						$ProfileContactDisplay = $ProfileContactNameLast;
+					}
+				}				
+
+				 $update = $wpdb->query("UPDATE " . table_agency_profile . " SET ProfileContactDisplay='". $ProfileContactDisplay. "', ProfileGallery='". $ProfileGallery. "' WHERE ProfileID='". $ProfileID ."'");
 				$updated = $wpdb->query($update);
-			}			
+			//}			
 			
 			$alerts = "<div id=\"message\" class=\"updated\"><p>". __("New Profile added successfully", rb_agency_interact_TEXTDOMAIN) ."!</p></div>"; 
 					
@@ -249,6 +275,7 @@ if (isset($_POST['action'])) {
 	// Edit Record
 	case 'editRecord':
 		if(!$have_error){
+			
 			
 			// Update Record
 			$update = "UPDATE " . table_agency_profile . " SET 
@@ -281,7 +308,9 @@ if (isset($_POST['action'])) {
 			update_usermeta( $current_user->ID, 'display_name', esc_attr( $ProfileContactDisplay ) );
 			update_usermeta( $current_user->ID, 'user_email', esc_attr( $ProfileContactEmail ) );
 			update_usermeta( $current_user->ID, 'rb_agency_interact_pgender', esc_attr( $ProfileGender ) );	
-
+				// delete temporary storage
+			delete_user_meta($current_user->ID, 'rb_agency_new_registeredUser');
+           
 			// Add New Custom Field Values			 
 			foreach($_POST as $key => $value) {
 			
@@ -311,7 +340,7 @@ if (isset($_POST['action'])) {
 			$alerts = "<div id=\"message\" class=\"error\"><p>". __("Error updating record, please ensure you have filled out all required fields.", rb_agency_interact_TEXTDOMAIN) ."<br />". $error ."</p></div>"; 
 		}
 		
-		wp_redirect( $rb_agency_interact_WPURL ."/profile-member/" );
+		wp_redirect( $rb_agency_interact_WPURL ."/profile-member/manage/" );
 		//exit;
 	break;
 	}
@@ -356,7 +385,6 @@ if (is_user_logged_in()) {
 			
 			echo "<div id=\"profile-manage\" class=\"profile-account\">\n";
 			$rb_agency_new_registeredUser = get_user_meta($current_user->ID,'rb_agency_new_registeredUser');
-			
 			// Menu
 			include("include-menu.php"); 	
 			echo " <div class=\"manage-account manage-content\">\n";
@@ -365,7 +393,7 @@ if (is_user_logged_in()) {
 			echo $alerts;
 			/* Check if the user is regsitered *****************************************/ 
 			// Verify Record
-			$sql = "SELECT ProfileID FROM ". table_agency_profile ." WHERE ProfileUserLinked =  ". $current_user->ID ."";
+			$sql = "SELECT ProfileID FROM ". table_agency_profile ." WHERE ProfileUserLinked =  ". $current_user->ID ." AND ProfileGallery <> '' LIMIT 1,1";
 			$results = mysql_query($sql);
 			$count = mysql_num_rows($results);
 			if ($count > 0) {
