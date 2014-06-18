@@ -1,7 +1,7 @@
 <?php
 // *************************************************************************************************** //
 // Prepare Page
-
+    global $wpdb;
 	/* Load registration file. */
 	//require_once( ABSPATH . WPINC . '/registration.php' );	
 	
@@ -9,7 +9,7 @@
 	$rb_agency_interact_options_arr = get_option('rb_agencyinteract_options');
     $rb_agency_options_arr = get_option('rb_agency_options');
 	$rb_agency_option_model_toc = isset($rb_agency_options_arr['rb_agency_option_agency_model_toc'])?$rb_agency_options_arr['rb_agency_option_agency_model_toc']: "/models-terms-of-conditions";
-	
+	$rb_agencyinteract_option_registerapproval = isset($rb_agency_interact_options_arr['rb_agencyinteract_option_registerapproval'])?$rb_agency_interact_options_arr['rb_agencyinteract_option_registerapproval']:"";
 	//Sidebar
 	$rb_agencyinteract_option_profilemanage_sidebar = isset($rb_agency_interact_options_arr['rb_agencyinteract_option_profilemanage_sidebar'])?$rb_agency_interact_options_arr['rb_agencyinteract_option_profilemanage_sidebar']:0;
 	if($rb_agencyinteract_option_profilemanage_sidebar){
@@ -126,6 +126,16 @@
 			update_user_meta($new_user, 'rb_agency_interact_profiletype', $new_user_type);
 			update_user_meta($new_user, 'rb_agency_interact_pgender', $gender);
 			
+			// Insert to table_agency_profile
+			$wpdb->query($wpdb->prepare("INSERT INTO ".table_agency_profile."
+				(ProfileContactNameFirst,ProfileContactNameLast,ProfileGender,ProfileContactEmail,ProfileIsActive,ProfileUserLinked) VALUES(%s,%s,%s,%s,%s,%s)",
+				 $first_name,
+				 $last_name,
+				 $ProfileGender,
+				 $user_email,
+				 3,
+				 $new_user
+				));
 			//Custom Fields
 			$arr = array();
 			
@@ -141,23 +151,28 @@
 					}
 				}
 			}
-			
+			$arr["new"] = true;
 			add_user_meta($new_user, 'rb_agency_new_registeredUser',$arr);
 			
 			// Log them in if no confirmation required.			
-			if ($rb_agencyinteract_option_registerconfirm == 1) {
+			if ($rb_agencyinteract_option_registerapproval == 1) {
 
 				global $error;
 				
 				//$login = wp_login( $user_login, $user_pass );
 				$login = wp_signon( array( 'user_login' => $user_login, 'user_password' => $user_pass, 'remember' => 1 ), false );	
-			}				
-				// Notify admin and user
-				wp_new_user_notification($new_user, $user_pass);
+					// Notify admin and user
+					wp_new_user_notification($new_user,$user_pass);
+			
+			}else{
+					wp_new_user_notification_pending($new_user);
+			}
+					
+			
 		}
 		
 		// Log them in if no confirmation required.
-		if ($rb_agencyinteract_option_registerconfirm == 1) {
+		if ($rb_agencyinteract_option_registerapproval == 1) {
 			if($login){
 				header("Location: ". get_bloginfo("wpurl"). "/profile-member/");
 			}
@@ -171,9 +186,9 @@
 	get_header();
 
 	echo "<div id=\"primary\" class=\"".$column_class." column rb-agency-interact rb-agency-interact-register\">\n";
-	echo "  <div id=\"content\">\n";
+	echo "  <div id=\"content member-register\">\n";
    
-	// ****************************************************************************************** //
+    // ****************************************************************************************** //
 	// Already logged in 
 
 	if ( is_user_logged_in() && !current_user_can( 'create_users' ) ) {
@@ -192,7 +207,12 @@
 				else 
 					printf( __("Thank you for registering, %1$s.", rb_agency_interact_TEXTDOMAIN), $_POST['profile_user_name'] );
 					echo "<br/>";
+					if ($rb_agencyinteract_option_registerapproval == 1) {
 					printf( __("Please check your email address. That's where you'll receive your login password.<br/> (It might go into your spam folder)", rb_agency_interact_TEXTDOMAIN) );
+					}else{
+					printf( __("Your account is pending for approval. We will send your login once account is approved.", rb_agency_interact_TEXTDOMAIN) );
+					
+					}
 	echo "    </p><!-- .rbalert -->\n";
 
 	} else {
@@ -214,7 +234,7 @@
 
 	// Self Registration
 	if ( $registration || current_user_can("create_users") ) {
-	echo "  <header class=\"entry-header\">";
+	echo "  <header class=\"entry-header member-register\">";
 	echo "  	<h1 class=\"entry-title\">Join Our Team</h1>";
 	echo "  </header>";
 	echo "  <div id=\"member-register\" class=\"rbform\">";

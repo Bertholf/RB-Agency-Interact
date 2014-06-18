@@ -25,7 +25,7 @@
 		// - show/hide  self-generate password
 		$rb_agencyinteract_option_registerconfirm = (int)$rb_agency_interact_options_arr['rb_agencyinteract_option_registerconfirm'];
 
-		$rb_agencyinteract_option_registerapproval = isset($rb_agency_interact_options_arr['rb_agencyinteract_option_registerapproval'])?(int)$rb_agency_interact_options_arr['rb_agencyinteract_option_registerapproval']:0;
+		$rb_agencyinteract_option_registerapproval = isset($rb_agency_interact_options_arr['rb_agencyinteract_option_registerapproval'])?$rb_agency_interact_options_arr['rb_agencyinteract_option_registerapproval']:"";
 	/* Check if users can register. */
 	$registration = get_option( 'users_can_register' );
 
@@ -174,7 +174,7 @@
 			add_user_meta($new_user, 'rb_agency_new_registeredUser',$arr);			
 			
 			//  Log them in if register auto approval		
-			if ($rb_agencyinteract_option_registerconfirm == 1) {
+			if ($rb_agencyinteract_option_registerapproval == 1) {
 
 				global $error;
 				
@@ -182,12 +182,12 @@
 				$login = wp_signon( array( 'user_login' => $user_login, 'user_password' => $user_pass, 'remember' => 1 ), false );	
 			}				
 				// Notify admin and user
-				wp_new_user_notification($new_user, $user_pass);	
+				wp_new_user_notification($new_user);	
 			
 		}
 		
 		// Log them in if register auto approval.
-		if ($rb_agencyinteract_option_registerconfirm == 1) {
+		if ($rb_agencyinteract_option_registerapproval == 1) {
 			if($login){
 				header("Location: ". get_bloginfo("wpurl"). "/profile-member/");
 			}
@@ -203,7 +203,7 @@
     get_header();
 
 	echo "<div id=\"primary\" class=\"".$column_class." column rb-agency-interact rb-agency-interact-register\">\n";
-	echo "  <div id=\"content\">\n";
+	echo "  <div id=\"content client-register\">\n";
 
    
 		// ****************************************************************************************** //
@@ -226,7 +226,12 @@
 				else 
 					printf( __("Thank you for registering, %1$s.", rb_agency_interact_TEXTDOMAIN), $_POST['user-name'] );
 					echo "<br/>";
+					if ($rb_agencyinteract_option_registerapproval == 1) {
 					printf( __("Please check your email address. That's where you'll receive your login password.<br/> (It might go into your spam folder)", rb_agency_interact_TEXTDOMAIN) );
+					}else{
+					printf( __("Your account is pending for approval. We will notify once your account is approved.", rb_agency_interact_TEXTDOMAIN) );
+					
+					}
 	echo "    </p><!-- .alert -->\n";
 
 		} else {
@@ -248,7 +253,7 @@
 
 			// Self Registration
 			if ( $registration || current_user_can("create_users") ) {
-	echo "  <header class=\"entry-header\">";
+	echo "  <header class=\"entry-header client-register\">";
 	echo "  	<h1 class=\"entry-title\">Join Our Team</h1>";
 	echo "  </header>";
 	echo "  <div id=\"client-register\" class=\"rbform\">";
