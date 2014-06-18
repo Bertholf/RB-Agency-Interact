@@ -201,7 +201,10 @@ function rb_display_list() {
 							// Verify Record
 							$queryApprove = "UPDATE ". table_agency_profile ." SET ProfileIsActive = 1 WHERE ProfileID =  ". $ProfileID;
 							$resultsApprove = mysql_query($queryApprove);
-						
+							
+							$ProfileUserLinked = rb_get_user_linkedID($ProfileID);
+
+							wp_new_user_notification_approve($ProfileUserLinked);
 							
 						}
 						
@@ -219,6 +222,8 @@ function rb_display_list() {
 			$ProfileID = $_GET["ProfileID"];
 			$queryApprove = "UPDATE ". table_agency_profile ." SET ProfileIsActive = 1 WHERE ProfileID =  ". $ProfileID;
 			$resultsApprove = mysql_query($queryApprove);
+			$ProfileUserLinked = rb_get_user_linkedID($ProfileID);
+			wp_new_user_notification_approve($ProfileUserLinked);
 			if($resultsApprove){ 
 				echo ('<div id="message" class="updated"><p>'. __(" ".(isset($profileLabel)?$profileLabel:"")." Approved successfully!", rb_agency_interact_TEXTDOMAIN) .'</p></div>');
 			}
@@ -415,7 +420,7 @@ function rb_display_list() {
 		echo "          ". $ProfileContactNameFirst ."\n";
 		echo "          <div class=\"row-actions\">\n";
 		echo "            <span class=\"allow\"><a href=\"". admin_url("admin.php?page=". $_GET['page'] ."&amp;action=approveRecord&amp;ProfileID=". $ProfileID) ."\" title=\"". __("Approve this Record", rb_agency_interact_TEXTDOMAIN) . "\">". __("Approve", rb_agency_interact_TEXTDOMAIN) . "</a> | </span>\n";
-		echo "            <span class=\"edit\"><a href=\"". admin_url("admin.php?page=rb_agency_menu_profiles&amp;action=editRecord&amp;ProfileID=". $ProfileID) ."\" title=\"". __("Edit this Record", rb_agency_interact_TEXTDOMAIN) . "\">". __("Edit", rb_agency_interact_TEXTDOMAIN) . "</a> | </span>\n";
+		echo "            <span class=\"edit\"><a href=\"". admin_url("admin.php?page=rb_agency_profiles&amp;action=editRecord&amp;ProfileID=". $ProfileID) ."\" title=\"". __("Edit this Record", rb_agency_interact_TEXTDOMAIN) . "\">". __("Edit", rb_agency_interact_TEXTDOMAIN) . "</a> | </span>\n";
 		echo "            <span class=\"view\"><a href=\"../profile/" . $ProfileGallery ."/\" title=\"". __("View", rb_agency_interact_TEXTDOMAIN) . "\" target=\"_blank\">". __("View", rb_agency_interact_TEXTDOMAIN) . "</a> | </span>\n";
 		//echo "            <span class=\"delete\"><a class=\"submitdelete\" href=\"". admin_url("admin.php?page=". $_GET['page']) ."&amp;action=deleteRecord&amp;ProfileID=". $ProfileID ."\"  onclick=\"if ( confirm('". __("You are about to delete the profile for ", rb_agency_interact_TEXTDOMAIN) ." ". $ProfileContactNameFirst ." ". $ProfileContactNameLast ."'". __("Cancel", rb_agency_interact_TEXTDOMAIN) . "\' ". __("to stop", rb_agency_interact_TEXTDOMAIN) . ", \'". __("OK", rb_agency_interact_TEXTDOMAIN) . "\' ". __("to delete", rb_agency_interact_TEXTDOMAIN) . ".') ) { return true;}return false;\" title=\"". __("Delete this Record", rb_agency_interact_TEXTDOMAIN) . "\">". __("Delete", rb_agency_interact_TEXTDOMAIN) . "</a> </span>\n";
 		echo "          </div>\n";
