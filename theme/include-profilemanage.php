@@ -8,7 +8,7 @@
 		$rb_agency_option_unittype  			= isset($rb_agency_options_arr['rb_agency_option_unittype'])?$rb_agency_options_arr['rb_agency_option_unittype']:0;
 		$rb_agency_option_locationtimezone 		= isset($rb_agency_options_arr['rb_agency_option_locationtimezone'])? (int)$rb_agency_options_arr['rb_agency_option_locationtimezone']:0;
 	// Get Values
-	$query = "SELECT * FROM " . table_agency_profile . " WHERE ProfileUserLinked='$ProfileUserLinked'";
+	$query = "SELECT * FROM " . table_agency_profile . " WHERE ProfileUserLinked='$ProfileUserLinked' LIMIT 1";
 	$results = mysql_query($query) or die ( __("Error, query failed", rb_agency_interact_TEXTDOMAIN ));
 	$count = mysql_num_rows($results);
 		/*
@@ -24,7 +24,6 @@
 		$query3 = "SELECT * FROM " . table_agency_data_type . " ORDER BY DataTypeTitle";
 		$results3 = mysql_query($query3);
 		$count3 = mysql_num_rows($results3);
-		
 	while ($data = mysql_fetch_array($results)) {
 		$ProfileID					=$data['ProfileID'];
 		$ProfileUserLinked			=$data['ProfileUserLinked'];
@@ -34,8 +33,8 @@
 		$i=1; 
 		while ($data3 = mysql_fetch_array($results3)) {
 
-			if (in_array($data3['DataTypeID'], $ProfileTypeArray)){
-				$profileType .=  "<input type=\"checkbox\" name=\"ProfileType[]\" value=\"".$data3['DataTypeID']."\" ".($ProfileType == $data3['DataTypeID']?"checked=\"checked\"":"")."/>".$data3['DataTypeTitle'] ;
+			if (in_array($data3['DataTypeID'], $ProfileTypeArray)){ 
+				$profileType .=  "<input type=\"checkbox\" name=\"ProfileType[]\" value=\"".$data3['DataTypeID']."\" ".(in_array($data3['DataTypeID'], $ProfileTypeArray)?"checked=\"checked\"":"")."/>".$data3['DataTypeTitle'] ;
 
 				if($i<$count3){
 					$profileType .=  "</br>";
@@ -136,7 +135,7 @@
 			echo "</div>";
 			}
 			
-		elseif ($ProfileCustomType == 2) { // Min Max
+		elseif ($ProfileCustomType == 2 ) { // Min Max
 
 			echo "<div id=\"rbfield-".strtolower(trim($data3['ProfileCustomTitle']))." ".gender_filter($data3['ProfileCustomShowGender'])."\" class=\"rbfield rbtext rbmulti\">";
 			echo "<label for=\"".strtolower(trim($data3['ProfileCustomTitle']))."\">"
@@ -181,7 +180,7 @@
 			 
 		} 
 			
-		elseif ($ProfileCustomType == 3) {  // Drop Down
+		elseif ($ProfileCustomType == 3 || $ProfileCustomType == 9) {  // Drop Down
 
 			echo "<div id=\"rbfield-".strtolower(trim($data3['ProfileCustomTitle']))." ".gender_filter($data3['ProfileCustomShowGender'])."\" class=\"rbfield rbselect rbsingle\">";
 			echo "<label for=\"".strtolower(trim($data3['ProfileCustomTitle']))."\">"
@@ -193,16 +192,22 @@
 				$data = explode("|",$option1);
 				$data2 = explode("|",$option2);
 				echo "<div>";
-				echo "<select name=\"ProfileCustomID". $data3['ProfileCustomID'] ."\">\n";
+				echo "<select name=\"ProfileCustomID". $data3['ProfileCustomID'] ."[]\" ".($ProfileCustomType == 9?"multiple=\"multiple\"":"").">\n";
 		
 						echo "<option value=\"\">--</option>";
 				
 							$pos = 0;
 							foreach($data as $val1){
 								if(!empty($val1)){
+									  if($ProfileCustomType == 9){
 												echo "<option value=\"".$val1."\" ".
+											retrieve_datavalue("",$data3['ProfileCustomID'],$ProfileID,"multiple",$val1)
+												." >".$val1."</option>";
+									  }else{
+									  			echo "<option value=\"".$val1."\" ".
 											retrieve_datavalue("",$data3['ProfileCustomID'],$ProfileID,"dropdown",$val1)
 												." >".$val1."</option>";
+									  }
 								}
 							}
 					
