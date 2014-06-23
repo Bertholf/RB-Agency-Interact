@@ -18,13 +18,16 @@
 	// Site Url : /profile-login/
 
 echo "     <div id=\"rbsignin-register\" class=\"rbinteract\">\n";
-
-			if ( $error ) {
-			echo "<p class=\"error\">". $error ."</p>\n";
-			}
-			
 			$ref = get_query_var("ref");
 
+			if (isset($error)){
+			echo "<p class=\"error\">". $error ."</p>\n";
+			}
+			if (isset($ref) && $ref == "pending-approval") {
+			echo "<p id=\"message\" class=\"updated\">Your account is pending for approval.</p>\n";
+			}
+			
+			
 			if(isset($ref) && $ref == "reset_password"){
 				echo "<p  id=\"message\" class=\"updated\">Check your e-mail for the reset link to create a new password.</p>\n";
 			}
