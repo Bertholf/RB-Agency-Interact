@@ -60,8 +60,17 @@
 		$ProfileLocationZip			=stripslashes($data['ProfileLocationZip']);
 		$ProfileLocationCountry		=stripslashes($data['ProfileLocationCountry']);
 		$ProfileDateUpdated			=$data['ProfileDateUpdated'];
+		$ProfileCustomType          =$data["ProfileType"];
 
-		echo "<div id=\"profile-account\" class=\"rbform\">\n";
+		$query= "SELECT GenderID, GenderTitle FROM " .  table_agency_data_gender . " GROUP BY GenderTitle ";
+		$queryShowGender = mysql_query($query);
+		$registered_as = array();
+		while($dataShowGender = mysql_fetch_assoc($queryShowGender)){															
+						array_push($registered_as, $dataShowGender["GenderTitle"]);															
+		}
+        
+       echo "<div id=\"profile-account\" class=\"rbform\">\n";
+		echo "<h3>Hi ".$ProfileContactDisplay."! You are registered as ".implode(",",$registered_as)."</h3>";
 		echo "<form method=\"post\" enctype=\"multipart/form-data\" action=\"". get_bloginfo("wpurl") ."/profile-member/account/\">\n";
 		echo "	<input type=\"hidden\" name=\"ProfileID\" value=\"". $ProfileID ."\" />\n";
 		echo "	<h3>". __("Contact Information", rb_agency_interact_TEXTDOMAIN) ."</h3>\n";
@@ -88,10 +97,9 @@
 		echo "	<div id=\"profile-gender\" class=\"rbfield rbselect rbsingle\">\n";
 		echo "		<label>". __("Gender", rb_agency_interact_TEXTDOMAIN) ."</label>\n";
 		echo "		<div>";		
-					$query= "SELECT GenderID, GenderTitle FROM " .  table_agency_data_gender . " GROUP BY GenderTitle ";
+
 					echo "<select name=\"ProfileGender\">";
 					echo "<option value=\"\">All Gender</option>";
-					$queryShowGender = mysql_query($query);
 					while($dataShowGender = mysql_fetch_assoc($queryShowGender)){															
 						echo "<option value=\"".$dataShowGender["GenderID"]."\" ". selected($ProfileGender ,$dataShowGender["GenderID"],false).">".$dataShowGender["GenderTitle"]."</option>";															
 					}
