@@ -3,6 +3,7 @@
 // Respond to Login Request
 $error = "";
 $have_error = false;
+
 if ( $_SERVER['REQUEST_METHOD'] == "POST" && !empty( $_POST['action'] ) && $_POST['action'] == 'log-in' ) {
 
 	global $error;
@@ -30,10 +31,10 @@ function get_user_login_info(){
 	$user_info = get_userdata( $user_ID );
 
     // Check if user is registered as Model/Talent
-    //$is_model_or_talent = $wpdb->get_row($wpdb->prepare("SELECT * FROM ".table_agency_profile." WHERE ProfileUserLinked = %d",$user_ID));
-
-     
-	if(isset($user_ID)){
+    $profile_is_active = $wpdb->get_row($wpdb->prepare("SELECT * FROM ".table_agency_profile." WHERE ProfileUserLinked = %d  ",$user_ID));
+    $is_model_or_talent  = $wpdb->num_rows;
+  
+   if(isset($user_ID) && (isset($is_model_or_talent) && $profile_is_active->ProfileIsActive != 3) || current_user_can("manage_options")){
 		
 		// If user_registered date/time is less than 48hrs from now
 			
@@ -65,9 +66,10 @@ function get_user_login_info(){
 					}
 			}
 	  	}
-	} elseif(empty($_POST['user-name']) || empty($_POST['password']) ){
-		// Nothing to show here
-
+	} elseif($profile_is_active->ProfileIsActive == 3){
+				wp_logout();
+				header("Location: ". get_bloginfo("wpurl"). "/profile-login/?ref=pending-approval");
+					
 	} else {
 		// Reload
 				/*if(get_user_meta($user_ID, 'rb_agency_interact_clientdata', true)){
@@ -95,32 +97,34 @@ add_filter('login_redirect', 'rb_agency_interact_login_redirect', 10, 3);
 		global $user_ID; 
 		$login = get_userdata( $user_ID );
 				 get_user_login_info();	 
-			/*
+
+			
 			echo "    <p class=\"alert\">\n";
 						printf( __('You have successfully logged in as <a href="%1$s" title="%2$s">%2$s</a>.', rb_agency_interact_TEXTDOMAIN), "/profile-member/", $login->display_name );
 			echo "		 <a href=\"". wp_logout_url( get_permalink() ) ."\" title=\"". __('Log out of this account', rb_agency_interact_TEXTDOMAIN) ."\">". __('Log out &raquo;', rb_agency_interact_TEXTDOMAIN) ."</a>\n";
 			echo "    </p><!-- .alert -->\n";
-			*/
+			
 	
 // ****************************************************************************************** //
 // Not logged in
 	} else {
-
-		// *************************************************************************************************** //
+// *************************************************************************************************** //
 		// Prepare Page
 		get_header();
 
-		echo "<div id=\"rbcontent\" class=\"rb-interact rb-interact-login\">\n";
-		
-			// Show Login Form
-			$hideregister = true;
-			include("include-login.php");
+			echo "<div id=\"rbcontent\" class=\"rb-interact rb-interact-login\">\n";
+			
+				// Show Login Form
+				$hideregister = true;
+				include("include-login.php");
 
-		echo "</div><!-- #rbcontent -->\n";
+			echo "</div><!-- #rbcontent -->\n";
 
-	// Get Footer
-	get_footer();
+		// Get Footer
+		get_footer();
 	
 	} // Done
+	
+
 	
 ?>
