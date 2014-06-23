@@ -17,7 +17,10 @@
 	} else {
 		$column_class = fullwidth_class();
 	}
-
+   
+    // Profile Naming
+  	$rb_agency_option_profilenaming 		= (int)$rb_agency_options_arr['rb_agency_option_profilenaming'];
+		
 	//+Registration
 	// - show/hide registration for Agent/Producers
 	$rb_agencyinteract_option_registerallowAgentProducer = isset($registration['rb_agencyinteract_option_registerallowAgentProducer'])?$registration['rb_agencyinteract_option_registerallowAgentProducer']:0;
@@ -114,6 +117,8 @@
 			$error .= __("You must agree to the terms and conditions to register.<br />", rb_agency_interact_TEXTDOMAIN);
 			$have_error = true;
 		}
+
+	
 	
 		// Bug Free!
 		if($have_error == false) {
@@ -121,6 +126,25 @@
 			$new_user_type = array();
 			$new_user_type =implode(",", $_POST['ProfileType']);
 			$gender = $_POST['ProfileGender'];
+
+			if ($rb_agency_option_profilenaming == 0) { 
+				$profile_contact_display = $first_name . " ". $last_name;
+			} elseif ($rb_agency_option_profilenaming == 1) { 
+				$profile_contact_display = $first_name . " ". substr($last_name, 0, 1);
+			} elseif ($rb_agency_option_profilenaming == 2) { 
+				$error .= "<b><i>". __(LabelSingular ." must have a display name identified", rb_agency_interact_TEXTDOMAIN) . ".</i></b><br>";
+				$have_error = true;
+			} elseif ($rb_agency_option_profilenaming == 3) { // by firstname
+				$profile_contact_display = "ID ". $new_user;
+			} elseif ($rb_agency_option_profilenaming == 4) {
+	            $profile_contact_display = $first_name;
+	        }
+			
+
+			$profile_gallery = RBAgency_Common::format_stripchars($profile_contact_display); 
+  	
+			$profile_gallery = rb_agency_createdir($profile_gallery);
+			
 			
 			// Model or Client
 			update_user_meta($new_user, 'rb_agency_interact_profiletype', $new_user_type);
@@ -128,13 +152,27 @@
 			
 			// Insert to table_agency_profile
 			$wpdb->query($wpdb->prepare("INSERT INTO ".table_agency_profile."
-				(ProfileContactNameFirst,ProfileContactNameLast,ProfileGender,ProfileContactEmail,ProfileIsActive,ProfileUserLinked) VALUES(%s,%s,%s,%s,%s,%s)",
+				(
+				 ProfileContactDisplay,
+				 ProfileContactNameFirst,
+				 ProfileContactNameLast,
+				 ProfileGender,
+				 ProfileContactEmail,
+				 ProfileIsActive,
+				 ProfileUserLinked,
+				 ProfileType,
+				 ProfileGallery
+				 ) 
+			     VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s)",
+			     $profile_contact_display,
 				 $first_name,
 				 $last_name,
 				 $ProfileGender,
 				 $user_email,
 				 3,
-				 $new_user
+				 $new_user,
+				 $new_user_type,
+				 $profile_gallery
 				));
 			//Custom Fields
 			$arr = array();
