@@ -57,7 +57,7 @@ if (isset($_POST['action'])) {
 			$ProfileContactDisplay = "ID ". $ProfileID;
 		} elseif ($rb_agency_option_profilenaming == 4) {
                         $ProfileContactDisplay = $ProfileContactNameFirst;
-                }
+          }
   //	}
 
 	$ProfileGallery				=$_POST['ProfileGallery'];
@@ -275,8 +275,8 @@ if (isset($_POST['action'])) {
 	// Edit Record
 	case 'editRecord':
 		if(!$have_error){
-			
-			
+
+
 			// Update Record
 			$update = "UPDATE " . table_agency_profile . " SET 
 			ProfileContactNameFirst='" . $wpdb->escape($ProfileContactNameFirst) . "',
@@ -393,7 +393,7 @@ if (is_user_logged_in()) {
 			echo $alerts;
 			/* Check if the user is regsitered *****************************************/ 
 			// Verify Record
-			$sql = "SELECT ProfileID FROM ". table_agency_profile ." WHERE ProfileUserLinked =  ". $current_user->ID ." AND ProfileGallery <> '' LIMIT 1,1";
+			$sql = "SELECT ProfileID FROM ". table_agency_profile ." WHERE ProfileUserLinked =  ". $current_user->ID ." ";
 			$results = mysql_query($sql);
 			$count = mysql_num_rows($results);
 			if ($count > 0) {
