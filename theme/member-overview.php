@@ -97,6 +97,8 @@ get_header();
 				if(function_exists('rb_agency_casting_menu')){
 				echo "      <li><a href=\"".get_bloginfo('wpurl')."/browse-jobs/\">Browse and Apply for a Job</a></li>\n";
 				}
+				echo "      <li><a href=\"".get_bloginfo('wpurl')."/logout/\">Logout</a></li>\n";
+				
 				echo "	</ul>\n";
 				echo " </div>\n";
 			  	echo " </div>\n"; // .welcome
