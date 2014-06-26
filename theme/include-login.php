@@ -26,6 +26,9 @@ echo "     <div id=\"rbsignin-register\" class=\"rbinteract\">\n";
 			if (isset($ref) && $ref == "pending-approval") {
 			echo "<p id=\"message\" class=\"updated\">Your account is pending for approval.</p>\n";
 			}
+			if (isset($ref) && $ref == "casting") {
+			echo "<p id=\"message\" class=\"updated\">Your account is not registered as Talent/Model. Click <a href=\"".get_bloginfo("url")."/casting-login/\">here</a> to login as Casting.</p>\n";
+			}
 			
 			
 			if(isset($ref) && $ref == "reset_password"){
