@@ -32,14 +32,7 @@ global $wpdb;
 		echo " 			  <div class=\"subMenuTabBG\"><div class=\"subMenuTabBorders\"><div class=\"subMenuTabText\">".__("My Profile", rb_agency_interact_TEXTDOMAIN) ."</div></div></div>\n";
 		echo " 			</a>\n";
 		echo " 		</div>\n";
-		$profile_gallery = $wpdb->get_row($wpdb->prepare("SELECT ProfileGallery FROM ".table_agency_profile." WHERE ProfileUserLinked = %d",$current_user->ID));
-		if(!empty($profile_gallery->ProfileGallery)){
-		echo " 		<div class=\"tab-inner tab-". $tabclass ."\">\n";
-		echo " 			<a  href=\"". get_bloginfo("wpurl") ."/profile/".$profile_gallery->ProfileGallery."\">\n";
-		echo " 			  <div class=\"subMenuTabBG\"><div class=\"subMenuTabBorders\"><div class=\"subMenuTabText\">".__("View My Profile", rb_agency_interact_TEXTDOMAIN) ."</div></div></div>\n";
-		echo " 			</a>\n";
-		echo " 		</div>\n";
-		}
+		
 		/*
 		 * Set Media to not show to
 		 * client/s, agents, producers,
@@ -57,6 +50,15 @@ global $wpdb;
 		echo ' 		<div class="tab-inner tab-'. $tabclass .'" style="'.$d.'">';
 		echo " 			<a href=\"". get_bloginfo("wpurl") ."/profile-member/media/\">\n";
 		echo " 			  <div class=\"subMenuTabBG\"><div class=\"subMenuTabBorders\"><div class=\"subMenuTabText\">".__("My Media", rb_agency_interact_TEXTDOMAIN) ."</div></div></div>\n";
+		echo " 			</a>\n";
+		echo " 		</div>\n";
+		}
+
+		$profile_gallery = $wpdb->get_row($wpdb->prepare("SELECT ProfileGallery FROM ".table_agency_profile." WHERE ProfileUserLinked = %d",$current_user->ID));
+		if(!empty($profile_gallery->ProfileGallery)){
+		echo " 		<div class=\"tab-inner tab-". $tabclass ."\">\n";
+		echo " 			<a  href=\"". get_bloginfo("wpurl") ."/profile/".$profile_gallery->ProfileGallery."\">\n";
+		echo " 			  <div class=\"subMenuTabBG\"><div class=\"subMenuTabBorders\"><div class=\"subMenuTabText\">".__("View My Profile", rb_agency_interact_TEXTDOMAIN) ."</div></div></div>\n";
 		echo " 			</a>\n";
 		echo " 		</div>\n";
 		}
