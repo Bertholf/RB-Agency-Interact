@@ -33,8 +33,8 @@ function get_user_login_info(){
     // Check if user is registered as Model/Talent
     $profile_is_active = $wpdb->get_row($wpdb->prepare("SELECT * FROM ".table_agency_profile." WHERE ProfileUserLinked = %d  ",$user_ID));
     $is_model_or_talent  = $wpdb->num_rows;
-  
-   if(isset($user_ID) && (isset($is_model_or_talent) && $profile_is_active->ProfileIsActive != 3) || current_user_can("manage_options")){
+    echo  $is_model_or_talent;
+   if(isset($user_ID) && ($is_model_or_talent > 0 && $profile_is_active->ProfileIsActive != 3) || current_user_can("publish_pages")){
 		
 		// If user_registered date/time is less than 48hrs from now
 			
@@ -43,7 +43,7 @@ function get_user_login_info(){
 		} else {
 
 			// If Admin, redirect to plugin
-			if(current_user_can("manage_options")) {
+			if(current_user_can("publish_pages")) {
 				header("Location: ". admin_url("admin.php?page=rb_agency_menu"));
 			}
 
@@ -59,11 +59,13 @@ function get_user_login_info(){
 					$rb_agency_new_registeredUser = get_user_meta($user_ID,'rb_agency_new_registeredUser',true);
 					/*if(!empty($rb_agency_new_registeredUser)){
 							header("Location: ". get_bloginfo("wpurl"). "/welcome/");
-					}else*/if(get_user_meta($user_ID, 'rb_agency_interact_clientdata', true)){
-							header("Location: ". get_bloginfo("wpurl"). "/casting-dashboard/");
+					}else*/
+					if(get_user_meta($user_ID, 'rb_agency_interact_clientdata', true)){
+						//	header("Location: ". get_bloginfo("wpurl"). "/casting-dashboard/?F");
 					} else {
-							header("Location: ". get_bloginfo("wpurl"). "/profile-member/");
+						//	header("Location: ". get_bloginfo("wpurl"). "/profile-member/?f");
 					}
+
 			}
 	  	}
 	} elseif($profile_is_active->ProfileIsActive == 3){
@@ -71,20 +73,8 @@ function get_user_login_info(){
 				header("Location: ". get_bloginfo("wpurl"). "/profile-login/?ref=pending-approval");
 					
 	} else {
-		// Reload
-				/*if(get_user_meta($user_ID, 'rb_agency_interact_clientdata', true)){
-									header("Location: ". get_bloginfo("wpurl"). "/casting-dashboard/");
-						} else {
-						header("Location: ". get_bloginfo("wpurl"). "/profile-member/");
-				}*/
-				$rb_agency_new_registeredUser = get_user_meta($user_ID,'rb_agency_new_registeredUser',true);
-			/*		if(!empty($rb_agency_new_registeredUser)){
-							header("Location: ". get_bloginfo("wpurl"). "/welcome/");
-					}else*/if(get_user_meta($user_ID, 'rb_agency_interact_clientdata', true)){
-							header("Location: ". get_bloginfo("wpurl"). "/casting-dashboard/");
-					} else {
-							header("Location: ". get_bloginfo("wpurl"). "/profile-member/");
-					}
+			 	wp_logout();
+				header("Location: ". get_bloginfo("wpurl"). "/profile-login/?ref=casting");	
 		}
 }
 
