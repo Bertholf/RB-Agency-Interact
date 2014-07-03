@@ -64,8 +64,9 @@
 		function rb_agency_interact_template_include( $template ) {
 			if ( get_query_var( 'type' ) && get_query_var( 'rbgroup' ) == "models") {
 				
-				rb_agency_group_permission(get_query_var( 'rbgroup' ));
-
+				if(function_exists("rb_agency_group_permission")){
+					rb_agency_group_permission(get_query_var( 'rbgroup' ));
+				}
 				if (get_query_var( 'type' ) == "profileoverview") {
 					return dirname(__FILE__) . '/theme/member-overview.php'; 
 				} elseif (get_query_var( 'type' ) == "account") {

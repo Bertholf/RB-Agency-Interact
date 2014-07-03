@@ -192,13 +192,15 @@
 			$arr["new"] = true;
 			add_user_meta($new_user, 'rb_agency_new_registeredUser',$arr);
 			
+				$login = wp_signon( array( 'user_login' => $user_login, 'user_password' => $user_pass, 'remember' => 1 ), false );	
+			
+			
 			// Log them in if no confirmation required.			
 			if ($rb_agencyinteract_option_registerapproval == 1) {
 
 				global $error;
 				
 				//$login = wp_login( $user_login, $user_pass );
-				$login = wp_signon( array( 'user_login' => $user_login, 'user_password' => $user_pass, 'remember' => 1 ), false );	
 					// Notify admin and user
 					wp_new_user_notification($new_user,$user_pass);
 			
@@ -210,11 +212,11 @@
 		}
 		
 		// Log them in if no confirmation required.
-		if ($rb_agencyinteract_option_registerapproval == 1) {
-			if($login){
+	//	if ($rb_agencyinteract_option_registerapproval == 1) {
+	//		if($login){
 				header("Location: ". get_bloginfo("wpurl"). "/profile-member/");
-			}
-		}	
+	//		}
+	//	}	
 	}
  
 
