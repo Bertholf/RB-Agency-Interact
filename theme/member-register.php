@@ -212,11 +212,11 @@
 		}
 		
 		// Log them in if no confirmation required.
-	//	if ($rb_agencyinteract_option_registerapproval == 1) {
-	//		if($login){
+		if ($rb_agencyinteract_option_registerapproval == 1) {
+			if($login){
 				header("Location: ". get_bloginfo("wpurl"). "/profile-member/");
-	//		}
-	//	}	
+			}
+		}	
 	}
  
 
