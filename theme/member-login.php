@@ -61,9 +61,9 @@ function get_user_login_info(){
 							header("Location: ". get_bloginfo("wpurl"). "/welcome/");
 					}else*/
 					if(get_user_meta($user_ID, 'rb_agency_interact_clientdata', true)){
-						//	header("Location: ". get_bloginfo("wpurl"). "/casting-dashboard/?F");
+							header("Location: ". get_bloginfo("wpurl"). "/casting-dashboard/");
 					} else {
-						//	header("Location: ". get_bloginfo("wpurl"). "/profile-member/?f");
+						     header("Location: ". get_bloginfo("wpurl"). "/profile-member/");
 					}
 
 			}
