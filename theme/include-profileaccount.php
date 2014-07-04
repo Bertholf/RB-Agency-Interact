@@ -128,18 +128,44 @@
 		echo "		<label>". __("City", rb_agency_interact_TEXTDOMAIN) ."</label>\n";
 		echo "		<div><input type=\"text\" id=\"ProfileLocationCity\" name=\"ProfileLocationCity\" value=\"". $ProfileLocationCity ."\" /></div>\n";
 		echo "	</div>\n";
+		echo "	<div id=\"profile-country\" class=\"rbfield rbtext rbsingle\">\n";
+		echo "		<label>". __("Country", rb_agency_interact_TEXTDOMAIN) ."</label>\n";
+		echo "		<div>";
+		//<input type=\"text\" id=\"ProfileLocationCountry\" name=\"ProfileLocationCountry\" value=\"". $ProfileLocationCountry ."\" />
+								$query_get ="SELECT * FROM `". table_agency_data_country ."`" ;
+								$result_query_get = $wpdb->get_results($query_get);
+								$location= site_url();
+
+								echo '<input type="hidden" id="url" value="'.$location.'">';
+								echo "<select name=\"ProfileLocationCountry\" id=\"ProfileLocationCountry\"  onchange='javascript:populateStates(\"ProfileLocationCountry\",\"ProfileLocationState\");'>";
+								echo '<option value="">'. __("Select country", rb_agency_TEXTDOMAIN) .'</option>';
+								 foreach($result_query_get as $r){
+									  $selected = isset($ProfileLocationCountry) && $ProfileLocationCountry==$r->CountryID?"selected=selected":"";
+									echo '<option '.$selected.' value='.$r->CountryID.' >'.$r->CountryTitle.'</option>';
+								 }
+								echo '</select>';
+		echo "      </div>\n";
+		echo "	</div>\n";
 		echo "	<div id=\"profile-state\" class=\"rbfield rbtext rbsingle\">\n";
 		echo "		<label>". __("State", rb_agency_interact_TEXTDOMAIN) ."</label>\n";
-		echo "		<div><input type=\"text\" id=\"ProfileLocationState\" name=\"ProfileLocationState\" value=\"". $ProfileLocationState ."\" /></div>\n";
+		//echo "		<div><input type=\"text\" id=\"ProfileLocationState\" name=\"ProfileLocationState\" value=\"". $ProfileLocationState ."\" /></div>\n";
+		echo "			<div>";
+								$query_get ="SELECT * FROM `".table_agency_data_state."` WHERE CountryID='".(isset($ProfileLocationCountry)?$ProfileLocationCountry:"")."'" ;
+								$result_query_get = $wpdb->get_results($query_get);
+								echo '<select name="ProfileLocationState" id="ProfileLocationState">';
+								echo '<option value="">'. __("Select state", rb_agency_TEXTDOMAIN) .'</option>';
+								 foreach($result_query_get as $r){
+									 $selected = isset($ProfileLocationState) && $ProfileLocationState==$r->StateID?"selected=selected":"";
+									echo '<option '.$selected.' value='.$r->StateID.' >'.$r->StateTitle.'</option>';
+								 }
+								echo '</select>';
+		echo "			</div>";
 		echo "	</div>\n";
 		echo "	<div id=\"profile-zip\" class=\"rbfield rbtext rbsingle\">\n";
 		echo "		<label>". __("Zip", rb_agency_interact_TEXTDOMAIN) ."</label>\n";
 		echo "		<div><input type=\"text\" id=\"ProfileLocationZip\" name=\"ProfileLocationZip\" value=\"". $ProfileLocationZip ."\" /></div>\n";
 		echo "	</div>\n";
-		echo "	<div id=\"profile-country\" class=\"rbfield rbtext rbsingle\">\n";
-		echo "		<label>". __("Country", rb_agency_interact_TEXTDOMAIN) ."</label>\n";
-		echo "		<div><input type=\"text\" id=\"ProfileLocationCountry\" name=\"ProfileLocationCountry\" value=\"". $ProfileLocationCountry ."\" /></div>\n";
-		echo "	</div>\n";
+
 		echo "	<div id=\"profile-phone\" class=\"rbfield rbtext rbmulti rbblock\">\n";
 		echo "		<label>". __("Phone", rb_agency_interact_TEXTDOMAIN) ."</label>\n";
 		echo "		<div>\n";
