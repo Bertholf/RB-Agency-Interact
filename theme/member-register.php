@@ -113,8 +113,18 @@
 			$error .= __("Sorry, that email address is already used!<br />", rb_agency_interact_TEXTDOMAIN);
 			$have_error = true;
 		}
-		if ( isset($_POST['profile_agree']) &&  $_POST['profile_agree'] <> "yes") {
+		if ( empty($_POST['profile_agree'])) {
 			$error .= __("You must agree to the terms and conditions to register.<br />", rb_agency_interact_TEXTDOMAIN);
+			$have_error = true;
+		}
+		
+		if (empty($ProfileGender)) {
+			$error .= __("Gender is required .<br />", rb_agency_interact_TEXTDOMAIN);
+			$have_error = true;
+		}
+
+		if (empty($_POST["ProfileType"])) {
+			$error .= __("Profile Type is required .<br />", rb_agency_interact_TEXTDOMAIN);
 			$have_error = true;
 		}
 
@@ -326,8 +336,9 @@
 				$results3 = mysql_query($query3);
 				$count3 = mysql_num_rows($results3);
 	echo "		<div>";
+	            $ptype_arr = isset($_POST["ProfileType"]) && !empty($_POST["ProfileType"])?$_POST["ProfileType"]: array();
 				while ($data3 = mysql_fetch_array($results3)) {
-					echo "<div><label><input type=\"checkbox\" name=\"ProfileType[]\" value=\"" . $data3['DataTypeID'] . "\" id=\"ProfileType[]\" /><span> " . $data3['DataTypeTitle'] . "</span></label></div>";
+					echo "<div><label><input type=\"checkbox\" ".(in_array($data3["DataTypeID"],$ptype_arr)?"checked='checked'":"")." name=\"ProfileType[]\" value=\"" . $data3['DataTypeID'] . "\" id=\"ProfileType[]\" /><span> " . $data3['DataTypeTitle'] . "</span></label></div>";
 				}
 	echo "		</div>";
 	echo "</fieldset><!-- #profile-gender -->\n";
