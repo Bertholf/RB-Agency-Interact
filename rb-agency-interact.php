@@ -48,6 +48,8 @@ See license.txt for full details.
 	define("rb_agency_interact_UPLOADDIR", $rb_agency_interact_WPUPLOADARRAY['baseurl'] ."/profile-media/" );  // http://domain.com/wordpress/wp-content/uploads/profile-media/
 	define("rb_agency_interact_UPLOADPATH", $rb_agency_interact_WPUPLOADARRAY['basedir'] ."/profile-media/" ); // /home/content/99/6048999/html/domain.com/wordpress/wp-content/uploads/profile-media/
 	define("rb_agency_interact_TEXTDOMAIN", basename(dirname( __FILE__ )) ); //   rb-agency
+	define("rb_agency_interact_BASEREL", plugin_dir_path( __FILE__ ) );
+	
 
 
 // *************************************************************************************************** //
