@@ -100,6 +100,9 @@
 
 					echo "<select name=\"ProfileGender\">";
 					echo "<option value=\"\">All Gender</option>";
+					$query= "SELECT GenderID, GenderTitle FROM " .  table_agency_data_gender . " GROUP BY GenderTitle ";
+					$queryShowGender = mysql_query($query);
+		
 					while($dataShowGender = mysql_fetch_assoc($queryShowGender)){															
 						echo "<option value=\"".$dataShowGender["GenderID"]."\" ". selected($ProfileGender ,$dataShowGender["GenderID"],false).">".$dataShowGender["GenderTitle"]."</option>";															
 					}
