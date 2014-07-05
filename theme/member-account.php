@@ -70,7 +70,7 @@ if (isset($_POST['action'])) {
 	$ProfileContactWebsite		=$_POST['ProfileContactWebsite'];
 	$ProfileContactLinkFacebook	=$_POST['ProfileContactLinkFacebook'];
 	$ProfileContactLinkTwitter	=$_POST['ProfileContactLinkTwitter'];
-	$ProfileContactLinkYouTube	=$_POST['ProfileContactLinkYoutube'];
+	$ProfileContactLinkYoutube	=$_POST['ProfileContactLinkYoutube'];
 	$ProfileContactLinkFlickr	=$_POST['ProfileContactLinkFlickr'];
 	$ProfileContactPhoneHome	=$_POST['ProfileContactPhoneHome'];
 	$ProfileContactPhoneCell	=$_POST['ProfileContactPhoneCell'];
@@ -129,7 +129,7 @@ if (isset($_POST['action'])) {
 			$insert = "INSERT INTO " . table_agency_profile .
 			" (ProfileUserLinked,ProfileGallery,ProfileContactDisplay,ProfileContactNameFirst,ProfileContactNameLast,
 			   ProfileContactEmail,ProfileContactWebsite,ProfileGender,ProfileType, ProfileDateBirth,
-			   ProfileContactLinkFacebook,ProfileContactLinkTwitter,ProfileContactLinkYouTube,ProfileContactLinkFlickr,
+			   ProfileContactLinkFacebook,ProfileContactLinkTwitter,ProfileContactLinkYoutube,ProfileContactLinkFlickr,
 			   ProfileLocationStreet,ProfileLocationCity,ProfileLocationState,ProfileLocationZip,ProfileLocationCountry,
 			   ProfileContactPhoneHome, ProfileContactPhoneCell, ProfileContactPhoneWork,
 			   ProfileDateUpdated,ProfileIsActive)" .
@@ -145,7 +145,7 @@ if (isset($_POST['action'])) {
 				$wpdb->escape($ProfileDateBirth) . "','" . 
 				$wpdb->escape($ProfileContactLinkFacebook) . "','" . 
 				$wpdb->escape($ProfileContactLinkTwitter) . "','" . 
-				$wpdb->escape($ProfileContactLinkYouTube) . "','" . 
+				$wpdb->escape($ProfileContactLinkYoutube) . "','" . 
 				$wpdb->escape($ProfileContactLinkFlickr) . "','" . 
 				$wpdb->escape($ProfileLocationStreet) . "','" . 
 				$wpdb->escape($ProfileLocationCity) . "','" . 
@@ -285,7 +285,7 @@ if (isset($_POST['action'])) {
 			ProfileContactWebsite='" . $wpdb->escape($ProfileContactWebsite) . "',
 			ProfileContactLinkFacebook='" . $wpdb->escape($ProfileContactLinkFacebook) . "',
 			ProfileContactLinkTwitter='" . $wpdb->escape($ProfileContactLinkTwitter) . "',
-			ProfileContactLinkYouTube='" . $wpdb->escape($ProfileContactLinkYouTube) . "',
+			ProfileContactLinkYoutube='" . $wpdb->escape($ProfileContactLinkYoutube) . "',
 			ProfileContactLinkFlickr='" . $wpdb->escape($ProfileContactLinkFlickr) . "',
 			ProfileContactPhoneHome='" . $wpdb->escape($ProfileContactPhoneHome) . "',
 			ProfileContactPhoneCell='" . $wpdb->escape($ProfileContactPhoneCell) . "',

@@ -47,7 +47,7 @@
 		$ProfileContactWebsite		=stripslashes($data['ProfileContactWebsite']);
 		$ProfileContactLinkFacebook	=stripslashes($data['ProfileContactLinkFacebook']);
 		$ProfileContactLinkTwitter	=stripslashes($data['ProfileContactLinkTwitter']);
-		$ProfileContactLinkYouTube	=stripslashes($data['ProfileContactLinkYoutube']);
+		$ProfileContactLinkYoutube	=stripslashes($data['ProfileContactLinkYoutube']);
 		$ProfileContactLinkFlickr	=stripslashes($data['ProfileContactLinkFlickr']);
 		$ProfileContactPhoneHome	=stripslashes($data['ProfileContactPhoneHome']);
 		$ProfileContactPhoneCell	=stripslashes($data['ProfileContactPhoneCell']);
@@ -62,11 +62,11 @@
 		$ProfileDateUpdated			=$data['ProfileDateUpdated'];
 		$ProfileCustomType          =$data["ProfileType"];
 
-		$query= "SELECT GenderID, GenderTitle FROM " .  table_agency_data_gender . " GROUP BY GenderTitle ";
-		$queryShowGender = mysql_query($query);
+		$query= "SELECT DataTypeID, DataTypeTitle FROM " .  table_agency_data_type . " GROUP BY DataTypeTitle ";
+		$queryShowDataType = mysql_query($query);
 		$registered_as = array();
-		while($dataShowGender = mysql_fetch_assoc($queryShowGender)){															
-						array_push($registered_as, $dataShowGender["GenderTitle"]);															
+		while($dataShowDataType = mysql_fetch_assoc($queryShowDataType)){															
+						array_push($registered_as, $dataShowDataType["DataTypeTitle"]);															
 		}
         
        echo "<div id=\"profile-account\" class=\"rbform\">\n";
@@ -242,7 +242,7 @@
 		echo "	</div>\n";
 		echo "	<div id=\"profile-youtube\" class=\"rbfield rbtext rbsingle\">\n";
 		echo "		<label>". __("YouTube", rb_agency_interact_TEXTDOMAIN) ."</label>\n";
-		echo "		<div><input type=\"text\" id=\"ProfileContactLinkYouTube\" name=\"ProfileContactLinkYouTube\" value=\"". $ProfileContactLinkYouTube ."\" /></div>\n";
+		echo "		<div><input type=\"text\" id=\"ProfileContactLinkYoutube\" name=\"ProfileContactLinkYoutube\" value=\"". $ProfileContactLinkYoutube ."\" /></div>\n";
 		echo "  </div>\n";
 		echo "	<div id=\"profile-flickr\" class=\"rbfield rbtext rbsingle\">\n";
 		echo "		<label>". __("Flickr", rb_agency_interact_TEXTDOMAIN) ."</label>\n";
