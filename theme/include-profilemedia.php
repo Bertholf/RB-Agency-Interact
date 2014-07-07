@@ -36,8 +36,40 @@
 			echo '<p><a class="rb_button" href='.$back.'>EXIT</a></p>';
 			echo "</div>";
 		}
+		if(isset($_POST["deletePhoto"])){
+			echo "	<div class=\"manage-section gallery\">\n";
 		
-		echo "	<h3>". __("Gallery", rb_agency_interact_TEXTDOMAIN) ."</h3>\n";
+													$ProfileID	= isset($_POST['ProfileID'])?$_POST['ProfileID']:"";
+	
+													$massmediaids = '';
+													$massmediaids = implode(",", $_POST["deletePhoto"]);
+													//get all the images
+
+													$queryImgConfirm = "SELECT ProfileMediaID,ProfileMediaURL FROM " . table_agency_profile_media . " WHERE ProfileID = %d AND ProfileMediaID IN ($massmediaids) AND ProfileMediaType = 'Image'";
+													$resultsImgConfirm = $wpdb->get_results($wpdb->prepare($queryImgConfirm, $ProfileID),ARRAY_A);
+													$countImgConfirm = $wpdb->num_rows;
+													$mass_image_data = array();
+													foreach ($resultsImgConfirm as $dataImgConfirm) {
+														$mass_image_data[$dataImgConfirm['ProfileMediaID']] = $dataImgConfirm['ProfileMediaURL'];
+													}
+													//delete all the images from database
+													$massmediaids = implode(",", array_keys($mass_image_data));
+													$queryMassImageDelete = "DELETE FROM " . table_agency_profile_media . " WHERE ProfileID = $ProfileID AND ProfileMediaID IN ($massmediaids) AND ProfileMediaType = 'Image'";
+													$resultsMassImageDelete = $wpdb->query($queryMassImageDelete);
+													//delete images on the disk
+													$dirURL = rb_agency_UPLOADPATH . $ProfileGallery;
+													foreach ($mass_image_data as $mid => $ProfileMediaURL) {
+														if (!unlink($dirURL . "/" . $ProfileMediaURL)) {
+															echo ("<div id=\"message\" class=\"error\"><p>" . __("Error removing", rb_agency_TEXTDOMAIN) . " <strong>" . $ProfileMediaURL . "</strong>. " . __("File did not exist.", rb_agency_TEXTDOMAIN) . ".</p></div>");
+														} else {
+															echo ("<div id=\"message\" class=\"updated\"><p>File <strong>'. $ProfileMediaURL .'</strong> " . __("successfully removed", rb_agency_TEXTDOMAIN) . ".</p></div>");
+														}
+													}
+			echo "</div>";
+		}
+
+		
+		echo "	<h3>". __("Photo Gallery", rb_agency_interact_TEXTDOMAIN) ."</h3>\n";
 				
 				echo "<script type=\"text/javascript\">\n";
 				echo "function confirmDelete(delMedia,mediaType) {\n";
@@ -106,7 +138,7 @@
 						  $styleBackground = "#000000";
 						  $styleClass = "";
 						  $isChecked = "";
-						  $isCheckedText = " Select";
+						  $isCheckedText = " set as primary";
 						  $toDelete = "  <div class=\"delete\"><a href=\"javascript:;\" class=\"btn-small-red\" onclick=\"confirmDelete('". $dataImg['ProfileMediaID'] ."','".$dataImg['ProfileMediaType']."');\"><span>Delete</span> &raquo;</a></div>\n";
 					  }
 						echo "<div class=\"profileimage\" class=\"". $styleClass ."\">\n". $toDelete ."";
@@ -115,18 +147,30 @@
 						
 						echo '<input type="hidden" name="pmedia_url" value="'.$dataImg['ProfileMediaURL'].'">';					
 
-						echo "  <img src=\"". rb_agency_UPLOADDIR . $ProfileGallery ."/". $dataImg['ProfileMediaURL'] ."\" style=\"width: 100px; z-index: 1; \" />\n";
-						echo "  <div class=\"". $styleClass ."make-primary\"><label><input type=\"radio\" name=\"ProfileMediaPrimary\" value=\"". $dataImg['ProfileMediaID'] ."\" class=\"button-primary\"". $isChecked ." /> ". $isCheckedText ."</label></div>\n";
+						echo "  <img src=\"". get_bloginfo("url")."/wp-content/plugins/rb-agency/ext/timthumb.php?src=".rb_agency_UPLOADDIR . $ProfileGallery ."/". $dataImg['ProfileMediaURL'] ."&w=100&h=75\" style=\"width: 100px; z-index: 1; \" />\n";
+						echo "  <div class=\"". $styleClass ."make-primary\">";
+						echo "	<label><input type=\"radio\" name=\"ProfileMediaPrimary\" value=\"". $dataImg['ProfileMediaID'] ."\" class=\"button-primary\"". $isChecked ." /> ". $isCheckedText ."</label>";
+						if(empty($dataImg['ProfileMediaPrimary'])){
+							echo "<br/><input type=\"checkbox\" value=\"".$dataImg['ProfileMediaID']."\" name=\"deletePhoto[]\"/>Delete";
+						}	
+						echo "</div>\n";
 
 						echo "</div>\n";
 					}
 					if ($countImg < 1) {
 						echo "<p>". __("There are no images loaded for this profile yet.", rb_agency_interact_TEXTDOMAIN) ."</p>\n";
 					}
-					
+	    echo "<div style=\"clear: both;\">";
+		echo "		<h3>". __("Upload Photos", rb_agency_interact_TEXTDOMAIN) ."</h3>\n";
+		echo "		<p>". __("Upload photos using the forms below. The following formats allowed are jpg and png only ", rb_agency_interact_TEXTDOMAIN) .".</p>\n";
+	
+				for( $i=0; $i<5; $i++ ) {
+				echo "<div><label>Type: </label><select name=\"profileMedia". $i ."Type\"><option value=\"Image\">Photo</option>"; rb_agency_getMediaCategories($data['ProfileGender']); echo"</select><input type='file' id='profileMedia". $i ."' name='profileMedia". $i ."' /></div>\n";
+				}			
+		echo "</div>";			
 		echo "		</div>\n";
 		echo "	<div class=\"manage-section media\">\n";
-		echo "		<h3>". __("Media", rb_agency_interact_TEXTDOMAIN) ."</h3>\n";
+		echo "		<h3>". __("Media Files", rb_agency_interact_TEXTDOMAIN) ."</h3>\n";
 		echo "		<p>". __("The following files (pdf, audio file, etc.) are associated with this record", rb_agency_interact_TEXTDOMAIN) .".</p>\n";
 	
 					$queryMedia = "SELECT * FROM ". table_agency_profile_media ." WHERE ProfileID =  \"". $ProfileID ."\" AND ProfileMediaType <> \"Image\"";
@@ -143,21 +187,21 @@
 											$outVideoMedia .= "<div style=\"float: left; width: 120px; text-align: center; padding: 10px; \">" . $dataMedia['ProfileMediaType'] . "<br />" . rb_agency_get_videothumbnail($dataMedia['ProfileMediaURL']) . "<br /><a href=\"" . $dataMedia['ProfileMediaURL'] . "\" target=\"_blank\">Link to Video</a><br />[<a href=\"javascript:confirmDelete('" . $dataMedia['ProfileMediaID'] . "','" . $dataMedia['ProfileMediaType'] . "')\">DELETE</a>]</div>\n";
 									}
 						} elseif ($dataMedia['ProfileMediaType'] == "Voice Demo") {
-							$outLinkVoiceDemo .= "<div>". $dataMedia['ProfileMediaType'] .": <a href=\"". rb_agency_UPLOADDIR . $ProfileGallery ."/". $dataMedia['ProfileMediaURL'] ."\" target=\"_blank\">". $dataMedia['ProfileMediaTitle'] ."</a> [<a href=\"javascript:confirmDelete('". $dataMedia['ProfileMediaID'] ."','".$dataMedia['ProfileMediaType']."')\">DELETE</a>]</div>\n";
+							$outLinkVoiceDemo .= "<div> <a href=\"". rb_agency_UPLOADDIR . $ProfileGallery ."/". $dataMedia['ProfileMediaURL'] ."\" target=\"_blank\">". $dataMedia['ProfileMediaType'] ."</a> [<a href=\"javascript:confirmDelete('". $dataMedia['ProfileMediaID'] ."','".$dataMedia['ProfileMediaType']."')\">DELETE</a>]</div>\n";
 						}
 						 elseif ($dataMedia['ProfileMediaType'] == "Resume") {
-							$outLinkResume .= "<div>". $dataMedia['ProfileMediaType'] .": <a href=\"". rb_agency_UPLOADDIR . $ProfileGallery ."/". $dataMedia['ProfileMediaURL'] ."\" target=\"_blank\">". $dataMedia['ProfileMediaTitle'] ."</a> [<a href=\"javascript:confirmDelete('". $dataMedia['ProfileMediaID'] ."','".$dataMedia['ProfileMediaType']."')\">DELETE</a>]</div>\n";
+							$outLinkResume .= "<div> <a href=\"". rb_agency_UPLOADDIR . $ProfileGallery ."/". $dataMedia['ProfileMediaURL'] ."\" target=\"_blank\">". $dataMedia['ProfileMediaType'] ."</a> [<a href=\"javascript:confirmDelete('". $dataMedia['ProfileMediaID'] ."','".$dataMedia['ProfileMediaType']."')\">DELETE</a>]</div>\n";
 						}
 						 elseif ($dataMedia['ProfileMediaType'] == "Headshot") {
-							$outLinkHeadShot .= "<div>". $dataMedia['ProfileMediaType'] .": <a href=\"". rb_agency_UPLOADDIR . $ProfileGallery ."/". $dataMedia['ProfileMediaURL'] ."\" target=\"_blank\">". $dataMedia['ProfileMediaTitle'] ."</a> [<a href=\"javascript:confirmDelete('". $dataMedia['ProfileMediaID'] ."','".$dataMedia['ProfileMediaType']."')\">DELETE</a>]</div>\n";
+							$outLinkHeadShot .= "<div> <a href=\"". rb_agency_UPLOADDIR . $ProfileGallery ."/". $dataMedia['ProfileMediaURL'] ."\" target=\"_blank\">". $dataMedia['ProfileMediaType'] ."</a> [<a href=\"javascript:confirmDelete('". $dataMedia['ProfileMediaID'] ."','".$dataMedia['ProfileMediaType']."')\">DELETE</a>]</div>\n";
 						}elseif ($dataMedia['ProfileMediaType'] == "CompCard") {
-							$outLinkComCard .= "<div>". $dataMedia['ProfileMediaType'] .": <a href=\"". rb_agency_UPLOADDIR . $ProfileGallery ."/". $dataMedia['ProfileMediaURL'] ."\" target=\"_blank\">". $dataMedia['ProfileMediaTitle'] ."</a> [<a href=\"javascript:confirmDelete('". $dataMedia['ProfileMediaID'] ."','".$dataMedia['ProfileMediaType']."')\">DELETE</a>]</div>\n";
+							$outLinkComCard .= "<div> <a href=\"". rb_agency_UPLOADDIR . $ProfileGallery ."/". $dataMedia['ProfileMediaURL'] ."\" target=\"_blank\">". $dataMedia['ProfileMediaType'] ."</a> [<a href=\"javascript:confirmDelete('". $dataMedia['ProfileMediaID'] ."','".$dataMedia['ProfileMediaType']."')\">DELETE</a>]</div>\n";
 						}elseif ($dataMedia['ProfileMediaType'] == "SoundCloud") {
 										
 										$outSoundCloud .= RBAgency_Common::rb_agency_embed_soundcloud($dataMedia['ProfileMediaURL']);
 								
 						}else{
-							$outCustomMediaLink .= "<div>". $dataMedia['ProfileMediaType'] .": <a href=\"". rb_agency_UPLOADDIR . $ProfileGallery ."/". $dataMedia['ProfileMediaURL'] ."\" target=\"_blank\">". $dataMedia['ProfileMediaTitle'] ."</a> [<a href=\"javascript:confirmDelete('". $dataMedia['ProfileMediaID'] ."','".$dataMedia['ProfileMediaType']."')\">DELETE</a>]</div>\n";
+							$outCustomMediaLink .= "<div> <a href=\"". rb_agency_UPLOADDIR . $ProfileGallery ."/". $dataMedia['ProfileMediaURL'] ."\" target=\"_blank\">". $dataMedia['ProfileMediaType'] ."</a> [<a href=\"javascript:confirmDelete('". $dataMedia['ProfileMediaID'] ."','".$dataMedia['ProfileMediaType']."')\">DELETE</a>]</div>\n";
 						}
 					}
 					echo '<p>';
@@ -188,8 +232,8 @@
 		echo "		<h3>". __("Upload Media Files", rb_agency_interact_TEXTDOMAIN) ."</h3>\n";
 		echo "		<p>". __("Upload new media using the forms below. The following formats are available: jpg, png, mp3, and pdf. If uploading an mp3 for a voice monolouge, use the  \"Voice Demo\" option. For Resumes, make sure the file is a PDF ", rb_agency_interact_TEXTDOMAIN) .".</p>\n";
 	
-				for( $i=1; $i<10; $i++ ) {
-				echo "<div><label>Type: </label><select name=\"profileMedia". $i ."Type\"><option value=\"Image\">Photo</option><option value=\"Headshot\">Headshot</option><option value=\"CompCard\">Comp Card</option><option>Resume</option><option>Voice Demo</option>"; rb_agency_getMediaCategories($data['ProfileGender']); echo"</select><input type='file' id='profileMedia". $i ."' name='profileMedia". $i ."' /></div>\n";
+				for( $i=5; $i<=9; $i++ ) {
+				echo "<div><label>Type: </label><select name=\"profileMedia". $i ."Type\"><option value=\"\">--Please Select--</option><option value=\"Headshot\">Headshot</option><option value=\"CompCard\">Comp Card</option><option>Resume</option><option>Voice Demo</option>"; rb_agency_getMediaCategories($data['ProfileGender']); echo"</select><input type='file' id='profileMedia". $i ."' name='profileMedia". $i ."' /></div>\n";
 				}
 		echo "		<p>". __("Paste the video URL below", rb_agency_interact_TEXTDOMAIN) .".</p>\n";
 	
