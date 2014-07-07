@@ -54,8 +54,8 @@ if (isset($_POST['action'])) {
 		$ProfileGallery = rb_agency_createdir($ProfileGallery,false);  // Check Directory - create directory if does not exist	
 		
 		// Upload Image & Add to Database
-			$i = 1;
-			while ($i <= 10) {
+			$i = 0;
+			while ($i < 10) {
 				if(isset($_FILES['profileMedia'. $i]['tmp_name']) && $_FILES['profileMedia'. $i]['tmp_name'] != ""){
 					
 					$UploadMedia[] = $_FILES['profileMedia'. $i]['name'];
