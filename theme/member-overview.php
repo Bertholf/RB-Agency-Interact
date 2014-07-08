@@ -95,9 +95,11 @@ get_header();
 				echo "      <li><a href=\"subscription/\">Manage your Subscription</a></li>\n";
 				}
 				if(function_exists('rb_agency_casting_menu')){
-				echo "      <li><a href=\"".get_bloginfo('wpurl')."/browse-jobs/\">Browse and Apply for a Job</a></li>\n";
+					if(rb_get_user_profilstatus() != 3){
+							echo "      <li><a href=\"".get_bloginfo('wpurl')."/browse-jobs/\">Browse and Apply for a Job</a></li>\n";
+					}
 				}
-				echo "      <li><a href=\"".get_bloginfo('wpurl')."/logout/\">Logout</a></li>\n";
+				echo "      <li><a href=\"".get_bloginfo('wpurl')."/logout/\">Log out</a></li>\n";
 				
 				echo "	</ul>\n";
 				echo " </div>\n";

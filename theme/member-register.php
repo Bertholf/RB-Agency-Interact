@@ -101,12 +101,13 @@
 			'user_email' => esc_attr( $user_email ),
 			'role' => get_option( 'default_role' )
 		);
-		
+
+
 		// Error checking
 		$error = "";
 		$have_error = false;
 		if($rb_agencyinteract_option_useraccountcreation == 1){
-			if (!$userdata['user_login']) {
+			if (empty($userdata['user_login'])) {
 				$error .= __("A username is required for registration.<br />", rb_agency_interact_TEXTDOMAIN);
 				$have_error = true;
 			}
@@ -232,11 +233,11 @@
 		}
 		
 		// Log them in if no confirmation required.
-		if ($rb_agencyinteract_option_registerapproval == 1) {
+		//if ($rb_agencyinteract_option_registerapproval == 1) {
 			if($login){
 				header("Location: ". get_bloginfo("wpurl"). "/profile-member/");
 			}
-		}	
+		//}	
 	}
  
 

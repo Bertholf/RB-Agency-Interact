@@ -557,4 +557,16 @@ function rb_get_user_linkedID($ProfileID){
         else
         return 0;
 }
+
+function rb_get_user_profilstatus(){
+	   global $wpdb, $current_user;
+		$query = "SELECT ProfileIsActive FROM ". table_agency_profile ." WHERE ProfileUserLinked = ". $current_user->ID;
+		$results = $wpdb->get_row($query);
+		if(isset($results->ProfileIsActive)){
+			return $results->ProfileIsActive;
+		}else{
+			return null;
+		}
+		
+}
 ?>
