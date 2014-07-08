@@ -79,6 +79,7 @@ if (isset($_POST['action'])) {
 			ProfileDateUpdated=now(),
 			ProfileType='" . $wpdb->escape($ProfileType) . "'
 			WHERE ProfileID=$ProfileID";
+
 			$results = $wpdb->query($update);
 			$alerts = "<div id=\"message\" class=\"updated\"><p>". __("Profile updated successfully", rb_agency_interact_TEXTDOMAIN) ."!</a></p></div>";
 		} else {

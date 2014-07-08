@@ -62,7 +62,7 @@
 		$ProfileDateUpdated			=$data['ProfileDateUpdated'];
 		$ProfileCustomType          =$data["ProfileType"];
 
-		$query= "SELECT DataTypeID, DataTypeTitle FROM " .  table_agency_data_type . " GROUP BY DataTypeTitle ";
+		$query= "SELECT DataTypeID, DataTypeTitle FROM " .  table_agency_data_type . " WHERE DataTypeID IN(".$ProfileCustomType  .") GROUP BY DataTypeTitle ";
 		$queryShowDataType = mysql_query($query);
 		$registered_as = array();
 		while($dataShowDataType = mysql_fetch_assoc($queryShowDataType)){															

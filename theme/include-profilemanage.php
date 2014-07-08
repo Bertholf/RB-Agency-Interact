@@ -29,17 +29,16 @@
 		$ProfileUserLinked			=$data['ProfileUserLinked'];
 		$ProfileDateUpdated			=stripslashes($data['ProfileDateUpdated']);
 		$ProfileType				=stripslashes($data['ProfileType']);
+		$ProfileType 				=explode(",",$ProfileType);
 
 		$i=1; 
 		while ($data3 = mysql_fetch_array($results3)) {
 
-			if (in_array($data3['DataTypeID'], $ProfileTypeArray)){ 
-				$profileType .=  "<input type=\"checkbox\" name=\"ProfileType[]\" value=\"".$data3['DataTypeID']."\" ".(in_array($data3['DataTypeID'], $ProfileTypeArray)?"checked=\"checked\"":"")."/>".$data3['DataTypeTitle'] ;
+				$profileType .=  "<input type=\"checkbox\" name=\"ProfileType[]\" value=\"".$data3['DataTypeID']."\" ".(in_array($data3['DataTypeID'], $ProfileType)?"checked=\"checked\"":"")."/>".$data3['DataTypeTitle'] ;
 
 				if($i<$count3){
 					$profileType .=  "</br>";
 				}
-			}
 			$i++;
 		}
 				
