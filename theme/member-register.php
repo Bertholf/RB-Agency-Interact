@@ -170,6 +170,13 @@
 			// Model or Client
 			update_user_meta($new_user, 'rb_agency_interact_profiletype', $new_user_type);
 			update_user_meta($new_user, 'rb_agency_interact_pgender', $gender);
+
+			$profileactive = null;
+			if ($rb_agencyinteract_option_registerapproval == 1) {
+				$profileactive = 1;
+			}else{
+				$profileactive = 3;
+			}
 			
 			// Insert to table_agency_profile
 			$wpdb->query($wpdb->prepare("INSERT INTO ".table_agency_profile."
@@ -190,7 +197,7 @@
 				 $last_name,
 				 $ProfileGender,
 				 $user_email,
-				 3,
+				 $profileactive,
 				 $new_user,
 				 $new_user_type,
 				 $profile_gallery
@@ -211,33 +218,35 @@
 				}
 			}
 			$arr["new"] = true;
+			$arr["step1"] = true;
+			$arr["step2"] = true;
+			$arr["step3"] = true;
 			add_user_meta($new_user, 'rb_agency_new_registeredUser',$arr);
 			
-				$login = wp_signon( array( 'user_login' => $user_login, 'user_password' => $user_pass, 'remember' => 1 ), false );	
-			
+				
 			
 			// Log them in if no confirmation required.			
-			if ($rb_agencyinteract_option_registerapproval == 1) {
+			//if ($rb_agencyinteract_option_registerapproval == 1) {
 
 				global $error;
-				
-				//$login = wp_login( $user_login, $user_pass );
-					// Notify admin and user
+				  /*  $login = wp_signon( array( 'user_login' => $user_login, 'user_password' => $user_pass, 'remember' => 1 ), false );	
+					$login = wp_login( $user_login, $user_pass );
+					*/// Notify admin and user
 					wp_new_user_notification($new_user,$user_pass);
 			
-			}else{
+			/*}else{
 					wp_new_user_notification_pending($new_user);
-			}
+			}*/
 					
 			
 		}
 		
 		// Log them in if no confirmation required.
-		//if ($rb_agencyinteract_option_registerapproval == 1) {
+		/*if ($rb_agencyinteract_option_registerapproval == 1) {
 			if($login){
 				header("Location: ". get_bloginfo("wpurl"). "/profile-member/");
 			}
-		//}	
+		}	*/
 	}
  
 
@@ -264,16 +273,16 @@
 
 	echo "    <p class=\"rbalert\">\n";
 				if ( current_user_can( 'create_users' ) )
-					printf( __("A user account for %1$s has been created.", rb_agency_interact_TEXTDOMAIN), $user_login );
+					printf( __("A user account for %s has been created.", rb_agency_interact_TEXTDOMAIN), $user_login );
 				else 
-					printf( __("Thank you for registering, %1$s.", rb_agency_interact_TEXTDOMAIN), $user_login );
+					printf( __("Thank you for registering, %s.", rb_agency_interact_TEXTDOMAIN), $user_login );
 					echo "<br/>";
-					if ($rb_agencyinteract_option_registerapproval == 1) {
+					//if ($rb_agencyinteract_option_registerapproval == 1) {
 					printf( __("Please check your email address. That's where you'll receive your login password.<br/> (It might go into your spam folder)", rb_agency_interact_TEXTDOMAIN) );
-					}else{
+					/*}else{
 					printf( __("Your account is pending for approval. We will send your login once account is approved.", rb_agency_interact_TEXTDOMAIN) );
 					
-					}
+					}*/
 	echo "    </p><!-- .rbalert -->\n";
 
 	} else {

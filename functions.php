@@ -171,7 +171,7 @@
 
 				$message  = __('Hi there,') . "\r\n\r\n";  
 				$message .= sprintf(__("Thanks for joining %s! "), get_option('blogname')) . "\r\n\r\n"; 
-				$message .= sprintf(__('Your account is pending for approval. We will send your login once account is approved.'), $user_login) . "\r\n"; 
+				$message .= sprintf(__('Your account is pending for approval. We will send you a confirmation once account is approved.'), $user_login) . "\r\n"; 
 				$message .= sprintf(__('If you have any problems, please contact us at %s.'), get_option('admin_email')) . "\r\n\r\n"; 
 				$message .= __('Regards,')."\r\n";
 				$message .= get_option('blogname') . __(' Team') ."\r\n"; 

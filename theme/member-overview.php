@@ -60,11 +60,17 @@ get_header();
 			$ptype = (int)get_user_meta($current_user->ID, "rb_agency_interact_profiletype", true);
 			$ptype = retrieve_title($ptype);
 			$restrict = array('client','clients','agents','agent','producer','producers');
-			if(in_array(strtolower($ptype),$restrict)){
-				echo "<div id=\"profile-steps\">Profile Setup: Step 1 of 2</div>\n";
-			} else {
-				echo "<div id=\"profile-steps\">Profile Setup: Step 1 of 3</div>\n";
+	if(empty($rb_agency_new_registeredUser) && rb_get_user_profilstatus() == 3){
+		echo "Thank you for joining ".get_bloginfo("name")."! Your account is pending for approval. We will send you an email once your account is approved.";
+	}else{
+		    if(!empty($rb_agency_new_registeredUser)){
+				if(in_array(strtolower($ptype),$restrict)){
+					echo "<div id=\"profile-steps\">Profile Setup: Step 1 of 2</div>\n";
+				} else {
+					echo "<div id=\"profile-steps\">Profile Setup: Step 1 of 3</div>\n";
+				}
 			}
+			
 
 			echo "	<div id=\"profile-manage\" class=\"profile-overview\">\n";
 
@@ -136,6 +142,7 @@ get_header();
 					}
 				}
 			}
+		} // if pending for approval
 			echo "</div><!-- #profile-manage -->\n";
 
 		} else {

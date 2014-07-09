@@ -123,12 +123,15 @@ if($rb_agencyinteract_option_profilemanage_sidebar){
 			$ptype = (int)get_user_meta($current_user->ID, "rb_agency_interact_profiletype", true);
 	                $ptype = retrieve_title($ptype);
 			$restrict = array('client','clients','agents','agent','producer','producers');
-			if(in_array(strtolower($ptype),$restrict)){
-				echo "<div id=\"profile-steps\">Profile Setup: Step 2 of 2</div>\n";
-			} else {
-				echo "<div id=\"profile-steps\">Profile Setup: Step 2 of 3</div>\n";
+			$rb_agency_new_registeredUser = get_user_meta($current_user->ID,'rb_agency_new_registeredUser');
+			if(!empty($rb_agency_new_registeredUser)){
+						
+						if(in_array(strtolower($ptype),$restrict)){
+							echo "<div id=\"profile-steps\">Profile Setup: Step 2 of 2</div>\n";
+						} else {
+							echo "<div id=\"profile-steps\">Profile Setup: Step 2 of 3</div>\n";
+						}
 			}
-
 			echo "<div id=\"profile-manage\" class=\"overview\">\n";
 
 			// Menu

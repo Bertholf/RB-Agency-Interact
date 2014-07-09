@@ -159,11 +159,7 @@ if (isset($_POST['action'])) {
 
 		      $results = $wpdb->query($insert) or die(mysql_error());
               $ProfileID = $wpdb->insert_id;
- 			
-
-			// delete temporary storage
-			delete_user_meta($ProfileUserLinked, 'rb_agency_new_registeredUser');
-            
+ 			 
 			// Add New Custom Field Values
 			$pos = 0;
 			foreach($_POST as $key => $value) {			
@@ -308,9 +304,7 @@ if (isset($_POST['action'])) {
 			update_usermeta( $current_user->ID, 'display_name', esc_attr( $ProfileContactDisplay ) );
 			update_usermeta( $current_user->ID, 'user_email', esc_attr( $ProfileContactEmail ) );
 			update_usermeta( $current_user->ID, 'rb_agency_interact_pgender', esc_attr( $ProfileGender ) );	
-				// delete temporary storage
-			delete_user_meta($current_user->ID, 'rb_agency_new_registeredUser');
-           
+		 
 			// Add New Custom Field Values			 
 			foreach($_POST as $key => $value) {
 			
@@ -376,15 +370,16 @@ if (is_user_logged_in()) {
 			$ptype = (int)get_user_meta($current_user->ID, "rb_agency_interact_profiletype", true);
 	                $ptype = retrieve_title($ptype);
 			$restrict = array('client','clients','agents','agent','producer','producers');
-			if(in_array(strtolower($ptype),$restrict)){
-				echo "<div id=\"profile-steps\">Profile Setup: Step 1 of 2</div>\n";
-			} else {
-				echo "<div id=\"profile-steps\">Profile Setup: Step 1 of 3</div>\n";
-			}
-			
-			
-			echo "<div id=\"profile-manage\" class=\"profile-account\">\n";
 			$rb_agency_new_registeredUser = get_user_meta($current_user->ID,'rb_agency_new_registeredUser');
+			if(!empty($rb_agency_new_registeredUser)){
+				if(in_array(strtolower($ptype),$restrict)){
+					echo "<div id=\"profile-steps\">Profile Setup: Step 1 of 2</div>\n";
+				} else {
+					echo "<div id=\"profile-steps\">Profile Setup: Step 1 of 3</div>\n";
+				}
+			}
+
+			echo "<div id=\"profile-manage\" class=\"profile-account\">\n";
 			// Menu
 			include("include-menu.php"); 	
 			echo " <div class=\"manage-account manage-content\">\n";

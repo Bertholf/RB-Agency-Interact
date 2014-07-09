@@ -191,10 +191,16 @@ if (isset($_POST['action'])) {
 		
 		if ($have_error != true) {
 					// redirect only, if requirement of Redirect page is not  "/profile-member/media/ after successful files upload"
+						// delete temporary storage
+			delete_user_meta($current_user->ID, 'rb_agency_new_registeredUser');
+             $rb_agency_new_registeredUser = get_user_meta($current_user->ID,'rb_agency_new_registeredUser');
+			if(empty($rb_agency_new_registeredUser) && rb_get_user_profilstatus() == 3){
+				
+				wp_new_user_notification_pending($current_user->ID);
 
-			//wp_redirect( $rb_agency_interact_WPURL ."/profile-member/media/" );
+				wp_redirect( $rb_agency_interact_WPURL ."/profile-member/" );
+			}
 		
-		//exit;
 	    }
 	break;
 	}
@@ -221,10 +227,11 @@ if (is_user_logged_in()) {
 		// ****************************************************************************************** //
 		// Check if User is Logged in or not
 		if (is_user_logged_in()) { 
-			
-			/// Show registration steps
-			echo "<div id=\"profile-steps\">Profile Setup: Step 3 of 3</div>\n";
-			
+			$rb_agency_new_registeredUser = get_user_meta($current_user->ID,'rb_agency_new_registeredUser');
+			if(!empty($rb_agency_new_registeredUser)){
+				/// Show registration steps
+				echo "<div id=\"profile-steps\">Profile Setup: Step 3 of 3</div>\n";
+			}
 			echo "<div id=\"profile-manage\" class=\"profile-media\">\n";
 			
 			// Menu
