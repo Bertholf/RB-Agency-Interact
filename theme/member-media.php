@@ -164,6 +164,12 @@ if (isset($_POST['action'])) {
 				$profileVideoType = rb_agency_get_videotype($_POST['profileMediaV3']);
 				$results = $wpdb->query("INSERT INTO " . table_agency_profile_media . " (ProfileID, ProfileMediaType, ProfileMediaTitle, ProfileMediaURL, ProfileVideoType) VALUES ('". $ProfileID ."','". $profileMediaType ."','". $profileMediaType ."','". $profileMediaURL ."','".$profileVideoType."')");
 			}
+			if (isset($_POST['profileMediaV4']) && !empty($_POST['profileMediaV4'])) {
+				$profileMediaType	=$_POST['profileMediaV4Type'];
+				$profileMediaURL = rb_agency_get_VideoFromObject($_POST['profileMediaV4']);
+				$profileVideoType = rb_agency_get_videotype($_POST['profileMediaV4']);
+				$results = $wpdb->query("INSERT INTO " . table_agency_profile_media . " (ProfileID, ProfileMediaType, ProfileMediaTitle, ProfileMediaURL, ProfileVideoType) VALUES ('". $ProfileID ."','". $profileMediaType ."','". $profileMediaType ."','". $profileMediaURL ."','".$profileVideoType."')");
+			}
 
 			/* --------------------------------------------------------- CLEAN THIS UP -------------- */
 			// Do we have a custom image yet? Lets just set the first one as primary.

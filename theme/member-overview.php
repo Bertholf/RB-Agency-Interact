@@ -62,6 +62,10 @@ get_header();
 			$restrict = array('client','clients','agents','agent','producer','producers');
 	if(empty($rb_agency_new_registeredUser) && rb_get_user_profilstatus() == 3){
 		echo "Thank you for joining ".get_bloginfo("name")."! Your account is pending for approval. We will send you an email once your account is approved.";
+		$profile_gallery = $wpdb->get_row($wpdb->prepare("SELECT ProfileGallery FROM ".table_agency_profile." WHERE ProfileUserLinked = %d",$current_user->ID));
+		echo "<a href=\"". get_bloginfo("wpurl") ."/profile/".$profile_gallery->ProfileGallery."\">View My Profile</a> |";
+		echo "<a href=\"". get_bloginfo("wpurl") ."/profile-member/account/\">Manage Account</a>";
+		
 	}else{
 		    if(!empty($rb_agency_new_registeredUser)){
 				if(in_array(strtolower($ptype),$restrict)){

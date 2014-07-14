@@ -191,16 +191,16 @@
 					$user_login = stripslashes($user->user_login);  
 					$user_email = stripslashes($user->user_email);  
 
-					$new_pass = wp_generate_password();
+					/*$new_pass = wp_generate_password();
 					 wp_set_password( $new_pass, $user_id );
-					 $user_pass = $new_pass;
+					 $user_pass = $new_pass;*/
 
 					$message  = __('Hi there,') . "\r\n\r\n";  
 					$message .= sprintf(__('Congratulations! Your account is approved. Below is your login information.'), $user_login) . "\r\n"; 
 					$message .= sprintf(__("Here's how to log in:"), get_option('blogname')) . "\r\n\r\n"; 
 					$message .= get_option('home') ."/profile-login/\r\n"; 
 					$message .= sprintf(__('Username: %s'), $user_login) . "\r\n"; 
-					$message .= sprintf(__('Password: %s'), $user_pass) . "\r\n\r\n"; 
+					$message .= sprintf(__('Password: %s'), "Your password") . "\r\n\r\n"; 
 			
 					$message .= sprintf(__('If you have any problems, please contact us at %s.'), get_option('admin_email')) . "\r\n\r\n"; 
 					$message .= __('Regards,')."\r\n";

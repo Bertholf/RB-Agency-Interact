@@ -89,7 +89,7 @@
 					 $outCustomMediaLink = "";
 					 $outVideoMedia = "";
 					 $outSoundCloud = "";
-					
+
 				
 				// Are we deleting?
 				if (isset($_POST["actionsub"]) && $_POST["actionsub"] == "photodelete") {
@@ -255,12 +255,12 @@
 					."<option selected>". __("Demo Reel", rb_agency_interact_TEXTDOMAIN) ."</option>"
 					."<option>" . __("SoundCloud", rb_agency_TEXTDOMAIN) . "</option>"
 					."</select><textarea id='profileMediaV3' name='profileMediaV3'></textarea></div>\n";
-				echo "<div><label>Type: </label><select name=\"profileMediaV3Type\">"
+				echo "<div><label>Type: </label><select name=\"profileMediaV4Type\">"
 					."<option>". __("Video Slate", rb_agency_interact_TEXTDOMAIN) ."</option>"
 					."<option>". __("Video Monologue", rb_agency_interact_TEXTDOMAIN) ."</option>"
 					."<option>". __("Demo Reel", rb_agency_interact_TEXTDOMAIN) ."</option>"
 					."<option  selected>" . __("SoundCloud", rb_agency_TEXTDOMAIN) . "</option>"
-					."</select><textarea id='profileMediaV3' name='profileMediaV3'></textarea></div>\n";
+					."</select><textarea id='profileMediaV4' name='profileMediaV4'></textarea></div>\n";
 		
 			}
 		echo "<p><strong>Press the \"Save and Continue\" button only once</strong>. Depending on the number of files and or your connection speed, it may take a few moments to fully upload your new files/changes. When the page refreshes, you should see your new media.</p>\n";
