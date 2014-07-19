@@ -34,7 +34,7 @@ function get_user_login_info(){
     $profile_is_active = $wpdb->get_row($wpdb->prepare("SELECT * FROM ".table_agency_profile." WHERE ProfileUserLinked = %d  ",$user_ID));
     $is_model_or_talent  = $wpdb->num_rows;
     echo  $is_model_or_talent;
-   if(isset($user_ID) && ($is_model_or_talent > 0) || current_user_can("publish_pages")){
+   if(isset($user_ID) && ($is_model_or_talent > 0) || current_user_can("edit_posts")){
 		
 		// If user_registered date/time is less than 48hrs from now
 			
@@ -43,7 +43,7 @@ function get_user_login_info(){
 		} else {
 
 			// If Admin, redirect to plugin
-			if(current_user_can("publish_pages")) {
+			if(current_user_can("edit_posts")) {
 				header("Location: ". admin_url("admin.php?page=rb_agency_menu"));
 			}
 

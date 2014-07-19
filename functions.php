@@ -257,7 +257,7 @@
 			if( is_user_logged_in() ) {
 				$user_info = get_userdata( $user_ID ); 
 
-				if( current_user_can( 'publish_pages' )) {
+				if( current_user_can( 'edit_posts' )) {
 					// Is Admin, Redirect to Admin Area
 					wp_safe_redirect(admin_url());
 				} elseif ( strtotime( $user_info->user_registered ) > ( time() - 172800 ) ) {
