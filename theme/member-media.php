@@ -86,7 +86,7 @@ if (isset($_POST['action'])) {
 							        $have_error = true;
 								}
 							}
-							else if($uploadMediaType =="Voice Demo"){
+							else if($uploadMediaType =="VoiceDemo"){
 								// Add to database
 								$MIME = array('audio/mpeg', 'audio/mp3');
 								if(in_array($_FILES['profileMedia'. $i]['type'], $MIME)){
@@ -129,6 +129,35 @@ if (isset($_POST['action'])) {
 								   	$error .= "<b><i>".__("Please upload jpeg or png files only", rb_agency_interact_TEXTDOMAIN) ."</i></b><br />";
 									$have_error = true;	
 								}
+							}// Custom Media Categories
+							else if (strpos($uploadMediaType,"rbcustommedia") !== false) {
+															// Add to database
+															$custom_media_info = explode("_",$uploadMediaType);
+															$custom_media_title = $custom_media_info[1];
+															$custom_media_type = $custom_media_info[2];
+															$custom_media_extenstion = $custom_media_info[3];
+															$arr_extensions = array();
+
+															array_push($arr_extensions, $custom_media_extenstion);
+															
+															if($custom_media_extenstion == "doc"){
+																array_push($arr_extensions,"application/octet-stream");
+																array_push($arr_extensions,"docx");
+															}elseif($custom_media_extenstion == "mp3"){
+																array_push($arr_extensions,"audio/mpeg");
+																array_push($arr_extensions,"audio/mp3");
+															}elseif($custom_media_extenstion == "pdf"){
+																array_push($arr_extensions,"application/pdf");
+															}
+
+															if (in_array($_FILES['profileMedia' . $i]['type'], $arr_extensions)) {
+																$results = $wpdb->query("INSERT INTO " . table_agency_profile_media . " (ProfileID, ProfileMediaType, ProfileMediaTitle, ProfileMediaURL) VALUES ('" . $ProfileID . "','" . $uploadMediaType . "','" . $safeProfileMediaFilename . "','" . $safeProfileMediaFilename . "')");
+																move_uploaded_file($_FILES['profileMedia' . $i]['tmp_name'], rb_agency_UPLOADPATH . $ProfileGallery . "/" . $safeProfileMediaFilename);
+															} else {
+																$errorValidation['profileMedia'] = "<b><i>".__("Please upload ".$custom_media_extenstion." files only", rb_agency_TEXTDOMAIN)."</i></b><br />";
+																$have_error = true;
+
+															}
 							}else{
 								// Add to database
 								  if($_FILES['profileMedia'. $i]['type'] == "image/pjpeg" || $_FILES['profileMedia'. $i]['type'] == "image/jpeg" || $_FILES['profileMedia'. $i]['type'] == "image/gif" || $_FILES['profileMedia'. $i]['type'] == "image/png"){

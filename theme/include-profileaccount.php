@@ -38,7 +38,7 @@
 	$count = mysql_num_rows($results);
 	while ($data = mysql_fetch_array($results)) {
 		
-		// $ProfileGender =$data['ProfileGender'];
+		$ProfileGender = $data['ProfileGender'];
 		$ProfileID					=$data['ProfileID'];
 		$ProfileUserLinked			=$data['ProfileUserLinked'];
 		$ProfileGallery				=stripslashes($data['ProfileGallery']);
@@ -242,11 +242,10 @@
 	 */
 	$rb_agency_option_profilenaming 		= isset($rb_agency_options_arr['rb_agency_option_profilenaming']) ?(int)$rb_agency_options_arr['rb_agency_option_profilenaming']:0;
 		
-	$query3 = "SELECT * FROM ". table_agency_customfields ." 
-			   WHERE ProfileCustomView = 1 ORDER BY ProfileCustomOrder";
+	$query3 = "SELECT * FROM ". table_agency_customfields ."  WHERE ProfileCustomView = 1 ORDER BY ProfileCustomOrder";
 
 	$results3 = mysql_query($query3) or die(mysql_error());
-	$count3 = mysql_num_rows($results3);
+	  $count3 = mysql_num_rows($results3);
 	
 	while ($data3 = mysql_fetch_assoc($results3)) {
 		/*
@@ -271,13 +270,15 @@
 		   if(in_array($ptype,$types)){ $permit_type=true; }
 		} 
 		
-		echo'<input type="hidden" name="aps12" value="'.$data3["ProfileCustomShowGender"].'" >';
-		echo'<input type="hidden" name="ctype" value="'.(isset($ProfileCustomType)?$ProfileCustomType:"").'" >';
-		
-		if (($data3["ProfileCustomShowGender"] == $ProfileGender) || ($data3["ProfileCustomShowGender"] == 0)  && $permit_type == true ) {
-
 			$ProfileCustomTitle = $data3['ProfileCustomTitle'];
 			$ProfileCustomType  = $data3['ProfileCustomType'];
+			echo'<input type="hidden" name="aps12" value="'.$data3["ProfileCustomShowGender"].'" >';
+			echo'<input type="hidden" name="ctype" value="'.($permit_type).'" >';
+		
+	
+  	//if (($data3["ProfileCustomShowGender"] == $ProfileGender) || ($data3["ProfileCustomShowGender"] == 0)  && $permit_type == true ) {
+
+			
 
 			//  SET Label for Measurements
 			//  Imperial(in/lb), Metrics(ft/kg)
@@ -508,16 +509,15 @@
 		   
 			   }	else {		       	
 			   
-			 echo '<div><input type="text" name="ProfileCustomID'. $data3['ProfileCustomID'] 
-				 .'" value="'. retrieve_datavalue(isset($_REQUEST["ProfileCustomID". $data3['ProfileCustomID']])?$_REQUEST["ProfileCustomID". $data3['ProfileCustomID']]:"",
-													$data3['ProfileCustomID'],$ProfileID, 'textbox') 
-				 .'" /></div>';
-				 ;					
-			   }
+					 echo '<div><input type="text" name="ProfileCustomID'. $data3['ProfileCustomID'] 
+						 .'" value="'. retrieve_datavalue(isset($_REQUEST["ProfileCustomID". $data3['ProfileCustomID']])?$_REQUEST["ProfileCustomID". $data3['ProfileCustomID']]:"",
+															$data3['ProfileCustomID'],$ProfileID, 'textbox') 
+						 .'" /></div>';
+				}
 				echo "</div>";
 			}
 		   
-		   } // end if
+		  //  } // end if
 			
 		}// End while
 
