@@ -26,6 +26,8 @@
 		$rb_agency_option_showsocial 			= $rb_agency_options_arr['rb_agency_option_showsocial'];
 		$rb_agency_option_profilenaming 		= (int)$rb_agency_options_arr['rb_agency_option_profilenaming'];
 		$rb_agency_option_locationtimezone 		= (int)$rb_agency_options_arr['rb_agency_option_locationtimezone'];
+		$rb_agency_option_formshow_displayname = isset($rb_agency_options_arr['rb_agency_option_formshow_displayname'])?$rb_agency_options_arr['rb_agency_option_formshow_displayname']:0;
+
       
 	$rb_agency_interact_options_arr = get_option('rb_agencyinteract_options');
 	$rb_agencyinteract_option_registerallow = (int)$rb_agency_interact_options_arr['rb_agencyinteract_option_registerallow'];
@@ -86,6 +88,12 @@
 					}		
 		echo "		</div>\n";
 		echo "	</div>\n";
+		if($rb_agency_option_formshow_displayname > 0){
+			echo "	<div id=\"profile-displayname\" class=\"rbfield rbtext rbsingle\">\n";
+			echo "		<label>". __("Display Name", rb_agency_interact_TEXTDOMAIN) ."</label>\n";
+			echo "			<div><input type=\"text\" id=\"ProfileContactDisplay\" name=\"ProfileContactDisplay\" value=\"". $ProfileContactDisplay ."\" /></div>\n";
+			echo "	</div>\n";
+		}
 		echo "	<div id=\"profile-firstname\" class=\"rbfield rbtext rbsingle\">\n";
 		echo "		<label>". __("First Name", rb_agency_interact_TEXTDOMAIN) ."</label>\n";
 		echo "			<div><input type=\"text\" id=\"ProfileContactNameFirst\" name=\"ProfileContactNameFirst\" value=\"". $ProfileContactNameFirst ."\" /></div>\n";

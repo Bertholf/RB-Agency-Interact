@@ -45,7 +45,7 @@ if (isset($_POST['action'])) {
 	$ProfileContactNameLast		=trim($_POST['ProfileContactNameLast']);
 	$ProfileContactDisplay		=trim($_POST['ProfileContactDisplay']);
 
-  //	if (empty($ProfileContactDisplay)) {  // Probably a new record... 
+ 	if (empty($ProfileContactDisplay)) {  // Probably a new record... 
 		if ($rb_agency_option_profilenaming == 0) { 
 			$ProfileContactDisplay = $ProfileContactNameFirst . " ". $ProfileContactNameLast;
 		} elseif ($rb_agency_option_profilenaming == 1) { 
@@ -58,7 +58,7 @@ if (isset($_POST['action'])) {
 		} elseif ($rb_agency_option_profilenaming == 4) {
                         $ProfileContactDisplay = $ProfileContactNameFirst;
           }
-  //	}
+  	}
 
 	$ProfileGallery				=$_POST['ProfileGallery'];
 
@@ -275,6 +275,7 @@ if (isset($_POST['action'])) {
 
 			// Update Record
 			$update = "UPDATE " . table_agency_profile . " SET 
+			ProfileContactDisplay='" . $wpdb->escape($ProfileContactDisplay) . "',
 			ProfileContactNameFirst='" . $wpdb->escape($ProfileContactNameFirst) . "',
 			ProfileContactNameLast='" . $wpdb->escape($ProfileContactNameLast) . "',
 			ProfileContactEmail='" . $wpdb->escape($ProfileContactEmail) . "',
