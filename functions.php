@@ -125,6 +125,8 @@
 	// Redefine user notification function  
 	if ( !function_exists('wp_new_user_notification') ) {  
 		function wp_new_user_notification( $user_id, $plaintext_pass = '' ) {  
+	
+
 			$user = new WP_User($user_id);  
 
 			$user_login = stripslashes($user->user_login);  
@@ -186,22 +188,30 @@
 	if ( !function_exists('wp_new_user_notification_approve') ) {  
 		function wp_new_user_notification_approve( $user_id) {  
 				$user = get_userdata($user_id);  
-
+				$rb_agency_interact_options_arr = get_option('rb_agencyinteract_options');
+    		    $rb_agencyinteract_option_registerapproval = isset($rb_agency_interact_options_arr['rb_agencyinteract_option_registerapproval'])?$rb_agency_interact_options_arr['rb_agencyinteract_option_registerapproval']:0;
+	
 				if($user){
 					$user_login = stripslashes($user->user_login);  
 					$user_email = stripslashes($user->user_email);  
-
-					/*$new_pass = wp_generate_password();
-					 wp_set_password( $new_pass, $user_id );
-					 $user_pass = $new_pass;*/
+					
+					if($rb_agencyinteract_option_registerapproval == 0){
+						$new_pass = wp_generate_password();
+					 	wp_set_password( $new_pass, $user_id );
+					 	$user_pass = $new_pass;
+					}
 
 					$message  = __('Hi there,') . "\r\n\r\n";  
 					$message .= sprintf(__('Congratulations! Your account is approved. Below is your login information.'), $user_login) . "\r\n"; 
 					$message .= sprintf(__("Here's how to log in:"), get_option('blogname')) . "\r\n\r\n"; 
 					$message .= get_option('home') ."/profile-login/\r\n"; 
 					$message .= sprintf(__('Username: %s'), $user_login) . "\r\n"; 
-					$message .= sprintf(__('Password: %s'), "Your password") . "\r\n\r\n"; 
-			
+					if($rb_agencyinteract_option_registerapproval == 1){
+								$message .= sprintf(__('Password: %s'),  $user_pass) . "\r\n\r\n"; 
+					}else{ // manually approved
+								$message .= sprintf(__('Password: %s'),  "Your Password") . "\r\n\r\n"; 
+					
+					}
 					$message .= sprintf(__('If you have any problems, please contact us at %s.'), get_option('admin_email')) . "\r\n\r\n"; 
 					$message .= __('Regards,')."\r\n";
 					$message .= get_option('blogname') . __(' Team') ."\r\n"; 

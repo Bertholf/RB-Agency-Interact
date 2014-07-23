@@ -226,7 +226,7 @@
 				
 			
 			// Log them in if no confirmation required.			
-			//if ($rb_agencyinteract_option_registerapproval == 1) {
+			if ($rb_agencyinteract_option_registerapproval == 1) {
 
 				global $error;
 				  /*  $login = wp_signon( array( 'user_login' => $user_login, 'user_password' => $user_pass, 'remember' => 1 ), false );	
@@ -234,9 +234,9 @@
 					*/// Notify admin and user
 					wp_new_user_notification($new_user,$user_pass);
 			
-			/*}else{
+			}else{ // manually approval
 					wp_new_user_notification_pending($new_user);
-			}*/
+			}
 					
 			
 		}
@@ -277,12 +277,12 @@
 				else 
 					printf( __("Thank you for registering, %s.", rb_agency_interact_TEXTDOMAIN), $user_login );
 					echo "<br/>";
-					//if ($rb_agencyinteract_option_registerapproval == 1) {
+					if ($rb_agencyinteract_option_registerapproval == 1) { // automatically approve
 					printf( __("Please check your email address. That's where you'll receive your login password.<br/> (It might go into your spam folder)", rb_agency_interact_TEXTDOMAIN) );
-					/*}else{
+					}else{ // manually approve
 					printf( __("Your account is pending for approval. We will send your login once account is approved.", rb_agency_interact_TEXTDOMAIN) );
 					
-					}*/
+					}
 	echo "    </p><!-- .rbalert -->\n";
 
 	} else {

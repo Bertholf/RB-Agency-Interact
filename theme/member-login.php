@@ -24,6 +24,10 @@ if ( $_SERVER['REQUEST_METHOD'] == "POST" && !empty( $_POST['action'] ) && $_POS
 }
 
 function get_user_login_info(){
+// get options
+$rb_agencyinteract_options_arr = get_option('rb_agencyinteract_options');
+$rb_agencyinteract_option_redirect_first_time = isset($rb_agencyinteract_options_arr['rb_agencyinteract_option_redirect_first_time'])?$rb_agencyinteract_options_arr['rb_agencyinteract_option_redirect_first_time']:1;
+$rb_agencyinteract_option_redirect_first_time_url = isset($rb_agencyinteract_options_arr['rb_agencyinteract_option_redirect_first_time_url'])?$rb_agencyinteract_options_arr['rb_agencyinteract_option_redirect_first_time_url']:"/profile-member/account/";
 
     global $user_ID, $wpdb;
 	$redirect = isset($_POST["lastviewed"])?$_POST["lastviewed"]:"";
@@ -58,7 +62,11 @@ function get_user_login_info(){
 			} */else {
 					$rb_agency_new_registeredUser = get_user_meta($user_ID,'rb_agency_new_registeredUser',true);
 					if(!empty($rb_agency_new_registeredUser)){
-							header("Location: ". get_bloginfo("wpurl"). "/profile-member/account/");
+						  if($rb_agencyinteract_option_redirect_first_time == 1){
+						  	    header("Location: ". get_bloginfo("wpurl"). "/profile-member/account/");
+						  }else{
+								header("Location: ". $rb_agencyinteract_option_redirect_first_time_url);
+						  }
 					}else
 					if(get_user_meta($user_ID, 'rb_agency_interact_clientdata', true)){
 							header("Location: ". get_bloginfo("wpurl"). "/casting-dashboard/");
