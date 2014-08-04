@@ -2,9 +2,11 @@
 // *************************************************************************************************** //
 // Prepare Page
     global $wpdb;
-	/* Load registration file. */
-	//require_once( ABSPATH . WPINC . '/registration.php' );	
-	
+    
+    if(is_user_logged_in()){
+    	wp_redirect(get_bloginfo("url")); exit;
+    }
+
 	/* Get Options */
 	$rb_agency_interact_options_arr = get_option('rb_agencyinteract_options');
     $rb_agency_options_arr = get_option('rb_agency_options');
