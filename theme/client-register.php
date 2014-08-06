@@ -200,7 +200,8 @@
 // *************************************************************************************************** //
 // Prepare Page
 
-    get_header();
+    // Call Header
+	echo $rb_header = RBAgency_Common::rb_header();
 
 	echo "<div id=\"primary\" class=\"".$column_class." column rb-agency-interact rb-agency-interact-register\">\n";
 	echo "  <div id=\"content client-register\">\n";
@@ -388,6 +389,6 @@ echo "</div><!-- #container -->\n";
 		get_sidebar(); 
 	}
 	
-// Get Footer
-get_footer();
+// Call Footer
+echo $rb_footer = RBAgency_Common::rb_footer();
 ?>

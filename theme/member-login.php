@@ -108,7 +108,9 @@ add_filter('login_redirect', 'rb_agency_interact_login_redirect', 10, 3);
 	} else {
 // *************************************************************************************************** //
 		// Prepare Page
-		get_header();
+		
+		// Call Header
+		echo $rb_header = RBAgency_Common::rb_header();
 
 			echo "<div id=\"rbcontent\" class=\"rb-interact rb-interact-login\">\n";
 			
@@ -118,8 +120,8 @@ add_filter('login_redirect', 'rb_agency_interact_login_redirect', 10, 3);
 
 			echo "</div><!-- #rbcontent -->\n";
 
-		// Get Footer
-		get_footer();
+		// Call Footer
+		echo $rb_footer = RBAgency_Common::rb_footer();
 	
 	} // Done
 	

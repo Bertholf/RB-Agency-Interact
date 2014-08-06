@@ -33,7 +33,9 @@ if(get_user_meta($current_user->ID, 'rb_agency_interact_clientdata', true)) { $p
 		}   
 	
 /* Display Page ******************************************/ 
-get_header();
+
+// Call Header
+echo $rb_header = RBAgency_Common::rb_header();
 	
 	echo "<div id=\"container\" class=\"one-column rb-agency-interact rb-agency-interact-subscribe\">\n";
 	echo "  <div id=\"content\">\n";
@@ -143,6 +145,6 @@ $rb_agency_interact_options_arr = get_option('rb_agencyinteract_options');
 		get_sidebar(); 
 	}
 
-// Get Footer
-get_footer();
+// Call Footer
+echo $rb_footer = RBAgency_Common::rb_footer();
 ?>

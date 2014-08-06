@@ -40,7 +40,10 @@ add_filter('wp_title', 'rb_agencyinteractive_override_title', 10, 2);
 	}
 
 /* Display Page ******************************************/ 
-get_header();
+
+
+// Call Header
+echo $rb_header = RBAgency_Common::rb_header();
 	
 	echo "	<div id=\"primary\" class=\"col_12 column rb-agency-interact rb-agency-interact-overview\">\n";
 	echo "  	<div id=\"content\">\n";
@@ -158,6 +161,6 @@ get_header();
 	echo "  </div><!-- #content -->\n";
 	echo "</div><!-- #primary -->\n";
 
-// Get Footer
-get_footer();
+// Call Footer
+echo $rb_footer = RBAgency_Common::rb_footer();
 ?>

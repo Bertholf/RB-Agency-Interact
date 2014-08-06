@@ -97,7 +97,9 @@ if (isset($_POST['action'])) {
 }
 
 /* Display Page ******************************************/ 
-get_header();
+
+// Call Header
+echo $rb_header = RBAgency_Common::rb_header();
 
 // Check Sidebar
 $rb_agency_interact_options_arr = get_option('rb_agencyinteract_options');
@@ -179,6 +181,6 @@ if($rb_agencyinteract_option_profilemanage_sidebar){
 		}
 	}
 
-// Get Footer
-get_footer();
+// Call Footer
+echo $rb_footer = RBAgency_Common::rb_footer();
 ?>
