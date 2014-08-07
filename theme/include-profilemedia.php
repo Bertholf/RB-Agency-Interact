@@ -165,7 +165,7 @@
 		echo "		<p>". __("Upload photos using the forms below. The following formats allowed are jpg and png only ", rb_agency_interact_TEXTDOMAIN) .".</p>\n";
 	
 				for( $i=0; $i<5; $i++ ) {
-				echo "<div><label>Type: </label><select name=\"profileMedia". $i ."Type\"><option value=\"Image\">Photo</option>"; rb_agency_getMediaCategories($data['ProfileGender']); echo"</select><input type='file' id='profileMedia". $i ."' name='profileMedia". $i ."' /></div>\n";
+				echo "<div><label>Type: </label><select name=\"profileMedia". $i ."Type\"><option value=\"Image\">Photo</option>"; echo"</select><input type='file' id='profileMedia". $i ."' name='profileMedia". $i ."' /></div>\n";
 				}			
 		echo "</div>";			
 		echo "		</div>\n";
