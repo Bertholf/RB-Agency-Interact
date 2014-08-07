@@ -9,6 +9,13 @@
 	$rb_agency_interact_options_arr = get_option('rb_agencyinteract_options');
 	$rb_agency_option_model_toc = isset($rb_agency_options_arr['rb_agency_option_agency_model_toc'])?$rb_agency_options_arr['rb_agency_option_agency_model_toc']: "/models-terms-of-conditions";
 	
+	  if(is_user_logged_in()){
+    	wp_redirect(get_bloginfo("url")); exit;
+    }
+
+      // Profile Naming
+  	$rb_agency_option_profilenaming 		= (int)$rb_agency_options_arr['rb_agency_option_profilenaming'];
+	
 
 	//Sidebar
 	$rb_agencyinteract_option_profilemanage_sidebar = $rb_agency_interact_options_arr['rb_agencyinteract_option_profilemanage_sidebar'];
@@ -157,6 +164,57 @@
 			
 			//Custom Fields
 			$arr = array();
+
+			if ($rb_agency_option_profilenaming == 0) { 
+				$profile_contact_display = $first_name . " ". $last_name;
+			} elseif ($rb_agency_option_profilenaming == 1) { 
+				$profile_contact_display = $first_name . " ". substr($last_name, 0, 1);
+			} elseif ($rb_agency_option_profilenaming == 2) { 
+				$error .= "<b><i>". __(LabelSingular ." must have a display name identified", rb_agency_interact_TEXTDOMAIN) . ".</i></b><br>";
+				$have_error = true;
+			} elseif ($rb_agency_option_profilenaming == 3) { // by firstname
+				$profile_contact_display = "ID ". $new_user;
+			} elseif ($rb_agency_option_profilenaming == 4) {
+	            $profile_contact_display = $first_name;
+	        }
+			
+
+			$profile_gallery = RBAgency_Common::format_stripchars($profile_contact_display); 
+  	
+			$profile_gallery = rb_agency_createdir($profile_gallery);
+			
+
+			$profileactive = null;
+			if ($rb_agencyinteract_option_registerapproval == 1) {
+				$profileactive = 1;
+			}else{
+				$profileactive = 3;
+			}
+			
+			// Insert to table_agency_profile
+			$wpdb->query($wpdb->prepare("INSERT INTO ".table_agency_profile."
+				(
+				 ProfileContactDisplay,
+				 ProfileContactNameFirst,
+				 ProfileContactNameLast,
+				 ProfileGender,
+				 ProfileContactEmail,
+				 ProfileIsActive,
+				 ProfileUserLinked,
+				 ProfileType,
+				 ProfileGallery
+				 ) 
+			     VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s)",
+			     $profile_contact_display,
+				 $first_name,
+				 $last_name,
+				 $gender,
+				 $user_email,
+				 $profileactive,
+				 $new_user,
+				 $new_user_type,
+				 $profile_gallery
+				));
 			
 			foreach($_POST as $key => $value) {			         
 				if ((substr($key, 0, 15) == "ProfileCustomID") && (isset($value) && !empty($value))) {
@@ -173,7 +231,7 @@
 			
 			add_user_meta($new_user, 'rb_agency_new_registeredUser',$arr);			
 			
-			//  Log them in if register auto approval		
+/*			//  Log them in if register auto approval		
 			if ($rb_agencyinteract_option_registerapproval == 1) {
 
 				global $error;
@@ -182,7 +240,20 @@
 				$login = wp_signon( array( 'user_login' => $user_login, 'user_password' => $user_pass, 'remember' => 1 ), false );	
 			}				
 				// Notify admin and user
-				wp_new_user_notification($new_user);	
+				wp_new_user_notification($new_user);	*/
+
+					// Log them in if no confirmation required.			
+			if ($rb_agencyinteract_option_registerapproval == 1) {
+
+				global $error;
+				  /*  $login = wp_signon( array( 'user_login' => $user_login, 'user_password' => $user_pass, 'remember' => 1 ), false );	
+					$login = wp_login( $user_login, $user_pass );
+					*/// Notify admin and user
+					wp_new_user_notification($new_user,$user_pass);
+			
+			}else{ // manually approval
+					wp_new_user_notification_pending($new_user);
+			}
 			
 		}
 		
