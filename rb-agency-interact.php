@@ -354,7 +354,7 @@ class RBAgencyInteract {
 						echo "  	<form name=\"loginform\" id=\"rbform-login\" action=\"". network_site_url("/") ."profile-login/\" method=\"post\">\n";
 						echo "      	<div class=\"rbfield rbtext rbsingle\">\n";
 						echo "          	<label for=\"user-name\">". __("Username", rb_agency_interact_TEXTDOMAIN). "</label>";
-						echo "				<div><input type=\"text\" name=\"user-name\" value=\"". wp_specialchars( $_POST['user-name'], 1 ) ."\" id=\"user-name\" /></div>\n";
+						echo "				<div><input type=\"text\" name=\"user-name\" value=\"". wp_specialchars( isset($_POST['user-name']) ?$_POST['user-name']:"", 1 ) ."\" id=\"user-name\" /></div>\n";
 						echo "          </div>\n";
 						echo "          <div class=\"rbfield rbpassrword rbsingle\">\n";
 						echo "             	<label for=\"password\">". __("Password", rb_agency_interact_TEXTDOMAIN). "</label>";
