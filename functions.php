@@ -205,7 +205,7 @@
 					$message .= sprintf(__('Congratulations! Your account is approved. Below is your login information.'), $user_login) . "\r\n"; 
 					$message .= sprintf(__("Here's how to log in:"), get_option('blogname')) . "\r\n\r\n"; 
 					$message .= get_option('home') ."/profile-login/\r\n"; 
-					if($rb_agencyinteract_option_registerapproval == 1){
+					if($rb_agencyinteract_option_registerapproval == 0){
 								$message .= sprintf(__('Username: %s'), $user_login) . "\r\n"; 
 								$message .= sprintf(__('Password: %s'),  $user_pass) . "\r\n\r\n"; 
 					}/*else{ // manually approved
