@@ -113,10 +113,14 @@
 						} else {
 							// Remove File
 							$dirURL = rb_agency_UPLOADPATH . $ProfileGallery; 
-							if (!unlink($dirURL ."/". $ProfileMediaURL)) {
-							  echo ("<div id=\"message\" class=\"error\"><p>". __("Error removing", rb_agency_interact_TEXTDOMAIN) ." <strong>". $ProfileMediaURL ."</strong>. ". __("Please try again", rb_agency_interact_TEXTDOMAIN) .".</p></div>");
-							} else {
-							  echo ("<div id=\"message\" class=\"updated\"><p>File <strong>'. $ProfileMediaURL .'</strong> ". __("successfully removed", rb_agency_interact_TEXTDOMAIN) .".</p></div>");
+							if($ProfileMediaType == "SoundCloud"){
+								echo "<div id=\"message\" class=\"updated\"><p>Successfully removed the Soundcloud link.</p></div>";
+							}else{
+								if (!unlink($dirURL ."/". $ProfileMediaURL)) {
+								  echo ("<div id=\"message\" class=\"error\"><p>". __("Error removing", rb_agency_interact_TEXTDOMAIN) ." <strong>". $ProfileMediaURL ."</strong>. ". __("Please try again", rb_agency_interact_TEXTDOMAIN) .".</p></div>");
+								} else {
+								  echo ("<div id=\"message\" class=\"updated\"><p>File <strong>'. $ProfileMediaURL .'</strong> ". __("successfully removed", rb_agency_interact_TEXTDOMAIN) .".</p></div>");
+								}
 							}
 						}
 							// Remove Record
@@ -198,7 +202,8 @@
 							$outLinkComCard .= "<div> <a href=\"". rb_agency_UPLOADDIR . $ProfileGallery ."/". $dataMedia['ProfileMediaURL'] ."\" target=\"_blank\">". $dataMedia['ProfileMediaType'] ."</a> [<a href=\"javascript:confirmDelete('". $dataMedia['ProfileMediaID'] ."','".$dataMedia['ProfileMediaType']."')\">DELETE</a>]</div>\n";
 						}elseif ($dataMedia['ProfileMediaType'] == "SoundCloud") {
 										
-										$outSoundCloud .= RBAgency_Common::rb_agency_embed_soundcloud($dataMedia['ProfileMediaURL']);
+										$outSoundCloud .= RBAgency_Common::rb_agency_embed_soundcloud($dataMedia['ProfileMediaURL'])." [<a href=\"javascript:confirmDelete('". $dataMedia['ProfileMediaID'] ."','".$dataMedia['ProfileMediaType']."')\">DELETE</a>]<br/>\n";
+					
 								
 						}else if (strpos($dataMedia['ProfileMediaType'] ,"rbcustommedia") !== false) { 
 									 $custom_media_info = explode("_",$dataMedia['ProfileMediaType']);
