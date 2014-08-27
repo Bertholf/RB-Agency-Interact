@@ -235,13 +235,11 @@
 					rb_new_user_notification($new_user,$user_pass);
 			
 			}else{ // manually approval
-				    if($profileactive == 3){
-						rb_new_user_notification_pending($new_user);
-					}else{
+				   
 						 // Notify admin and user
 						rb_new_user_notification($new_user,$user_pass);
-					}
 			}
+			
 					
 			
 		}
@@ -283,16 +281,16 @@
 				else 
 					printf( __("Thank you for registering, %s.", rb_agency_interact_TEXTDOMAIN), $user_login );
 					echo "<br/>";
-					if ($rb_agencyinteract_option_registerapproval == 1) { // automatically approve
+					//if ($rb_agencyinteract_option_registerapproval == 1) { // automatically approve
 					printf( __("Please check your email address. That's where you'll receive your login password.<br/> (It might go into your spam folder)", rb_agency_interact_TEXTDOMAIN) );
-					}else{ // manually approve
-						 if($profileactive == 3){
-							printf( __("Your account is pending for approval. We will send your login once account is approved.", rb_agency_interact_TEXTDOMAIN) );
-						 }else{
-						 	printf( __("Please check your email address. That's where you'll receive your login password.<br/> (It might go into your spam folder)", rb_agency_interact_TEXTDOMAIN) );
-						 }
+					//}else{ // manually approve
+					//	 if($profileactive == 3){
+					//		printf( __("Your account is pending for approval. We will send your login once account is approved.", rb_agency_interact_TEXTDOMAIN) );
+					//	 }else{
+					//	 	printf( __("Please check your email address. That's where you'll receive your login password.<br/> (It might go into your spam folder)", rb_agency_interact_TEXTDOMAIN) );
+					//	 }
 						 
-					}
+					//}
 	echo "    </p><!-- .rbalert -->\n";
 
 	} else {

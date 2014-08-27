@@ -37,7 +37,7 @@ $rb_agencyinteract_option_redirect_first_time_url = isset($rb_agencyinteract_opt
     // Check if user is registered as Model/Talent
     $profile_is_active = $wpdb->get_row($wpdb->prepare("SELECT * FROM ".table_agency_profile." WHERE ProfileUserLinked = %d  ",$user_ID));
     $is_model_or_talent  = $wpdb->num_rows;
-    echo  $is_model_or_talent;
+   
    if(isset($user_ID) && ($is_model_or_talent > 0) || current_user_can("edit_posts")){
 		
 		// If user_registered date/time is less than 48hrs from now
@@ -76,11 +76,10 @@ $rb_agencyinteract_option_redirect_first_time_url = isset($rb_agencyinteract_opt
 
 			}
 	  	}
-	}/* elseif($profile_is_active->ProfileIsActive == 3){
-				wp_logout();
-				header("Location: ". get_bloginfo("wpurl"). "/profile-login/?ref=pending-approval");
+	} elseif($profile_is_active->ProfileIsActive == 3){
+				header("Location: ". get_bloginfo("wpurl"). "/profile-member/pending/");
 					
-	}*/ else {
+	} else {
 			 	wp_logout();
 				header("Location: ". get_bloginfo("wpurl"). "/profile-login/?ref=casting");	
 		}

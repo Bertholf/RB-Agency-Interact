@@ -233,7 +233,7 @@ if (isset($_POST['action'])) {
 				
 				wp_new_user_notification_pending($current_user->ID);
 
-				wp_redirect( $rb_agency_interact_WPURL ."/profile-member/" );
+				wp_redirect( $rb_agency_interact_WPURL ."/profile-member/pending/" );
 			}
 		
 	    }
