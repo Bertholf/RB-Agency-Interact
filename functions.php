@@ -123,8 +123,8 @@
 // Handle Emails
 
 	// Redefine user notification function  
-	if ( !function_exists('wp_new_user_notification') ) {  
-		function wp_new_user_notification( $user_id, $plaintext_pass = '' ) {  
+	if ( !function_exists('rb_new_user_notification') ) {  
+		function rb_new_user_notification( $user_id, $plaintext_pass = '' ) {  
 	
 
 			$user = new WP_User($user_id);  

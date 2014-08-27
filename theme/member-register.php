@@ -232,14 +232,14 @@
 			if ($rb_agencyinteract_option_registerapproval == 1) { // automatically approval
 
 				   // Notify admin and user
-					wp_new_user_notification($new_user,$user_pass);
+					rb_new_user_notification($new_user,$user_pass);
 			
 			}else{ // manually approval
 				    if($profileactive == 3){
-						wp_new_user_notification_pending($new_user);
+						rb_new_user_notification_pending($new_user);
 					}else{
 						 // Notify admin and user
-						wp_new_user_notification($new_user,$user_pass);
+						rb_new_user_notification($new_user,$user_pass);
 					}
 			}
 					
