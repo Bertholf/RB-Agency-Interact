@@ -579,4 +579,22 @@ function rb_get_user_profilstatus(){
 		}
 		
 }
+
+
+		/**
+		 * Switch profile-login sidebars to widget
+		 *
+		 */
+		function rb_interactlogin_widgets_init() {
+			register_sidebar( array(
+					'name' => 'RB Agency Interact: Login Sidebar',
+					'id' => 'rb-agency-interact-login-sidebar',
+					'before_widget' => '<div>',
+					'after_widget' => '</div>',
+					'before_title' => '<h3>',
+					'after_title' => '</h3>',
+				) );
+		}
+		add_action( 'widgets_init', 'rb_interactlogin_widgets_init' );
+
 ?>

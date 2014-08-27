@@ -14,6 +14,7 @@
 	$rb_agencyinteract_option_registerapproval = isset($rb_agency_interact_options_arr['rb_agencyinteract_option_registerapproval'])?$rb_agency_interact_options_arr['rb_agencyinteract_option_registerapproval']:"";
 	//Sidebar
 	$rb_agencyinteract_option_profilemanage_sidebar = isset($rb_agency_interact_options_arr['rb_agencyinteract_option_profilemanage_sidebar'])?$rb_agency_interact_options_arr['rb_agencyinteract_option_profilemanage_sidebar']:0;
+	$rb_agencyinteract_option_default_registered_users = isset($rb_agency_interact_options_arr["rb_agencyinteract_option_default_registered_users"])?$rb_agency_interact_options_arr["rb_agencyinteract_option_default_registered_users"]:3;
 	if($rb_agencyinteract_option_profilemanage_sidebar){
 		$column_class = primary_class();
 	} else {
@@ -173,11 +174,11 @@
 			update_user_meta($new_user, 'rb_agency_interact_profiletype', $new_user_type);
 			update_user_meta($new_user, 'rb_agency_interact_pgender', $gender);
 
-			$profileactive = null;
-			if ($rb_agencyinteract_option_registerapproval == 1) {
+			$profileactive = null; 
+			if ($rb_agencyinteract_option_registerapproval == 1) { // automatically approved
 				$profileactive = 1;
-			}else{
-				$profileactive = 3;
+			}else{ // manually approved
+				$profileactive = $rb_agencyinteract_option_default_registered_users;
 			}
 			
 			// Insert to table_agency_profile
@@ -228,16 +229,18 @@
 				
 			
 			// Log them in if no confirmation required.			
-			if ($rb_agencyinteract_option_registerapproval == 1) {
+			if ($rb_agencyinteract_option_registerapproval == 1) { // automatically approval
 
-				global $error;
-				  /*  $login = wp_signon( array( 'user_login' => $user_login, 'user_password' => $user_pass, 'remember' => 1 ), false );	
-					$login = wp_login( $user_login, $user_pass );
-					*/// Notify admin and user
+				   // Notify admin and user
 					wp_new_user_notification($new_user,$user_pass);
 			
 			}else{ // manually approval
-					wp_new_user_notification_pending($new_user);
+				    if($profileactive == 3){
+						wp_new_user_notification_pending($new_user);
+					}else{
+						 // Notify admin and user
+						wp_new_user_notification($new_user,$user_pass);
+					}
 			}
 					
 			
@@ -283,8 +286,12 @@
 					if ($rb_agencyinteract_option_registerapproval == 1) { // automatically approve
 					printf( __("Please check your email address. That's where you'll receive your login password.<br/> (It might go into your spam folder)", rb_agency_interact_TEXTDOMAIN) );
 					}else{ // manually approve
-					printf( __("Your account is pending for approval. We will send your login once account is approved.", rb_agency_interact_TEXTDOMAIN) );
-					
+						 if($profileactive == 3){
+							printf( __("Your account is pending for approval. We will send your login once account is approved.", rb_agency_interact_TEXTDOMAIN) );
+						 }else{
+						 	printf( __("Please check your email address. That's where you'll receive your login password.<br/> (It might go into your spam folder)", rb_agency_interact_TEXTDOMAIN) );
+						 }
+						 
 					}
 	echo "    </p><!-- .rbalert -->\n";
 
