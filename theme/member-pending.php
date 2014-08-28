@@ -18,7 +18,8 @@ add_filter('wp_title', 'rb_agencyinteractive_override_title', 10, 2);
 	function rb_agencyinteractive_override_title(){
 		return "Profile Pending";
 	}
-
+$profile_gallery = $wpdb->get_row($wpdb->prepare("SELECT ProfileGallery FROM ".table_agency_profile." WHERE ProfileUserLinked = %d",$current_user->ID));
+		
 /* Display Page ******************************************/ 
 
 
@@ -35,7 +36,8 @@ echo $rb_header = RBAgency_Common::rb_header();
 					echo "<br/>";
 					echo "Your account is pending for approval. We will send you a confirmation once account is approved.";
 					echo "<br/>";
-					echo "<a href=\"".get_bloginfo("url")."/profile-member/\">Edit your profile</a>";
+					echo "<a href=\"".get_bloginfo("url")."/profile/".$profile_gallery."\">View my profile</a> | ";
+					echo "<a href=\"".get_bloginfo("url")."/profile-member/account\">Edit your profile</a>";
 					echo " </div>\n";
 
 			echo " </div>\n"; // .welcome
