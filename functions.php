@@ -197,11 +197,11 @@
 					$user_login = stripslashes($user->user_login);  
 					$user_email = stripslashes($user->user_email);  
 					
-					if($rb_agencyinteract_option_registerapproval == 0){
+					/*if($rb_agencyinteract_option_registerapproval == 0){
 						$new_pass = wp_generate_password();
 					 	wp_set_password( $new_pass, $user_id );
 					 	$user_pass = $new_pass;
-					}
+					}*/
 
 					$message  = __('Hi there,') . "\r\n\r\n";  
 					$message .= sprintf(__('Congratulations! Your account is approved.'), $user_login) . "\r\n"; 
