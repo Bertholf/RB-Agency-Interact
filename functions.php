@@ -427,12 +427,10 @@
 		function retrieve_title($id=0) {
 			global $wpdb;
 
-			//return title
-			$check_type = "SELECT DataTypeTitle FROM ". table_agency_data_type ." WHERE DataTypeID = " . $id;
-
-			$check_query = mysql_query($check_type);
-			if(mysql_num_rows($check_query) > 0){
-				$fetch = mysql_fetch_assoc($check_query);
+			$check_type = "SELECT DataTypeTitle FROM ". table_agency_data_type ." WHERE DataTypeID = %d";
+			$check_query = $wpdb->get_results($wpdb->prepare($check_type, $id),ARRAY_A);// OR die($wpdb->print_error());
+			if(count($check_query) > 0){
+				$fetch = current($check_query);
 				return $fetch['DataTypeTitle'];
 			} else {
 				return false;
