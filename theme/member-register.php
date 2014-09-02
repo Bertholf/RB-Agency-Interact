@@ -316,7 +316,7 @@
 	echo "  	<h1 class=\"entry-title\">Join Our Team</h1>";
 	echo "  </header>";
 	echo "  <div id=\"member-register\" class=\"rbform\">";
-	echo "	<p class=\"rbform-description\">To Join Our Team please complete the application below.</p>";
+	echo "	<p class=\"rbform-description\">".__("To Join Our Team please complete the application below.", rb_agency_interact_TEXTDOMAIN)."</p>";
 	echo "  <form method=\"post\" action=\"". $rb_agency_interact_WPURL ."/profile-register/talent\">\n";    				
 	if($rb_agencyinteract_option_useraccountcreation == 0){
 		echo "       <div id=\"profile-username\" class=\"rbfield rbtext rbsingle\">\n";
@@ -393,7 +393,7 @@
 
 }
 	
-if(!$registration){ echo "<p class='alert'>The administrator currently disabled the registration.<p>"; }
+if(!$registration){ echo "<p class='alert'>".__("The administrator currently disabled the registration.", rb_agency_interact_TEXTDOMAIN)."<p>"; }
 
 echo "  </div><!-- #content -->\n";
 echo "</div><!-- #container -->\n";

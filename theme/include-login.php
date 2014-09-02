@@ -24,15 +24,15 @@ echo "     <div id=\"rbsignin-register\" class=\"rbinteract\">\n";
 			echo "<p class=\"error\">". $error ."</p>\n";
 			}
 			if (isset($ref) && $ref == "pending-approval") {
-			echo "<p id=\"message\" class=\"updated\">Your account is pending for approval.</p>\n";
+			echo "<p id=\"message\" class=\"updated\">". __("Your account is pending for approval.", rb_agency_interact_TEXTDOMAIN). "</p>\n";
 			}
 			if (isset($ref) && $ref == "casting") {
-			echo "<p id=\"message\" class=\"updated\">Your account is not registered as Talent/Model. Click <a href=\"".get_bloginfo("url")."/casting-login/\">here</a> to login as Casting.</p>\n";
+			echo "<p id=\"message\" class=\"updated\">". __("Your account is not registered as Talent/Model.", rb_agency_interact_TEXTDOMAIN).  __(" Click", rb_agency_interact_TEXTDOMAIN)." <a href=\"".get_bloginfo("url")."/casting-login/\">".__("here", rb_agency_interact_TEXTDOMAIN)."</a> "__("to login as Casting.", rb_agency_interact_TEXTDOMAIN)."</p>\n";
 			}
 			
 			
 			if(isset($ref) && $ref == "reset_password"){
-				echo "<p  id=\"message\" class=\"updated\">Check your e-mail for the reset link to create a new password.</p>\n";
+				echo "<p  id=\"message\" class=\"updated\">".__("Check your e-mail for the reset link to create a new password.", rb_agency_interact_TEXTDOMAIN)."</p>\n";
 			}
 
 echo "        <div id=\"rbsign-in\" class=\"inline-block\">\n";
