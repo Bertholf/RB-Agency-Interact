@@ -389,6 +389,12 @@
 							" AND ProfileCustomValue = '" . $val . "' "
 							." AND ProfileID = "
 							. $ID);
+				}else if($type == "date"){
+					$result = mysql_query("SELECT ProfileCustomDateValue FROM "
+							. table_agency_customfield_mux .
+							" WHERE ProfileCustomID = ". $customID 
+							." AND ProfileID = "
+							. $ID);
 				} else {
 					$result = mysql_query("SELECT ProfileCustomValue FROM "
 							. table_agency_customfield_mux .
@@ -399,6 +405,8 @@
 				while($row = mysql_fetch_assoc($result)){
 					if($type == "textbox"){
 						return $row["ProfileCustomValue"];
+					}elseif($type == "date"){
+						return $row["ProfileCustomDateValue"];
 					} elseif($type == "dropdown") {
 						return "selected";
 					}elseif($type == "multiple" && in_array($val,explode(",",$row["ProfileCustomValue"]))) {

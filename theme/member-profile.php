@@ -45,7 +45,12 @@ if (isset($_POST['action'])) {
     // Custom Fields
 	foreach($_POST as $key => $value) {
 		if ((substr($key, 0, 15) == "ProfileCustomID") && (isset($value) && !empty($value))) {
-				$ProfileCustomID = substr($key, 15);
+				$profilecustomfield_date = explode("_",$key);
+				if(count($profilecustomfield_date) == 2){ // customfield date
+					$ProfileCustomID = substr($profilecustomfield_date[0], 15);
+				}else{	
+					$ProfileCustomID = substr($key, 15);
+				}
 			// Remove Old Custom Field Values
 			$delete1 = "DELETE FROM " . table_agency_customfield_mux . " WHERE ProfileCustomID = ". $ProfileCustomID ." AND ProfileID = ".$ProfileID."";
 			$results1 = mysql_query($delete1) or die(mysql_error());	
@@ -53,7 +58,13 @@ if (isset($_POST['action'])) {
 				$value =  implode(",",$value);
 			}
 			if(!empty($value)){
-				$insert1 = "INSERT INTO " . table_agency_customfield_mux . " (ProfileID,ProfileCustomID,ProfileCustomValue)" . "VALUES ('" . $ProfileID . "','" . $ProfileCustomID . "','" . $value . "')";
+							
+				if(count($profilecustomfield_date) == 2){ // customfield date
+					$value = date("y-m-d h:i:s",strtotime($value));
+					$insert1 = "INSERT INTO " . table_agency_customfield_mux . " (ProfileID,ProfileCustomID,ProfileCustomDateValue)" . "VALUES ('" . $ProfileID . "','" . $ProfileCustomID . "','" . $value . "')";
+				}else{
+					$insert1 = "INSERT INTO " . table_agency_customfield_mux . " (ProfileID,ProfileCustomID,ProfileCustomValue)" . "VALUES ('" . $ProfileID . "','" . $ProfileCustomID . "','" . $value . "')";
+				}
 				$results1 = $wpdb->query($insert1);
 			}
 		}

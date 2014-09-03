@@ -88,11 +88,10 @@
 		
 		echo'<input type="hidden" name="aps12" value="'.$data3["ProfileCustomShowGender"].'" >';
 		echo'<input type="hidden" name="ctype" value="'.(isset($ProfileCustomType)?$ProfileCustomType:"").'" >';
+		    $ProfileCustomTitle = $data3['ProfileCustomTitle'];
+			$ProfileCustomType  = $data3['ProfileCustomType'];
 		
 		if (($data3["ProfileCustomShowGender"] == $ProfileGender) || ($data3["ProfileCustomShowGender"] == 0)  && $permit_type == true ) {
-
-			$ProfileCustomTitle = $data3['ProfileCustomTitle'];
-			$ProfileCustomType  = $data3['ProfileCustomType'];
 
 			//  SET Label for Measurements
 			//  Imperial(in/lb), Metrics(ft/kg)
@@ -293,6 +292,21 @@
 				echo "</div>";
 				echo "</fieldset>";
 				
+			} elseif ($ProfileCustomType == 10) { //Date
+				echo "<div id=\"rbfield-".strtolower(trim($data3['ProfileCustomTitle']))." ".gender_filter($data3['ProfileCustomShowGender'])."\" class=\"rbfield rbselect rbsingle\">";
+				echo "<label for=\"".strtolower(trim($data3['ProfileCustomTitle']))."\">"
+			   . __( $data3['ProfileCustomTitle'].$measurements_label, rb_agency_interact_TEXTDOMAIN) 
+			   ."</label>\n";
+			   			echo "<div>";
+					
+						echo "<input type=\"text\" id=\"rb_datepicker". $data3['ProfileCustomID']."\" class=\"rb-datepicker\" name=\"ProfileCustomID". $data3['ProfileCustomID'] ."_date\" value=\"". 	retrieve_datavalue("",$data3['ProfileCustomID'],$ProfileID,"date") ."\" /><br />\n";						
+					    echo "<script type=\"text/javascript\">\n\n";
+					    echo "jQuery(function(){\n\n";
+					    echo "jQuery(\"input[name=ProfileCustomID". $data3['ProfileCustomID'] ."_date]\").val('". 	retrieve_datavalue("",$data3['ProfileCustomID'],$ProfileID,"date")."');\n\n";
+					   	echo "});\n\n";
+					    echo "</script>\n\n";
+				 echo "</div>";
+				  echo "</div>";
 			}elseif ($ProfileCustomType == 7) { //Imperial/Metrics
 			
 				echo "<div id=\"rbfield-".strtolower(trim($data3['ProfileCustomTitle']))." ".gender_filter($data3['ProfileCustomShowGender'])."\" class=\"rbfield rbselect rbsingle\">";
@@ -321,7 +335,8 @@
 				   echo " </select>\n";
 				   echo "</div>";
 		   
-			   }	else {		       	
+			   }		
+					else {		       	
 			   
 			 echo '<div><input type="text" name="ProfileCustomID'. $data3['ProfileCustomID'] 
 				 .'" value="'. retrieve_datavalue(isset($_REQUEST["ProfileCustomID". $data3['ProfileCustomID']])?$_REQUEST["ProfileCustomID". $data3['ProfileCustomID']]:"",
