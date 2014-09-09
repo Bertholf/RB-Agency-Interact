@@ -81,17 +81,18 @@ echo $rb_header = RBAgency_Common::rb_header();
 
 			echo "	<div id=\"profile-manage\" class=\"profile-overview\">\n";
 
-			/* Check if the user is regsitered *****************************************/ 
-			$sql = "SELECT ProfileID FROM ". table_agency_profile ." WHERE ProfileUserLinked =  ". $current_user->ID ."";
-			$results = mysql_query($sql);
-			$count = mysql_num_rows($results);
-			if ($count > 0) {
-
+			
+			
 			// Menu
 			include("include-menu.php");
 			echo " <div class=\"manage-overview manage-content\">\n";
-			  
-			$data = mysql_fetch_array($results);  // is there record?
+			  /* Check if the user is regsitered *****************************************/ 
+			$sql = "SELECT ProfileID FROM ". table_agency_profile ." WHERE ProfileUserLinked =  ". $current_user->ID ."";
+			$results = $wpdb->get_row($sql,ARRAY_A);
+			$count = $wpdb->num_rows;
+			if ($count > 0) {
+
+			$data = $results;  // is there record?
 				  
 				echo "	 <div class=\"manage-section welcome\">\n";
 				echo "	 <h1>". __("Welcome Back", rb_agency_interact_TEXTDOMAIN) ." ". $current_user->first_name ."!</h1>";

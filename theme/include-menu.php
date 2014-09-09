@@ -69,10 +69,10 @@ global $wpdb;
 		if ($rb_agencyinteract_option_subscribeupsell) {
 			// Is there a subscription?
 			$sql = "SELECT SubscriberDateExpire FROM ". table_agencyinteract_subscription ." WHERE SubscriberDateExpire >= NOW() AND ProfileID =  ". $current_user->ID ." ORDER BY SubscriberDateExpire DESC LIMIT 1";
-			$results = mysql_query($sql);
-			$count = mysql_num_rows($results);
+			$results = $wpdb->get_results($sql,ARRAY_A);
+			$count = $wpdb->num_rows;
 			if ($count > 0) {
-			  while ($data = mysql_fetch_array($results)) {
+			  foreach($results as $data) {
 				$SubscriberDateExpire = $data["SubscriberDateExpire"];
 				echo " 		<div class=\"tab-right tab-". $tabclass ."\">\n";
 				echo " 			<a href=\"". get_bloginfo("wpurl") ."/profile-member/subscription/\">\n";
