@@ -20,7 +20,7 @@ require_once('../../../../wp-admin/includes/user.php');
 		* Just update status to inactive
 		*/
         $update = "UPDATE ". table_agency_profile ." SET ProfileIsActive = 0 WHERE ProfileID = " . $id;
-		$results = $wpdb->query($update) or die(mysql_error());
+		$results = $wpdb->query($update);
 		
 		wp_logout();
 		

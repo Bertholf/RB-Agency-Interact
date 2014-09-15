@@ -1,4 +1,5 @@
 <?php 
+global $wpdb;
 
 // *************************************************************************************************** //
 // Setup Functions 
@@ -92,9 +93,10 @@ if (is_user_logged_in()) {
 	$rb_agency_option_profilenaming = $rb_agency_options_arr['rb_agency_option_profilenaming'];
 	  
 	$query = "SELECT * FROM " . table_agency_profile . " WHERE ProfileGallery='". $_SESSION['ProfileLastViewed'] ."'";
-	$results = mysql_query($query) or die ( __("Error, query failed", rb_agency_TEXTDOMAIN ));
-	$count = mysql_num_rows($results);
-	while ($data = mysql_fetch_array($results)) {
+	$results = $wpdb->get_results($query,ARRAY_A);
+	$count = $wpdb->num_rows;
+	
+	foreach($results as $data) {
 		$ProfileGallery			=stripslashes($data['ProfileGallery']);
 		$ProfileContactNameFirst=stripslashes($data['ProfileContactNameFirst']);
 		$ProfileContactNameLast	=stripslashes($data['ProfileContactNameLast']);

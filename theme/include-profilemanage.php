@@ -1,6 +1,7 @@
 <?php
 	global $user_ID; 
 	global $current_user;
+	global $wpdb;
 	get_currentuserinfo();
 	$ProfileUserLinked = $current_user->ID;
 	// Get Settings
@@ -8,9 +9,9 @@
 		$rb_agency_option_unittype  			= isset($rb_agency_options_arr['rb_agency_option_unittype'])?$rb_agency_options_arr['rb_agency_option_unittype']:0;
 		$rb_agency_option_locationtimezone 		= isset($rb_agency_options_arr['rb_agency_option_locationtimezone'])? (int)$rb_agency_options_arr['rb_agency_option_locationtimezone']:0;
 	// Get Values
-	$query = "SELECT * FROM " . table_agency_profile . " WHERE ProfileUserLinked='$ProfileUserLinked' LIMIT 1";
-	$results = mysql_query($query) or die ( __("Error, query failed", rb_agency_interact_TEXTDOMAIN ));
-	$count = mysql_num_rows($results);
+	  $query = "SELECT * FROM " . table_agency_profile . " WHERE ProfileUserLinked='$ProfileUserLinked' LIMIT 1";
+	$results = $wpdb->get_results($query,ARRAY_A);
+	  $count = $wpdb->num_rows;
 		/*
 		 * Get profile type and Gender
 		 */
@@ -22,9 +23,9 @@
 		$ptype1 = get_user_meta($current_user->ID, "rb_agency_interact_profiletype", true);
 		$ProfileTypeArray = explode(",", $ptype1);
 		$query3 = "SELECT * FROM " . table_agency_data_type . " ORDER BY DataTypeTitle";
-		$results3 = mysql_query($query3);
-		$count3 = mysql_num_rows($results3);
-	while ($data = mysql_fetch_array($results)) {
+		$results3 = $wpdb->get_results($query3,ARRAY_A);
+		$count3 = $wpdb->num_rows;
+	foreach($results as $data) {
 		$ProfileID					=$data['ProfileID'];
 		$ProfileUserLinked			=$data['ProfileUserLinked'];
 		$ProfileDateUpdated			=stripslashes($data['ProfileDateUpdated']);
@@ -32,7 +33,7 @@
 		$ProfileType 				=explode(",",$ProfileType);
 
 		$i=1; 
-		while ($data3 = mysql_fetch_array($results3)) {
+		foreach($results3 as $data3) {
 
 				$profileType .=  "<input type=\"checkbox\" name=\"ProfileType[]\" value=\"".$data3['DataTypeID']."\" ".(in_array($data3['DataTypeID'], $ProfileType)?"checked=\"checked\"":"")."/>".$data3['DataTypeTitle'] ;
 
@@ -60,10 +61,10 @@
 	$query3 = "SELECT * FROM ". table_agency_customfields ." 
 			   WHERE ProfileCustomView = 0 AND ProfileCustomShowRegistration = 1 ORDER BY ProfileCustomOrder";
 
-	$results3 = mysql_query($query3) or die(mysql_error());
-	$count3 = mysql_num_rows($results3);
+	$results3 = $wpdb->get_results($query3,ARRAY_A);
+	  $count3 = $wpdb->num_rows;
 	
-	while ($data3 = mysql_fetch_assoc($results3)) {
+	foreach($results3 as $data3) {
 		/*
 		 * Get Profile Types to
 		 * filter models from clients
@@ -74,11 +75,10 @@
 
 		$get_types = "SELECT ProfileCustomTypes FROM ". table_agency_customfields_types .
 					 " WHERE ProfileCustomID = " . $PID;
-		$result = mysql_query($get_types);
+		$result = $wpdb->get_results($get_types,ARRAY_A);
 		$types = "";				
-		while ( $p = mysql_fetch_array($result)){
-		// 	$types = $p['ProfileCustomTypes'];		
-		$types = str_replace("_", " ", $p['ProfileCustomTypes']);
+		foreach( $result as $p){
+			$types = str_replace("_", " ", $p['ProfileCustomTypes']);
 		}
 		
 		if($types != "" || $types != NULL){
@@ -244,8 +244,8 @@
 			   ."</label>\n";
 				$xplode =array(); 
 				$myquery = "SELECT ProfileCustomValue FROM " . table_agency_customfield_mux . " WHERE ProfileID=".$ProfileID." and ProfileCustomID=".$data3['ProfileCustomID']." ";
-				$myresults = mysql_query($myquery) or die ( __("Error, query failed", rb_agencyinteract_TEXTDOMAIN ));
-				while ($mydata = mysql_fetch_array($myresults)) {
+				$myresults = $wpdb->get_results($myquery,ARRAY_A);
+				foreach($myresults as $mydata) {
 					$xplode = explode(",",$mydata['ProfileCustomValue']);
 				}
 

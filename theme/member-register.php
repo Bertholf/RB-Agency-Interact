@@ -350,9 +350,9 @@
 	echo "			<label for=\"profile_gender\">". __("Gender", rb_agency_interact_TEXTDOMAIN) ."</label>\n";
 					$query= "SELECT GenderID, GenderTitle FROM " .  table_agency_data_gender . " GROUP BY GenderTitle ";
 	echo "			<div><select id='ProfileGender' name=\"ProfileGender\">";
-						$queryShowGender = mysql_query($query);
+						$queryShowGender = $wpdb->get_results($query,ARRAY_A);
 						echo "<option value=''>--Please Select--</option>";
-						while($dataShowGender = mysql_fetch_assoc($queryShowGender)){
+						foreach($queryShowGender as $dataShowGender){
 							echo "<option value=\"".$dataShowGender["GenderID"]."\" ". selected($ProfileGender ,$dataShowGender["GenderID"],false).">".$dataShowGender["GenderTitle"]."</option>";
 						}
 	echo "			</select></div>";
@@ -362,11 +362,11 @@
 	echo "		<legend for=\"profile_type\">". __("Type of Profile", rb_agency_interact_TEXTDOMAIN) ."</legend>\n";
 				$ProfileTypeArray = array();
 				$query3 = "SELECT * FROM " . table_agency_data_type . " ORDER BY DataTypeTitle";
-				$results3 = mysql_query($query3);
-				$count3 = mysql_num_rows($results3);
+				$results3 = $wpdb->get_results($query3,ARRAY_A);
+				$count3 =  $wpdb->num_rows;
 	echo "		<div>";
 	            $ptype_arr = isset($_POST["ProfileType"]) && !empty($_POST["ProfileType"])?$_POST["ProfileType"]: array();
-				while ($data3 = mysql_fetch_array($results3)) {
+				foreach($results3 as $data3) {
 					echo "<div><label><input type=\"checkbox\" ".(in_array($data3["DataTypeID"],$ptype_arr)?"checked='checked'":"")." name=\"ProfileType[]\" value=\"" . $data3['DataTypeID'] . "\" id=\"ProfileType[]\" /><span> " . $data3['DataTypeTitle'] . "</span></label></div>";
 				}
 	echo "		</div>";

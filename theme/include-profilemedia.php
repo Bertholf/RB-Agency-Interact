@@ -1,14 +1,15 @@
 <?php
 	global $user_ID; 
 	global $current_user;
+	global $wpdb;
 	get_currentuserinfo();
 	$ProfileUserLinked = $current_user->ID;
 
 	$query1 = "SELECT * FROM " . table_agency_profile . " WHERE ProfileUserLinked='$ProfileUserLinked'";
-	$results1 = mysql_query($query1) or die ( __("Error, query failed", rb_agency_interact_TEXTDOMAIN ));
-	$count1 = mysql_num_rows($results1);
+	$results1 = $wpdb->get_results($query1,ARRAY_A);
+	$count1 = $wpdb->num_rows;
 	if($count1 > 1);
-	while ($data = mysql_fetch_array($results1)) {
+	foreach($results1 as $data) {
 		$ProfileID					=$data['ProfileID'];
 		$ProfileUserLinked			=$data['ProfileUserLinked'];
 		$ProfileGallery				=stripslashes($data['ProfileGallery']);
@@ -97,11 +98,11 @@
 					
 					// Verify Record
 					$queryImgConfirm = "SELECT * FROM ". table_agency_profile_media ." WHERE ProfileID =  \"". $ProfileID ."\" AND ProfileMediaID =  \"". $deleteTargetID ."\"";
-					$resultsImgConfirm = mysql_query($queryImgConfirm);
-					$countImgConfirm = mysql_num_rows($resultsImgConfirm);
+					$resultsImgConfirm = $wpdb->get_results($queryImgConfirm,ARRAY_A);
+					$countImgConfirm = $wpdb->num_rows;
 
 
-					while ($dataImgConfirm = mysql_fetch_array($resultsImgConfirm)) {
+					foreach($resultsImgConfirm as $dataImgConfirm) {
 						$ProfileMediaID = $dataImgConfirm['ProfileMediaID'];
 						$ProfileMediaType = $dataImgConfirm['ProfileMediaType'];
 						$ProfileMediaURL = $dataImgConfirm['ProfileMediaURL'];
@@ -130,9 +131,9 @@
 				}
 				// Go about our biz-nazz
 					$queryImg = "SELECT * FROM ". table_agency_profile_media ." WHERE ProfileID =  \"". $ProfileID ."\" AND ProfileMediaType = \"Image\" ORDER BY ProfileMediaPrimary DESC, ProfileMediaID DESC";
-					$resultsImg = mysql_query($queryImg);
-					$countImg = mysql_num_rows($resultsImg);
-					while ($dataImg = mysql_fetch_array($resultsImg)) {
+					$resultsImg = $wpdb->get_results($queryImg,ARRAY_A);
+					$countImg =  $wpdb->num_rows;
+					foreach($resultsImg as $dataImg) {
 					  if ($dataImg['ProfileMediaPrimary']) {
 						  $styleClass = "primary-picture ";
 						  $isChecked = " checked";
@@ -178,9 +179,9 @@
 		echo "		<p>". __("The following files (pdf, audio file, etc.) are associated with this record", rb_agency_interact_TEXTDOMAIN) .".</p>\n";
 	
 					$queryMedia = "SELECT * FROM ". table_agency_profile_media ." WHERE ProfileID =  \"". $ProfileID ."\" AND ProfileMediaType <> \"Image\"";
-					$resultsMedia = mysql_query($queryMedia);
-					$countMedia = mysql_num_rows($resultsMedia);
-					while ($dataMedia = mysql_fetch_array($resultsMedia)) {
+					$resultsMedia = $wpdb->get_results($queryMedia,ARRAY_A);
+					$countMedia =  $wpdb->num_rows;
+					foreach($resultsMedia as $dataMedia) {
 						if ($dataMedia['ProfileMediaType'] == "Demo Reel" || $dataMedia['ProfileMediaType'] == "Video Monologue" || $dataMedia['ProfileMediaType'] == "Video Slate") {
 						//	$outVideoMedia .= "<div class=\"media-video\">". $dataMedia['ProfileMediaType'] ."<br />". rb_agency_get_videothumbnail($dataMedia['ProfileMediaURL']) ."<br /><a href=\"http://www.youtube.com/watch?v=". $dataMedia['ProfileMediaURL'] ."\" target=\"_blank\">Link to Video</a><br />[<a href=\"javascript:confirmDelete('". $dataMedia['ProfileMediaID'] ."','".$dataMedia['ProfileMediaType']."')\">DELETE</a>]</div>\n";
 									if($dataMedia['ProfileVideoType'] == "" || $dataMedia['ProfileVideoType'] == "youtube"){

@@ -65,8 +65,8 @@ if (isset($_POST['action'])) {
 					// Upload if it doesnt exist already
 						$path_parts = pathinfo($_FILES['profileMedia'. $i]['name']);
 						$safeProfileMediaFilename =  RBAgency_Common::format_stripchars($path_parts['filename'] ."_". RBAgency_Common::generate_random_string(6) . ".".$path_parts['extension']);
-						$results = mysql_query("SELECT * FROM " . table_agency_profile_media . " WHERE ProfileID='". $ProfileID ."' AND ProfileMediaURL = '".$safeProfileMediaFilename ."'");
-						$count = mysql_num_rows($results);
+						$results = $wpdb->get_results("SELECT * FROM " . table_agency_profile_media . " WHERE ProfileID='". $ProfileID ."' AND ProfileMediaURL = '".$safeProfileMediaFilename ."'",ARRAY_A);
+						$count = $wpdb->num_rows;
 
 						if ($count < 1) {
 							if($uploadMediaType == "Image") { 
@@ -202,11 +202,11 @@ if (isset($_POST['action'])) {
 
 			/* --------------------------------------------------------- CLEAN THIS UP -------------- */
 			// Do we have a custom image yet? Lets just set the first one as primary.
-			$results = mysql_query("SELECT * FROM " . table_agency_profile_media . " WHERE ProfileID='". $ProfileID ."' AND ProfileMediaType = 'Image' AND ProfileMediaPrimary='1'");
-			$count = mysql_num_rows($results);
+			$results = $wpdb->get_results("SELECT * FROM " . table_agency_profile_media . " WHERE ProfileID='". $ProfileID ."' AND ProfileMediaType = 'Image' AND ProfileMediaPrimary='1'",ARRAY_A);
+			$count = $wpdb->num_rows;
 			if ($count < 1) {
-			 	$resultsNeedOne = mysql_query("SELECT * FROM " . table_agency_profile_media . " WHERE ProfileID='". $ProfileID ."' AND ProfileMediaType = 'Image' LIMIT 0, 1");
-				while ($dataNeedOne = mysql_fetch_array($resultsNeedOne)) {
+			 	$resultsNeedOne = $wpdb->get_results("SELECT * FROM " . table_agency_profile_media . " WHERE ProfileID='". $ProfileID ."' AND ProfileMediaType = 'Image' LIMIT 0, 1",ARRAY_A);
+				foreach ($resultsNeedOne as $dataNeedOne) {
 					$resultsFoundOne = $wpdb->query("UPDATE " . table_agency_profile_media . " SET ProfileMediaPrimary='1' WHERE ProfileID='". $ProfileID ."' AND ProfileMediaID = '". $dataNeedOne['ProfileMediaID'] . "'");
 					break;
 				}
@@ -279,10 +279,10 @@ if (is_user_logged_in()) {
 			/* Check if the user is regsitered *****************************************/ 
 			// Verify Record
 			$sql = "SELECT ProfileID FROM ". table_agency_profile ." WHERE ProfileUserLinked =  ". $current_user->ID ."";
-			$results = mysql_query($sql);
-			$count = mysql_num_rows($results);
+			$results = $wpdb->get_results($sql,ARRAY_A);
+			$count = $wpdb->num_rows;
 			if ($count > 0) {
-			  	while ($data =@mysql_fetch_array($results)) {
+			  	foreach($results as $data) {
 			
 				// Manage Profile
 				include("include-profilemedia.php"); 	

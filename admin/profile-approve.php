@@ -21,8 +21,8 @@ if (isset($_POST['action'])) {
 		foreach($_POST as $ProfileID) {
 			// Verify Record
 			$queryDelete = "SELECT * FROM ". table_agency_profile ." WHERE ProfileID =  ". $ProfileID;
-			$resultsDelete = mysql_query($queryDelete);
-			while ($dataDelete = mysql_fetch_array($resultsDelete)) {
+			$resultsDelete =$wpdb->get_results($queryDelete,ARRAY_A);
+			foreach($resultsDelete as $dataDelete) {
 				$ProfileGallery = $dataDelete['ProfileGallery'];
 		
 				// Remove Profile
@@ -140,8 +140,8 @@ function rb_display_list() {
 									$ProfileID = $key;
 									// Verify Record
 									$queryDelete = "SELECT * FROM ". table_agency_profile ." WHERE ProfileID =  ". $ProfileID;
-									$resultsDelete = mysql_query($queryDelete);
-									while ($dataDelete = mysql_fetch_array($resultsDelete)) {
+									$resultsDelete = $wpdb->get_results($queryDelete,ARRAY_A);
+									foreach ($resultsDelete as $dataDelete) {
 										$ProfileGallery = $dataDelete['ProfileGallery'];
 								
 										// Remove Profile
@@ -200,7 +200,7 @@ function rb_display_list() {
 							$ProfileID = $key;
 							// Verify Record
 							$queryApprove = "UPDATE ". table_agency_profile ." SET ProfileIsActive = 1 WHERE ProfileID =  ". $ProfileID;
-							$resultsApprove = mysql_query($queryApprove);
+							$resultsApprove = $wpdb->query($queryApprove);
 							
 							$ProfileUserLinked = rb_get_user_linkedID($ProfileID);
 
@@ -221,7 +221,7 @@ function rb_display_list() {
 		if(isset($_GET["action"])=="approveRecord"){
 			$ProfileID = $_GET["ProfileID"];
 			$queryApprove = "UPDATE ". table_agency_profile ." SET ProfileIsActive = 1 WHERE ProfileID =  ". $ProfileID;
-			$resultsApprove = mysql_query($queryApprove);
+			$resultsApprove = $wpdb->query($queryApprove);
 			$ProfileUserLinked = rb_get_user_linkedID($ProfileID);
 			wp_new_user_notification_approve($ProfileUserLinked);
 			if($resultsApprove){ 
@@ -229,8 +229,9 @@ function rb_display_list() {
 			}
 		}
 		
+		$results = $wpdb->get_results("SELECT * FROM ". table_agency_profile ." profile LEFT JOIN ". table_agency_data_type ." profiletype ON profile.ProfileType = profiletype.DataTypeID ". $filter  .""); // number of total rows in the database
 		//Paginate
-		$items = mysql_num_rows(mysql_query("SELECT * FROM ". table_agency_profile ." profile LEFT JOIN ". table_agency_data_type ." profiletype ON profile.ProfileType = profiletype.DataTypeID ". $filter  ."")); // number of total rows in the database
+		$items = $wpdb->num_rows;
 		if($items > 0) {
 			$p = new rb_agency_pagination;
 			$p->items($items);
@@ -255,9 +256,9 @@ function rb_display_list() {
 		
 		
         echo "<div class=\"tablenav\">\n";
- 	  $queryGenderResult = mysql_query("SELECT GenderID, GenderTitle FROM ".table_agency_data_gender." ");
-		  $queryGenderCount = mysql_num_rows($queryGenderResult);
-		  while($fetchGender = mysql_fetch_assoc($queryGenderResult)){
+ 	  $queryGenderResult = $wpdb->get_results("SELECT GenderID, GenderTitle FROM ".table_agency_data_gender." ",ARRAY_A);
+		  $queryGenderCount = $wpdb->num_rows;
+		  foreach($queryGenderResult as $fetchGender){
 			 echo "	<div style=\"float: left; \"><a class=\"button-primary\" href=\"". admin_url("admin.php?page=rb_agency_menu_profiles") ."&action=add&ProfileGender=".$fetchGender["GenderID"]."\">". __("Create New ".ucfirst($fetchGender["GenderTitle"])."", rb_agency_TEXTDOMAIN) ."</a></div>\n";
 		  }
 	  echo "  <div class=\"tablenav-pages\">\n";
@@ -284,10 +285,10 @@ function rb_display_list() {
 		echo "        		<select name=\"ProfileLocationCity\">\n";
 		echo "				  <option value=\"\">". __("Any Location", rb_agency_interact_TEXTDOMAIN) ."</option>";
 								$query = "SELECT DISTINCT ProfileLocationCity, ProfileLocationState FROM ". table_agency_profile ." ORDER BY ProfileLocationState, ProfileLocationCity ASC";
-								$results = mysql_query($query);
-								$count = mysql_num_rows($results);
-								while ($data = mysql_fetch_array($results)) {
-									if (isset($data['ProfileLocationCity']) && !empty($data['ProfileLocationCity'])) {
+								$results = $wpdb->get_results($query,ARRAY_A);
+								$count = $wpdb->num_rows;
+								foreach($results as $data){
+										if (isset($data['ProfileLocationCity']) && !empty($data['ProfileLocationCity'])) {
 									echo "<option value=\"". $data['ProfileLocationCity'] ."\" ". selected((isset($selectedCity)?$selectedCity:""), $data["ProfileLocationCity"]) ."\">". $data['ProfileLocationCity'] .", ". strtoupper(isset($dataLocation["ProfileLocationState"])?$dataLocation["ProfileLocationState"]:"") ."</option>\n";
 									}
 								} 
@@ -296,9 +297,9 @@ function rb_display_list() {
 		echo "        		<select name=\"ProfileType\">\n";
 		echo "				  <option value=\"\">". __("Any Category", rb_agency_interact_TEXTDOMAIN) ."</option>";
 								$query = "SELECT DataTypeID, DataTypeTitle FROM ". table_agency_data_type ." ORDER BY DataTypeTitle ASC";
-								$results = mysql_query($query);
-								$count = mysql_num_rows($results);
-								while ($data = mysql_fetch_array($results)) {
+								$results = $wpdb->get_results($query,ARRAY_A);
+								$count = $wpdb->num_rows;
+								foreach($results as $data) {
 									echo "<option value=\"". $data['DataTypeID'] ."\" ". selected((isset($selectedCity)?$selectedCity:""), $data["DataTypeTitle"]) ."\">". $data['DataTypeTitle'] ."</option>\n";
 								} 
 		echo "        		</select>\n";
@@ -360,9 +361,9 @@ function rb_display_list() {
 		echo " </tfoot>\n";
 		echo " <tbody>\n";
         $query = "SELECT * FROM ". table_agency_profile ." profile LEFT JOIN ". table_agency_data_type ." profiletype ON profile.ProfileType = profiletype.DataTypeID ". $filter  ." ORDER BY $sort $limit";
-        $results2 = @mysql_query($query);
-        $count = @mysql_num_rows($results2);
-        while ($data = @mysql_fetch_array($results2)) {
+        $results2 = $wpdb->get_results($query,ARRAY_A);
+        $count = $wpdb->num_rows;
+        foreach ($results2 as $data) {
             
             $ProfileID = $data['ProfileID'];
             $ProfileGallery = stripslashes($data['ProfileGallery']);
@@ -384,10 +385,10 @@ function rb_display_list() {
                 $id = (int)$t;
                 $get_title = "SELECT DataTypeTitle FROM " . table_agency_data_type .  
                              " WHERE DataTypeID = " . $id;   
-                $resource = mysql_query($get_title);             
-                $get = mysql_fetch_assoc($resource);
-                if (mysql_num_rows($resource) > 0 ){
-                    $new_title .= "," . $get['DataTypeTitle']; 
+                $resource = $wpdb->get_row($get_title,ARRAY_A);   
+                $count = $wpdb->num_rows;          
+                if ($count > 0 ){
+                    $new_title .= "," . $resource['DataTypeTitle']; 
                 }
             }
             $new_title = substr($new_title,1);
@@ -396,20 +397,20 @@ function rb_display_list() {
                 $id = (int)$data['ProfileType'];
                 $get_title = "SELECT DataTypeTitle FROM " . table_agency_data_type .  
                              " WHERE DataTypeID = " . $id;   
-                $resource = mysql_query($get_title);             
-                $get = mysql_fetch_assoc($resource);
-                if (mysql_num_rows($resource) > 0 ){
-                    $new_title = $get['DataTypeTitle']; 
+                $resource = $wpdb->get_row($get_title,ARRAY_A);             
+                $count = $wpdb->num_rows;
+                if ($count > 0 ){
+                    $new_title = $resource['DataTypeTitle']; 
                 }
         }
          
         
-        $DataTypeTitle = stripslashes($new_title);
-			$resultImageCount = mysql_query("SELECT * FROM " . table_agency_profile_media . " WHERE ProfileID='". $ProfileID ."' AND ProfileMediaType = 'Image'");
-			$profileImageCount = mysql_num_rows($resultImageCount);
+            $DataTypeTitle = stripslashes($new_title);
+			$resultImageCount = $wpdb->get_results("SELECT * FROM " . table_agency_profile_media . " WHERE ProfileID='". $ProfileID ."' AND ProfileMediaType = 'Image'",ARRAY_A);
+			$profileImageCount = $wpdb->num_rows;
 			
-			$resultProfileGender = mysql_query("SELECT * FROM ".table_agency_data_gender." WHERE GenderID = '".$ProfileGender."' ");
-			$fetchProfileGender = mysql_fetch_assoc($resultProfileGender);
+			$fetchProfileGender = $wpdb->get_row("SELECT * FROM ".table_agency_data_gender." WHERE GenderID = '".$ProfileGender."' ",ARRAY_A);
+
 			$ProfileGender  = $fetchProfileGender["GenderTitle"];
 		echo "    <tr". (isset($rowColor)?$rowColor:"") .">\n";
 		echo "        <th class=\"check-column\" scope=\"row\">\n";
@@ -442,7 +443,6 @@ function rb_display_list() {
 		
 		
         }
-            @mysql_free_result($results2);
             if ($count < 1) {
 				if (isset($filter)) { 
 		echo "    <tr>\n";

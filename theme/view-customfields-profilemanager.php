@@ -1,6 +1,6 @@
-<?php
-		$q2 = mysql_query("SELECT ProfileCustomValue FROM ". table_agency_customfield_mux ." WHERE ProfileCustomID = ". $data1['ProfileCustomID'] ." AND ProfileID = ". $ProfileID." ");
-		$data2 = mysql_fetch_assoc($q2);
+<?php   global $wpdb;
+		$q2 = $wpdb->get_row("SELECT ProfileCustomValue FROM ". table_agency_customfield_mux ." WHERE ProfileCustomID = ". $data1['ProfileCustomID'] ." AND ProfileID = ". $ProfileID." ",ARRAY_A);
+		$data2 = $q2;
 		$ProfileCustomValue = $data2['ProfileCustomValue'];
 		if ($ProfileCustomType == 1) { //TEXT
 			if (!empty($ProfileCustomValue)){

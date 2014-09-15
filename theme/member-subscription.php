@@ -57,10 +57,10 @@ echo $rb_header = RBAgency_Common::rb_header();
 			/* Check if the user is regsitered *****************************************/ 
 			// Verify Record
 			$sql = "SELECT ProfileID FROM ". table_agency_profile ." WHERE ProfileUserLinked =  ". $current_user->ID ."";
-			$results = mysql_query($sql);
-			$count = mysql_num_rows($results);
+			$results = $wpdb->get_results($sql,ARRAY_A);
+			$count =  $wpdb->num_rows;
 			if ($count > 0) {
-			  	while ($data = mysql_fetch_array($results)) {
+			  foreach($results as $data) {
 			
 					// Is there a subscription?
 					if (isset($SubscriberDateExpire)) {
@@ -72,12 +72,12 @@ echo $rb_header = RBAgency_Common::rb_header();
 					}
 
 					// What are the rates?
-					$sql = "SELECT * FROM ". table_agencyinteract_subscription_rates ."";
-					$results = mysql_query($sql);
-					$count = mysql_num_rows($results);
+					    $sql = "SELECT * FROM ". table_agencyinteract_subscription_rates ."";
+					$results = $wpdb->get_results($sql,ARRAY_A);
+					  $count =  $wpdb->num_rows;
 					if ($count > 0) {
 						echo "<div id=\"subscription-wrapper\">";
-					  	while ($data = mysql_fetch_array($results)) {
+					  	foreach($results as $data) {
 							echo " <div class=\"subscription-rate\">";
 							echo "  <div class=\"subscription-rate-title\">". stripslashes($data['SubscriptionRateTitle']) ."</div>\n";
 							echo "  <div class=\"subscription-rate-price\">$". $data['SubscriptionRatePrice'] ."</div>\n";

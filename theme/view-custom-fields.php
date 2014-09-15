@@ -4,8 +4,8 @@ global $current_user;
 $ProfileID = $current_user->ID;
 $ProfileCustomTitle = $data1['ProfileCustomTitle'];
 $ProfileCustomType = $data1['ProfileCustomType'];
-$qProfileCustomValue = mysql_query("SELECT * FROM ".table_agency_customfield_mux." WHERE ProfileID = '".$ProfileID."' AND ProfileCustomID = '".$data1['ProfileCustomID']."'") or die(mysql_error());
-$fProfileCustomValue = mysql_fetch_assoc($qProfileCustomValue);
+$qProfileCustomValue = $wpdb->get_row("SELECT * FROM ".table_agency_customfield_mux." WHERE ProfileID = '".$ProfileID."' AND ProfileCustomID = '".$data1['ProfileCustomID']."'",ARRAY_A);
+$fProfileCustomValue = $qProfileCustomValue;
 $ProfileCustomValue = $fProfileCustomValue["ProfileCustomValue"];
 
 // SET Label for Measurements

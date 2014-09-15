@@ -1,7 +1,11 @@
 <?php
-include_once('../../../../wp-config.php');
-$conn = mysql_connect(DB_HOST,DB_USER,DB_PASSWORD);
-mysql_select_db(DB_NAME,$conn);
+$path = $_SERVER['DOCUMENT_ROOT'];
+
+include_once $path . '/wp-config.php';
+include_once $path . '/wp-load.php';
+include_once $path . '/wp-includes/wp-db.php';
+include_once $path . '/wp-includes/pluggable.php';
+
 global $wpdb;
 // Revision Notes
 // 11/04/11 - changed post back url from https://www.paypal.com/cgi-bin/webscr to https://ipnpb.paypal.com/cgi-bin/webscr

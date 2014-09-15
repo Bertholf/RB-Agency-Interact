@@ -157,7 +157,7 @@ if (isset($_POST['action'])) {
 				$wpdb->escape($ProfileContactPhoneWork) . "',now(), ". 
 				$ProfileIsActive .")";
 
-		      $results = $wpdb->query($insert) or die(mysql_error());
+		      $results = $wpdb->query($insert);
               $ProfileID = $wpdb->insert_id;
  			 
 			// Add New Custom Field Values
@@ -170,7 +170,7 @@ if (isset($_POST['action'])) {
 					if($pos == 1){
 						// Remove Old Custom Field Values
 						$delete1 = "DELETE FROM " . table_agency_customfield_mux . " WHERE ProfileID = \"". $ProfileID ."\"";
-						$results1 = $wpdb->query($delete1);// or die(mysql_error());	
+						$results1 = $wpdb->query($delete1);	
 					}
 
 					$ProfileCustomID = substr($key, 15);
@@ -197,14 +197,13 @@ if (isset($_POST['action'])) {
 			 
 			if ( username_exists( $ProfileUsername) ) {
 
-				$isLinked =  mysql_query("UPDATE ". table_agency_profile ." SET ProfileUserLinked =  ". $current_user->ID ." WHERE ProfileID = ".$ProfileID." ");
+				$isLinked =  $wpdb->query("UPDATE ". table_agency_profile ." SET ProfileUserLinked =  ". $current_user->ID ." WHERE ProfileID = ".$ProfileID." ");
 				if($isLinked){
 
 					wp_redirect(get_bloginfo("wpurl") . "/profile-member/manage/");
 
-				}  else {
-				    die(mysql_error());	 				    				}
-			} else {
+				} 
+			else {
 				$user_data = array(
 				    'ID' => $current_user->ID,
 				    'user_pass' => wp_generate_password(),
@@ -316,7 +315,7 @@ if (isset($_POST['action'])) {
 					
 					// Remove Old Custom Field Values
 					$delete1 = "DELETE FROM " . table_agency_customfield_mux . " WHERE ProfileCustomID = ". $ProfileCustomID ." AND ProfileID = ".$ProfileID."";
-					$results1 = mysql_query($delete1) or die(mysql_error());	
+					$results1 = $wpdb->query($delete1);	
 					
 					
 					if(is_array($value)){
@@ -392,10 +391,10 @@ if (is_user_logged_in()) {
 			/* Check if the user is regsitered *****************************************/ 
 			// Verify Record
 			$sql = "SELECT ProfileID FROM ". table_agency_profile ." WHERE ProfileUserLinked =  ". $current_user->ID ." ";
-			$results = mysql_query($sql);
-			$count = mysql_num_rows($results);
+			$results = $wpdb->get_results($sql,ARRAY_A);
+			$count = $wpdb->num_rows;
 			if ($count > 0) {
-			  	while ($data = mysql_fetch_array($results)) {
+			  	foreach ($results as $data) {
 			
 					// Manage Profile
 					include("include-profileaccount.php"); 	

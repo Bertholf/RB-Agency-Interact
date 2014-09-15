@@ -1,4 +1,5 @@
 <?php
+global $wpdb;
 	// profile type
 	$ptype = get_user_meta($current_user->ID, "rb_agency_interact_profiletype", true);
 	
@@ -149,10 +150,10 @@
 							  ProfileCustomShowLogged, ProfileCustomShowAdmin,ProfileCustomShowRegistration FROM "
 					 . table_agency_customfields ." WHERE ProfileCustomView = ". $ProfileInformation ." ORDER BY ProfileCustomOrder ASC";
 			
-			$results1 = mysql_query($query1);
-			$count1 = mysql_num_rows($results1);
+			$results1 = $wpdb->get_results($query1,ARRAY_A);
+			$count1 =  $wpdb->num_rows;
 			$pos = 0;
-			while ($data1 = mysql_fetch_array($results1)) { 
+			foreach($results1 as $data1) { 
 							   /*
 								* Get Profile Types to
 								* filter models from clients
@@ -164,9 +165,9 @@
 								$get_types = "SELECT ProfileCustomTypes FROM ". table_agency_customfields_types .
 											" WHERE ProfileCustomID = " . $PID;
 
-								$result = mysql_query($get_types);
+								$result =  $wpdb->get_results($get_types,ARRAY_A);
 
-								while ( $p = mysql_fetch_array($result)){
+								foreach ( $result as $p ){
 										$types = $p['ProfileCustomTypes'];
 								}
 

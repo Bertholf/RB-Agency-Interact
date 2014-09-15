@@ -1,6 +1,7 @@
 <?php
 	global $user_ID; 
 	global $current_user;
+	global $wpdb;
 	get_currentuserinfo();
 	$ProfileUserLinked = $current_user->ID;
         $ptype = get_user_meta($current_user->ID, "rb_agency_interact_profiletype", true);
@@ -34,9 +35,9 @@
 
 	// Get Data
 	$query = "SELECT * FROM " . table_agency_profile . " WHERE ProfileUserLinked='$ProfileUserLinked' LIMIT 1";
-	$results = mysql_query($query) or die ( __("Error, query failed", rb_agency_interact_TEXTDOMAIN ));
-	$count = mysql_num_rows($results);
-	while ($data = mysql_fetch_array($results)) {
+	$results = $wpdb->get_results($query,ARRAY_A) or die ( __("Error, query failed", rb_agency_interact_TEXTDOMAIN ));
+	$count = $wpdb->num_rows;
+	foreach($results as $data) {
 		
 		$ProfileGender = $data['ProfileGender'];
 		$ProfileID					=$data['ProfileID'];
@@ -65,9 +66,9 @@
 		$ProfileCustomType          =$data["ProfileType"];
 
 		$query= "SELECT DataTypeID, DataTypeTitle FROM " .  table_agency_data_type . " WHERE DataTypeID IN(".$ProfileCustomType  .") GROUP BY DataTypeTitle ";
-		$queryShowDataType = mysql_query($query);
+		$queryShowDataType = $wpdb->get_results($query,ARRAY_A);
 		$registered_as = array();
-		while($dataShowDataType = mysql_fetch_assoc($queryShowDataType)){															
+		foreach($queryShowDataType as $dataShowDataType){															
 						array_push($registered_as, $dataShowDataType["DataTypeTitle"]);															
 		}
         
@@ -109,9 +110,9 @@
 					echo "<select name=\"ProfileGender\">";
 					echo "<option value=\"\">All Gender</option>";
 					$query= "SELECT GenderID, GenderTitle FROM " .  table_agency_data_gender . " GROUP BY GenderTitle ";
-					$queryShowGender = mysql_query($query);
+					$queryShowGender = $wpdb->get_results($query,ARRAY_A);
 		
-					while($dataShowGender = mysql_fetch_assoc($queryShowGender)){															
+					foreach($queryShowGender as $dataShowGender){															
 						echo "<option value=\"".$dataShowGender["GenderID"]."\" ". selected($ProfileGender ,$dataShowGender["GenderID"],false).">".$dataShowGender["GenderTitle"]."</option>";															
 					}
 					echo "</select>";
@@ -190,52 +191,6 @@
 		echo "		<div><input type=\"text\" id=\"ProfileContactWebsite\" name=\"ProfileContactWebsite\" value=\"". $ProfileContactWebsite ."\" /></div>\n";
 		echo "	</div>\n";
 		
-		// Include Profile Customfields
-/*		        $ProfileInformation = "1"; // Private fields only
-
-			$query1 = "SELECT ProfileCustomID, ProfileCustomTitle, ProfileCustomType, ProfileCustomOptions, ProfileCustomOrder, ProfileCustomView, ProfileCustomShowGender, ProfileCustomShowProfile, ProfileCustomShowSearch, ProfileCustomShowLogged, ProfileCustomShowAdmin,ProfileCustomShowRegistration FROM ". table_agency_customfields ." WHERE ProfileCustomView = ". $ProfileInformation ." ORDER BY ProfileCustomOrder ASC";
-				$results1 = mysql_query($query1);
-				$count1 = mysql_num_rows($results1);
-				$pos = 0;
-			while ($data1 = mysql_fetch_array($results1)) { 
-                              
-                               // * Get Profile Types to
-                               // * filter models from clients
-                               // 
-                                $permit_type = false;
-
-                                $PID = $data1['ProfileCustomID'];
-
-                                $get_types = "SELECT ProfileCustomTypes FROM ". table_agency_customfields_types .
-                                            " WHERE ProfileCustomID = " . $PID;
-
-                                $result = mysql_query($get_types);
-                                $types = "";
-                                while ( $p = mysql_fetch_array($result)){
-                                        $types = $p['ProfileCustomTypes'];			    
-                                }
-
-                                if($types != "" || $types != NULL){
-                                    $types = explode(",",$types); 
-									// check ptype if array
-									if(is_array($ptype)){
-										$result = array_diff($ptype, $types);
-										if(count($result) != count($ptype)){
-											$permit_type = true;
-										} 	
-									} else {
-										if(in_array($ptype,$types)){ $permit_type = true; }
-									}
-                                } 
-                                
-				if ( ($data1["ProfileCustomShowGender"] == $ProfileGender) || ($data1["ProfileCustomShowGender"] == 0) 
-                                      && $permit_type == true )  {
-
-					include("view-custom-fields.php");
-
-				}
-			 }*/
-
 
 	/*
 	 *   added this new custom field display 
@@ -244,10 +199,10 @@
 		
 	$query3 = "SELECT * FROM ". table_agency_customfields ."  WHERE ProfileCustomView = 1 ORDER BY ProfileCustomOrder";
 
-	$results3 = mysql_query($query3) or die(mysql_error());
-	  $count3 = mysql_num_rows($results3);
+	$results3 = $wpdb->get_results($query3,ARRAY_A);
+	  $count3 = $wpdb->num_rows;
 	
-	while ($data3 = mysql_fetch_assoc($results3)) {
+	foreach($results3 as $data3) {
 		/*
 		 * Get Profile Types to
 		 * filter models from clients
@@ -258,9 +213,9 @@
 
 		$get_types = "SELECT ProfileCustomTypes FROM ". table_agency_customfields_types .
 					 " WHERE ProfileCustomID = " . $PID;
-		$result = mysql_query($get_types);
+		$result = $wpdb->get_results($get_types,ARRAY_A);
 		$types = "";				
-		while ( $p = mysql_fetch_array($result)){
+		foreach($result as $p){
 		// 	$types = $p['ProfileCustomTypes'];		
 		$types = str_replace("_", " ", $p['ProfileCustomTypes']);
 		}
@@ -431,8 +386,8 @@
 			   ."</label>\n";
 				$xplode =array(); 
 				$myquery = "SELECT ProfileCustomValue FROM " . table_agency_customfield_mux . " WHERE ProfileID=".$ProfileID." and ProfileCustomID=".$data3['ProfileCustomID']." ";
-				$myresults = mysql_query($myquery) or die ( __("Error, query failed", rb_agencyinteract_TEXTDOMAIN ));
-				while ($mydata = mysql_fetch_array($myresults)) {
+				$myresults = $wpdb->get_results($myquery,ARRAY_A);
+				foreach($myresults as $mydata) {
 					$xplode = explode(",",$mydata['ProfileCustomValue']);
 				}
 

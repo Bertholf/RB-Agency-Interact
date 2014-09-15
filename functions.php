@@ -383,26 +383,26 @@
 			if($ID != 0){
 					 
 				if($type == "dropdown"){
-					$result = mysql_query("SELECT ProfileCustomValue FROM "
+					$result = $wpdb->get_results("SELECT ProfileCustomValue FROM "
 							. table_agency_customfield_mux .
 							" WHERE ProfileCustomID = ". $customID .
 							" AND ProfileCustomValue = '" . $val . "' "
 							." AND ProfileID = "
-							. $ID);
+							. $ID,ARRAY_A);
 				}else if($type == "date"){
-					$result = mysql_query("SELECT ProfileCustomDateValue FROM "
+					$result = $wpdb->get_results("SELECT ProfileCustomDateValue FROM "
 							. table_agency_customfield_mux .
 							" WHERE ProfileCustomID = ". $customID 
 							." AND ProfileID = "
-							. $ID);
+							. $ID,ARRAY_A);
 				} else {
-					$result = mysql_query("SELECT ProfileCustomValue FROM "
+					$result = $wpdb->get_results("SELECT ProfileCustomValue FROM "
 							. table_agency_customfield_mux .
 							" WHERE ProfileCustomID = ". $customID ." AND ProfileID = "
-							. $ID);
+							. $ID,ARRAY_A);
 				}
 
-				while($row = mysql_fetch_assoc($result)){
+				foreach($result as $row){
 					if($type == "textbox"){
 						return $row["ProfileCustomValue"];
 					}elseif($type == "date"){

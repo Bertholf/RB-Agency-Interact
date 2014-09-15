@@ -53,7 +53,7 @@ if (isset($_POST['action'])) {
 				}
 			// Remove Old Custom Field Values
 			$delete1 = "DELETE FROM " . table_agency_customfield_mux . " WHERE ProfileCustomID = ". $ProfileCustomID ." AND ProfileID = ".$ProfileID."";
-			$results1 = mysql_query($delete1) or die(mysql_error());	
+			$results1 = $wpdb->query($delete1); 	
 			if(is_array($value)){
 				$value =  implode(",",$value);
 			}
@@ -157,11 +157,10 @@ if($rb_agencyinteract_option_profilemanage_sidebar){
 			/* Check if the user is regsitered *****************************************/ 
 			// Verify Record
 			$sql = "SELECT ProfileID FROM ". table_agency_profile ." WHERE ProfileUserLinked =  ". $current_user->ID ."";
-			$results = mysql_query($sql);
-			$count = mysql_num_rows($results);
+			$data = $wpdb->get_row($sql,ARRAY_A);
+			$count =  $wpdb->num_rows;
 			if ($count > 0) {
-			  	$data = mysql_fetch_array($results);
-				// Manage Profile
+			  	// Manage Profile
 				include("include-profilemanage.php");
 			} else {
 
