@@ -112,11 +112,10 @@ if (isset($_POST['action'])) {
 	
 	// Get Post State
 	$action = $_POST['action'];
-	switch($action) {
-
+	
 	// *************************************************************************************************** //
 	// Add Record
-	case 'addRecord':
+	if($action == 'addRecord'){
 		if(!$have_error){
 			$ProfileIsActive		= 3;
 			$ProfileIsFeatured	= 0;
@@ -191,8 +190,8 @@ if (isset($_POST['action'])) {
 			update_usermeta( $current_user->ID, 'user_email', esc_attr( $ProfileContactEmail ) );
 			update_usermeta( $current_user->ID, 'rb_agency_interact_pgender', esc_attr( $ProfileGender ) );			
 			
-	#DEBUG
-	#echo "<script>alert('".$ProfileUsername."');<\/script>";		 
+	        #DEBUG
+	        #echo "<script>alert('".$ProfileUsername."');<\/script>";		 
 			// Link to Wordpress user_meta
 			 
 			if ( username_exists( $ProfileUsername) ) {
@@ -202,21 +201,20 @@ if (isset($_POST['action'])) {
 
 					wp_redirect(get_bloginfo("wpurl") . "/profile-member/manage/");
 
-				} 
-			else {
-				$user_data = array(
-				    'ID' => $current_user->ID,
-				    'user_pass' => wp_generate_password(),
-				    'user_login' => $ProfileUsername,
-				    'user_email' => $ProfileContactEmail,
-				    'display_name' => $ProfileContactDisplay,
-				    'first_name' => $ProfileContactNameFirst,
-				    'last_name' => $ProfileContactNameLast,
-				    'role' =>  get_option('default_role') // Use default role or another role, e.g. 'editor'
-				);
-				$user_id = wp_insert_user( $user_data );
-				wp_set_password($ProfilePassword, $user_id);
-			}
+				} else {
+						$user_data = array(
+						    'ID' => $current_user->ID,
+						    'user_pass' => wp_generate_password(),
+						    'user_login' => $ProfileUsername,
+						    'user_email' => $ProfileContactEmail,
+						    'display_name' => $ProfileContactDisplay,
+						    'first_name' => $ProfileContactNameFirst,
+						    'last_name' => $ProfileContactNameLast,
+						    'role' =>  get_option('default_role') // Use default role or another role, e.g. 'editor'
+						);
+						$user_id = wp_insert_user( $user_data );
+						wp_set_password($ProfilePassword, $user_id);
+					}
 
 			// Set Display Name as Record ID (We have to do this after so we know what record ID to use... right ;)
 			//if ($rb_agency_option_profilenaming == 3) {
@@ -258,86 +256,86 @@ if (isset($_POST['action'])) {
 			if ( !$error ) {
 				
 				wp_redirect(get_bloginfo("wpurl") . "/profile-member/manage/");
-				//exit;
 			}
 		} else {
 			
        	$alerts = "<div id=\"message\" class=\"error\"><p>". __("Error creating record, please ensure you have filled out all required fields.", rb_agency_interact_TEXTDOMAIN) ."<br />". $error ."</p></div>"; 
 		}
-	break;
 	
-	// *************************************************************************************************** //
-	// Edit Record
-	case 'editRecord':
-		if(!$have_error){
+	
+		}
+	}elseif($action == 'editRecord'){
+		// *************************************************************************************************** //
+		// Edit Record
+		
+			if(!$have_error){
 
 
-			// Update Record
-			$update = "UPDATE " . table_agency_profile . " SET 
-			ProfileContactDisplay='" . $wpdb->escape($ProfileContactDisplay) . "',
-			ProfileContactNameFirst='" . $wpdb->escape($ProfileContactNameFirst) . "',
-			ProfileContactNameLast='" . $wpdb->escape($ProfileContactNameLast) . "',
-			ProfileContactEmail='" . $wpdb->escape($ProfileContactEmail) . "',
-			ProfileContactWebsite='" . $wpdb->escape($ProfileContactWebsite) . "',
-			ProfileContactLinkFacebook='" . $wpdb->escape($ProfileContactLinkFacebook) . "',
-			ProfileContactLinkTwitter='" . $wpdb->escape($ProfileContactLinkTwitter) . "',
-			ProfileContactLinkYoutube='" . $wpdb->escape($ProfileContactLinkYoutube) . "',
-			ProfileContactLinkFlickr='" . $wpdb->escape($ProfileContactLinkFlickr) . "',
-			ProfileContactPhoneHome='" . $wpdb->escape($ProfileContactPhoneHome) . "',
-			ProfileContactPhoneCell='" . $wpdb->escape($ProfileContactPhoneCell) . "',
-			ProfileContactPhoneWork='" . $wpdb->escape($ProfileContactPhoneWork) . "',
-			ProfileGender='" . $wpdb->escape($ProfileGender) . "',
-			ProfileDateBirth ='" . $wpdb->escape($ProfileDateBirth) . "',
-			ProfileLocationStreet='" . $wpdb->escape($ProfileLocationStreet) . "',
-			ProfileLocationCity='" . $wpdb->escape($ProfileLocationCity) . "',
-			ProfileLocationState='" . $wpdb->escape($ProfileLocationState) . "',
-			ProfileLocationZip ='" . $wpdb->escape($ProfileLocationZip) . "',
-			ProfileLocationCountry='" . $wpdb->escape($ProfileLocationCountry) . "',
-			ProfileDateUpdated=now()
-			WHERE ProfileID=$ProfileID";
-		    $results = $wpdb->query($update);             
-		    
-			/* Update WordPress user information. */
-			update_usermeta( $current_user->ID, 'first_name', esc_attr( $ProfileContactNameFirst ) );
-			update_usermeta( $current_user->ID, 'last_name', esc_attr( $ProfileContactNameLast ) );
-			update_usermeta( $current_user->ID, 'nickname', esc_attr( $ProfileContactDisplay ) );
-			update_usermeta( $current_user->ID, 'display_name', esc_attr( $ProfileContactDisplay ) );
-			update_usermeta( $current_user->ID, 'user_email', esc_attr( $ProfileContactEmail ) );
-			update_usermeta( $current_user->ID, 'rb_agency_interact_pgender', esc_attr( $ProfileGender ) );	
-		 
-			// Add New Custom Field Values			 
-			foreach($_POST as $key => $value) {
-			
+				// Update Record
+				$update = "UPDATE " . table_agency_profile . " SET 
+				ProfileContactDisplay='" . $wpdb->escape($ProfileContactDisplay) . "',
+				ProfileContactNameFirst='" . $wpdb->escape($ProfileContactNameFirst) . "',
+				ProfileContactNameLast='" . $wpdb->escape($ProfileContactNameLast) . "',
+				ProfileContactEmail='" . $wpdb->escape($ProfileContactEmail) . "',
+				ProfileContactWebsite='" . $wpdb->escape($ProfileContactWebsite) . "',
+				ProfileContactLinkFacebook='" . $wpdb->escape($ProfileContactLinkFacebook) . "',
+				ProfileContactLinkTwitter='" . $wpdb->escape($ProfileContactLinkTwitter) . "',
+				ProfileContactLinkYoutube='" . $wpdb->escape($ProfileContactLinkYoutube) . "',
+				ProfileContactLinkFlickr='" . $wpdb->escape($ProfileContactLinkFlickr) . "',
+				ProfileContactPhoneHome='" . $wpdb->escape($ProfileContactPhoneHome) . "',
+				ProfileContactPhoneCell='" . $wpdb->escape($ProfileContactPhoneCell) . "',
+				ProfileContactPhoneWork='" . $wpdb->escape($ProfileContactPhoneWork) . "',
+				ProfileGender='" . $wpdb->escape($ProfileGender) . "',
+				ProfileDateBirth ='" . $wpdb->escape($ProfileDateBirth) . "',
+				ProfileLocationStreet='" . $wpdb->escape($ProfileLocationStreet) . "',
+				ProfileLocationCity='" . $wpdb->escape($ProfileLocationCity) . "',
+				ProfileLocationState='" . $wpdb->escape($ProfileLocationState) . "',
+				ProfileLocationZip ='" . $wpdb->escape($ProfileLocationZip) . "',
+				ProfileLocationCountry='" . $wpdb->escape($ProfileLocationCountry) . "',
+				ProfileDateUpdated=now()
+				WHERE ProfileID=$ProfileID";
+			    $results = $wpdb->query($update);             
+			    
+				/* Update WordPress user information. */
+				update_usermeta( $current_user->ID, 'first_name', esc_attr( $ProfileContactNameFirst ) );
+				update_usermeta( $current_user->ID, 'last_name', esc_attr( $ProfileContactNameLast ) );
+				update_usermeta( $current_user->ID, 'nickname', esc_attr( $ProfileContactDisplay ) );
+				update_usermeta( $current_user->ID, 'display_name', esc_attr( $ProfileContactDisplay ) );
+				update_usermeta( $current_user->ID, 'user_email', esc_attr( $ProfileContactEmail ) );
+				update_usermeta( $current_user->ID, 'rb_agency_interact_pgender', esc_attr( $ProfileGender ) );	
+			 
+				// Add New Custom Field Values			 
+				foreach($_POST as $key => $value) {
 				
-				if ((substr($key, 0, 15) == "ProfileCustomID") && (isset($value) && !empty($value))) {
 					
-						$ProfileCustomID = substr($key, 15);
-					
-					// Remove Old Custom Field Values
-					$delete1 = "DELETE FROM " . table_agency_customfield_mux . " WHERE ProfileCustomID = ". $ProfileCustomID ." AND ProfileID = ".$ProfileID."";
-					$results1 = $wpdb->query($delete1);	
-					
-					
-					if(is_array($value)){
-						$value =  implode(",",$value);
-					}
-					if(!empty($value)){
-						$insert1 = "INSERT INTO " . table_agency_customfield_mux . " (ProfileID,ProfileCustomID,ProfileCustomValue)" . "VALUES ('" . $ProfileID . "','" . $ProfileCustomID . "','" . $value . "')";
-						$results1 = $wpdb->query($insert1);
+					if ((substr($key, 0, 15) == "ProfileCustomID") && (isset($value) && !empty($value))) {
+						
+							$ProfileCustomID = substr($key, 15);
+						
+						// Remove Old Custom Field Values
+						$delete1 = "DELETE FROM " . table_agency_customfield_mux . " WHERE ProfileCustomID = ". $ProfileCustomID ." AND ProfileID = ".$ProfileID."";
+						$results1 = $wpdb->query($delete1);	
+						
+						
+						if(is_array($value)){
+							$value =  implode(",",$value);
+						}
+						if(!empty($value)){
+							$insert1 = "INSERT INTO " . table_agency_customfield_mux . " (ProfileID,ProfileCustomID,ProfileCustomValue)" . "VALUES ('" . $ProfileID . "','" . $ProfileCustomID . "','" . $value . "')";
+							$results1 = $wpdb->query($insert1);
+						}
 					}
 				}
-			}
-		
 			
-			$alerts = "<div id=\"message\" class=\"updated\"><p>". __("Profile updated successfully", rb_agency_interact_TEXTDOMAIN) ."!</a></p></div>";
-		} else {
-			$alerts = "<div id=\"message\" class=\"error\"><p>". __("Error updating record, please ensure you have filled out all required fields.", rb_agency_interact_TEXTDOMAIN) ."<br />". $error ."</p></div>"; 
-		}
-		
-		wp_redirect( $rb_agency_interact_WPURL ."/profile-member/manage/" );
-		//exit;
-	break;
+				
+				$alerts = "<div id=\"message\" class=\"updated\"><p>". __("Profile updated successfully", rb_agency_interact_TEXTDOMAIN) ."!</a></p></div>";
+				wp_redirect( $rb_agency_interact_WPURL ."/profile-member/manage/" );
+			} else {
+				$alerts = "<div id=\"message\" class=\"error\"><p>". __("Error updating record, please ensure you have filled out all required fields.", rb_agency_interact_TEXTDOMAIN) ."<br />". $error ."</p></div>"; 
+			}
+			
 	}
+
 }
 
 
