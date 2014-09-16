@@ -45,7 +45,7 @@ jQuery(document).ready(function(){
 });
 
 //Populate state options for selected  country
-		function populateStates(countryId,stateId){
+/*		function populateStates(countryId,stateId){
 			var url=jQuery("#url").val();
 			if(jQuery("#"+countryId).val()!=""){
 					jQuery("#"+stateId).show();
@@ -60,4 +60,33 @@ jQuery(document).ready(function(){
 				
 				});
 			 }
-		}
+		}*/
+
+//Populate state options for selected  country
+function populateStates(countryId,stateId){
+	var url= rb_ajaxurl;
+	if(jQuery("#"+countryId).val()!=""){
+			jQuery("#"+stateId).show();
+			jQuery("#"+stateId).find("option:gt(0)").remove();
+			jQuery("#"+stateId).find("option:first").text("Loading...");
+		jQuery.ajax({
+			type:'POST',
+			dataType : "json",
+	        data:{action:"get_state_ajax",country:jQuery("#"+countryId).val()},
+			url:rb_ajaxurl,
+			success:function(data) {		
+				jQuery("<option/>").attr("value", "").text("Select State").appendTo(jQuery("#"+stateId));	
+	                        for (var i = 0; i < data.length; i++) {
+								jQuery("<option/>").attr("value", data[i].StateID).text(data[i].StateTitle).appendTo(jQuery("#"+stateId));
+							}
+				jQuery("#"+stateId).find("option:eq(0)").remove();
+			},
+			error: function(e){
+			}
+		});
+		
+	}else{
+		jQuery("#"+stateId).find("option:gt(0)").remove();
+			
+	}
+ }	
