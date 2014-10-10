@@ -145,7 +145,7 @@
 	
 	
 		// Bug Free!
-		if($have_error == false) {
+		if($have_error == false && empty($error)) {
 			$new_user = wp_insert_user( $userdata );
 			$new_user_type = array();
 			$new_user_type =implode(",", $_POST['ProfileType']);
@@ -225,8 +225,6 @@
 			$arr["step2"] = true;
 			$arr["step3"] = true;
 			add_user_meta($new_user, 'rb_agency_new_registeredUser',$arr);
-			
-				
 			
 			// Log them in if no confirmation required.			
 			if ($rb_agencyinteract_option_registerapproval == 1) { // automatically approval
@@ -318,12 +316,12 @@
 	echo "  <div id=\"member-register\" class=\"rbform\">";
 	echo "	<p class=\"rbform-description\">".__("To Join Our Team please complete the application below.", rb_agency_interact_TEXTDOMAIN)."</p>";
 	echo "  <form method=\"post\" action=\"". $rb_agency_interact_WPURL ."/profile-register/talent\">\n";    				
-	if ($rb_agencyinteract_option_registerconfirm == 1 && $rb_agencyinteract_option_useraccountcreation == 1) {
 		echo "       <div id=\"profile-username\" class=\"rbfield rbtext rbsingle\">\n";
 		echo "       	<label for=\"profile_user_name\">". __("Username (required)", rb_agency_interact_TEXTDOMAIN) ."</label>\n";
 		echo "       	<div><input class=\"text-input\" name=\"profile_user_name\" type=\"text\" id=\"profile_user_name\" value=\""; if ( $error ) echo esc_html( $_POST['profile_user_name'], 1 ); echo "\" /></div>\n";
 		echo "       </div><!-- #rofile-username -->\n";
-
+	if ($rb_agencyinteract_option_registerconfirm == 1 && $rb_agencyinteract_option_useraccountcreation == 1) {
+	
 		echo "       <div id=\"profile-password\" class=\"rbfield rbpassword rbsingle\">\n";
 		echo "       	<label for=\"profile_password\">". __("Password (required)", rb_agency_interact_TEXTDOMAIN) ."</label>\n";
 		echo "       	<div><input class=\"text-input\" name=\"profile_password\" type=\"password\" id=\"profile_password\" value=\""; if ( $error ) echo esc_html( $_POST['profile_password'], 1 ); echo "\" /></div>\n";
