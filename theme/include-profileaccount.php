@@ -231,7 +231,7 @@
 			echo'<input type="hidden" name="ctype" value="'.($permit_type).'" >';
 		
 	
-  	//if (($data3["ProfileCustomShowGender"] == $ProfileGender) || ($data3["ProfileCustomShowGender"] == 0)  && $permit_type == true ) {
+  	if (($data3["ProfileCustomShowGender"] == $ProfileGender) || ($data3["ProfileCustomShowGender"] == 0)  && $permit_type == true ) {
 
 			
 
@@ -472,7 +472,7 @@
 				echo "</div>";
 			}
 		   
-		  //  } // end if
+		   } // end if
 			
 		}// End while
 
