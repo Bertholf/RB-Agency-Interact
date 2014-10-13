@@ -64,6 +64,23 @@
 	$results3 = $wpdb->get_results($query3,ARRAY_A);
 	  $count3 = $wpdb->num_rows;
 	
+
+	  $ptype = $ProfileType;
+		//check if array
+	    $ptype_arr = array();
+	    
+	    if($ptype != ''){
+			if(is_array($ptype)){
+				foreach($ptype as $p){
+					$ptype_arr[] = str_replace(" ","_",trim(strtolower(retrieve_title($p))));
+				}
+				$ptype = array();
+				$ptype = $ptype_arr;
+			} else {
+	    			$ptype = str_replace(" ","_",trim(strtolower(retrieve_title($ptype))));
+			}
+        }        
+
 	foreach($results3 as $data3) {
 		/*
 		 * Get Profile Types to
@@ -78,20 +95,22 @@
 		$result = $wpdb->get_results($get_types,ARRAY_A);
 		$types = "";				
 		foreach( $result as $p){
-			$types = str_replace("_", " ", $p['ProfileCustomTypes']);
+			$types = str_replace(" ", "_", trim(strtolower($p['ProfileCustomTypes'])));
 		}
 		
 		if($types != "" || $types != NULL){
-		   $types = explode(",",$types); 
-		   if(in_array($ptype,$types)){ $permit_type=true; }
+		   $types = explode(",",trim($types)); 
+		   if(count(array_intersect($ptype,$types))>0){ 
+		   		$permit_type=true; 
+		   } 
 		} 
+
 		
 		echo'<input type="hidden" name="aps12" value="'.$data3["ProfileCustomShowGender"].'" >';
 		echo'<input type="hidden" name="ctype" value="'.(isset($ProfileCustomType)?$ProfileCustomType:"").'" >';
 		    $ProfileCustomTitle = $data3['ProfileCustomTitle'];
 			$ProfileCustomType  = $data3['ProfileCustomType'];
-		
-		if (($data3["ProfileCustomShowGender"] == $ProfileGender) || ($data3["ProfileCustomShowGender"] == 0)  && $permit_type == true ) {
+	  	if (($data3["ProfileCustomShowGender"] == $ProfileGender || $data3["ProfileCustomShowGender"] == 0)  && $permit_type == true ) {
 
 			//  SET Label for Measurements
 			//  Imperial(in/lb), Metrics(ft/kg)

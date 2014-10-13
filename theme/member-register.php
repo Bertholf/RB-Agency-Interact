@@ -143,7 +143,6 @@
 		}
 
 	
-	
 		// Bug Free!
 		if($have_error == false && empty($error)) {
 			$new_user = wp_insert_user( $userdata );
