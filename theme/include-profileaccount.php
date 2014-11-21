@@ -128,7 +128,7 @@
 		echo "	</div>\n";
 		echo "	<div id=\"profile-birthdate\" class=\"rbfield rbtext rbsingle\">\n";
 		echo "		<label>". __("Birthdate", rb_agency_interact_TEXTDOMAIN) ." <em>YYYY-MM-DD</em></label>\n";
-		echo "		<div><input type=\"text\" id=\"ProfileDateBirth\" name=\"ProfileDateBirth\" value=\"". $ProfileDateBirth ."\" /></div>\n";
+		echo "		<div><input class=\"rb-datepicker\" type=\"text\" id=\"ProfileDateBirth\" name=\"ProfileDateBirth\" value=\"". $ProfileDateBirth ."\" /></div>\n";
 		echo "	</div>\n";
 
 		// Address
