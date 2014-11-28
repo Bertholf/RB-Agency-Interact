@@ -217,12 +217,20 @@
 		$types = "";				
 		foreach($result as $p){
 		// 	$types = $p['ProfileCustomTypes'];		
-		$types = str_replace("_", " ", $p['ProfileCustomTypes']);
+		  //$types = str_replace("_", " ", $p['ProfileCustomTypes']);
+			$types = str_replace(" ", "_", trim(strtolower($p['ProfileCustomTypes'])));
 		}
 		
-		if($types != "" || $types != NULL){
+		/*if($types != "" || $types != NULL){
 		   $types = explode(",",$types); 
 		   if(in_array($ptype,$types)){ $permit_type=true; }
+		} */
+
+		if($types != "" || $types != NULL){
+		   $types = explode(",",trim($types)); 
+		   if(count(array_intersect($ptype,$types))>0){ 
+		   		$permit_type=true; 
+		   } 
 		} 
 		
 			$ProfileCustomTitle = $data3['ProfileCustomTitle'];
