@@ -270,6 +270,9 @@ if (isset($_POST['action'])) {
 		
 			if(!$have_error){
 
+				$ProfileGallery = rb_agency_createdir($ProfileGallery);
+			
+			
 
 				// Update Record
 				$update = "UPDATE " . table_agency_profile . " SET 
@@ -292,7 +295,8 @@ if (isset($_POST['action'])) {
 				ProfileLocationState='" . $wpdb->escape($ProfileLocationState) . "',
 				ProfileLocationZip ='" . $wpdb->escape($ProfileLocationZip) . "',
 				ProfileLocationCountry='" . $wpdb->escape($ProfileLocationCountry) . "',
-				ProfileDateUpdated=now()
+				ProfileDateUpdated=now(),
+				ProfileGallery = '".$wpdb->escape($ProfileGallery)."'
 				WHERE ProfileID=$ProfileID";
 			    $results = $wpdb->query($update);             
 			    
@@ -327,7 +331,7 @@ if (isset($_POST['action'])) {
 					}
 				}
 			
-				
+
 				$alerts = "<div id=\"message\" class=\"updated\"><p>". __("Profile updated successfully", rb_agency_interact_TEXTDOMAIN) ."!</a></p></div>";
 				wp_redirect( $rb_agency_interact_WPURL ."/profile-member/manage/" );
 			} else {
