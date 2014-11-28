@@ -18,6 +18,8 @@
     			$ptype = str_replace(" ","_",retrieve_title($ptype));
 		}
         }        
+   
+
 
 	$ProfileGender  = get_user_meta($current_user->ID, "rb_agency_interact_pgender", true);
 
@@ -64,6 +66,23 @@
 		$ProfileLocationCountry		=stripslashes($data['ProfileLocationCountry']);
 		$ProfileDateUpdated			=$data['ProfileDateUpdated'];
 		$ProfileCustomType          =$data["ProfileType"];
+
+		  $ptype = explode(",",$ProfileCustomType);
+		//check if array
+	    $ptype_arr = array();
+	    
+	    if($ptype != ''){
+			if(is_array($ptype)){
+				foreach($ptype as $p){
+					$ptype_arr[] = str_replace(" ","_",trim(strtolower(retrieve_title($p))));
+				}
+				$ptype = array();
+				$ptype = $ptype_arr;
+			} else {
+	    			$ptype = str_replace(" ","_",trim(strtolower(retrieve_title($ptype))));
+			}
+        }        
+
 
 		$query= "SELECT DataTypeID, DataTypeTitle FROM " .  table_agency_data_type . " WHERE DataTypeID IN(".$ProfileCustomType  .") GROUP BY DataTypeTitle ";
 		$queryShowDataType = $wpdb->get_results($query,ARRAY_A);
@@ -228,6 +247,9 @@
 
 		if($types != "" || $types != NULL){
 		   $types = explode(",",trim($types)); 
+		   echo "<!-- ";
+		   var_dump($types);
+		   echo "-->";
 		   if(count(array_intersect($ptype,$types))>0){ 
 		   		$permit_type=true; 
 		   } 
