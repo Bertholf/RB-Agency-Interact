@@ -270,8 +270,6 @@ if (isset($_POST['action'])) {
 		
 			if(!$have_error){
 
-				$ProfileGallery = rb_agency_createdir($ProfileGallery);
-			
 			
 
 				// Update Record
@@ -295,8 +293,7 @@ if (isset($_POST['action'])) {
 				ProfileLocationState='" . $wpdb->escape($ProfileLocationState) . "',
 				ProfileLocationZip ='" . $wpdb->escape($ProfileLocationZip) . "',
 				ProfileLocationCountry='" . $wpdb->escape($ProfileLocationCountry) . "',
-				ProfileDateUpdated=now(),
-				ProfileGallery = '".$wpdb->escape($ProfileGallery)."'
+				ProfileDateUpdated=now()
 				WHERE ProfileID=$ProfileID";
 			    $results = $wpdb->query($update);             
 			    
