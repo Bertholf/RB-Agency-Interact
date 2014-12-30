@@ -379,12 +379,12 @@ class RBAgencyInteract {
 						if ( !empty( $title ) ) { echo $before_title . "RB Agency Settings" . $after_title; };
 						echo "<ul>";
 						echo "<li><a href=\"".admin_url("admin.php?page=rb_agency_menu")."\">Overview</a></li>";
-						echo "<li><a href=\"".admin_url("admin.php?page=rb_agency_menu_profiles")."\">Manage Profiles</a></li>";
-						echo "<li><a href=\"".admin_url("admin.php?page=rb_agency_interact_menu_approvemembers")."\">Approve Profiles</a></li>";
-						echo "<li><a href=\"".admin_url("admin.php?page=rb_agency_menu_search")."\">Search Profiles</a></li>";
-						echo "<li><a href=\"".admin_url("admin.php?page=rb_agency_menu_searchsaved")."\">Saved Searches</a></li>";
-						echo "<li><a href=\"".admin_url("admin.php?page=rb_agency_menu_reports")."\">Tools &amp; Reports</a></li>";
-						echo "<li><a href=\"".admin_url("admin.php?page=rb_agency_menu_settings")."\">Settings</a></li>";
+						echo "<li><a href=\"".admin_url("admin.php?page=rb_agency_profiles")."\">Manage Profiles</a></li>";
+						echo "<li><a href=\"".admin_url("admin.php?page=rb_agency_interact_approvemembers")."\">Approve Profiles</a></li>";
+						echo "<li><a href=\"".admin_url("admin.php?page=rb_agency_search")."\">Search Profiles</a></li>";
+						echo "<li><a href=\"".admin_url("admin.php?page=rb_agency_searchsaved")."\">Saved Searches</a></li>";
+						echo "<li><a href=\"".admin_url("admin.php?page=rb_agency_reports")."\">Tools &amp; Reports</a></li>";
+						echo "<li><a href=\"".admin_url("admin.php?page=rb_agency_settings")."\">Settings</a></li>";
 						echo "<li><a href=\"/wp-login.php?action=logout&_wpnonce=3bb3c87a3d\">Logout</a></li>";	    
 						echo "</ul>";
 
