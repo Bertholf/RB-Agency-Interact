@@ -83,7 +83,8 @@
 		$ProfileGender = $_POST['ProfileGender'];
 		$user_pass  = NULL;
 
-		if($rb_agencyinteract_option_useraccountcreation == 1){
+
+		if($rb_agencyinteract_option_useraccountcreation == 1 && $rb_agencyinteract_option_registerconfirm == 0){
 				$user_login = strtolower($first_name."_".wp_generate_password(5));
 				$user_pass = wp_generate_password();
 		}else{
