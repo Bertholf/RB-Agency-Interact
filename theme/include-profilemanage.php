@@ -48,7 +48,7 @@
 		echo "     <input type=\"hidden\" name=\"ProfileID\" value=\"". $ProfileID ."\" />\n";
 		echo "     <input type=\"hidden\" name=\"ProfileType\" value=\"". $ptype1 ."\" />\n";
 
-		echo "<div id=\"rb-field-classification\" class=\"rbfield rbtext rbsingle\">";
+		echo "<div id=\"rb-field-classification\" class=\"". $styleclass ." rbtext rbsingle\">";
 		echo "	<label for=\"classification\">". __("Classification:", rb_agency_interact_TEXTDOMAIN) ."</label>";
 		echo "	<div>".$profileType ."</div>";
 		echo "</div>";
@@ -139,22 +139,29 @@
 				}
 			}
 
+			$styleid = 'rbfield-'. strtolower(trim($data3['ProfileCustomTitle']));
+
+			$styleclass = 'rbfield';
+			if ( isset( gender_filter($data3['ProfileCustomShowGender']) ) ) {
+				$styleclass = $styleclass .' '. gender_filter($data3['ProfileCustomShowGender']);
+			}
+
 		 if ($ProfileCustomType == 1) { //TEXT
 
-			echo "<div id=\"rbfield-".strtolower(trim($data3['ProfileCustomTitle']))." ".gender_filter($data3['ProfileCustomShowGender'])."\" class=\"rbfield rbtext rbsingle\">";
+			echo "<div id=\"". $styleid ."\" class=\"". $styleclass ." rbtext rbsingle\">";
 			echo "<label for=\"".strtolower(trim($data3['ProfileCustomTitle']))."\">"
 			   . __( $data3['ProfileCustomTitle'].$measurements_label, rb_agency_interact_TEXTDOMAIN) 
 			   ."</label>\n";
 			echo '<div><input type="text" name="ProfileCustomID'. $data3['ProfileCustomID'] 
 				 .'" value="'. retrieve_datavalue(isset($_REQUEST["ProfileCustomID". $data3['ProfileCustomID']])?$_REQUEST["ProfileCustomID". $data3['ProfileCustomID']]:"",
-													$data3['ProfileCustomID'],$ProfileID,"textbox") 
+					$data3['ProfileCustomID'],$ProfileID,"textbox") 
 				 .'" /></div>';
 			echo "</div>";
 			}
 			
 		elseif ($ProfileCustomType == 2 ) { // Min Max
 
-			echo "<div id=\"rbfield-".strtolower(trim($data3['ProfileCustomTitle']))." ".gender_filter($data3['ProfileCustomShowGender'])."\" class=\"rbfield rbtext rbmulti\">";
+			echo "<div id=\"". $styleid ."\" class=\"". $styleclass ." rbtext rbmulti\">";
 			echo "<label for=\"".strtolower(trim($data3['ProfileCustomTitle']))."\">"
 			   . __( $data3['ProfileCustomTitle'].$measurements_label, rb_agency_interact_TEXTDOMAIN) 
 			   ."</label>\n";
@@ -199,7 +206,7 @@
 			
 		elseif ($ProfileCustomType == 3 || $ProfileCustomType == 9) {  // Drop Down
 
-			echo "<div id=\"rbfield-".strtolower(trim($data3['ProfileCustomTitle']))." ".gender_filter($data3['ProfileCustomShowGender'])."\" class=\"rbfield rbselect rbsingle\">";
+			echo "<div id=\"". $styleid ."\" class=\"". $styleclass ." rbselect rbsingle\">";
 			echo "<label for=\"".strtolower(trim($data3['ProfileCustomTitle']))."\">"
 			   . __( $data3['ProfileCustomTitle'].$measurements_label, rb_agency_interact_TEXTDOMAIN) 
 			   ."</label>\n";
@@ -248,7 +255,7 @@
 				echo "</div>";
 				
 			} elseif ($ProfileCustomType == 4) {
-				echo "<div id=\"rbfield-".strtolower(trim($data3['ProfileCustomTitle']))." ".gender_filter($data3['ProfileCustomShowGender'])."\" class=\"rbfield rbtextarea rbsingle\">";
+				echo "<div id=\"". $styleid ."\" class=\"". $styleclass ." rbtextarea rbsingle\">";
 				echo "<label for=\"".strtolower(trim($data3['ProfileCustomTitle']))."\">"
 			   . __( $data3['ProfileCustomTitle'].$measurements_label, rb_agency_interact_TEXTDOMAIN) 
 			   ."</label>\n";
@@ -257,7 +264,7 @@
 													$data3['ProfileCustomID'],$ProfileID,"textbox") ."</textarea></div>";
 				echo "</div>";
 			} elseif ($ProfileCustomType == 5) {
-				echo "<div id=\"rbfield-".strtolower(trim($data3['ProfileCustomTitle']))." ".gender_filter($data3['ProfileCustomShowGender'])."\" class=\"rbfield rbcheckbox rbsingle\">";
+				echo "<div id=\"". $styleid ."\" class=\"". $styleclass ." rbcheckbox rbsingle\">";
 				echo "<label for=\"".strtolower(trim($data3['ProfileCustomTitle']))."\">"
 			   . __( $data3['ProfileCustomTitle'].$measurements_label, rb_agency_interact_TEXTDOMAIN) 
 			   ."</label>\n";
@@ -287,7 +294,7 @@
 				   
 			} elseif ($ProfileCustomType == 6) {
 				
-				echo "<fieldset id=\"rbfield-".strtolower(trim($data3['ProfileCustomTitle']))." ".gender_filter($data3['ProfileCustomShowGender'])."\" class=\"rbfield rbcheckbox rbsingle\">";
+				echo "<fieldset id=\"". $styleid ."\" class=\"". $styleclass ." rbcheckbox rbsingle\">";
 				echo "<label for=\"".strtolower(trim($data3['ProfileCustomTitle']))."\">"
 			   . __( $data3['ProfileCustomTitle'].$measurements_label, rb_agency_interact_TEXTDOMAIN) 
 			   ."</label>\n";
@@ -312,7 +319,7 @@
 				echo "</fieldset>";
 				
 			} elseif ($ProfileCustomType == 10) { //Date
-				echo "<div id=\"rbfield-".strtolower(trim($data3['ProfileCustomTitle']))." ".gender_filter($data3['ProfileCustomShowGender'])."\" class=\"rbfield rbselect rbsingle\">";
+				echo "<div id=\"". $styleid ."\" class=\"". $styleclass ." rbselect rbsingle\">";
 				echo "<label for=\"".strtolower(trim($data3['ProfileCustomTitle']))."\">"
 			   . __( $data3['ProfileCustomTitle'].$measurements_label, rb_agency_interact_TEXTDOMAIN) 
 			   ."</label>\n";
@@ -328,7 +335,7 @@
 				  echo "</div>";
 			}elseif ($ProfileCustomType == 7) { //Imperial/Metrics
 			
-				echo "<div id=\"rbfield-".strtolower(trim($data3['ProfileCustomTitle']))." ".gender_filter($data3['ProfileCustomShowGender'])."\" class=\"rbfield rbselect rbsingle\">";
+				echo "<div id=\"". $styleid ."\" class=\"". $styleclass ." rbselect rbsingle\">";
 				echo "<label for=\"".strtolower(trim($data3['ProfileCustomTitle']))."\">"
 			   . __( $data3['ProfileCustomTitle'].$measurements_label, rb_agency_interact_TEXTDOMAIN) 
 			   ."</label>\n";
@@ -370,11 +377,11 @@
 			
 		}// End while
 
-		echo " <div id=\"rbfield-last-update\" class=\"rbfield rbtext rbsingle\">";
+		echo " <div id=\"rbfield-last-update\" class=\"". $styleclass ." rbtext rbsingle\">";
 		echo "		<label>". __("Last updated ", rb_agency_interact_TEXTDOMAIN)."</label>";
 		echo "		<div>". rb_agency_makeago(rb_agency_convertdatetime($ProfileDateUpdated), $rb_agency_option_locationtimezone) ."</div>\n";
 		echo "	</div>\n";
-		echo "	<div id=\"rbfield-submit\" class=\"rbfield rbsubmit rbsingle\">";
+		echo "	<div id=\"rbfield-submit\" class=\"". $styleclass ." rbsubmit rbsingle\">";
 		echo "		<input type=\"hidden\" name=\"action\" value=\"editRecord\" />\n";
 		echo "		<input type=\"submit\" name=\"submit\" value=\"". __("Save and Continue", rb_agency_interact_TEXTDOMAIN) ."\" class=\"button-primary\" />\n";
 		echo "	</div>\n";

@@ -96,7 +96,7 @@
 		echo "<form method=\"post\" enctype=\"multipart/form-data\" action=\"". get_bloginfo("wpurl") ."/profile-member/account/\">\n";
 		echo "	<input type=\"hidden\" name=\"ProfileID\" value=\"". $ProfileID ."\" />\n";
 		echo "	<h3>". __("Contact Information", rb_agency_interact_TEXTDOMAIN) ."</h3>\n";
-		echo "	<div id=\"gallery-folder\" class=\"rbfield rblink rbsingle\">\n";
+		echo "	<div id=\"gallery-folder\" class=\"". $styleclass ." rblink rbsingle\">\n";
 		echo "		<label>". __("Gallery Folder", rb_agency_interact_TEXTDOMAIN) ."</label>\n";
 		echo "		<div class=\"rbmessage\">\n";
 					if (!empty($ProfileGallery) && is_dir(rb_agency_UPLOADPATH .$ProfileGallery)) { 
@@ -104,25 +104,25 @@
 						echo "<input type=\"hidden\" id=\"ProfileGallery\" name=\"ProfileGallery\" value=\"". $ProfileGallery ."\" />\n";
 					} else {
 						echo "<input type=\"text\" id=\"ProfileGallery\" name=\"ProfileGallery\" value=\"". $ProfileGallery ."\" />\n";
-						echo "<small class=\"rbfield-note error\">". __("Folder Pending Creation", rb_agency_interact_TEXTDOMAIN) ."</small>\n";
+						echo "<small class=\"". $styleclass ."-note error\">". __("Folder Pending Creation", rb_agency_interact_TEXTDOMAIN) ."</small>\n";
 					}		
 		echo "		</div>\n";
 		echo "	</div>\n";
 		if($rb_agency_option_formshow_displayname > 0){
-			echo "	<div id=\"profile-displayname\" class=\"rbfield rbtext rbsingle\">\n";
+			echo "	<div id=\"profile-displayname\" class=\"". $styleclass ." rbtext rbsingle\">\n";
 			echo "		<label>". __("Display Name", rb_agency_interact_TEXTDOMAIN) ."</label>\n";
 			echo "			<div><input type=\"text\" id=\"ProfileContactDisplay\" name=\"ProfileContactDisplay\" value=\"". $ProfileContactDisplay ."\" /></div>\n";
 			echo "	</div>\n";
 		}
-		echo "	<div id=\"profile-firstname\" class=\"rbfield rbtext rbsingle\">\n";
+		echo "	<div id=\"profile-firstname\" class=\"". $styleclass ." rbtext rbsingle\">\n";
 		echo "		<label>". __("First Name", rb_agency_interact_TEXTDOMAIN) ."</label>\n";
 		echo "			<div><input type=\"text\" id=\"ProfileContactNameFirst\" name=\"ProfileContactNameFirst\" value=\"". $ProfileContactNameFirst ."\" /></div>\n";
 		echo "	</div>\n";
-		echo "	<div id=\"profile-lastname\" class=\"rbfield rbtext rbsingle\">\n";
+		echo "	<div id=\"profile-lastname\" class=\"". $styleclass ." rbtext rbsingle\">\n";
 		echo "		<label>". __("Last Name", rb_agency_interact_TEXTDOMAIN) ."</label>\n";
 		echo "			<div><input type=\"text\" id=\"ProfileContactNameLast\" name=\"ProfileContactNameLast\" value=\"". $ProfileContactNameLast ."\" /></div>\n";
 		echo "	  </div>\n";
-		echo "	<div id=\"profile-gender\" class=\"rbfield rbselect rbsingle\">\n";
+		echo "	<div id=\"profile-gender\" class=\"". $styleclass ." rbselect rbsingle\">\n";
 		echo "		<label>". __("Gender", rb_agency_interact_TEXTDOMAIN) ."</label>\n";
 		echo "		<div>";		
 
@@ -141,25 +141,25 @@
 		// Private Information
 		echo "	<h3>". __("Private Information", rb_agency_interact_TEXTDOMAIN) ."</h3>";
 		echo "  <p>The following information will appear only in administrative areas.</p>\n";
-		echo "	<div id=\"profile-email\" class=\"rbfield rbemail rbsingle\">\n";
+		echo "	<div id=\"profile-email\" class=\"". $styleclass ." rbemail rbsingle\">\n";
 		echo "		<label>". __("Email Address", rb_agency_interact_TEXTDOMAIN) ."</label>\n";
 		echo "		<div><input type=\"text\" id=\"ProfileContactEmail\" name=\"ProfileContactEmail\" value=\"". $ProfileContactEmail ."\" /></div>\n";
 		echo "	</div>\n";
-		echo "	<div id=\"profile-birthdate\" class=\"rbfield rbtext rbsingle\">\n";
+		echo "	<div id=\"profile-birthdate\" class=\"". $styleclass ." rbtext rbsingle\">\n";
 		echo "		<label>". __("Birthdate", rb_agency_interact_TEXTDOMAIN) ." <em>YYYY-MM-DD</em></label>\n";
 		echo "		<div><input class=\"rb-datepicker\" type=\"text\" id=\"ProfileDateBirth\" name=\"ProfileDateBirth\" value=\"". $ProfileDateBirth ."\" /></div>\n";
 		echo "	</div>\n";
 
 		// Address
-		echo "	<div id=\"profile-street\" class=\"rbfield rbtext rbsingle\">\n";
+		echo "	<div id=\"profile-street\" class=\"". $styleclass ." rbtext rbsingle\">\n";
 		echo "		<label>". __("Street", rb_agency_interact_TEXTDOMAIN) ."</label>\n";
 		echo "		<div><input type=\"text\" id=\"ProfileLocationStreet\" name=\"ProfileLocationStreet\" value=\"". $ProfileLocationStreet ."\" /></div>\n";
 		echo "	</div>\n";
-		echo "	<div id=\"profile-city\" class=\"rbfield rbtext rbsingle\">\n";
+		echo "	<div id=\"profile-city\" class=\"". $styleclass ." rbtext rbsingle\">\n";
 		echo "		<label>". __("City", rb_agency_interact_TEXTDOMAIN) ."</label>\n";
 		echo "		<div><input type=\"text\" id=\"ProfileLocationCity\" name=\"ProfileLocationCity\" value=\"". $ProfileLocationCity ."\" /></div>\n";
 		echo "	</div>\n";
-		echo "	<div id=\"profile-country\" class=\"rbfield rbtext rbsingle\">\n";
+		echo "	<div id=\"profile-country\" class=\"". $styleclass ." rbtext rbsingle\">\n";
 		echo "		<label>". __("Country", rb_agency_interact_TEXTDOMAIN) ."</label>\n";
 		echo "		<div>";
 		//<input type=\"text\" id=\"ProfileLocationCountry\" name=\"ProfileLocationCountry\" value=\"". $ProfileLocationCountry ."\" />
@@ -177,7 +177,7 @@
 								echo '</select>';
 		echo "      </div>\n";
 		echo "	</div>\n";
-		echo "	<div id=\"profile-state\" class=\"rbfield rbtext rbsingle\">\n";
+		echo "	<div id=\"profile-state\" class=\"". $styleclass ." rbtext rbsingle\">\n";
 		echo "		<label>". __("State", rb_agency_interact_TEXTDOMAIN) ."</label>\n";
 		//echo "		<div><input type=\"text\" id=\"ProfileLocationState\" name=\"ProfileLocationState\" value=\"". $ProfileLocationState ."\" /></div>\n";
 		echo "			<div>";
@@ -192,12 +192,12 @@
 								echo '</select>';
 		echo "			</div>";
 		echo "	</div>\n";
-		echo "	<div id=\"profile-zip\" class=\"rbfield rbtext rbsingle\">\n";
+		echo "	<div id=\"profile-zip\" class=\"". $styleclass ." rbtext rbsingle\">\n";
 		echo "		<label>". __("Zip", rb_agency_interact_TEXTDOMAIN) ."</label>\n";
 		echo "		<div><input type=\"text\" id=\"ProfileLocationZip\" name=\"ProfileLocationZip\" value=\"". $ProfileLocationZip ."\" /></div>\n";
 		echo "	</div>\n";
 
-		echo "	<div id=\"profile-phone\" class=\"rbfield rbtext rbmulti rbblock\">\n";
+		echo "	<div id=\"profile-phone\" class=\"". $styleclass ." rbtext rbmulti rbblock\">\n";
 		echo "		<label>". __("Phone", rb_agency_interact_TEXTDOMAIN) ."</label>\n";
 		echo "		<div>\n";
 		echo "			<div><label>Home:</label><div><input type=\"text\" id=\"ProfileContactPhoneHome\" name=\"ProfileContactPhoneHome\" value=\"". $ProfileContactPhoneHome ."\" /></div></div>\n";
@@ -205,7 +205,7 @@
 		echo "			<div><label>Work:</label><div><input type=\"text\" id=\"ProfileContactPhoneWork\" name=\"ProfileContactPhoneWork\" value=\"". $ProfileContactPhoneWork ."\" /></div></div>\n";
 		echo "		</div>\n";
 		echo "	</div>\n";
-		echo "	<div id=\"profile-website\" class=\"rbfield rbtext rbsingle\">\n";
+		echo "	<div id=\"profile-website\" class=\"". $styleclass ." rbtext rbsingle\">\n";
 		echo "		<label>". __("Website", rb_agency_interact_TEXTDOMAIN) ."</label>\n";
 		echo "		<div><input type=\"text\" id=\"ProfileContactWebsite\" name=\"ProfileContactWebsite\" value=\"". $ProfileContactWebsite ."\" /></div>\n";
 		echo "	</div>\n";
@@ -233,9 +233,9 @@
 		$get_types = "SELECT ProfileCustomTypes FROM ". table_agency_customfields_types .
 					 " WHERE ProfileCustomID = " . $PID;
 		$result = $wpdb->get_results($get_types,ARRAY_A);
-		$types = "";				
+		$types = "";
 		foreach($result as $p){
-		// 	$types = $p['ProfileCustomTypes'];		
+		// 	$types = $p['ProfileCustomTypes'];
 		  //$types = str_replace("_", " ", $p['ProfileCustomTypes']);
 			$types = str_replace(" ", "_", trim(strtolower($p['ProfileCustomTypes'])));
 		}
@@ -246,24 +246,23 @@
 		} */
 
 		if($types != "" || $types != NULL){
-		   $types = explode(",",trim($types)); 
-		   echo "<!-- ";
-		   var_dump($types);
-		   echo "-->";
-		   if(count(array_intersect($ptype,$types))>0){ 
+			$types = explode(",",trim($types)); 
+			echo "<!-- ";
+			var_dump($types);
+			echo "-->";
+			if(count(array_intersect($ptype,$types))>0){ 
 				$permit_type=true; 
-		   } 
-		} 
-		
+			}
+		}
+
 			$ProfileCustomTitle = $data3['ProfileCustomTitle'];
 			$ProfileCustomType  = $data3['ProfileCustomType'];
 			echo'<input type="hidden" name="aps12" value="'.$data3["ProfileCustomShowGender"].'" >';
 			echo'<input type="hidden" name="ctype" value="'.($permit_type).'" >';
-		
-	
+
 	if (($data3["ProfileCustomShowGender"] == $ProfileGender) || ($data3["ProfileCustomShowGender"] == 0)  && $permit_type == true ) {
 
-			
+
 
 			//  SET Label for Measurements
 			//  Imperial(in/lb), Metrics(ft/kg)
@@ -292,15 +291,16 @@
 				}
 			}
 
-
 			$styleid = 'rbfield-'. strtolower(trim($data3['ProfileCustomTitle']));
+
+			$styleclass = 'rbfield';
 			if ( isset( gender_filter($data3['ProfileCustomShowGender']) ) ) {
-				$styleid = $styleid .' '. gender_filter($data3['ProfileCustomShowGender']);
+				$styleclass = $styleclass .' '. gender_filter($data3['ProfileCustomShowGender']);
 			}
 
 		 if ($ProfileCustomType == 1) { //TEXT
 
-			echo "<div id=\"". $styleid ."\" class=\"rbfield rbtext rbsingle\">";
+			echo "<div id=\"". $styleid ."\" class=\"". $styleclass ." rbtext rbsingle\">";
 			echo "<label for=\"".strtolower(trim($data3['ProfileCustomTitle']))."\">"
 			   . __( $data3['ProfileCustomTitle'].$measurements_label, rb_agency_interact_TEXTDOMAIN) 
 			   ."</label>\n";
@@ -313,7 +313,7 @@
 			
 		elseif ($ProfileCustomType == 2 ) { // Min Max
 
-			echo "<div id=\"". $styleid ."\" class=\"rbfield rbtext rbmulti\">";
+			echo "<div id=\"". $styleid ."\" class=\"". $styleclass ." rbtext rbmulti\">";
 			echo "<label for=\"".strtolower(trim($data3['ProfileCustomTitle']))."\">"
 			   . __( $data3['ProfileCustomTitle'].$measurements_label, rb_agency_interact_TEXTDOMAIN) 
 			   ."</label>\n";
@@ -358,7 +358,7 @@
 			
 		elseif ($ProfileCustomType == 3 || $ProfileCustomType == 9) {  // Drop Down
 
-			echo "<div id=\"". $styleid ."\" class=\"rbfield rbselect rbsingle\">";
+			echo "<div id=\"". $styleid ."\" class=\"". $styleclass ." rbselect rbsingle\">";
 			echo "<label for=\"".strtolower(trim($data3['ProfileCustomTitle']))."\">"
 			   . __( $data3['ProfileCustomTitle'].$measurements_label, rb_agency_interact_TEXTDOMAIN) 
 			   ."</label>\n";
@@ -407,7 +407,7 @@
 				echo "</div>";
 				
 			} elseif ($ProfileCustomType == 4) {
-				echo "<div id=\"". $styleid ."\" class=\"rbfield rbtextarea rbsingle\">";
+				echo "<div id=\"". $styleid ."\" class=\"". $styleclass ." rbtextarea rbsingle\">";
 				echo "<label for=\"".strtolower(trim($data3['ProfileCustomTitle']))."\">"
 			   . __( $data3['ProfileCustomTitle'].$measurements_label, rb_agency_interact_TEXTDOMAIN) 
 			   ."</label>\n";
@@ -416,7 +416,7 @@
 													$data3['ProfileCustomID'],$ProfileID,"textbox") ."</textarea></div>";
 				echo "</div>";
 			} elseif ($ProfileCustomType == 5) {
-				echo "<div id=\"". $styleid ."\" class=\"rbfield rbcheckbox rbsingle\">";
+				echo "<div id=\"". $styleid ."\" class=\"". $styleclass ." rbcheckbox rbsingle\">";
 				echo "<label for=\"".strtolower(trim($data3['ProfileCustomTitle']))."\">"
 			   . __( $data3['ProfileCustomTitle'].$measurements_label, rb_agency_interact_TEXTDOMAIN) 
 			   ."</label>\n";
@@ -446,7 +446,7 @@
 				   
 			} elseif ($ProfileCustomType == 6) {
 				
-				echo "<fieldset id=\"". $styleid ."\" class=\"rbfield rbcheckbox rbsingle\">";
+				echo "<fieldset id=\"". $styleid ."\" class=\"". $styleclass ." rbcheckbox rbsingle\">";
 				echo "<label for=\"".strtolower(trim($data3['ProfileCustomTitle']))."\">"
 			   . __( $data3['ProfileCustomTitle'].$measurements_label, rb_agency_interact_TEXTDOMAIN) 
 			   ."</label>\n";
@@ -472,7 +472,7 @@
 				
 			}elseif ($ProfileCustomType == 7) { //Imperial/Metrics
 			
-				echo "<div id=\"". $styleid ."\" class=\"rbfield rbselect rbsingle\">";
+				echo "<div id=\"". $styleid ."\" class=\"". $styleclass ." rbselect rbsingle\">";
 				echo "<label for=\"".strtolower(trim($data3['ProfileCustomTitle']))."\">"
 			   . __( $data3['ProfileCustomTitle'].$measurements_label, rb_agency_interact_TEXTDOMAIN) 
 			   ."</label>\n";
@@ -515,25 +515,25 @@
 		// Show Social Media Links
 		if ($rb_agency_option_showsocial == "1") { 
 		echo "	<h3>". __("Social Media Profiles", rb_agency_interact_TEXTDOMAIN) ."</h3>\n";
-		echo "	<div id=\"profile-facebook\" class=\"rbfield rbtext rbsingle\">\n";
+		echo "	<div id=\"profile-facebook\" class=\"". $styleclass ." rbtext rbsingle\">\n";
 		echo "		<label>". __("Facebook", rb_agency_interact_TEXTDOMAIN) ."</label>\n";
 		echo "		<div><input type=\"text\" id=\"ProfileContactLinkFacebook\" name=\"ProfileContactLinkFacebook\" value=\"". $ProfileContactLinkFacebook ."\" /></div>\n";
 		echo "	</div>\n";
-		echo "	<div id=\"profile-twitter\" class=\"rbfield rbtext rbsingle\">\n";
+		echo "	<div id=\"profile-twitter\" class=\"". $styleclass ." rbtext rbsingle\">\n";
 		echo "		<label>". __("Twitter", rb_agency_interact_TEXTDOMAIN) ."</label>\n";
 		echo "		<div><input type=\"text\" id=\"ProfileContactLinkTwitter\" name=\"ProfileContactLinkTwitter\" value=\"". $ProfileContactLinkTwitter ."\" /></div>\n";
 		echo "	</div>\n";
-		echo "	<div id=\"profile-youtube\" class=\"rbfield rbtext rbsingle\">\n";
+		echo "	<div id=\"profile-youtube\" class=\"". $styleclass ." rbtext rbsingle\">\n";
 		echo "		<label>". __("YouTube", rb_agency_interact_TEXTDOMAIN) ."</label>\n";
 		echo "		<div><input type=\"text\" id=\"ProfileContactLinkYoutube\" name=\"ProfileContactLinkYoutube\" value=\"". $ProfileContactLinkYoutube ."\" /></div>\n";
 		echo "  </div>\n";
-		echo "	<div id=\"profile-flickr\" class=\"rbfield rbtext rbsingle\">\n";
+		echo "	<div id=\"profile-flickr\" class=\"". $styleclass ." rbtext rbsingle\">\n";
 		echo "		<label>". __("Flickr", rb_agency_interact_TEXTDOMAIN) ."</label>\n";
 		echo "		<div><input type=\"text\" id=\"ProfileContactLinkFlickr\" name=\"ProfileContactLinkFlickr\" value=\"". $ProfileContactLinkFlickr ."\" /></div>\n";
 		echo "	</div>\n";
 		} 
 		if ($rb_agencyinteract_option_registerallow  == 1) {
-			echo "	<div id=\"profile-username\" class=\"rbfield rbtext rbsingle\">\n";
+			echo "	<div id=\"profile-username\" class=\"". $styleclass ." rbtext rbsingle\">\n";
 			echo "		<label>". __("Username", rb_agency_interact_TEXTDOMAIN) ."</label>\n";
 			echo "		<div>\n";
 			if(isset($current_user->user_login)){
@@ -541,29 +541,29 @@
 			} else {
 			echo "			<input type=\"text\" id=\"ProfileUsername\"  name=\"ProfileUsername\" value=\"\" />\n";	
 			}
-			echo "			<small class=\"rbfield-note\">Cannot be changed</small>";
+			echo "			<small class=\"". $styleclass ."-note\">Cannot be changed</small>";
 			echo "		</div>\n";
 			echo "  </div>\n";
 		}
-		echo "	<div id=\"rbprofile-password\" class=\"rbfield rbtext rbsingle\">\n";
+		echo "	<div id=\"rbprofile-password\" class=\"". $styleclass ." rbtext rbsingle\">\n";
 		echo "		<label>". __("Password", rb_agency_interact_TEXTDOMAIN) ."</label>\n";
 		echo "		<div>";
 		echo "			<input type=\"password\" id=\"ProfilePassword\" name=\"ProfilePassword\" />\n";
-		echo "			<small class=\"rbfield-note\">Leave blank to keep same password</small>";	
+		echo "			<small class=\"". $styleclass ."-note\">Leave blank to keep same password</small>";	
 		echo "	 	</div>\n";
 		echo "	</div>\n";
-		echo "	<div id=\"rbprofile-retype-password\" class=\"rbfield rbtext rbsingle\">\n";
+		echo "	<div id=\"rbprofile-retype-password\" class=\"". $styleclass ." rbtext rbsingle\">\n";
 		echo "		<label>". __("Retype Password", rb_agency_interact_TEXTDOMAIN) ."</label>\n";
 		echo "		<div>";
 		echo "			<input type=\"password\" id=\"ProfilePasswordConfirm\" name=\"ProfilePasswordConfirm\" />";
-		echo "			<small class=\"rbfield-note\">Retype to Confirm</small>";	
+		echo "			<small class=\"". $styleclass ."-note\">Retype to Confirm</small>";	
 		echo "		</div>\n";
 		echo "	</div>\n";
-		echo "	<div id=\"rbform-last-updated\" class=\"rbfield rbtext rbsingle\">\n";
+		echo "	<div id=\"rbform-last-updated\" class=\"". $styleclass ." rbtext rbsingle\">\n";
 		echo "		<label>". __("Last updated ", rb_agency_interact_TEXTDOMAIN) ."</label>";
 		echo "		<div>". rb_agency_makeago(rb_agency_convertdatetime($ProfileDateUpdated), $rb_agency_option_locationtimezone) ."</div>\n";
 		echo "	</div>\n";
-		echo "	<div id=\"rbform-submit\" class=\"rbfield rbsubmit rbsingle\">\n";
+		echo "	<div id=\"rbform-submit\" class=\"". $styleclass ." rbsubmit rbsingle\">\n";
 		echo "		<input type=\"hidden\" name=\"action\" value=\"editRecord\" />\n";
 		echo "		<input type=\"submit\" name=\"submit\" value=\"". __("Save and Continue", rb_agency_interact_TEXTDOMAIN) ."\" class=\"button-primary\" />\n";
 		echo "	</div>\n";
