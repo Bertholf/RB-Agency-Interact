@@ -4,9 +4,9 @@
 	global $wpdb;
 	get_currentuserinfo();
 	$ProfileUserLinked = $current_user->ID;
-        $ptype = get_user_meta($current_user->ID, "rb_agency_interact_profiletype", true);
+		$ptype = get_user_meta($current_user->ID, "rb_agency_interact_profiletype", true);
 		//check if array
-        if($ptype != ''){
+		if($ptype != ''){
 		if(strpos($ptype, ",") > -1){
 			$ptyp = explode(",",$ptype);
 			foreach($ptyp as $p){
@@ -15,9 +15,9 @@
 			$ptype = array();
 			$ptype = $ptype_arr;
 		} else {
-    			$ptype = str_replace(" ","_",retrieve_title($ptype));
+				$ptype = str_replace(" ","_",retrieve_title($ptype));
 		}
-        }        
+		}        
    
 
 
@@ -31,7 +31,7 @@
 		$rb_agency_option_locationtimezone 		= (int)$rb_agency_options_arr['rb_agency_option_locationtimezone'];
 		$rb_agency_option_formshow_displayname = isset($rb_agency_options_arr['rb_agency_option_formshow_displayname'])?$rb_agency_options_arr['rb_agency_option_formshow_displayname']:0;
 
-      
+	  
 	$rb_agency_interact_options_arr = get_option('rb_agencyinteract_options');
 	$rb_agencyinteract_option_registerallow = (int)$rb_agency_interact_options_arr['rb_agencyinteract_option_registerallow'];
 
@@ -69,9 +69,9 @@
 
 		  $ptype = explode(",",$ProfileCustomType);
 		//check if array
-	    $ptype_arr = array();
-	    
-	    if($ptype != ''){
+		$ptype_arr = array();
+		
+		if($ptype != ''){
 			if(is_array($ptype)){
 				foreach($ptype as $p){
 					$ptype_arr[] = str_replace(" ","_",trim(strtolower(retrieve_title($p))));
@@ -79,9 +79,9 @@
 				$ptype = array();
 				$ptype = $ptype_arr;
 			} else {
-	    			$ptype = str_replace(" ","_",trim(strtolower(retrieve_title($ptype))));
+					$ptype = str_replace(" ","_",trim(strtolower(retrieve_title($ptype))));
 			}
-        }        
+		}        
 
 
 		$query= "SELECT DataTypeID, DataTypeTitle FROM " .  table_agency_data_type . " WHERE DataTypeID IN(".$ProfileCustomType  .") GROUP BY DataTypeTitle ";
@@ -90,8 +90,8 @@
 		foreach($queryShowDataType as $dataShowDataType){															
 						array_push($registered_as, $dataShowDataType["DataTypeTitle"]);															
 		}
-        
-       echo "<div id=\"profile-account\" class=\"rbform\">\n";
+		
+	   echo "<div id=\"profile-account\" class=\"rbform\">\n";
 		echo "<h3>Hi ".$ProfileContactDisplay."! You are registered as ".implode(",",$registered_as)."</h3>";
 		echo "<form method=\"post\" enctype=\"multipart/form-data\" action=\"". get_bloginfo("wpurl") ."/profile-member/account/\">\n";
 		echo "	<input type=\"hidden\" name=\"ProfileID\" value=\"". $ProfileID ."\" />\n";
@@ -251,7 +251,7 @@
 		   var_dump($types);
 		   echo "-->";
 		   if(count(array_intersect($ptype,$types))>0){ 
-		   		$permit_type=true; 
+				$permit_type=true; 
 		   } 
 		} 
 		
@@ -261,7 +261,7 @@
 			echo'<input type="hidden" name="ctype" value="'.($permit_type).'" >';
 		
 	
-  	if (($data3["ProfileCustomShowGender"] == $ProfileGender) || ($data3["ProfileCustomShowGender"] == 0)  && $permit_type == true ) {
+	if (($data3["ProfileCustomShowGender"] == $ProfileGender) || ($data3["ProfileCustomShowGender"] == 0)  && $permit_type == true ) {
 
 			
 
@@ -292,9 +292,15 @@
 				}
 			}
 
+
+			$styleid = 'rbfield-'. strtolower(trim($data3['ProfileCustomTitle']));
+			if ( isset( gender_filter($data3['ProfileCustomShowGender']) ) ) {
+				$styleid = $styleid .' '. gender_filter($data3['ProfileCustomShowGender']);
+			}
+
 		 if ($ProfileCustomType == 1) { //TEXT
 
-			echo "<div id=\"rbfield-".strtolower(trim($data3['ProfileCustomTitle']))." ".gender_filter($data3['ProfileCustomShowGender'])."\" class=\"rbfield rbtext rbsingle\">";
+			echo "<div id=\"". $styleid ."\" class=\"rbfield rbtext rbsingle\">";
 			echo "<label for=\"".strtolower(trim($data3['ProfileCustomTitle']))."\">"
 			   . __( $data3['ProfileCustomTitle'].$measurements_label, rb_agency_interact_TEXTDOMAIN) 
 			   ."</label>\n";
@@ -307,7 +313,7 @@
 			
 		elseif ($ProfileCustomType == 2 ) { // Min Max
 
-			echo "<div id=\"rbfield-".strtolower(trim($data3['ProfileCustomTitle']))." ".gender_filter($data3['ProfileCustomShowGender'])."\" class=\"rbfield rbtext rbmulti\">";
+			echo "<div id=\"". $styleid ."\" class=\"rbfield rbtext rbmulti\">";
 			echo "<label for=\"".strtolower(trim($data3['ProfileCustomTitle']))."\">"
 			   . __( $data3['ProfileCustomTitle'].$measurements_label, rb_agency_interact_TEXTDOMAIN) 
 			   ."</label>\n";
@@ -352,11 +358,11 @@
 			
 		elseif ($ProfileCustomType == 3 || $ProfileCustomType == 9) {  // Drop Down
 
-			echo "<div id=\"rbfield-".strtolower(trim($data3['ProfileCustomTitle']))." ".gender_filter($data3['ProfileCustomShowGender'])."\" class=\"rbfield rbselect rbsingle\">";
+			echo "<div id=\"". $styleid ."\" class=\"rbfield rbselect rbsingle\">";
 			echo "<label for=\"".strtolower(trim($data3['ProfileCustomTitle']))."\">"
 			   . __( $data3['ProfileCustomTitle'].$measurements_label, rb_agency_interact_TEXTDOMAIN) 
 			   ."</label>\n";
-		          
+				  
 				@list($option1,$option2) = @explode(":",$data3['ProfileCustomOptions']);	
 		
 				$data = explode("|",$option1);
@@ -374,7 +380,7 @@
 											retrieve_datavalue("",$data3['ProfileCustomID'],$ProfileID,"multiple",$val1)
 												." >".$val1."</option>";
 									  }else{
-									  			echo "<option value=\"".$val1."\" ".
+												echo "<option value=\"".$val1."\" ".
 											retrieve_datavalue("",$data3['ProfileCustomID'],$ProfileID,"dropdown",$val1)
 												." >".$val1."</option>";
 									  }
@@ -401,7 +407,7 @@
 				echo "</div>";
 				
 			} elseif ($ProfileCustomType == 4) {
-				echo "<div id=\"rbfield-".strtolower(trim($data3['ProfileCustomTitle']))." ".gender_filter($data3['ProfileCustomShowGender'])."\" class=\"rbfield rbtextarea rbsingle\">";
+				echo "<div id=\"". $styleid ."\" class=\"rbfield rbtextarea rbsingle\">";
 				echo "<label for=\"".strtolower(trim($data3['ProfileCustomTitle']))."\">"
 			   . __( $data3['ProfileCustomTitle'].$measurements_label, rb_agency_interact_TEXTDOMAIN) 
 			   ."</label>\n";
@@ -410,7 +416,7 @@
 													$data3['ProfileCustomID'],$ProfileID,"textbox") ."</textarea></div>";
 				echo "</div>";
 			} elseif ($ProfileCustomType == 5) {
-				echo "<div id=\"rbfield-".strtolower(trim($data3['ProfileCustomTitle']))." ".gender_filter($data3['ProfileCustomShowGender'])."\" class=\"rbfield rbcheckbox rbsingle\">";
+				echo "<div id=\"". $styleid ."\" class=\"rbfield rbcheckbox rbsingle\">";
 				echo "<label for=\"".strtolower(trim($data3['ProfileCustomTitle']))."\">"
 			   . __( $data3['ProfileCustomTitle'].$measurements_label, rb_agency_interact_TEXTDOMAIN) 
 			   ."</label>\n";
@@ -440,7 +446,7 @@
 				   
 			} elseif ($ProfileCustomType == 6) {
 				
-				echo "<fieldset id=\"rbfield-".strtolower(trim($data3['ProfileCustomTitle']))." ".gender_filter($data3['ProfileCustomShowGender'])."\" class=\"rbfield rbcheckbox rbsingle\">";
+				echo "<fieldset id=\"". $styleid ."\" class=\"rbfield rbcheckbox rbsingle\">";
 				echo "<label for=\"".strtolower(trim($data3['ProfileCustomTitle']))."\">"
 			   . __( $data3['ProfileCustomTitle'].$measurements_label, rb_agency_interact_TEXTDOMAIN) 
 			   ."</label>\n";
@@ -466,7 +472,7 @@
 				
 			}elseif ($ProfileCustomType == 7) { //Imperial/Metrics
 			
-				echo "<div id=\"rbfield-".strtolower(trim($data3['ProfileCustomTitle']))." ".gender_filter($data3['ProfileCustomShowGender'])."\" class=\"rbfield rbselect rbsingle\">";
+				echo "<div id=\"". $styleid ."\" class=\"rbfield rbselect rbsingle\">";
 				echo "<label for=\"".strtolower(trim($data3['ProfileCustomTitle']))."\">"
 			   . __( $data3['ProfileCustomTitle'].$measurements_label, rb_agency_interact_TEXTDOMAIN) 
 			   ."</label>\n";
@@ -538,7 +544,7 @@
 			echo "			<small class=\"rbfield-note\">Cannot be changed</small>";
 			echo "		</div>\n";
 			echo "  </div>\n";
-	 	}
+		}
 		echo "	<div id=\"rbprofile-password\" class=\"rbfield rbtext rbsingle\">\n";
 		echo "		<label>". __("Password", rb_agency_interact_TEXTDOMAIN) ."</label>\n";
 		echo "		<div>";
