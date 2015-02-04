@@ -176,26 +176,26 @@
 				if (!empty($ProfileCustomOptions_Min_value) && !empty($ProfileCustomOptions_Max_value)) {
 						
 					   echo "<div><label for=\"ProfileCustomLabel_min\">"
-							 . __("Min", rb_agency_TEXTDOMAIN) . " </label>\n";
+							 . __("Min", RBAGENCY_TEXTDOMAIN) . " </label>\n";
 					   echo "<div><input type=\"text\" name=\"ProfileCustomID". $data3['ProfileCustomID'] 
 							 ."\" value=\"". 
 							 retrieve_datavalue($ProfileCustomOptions_Min_value,
 												$data3['ProfileCustomID'],$ProfileID,"textbox")
 							  ."\" /></div></div>\n";
 					   echo "<div><label for=\"ProfileCustomLabel_min\">"
-							. __("Max", rb_agency_TEXTDOMAIN) . " </label>\n";
+							. __("Max", RBAGENCY_TEXTDOMAIN) . " </label>\n";
 					   echo "<div><input type=\"text\" name=\"ProfileCustomID". $data3['ProfileCustomID'] ."\" value=\""
 							.  retrieve_datavalue($ProfileCustomOptions_Max_value,
 												  $data3['ProfileCustomID'],$ProfileID,"textbox") ."\" /></div></div>\n";
 				
 				} else {
 						echo "<div><label for=\"ProfileCustomLabel_min\">"
-							 . __("Min", rb_agency_TEXTDOMAIN) . " </label>\n";
+							 . __("Min", RBAGENCY_TEXTDOMAIN) . " </label>\n";
 						echo "<div><input type=\"text\" name=\"ProfileCustomID". $data3['ProfileCustomID'] ."\" value=\""
 							 .retrieve_datavalue($_REQUEST["ProfileCustomID". $data3['ProfileCustomID']],
 													$data3['ProfileCustomID'],$ProfileID,"textbox") ."\" /></div></div>\n";
 						echo "<div><label for=\"ProfileCustomLabel_min\">"
-							 . __("Max", rb_agency_TEXTDOMAIN) . " </label>\n";
+							 . __("Max", RBAGENCY_TEXTDOMAIN) . " </label>\n";
 						echo "<div><input type=\"text\" name=\"ProfileCustomID". $data3['ProfileCustomID'] ."\" value=\""
 							 .retrieve_datavalue($_REQUEST["ProfileCustomID". $data3['ProfileCustomID']],
 													$data3['ProfileCustomID'],$ProfileID,"textbox") ."\" /></div></div>\n";

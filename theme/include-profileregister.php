@@ -27,7 +27,7 @@ global $wpdb;
 	echo "<input type=\"hidden\" id=\"ProfileGender\" name=\"ProfileGender\" value=\"".$ProfileGender ."\" />\n";
 	echo "<input type=\"hidden\" id=\"ProfileType\" name=\"ProfileType\" value=\"".get_user_meta($current_user->ID, "rb_agency_interact_profiletype", true) ."\" />\n";
 	
-	echo "	<h3>". __("Contact Information", rb_agency_TEXTDOMAIN) ."</h3>\n";	
+	echo "	<h3>". __("Contact Information", RBAGENCY_TEXTDOMAIN) ."</h3>\n";	
 	echo "	<div id=\"profile-firstname\" class=\"rbfield rbtext rbsingle\">\n";
 	echo "		<label>". __("First Name", rb_agency_interact_TEXTDOMAIN) ."</label>\n";
 	echo "		<div><input type=\"text\" id=\"ProfileContactNameFirst\" name=\"ProfileContactNameFirst\" value=\"". $current_user->first_name ."\" /></div>\n";
@@ -92,7 +92,7 @@ global $wpdb;
 	echo "	<p>". __("The following information will NOT appear in public areas and is for administrative use only.", rb_agency_interact_TEXTDOMAIN) ."</p>\n";
 
 	echo "	<div id=\"profile-country\" class=\"rbfield rbselect rbsingle\">\n";
-	echo "      <label>" . __("Country", rb_agency_TEXTDOMAIN) . "</label>\n";
+	echo "      <label>" . __("Country", RBAGENCY_TEXTDOMAIN) . "</label>\n";
 	echo "      <div>\n";
 	
 	$query_get ="SELECT * FROM `". table_agency_data_country ."` ORDER BY CountryTitle ASC" ;
@@ -101,7 +101,7 @@ global $wpdb;
 	
 	echo '<input type="hidden" id="url" value="'.$location.'">';
 	echo "<select name=\"ProfileLocationCountry\" id=\"ProfileLocationCountry\"  onchange='javascript:populateStates(\"ProfileLocationCountry\",\"ProfileLocationState\");'>";
-	echo '<option value="">'. __("Select country", rb_agency_TEXTDOMAIN) .'</option>';
+	echo '<option value="">'. __("Select country", RBAGENCY_TEXTDOMAIN) .'</option>';
 	 foreach($result_query_get as $r){
 		  $selected =$ProfileLocationCountry==$r->CountryID?"selected=selected":"";
 		echo '<option '.$selected.' value='.$r->CountryID.' >'.$r->CountryTitle.'</option>';
@@ -112,12 +112,12 @@ global $wpdb;
 	
 	
 	echo "	<div id=\"profile-state\" class=\"rbfield rbtext rbsingle\">\n";
-	echo "      <label>" . __("State", rb_agency_TEXTDOMAIN) . "</label>\n";
+	echo "      <label>" . __("State", RBAGENCY_TEXTDOMAIN) . "</label>\n";
 	echo "      <div>\n";
 	$query_get ="SELECT * FROM `".table_agency_data_state."` ORDER BY StateTitle ASC" ;
 	$result_query_get = $wpdb->get_results($query_get);
 	echo '<select name="ProfileLocationState" id="ProfileLocationState">';
-	echo '<option value="">'. __("Select state", rb_agency_TEXTDOMAIN) .'</option>';
+	echo '<option value="">'. __("Select state", RBAGENCY_TEXTDOMAIN) .'</option>';
 	 foreach($result_query_get as $r){
 		 $selected =$ProfileLocationState==$r->StateID?"selected=selected":"";
 		echo '<option '.$selected.' value='.$r->StateID.' >'.$r->StateTitle.'</option>';

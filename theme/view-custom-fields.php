@@ -36,29 +36,29 @@ if ($ProfileCustomType == 7) { //measurements field type
 if ($ProfileCustomType == 1) { // TEXT
 
 	echo "	<div id=\"rbfield-". $data1['ProfileCustomID'] ."\" class=\"rbfield rbtext rbsingle\">\n";
-	echo "		<label for=\"ProfileCustomID". $data1['ProfileCustomID'] ."\">".__($data1['ProfileCustomTitle'].$measurements_label, rb_agency_TEXTDOMAIN)."</label>\n";
+	echo "		<label for=\"ProfileCustomID". $data1['ProfileCustomID'] ."\">".__($data1['ProfileCustomTitle'].$measurements_label, RBAGENCY_TEXTDOMAIN)."</label>\n";
 	echo "		<div><input type=\"text\" name=\"ProfileCustomID". $data1['ProfileCustomID'] ."\" value=\"". $ProfileCustomValue ."\" /></div>\n";
 	echo "	</div>\n";
 
 } elseif ($ProfileCustomType == 2) { // Min Max
 
 	echo "	<div id=\"rbfield-". $data1['ProfileCustomID'] ."\" class=\"rbfield rbtext rbmulti\">\n";
- 	echo "  	<label for=\"ProfileCustomID". $data1['ProfileCustomID'] ."\">".__($data1['ProfileCustomTitle'].$measurements_label, rb_agency_TEXTDOMAIN)."</label>\n"; 
+ 	echo "  	<label for=\"ProfileCustomID". $data1['ProfileCustomID'] ."\">".__($data1['ProfileCustomTitle'].$measurements_label, RBAGENCY_TEXTDOMAIN)."</label>\n"; 
 
 	$ProfileCustomOptions_String = str_replace(",",":",strtok(strtok($data1['ProfileCustomOptions'],"}"),"{"));
 	list($ProfileCustomOptions_Min_label,$ProfileCustomOptions_Min_value,$ProfileCustomOptions_Max_label,$ProfileCustomOptions_Max_value) = explode(":",$ProfileCustomOptions_String);
 
 	echo "		<div>";
 	if(!empty($ProfileCustomOptions_Min_value) && !empty($ProfileCustomOptions_Max_value)){
-		    echo "<div><label for=\"ProfileCustomLabel_min\">". __("Min", rb_agency_TEXTDOMAIN) . "</label>\n";
+		    echo "<div><label for=\"ProfileCustomLabel_min\">". __("Min", RBAGENCY_TEXTDOMAIN) . "</label>\n";
 			echo "<div><input type=\"text\" name=\"ProfileCustomID". $data1['ProfileCustomID'] ."\" value=\"". $ProfileCustomOptions_Min_value ."\" /></div></div>\n";
-			echo "<div><label for=\"ProfileCustomLabel_min\" style=\"text-align:right;\">". __("Max", rb_agency_TEXTDOMAIN) . "</label>\n";
+			echo "<div><label for=\"ProfileCustomLabel_min\" style=\"text-align:right;\">". __("Max", RBAGENCY_TEXTDOMAIN) . "</label>\n";
 			echo "<div><input type=\"text\" name=\"ProfileCustomID". $data1['ProfileCustomID'] ."\" value=\"". $ProfileCustomOptions_Max_value ."\" /></div></div>\n";
 		
 	} else {
-		    echo "<div><label for=\"ProfileCustomLabel_min\" style=\"text-align:right;\">". __("Min", rb_agency_TEXTDOMAIN) . "</label>\n";
+		    echo "<div><label for=\"ProfileCustomLabel_min\" style=\"text-align:right;\">". __("Min", RBAGENCY_TEXTDOMAIN) . "</label>\n";
 			echo "<div><input type=\"text\" name=\"ProfileCustomID". $data1['ProfileCustomID'] ."\" value=\"".$_SESSION["ProfileCustomID". $data1['ProfileCustomID']]."\" /></div></div>\n";
-		    echo "<div><label for=\"ProfileCustomLabel_min\" style=\"text-align:right;\">". __("Max", rb_agency_TEXTDOMAIN) . "</label>\n";
+		    echo "<div><label for=\"ProfileCustomLabel_min\" style=\"text-align:right;\">". __("Max", RBAGENCY_TEXTDOMAIN) . "</label>\n";
 			echo "<div><input type=\"text\" name=\"ProfileCustomID". $data1['ProfileCustomID'] ."\" value=\"".$_SESSION["ProfileCustomID". $data1['ProfileCustomID']]."\" /></div></div>\n";
 	}
 	echo "		</div>\n";
@@ -66,7 +66,7 @@ if ($ProfileCustomType == 1) { // TEXT
 
 } elseif ($ProfileCustomType == 3) { // SELECT
 	echo "	<div id=\"rbfield-". $data1['ProfileCustomID'] ."\" class=\"rbfield rbselect rbsingle\">\n";
-	echo "		<label for=\"ProfileCustomID". $data1['ProfileCustomID'] ."\">".__($data1['ProfileCustomTitle'].$measurements_label, rb_agency_TEXTDOMAIN)."</label>\n";
+	echo "		<label for=\"ProfileCustomID". $data1['ProfileCustomID'] ."\">".__($data1['ProfileCustomTitle'].$measurements_label, RBAGENCY_TEXTDOMAIN)."</label>\n";
 	echo "	<div>\n";
 
 	list($option1,$option2) = explode(":",$data1['ProfileCustomOptions']);	
@@ -116,7 +116,7 @@ if ($ProfileCustomType == 1) { // TEXT
 
 	if(is_admin()){
 		echo "	<div id=\"rbfield-". $data1['ProfileCustomID'] ."\" class=\"rbfield rbtextarea rbsingle\">\n";
-		echo "		<label for=\"ProfileCustomID". $data1['ProfileCustomID'] ."\">".__($data1['ProfileCustomTitle'].$measurements_label, rb_agency_TEXTDOMAIN)."</label>\n";
+		echo "		<label for=\"ProfileCustomID". $data1['ProfileCustomID'] ."\">".__($data1['ProfileCustomTitle'].$measurements_label, RBAGENCY_TEXTDOMAIN)."</label>\n";
 		echo "		<div>";
 		echo "			<textarea name=\"ProfileCustomID". $data1['ProfileCustomID'] ."\">". $ProfileCustomValue ."</textarea>";
 		echo "		</div>";
@@ -125,7 +125,7 @@ if ($ProfileCustomType == 1) { // TEXT
 } elseif ($ProfileCustomType == 5) {
 
 	echo "	<div id=\"rbfield-". $data1['ProfileCustomID'] ."\" class=\"rbfield rbtextarea rbsingle\">\n";
-	echo "		<label for=\"ProfileCustomID". $data1['ProfileCustomID'] ."\">".__($data1['ProfileCustomTitle'].$measurements_label, rb_agency_TEXTDOMAIN)."</label>\n";
+	echo "		<label for=\"ProfileCustomID". $data1['ProfileCustomID'] ."\">".__($data1['ProfileCustomTitle'].$measurements_label, RBAGENCY_TEXTDOMAIN)."</label>\n";
 	echo "		<div>";
 
 	$array_customOptions_values = explode("|",$data1['ProfileCustomOptions']);
@@ -146,7 +146,7 @@ if ($ProfileCustomType == 1) { // TEXT
 } elseif ($ProfileCustomType == 6) {
 
 	echo "	<div id=\"rbfield-". $data1['ProfileCustomID'] ."\" class=\"rbfield rbtextarea rbsingle\">\n";
-	echo "		<label for=\"ProfileCustomID". $data1['ProfileCustomID'] ."\">".__($data1['ProfileCustomTitle'].$measurements_label, rb_agency_TEXTDOMAIN)."</label>\n";
+	echo "		<label for=\"ProfileCustomID". $data1['ProfileCustomID'] ."\">".__($data1['ProfileCustomTitle'].$measurements_label, RBAGENCY_TEXTDOMAIN)."</label>\n";
 	echo "		<div>\n";
 	echo "		<div>";
 
@@ -191,7 +191,7 @@ if ($ProfileCustomType == 1) { // TEXT
 	   }else{
 	*/
 	echo "	<div id=\"rbfield-". $data1['ProfileCustomID'] ."\" class=\"rbfield rbtextarea rbsingle\">\n";
-	echo "		<label for=\"ProfileCustomID". $data1['ProfileCustomID'] ."\">".__($data1['ProfileCustomTitle'].$measurements_label, rb_agency_TEXTDOMAIN)."</label>\n";
+	echo "		<label for=\"ProfileCustomID". $data1['ProfileCustomID'] ."\">".__($data1['ProfileCustomTitle'].$measurements_label, RBAGENCY_TEXTDOMAIN)."</label>\n";
 	echo "		<div><input type=\"text\" name=\"ProfileCustomID". $data1['ProfileCustomID'] ."\" value=\"". $ProfileCustomValue ."\" /></div>\n";
 	echo "		</div>";       
 	echo "	</div>";

@@ -235,7 +235,7 @@ if (isset($_POST['action'])) {
 						}
 
 					} elseif ($rb_agency_option_profilenaming == 2) {
-						$errorValidation['rb_agency_option_profilenaming'] = "<b><i>" . __(LabelSingular . " must have a display name identified", rb_agency_TEXTDOMAIN) . ".</i></b><br>";
+						$errorValidation['rb_agency_option_profilenaming'] = "<b><i>" . __(LabelSingular . " must have a display name identified", RBAGENCY_TEXTDOMAIN) . ".</i></b><br>";
 						$have_error = true;
 					} elseif ($rb_agency_option_profilenaming == 3) {
 						$ProfileContactDisplay = "ID " . $ProfileID;

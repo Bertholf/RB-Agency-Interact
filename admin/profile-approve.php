@@ -34,7 +34,7 @@ if (isset($_POST['action'])) {
 					
 				if (isset($ProfileGallery)) {
 					// Remove Folder
-					$dir = rb_agency_UPLOADPATH . $ProfileGallery ."/";
+					$dir = RBAGENCY_UPLOADPATH . $ProfileGallery ."/";
 					$mydir = opendir($dir);
 					while(false !== ($file = readdir($mydir))) {
 						if($file != "." && $file != "..") {
@@ -153,7 +153,7 @@ function rb_display_list() {
 											
 										if (isset($ProfileGallery)) {
 											// Remove Folder
-											$dir = rb_agency_UPLOADPATH . $ProfileGallery ."/";
+											$dir = RBAGENCY_UPLOADPATH . $ProfileGallery ."/";
 											$mydir = opendir($dir);
 											while(false !== ($file = readdir($mydir))) {
 												if($file != "." && $file != "..") {
@@ -259,7 +259,7 @@ function rb_display_list() {
  	  $queryGenderResult = $wpdb->get_results("SELECT GenderID, GenderTitle FROM ".table_agency_data_gender." ",ARRAY_A);
 		  $queryGenderCount = $wpdb->num_rows;
 		  foreach($queryGenderResult as $fetchGender){
-			 echo "	<div style=\"float: left; \"><a class=\"button-primary\" href=\"". admin_url("admin.php?page=rb_agency_menu_profiles") ."&action=add&ProfileGender=".$fetchGender["GenderID"]."\">". __("Create New ".ucfirst($fetchGender["GenderTitle"])."", rb_agency_TEXTDOMAIN) ."</a></div>\n";
+			 echo "	<div style=\"float: left; \"><a class=\"button-primary\" href=\"". admin_url("admin.php?page=rb_agency_menu_profiles") ."&action=add&ProfileGender=".$fetchGender["GenderID"]."\">". __("Create New ".ucfirst($fetchGender["GenderTitle"])."", RBAGENCY_TEXTDOMAIN) ."</a></div>\n";
 		  }
 	  echo "  <div class=\"tablenav-pages\">\n";
 				if($items > 0) {

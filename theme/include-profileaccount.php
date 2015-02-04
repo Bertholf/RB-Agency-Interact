@@ -99,7 +99,7 @@
 		echo "	<div id=\"gallery-folder\" class=\"". $styleclass ." rblink rbsingle\">\n";
 		echo "		<label>". __("Gallery Folder", rb_agency_interact_TEXTDOMAIN) ."</label>\n";
 		echo "		<div class=\"rbmessage\">\n";
-					if (!empty($ProfileGallery) && is_dir(rb_agency_UPLOADPATH .$ProfileGallery)) { 
+					if (!empty($ProfileGallery) && is_dir(RBAGENCY_UPLOADPATH .$ProfileGallery)) { 
 						echo "<span class=\"updated\"><a href=\"".network_site_url("/")."profile/". $ProfileGallery ."/\" target=\"_blank\">/profile/". $ProfileGallery ."/</a></span>\n";
 						echo "<input type=\"hidden\" id=\"ProfileGallery\" name=\"ProfileGallery\" value=\"". $ProfileGallery ."\" />\n";
 					} else {
@@ -169,7 +169,7 @@
 
 								echo '<input type="hidden" id="url" value="'.$location.'">';
 								echo "<select name=\"ProfileLocationCountry\" id=\"ProfileLocationCountry\"  onchange='javascript:populateStates(\"ProfileLocationCountry\",\"ProfileLocationState\");'>";
-								echo '<option value="">'. __("Select country", rb_agency_TEXTDOMAIN) .'</option>';
+								echo '<option value="">'. __("Select country", RBAGENCY_TEXTDOMAIN) .'</option>';
 								 foreach($result_query_get as $r){
 									  $selected = isset($ProfileLocationCountry) && $ProfileLocationCountry==$r->CountryID?"selected=selected":"";
 									echo '<option '.$selected.' value='.$r->CountryID.' >'.$r->CountryTitle.'</option>';
@@ -184,7 +184,7 @@
 								$query_get ="SELECT * FROM `".table_agency_data_state."` WHERE CountryID='".(isset($ProfileLocationCountry)?$ProfileLocationCountry:"")."'" ;
 								$result_query_get = $wpdb->get_results($query_get);
 								echo '<select name="ProfileLocationState" id="ProfileLocationState">';
-								echo '<option value="">'. __("Select state", rb_agency_TEXTDOMAIN) .'</option>';
+								echo '<option value="">'. __("Select state", RBAGENCY_TEXTDOMAIN) .'</option>';
 								 foreach($result_query_get as $r){
 									 $selected = isset($ProfileLocationState) && $ProfileLocationState==$r->StateID?"selected=selected":"";
 									echo '<option '.$selected.' value='.$r->StateID.' >'.$r->StateTitle.'</option>';
@@ -328,26 +328,26 @@
 				if (!empty($ProfileCustomOptions_Min_value) && !empty($ProfileCustomOptions_Max_value)) {
 						
 					   echo "<div><label for=\"ProfileCustomLabel_min\">"
-							 . __("Min", rb_agency_TEXTDOMAIN) . " </label>\n";
+							 . __("Min", RBAGENCY_TEXTDOMAIN) . " </label>\n";
 					   echo "<div><input type=\"text\" name=\"ProfileCustomID". $data3['ProfileCustomID'] 
 							 ."\" value=\"". 
 							 retrieve_datavalue($ProfileCustomOptions_Min_value,
 												$data3['ProfileCustomID'],$ProfileID,"textbox")
 							  ."\" /></div></div>\n";
 					   echo "<div><label for=\"ProfileCustomLabel_min\">"
-							. __("Max", rb_agency_TEXTDOMAIN) . " </label>\n";
+							. __("Max", RBAGENCY_TEXTDOMAIN) . " </label>\n";
 					   echo "<div><input type=\"text\" name=\"ProfileCustomID". $data3['ProfileCustomID'] ."\" value=\""
 							.  retrieve_datavalue($ProfileCustomOptions_Max_value,
 												  $data3['ProfileCustomID'],$ProfileID,"textbox") ."\" /></div></div>\n";
 				
 				} else {
 						echo "<div><label for=\"ProfileCustomLabel_min\">"
-							 . __("Min", rb_agency_TEXTDOMAIN) . " </label>\n";
+							 . __("Min", RBAGENCY_TEXTDOMAIN) . " </label>\n";
 						echo "<div><input type=\"text\" name=\"ProfileCustomID". $data3['ProfileCustomID'] ."\" value=\""
 							 .retrieve_datavalue($_REQUEST["ProfileCustomID". $data3['ProfileCustomID']],
 													$data3['ProfileCustomID'],$ProfileID,"textbox") ."\" /></div></div>\n";
 						echo "<div><label for=\"ProfileCustomLabel_min\">"
-							 . __("Max", rb_agency_TEXTDOMAIN) . " </label>\n";
+							 . __("Max", RBAGENCY_TEXTDOMAIN) . " </label>\n";
 						echo "<div><input type=\"text\" name=\"ProfileCustomID". $data3['ProfileCustomID'] ."\" value=\""
 							 .retrieve_datavalue($_REQUEST["ProfileCustomID". $data3['ProfileCustomID']],
 													$data3['ProfileCustomID'],$ProfileID,"textbox") ."\" /></div></div>\n";
