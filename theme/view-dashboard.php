@@ -2,8 +2,7 @@
 global $wpdb;
 
 // *************************************************************************************************** //
-// Setup Functions 
-include(RBAGENCY_PLUGIN_DIR ."app/profile.class.php");
+
 	// Gobble Up The Variables, Set em' Sessions
 		foreach ($_GET as $key => $value) {
 		  if (substr($key, 0, 9) != "ProfileID") {
