@@ -70,11 +70,11 @@
 		}
 
 		
-		echo "	<h3>". __("Photo Gallery", rb_agency_interact_TEXTDOMAIN) ."</h3>\n";
+		echo "	<h3>". __("Photo Gallery", RBAGENCY_interact_TEXTDOMAIN) ."</h3>\n";
 				
 				echo "<script type=\"text/javascript\">\n";
 				echo "function confirmDelete(delMedia,mediaType) {\n";
-				echo "  if (confirm(\"".__("Are you sure you want to delete this", rb_agency_interact_TEXTDOMAIN) ." \"+mediaType+\"?\")) {\n";
+				echo "  if (confirm(\"".__("Are you sure you want to delete this", RBAGENCY_interact_TEXTDOMAIN) ." \"+mediaType+\"?\")) {\n";
 				//echo "         document.getElementById('deletePost').submit();   \n";
 				echo "         document.getElementById('targetid').value=delMedia;";
 				echo "         document.deletePost.submit();   \n";
@@ -110,7 +110,7 @@
 					
 						
 						if ($ProfileMediaType == "Demo Reel" || $ProfileMediaType == "Video Monologue" || $ProfileMediaType == "Video Slate") {
-								  echo ("<div id=\"message\" class=\"updated\"><p>File <strong>'. $ProfileMediaURL .'</strong> ". __("successfully removed", rb_agency_interact_TEXTDOMAIN) .".</p></div>");
+								  echo ("<div id=\"message\" class=\"updated\"><p>File <strong>'. $ProfileMediaURL .'</strong> ". __("successfully removed", RBAGENCY_interact_TEXTDOMAIN) .".</p></div>");
 						} else {
 							// Remove File
 							$dirURL = RBAGENCY_UPLOADPATH . $ProfileGallery; 
@@ -118,9 +118,9 @@
 								echo "<div id=\"message\" class=\"updated\"><p>Successfully removed the Soundcloud link.</p></div>";
 							}else{
 								if (!unlink($dirURL ."/". $ProfileMediaURL)) {
-								  echo ("<div id=\"message\" class=\"error\"><p>". __("Error removing", rb_agency_interact_TEXTDOMAIN) ." <strong>". $ProfileMediaURL ."</strong>. ". __("Please try again", rb_agency_interact_TEXTDOMAIN) .".</p></div>");
+								  echo ("<div id=\"message\" class=\"error\"><p>". __("Error removing", RBAGENCY_interact_TEXTDOMAIN) ." <strong>". $ProfileMediaURL ."</strong>. ". __("Please try again", RBAGENCY_interact_TEXTDOMAIN) .".</p></div>");
 								} else {
-								  echo ("<div id=\"message\" class=\"updated\"><p>File <strong>'. $ProfileMediaURL .'</strong> ". __("successfully removed", rb_agency_interact_TEXTDOMAIN) .".</p></div>");
+								  echo ("<div id=\"message\" class=\"updated\"><p>File <strong>'. $ProfileMediaURL .'</strong> ". __("successfully removed", RBAGENCY_interact_TEXTDOMAIN) .".</p></div>");
 								}
 							}
 						}
@@ -163,11 +163,11 @@
 						echo "</div>\n";
 					}
 					if ($countImg < 1) {
-						echo "<p>". __("There are no images loaded for this profile yet.", rb_agency_interact_TEXTDOMAIN) ."</p>\n";
+						echo "<p>". __("There are no images loaded for this profile yet.", RBAGENCY_interact_TEXTDOMAIN) ."</p>\n";
 					}
 	    echo "<div style=\"clear: both;\">";
-		echo "		<h3>". __("Upload Photos", rb_agency_interact_TEXTDOMAIN) ."</h3>\n";
-		echo "		<p>". __("Upload photos using the forms below. The following formats allowed are jpg and png only ", rb_agency_interact_TEXTDOMAIN) .".</p>\n";
+		echo "		<h3>". __("Upload Photos", RBAGENCY_interact_TEXTDOMAIN) ."</h3>\n";
+		echo "		<p>". __("Upload photos using the forms below. The following formats allowed are jpg and png only ", RBAGENCY_interact_TEXTDOMAIN) .".</p>\n";
 	
 				for( $i=0; $i<5; $i++ ) {
 				echo "<div><label>Type: </label><select name=\"profileMedia". $i ."Type\"><option value=\"Image\">Photo</option>"; echo"</select><input type='file' id='profileMedia". $i ."' name='profileMedia". $i ."' /></div>\n";
@@ -175,8 +175,8 @@
 		echo "</div>";			
 		echo "		</div>\n";
 		echo "	<div class=\"manage-section media\">\n";
-		echo "		<h3>". __("Media Files", rb_agency_interact_TEXTDOMAIN) ."</h3>\n";
-		echo "		<p>". __("The following files (pdf, audio file, etc.) are associated with this record", rb_agency_interact_TEXTDOMAIN) .".</p>\n";
+		echo "		<h3>". __("Media Files", RBAGENCY_interact_TEXTDOMAIN) ."</h3>\n";
+		echo "		<p>". __("The following files (pdf, audio file, etc.) are associated with this record", RBAGENCY_interact_TEXTDOMAIN) .".</p>\n";
 	
 					$queryMedia = "SELECT * FROM ". table_agency_profile_media ." WHERE ProfileID =  \"". $ProfileID ."\" AND ProfileMediaType <> \"Image\"";
 					$resultsMedia = $wpdb->get_results($queryMedia,ARRAY_A);
@@ -239,40 +239,40 @@
 					echo $outVideoMedia;
 
 					if ($countMedia < 1) {
-						echo "<p><em>". __("There are no additional media linked", rb_agency_interact_TEXTDOMAIN) ."</em></p>\n";
+						echo "<p><em>". __("There are no additional media linked", RBAGENCY_interact_TEXTDOMAIN) ."</em></p>\n";
 					}
 		echo "		</div>\n";
 		echo "	<div class=\"manage-section upload\">\n";
-		echo "		<h3>". __("Upload Media Files", rb_agency_interact_TEXTDOMAIN) ."</h3>\n";
-		echo "		<p>". __("Upload new media using the forms below. The following formats are available: jpg, png, mp3, and pdf. If uploading an mp3 for a voice monolouge, use the  \"Voice Demo\" option. For Resumes, make sure the file is a PDF ", rb_agency_interact_TEXTDOMAIN) .".</p>\n";
+		echo "		<h3>". __("Upload Media Files", RBAGENCY_interact_TEXTDOMAIN) ."</h3>\n";
+		echo "		<p>". __("Upload new media using the forms below. The following formats are available: jpg, png, mp3, and pdf. If uploading an mp3 for a voice monolouge, use the  \"Voice Demo\" option. For Resumes, make sure the file is a PDF ", RBAGENCY_interact_TEXTDOMAIN) .".</p>\n";
 	
 				for( $i=5; $i<=9; $i++ ) {
 				echo "<div><label>Type: </label><select name=\"profileMedia". $i ."Type\"><option value=\"\">--Please Select--</option><option value=\"Headshot\">Headshot</option><option value=\"CompCard\">Comp Card</option><option>Resume</option><option value=\"VoiceDemo\">Voice Demo</option>"; rb_agency_getMediaCategories($data['ProfileGender']); echo"</select><input type='file' id='profileMedia". $i ."' name='profileMedia". $i ."' /></div>\n";
 				}
-		echo "		<p>". __("Paste the video URL below", rb_agency_interact_TEXTDOMAIN) .".</p>\n";
+		echo "		<p>". __("Paste the video URL below", RBAGENCY_interact_TEXTDOMAIN) .".</p>\n";
 	
 				echo "<div><label>Type: </label><select name=\"profileMediaV1Type\">"
-				    ."<option selected>". __("Video Slate", rb_agency_interact_TEXTDOMAIN) ."</option>"
-					."<option>". __("Video Monologue", rb_agency_interact_TEXTDOMAIN) ."</option>"
-					."<option>". __("Demo Reel", rb_agency_interact_TEXTDOMAIN) ."</option>"
+				    ."<option selected>". __("Video Slate", RBAGENCY_interact_TEXTDOMAIN) ."</option>"
+					."<option>". __("Video Monologue", RBAGENCY_interact_TEXTDOMAIN) ."</option>"
+					."<option>". __("Demo Reel", RBAGENCY_interact_TEXTDOMAIN) ."</option>"
 					."<option>" . __("SoundCloud", RBAGENCY_TEXTDOMAIN) . "</option>"
 					."</select><textarea id='profileMediaV1' name='profileMediaV1'></textarea></div>\n";
 				echo "<div><label>Type: </label><select name=\"profileMediaV2Type\">"
-					."<option>". __("Video Slate", rb_agency_interact_TEXTDOMAIN) ."</option>"
-					."<option selected>". __("Video Monologue", rb_agency_interact_TEXTDOMAIN) ."</option>"
-					."<option>". __("Demo Reel", rb_agency_interact_TEXTDOMAIN) ."</option>"
+					."<option>". __("Video Slate", RBAGENCY_interact_TEXTDOMAIN) ."</option>"
+					."<option selected>". __("Video Monologue", RBAGENCY_interact_TEXTDOMAIN) ."</option>"
+					."<option>". __("Demo Reel", RBAGENCY_interact_TEXTDOMAIN) ."</option>"
 					."<option>" . __("SoundCloud", RBAGENCY_TEXTDOMAIN) . "</option>"
 					."</select><textarea id='profileMediaV2' name='profileMediaV2'></textarea></div>\n";
 				echo "<div><label>Type: </label><select name=\"profileMediaV3Type\">"
-					."<option>". __("Video Slate", rb_agency_interact_TEXTDOMAIN) ."</option>"
-					."<option>". __("Video Monologue", rb_agency_interact_TEXTDOMAIN) ."</option>"
-					."<option selected>". __("Demo Reel", rb_agency_interact_TEXTDOMAIN) ."</option>"
+					."<option>". __("Video Slate", RBAGENCY_interact_TEXTDOMAIN) ."</option>"
+					."<option>". __("Video Monologue", RBAGENCY_interact_TEXTDOMAIN) ."</option>"
+					."<option selected>". __("Demo Reel", RBAGENCY_interact_TEXTDOMAIN) ."</option>"
 					."<option>" . __("SoundCloud", RBAGENCY_TEXTDOMAIN) . "</option>"
 					."</select><textarea id='profileMediaV3' name='profileMediaV3'></textarea></div>\n";
 				echo "<div><label>Type: </label><select name=\"profileMediaV4Type\">"
-					."<option>". __("Video Slate", rb_agency_interact_TEXTDOMAIN) ."</option>"
-					."<option>". __("Video Monologue", rb_agency_interact_TEXTDOMAIN) ."</option>"
-					."<option>". __("Demo Reel", rb_agency_interact_TEXTDOMAIN) ."</option>"
+					."<option>". __("Video Slate", RBAGENCY_interact_TEXTDOMAIN) ."</option>"
+					."<option>". __("Video Monologue", RBAGENCY_interact_TEXTDOMAIN) ."</option>"
+					."<option>". __("Demo Reel", RBAGENCY_interact_TEXTDOMAIN) ."</option>"
 					."<option  selected>" . __("SoundCloud", RBAGENCY_TEXTDOMAIN) . "</option>"
 					."</select><textarea id='profileMediaV4' name='profileMediaV4'></textarea></div>\n";
 		
@@ -283,8 +283,8 @@
 		echo "     <input type=\"hidden\" name=\"ProfileID\" value=\"". $ProfileID ."\" />\n";
 		echo "     <input type=\"hidden\" name=\"ProfileGallery\" value=\"". $ProfileGallery ."\" />\n";
 		echo "     <input type=\"hidden\" name=\"action\" value=\"editRecord\" />\n";
-		echo "     <input type=\"submit\" name=\"submit\" value=\"". __("Save and Continue", rb_agency_interact_TEXTDOMAIN) ."\" class=\"button-primary\" onClick=\"this.value = 'Please Wait...'\"/>\n";
-		echo "     <input type=\"button\" name=\"back\" value=\"". __("Back to Overview", rb_agency_interact_TEXTDOMAIN) ."\" class=\"button-primary\" onClick=\"location.href = '/profile-member/';\"/>\n";
+		echo "     <input type=\"submit\" name=\"submit\" value=\"". __("Save and Continue", RBAGENCY_interact_TEXTDOMAIN) ."\" class=\"button-primary\" onClick=\"this.value = 'Please Wait...'\"/>\n";
+		echo "     <input type=\"button\" name=\"back\" value=\"". __("Back to Overview", RBAGENCY_interact_TEXTDOMAIN) ."\" class=\"button-primary\" onClick=\"location.href = '/profile-member/';\"/>\n";
 		echo "</p>\n";
 		echo "</form>\n";
 	}

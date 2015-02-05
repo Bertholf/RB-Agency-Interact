@@ -23,7 +23,7 @@ $rb_agency_interact_options_arr = get_option('rb_agencyinteract_options');
 
 // Were they users or agents?
 $profiletype = (int)get_user_meta($current_user->ID, "rb_agency_interact_profiletype", true);
-if(get_user_meta($current_user->ID, 'rb_agency_interact_clientdata', true)) { $profiletypetext = __("Agent/Producer", rb_agency_interact_TEXTDOMAIN); } else { $profiletypetext = __("Model/Talent", rb_agency_interact_TEXTDOMAIN); }
+if(get_user_meta($current_user->ID, 'rb_agency_interact_clientdata', true)) { $profiletypetext = __("Agent/Producer", RBAGENCY_interact_TEXTDOMAIN); } else { $profiletypetext = __("Model/Talent", RBAGENCY_interact_TEXTDOMAIN); }
 
 
 	// Change Title
@@ -64,11 +64,11 @@ echo $rb_header = RBAgency_Common::rb_header();
 			
 					// Is there a subscription?
 					if (isset($SubscriberDateExpire)) {
-						echo "<h1>". $current_user->first_name .", ". __("enjoying your membership?", rb_agency_interact_TEXTDOMAIN) ."</h1>";
-						echo "<h3>". __("Your membership expires on ", rb_agency_interact_TEXTDOMAIN) ." ". $SubscriberDateExpire .", renew today!</h3>";
+						echo "<h1>". $current_user->first_name .", ". __("enjoying your membership?", RBAGENCY_interact_TEXTDOMAIN) ."</h1>";
+						echo "<h3>". __("Your membership expires on ", RBAGENCY_interact_TEXTDOMAIN) ." ". $SubscriberDateExpire .", renew today!</h3>";
 					} else {
-						echo "<h1>". $current_user->first_name .", ". __("are you ready to get discovered?", rb_agency_interact_TEXTDOMAIN) ."</h1>";
-						echo "<h3>". __("Subscribe now, and start applying to Casting Calls, join the Talent Directory, and more.", rb_agency_interact_TEXTDOMAIN) ."</h3>";
+						echo "<h1>". $current_user->first_name .", ". __("are you ready to get discovered?", RBAGENCY_interact_TEXTDOMAIN) ."</h1>";
+						echo "<h3>". __("Subscribe now, and start applying to Casting Calls, join the Talent Directory, and more.", RBAGENCY_interact_TEXTDOMAIN) ."</h3>";
 					}
 
 					// What are the rates?
@@ -90,7 +90,7 @@ echo $rb_header = RBAgency_Common::rb_header();
 							echo "  	<input type=\"hidden\" name=\"custom\" value=\"". $current_user->ID ."\" />\n";
 							echo "  	<input type=\"hidden\" name=\"amount\" value=\"". $data['SubscriptionRatePrice'] ."\" />\n";
 							echo "  	<input type=\"hidden\" name=\"return\" value=\"". get_bloginfo("wpurl") ."/profile-member/subscription/\" />\n";
-							echo "  	<input type=\"hidden\" name=\"notify_url\" value=\"". rb_agency_interact_BASEDIR ."tasks/paypalIPN.php\" />\n";
+							echo "  	<input type=\"hidden\" name=\"notify_url\" value=\"". RBAGENCY_interact_BASEDIR ."tasks/paypalIPN.php\" />\n";
 							echo "  	<input type=\"hidden\" name=\"first_name\" value=\"". $current_user->first_name ."\" />\n";
 							echo "  	<input type=\"hidden\" name=\"last_name\" value=\"". $current_user->last_name ."\" />\n";
 							echo "  	<input type=\"hidden\" name=\"email\" value=\"". $current_user->user_email ."\" />\n";
@@ -116,7 +116,7 @@ echo $rb_header = RBAgency_Common::rb_header();
 			} else {
 				
 				// No Record Exists, register them
-				echo "". __("Records show you are not currently linked to a model or agency profile.  Lets setup your profile now!", rb_agency_interact_TEXTDOMAIN) ."";
+				echo "". __("Records show you are not currently linked to a model or agency profile.  Lets setup your profile now!", RBAGENCY_interact_TEXTDOMAIN) ."";
 				
 				// Register Profile
 				include("include-profileregister.php"); 	
@@ -127,7 +127,7 @@ echo $rb_header = RBAgency_Common::rb_header();
 			echo "</div>\n"; // #profile-manage
 		} else {
 			echo "<p class=\"warning\">\n";
-					_e('You must be logged in to edit your profile.', rb_agency_interact_TEXTDOMAIN);
+					_e('You must be logged in to edit your profile.', RBAGENCY_interact_TEXTDOMAIN);
 			echo "</p><!-- .warning -->\n";
 			// Show Login Form
 			include("include-login.php"); 	

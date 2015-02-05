@@ -13,7 +13,7 @@
 	add_action('admin_head', 'rb_agency_interact_admin_head');
 		function rb_agency_interact_admin_head(){
 			if( is_admin() ) {
-				echo "<link rel=\"stylesheet\" href=\"". rb_agency_interact_BASEDIR ."style/admin.css\" type=\"text/css\" media=\"screen\" />\n";
+				echo "<link rel=\"stylesheet\" href=\"". RBAGENCY_interact_BASEDIR ."style/admin.css\" type=\"text/css\" media=\"screen\" />\n";
 			}
 		}
 
@@ -24,11 +24,11 @@
 		// Call Custom Code to put in header
 		function rb_agency_interact_inserthead() {
 			if(!wp_script_is('jquery')) {
-				echo "<script type=\"text/javascript\" src=\"". rb_agency_interact_BASEDIR ."style/jquery.1.8.js\"></script>";
+				echo "<script type=\"text/javascript\" src=\"". RBAGENCY_interact_BASEDIR ."style/jquery.1.8.js\"></script>";
 			}
 			if( !is_admin() ) {
-				echo "<link rel=\"stylesheet\" href=\"". rb_agency_interact_BASEDIR ."style/style.css\" type=\"text/css\" media=\"screen\" />\n";
-				echo "<script type=\"text/javascript\" src=\"". rb_agency_interact_BASEDIR ."jquery-page.js\"></script>";
+				echo "<link rel=\"stylesheet\" href=\"". RBAGENCY_interact_BASEDIR ."style/style.css\" type=\"text/css\" media=\"screen\" />\n";
+				echo "<script type=\"text/javascript\" src=\"". RBAGENCY_interact_BASEDIR ."jquery-page.js\"></script>";
 			}
 		}
 

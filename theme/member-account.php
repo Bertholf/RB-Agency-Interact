@@ -22,12 +22,12 @@ $alert = "";
 
 // Were they users or agents?
 $profiletype = (int)get_user_meta($current_user->ID, "rb_agency_interact_profiletype", true);
-if(get_user_meta($current_user->ID, 'rb_agency_interact_clientdata', true)) { $profiletypetext = __("Agent/Producer", rb_agency_interact_TEXTDOMAIN); } else { $profiletypetext = __("Model/Talent", rb_agency_interact_TEXTDOMAIN); }
+if(get_user_meta($current_user->ID, 'rb_agency_interact_clientdata', true)) { $profiletypetext = __("Agent/Producer", RBAGENCY_interact_TEXTDOMAIN); } else { $profiletypetext = __("Model/Talent", RBAGENCY_interact_TEXTDOMAIN); }
 
 	// Change Title
 	add_filter('wp_title', 'rb_agencyinteractive_override_title', 10, 2);
 		function rb_agencyinteractive_override_title(){
-			return __("Manage Profile", rb_agency_interact_TEXTDOMAIN);
+			return __("Manage Profile", RBAGENCY_interact_TEXTDOMAIN);
 		}   
 	
 	/* Load the registration file. */
@@ -51,7 +51,7 @@ if (isset($_POST['action'])) {
 		} elseif ($rb_agency_option_profilenaming == 1) { 
 			$ProfileContactDisplay = $ProfileContactNameFirst . " ". substr($ProfileContactNameLast, 0, 1);
 		} elseif ($rb_agency_option_profilenaming == 2) { 
-			$error .= "<b><i>". __(LabelSingular ." must have a display name identified", rb_agency_interact_TEXTDOMAIN) . ".</i></b><br>";
+			$error .= "<b><i>". __(LabelSingular ." must have a display name identified", RBAGENCY_interact_TEXTDOMAIN) . ".</i></b><br>";
 			$have_error = true;
 		} elseif ($rb_agency_option_profilenaming == 3) { // by firstname
 			$ProfileContactDisplay = "ID ". $ProfileID;
@@ -96,7 +96,7 @@ if (isset($_POST['action'])) {
 	// Error checking
 	$have_error = false;
 	if(trim($ProfileContactNameFirst) == ""){
-		$error .= "<b><i>".__("Name is required.", rb_agency_interact_TEXTDOMAIN) ."</i></b><br>";
+		$error .= "<b><i>".__("Name is required.", RBAGENCY_interact_TEXTDOMAIN) ."</i></b><br>";
 		$have_error = true;
 	}
 	
@@ -106,7 +106,7 @@ if (isset($_POST['action'])) {
 			wp_update_user( array( 'ID' => $current_user->ID, 'user_pass' => esc_attr( $ProfilePassword ) ) );
 		} else {
 			$have_error = true;
-			$error .= __("The passwords you entered do not match.  Your password was not updated.", rb_agency_interact_TEXTDOMAIN);
+			$error .= __("The passwords you entered do not match.  Your password was not updated.", RBAGENCY_interact_TEXTDOMAIN);
 		}
 	}
 	
@@ -250,7 +250,7 @@ if (isset($_POST['action'])) {
 				$updated = $wpdb->query($update);
 			//}			
 			
-			$alerts = "<div id=\"message\" class=\"updated\"><p>". __("New Profile added successfully", rb_agency_interact_TEXTDOMAIN) ."!</p></div>"; 
+			$alerts = "<div id=\"message\" class=\"updated\"><p>". __("New Profile added successfully", RBAGENCY_interact_TEXTDOMAIN) ."!</p></div>"; 
 					
 			/* Redirect so the page will show updated info. */
 			if ( !$error ) {
@@ -259,7 +259,7 @@ if (isset($_POST['action'])) {
 			}
 		} else {
 			
-       	$alerts = "<div id=\"message\" class=\"error\"><p>". __("Error creating record, please ensure you have filled out all required fields.", rb_agency_interact_TEXTDOMAIN) ."<br />". $error ."</p></div>"; 
+       	$alerts = "<div id=\"message\" class=\"error\"><p>". __("Error creating record, please ensure you have filled out all required fields.", RBAGENCY_interact_TEXTDOMAIN) ."<br />". $error ."</p></div>"; 
 		}
 	
 	
@@ -329,10 +329,10 @@ if (isset($_POST['action'])) {
 				}
 			
 
-				$alerts = "<div id=\"message\" class=\"updated\"><p>". __("Profile updated successfully", rb_agency_interact_TEXTDOMAIN) ."!</a></p></div>";
+				$alerts = "<div id=\"message\" class=\"updated\"><p>". __("Profile updated successfully", RBAGENCY_interact_TEXTDOMAIN) ."!</a></p></div>";
 				wp_redirect( $rb_agency_interact_WPURL ."/profile-member/manage/" );
 			} else {
-				$alerts = "<div id=\"message\" class=\"error\"><p>". __("Error updating record, please ensure you have filled out all required fields.", rb_agency_interact_TEXTDOMAIN) ."<br />". $error ."</p></div>"; 
+				$alerts = "<div id=\"message\" class=\"error\"><p>". __("Error updating record, please ensure you have filled out all required fields.", RBAGENCY_interact_TEXTDOMAIN) ."<br />". $error ."</p></div>"; 
 			}
 			
 	}
@@ -405,7 +405,7 @@ if (is_user_logged_in()) {
 				// Users CAN register themselves
 				
 				// No Record Exists, register them
-				echo "<p>". __("Records show you are not currently linked to a model or agency profile.  Lets setup your profile now!", rb_agency_interact_TEXTDOMAIN) ."</p>";
+				echo "<p>". __("Records show you are not currently linked to a model or agency profile.  Lets setup your profile now!", RBAGENCY_interact_TEXTDOMAIN) ."</p>";
 				
 				// Register Profile
 				include("include-profileregister.php"); 	
@@ -413,7 +413,7 @@ if (is_user_logged_in()) {
 				
 			  } else {
 				// Cant register
-				echo "<strong>". __("Self registration is not permitted.", rb_agency_interact_TEXTDOMAIN) ."</strong>";
+				echo "<strong>". __("Self registration is not permitted.", RBAGENCY_interact_TEXTDOMAIN) ."</strong>";
 			  }
 				
 			}

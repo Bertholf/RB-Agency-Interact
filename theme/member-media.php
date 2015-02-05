@@ -82,7 +82,7 @@ if (isset($_POST['action'])) {
 										// Add to database
 									$results = $wpdb->query("INSERT INTO " . table_agency_profile_media . " (ProfileID, ProfileMediaType, ProfileMediaTitle, ProfileMediaURL) VALUES ('". $ProfileID ."','". $uploadMediaType ."','". $safeProfileMediaFilename ."','". $safeProfileMediaFilename ."')");
 							    }else{
-									$error .= "<b><i>".__("Please upload an image file only", rb_agency_interact_TEXTDOMAIN)."</i></b><br />";
+									$error .= "<b><i>".__("Please upload an image file only", RBAGENCY_interact_TEXTDOMAIN)."</i></b><br />";
 							        $have_error = true;
 								}
 							}
@@ -93,7 +93,7 @@ if (isset($_POST['action'])) {
 									$results = $wpdb->query("INSERT INTO " . table_agency_profile_media . " (ProfileID, ProfileMediaType, ProfileMediaTitle, ProfileMediaURL) VALUES ('". $ProfileID ."','". $uploadMediaType ."','". $safeProfileMediaFilename ."','". $safeProfileMediaFilename ."')");
 				                 	move_uploaded_file($_FILES['profileMedia'. $i]['tmp_name'], RBAGENCY_UPLOADPATH . $ProfileGallery ."/".$safeProfileMediaFilename);
 								}else{
-									$error .= "<b><i>".__("Please upload a mp3 file only", rb_agency_interact_TEXTDOMAIN) ."</i></b><br />";
+									$error .= "<b><i>".__("Please upload a mp3 file only", RBAGENCY_interact_TEXTDOMAIN) ."</i></b><br />";
 									$have_error = true;
 								}
 							}
@@ -104,7 +104,7 @@ if (isset($_POST['action'])) {
 								  	$results = $wpdb->query("INSERT INTO " . table_agency_profile_media . " (ProfileID, ProfileMediaType, ProfileMediaTitle, ProfileMediaURL) VALUES ('". $ProfileID ."','". $uploadMediaType ."','". $safeProfileMediaFilename ."','". $safeProfileMediaFilename ."')");
 				                  	move_uploaded_file($_FILES['profileMedia'. $i]['tmp_name'], RBAGENCY_UPLOADPATH . $ProfileGallery ."/".$safeProfileMediaFilename);
 								}else{
-								   	$error .= "<b><i>".__("Please upload PDF/MSword/RTF files only", rb_agency_interact_TEXTDOMAIN) ."</i></b><br />";
+								   	$error .= "<b><i>".__("Please upload PDF/MSword/RTF files only", RBAGENCY_interact_TEXTDOMAIN) ."</i></b><br />";
 							        $have_error = true;	
 								}
 							}
@@ -115,7 +115,7 @@ if (isset($_POST['action'])) {
 									$results = $wpdb->query("INSERT INTO " . table_agency_profile_media . " (ProfileID, ProfileMediaType, ProfileMediaTitle, ProfileMediaURL) VALUES ('". $ProfileID ."','". $uploadMediaType ."','". $safeProfileMediaFilename ."','". $safeProfileMediaFilename ."')");
 				                  	move_uploaded_file($_FILES['profileMedia'. $i]['tmp_name'], RBAGENCY_UPLOADPATH . $ProfileGallery ."/".$safeProfileMediaFilename);
 								}else{
-								   	$error .= "<b><i>".__("Please upload PDF/MSWord/RTF/Image files only", rb_agency_interact_TEXTDOMAIN) ."</i></b><br />";
+								   	$error .= "<b><i>".__("Please upload PDF/MSWord/RTF/Image files only", RBAGENCY_interact_TEXTDOMAIN) ."</i></b><br />";
 							        $have_error = true;	
 								}
 							}
@@ -126,7 +126,7 @@ if (isset($_POST['action'])) {
 								  $results = $wpdb->query("INSERT INTO " . table_agency_profile_media . " (ProfileID, ProfileMediaType, ProfileMediaTitle, ProfileMediaURL) VALUES ('". $ProfileID ."','". $uploadMediaType ."','". $safeProfileMediaFilename ."','". $safeProfileMediaFilename ."')");
 				                  move_uploaded_file($_FILES['profileMedia'. $i]['tmp_name'], RBAGENCY_UPLOADPATH . $ProfileGallery ."/".$safeProfileMediaFilename);
 								}else{
-								   	$error .= "<b><i>".__("Please upload jpeg or png files only", rb_agency_interact_TEXTDOMAIN) ."</i></b><br />";
+								   	$error .= "<b><i>".__("Please upload jpeg or png files only", RBAGENCY_interact_TEXTDOMAIN) ."</i></b><br />";
 									$have_error = true;	
 								}
 							}// Custom Media Categories
@@ -164,7 +164,7 @@ if (isset($_POST['action'])) {
 								  $results = $wpdb->query("INSERT INTO " . table_agency_profile_media . " (ProfileID, ProfileMediaType, ProfileMediaTitle, ProfileMediaURL) VALUES ('". $ProfileID ."','". $uploadMediaType ."','". $safeProfileMediaFilename ."','". $safeProfileMediaFilename ."')");
 				                 		 move_uploaded_file($_FILES['profileMedia'. $i]['tmp_name'], RBAGENCY_UPLOADPATH . $ProfileGallery ."/".$safeProfileMediaFilename);
 								}else{
-								   	$error .= "<b><i>".__("Please upload jpeg or png files only", rb_agency_interact_TEXTDOMAIN) ."</i></b><br />";
+								   	$error .= "<b><i>".__("Please upload jpeg or png files only", RBAGENCY_interact_TEXTDOMAIN) ."</i></b><br />";
 									$have_error = true;	
 								}
 							}							
@@ -219,9 +219,9 @@ if (isset($_POST['action'])) {
 
 			/* --------------------------------------------------------- CLEAN THIS UP -------------- */
 			
-			$alerts = "<div id=\"message\" class=\"updated\"><p>". __("Profile updated successfully", rb_agency_interact_TEXTDOMAIN) ."!</a></p></div>";
+			$alerts = "<div id=\"message\" class=\"updated\"><p>". __("Profile updated successfully", RBAGENCY_interact_TEXTDOMAIN) ."!</a></p></div>";
 		} else {
-			$alerts = "<div id=\"message\" class=\"error\"><p>". __("Error updating record, please ensure you have filled out all required fields.", rb_agency_interact_TEXTDOMAIN) ."</p></div>"; 
+			$alerts = "<div id=\"message\" class=\"error\"><p>". __("Error updating record, please ensure you have filled out all required fields.", RBAGENCY_interact_TEXTDOMAIN) ."</p></div>"; 
 		}
 		
 		if ($have_error != true) {
@@ -291,7 +291,7 @@ if (is_user_logged_in()) {
 			} else {
 				
 				// No Record Exists, register them
-				echo "<p>".__("Records show you are not currently linked to a model or agency profile. ", rb_agency_interact_TEXTDOMAIN)."</p>";
+				echo "<p>".__("Records show you are not currently linked to a model or agency profile. ", RBAGENCY_interact_TEXTDOMAIN)."</p>";
 				
 			}
 			echo " </div>\n"; // .profile-manage-inner

@@ -16,7 +16,7 @@ if ( $_SERVER['REQUEST_METHOD'] == "POST" && !empty( $_POST['action'] ) && $_POS
     	wp_set_current_user($login->ID);  // populate
 	   	get_user_login_info();
 	}else{
-			$error .= __( $login->get_error_message(), rb_agency_interact_TEXTDOMAIN);
+			$error .= __( $login->get_error_message(), RBAGENCY_interact_TEXTDOMAIN);
 			$have_error = true;
 			
 		
@@ -97,8 +97,8 @@ add_filter('login_redirect', 'rb_agency_interact_login_redirect', 10, 3);
 
 			
 			echo "    <p class=\"alert\">\n";
-						printf( __('You have successfully logged in as <a href="%1$s" title="%2$s">%2$s</a>.', rb_agency_interact_TEXTDOMAIN), "/profile-member/", $login->display_name );
-			echo "		 <a href=\"". wp_logout_url( get_permalink() ) ."\" title=\"". __('Log out of this account', rb_agency_interact_TEXTDOMAIN) ."\">". __('Log out &raquo;', rb_agency_interact_TEXTDOMAIN) ."</a>\n";
+						printf( __('You have successfully logged in as <a href="%1$s" title="%2$s">%2$s</a>.', RBAGENCY_interact_TEXTDOMAIN), "/profile-member/", $login->display_name );
+			echo "		 <a href=\"". wp_logout_url( get_permalink() ) ."\" title=\"". __('Log out of this account', RBAGENCY_interact_TEXTDOMAIN) ."\">". __('Log out &raquo;', RBAGENCY_interact_TEXTDOMAIN) ."</a>\n";
 			echo "    </p><!-- .alert -->\n";
 			
 	

@@ -8,7 +8,7 @@ Author: Rob Bertholf
 Author URI: http://rob.bertholf.com/
 Version: 2.1
 */
-$rb_agency_interact_VERSION = "2.1"; 
+$RBAGENCY_interact_VERSION = "2.1"; 
 /*
 License: CF Commercial-to-GPL License
 Copyright 2007-2013 Rob Bertholf
@@ -39,7 +39,7 @@ See license.txt for full details.
  */
 
 	// Version
-	define("RBAGENCY_interact_VERSION", $rb_agency_interact_VERSION); // e.g. 1.0
+	define("RBAGENCY_interact_VERSION", $RBAGENCY_interact_VERSION); // e.g. 1.0
 	// Paths
 	define("RBAGENCY_interact_BASENAME", plugin_basename(__FILE__) );  // rb-agency/rb-agency.php
 	$rb_agency_interact_WPURL = get_bloginfo("wpurl"); // http://domain.com/wordpress
@@ -114,7 +114,7 @@ class RBAgencyInteract {
 			 */
 
 				// Identify Folder for PO files
-				load_plugin_textdomain( rb_agency_interact_TEXTDOMAIN, false, basename( dirname( __FILE__ ) ) . '/translation/' ); 
+				load_plugin_textdomain( RBAGENCY_interact_TEXTDOMAIN, false, basename( dirname( __FILE__ ) ) . '/translation/' ); 
 
 
 			/*
@@ -244,7 +244,7 @@ class RBAgencyInteract {
 			update_option('active_plugins', $current);
 			do_action('deactivate_' . $thepluginfile );
 
-			echo "<div style=\"padding:50px;font-weight:bold;\"><p>". __("Almost done...", rb_agency_interact_TEXTDOMAIN) ."</p><h1>". __("One More Step", rb_agency_interact_TEXTDOMAIN) ."</h1><a href=\"plugins.php?deactivate=true\">". __("Please click here to complete the uninstallation process", rb_agency_interact_TEXTDOMAIN) ."</a></h1></div>";
+			echo "<div style=\"padding:50px;font-weight:bold;\"><p>". __("Almost done...", RBAGENCY_interact_TEXTDOMAIN) ."</p><h1>". __("One More Step", RBAGENCY_interact_TEXTDOMAIN) ."</h1><a href=\"plugins.php?deactivate=true\">". __("Please click here to complete the uninstallation process", RBAGENCY_interact_TEXTDOMAIN) ."</a></h1></div>";
 			die;
 
 		}
@@ -258,11 +258,11 @@ class RBAgencyInteract {
 		public static function check_update_needed(){
 
 			// Hold the version in a seprate option
-			if(!get_option("rb_agency_interact_version")) {
-				update_option("rb_agency_interact_version", rb_agency_interact_VERSION);
+			if(!get_option("RBAGENCY_interact_VERSION")) {
+				update_option("RBAGENCY_interact_VERSION", RBAGENCY_interact_VERSION);
 			} else {
 				// Version Exists, but is it out of date?
-				if(get_option("rb_agency_interact_version") <> rb_agency_interact_VERSION){
+				if(get_option("RBAGENCY_interact_VERSION") <> RBAGENCY_interact_VERSION){
 					require_once(WP_PLUGIN_DIR . "/" . basename(dirname(__FILE__)) . "/upgrade.php");
 				} else {
 					// Namaste, version is number is correct
@@ -331,8 +331,8 @@ class RBAgencyInteract {
 			
 			// Setup
 			function rb_agency_interact_widget_loginactions() {
-				$widget_ops = array('classname' => 'rb_agency_interact_widget_profileaction', 'description' => __("Displays profile actions such as login and links to edit", rb_agency_interact_TEXTDOMAIN) );
-				$this->WP_Widget('rb_agency_interact_widget_profileaction', __("Agency Interact Login", rb_agency_interact_TEXTDOMAIN), $widget_ops);
+				$widget_ops = array('classname' => 'rb_agency_interact_widget_profileaction', 'description' => __("Displays profile actions such as login and links to edit", RBAGENCY_interact_TEXTDOMAIN) );
+				$this->WP_Widget('rb_agency_interact_widget_profileaction', __("Agency Interact Login", RBAGENCY_interact_TEXTDOMAIN), $widget_ops);
 			}
 
 			// What Displays
@@ -353,23 +353,23 @@ class RBAgencyInteract {
 						echo "	<div class=\"rbform\">\n";
 						echo "  	<form name=\"loginform\" id=\"rbform-login\" action=\"". network_site_url("/") ."profile-login/\" method=\"post\">\n";
 						echo "      	<div class=\"rbfield rbtext rbsingle\">\n";
-						echo "          	<label for=\"user-name\">". __("Username", rb_agency_interact_TEXTDOMAIN). "</label>";
+						echo "          	<label for=\"user-name\">". __("Username", RBAGENCY_interact_TEXTDOMAIN). "</label>";
 						echo "				<div><input type=\"text\" name=\"user-name\" value=\"". wp_specialchars( isset($_POST['user-name']) ?$_POST['user-name']:"", 1 ) ."\" id=\"user-name\" /></div>\n";
 						echo "          </div>\n";
 						echo "          <div class=\"rbfield rbpassrword rbsingle\">\n";
-						echo "             	<label for=\"password\">". __("Password", rb_agency_interact_TEXTDOMAIN). "</label>";
+						echo "             	<label for=\"password\">". __("Password", RBAGENCY_interact_TEXTDOMAIN). "</label>";
 						echo "				<div>";
 						echo "					<input type=\"password\" name=\"password\" value=\"\" id=\"password\" />";
-						echo "					<small class=\"rbfield-note\"><a href=\"". get_bloginfo('wpurl') ."/wp-login.php?action=lostpassword\">". __("forgot password", rb_agency_interact_TEXTDOMAIN). "?</a></small>\n";
+						echo "					<small class=\"rbfield-note\"><a href=\"". get_bloginfo('wpurl') ."/wp-login.php?action=lostpassword\">". __("forgot password", RBAGENCY_interact_TEXTDOMAIN). "?</a></small>\n";
 						echo "          	</div>\n";
 						echo "          </div>\n";
 						echo "          <div class=\"rbfield rbcheckbox rbsingle\">\n";
 						echo "          	<label></label>\n";
-						echo "              <div><label><input type=\"checkbox\" name=\"remember-me\" value=\"forever\" /> ". __("Keep me signed in", rb_agency_interact_TEXTDOMAIN). "</label></div>\n";
+						echo "              <div><label><input type=\"checkbox\" name=\"remember-me\" value=\"forever\" /> ". __("Keep me signed in", RBAGENCY_interact_TEXTDOMAIN). "</label></div>\n";
 						echo "          </div>\n";
 						echo "          <div class=\"rbfield rbsubmit rbsingle\">\n";
 						echo "         		<input type=\"hidden\" name=\"action\" value=\"log-in\" />\n";
-						echo "             	<input type=\"submit\" value=\"". __("Sign In", rb_agency_interact_TEXTDOMAIN). "\" />\n";
+						echo "             	<input type=\"submit\" value=\"". __("Sign In", RBAGENCY_interact_TEXTDOMAIN). "\" />\n";
 						echo "          </div>\n";
 						echo "  	</form>\n";
 						echo "	</div>\n";

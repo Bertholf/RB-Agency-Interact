@@ -112,34 +112,34 @@
 		$have_error = false;
 		if($rb_agencyinteract_option_useraccountcreation == 1){
 			if (empty($userdata['user_login'])) {
-				$error .= __("A username is required for registration.<br />", rb_agency_interact_TEXTDOMAIN);
+				$error .= __("A username is required for registration.<br />", RBAGENCY_interact_TEXTDOMAIN);
 				$have_error = true;
 			}
 			if ( username_exists($userdata['user_login'])) {
-				$error .= __("Sorry, that username already exists!<br />", rb_agency_interact_TEXTDOMAIN);
+				$error .= __("Sorry, that username already exists!<br />", RBAGENCY_interact_TEXTDOMAIN);
 				$have_error = true;
 			}
 		}
 		if ( !is_email($userdata['user_email'])) {
-			$error .= __("You must enter a valid email address.<br />", rb_agency_interact_TEXTDOMAIN);
+			$error .= __("You must enter a valid email address.<br />", RBAGENCY_interact_TEXTDOMAIN);
 			$have_error = true;
 		}
 		if ( email_exists($userdata['user_email'])) {
-			$error .= __("Sorry, that email address is already used!<br />", rb_agency_interact_TEXTDOMAIN);
+			$error .= __("Sorry, that email address is already used!<br />", RBAGENCY_interact_TEXTDOMAIN);
 			$have_error = true;
 		}
 		if ( empty($_POST['profile_agree'])) {
-			$error .= __("You must agree to the terms and conditions to register.<br />", rb_agency_interact_TEXTDOMAIN);
+			$error .= __("You must agree to the terms and conditions to register.<br />", RBAGENCY_interact_TEXTDOMAIN);
 			$have_error = true;
 		}
 		
 		if (empty($ProfileGender)) {
-			$error .= __("Gender is required .<br />", rb_agency_interact_TEXTDOMAIN);
+			$error .= __("Gender is required .<br />", RBAGENCY_interact_TEXTDOMAIN);
 			$have_error = true;
 		}
 
 		if (empty($_POST["ProfileType"])) {
-			$error .= __("Profile Type is required .<br />", rb_agency_interact_TEXTDOMAIN);
+			$error .= __("Profile Type is required .<br />", RBAGENCY_interact_TEXTDOMAIN);
 			$have_error = true;
 		}
 
@@ -156,7 +156,7 @@
 			} elseif ($rb_agency_option_profilenaming == 1) { 
 				$profile_contact_display = $first_name . " ". substr($last_name, 0, 1);
 			} elseif ($rb_agency_option_profilenaming == 2) { 
-				$error .= "<b><i>". __(LabelSingular ." must have a display name identified", rb_agency_interact_TEXTDOMAIN) . ".</i></b><br>";
+				$error .= "<b><i>". __(LabelSingular ." must have a display name identified", RBAGENCY_interact_TEXTDOMAIN) . ".</i></b><br>";
 				$have_error = true;
 			} elseif ($rb_agency_option_profilenaming == 3) { // by firstname
 				$profile_contact_display = "ID ". $new_user;
@@ -266,26 +266,26 @@
 	if ( is_user_logged_in() && !current_user_can( 'create_users' ) ) {
 
 	echo "    <p class=\"log-in-out rbalert\">\n";
-	echo "		". __("You are currently logged in as .", rb_agency_interact_TEXTDOMAIN) ." <a href=\"/profile-member/\" title=\"". $login->display_name ."\">". $login->display_name ."</a>\n";
-				//printf( __("You are logged in as <a href="%1$s" title="%2$s">%2$s</a>.  You don\'t need another account.', rb_agency_interact_TEXTDOMAIN), get_author_posts_url( $curauth->ID ), $user_identity );
-	echo "		 <a href=\"". wp_logout_url( get_permalink() ) ."\" title=\"". __("Log out of this account", rb_agency_interact_TEXTDOMAIN) ."\">". __("Log out", rb_agency_interact_TEXTDOMAIN) ." &raquo;</a>\n";
+	echo "		". __("You are currently logged in as .", RBAGENCY_interact_TEXTDOMAIN) ." <a href=\"/profile-member/\" title=\"". $login->display_name ."\">". $login->display_name ."</a>\n";
+				//printf( __("You are logged in as <a href="%1$s" title="%2$s">%2$s</a>.  You don\'t need another account.', RBAGENCY_interact_TEXTDOMAIN), get_author_posts_url( $curauth->ID ), $user_identity );
+	echo "		 <a href=\"". wp_logout_url( get_permalink() ) ."\" title=\"". __("Log out of this account", RBAGENCY_interact_TEXTDOMAIN) ."\">". __("Log out", RBAGENCY_interact_TEXTDOMAIN) ." &raquo;</a>\n";
 	echo "    </p><!-- .rbalert -->\n";
 
 	} elseif ( isset($new_user) ) {
 
 	echo "    <p class=\"rbalert\">\n";
 				if ( current_user_can( 'create_users' ) )
-					printf( __("A user account for %s has been created.", rb_agency_interact_TEXTDOMAIN), $user_login );
+					printf( __("A user account for %s has been created.", RBAGENCY_interact_TEXTDOMAIN), $user_login );
 				else 
-					printf( __("Thank you for registering, %s.", rb_agency_interact_TEXTDOMAIN), $user_login );
+					printf( __("Thank you for registering, %s.", RBAGENCY_interact_TEXTDOMAIN), $user_login );
 					echo "<br/>";
 					//if ($rb_agencyinteract_option_registerapproval == 1) { // automatically approve
-					printf( __("Please check your email address. That's where you'll receive your login password.<br/> (It might go into your spam folder)", rb_agency_interact_TEXTDOMAIN) );
+					printf( __("Please check your email address. That's where you'll receive your login password.<br/> (It might go into your spam folder)", RBAGENCY_interact_TEXTDOMAIN) );
 					//}else{ // manually approve
 					//	 if($profileactive == 3){
-					//		printf( __("Your account is pending for approval. We will send your login once account is approved.", rb_agency_interact_TEXTDOMAIN) );
+					//		printf( __("Your account is pending for approval. We will send your login once account is approved.", RBAGENCY_interact_TEXTDOMAIN) );
 					//	 }else{
-					//	 	printf( __("Please check your email address. That's where you'll receive your login password.<br/> (It might go into your spam folder)", rb_agency_interact_TEXTDOMAIN) );
+					//	 	printf( __("Please check your email address. That's where you'll receive your login password.<br/> (It might go into your spam folder)", RBAGENCY_interact_TEXTDOMAIN) );
 					//	 }
 						 
 					//}
@@ -300,11 +300,11 @@
 		if ( current_user_can("create_users") && $registration ) {
 
 	echo "    <p class=\"rbalert\">\n";
-	echo "      ". __("Users can register themselves or you can manually create users here.", rb_agency_interact_TEXTDOMAIN);
+	echo "      ". __("Users can register themselves or you can manually create users here.", RBAGENCY_interact_TEXTDOMAIN);
 	echo "    </p><!-- .alert -->\n";
 		} elseif ( current_user_can("create_users")) {
 	echo "    <p class=\"rbalert\">\n";
-	echo "      ". __("Users cannot currently register themselves, but you can manually create users here.", rb_agency_interact_TEXTDOMAIN);
+	echo "      ". __("Users cannot currently register themselves, but you can manually create users here.", RBAGENCY_interact_TEXTDOMAIN);
 	echo "    </p><!-- .alert -->\n";
 		}
 
@@ -314,36 +314,36 @@
 	echo "  	<h1 class=\"entry-title\">Join Our Team</h1>";
 	echo "  </header>";
 	echo "  <div id=\"member-register\" class=\"rbform\">";
-	echo "	<p class=\"rbform-description\">".__("To Join Our Team please complete the application below.", rb_agency_interact_TEXTDOMAIN)."</p>";
+	echo "	<p class=\"rbform-description\">".__("To Join Our Team please complete the application below.", RBAGENCY_interact_TEXTDOMAIN)."</p>";
 	echo "  <form method=\"post\" action=\"". $rb_agency_interact_WPURL ."/profile-register/talent\">\n";    				
 		echo "       <div id=\"profile-username\" class=\"rbfield rbtext rbsingle\">\n";
-		echo "       	<label for=\"profile_user_name\">". __("Username (required)", rb_agency_interact_TEXTDOMAIN) ."</label>\n";
+		echo "       	<label for=\"profile_user_name\">". __("Username (required)", RBAGENCY_interact_TEXTDOMAIN) ."</label>\n";
 		echo "       	<div><input class=\"text-input\" name=\"profile_user_name\" type=\"text\" id=\"profile_user_name\" value=\""; if ( $error ) echo esc_html( $_POST['profile_user_name'], 1 ); echo "\" /></div>\n";
 		echo "       </div><!-- #rofile-username -->\n";
 	if ($rb_agencyinteract_option_registerconfirm == 1 && $rb_agencyinteract_option_useraccountcreation == 1) {
 	
 		echo "       <div id=\"profile-password\" class=\"rbfield rbpassword rbsingle\">\n";
-		echo "       	<label for=\"profile_password\">". __("Password (required)", rb_agency_interact_TEXTDOMAIN) ."</label>\n";
+		echo "       	<label for=\"profile_password\">". __("Password (required)", RBAGENCY_interact_TEXTDOMAIN) ."</label>\n";
 		echo "       	<div><input class=\"text-input\" name=\"profile_password\" type=\"password\" id=\"profile_password\" value=\""; if ( $error ) echo esc_html( $_POST['profile_password'], 1 ); echo "\" /></div>\n";
 		echo "       </div><!-- #profile-password -->\n";
 	}
 	echo "       <div id=\"profile-first-name\" class=\"rbfield rbtext rbsingle\">\n";
-	echo "       	<label for=\"profile_first_name\">". __("First Name", rb_agency_interact_TEXTDOMAIN) ."</label>\n";
+	echo "       	<label for=\"profile_first_name\">". __("First Name", RBAGENCY_interact_TEXTDOMAIN) ."</label>\n";
 	echo "       	<div><input class=\"text-input\" name=\"profile_first_name\" type=\"text\" id=\"profile_first_name\" value=\""; if ( $error ) echo esc_html( $_POST['profile_first_name'], 1 ); echo "\" /></div>\n";
 	echo "       </div><!-- #profile-first-name -->\n";
 
 	echo "       <div id=\"profile-last-name\" class=\"rbfield rbtext rbsingle\">\n";
-	echo "       	<label for=\"profile_last_name\">". __("Last Name", rb_agency_interact_TEXTDOMAIN) ."</label>\n";
+	echo "       	<label for=\"profile_last_name\">". __("Last Name", RBAGENCY_interact_TEXTDOMAIN) ."</label>\n";
 	echo "       	<div><input class=\"text-input\" name=\"profile_last_name\" type=\"text\" id=\"profile_last_name\" value=\""; if ( $error ) echo esc_html( $_POST['profile_last_name'], 1 ); echo "\" /></div>\n";
 	echo "       </div><!-- #profile_last_name -->\n";
 
 	echo "       <div id=\"profile-email\" class=\"rbfield rbemail rbsingle\">\n";
-	echo "       	<label for=\"email\">". __("E-mail (required)", rb_agency_interact_TEXTDOMAIN) ."</label>\n";
+	echo "       	<label for=\"email\">". __("E-mail (required)", RBAGENCY_interact_TEXTDOMAIN) ."</label>\n";
 	echo "       	<div><input class=\"text-input\" name=\"profile_email\" type=\"text\" id=\"profile_email\" value=\""; if ( $error ) echo esc_html( $_POST['profile_email'], 1 ); echo "\" /></div>\n";
 	echo "       </div><!-- #profile-email -->\n";
 
 	echo "       <div id=\"profile-gender\" class=\"rbfield rbselect rbsingle\">\n";
-	echo "			<label for=\"profile_gender\">". __("Gender", rb_agency_interact_TEXTDOMAIN) ."</label>\n";
+	echo "			<label for=\"profile_gender\">". __("Gender", RBAGENCY_interact_TEXTDOMAIN) ."</label>\n";
 					$query= "SELECT GenderID, GenderTitle FROM " .  table_agency_data_gender . " GROUP BY GenderTitle ";
 	echo "			<div><select id='ProfileGender' name=\"ProfileGender\">";
 						$queryShowGender = $wpdb->get_results($query,ARRAY_A);
@@ -355,7 +355,7 @@
 	echo "	  </div><!-- #profile-gender -->\n";
 
 	echo "	<fieldset id=\"profile-gender\" class=\"rbfield rbcheckbox rbmulti\">\n";
-	echo "		<legend for=\"profile_type\">". __("Type of Profile", rb_agency_interact_TEXTDOMAIN) ."</legend>\n";
+	echo "		<legend for=\"profile_type\">". __("Type of Profile", RBAGENCY_interact_TEXTDOMAIN) ."</legend>\n";
 				$ProfileTypeArray = array();
 				$query3 = "SELECT * FROM " . table_agency_data_type . " ORDER BY DataTypeTitle";
 				$results3 = $wpdb->get_results($query3,ARRAY_A);
@@ -371,13 +371,13 @@
 	echo "      <div id=\"profile-agree\" class=\"rbfield rbtext rbsingle\">\n";
 					$profile_agree = get_the_author_meta("profile_agree", $current_user->ID );
 	echo "      	<label></label>\n";
-	echo "      	<div><input type=\"checkbox\" name=\"profile_agree\" value=\"yes\" /> ". sprintf(__("I agree to the %s terms of service", rb_agency_interact_TEXTDOMAIN), "<a href=\"".$rb_agency_option_model_toc ."\" target=\"_blank\">") ."</a></div>\n";
+	echo "      	<div><input type=\"checkbox\" name=\"profile_agree\" value=\"yes\" /> ". sprintf(__("I agree to the %s terms of service", RBAGENCY_interact_TEXTDOMAIN), "<a href=\"".$rb_agency_option_model_toc ."\" target=\"_blank\">") ."</a></div>\n";
 	echo "      </div><!-- #profile-agree -->\n";
  
 	echo "      <div id=\"profile-submit\" class=\"rbfield rbsubmit rbsingle\">\n";
 	echo "       	<input name=\"adduser\" type=\"submit\" id=\"addusersub\" class=\"submit button\" value='Register'/>";
 
-					// if ( current_user_can("create_users") ) {  _e("Add User", rb_agency_interact_TEXTDOMAIN); } else {  _e("Register", rb_agency_interact_TEXTDOMAIN); } echo "\" />\n";
+					// if ( current_user_can("create_users") ) {  _e("Add User", RBAGENCY_interact_TEXTDOMAIN); } else {  _e("Register", RBAGENCY_interact_TEXTDOMAIN); } echo "\" />\n";
 					wp_nonce_field("add-user");
 
 	echo "       	<input name=\"action\" type=\"hidden\" id=\"action\" value=\"adduser\" />\n";
@@ -389,7 +389,7 @@
 
 }
 	
-if(!$registration){ echo "<p class='alert'>".__("The administrator currently disabled the registration.", rb_agency_interact_TEXTDOMAIN)."<p>"; }
+if(!$registration){ echo "<p class='alert'>".__("The administrator currently disabled the registration.", RBAGENCY_interact_TEXTDOMAIN)."<p>"; }
 
 echo "  </div><!-- #content -->\n";
 echo "</div><!-- #container -->\n";

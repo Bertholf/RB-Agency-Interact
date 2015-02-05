@@ -49,7 +49,7 @@
 		echo "     <input type=\"hidden\" name=\"ProfileType\" value=\"". $ptype1 ."\" />\n";
 
 		echo "<div id=\"rb-field-classification\" class=\"". $styleclass ." rbtext rbsingle\">";
-		echo "	<label for=\"classification\">". __("Classification:", rb_agency_interact_TEXTDOMAIN) ."</label>";
+		echo "	<label for=\"classification\">". __("Classification:", RBAGENCY_interact_TEXTDOMAIN) ."</label>";
 		echo "	<div>".$profileType ."</div>";
 		echo "</div>";
 
@@ -150,7 +150,7 @@
 
 			echo "<div id=\"". $styleid ."\" class=\"". $styleclass ." rbtext rbsingle\">";
 			echo "<label for=\"".strtolower(trim($data3['ProfileCustomTitle']))."\">"
-			   . __( $data3['ProfileCustomTitle'].$measurements_label, rb_agency_interact_TEXTDOMAIN) 
+			   . __( $data3['ProfileCustomTitle'].$measurements_label, RBAGENCY_interact_TEXTDOMAIN) 
 			   ."</label>\n";
 			echo '<div><input type="text" name="ProfileCustomID'. $data3['ProfileCustomID'] 
 				 .'" value="'. retrieve_datavalue(isset($_REQUEST["ProfileCustomID". $data3['ProfileCustomID']])?$_REQUEST["ProfileCustomID". $data3['ProfileCustomID']]:"",
@@ -163,7 +163,7 @@
 
 			echo "<div id=\"". $styleid ."\" class=\"". $styleclass ." rbtext rbmulti\">";
 			echo "<label for=\"".strtolower(trim($data3['ProfileCustomTitle']))."\">"
-			   . __( $data3['ProfileCustomTitle'].$measurements_label, rb_agency_interact_TEXTDOMAIN) 
+			   . __( $data3['ProfileCustomTitle'].$measurements_label, RBAGENCY_interact_TEXTDOMAIN) 
 			   ."</label>\n";
 			echo "<div>";
 				$ProfileCustomOptions_String = str_replace(",",":",
@@ -208,7 +208,7 @@
 
 			echo "<div id=\"". $styleid ."\" class=\"". $styleclass ." rbselect rbsingle\">";
 			echo "<label for=\"".strtolower(trim($data3['ProfileCustomTitle']))."\">"
-			   . __( $data3['ProfileCustomTitle'].$measurements_label, rb_agency_interact_TEXTDOMAIN) 
+			   . __( $data3['ProfileCustomTitle'].$measurements_label, RBAGENCY_interact_TEXTDOMAIN) 
 			   ."</label>\n";
 		          
 				@list($option1,$option2) = @explode(":",$data3['ProfileCustomOptions']);	
@@ -257,7 +257,7 @@
 			} elseif ($ProfileCustomType == 4) {
 				echo "<div id=\"". $styleid ."\" class=\"". $styleclass ." rbtextarea rbsingle\">";
 				echo "<label for=\"".strtolower(trim($data3['ProfileCustomTitle']))."\">"
-			   . __( $data3['ProfileCustomTitle'].$measurements_label, rb_agency_interact_TEXTDOMAIN) 
+			   . __( $data3['ProfileCustomTitle'].$measurements_label, RBAGENCY_interact_TEXTDOMAIN) 
 			   ."</label>\n";
 				echo "<div><textarea name=\"ProfileCustomID". $data3['ProfileCustomID'] ."\">"
 					 . retrieve_datavalue(isset($_REQUEST["ProfileCustomID". $data3['ProfileCustomID']])?$_REQUEST["ProfileCustomID". $data3['ProfileCustomID']]:"",
@@ -266,7 +266,7 @@
 			} elseif ($ProfileCustomType == 5) {
 				echo "<div id=\"". $styleid ."\" class=\"". $styleclass ." rbcheckbox rbsingle\">";
 				echo "<label for=\"".strtolower(trim($data3['ProfileCustomTitle']))."\">"
-			   . __( $data3['ProfileCustomTitle'].$measurements_label, rb_agency_interact_TEXTDOMAIN) 
+			   . __( $data3['ProfileCustomTitle'].$measurements_label, RBAGENCY_interact_TEXTDOMAIN) 
 			   ."</label>\n";
 				$xplode =array(); 
 				$myquery = "SELECT ProfileCustomValue FROM " . table_agency_customfield_mux . " WHERE ProfileID=".$ProfileID." and ProfileCustomID=".$data3['ProfileCustomID']." ";
@@ -296,7 +296,7 @@
 				
 				echo "<fieldset id=\"". $styleid ."\" class=\"". $styleclass ." rbcheckbox rbsingle\">";
 				echo "<label for=\"".strtolower(trim($data3['ProfileCustomTitle']))."\">"
-			   . __( $data3['ProfileCustomTitle'].$measurements_label, rb_agency_interact_TEXTDOMAIN) 
+			   . __( $data3['ProfileCustomTitle'].$measurements_label, RBAGENCY_interact_TEXTDOMAIN) 
 			   ."</label>\n";
 			   echo "<div>";
 				$array_customOptions_values = explode("|",$data3['ProfileCustomOptions']);
@@ -321,7 +321,7 @@
 			} elseif ($ProfileCustomType == 10) { //Date
 				echo "<div id=\"". $styleid ."\" class=\"". $styleclass ." rbselect rbsingle\">";
 				echo "<label for=\"".strtolower(trim($data3['ProfileCustomTitle']))."\">"
-			   . __( $data3['ProfileCustomTitle'].$measurements_label, rb_agency_interact_TEXTDOMAIN) 
+			   . __( $data3['ProfileCustomTitle'].$measurements_label, RBAGENCY_interact_TEXTDOMAIN) 
 			   ."</label>\n";
 			   			echo "<div>";
 					
@@ -337,7 +337,7 @@
 			
 				echo "<div id=\"". $styleid ."\" class=\"". $styleclass ." rbselect rbsingle\">";
 				echo "<label for=\"".strtolower(trim($data3['ProfileCustomTitle']))."\">"
-			   . __( $data3['ProfileCustomTitle'].$measurements_label, rb_agency_interact_TEXTDOMAIN) 
+			   . __( $data3['ProfileCustomTitle'].$measurements_label, RBAGENCY_interact_TEXTDOMAIN) 
 			   ."</label>\n";
 				if($data3['ProfileCustomTitle']=="Height" AND $rb_agency_option_unittype==1){
 					echo "<div>";
@@ -378,12 +378,12 @@
 		}// End while
 
 		echo " <div id=\"rbfield-last-update\" class=\"". $styleclass ." rbtext rbsingle\">";
-		echo "		<label>". __("Last updated ", rb_agency_interact_TEXTDOMAIN)."</label>";
+		echo "		<label>". __("Last updated ", RBAGENCY_interact_TEXTDOMAIN)."</label>";
 		echo "		<div>". rb_agency_makeago(rb_agency_convertdatetime($ProfileDateUpdated), $rb_agency_option_locationtimezone) ."</div>\n";
 		echo "	</div>\n";
 		echo "	<div id=\"rbfield-submit\" class=\"". $styleclass ." rbsubmit rbsingle\">";
 		echo "		<input type=\"hidden\" name=\"action\" value=\"editRecord\" />\n";
-		echo "		<input type=\"submit\" name=\"submit\" value=\"". __("Save and Continue", rb_agency_interact_TEXTDOMAIN) ."\" class=\"button-primary\" />\n";
+		echo "		<input type=\"submit\" name=\"submit\" value=\"". __("Save and Continue", RBAGENCY_interact_TEXTDOMAIN) ."\" class=\"button-primary\" />\n";
 		echo "	</div>\n";
 		echo "</form>\n";
 		echo "</div>\n";

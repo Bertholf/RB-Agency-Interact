@@ -29,15 +29,15 @@ global $wpdb;
 	
 	echo "	<h3>". __("Contact Information", RBAGENCY_TEXTDOMAIN) ."</h3>\n";	
 	echo "	<div id=\"profile-firstname\" class=\"rbfield rbtext rbsingle\">\n";
-	echo "		<label>". __("First Name", rb_agency_interact_TEXTDOMAIN) ."</label>\n";
+	echo "		<label>". __("First Name", RBAGENCY_interact_TEXTDOMAIN) ."</label>\n";
 	echo "		<div><input type=\"text\" id=\"ProfileContactNameFirst\" name=\"ProfileContactNameFirst\" value=\"". $current_user->first_name ."\" /></div>\n";
 	echo "	</div>\n";
 	echo "	<div id=\"profile-lastname\" class=\"rbfield rbtext rbsingle\">\n";
-	echo "		<label>". __("Last Name", rb_agency_interact_TEXTDOMAIN) ."</label>\n";
+	echo "		<label>". __("Last Name", RBAGENCY_interact_TEXTDOMAIN) ."</label>\n";
 	echo "		<div><input type=\"text\" id=\"ProfileContactNameLast\" name=\"ProfileContactNameLast\" value=\"". $current_user->last_name ."\" /></div>\n";	
 	echo "	</div>\n";
 	echo "	<div id=\"profile-phone\" class=\"rbfield rbtext rbmulti rbblock\">\n";
-	echo "		<label>". __("Phone", rb_agency_interact_TEXTDOMAIN) ."</label>\n";
+	echo "		<label>". __("Phone", RBAGENCY_interact_TEXTDOMAIN) ."</label>\n";
 	echo "		<div>\n";
 	echo "			<div><label>Home:</label><div><input type=\"text\" id=\"ProfileContactPhoneHome\" name=\"ProfileContactPhoneHome\" value=\"". (isset($ProfileContactPhoneHome)?$ProfileContactPhoneHome:"") ."\" /></div></div>\n";
 	echo "			<div><label>Cell:</label><div><input type=\"text\" id=\"ProfileContactPhoneCell\" name=\"ProfileContactPhoneCell\" value=\"". (isset($ProfileContactPhoneCell)?$ProfileContactPhoneCell:"") ."\" /></div></div>\n";
@@ -45,15 +45,15 @@ global $wpdb;
 	echo "		</div>\n";
 	echo "	</div>\n";
 	echo "	<div id=\"profile-website\" class=\"rbfield rbtext rbsingle\">\n";
-	echo "		<label>". __("Website", rb_agency_interact_TEXTDOMAIN) ."</label>\n";
+	echo "		<label>". __("Website", RBAGENCY_interact_TEXTDOMAIN) ."</label>\n";
 	echo "		<div><input type=\"text\" id=\"ProfileContactWebsite\" name=\"ProfileContactWebsite\" value=\"". (isset($ProfileContactWebsite)? $ProfileContactWebsite:"") ."\" /></div>\n";
 	echo "	  </div>\n";
 
 	// Public Information
-	echo "	<h3>". __("Public Information", rb_agency_interact_TEXTDOMAIN) ."</h3>\n";
+	echo "	<h3>". __("Public Information", RBAGENCY_interact_TEXTDOMAIN) ."</h3>\n";
 	echo "	<p>The following information may appear in profile pages.</p>\n";
 	echo "	<div id=\"profile-birthdate\" class=\"rbfield rbselect rbmulti rbblock\">\n";
-	echo "		<label>". __("Birthdate", rb_agency_interact_TEXTDOMAIN) ."</label>\n";
+	echo "		<label>". __("Birthdate", RBAGENCY_interact_TEXTDOMAIN) ."</label>\n";
 	echo "		<div>\n";
 				  /* Month */ 
 	echo "		<div>\n";				  
@@ -88,8 +88,8 @@ global $wpdb;
 	echo "	  </div>\n";
 
 	// Private Information	
-	echo "	<h3>". __("Private Information", rb_agency_interact_TEXTDOMAIN) ."</h3>";
-	echo "	<p>". __("The following information will NOT appear in public areas and is for administrative use only.", rb_agency_interact_TEXTDOMAIN) ."</p>\n";
+	echo "	<h3>". __("Private Information", RBAGENCY_interact_TEXTDOMAIN) ."</h3>";
+	echo "	<p>". __("The following information will NOT appear in public areas and is for administrative use only.", RBAGENCY_interact_TEXTDOMAIN) ."</p>\n";
 
 	echo "	<div id=\"profile-country\" class=\"rbfield rbselect rbsingle\">\n";
 	echo "      <label>" . __("Country", RBAGENCY_TEXTDOMAIN) . "</label>\n";
@@ -128,15 +128,15 @@ global $wpdb;
 	echo "    </div>\n";
 
 	echo "	<div id=\"profile-street\" class=\"rbfield rbtext rbsingle\">\n";
-	echo "		<label>". __("Street", rb_agency_interact_TEXTDOMAIN) ."</label>\n";
+	echo "		<label>". __("Street", RBAGENCY_interact_TEXTDOMAIN) ."</label>\n";
 	echo "		<div><input type=\"text\" id=\"ProfileLocationStreet\" name=\"ProfileLocationStreet\" /></div>\n";
 	echo "	</div>\n";
 	echo "	<div id=\"profile-city\" class=\"rbfield rbtext rbsingle\">\n";
-	echo "		<label>". __("City", rb_agency_interact_TEXTDOMAIN) ."</label>\n";	
+	echo "		<label>". __("City", RBAGENCY_interact_TEXTDOMAIN) ."</label>\n";	
 	echo "		<div><input type=\"text\" id=\"ProfileLocationCity\" name=\"ProfileLocationCity\" /></div>\n";
 	echo "	</div>\n";
 	echo "	<div id=\"profile-zip\" class=\"rbfield rbtext rbsingle\">\n";
-	echo "		<label>". __("Zip", rb_agency_interact_TEXTDOMAIN) ."</label>\n";
+	echo "		<label>". __("Zip", RBAGENCY_interact_TEXTDOMAIN) ."</label>\n";
 	echo "		<div><input type=\"text\" id=\"ProfileLocationZip\" name=\"ProfileLocationZip\" /></div>\n";
 	echo "	</div>\n";
 
@@ -198,7 +198,7 @@ global $wpdb;
 	
 	  if ($rb_agencyinteract_option_registerallow  == 1) {
 		echo "	<div id=\"profile-username\" class=\"rbfield rbtext rbsingle\">\n";
-		echo "		<label>". __("Username", rb_agency_interact_TEXTDOMAIN) ."</label>\n";
+		echo "		<label>". __("Username", RBAGENCY_interact_TEXTDOMAIN) ."</label>\n";
 		echo "		<div>\n";
 		if(isset($current_user->user_login)){
 		echo "			<input type=\"text\" id=\"ProfileUsername\"  disabled=\"disabled\" value=\"".$current_user->user_login."\" />\n";
@@ -212,14 +212,14 @@ global $wpdb;
 	 }
 	
 	echo "	<div id=\"profile-password\" class=\"rbfield rbpassword rbsingle\">\n";
-	echo "		<label>". __("Password", rb_agency_interact_TEXTDOMAIN) ."</label>\n";
+	echo "		<label>". __("Password", RBAGENCY_interact_TEXTDOMAIN) ."</label>\n";
 	echo "		<div>\n";
 	echo "			<input type=\"password\" id=\"ProfilePassword\" name=\"ProfilePassword\" />\n";
 	echo "			<small class=\"rbfield-note\">Leave blank to keep same password</small>";
 	echo "		</div>\n";
 	echo "	</div>\n";
 	echo "	<div id=\"profile-password\" class=\"rbfield rbtext rbsingle\">\n";
-	echo "		<label>". __("Password", rb_agency_interact_TEXTDOMAIN) ."</label>\n";
+	echo "		<label>". __("Password", RBAGENCY_interact_TEXTDOMAIN) ."</label>\n";
 	echo "		<div>\n";
 	echo "			<input type=\"password\" id=\"ProfilePasswordConfirm\" name=\"ProfilePasswordConfirm\" />\n";
 	echo "			<small class=\"rbfield-note\">Retype to Confirm</small>";	
@@ -227,7 +227,7 @@ global $wpdb;
 	echo "	</div>\n";
 	echo "	<div id=\"profile-submit\" class=\"rbfield rbsubmit rbsingle\">\n";
 	echo "     <input type=\"hidden\" name=\"action\" value=\"addRecord\" />\n";
-	echo "     <input type=\"submit\" name=\"submit\" value=\"". __("Save and Continue", rb_agency_interact_TEXTDOMAIN) ."\" class=\"button-primary\" />\n";
+	echo "     <input type=\"submit\" name=\"submit\" value=\"". __("Save and Continue", RBAGENCY_interact_TEXTDOMAIN) ."\" class=\"button-primary\" />\n";
 	echo "	</div>\n";
 	echo "</form>\n";
 	echo "</div>\n";
