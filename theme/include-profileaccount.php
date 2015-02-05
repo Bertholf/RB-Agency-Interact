@@ -84,7 +84,7 @@
 		}        
 
 
-		$query= "SELECT DataTypeID, DataTypeTitle FROM " .  table_agency_data_type . " WHERE DataTypeID IN(".$ProfileCustomType  .") GROUP BY DataTypeTitle ";
+		$query= "SELECT DataTypeID, DataTypeTitle FROM " .  table_agency_data_type . " WHERE DataTypeID IN(".(!empty($ProfileCustomType)?$ProfileCustomType:"''")  .") GROUP BY DataTypeTitle ";
 		$queryShowDataType = $wpdb->get_results($query,ARRAY_A);
 		$registered_as = array();
 		foreach($queryShowDataType as $dataShowDataType){															
@@ -294,7 +294,8 @@
 			$styleid = 'rbfield-'. str_replace(' ', '-', strtolower(trim($data3['ProfileCustomTitle'])));
 
 			$styleclass = 'rbfield';
-			if ( isset( gender_filter($data3['ProfileCustomShowGender']) ) ) {
+			$gender_filter = gender_filter($data3['ProfileCustomShowGender']);
+			if ( isset( $gender_filter ) ) {
 				$styleclass = $styleclass .' '. gender_filter($data3['ProfileCustomShowGender']);
 			}
 

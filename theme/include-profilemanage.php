@@ -142,7 +142,8 @@
 			$styleid = 'rbfield-'. str_replace(' ', '-', strtolower(trim($data3['ProfileCustomTitle'])));
 
 			$styleclass = 'rbfield';
-			if ( isset( gender_filter($data3['ProfileCustomShowGender']) ) ) {
+			$gender_filter = gender_filter($data3['ProfileCustomShowGender']);
+			if ( isset( $gender_filter ) ) {
 				$styleclass = $styleclass .' '. gender_filter($data3['ProfileCustomShowGender']);
 			}
 
