@@ -113,7 +113,7 @@ if (is_user_logged_in()) {
 
 		echo "<div class=\"event\">\n";
 		echo "<h3>You have successfully logged in!</h3>\n";
-		echo "You may now access the profile data.  You may now return to <strong><a href=\"". rb_agency_PROFILEDIR ."". $ProfileGallery ."\">". $ProfileContactDisplay ."'s</strong></a> profile.\n";
+		echo "You may now access the profile data.  You may now return to <strong><a href=\"". RBAGENCY_PROFILEDIR ."". $ProfileGallery ."\">". $ProfileContactDisplay ."'s</strong></a> profile.\n";
 		echo "</div>\n";
 		$_SESSION['ProfileLastViewed'] = "";
 	}
