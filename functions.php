@@ -94,11 +94,12 @@
 		}
 
 	// Remember to flush_rules() when adding rules
-	add_filter('init','rb_agency_interact_flushrules');
+	// Todo: Remove lines below. Causes permalink incompatibility with other plugins such as woocommerce
+	/*add_filter('init','rb_agency_interact_flushrules');
 		function rb_agency_interact_flushRules() {
 			global $wp_rewrite;
 			$wp_rewrite->flush_rules();
-		}
+		}*/
     
    
     
