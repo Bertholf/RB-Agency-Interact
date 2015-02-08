@@ -117,7 +117,7 @@
 							if($ProfileMediaType == "SoundCloud"){
 								echo "<div id=\"message\" class=\"updated\"><p>Successfully removed the Soundcloud link.</p></div>";
 							}else{
-								if (!unlink($dirURL ."/". $ProfileMediaURL)) {
+								if (!@unlink($dirURL ."/". $ProfileMediaURL)) {
 								  echo ("<div id=\"message\" class=\"error\"><p>". __("Error removing", RBAGENCY_interact_TEXTDOMAIN) ." <strong>". $ProfileMediaURL ."</strong>. ". __("Please try again", RBAGENCY_interact_TEXTDOMAIN) .".</p></div>");
 								} else {
 								  echo ("<div id=\"message\" class=\"updated\"><p>File <strong>'. $ProfileMediaURL .'</strong> ". __("successfully removed", RBAGENCY_interact_TEXTDOMAIN) .".</p></div>");
