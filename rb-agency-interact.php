@@ -438,7 +438,10 @@ class RBAgencyInteract {
 	add_shortcode("agency_register","rb_agency_interact_shortcode_agencyregister");
 		function rb_agency_interact_shortcode_agencyregister($atts, $content = null){
 			ob_start();
-			wp_register_form($atts);
+			$shortcode_register = true;
+			//wp_register_form($atts);
+			require_once(WP_PLUGIN_DIR . "/" . basename(dirname(__FILE__)) . "/theme/member-register.php");
+
 			$output_string=ob_get_contents();
 			ob_end_clean();
 			return $output_string;
@@ -447,7 +450,10 @@ class RBAgencyInteract {
 	add_shortcode("profile_register","rb_agency_interact_shortcode_profileregister");
 		function rb_agency_interact_shortcode_profileregister($atts, $content = null){
 			ob_start();
-			wp_register_form($atts);
+			$shortcode_register = true;
+			//wp_register_form($atts);
+			require_once(WP_PLUGIN_DIR . "/" . basename(dirname(__FILE__)) . "/theme/client-register.php");
+
 			$output_string=ob_get_contents();
 			ob_end_clean();
 			return $output_string;

@@ -255,8 +255,9 @@
 // Prepare Page
 
 	// Call Header
-	echo $rb_header = RBAgency_Common::rb_header();
-
+	if(!$shortcode_register){
+		echo $rb_header = RBAgency_Common::rb_header();
+	}
 	echo "<div id=\"primary\" class=\"".$column_class." column rb-agency-interact rb-agency-interact-register\">\n";
 	echo "  <div id=\"content member-register\">\n";
    
@@ -402,5 +403,7 @@ echo "</div><!-- #container -->\n";
 	}
 	
 // Call Footer
-echo $rb_footer = RBAgency_Common::rb_footer();
+	if(!$shortcode_register){
+		echo $rb_footer = RBAgency_Common::rb_footer();
+	}
 ?>
