@@ -9,14 +9,14 @@ global $wpdb;
 		if(strpos($ptype, ",") > -1){
 			$ptyp = explode(",",$ptype);
 			foreach($ptyp as $p){
-				$ptype_arr[] = str_replace(" ","_",retrieve_title($p));	 		
+				$ptype_arr[] = str_replace(" ","_",retrieve_title($p));
 			}
 			$ptype = array();
 			$ptype = $ptype_arr;
 		} else {
 				$ptype = str_replace(" ","_",retrieve_title($ptype));
 		}
-	}     
+	}
 
 	$ProfileGender = get_user_meta($current_user->ID, "rb_agency_interact_pgender", true);
 	echo '<input name="ProfileGender" type="hidden" value="'.$ProfileGender.'">'; 
@@ -195,22 +195,21 @@ global $wpdb;
 	$rb_agency_interact_options_arr = get_option('rb_agencyinteract_options');
 	$rb_agencyinteract_option_registerallow = (int)$rb_agency_interact_options_arr['rb_agencyinteract_option_registerallow'];
 
-	
-	  if ($rb_agencyinteract_option_registerallow  == 1) {
-		echo "	<div id=\"profile-username\" class=\"rbfield rbtext rbsingle\">\n";
-		echo "		<label>". __("Username", RBAGENCY_interact_TEXTDOMAIN) ."</label>\n";
-		echo "		<div>\n";
-		if(isset($current_user->user_login)){
-		echo "			<input type=\"text\" id=\"ProfileUsername\"  disabled=\"disabled\" value=\"".$current_user->user_login."\" />\n";
-		echo "          <input type=\"hidden\" name=\"ProfileUsername\" value=\"".$current_user->user_login."\"  />";
-		} else {
-		echo "			<input type=\"text\" id=\"ProfileUsername\"  name=\"ProfileUsername\" value=\"\" />\n";	
-		}
-		echo "			<small class=\"rbfield-note\">Cannot be changed</small>";
-		echo "		</div>\n";
-		echo "	  </div>\n";
+	if ($rb_agencyinteract_option_registerallow  == 1) {
+	echo "	<div id=\"profile-username\" class=\"rbfield rbtext rbsingle\">\n";
+	echo "		<label>". __("Username", RBAGENCY_interact_TEXTDOMAIN) ."</label>\n";
+	echo "		<div>\n";
+	if(isset($current_user->user_login)){
+	echo "			<input type=\"text\" id=\"ProfileUsername\"  disabled=\"disabled\" value=\"".$current_user->user_login."\" />\n";
+	echo "          <input type=\"hidden\" name=\"ProfileUsername\" value=\"".$current_user->user_login."\"  />";
+	} else {
+	echo "			<input type=\"text\" id=\"ProfileUsername\"  name=\"ProfileUsername\" value=\"\" />\n";	
+	}
+	echo "			<small class=\"rbfield-note\">Cannot be changed</small>";
+	echo "		</div>\n";
+	echo "	</div>\n";
 	 }
-	
+
 	echo "	<div id=\"profile-password\" class=\"rbfield rbpassword rbsingle\">\n";
 	echo "		<label>". __("Password", RBAGENCY_interact_TEXTDOMAIN) ."</label>\n";
 	echo "		<div>\n";
@@ -229,6 +228,7 @@ global $wpdb;
 	echo "     <input type=\"hidden\" name=\"action\" value=\"addRecord\" />\n";
 	echo "     <input type=\"submit\" name=\"submit\" value=\"". __("Save and Continue", RBAGENCY_interact_TEXTDOMAIN) ."\" class=\"button-primary\" />\n";
 	echo "	</div>\n";
+
 	echo "</form>\n";
-	echo "</div>\n";
+
 ?>

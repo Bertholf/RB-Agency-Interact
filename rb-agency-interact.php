@@ -51,6 +51,15 @@ See license.txt for full details.
 	define("RBAGENCY_interact_BASEREL", plugin_dir_path( __FILE__ ) );
 	
 
+	// RB Agency Plugin Path
+	if (!defined('RBAGENCY_INTERACT_PLUGIN_NAME')) // rb-agency-interact
+		define('RBAGENCY_INTERACT_PLUGIN_NAME', strtolower(trim(dirname(plugin_basename(__FILE__)), '/')));
+
+	if (!defined('RBAGENCY_INTERACT_PLUGIN_DIR')) // httdocs/domain/wp-content/plugins/rb-agency-interact/
+		define('RBAGENCY_INTERACT_PLUGIN_DIR', WP_PLUGIN_DIR . '/' . RBAGENCY_INTERACT_PLUGIN_NAME . '/');
+
+	if (!defined('RBAGENCY_INTERACT_PLUGIN_URL')) // http://localhost/wp-content/plugins/rb-agency-interact/
+		define('RBAGENCY_INTERACT_PLUGIN_URL', WP_PLUGIN_URL . '/' . RBAGENCY_INTERACT_PLUGIN_NAME . '/');
 
 // *************************************************************************************************** //
 
@@ -90,9 +99,11 @@ See license.txt for full details.
  * Call Function and Language
  */
 
-	require_once(WP_PLUGIN_DIR . "/" . basename(dirname(__FILE__)) . "/functions.php");
+	require_once(RBAGENCY_INTERACT_PLUGIN_DIR . "functions.php");
 
-
+	// Widgets & Shortcodes
+	include_once( RBAGENCY_INTERACT_PLUGIN_DIR .'lib/RBAgency-Interact-Extends.php');
+		add_action( 'init', array('RBAgency_Interact_Extends', 'init'), 0, 1 );
 
 // *************************************************************************************************** //
 
