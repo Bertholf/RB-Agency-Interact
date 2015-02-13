@@ -316,8 +316,11 @@
 	echo "  </header>";
 	echo "  <div id=\"member-register\" class=\"rbform\">";
 	echo "	<p class=\"rbform-description\">".__("To Join Our Team please complete the application below.", RBAGENCY_interact_TEXTDOMAIN)."</p>";
-	echo "  <form method=\"post\" action=\"". $rb_agency_interact_WPURL ."/profile-register/talent\">\n";    				
-		echo "       <div id=\"profile-username\" class=\"rbfield rbtext rbsingle\">\n";
+	if(!$shortcode_register){
+		echo "    <form method=\"post\" action=\"". $rb_agency_interact_WPURL ."/profile-register/talent\">\n";
+	}else{
+		echo "    <form method=\"post\" action=\"".get_page_link()."\">\n";
+	}	echo "       <div id=\"profile-username\" class=\"rbfield rbtext rbsingle\">\n";
 		echo "       	<label for=\"profile_user_name\">". __("Username (required)", RBAGENCY_interact_TEXTDOMAIN) ."</label>\n";
 		echo "       	<div><input class=\"text-input\" name=\"profile_user_name\" type=\"text\" id=\"profile_user_name\" value=\""; if ( $error ) echo esc_html( $_POST['profile_user_name'], 1 ); echo "\" /></div>\n";
 		echo "       </div><!-- #rofile-username -->\n";

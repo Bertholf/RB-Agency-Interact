@@ -272,8 +272,9 @@
 // Prepare Page
 
     // Call Header
-	echo $rb_header = RBAgency_Common::rb_header();
-
+    if(!$shortcode_register){
+		echo $rb_header = RBAgency_Common::rb_header();
+	}
 	echo "<div id=\"primary\" class=\"".$column_class." column rb-agency-interact rb-agency-interact-register\">\n";
 	echo "  <div id=\"content client-register\">\n";
 
@@ -330,7 +331,11 @@
 	echo "  </header>";
 	echo "  <div id=\"client-register\" class=\"rbform\">";
 	echo "	  <p class=\"rbform-description\">To Join Our Team please complete the application below.</p>";
-	echo "    <form method=\"post\" action=\"". $rb_agency_interact_WPURL ."/profile-register/client\">\n";
+	if(!$shortcode_register){
+		echo "    <form method=\"post\" action=\"". $rb_agency_interact_WPURL ."/profile-register/client\">\n";
+	}else{
+		echo "    <form method=\"post\" action=\"".get_page_link()."\">\n";
+	}
 	echo "       <div id=\"profile-username\" class=\"rbfield rbtext rbsingle\">\n";
 	echo "       	<label for=\"profile_user_name\">". __("Username (required)", RBAGENCY_interact_TEXTDOMAIN) ."</label>\n";
 	echo "       	<div><input class=\"text-input\" name=\"profile_user_name\" type=\"text\" id=\"profile_user_name\" value=\""; if ( $error ) echo esc_html( $_POST['profile_user_name'], 1 ); echo "\" /></div>\n";
@@ -461,5 +466,7 @@ echo "</div><!-- #container -->\n";
 	}
 	
 // Call Footer
-echo $rb_footer = RBAgency_Common::rb_footer();
+	if(!$shortcode_register){
+		echo $rb_footer = RBAgency_Common::rb_footer();
+	}
 ?>
