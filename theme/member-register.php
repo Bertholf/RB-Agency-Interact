@@ -20,6 +20,8 @@
 	} else {
 		$column_class = fullwidth_class();
 	}
+
+	$rb_agency_uri_profiletype = get_query_var("typeofprofile");
    
     // Profile Naming
   	$rb_agency_option_profilenaming 		= (int)$rb_agency_options_arr['rb_agency_option_profilenaming'];
@@ -367,7 +369,17 @@
 	echo "		<div>";
 	            $ptype_arr = isset($_POST["ProfileType"]) && !empty($_POST["ProfileType"])?$_POST["ProfileType"]: array();
 				foreach($results3 as $data3) {
-					echo "<div><label><input type=\"checkbox\" ".(in_array($data3["DataTypeID"],$ptype_arr)?"checked='checked'":"")." name=\"ProfileType[]\" value=\"" . $data3['DataTypeID'] . "\" id=\"ProfileType[]\" /><span> " . $data3['DataTypeTitle'] . "</span></label></div>";
+
+					$rb_agency_uri_profiletype = ucfirst($rb_agency_uri_profiletype);
+					$profiletypeid = $wpdb->get_var($wpdb->prepare("SELECT DataTypeID FROM " . table_agency_data_type . " WHERE DataTypeTitle = %s",$rb_agency_uri_profiletype));
+					  
+					if(!empty($rb_agency_uri_profiletype) && isset($profiletypeid)){
+						if($profiletypeid ==  $data3["DataTypeID"]){
+								echo "<div><label><input type=\"checkbox\" disabled='disabled' checked='checked' name=\"ProfileType[]\" value=\"" . $data3['DataTypeID'] . "\" id=\"ProfileType[]\" /><span> " . $data3['DataTypeTitle'] . "</span></label></div>";
+						}
+					}else{
+						echo "<div><label><input type=\"checkbox\" ".(in_array($data3["DataTypeID"],$ptype_arr)?"checked='checked'":"")." name=\"ProfileType[]\" value=\"" . $data3['DataTypeID'] . "\" id=\"ProfileType[]\" /><span> " . $data3['DataTypeTitle'] . "</span></label></div>";
+					}
 				}
 	echo "		</div>";
 	echo "</fieldset><!-- #profile-gender -->\n";

@@ -82,7 +82,7 @@
 					return dirname(__FILE__) . '/theme/member-login.php'; 
 				} elseif (get_query_var( 'typeofprofile' ) == "client") {
 					return dirname(__FILE__) . '/theme/client-register.php'; 
-				} elseif (get_query_var( 'typeofprofile' ) == "talent") {
+				} elseif (get_query_var( 'type' ) == "profileregister") {
 					return dirname(__FILE__) . '/theme/member-register.php'; 
 				} elseif (get_query_var( 'type' ) == "dashboard") {
 					return dirname(__FILE__) . '/theme/view-dashboard.php';
