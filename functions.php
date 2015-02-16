@@ -44,8 +44,6 @@
 			$newrules['profile-member'] = 'index.php?type=profileoverview&rbgroup=models';
 			$newrules['profile-register/(.*)$'] = 'index.php?type=profileregister&typeofprofile=$matches[1]&rbgroup=models';
 			$newrules['profile-register'] = 'index.php?type=profileregister&rbgroup=models';
-			// TODO: Add catch all for selecting profile type.  $newrules['profile-register'] = 'index.php?type=profileregister&rbgroup=models';
-
 			$newrules['profile-login'] = 'index.php?type=profilelogin&rbgroup=models';
 			return $newrules + $rules;
 		}
