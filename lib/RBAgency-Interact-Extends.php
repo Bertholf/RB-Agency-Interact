@@ -44,9 +44,9 @@ class RBAgency_Interact_Extends {
 			$shortcode_register = true;
 			
 			$rb_agency_options_arr = get_option('rb_agency_options');
-			if($mode == "client"){
+			/*if($mode == "client"){
 				include(RBAGENCY_INTERACT_PLUGIN_DIR ."theme/client-register.php");
-			}elseif($mode == "talent"){
+			}else*/if($mode == "talent"){
 				include(RBAGENCY_INTERACT_PLUGIN_DIR ."theme/member-register.php");
 			}elseif($mode == "casting" && class_exists("RBAgencyCasting")){
 				include(RBAGENCY_casting_PLUGIN_DIR."view/casting-register.php");
