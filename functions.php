@@ -139,7 +139,7 @@
 			$message .= sprintf(__('Username: %s'), $user_login) . "\r\n\r\n";  
 			$message .= sprintf(__('E-mail: %s'), $user_email) . "\r\n";  
 
-			@wp_mail(get_option('admin_email'), sprintf(__('[%s] New User Registration'), get_option('blogname')), $message);  
+			@wp_mail(get_option('admin_email'), sprintf(__('[%s] New User Registration'), get_option('blogname')), make_clickable($message));  
 
 			if ( empty($plaintext_pass) )  
 				return;  
@@ -172,7 +172,7 @@
 				$message .= sprintf(__('Username: %s'), $user_login) . "\r\n\r\n";  
 				$message .= sprintf(__('E-mail: %s'), $user_email) . "\r\n";  
 
-				@wp_mail(get_option('admin_email'), sprintf(__('[%s] New User Registration'), get_option('blogname')), $message);  
+				@wp_mail(get_option('admin_email'), sprintf(__('[%s] New User Registration'), get_option('blogname')), make_clickable($message));  
 
 				$message  = __('Hi there,') . "\r\n\r\n";  
 				$message .= sprintf(__("Thanks for joining %s! "), get_option('blogname')) . "\r\n\r\n"; 
@@ -183,7 +183,7 @@
 				$message .= get_option('home') ."\r\n"; 
 
 				$headers = 'From: '. get_option('blogname') .' <'. get_option('admin_email') .'>' . "\r\n";
-				wp_mail($user_email, sprintf(__('%s Registration Successful!  Account is pending for approval'), get_option('blogname')), $message, $headers);  
+				wp_mail($user_email, sprintf(__('%s Registration Successful!  Account is pending for approval'), get_option('blogname')), make_clickable($message), $headers);  
 
 		}
 	}
@@ -221,7 +221,7 @@
 					$message .= get_option('home') ."\r\n"; 
 
 					$headers = 'From: '. get_option('blogname') .' <'. get_option('admin_email') .'>' . "\r\n";
-					wp_mail($user_email, sprintf(__('%s Congratulations! Your account is approved.'), get_option('blogname')), $message, $headers);  
+					wp_mail($user_email, sprintf(__('%s Congratulations! Your account is approved.'), get_option('blogname')), make_clickable($message), $headers);  
 				}
 		}
 	}
