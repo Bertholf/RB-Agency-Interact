@@ -36,30 +36,34 @@
     $rb_agencyinteract_option_useraccountcreation = isset($rb_agency_interact_options_arr['rb_agencyinteract_option_useraccountcreation'])?(int)$rb_agency_interact_options_arr['rb_agencyinteract_option_useraccountcreation']:0;
 	/* Check if users can register. */
 	$registration = get_option( 'users_can_register' );
-
-	function parse_signed_request($signed_request, $secret) {
-		list($encoded_sig, $payload) = explode('.', $signed_request, 2); 
-		
-		// decode the data
-		$sig = base64_url_decode($encoded_sig);
-		$data = json_decode(base64_url_decode($payload), true);
-		
-		if (strtoupper($data['algorithm']) !== 'HMAC-SHA256') {
-			error_log('Unknown algorithm. Expected HMAC-SHA256');
-			return null;
-		}
-		
-		// check sig
-		$expected_sig = hash_hmac('sha256', $payload, $secret, $raw = true);
-		if ($sig !== $expected_sig) {
-			error_log('Bad Signed JSON signature!');
-			return null;
-		}			
-		return $data;
-	}
+     
+    if(!function_exists("parse_signed_request")){
+		function parse_signed_request($signed_request, $secret) {
+			list($encoded_sig, $payload) = explode('.', $signed_request, 2); 
 			
-	function base64_url_decode($input) {
-		return base64_decode(strtr($input, '-_', '+/'));
+			// decode the data
+			$sig = base64_url_decode($encoded_sig);
+			$data = json_decode(base64_url_decode($payload), true);
+			
+			if (strtoupper($data['algorithm']) !== 'HMAC-SHA256') {
+				error_log('Unknown algorithm. Expected HMAC-SHA256');
+				return null;
+			}
+			
+			// check sig
+			$expected_sig = hash_hmac('sha256', $payload, $secret, $raw = true);
+			if ($sig !== $expected_sig) {
+				error_log('Bad Signed JSON signature!');
+				return null;
+			}			
+			return $data;
+		}
+	}
+
+	if(!function_exists("base64_url_decode")){
+		function base64_url_decode($input) {
+			return base64_decode(strtr($input, '-_', '+/'));
+		}
 	}
 
 	/*

@@ -41,9 +41,18 @@ class RBAgency_Interact_Extends {
 				), $atts));
 
 			// Get Options
+			$shortcode_register = true;
+			
 			$rb_agency_options_arr = get_option('rb_agency_options');
-
-			include(RBAGENCY_INTERACT_PLUGIN_DIR ."theme/include-profileregister.php");
+			if($mode == "client"){
+				include(RBAGENCY_INTERACT_PLUGIN_DIR ."theme/client-register.php");
+			}elseif($mode == "talent"){
+				include(RBAGENCY_INTERACT_PLUGIN_DIR ."theme/member-register.php");
+			}elseif($mode == "casting" && class_exists("RBAgencyCasting")){
+				include(RBAGENCY_casting_PLUGIN_DIR."view/casting-register.php");
+			}else{
+				echo "Registration mode is not set.";
+			}
 
 			$output_string=ob_get_contents();;
 			ob_end_clean();
