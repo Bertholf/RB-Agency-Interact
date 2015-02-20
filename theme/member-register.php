@@ -319,7 +319,7 @@
 	echo "  <div id=\"member-register\" class=\"rbform\">";
 	echo "	<p class=\"rbform-description\">".__("To Join Our Team please complete the application below.", RBAGENCY_interact_TEXTDOMAIN)."</p>";
 	if(!$shortcode_register){
-		echo "    <form method=\"post\" action=\"". $rb_agency_interact_WPURL ."/profile-register/talent\">\n";
+		echo "    <form method=\"post\" action=\"". $rb_agency_interact_WPURL ."/profile-register/".$rb_agency_uri_profiletype."\">\n";
 	}else{
 		echo "    <form method=\"post\" action=\"".get_page_link()."\">\n";
 	}	echo "       <div id=\"profile-username\" class=\"rbfield rbtext rbsingle\">\n";
@@ -375,7 +375,7 @@
 					  
 					if(!empty($rb_agency_uri_profiletype) && isset($profiletypeid)){
 						if($profiletypeid ==  $data3["DataTypeID"]){
-								echo "<div><label><input type=\"checkbox\" disabled='disabled' checked='checked' name=\"ProfileType[]\" value=\"" . $data3['DataTypeID'] . "\" id=\"ProfileType[]\" /><span> " . $data3['DataTypeTitle'] . "</span></label></div>";
+								echo "<div><label><input type=\"checkbox\" checked='checked' name=\"ProfileType[]\" value=\"" . $data3['DataTypeID'] . "\" id=\"ProfileType[]\" /><span> " . $data3['DataTypeTitle'] . "</span></label></div>";
 						}
 					}else{
 						echo "<div><label><input type=\"checkbox\" ".(in_array($data3["DataTypeID"],$ptype_arr)?"checked='checked'":"")." name=\"ProfileType[]\" value=\"" . $data3['DataTypeID'] . "\" id=\"ProfileType[]\" /><span> " . $data3['DataTypeTitle'] . "</span></label></div>";
