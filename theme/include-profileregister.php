@@ -52,45 +52,95 @@ global $wpdb;
 	// Public Information
 	echo "	<h3>". __("Public Information", RBAGENCY_interact_TEXTDOMAIN) ."</h3>\n";
 	echo "	<p>The following information may appear in profile pages.</p>\n";
-	echo "	<div id=\"profile-birthdate\" class=\"rbfield rbselect rbmulti rbblock\">\n";
-	echo "		<label>". __("Birthdate", RBAGENCY_interact_TEXTDOMAIN) ."</label>\n";
-	echo "		<div>\n";
-				  /* Month */ 
-	echo "		<div>\n";				  
-				  $monthName = array(1=> "January", "February", "March","April", "May", "June", "July", "August","September", "October", "November", "December"); 
-	echo "		  <select name=\"ProfileDateBirth_Month\" id=\"ProfileDateBirth_Month\">\n";
-	echo "			<option value=\"\"> -- Select Month -- </option>\n";
-		for ($currentMonth = 1; $currentMonth <= 12; $currentMonth++ ) { 	
-			echo "			<option value=\"". $currentMonth ."\">". $monthName[$currentMonth] ."</option>\n";
-	}
-	echo "		  </select>\n";
-	echo "		</div>\n";	
-				  /* Day */ 
-	echo "		<div>\n";				  
-	echo "		  <select name=\"ProfileDateBirth_Day\" id=\"ProfileDateBirth_Day\">\n";
-	echo "			<option value=\"\"> -- Select Day -- </option>\n";
-		for ($currentDay = 1; $currentDay <= 31; $currentDay++ ) { 	
-			echo "			<option value=\"". $currentDay ."\">". $currentDay ."</option>\n";
-		}
-	echo "		  </select>\n";
-	echo "		</div>\n";
+	
+	/*
+	 * Get Public custom Fields Here
+	 *
+	 */
+			$ProfileInformation = "0"; // Private fields only
 
-				  /* Year */ 
-	echo "		<div>\n";
-	echo "		  <select name=\"ProfileDateBirth_Year\" id=\"ProfileDateBirth_Year\">\n";
-	echo "			<option value=\"\"> -- Select Year -- </option>\n";
-		for ($currentYear = 1940; $currentYear <= date("Y")+6; $currentYear++ ) { 	
-			echo "			<option value=\"". $currentYear ."\">". $currentYear ."</option>\n";
-	}
-	echo "		  </select>\n";
-	echo "		</div>\n";
-	echo "		</div>\n";
-	echo "	  </div>\n";
+			$query1 = "SELECT ProfileCustomID, ProfileCustomTitle, ProfileCustomType, ProfileCustomOptions, ProfileCustomOrder, ProfileCustomView, ProfileCustomShowGender, ProfileCustomShowProfile, ProfileCustomShowSearch, 
+							  ProfileCustomShowLogged, ProfileCustomShowAdmin,ProfileCustomShowRegistration FROM "
+					 . table_agency_customfields ." WHERE ProfileCustomView = ". $ProfileInformation ." ORDER BY ProfileCustomOrder ASC";
+			
+			$results1 = $wpdb->get_results($query1,ARRAY_A);
+			$count1 =  $wpdb->num_rows;
+			$pos = 0;
+			foreach($results1 as $data1) { 
+							   /*
+								* Get Profile Types to
+								* filter models from clients
+								*/
+								$permit_type = false;
+
+								$PID = $data1['ProfileCustomID'];
+
+								$get_types = "SELECT ProfileCustomTypes FROM ". table_agency_customfields_types .
+											" WHERE ProfileCustomID = " . $PID;
+
+								$result =  $wpdb->get_results($get_types,ARRAY_A);
+
+								foreach ( $result as $p ){
+										$types = $p['ProfileCustomTypes'];
+								}
+
+								$types = explode(",",$types); 
+
+								// check ptype if array
+								if(is_array($ptype)){
+									$result = array_diff($ptype, $types);
+									if(count($result) != count($ptype)){
+										$permit_type = true;
+									} 	
+								} else {
+									if(in_array($ptype,$types)){ $permit_type = true; }
+								}
+								
+				if ( ($data1["ProfileCustomShowGender"] == $ProfileGender) || ($data1["ProfileCustomShowGender"] == 0)   && $permit_type == true )  {
+
+					include("view-custom-fields.php");
+
+				}
+			}
+		
 
 	// Private Information	
 	echo "	<h3>". __("Private Information", RBAGENCY_interact_TEXTDOMAIN) ."</h3>";
 	echo "	<p>". __("The following information will NOT appear in public areas and is for administrative use only.", RBAGENCY_interact_TEXTDOMAIN) ."</p>\n";
+	echo "	<div id=\"profile-birthdate\" class=\"rbfield rbselect rbmulti rbblock\">\n";
+		echo "		<label>". __("Birthdate", RBAGENCY_interact_TEXTDOMAIN) ."</label>\n";
+		echo "		<div>\n";
+						  /* Month */ 
+			echo "		<div>\n";				  
+						  $monthName = array(1=> "January", "February", "March","April", "May", "June", "July", "August","September", "October", "November", "December"); 
+			echo "		  <select name=\"ProfileDateBirth_Month\" id=\"ProfileDateBirth_Month\">\n";
+			echo "			<option value=\"\"> -- Select Month -- </option>\n";
+				for ($currentMonth = 1; $currentMonth <= 12; $currentMonth++ ) { 	
+					echo "			<option value=\"". $currentMonth ."\">". $monthName[$currentMonth] ."</option>\n";
+			}
+			echo "		  </select>\n";
+			echo "		</div>\n";	
+						  /* Day */ 
+			echo "		<div>\n";				  
+			echo "		  <select name=\"ProfileDateBirth_Day\" id=\"ProfileDateBirth_Day\">\n";
+			echo "			<option value=\"\"> -- Select Day -- </option>\n";
+				for ($currentDay = 1; $currentDay <= 31; $currentDay++ ) { 	
+					echo "			<option value=\"". $currentDay ."\">". $currentDay ."</option>\n";
+				}
+			echo "		  </select>\n";
+			echo "		</div>\n";
 
+						  /* Year */ 
+			echo "		<div>\n";
+			echo "		  <select name=\"ProfileDateBirth_Year\" id=\"ProfileDateBirth_Year\">\n";
+			echo "			<option value=\"\"> -- Select Year -- </option>\n";
+				for ($currentYear = 1940; $currentYear <= date("Y")+6; $currentYear++ ) { 	
+					echo "			<option value=\"". $currentYear ."\">". $currentYear ."</option>\n";
+			}
+			echo "		  </select>\n";
+			echo "		</div>\n";
+		echo "		</div>\n";
+	echo "	  </div>\n";
 	echo "	<div id=\"profile-country\" class=\"rbfield rbselect rbsingle\">\n";
 	echo "      <label>" . __("Country", RBAGENCY_TEXTDOMAIN) . "</label>\n";
 	echo "      <div>\n";

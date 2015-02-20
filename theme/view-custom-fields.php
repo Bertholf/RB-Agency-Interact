@@ -51,9 +51,9 @@ if ($ProfileCustomType == 1) { // TEXT
 	echo "		<div>";
 	if(!empty($ProfileCustomOptions_Min_value) && !empty($ProfileCustomOptions_Max_value)){
 		    echo "<div><label for=\"ProfileCustomLabel_min\">". __("Min", RBAGENCY_TEXTDOMAIN) . "</label>\n";
-			echo "<div><input type=\"text\" name=\"ProfileCustomID". $data1['ProfileCustomID'] ."\" value=\"". $ProfileCustomOptions_Min_value ."\" /></div></div>\n";
+			echo "<div><input type=\"text\" name=\"ProfileCustomID". $data1['ProfileCustomID'] ."\" value=\"". $ProfileCustomOptions_Min_value ."\" /></div>\n";
 			echo "<div><label for=\"ProfileCustomLabel_min\" style=\"text-align:right;\">". __("Max", RBAGENCY_TEXTDOMAIN) . "</label>\n";
-			echo "<div><input type=\"text\" name=\"ProfileCustomID". $data1['ProfileCustomID'] ."\" value=\"". $ProfileCustomOptions_Max_value ."\" /></div></div>\n";
+			echo "<div><input type=\"text\" name=\"ProfileCustomID". $data1['ProfileCustomID'] ."\" value=\"". $ProfileCustomOptions_Max_value ."\" /></div>\n";
 		
 	} else {
 		    echo "<div><label for=\"ProfileCustomLabel_min\" style=\"text-align:right;\">". __("Min", RBAGENCY_TEXTDOMAIN) . "</label>\n";
@@ -148,8 +148,7 @@ if ($ProfileCustomType == 1) { // TEXT
 	echo "	<div id=\"rbfield-". $data1['ProfileCustomID'] ."\" class=\"rbfield rbtextarea rbsingle\">\n";
 	echo "		<label for=\"ProfileCustomID". $data1['ProfileCustomID'] ."\">".__($data1['ProfileCustomTitle'].$measurements_label, RBAGENCY_TEXTDOMAIN)."</label>\n";
 	echo "		<div>\n";
-	echo "		<div>";
-
+	
 	$array_customOptions_values = explode("|",$data1['ProfileCustomOptions']);
 
 	foreach($array_customOptions_values as $val){
@@ -193,6 +192,5 @@ if ($ProfileCustomType == 1) { // TEXT
 	echo "	<div id=\"rbfield-". $data1['ProfileCustomID'] ."\" class=\"rbfield rbtextarea rbsingle\">\n";
 	echo "		<label for=\"ProfileCustomID". $data1['ProfileCustomID'] ."\">".__($data1['ProfileCustomTitle'].$measurements_label, RBAGENCY_TEXTDOMAIN)."</label>\n";
 	echo "		<div><input type=\"text\" name=\"ProfileCustomID". $data1['ProfileCustomID'] ."\" value=\"". $ProfileCustomValue ."\" /></div>\n";
-	echo "		</div>";       
 	echo "	</div>";
 } ?>
