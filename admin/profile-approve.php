@@ -233,7 +233,7 @@ function rb_display_list() {
 		//Paginate
 		$items = $wpdb->num_rows;
 		if($items > 0) {
-			$p = new rb_agency_pagination;
+			$p = new RBAGENCY_Pagination;
 			$p->items($items);
 			$p->limit(50); // Limit entries per page
 			$p->target("admin.php?page=". (isset($_GET['page'])?$_GET['page']:"") .(isset($query)?$query:""));
