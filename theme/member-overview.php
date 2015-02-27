@@ -116,11 +116,11 @@ echo $rb_header = RBAgency_Common::rb_header();
 				echo "      <li><a href=\"".get_bloginfo('wpurl')."/logout/\">Log out</a></li>\n";
 				
 				echo "	</ul>\n";
-				if(function_exists('rb_agency_casting_menu')){
+				/*if(function_exists('rb_agency_casting_menu')){
 					echo "</hr>\n";
 					echo "<h3>Jobs and Auditions</h3>";
 
-				}
+				}*/
 				echo " </div>\n";
 			  	echo " </div>\n"; // .welcome
 			  	echo " </div>\n"; // .profile-manage-inner
