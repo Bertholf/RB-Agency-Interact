@@ -463,10 +463,11 @@
 					 if($selected == "selected"){
 						$check = "checked";	
 					 }
-					
+					if(isset($val) && $val !=""){
 					 echo "<div><label><input type=\"radio\" value=\"". $val."\" " . $check .
 						  " name=\"ProfileCustomID". $data3['ProfileCustomID'] ."[]\" /> ";
 					 echo "<span> ".$val."</span></label></div>";
+					}
 				}
 				echo "</div>";
 				echo "</fieldset>";
