@@ -42,7 +42,9 @@
 				}
 			$i++;
 		}
-				
+		
+		$styleclass = 'rbfield';
+			
 		echo "<div class=\"rbform\">";
 		echo "<form method=\"post\" enctype=\"multipart/form-data\" action=\"". get_bloginfo("wpurl") ."/profile-member/manage/\">\n";
 		echo "     <input type=\"hidden\" name=\"ProfileID\" value=\"". $ProfileID ."\" />\n";
@@ -141,7 +143,6 @@
 
 			$styleid = 'rbfield-'. str_replace(' ', '-', strtolower(trim($data3['ProfileCustomTitle'])));
 
-			$styleclass = 'rbfield';
 			$gender_filter = gender_filter($data3['ProfileCustomShowGender']);
 			if ( isset( $gender_filter ) ) {
 				$styleclass = $styleclass .' '. gender_filter($data3['ProfileCustomShowGender']);
