@@ -26,7 +26,7 @@ $profile_gallery = $wpdb->get_row($wpdb->prepare("SELECT ProfileGallery FROM ".t
 // Call Header
 echo $rb_header = RBAgency_Common::rb_header();
 	
-	echo "	<div id=\"primary\" class=\"col_12 column rb-agency-interact rb-agency-interact-overview\">\n";
+	echo "	<div id=\"primary\" class=\"rb-agency-interact rb-agency-interact-overview\">\n";
 	echo "  	<div id=\"content\">\n";
          if(is_user_logged_in()){
 			echo "	<div id=\"profile-manage\" class=\"profile-overview\">\n";

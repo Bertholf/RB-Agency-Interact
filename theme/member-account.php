@@ -357,7 +357,7 @@ if (is_user_logged_in()) {
 
 
 		// get profile Custom fields value
-	echo "<div id=\"container\" class=\"col_12 column rb-agency-interact-account\">\n";
+	echo "<div id=\"container\" class=\"rb-agency-interact-account\">\n";
 	echo "  <div id=\"content\">\n";
 	
 		// ****************************************************************************************** //
