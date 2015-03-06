@@ -90,6 +90,8 @@
 		foreach($queryShowDataType as $dataShowDataType){															
 						array_push($registered_as, $dataShowDataType["DataTypeTitle"]);															
 		}
+
+		$styleclass = "rbfield";
 		
 	   echo "<div id=\"profile-account\" class=\"rbform\">\n";
 		echo "<h3>Hi ".$ProfileContactDisplay."! You are registered as ".implode(",",$registered_as)."</h3>";
@@ -205,6 +207,7 @@
 		echo "			<div><label>Work:</label><div><input type=\"text\" id=\"ProfileContactPhoneWork\" name=\"ProfileContactPhoneWork\" value=\"". $ProfileContactPhoneWork ."\" /></div></div>\n";
 		echo "		</div>\n";
 		echo "	</div>\n";
+
 		echo "	<div id=\"profile-website\" class=\"". $styleclass ." rbtext rbsingle\">\n";
 		echo "		<label>". __("Website", RBAGENCY_interact_TEXTDOMAIN) ."</label>\n";
 		echo "		<div><input type=\"text\" id=\"ProfileContactWebsite\" name=\"ProfileContactWebsite\" value=\"". $ProfileContactWebsite ."\" /></div>\n";
