@@ -165,14 +165,16 @@
 				$error .= "<b><i>". __(LabelSingular ." must have a display name identified", RBAGENCY_interact_TEXTDOMAIN) . ".</i></b><br>";
 				$have_error = true;
 			} elseif ($rb_agency_option_profilenaming == 3) { // by firstname
-				$profile_contact_display = "ID ". $new_user;
+				$profile_contact_display = "ID-". $new_user;
 			} elseif ($rb_agency_option_profilenaming == 4) {
 	            $profile_contact_display = $first_name;
 	        }
 			
-
-			$profile_gallery = RBAgency_Common::format_stripchars($profile_contact_display); 
-  	
+	        if($rb_agency_option_profilenaming != 3){
+				$profile_gallery = RBAgency_Common::format_stripchars($profile_contact_display); 
+	  		}else{
+	  			$profile_gallery = $profile_contact_display;
+	  		}
 			$profile_gallery = rb_agency_createdir($profile_gallery);
 			
 			
