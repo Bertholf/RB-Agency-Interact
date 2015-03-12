@@ -61,9 +61,9 @@ if (isset($_POST['action'])) {
 							
 				if(count($profilecustomfield_date) == 2){ // customfield date
 					$value = date("y-m-d h:i:s",strtotime($value));
-					$insert1 = "INSERT INTO " . table_agency_customfield_mux . " (ProfileID,ProfileCustomID,ProfileCustomDateValue)" . "VALUES ('" . $ProfileID . "','" . $ProfileCustomID . "','" . $value . "')";
+					$insert1 = $wpdb->prepare("INSERT INTO " . table_agency_customfield_mux . " (ProfileID,ProfileCustomID,ProfileCustomDateValue)" . "VALUES (%d,%d,%s)"),$ProfileID,$ProfileCustomID,$value);
 				}else{
-					$insert1 = "INSERT INTO " . table_agency_customfield_mux . " (ProfileID,ProfileCustomID,ProfileCustomValue)" . "VALUES ('" . $ProfileID . "','" . $ProfileCustomID . "','" . $value . "')";
+					$insert1 = $wpdb->prepare("INSERT INTO " . table_agency_customfield_mux . " (ProfileID,ProfileCustomID,ProfileCustom)" . "VALUES (%d,%d,%s)"),$ProfileID,$ProfileCustomID,$value);
 				}
 				$results1 = $wpdb->query($insert1);
 			}

@@ -384,12 +384,12 @@
 			if($ID != 0){
 					 
 				if($type == "dropdown"){
-					$result = $wpdb->get_results("SELECT ProfileCustomValue FROM "
+					$result = $wpdb->get_results($wpdb->prepare("SELECT ProfileCustomValue FROM "
 							. table_agency_customfield_mux .
 							" WHERE ProfileCustomID = ". $customID .
-							" AND ProfileCustomValue = '" . $val . "' "
+							" AND ProfileCustomValue = %s "
 							." AND ProfileID = "
-							. $ID,ARRAY_A);
+							. $ID,$val),ARRAY_A);
 				}else if($type == "date"){
 					$result = $wpdb->get_results("SELECT ProfileCustomDateValue FROM "
 							. table_agency_customfield_mux .
