@@ -91,16 +91,16 @@
 
 
 		
-			if($rb_agencyinteract_option_useraccountcreation == 0 ){ // generate a username if username creation is disabled
-				$user_login = strtolower($first_name."_".wp_generate_password(5));
+			if($rb_agencyinteract_option_useraccountcreation == 0 && $rb_agencyinteract_option_registerconfirm == 0){ // generate a username if username creation is disabled
+					$user_login = $_POST['profile_user_name'];
 			}else{
-				$user_login = $_POST['profile_user_name'];
+					$user_login = strtolower($first_name."_".wp_generate_password(5));
 			}	
 		
-			if ($rb_agencyinteract_option_registerconfirm == 1) {
-					$user_pass = $_POST['profile_password'];
-			} else {
+			if ($rb_agencyinteract_option_registerconfirm == 0 && $rb_agencyinteract_option_registerconfirm ==  0) {
 					$user_pass = wp_generate_password();  // generate a password if it's creation is disabled
+			} else {
+					$user_pass = $_POST['profile_password'];
 			}
 		
 		$userdata = array(
