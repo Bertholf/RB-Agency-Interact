@@ -22,8 +22,12 @@
 #profile-manage .manage-content select { padding: 3px; }
 #profile-manage .manage-section { overflow: hidden; margin-bottom: 15px; }
 #profile-manage .manage-section .section-content { overflow: hidden; }
+#profile-manage .manage-section.gallery > div,
+#profile-manage .manage-section.gallery > div div,
 #profile-manage .manage-section.upload > div { padding: 5px 0px }
-#profile-manage .manage-section.upload > div select { margin-right: 5px; }
+#profile-manage .manage-section.gallery > div select,
+#profile-manage .manage-section.upload > div select { margin-right: 5px; margin-left: 5px; }
+#profile-manage .manage-section.upload > div textarea { margin-top: 5px; }
 p.submit { margin-top: 15px!important; }
 
 #profile-steps { font-size: 22px; text-align: center; background: #eee; border-bottom: 3px solid #aaa; padding: 10px; }

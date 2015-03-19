@@ -54,6 +54,7 @@ global $wpdb;
 		echo " 		</div>\n";
 		}
 
+		if ( ($_SERVER["REQUEST_URI"]) == "/profile/") { $tabclass = "active"; } else { $tabclass = "inactive"; }
 		$profile_gallery = $wpdb->get_row($wpdb->prepare("SELECT ProfileGallery FROM ".table_agency_profile." WHERE ProfileUserLinked = %d",$current_user->ID));
 		if(!empty($profile_gallery->ProfileGallery)){
 		echo " 		<div class=\"tab-inner tab-". $tabclass ."\">\n";
