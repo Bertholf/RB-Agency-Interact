@@ -25,6 +25,8 @@
 #profile-manage .manage-section.gallery > div,
 #profile-manage .manage-section.gallery > div div,
 #profile-manage .manage-section.upload > div { padding: 5px 0px }
+#profile-manage .manage-section.gallery > div input[type="file"],
+#profile-manage .manage-section.upload > div input[type="file"] { display: inline-block; }
 #profile-manage .manage-section.gallery > div select,
 #profile-manage .manage-section.upload > div select { margin-right: 5px; margin-left: 5px; }
 #profile-manage .manage-section.upload > div textarea { margin-top: 5px; }
