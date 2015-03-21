@@ -134,29 +134,28 @@
 					$resultsImg = $wpdb->get_results($queryImg,ARRAY_A);
 					$countImg =  $wpdb->num_rows;
 					foreach($resultsImg as $dataImg) {
-					  if ($dataImg['ProfileMediaPrimary']) {
-						  $styleClass = "primary-picture ";
-						  $isChecked = " checked";
-						  $isCheckedText = " Primary";
-						  $toDelete = "";
-					  } else {
-						  $styleBackground = "#000000";
-						  $styleClass = "";
-						  $isChecked = "";
-						  $isCheckedText = " set as primary";
-						  $toDelete = "  <div class=\"delete\"><a href=\"javascript:;\" class=\"btn-small-red\" onclick=\"confirmDelete('". $dataImg['ProfileMediaID'] ."','".$dataImg['ProfileMediaType']."');\"><span>Delete</span> &raquo;</a></div>\n";
-					  }
+					  	if ($dataImg['ProfileMediaPrimary']) {
+						  	$styleClass = "primary-picture ";
+						  	$isChecked = " checked";
+						  	$isCheckedText = " Primary";
+						  	$toDelete = "";
+					  	} else {						  
+						  	$styleClass = "";
+						  	$isChecked = "";
+						  	$isCheckedText = " set as primary";
+							$toDelete = "  <div class=\"delete\"><a href=\"javascript:;\" class=\"btn-small-red\" onclick=\"confirmDelete('". $dataImg['ProfileMediaID'] ."','".$dataImg['ProfileMediaType']."');\"><span>Delete</span> &raquo;</a></div>\n";
+					  	}
 						echo "<div class=\"profileimage\" class=\"". $styleClass ."\">\n". $toDelete ."";
                         
 						echo '<input type="hidden" name="pgallery" value="'.$ProfileGallery.'">';
 						
 						echo '<input type="hidden" name="pmedia_url" value="'.$dataImg['ProfileMediaURL'].'">';					
 
-						echo "  <img src=\"". get_bloginfo("url")."/wp-content/plugins/rb-agency/ext/timthumb.php?src=".RBAGENCY_UPLOADDIR . $ProfileGallery ."/". $dataImg['ProfileMediaURL'] ."&w=100&h=75\" style=\"width: 100px; z-index: 1; \" />\n";
+						echo "  <img src=\"". get_bloginfo("url")."/wp-content/plugins/rb-agency/ext/timthumb.php?src=".RBAGENCY_UPLOADDIR . $ProfileGallery ."/". $dataImg['ProfileMediaURL'] ."&a=t&w=150\" />\n";
 						echo "  <div class=\"". $styleClass ."make-primary\">";
 						echo "	<label><input type=\"radio\" name=\"ProfileMediaPrimary\" value=\"". $dataImg['ProfileMediaID'] ."\" class=\"button-primary\"". $isChecked ." /> ". $isCheckedText ."</label>";
 						if(empty($dataImg['ProfileMediaPrimary'])){
-							echo "<br/><input type=\"checkbox\" value=\"".$dataImg['ProfileMediaID']."\" name=\"deletePhoto[]\"/>Delete";
+							echo "<label><input type=\"checkbox\" value=\"".$dataImg['ProfileMediaID']."\" name=\"deletePhoto[]\"/> Delete</label>";
 						}	
 						echo "</div>\n";
 
@@ -165,12 +164,14 @@
 					if ($countImg < 1) {
 						echo "<p>". __("There are no images loaded for this profile yet.", RBAGENCY_interact_TEXTDOMAIN) ."</p>\n";
 					}
-	    echo "<div style=\"clear: both;\">";
+
+	    echo "<div class=\"rbspacer\"></div>";
+	    echo "<div id=\"upload-photos\">";
 		echo "		<h3>". __("Upload Photos", RBAGENCY_interact_TEXTDOMAIN) ."</h3>\n";
 		echo "		<p>". __("Upload photos using the forms below. The following formats allowed are jpg and png only ", RBAGENCY_interact_TEXTDOMAIN) .".</p>\n";
 	
 				for( $i=0; $i<5; $i++ ) {
-				echo "<div><label>Type: </label><select name=\"profileMedia". $i ."Type\"><option value=\"Image\">Photo</option>"; echo"</select><input type='file' id='profileMedia". $i ."' name='profileMedia". $i ."' /></div>\n";
+				echo "<div class=\"upload-photo\"><label>Type: </label><select name=\"profileMedia". $i ."Type\"><option value=\"Image\">Photo</option>"; echo"</select><input type='file' id='profileMedia". $i ."' name='profileMedia". $i ."' /></div>\n";
 				}			
 		echo "</div>";			
 		echo "		</div>\n";

@@ -14,6 +14,11 @@
 	line-height: normal;
 	border-bottom: 3px solid #0C0;
 }
+.rbspacer {
+	clear: both;
+	width: 100%;
+	margin: 15px 0px;	
+}
 
 #profile-manage .manage-content { padding: 15px; background: #fff; overflow: hidden; }
 #profile-manage .manage-content h1,
@@ -23,7 +28,7 @@
 #profile-manage .manage-section { overflow: hidden; margin-bottom: 15px; }
 #profile-manage .manage-section .section-content { overflow: hidden; }
 #profile-manage .manage-section.gallery > div,
-#profile-manage .manage-section.gallery > div div,
+#profile-manage .manage-section.gallery #upload-photos .upload-photo,
 #profile-manage .manage-section.upload > div { padding: 5px 0px }
 #profile-manage .manage-section.gallery > div input[type="file"],
 #profile-manage .manage-section.upload > div input[type="file"] { display: inline-block; }
@@ -71,9 +76,9 @@ p.submit { margin-top: 15px!important; }
 #profile-manage .manage-profile p select { width: 165px; }
 
 /* Profile Gallery */
-#profile-manage .manage-section.gallery .profileimage { float: left; margin: 0 10px 10px 0; height: 150px; position: relative; overflow: hidden; }
-#profile-manage .manage-section.gallery .profileimage .delete a { color: #fff; background: #fb2531; padding: 5px 10px; display: block; text-decoration: none; }
-#profile-manage .manage-section.gallery .profileimage .make-primary { position: absolute; left: 0; right: 0; bottom: 0; padding: 5px 10px; background: #aaa; }
+#profile-manage .manage-section.gallery .profileimage { float: left; margin: 0 10px 10px 0; padding: 0px; height: 200px; position: relative; overflow: hidden; background: #f1f1f1; }
+#profile-manage .manage-section.gallery .profileimage .delete a { color: #fff; background: #fb2531; padding: 5px 10px; display: block; text-decoration: none; font-size: 13px; }
+#profile-manage .manage-section.gallery .profileimage .make-primary { position: absolute; left: 0; right: 0; bottom: 0; padding: 5px 10px; background: #2f2f2f; font-size: 13px; }
 #profile-manage .manage-section.gallery .profileimage .make-primary input { margin: 0; }
 #profile-manage .manage-section.gallery .profileimage .make-primary label { color: #fff; cursor: pointer; line-height: normal; }
 
