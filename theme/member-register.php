@@ -24,7 +24,7 @@
 	$rb_agency_uri_profiletype = get_query_var("typeofprofile");
    
     // Profile Naming
-  	$rb_agency_option_profilenaming 		= (int)$rb_agency_options_arr['rb_agency_option_profilenaming'];
+  	$rb_agency_option_profilenaming = (int)$rb_agency_options_arr['rb_agency_option_profilenaming'];
 		
 	//+Registration
 	// - show/hide registration for Agent/Producers
@@ -91,7 +91,7 @@
 
 
 		
-			if($rb_agencyinteract_option_useraccountcreation == 0 && $rb_agencyinteract_option_registerconfirm == 0){ // generate a username if username creation is disabled
+			if($rb_agencyinteract_option_useraccountcreation == 1 && $rb_agencyinteract_option_registerconfirm == 1){ // generate a username if username creation is disabled
 					$user_login = $_POST['profile_user_name'];
 			}else{
 					$user_login = strtolower($first_name."_".wp_generate_password(5));
@@ -149,6 +149,11 @@
 			$have_error = true;
 		}
 
+		if (empty($_POST["profile_contact_display_name"]) && $rb_agency_option_profilenaming == 2) {
+			$error .= __("Display Name is required .<br />", RBAGENCY_interact_TEXTDOMAIN);
+			$have_error = true;
+		}
+
 	
 		// Bug Free!
 		if($have_error == false && empty($error)) {
@@ -165,7 +170,7 @@
 			/*	$error .= "<b><i>". __(LabelSingular ." must have a display name identified", RBAGENCY_interact_TEXTDOMAIN) . ".</i></b><br>";
 				$have_error = true;
 			*/
-					$profile_contact_display = $first_name . " ". $last_name;
+					$profile_contact_display = $_POST["profile_contact_display_name"];//$first_name . " ". $last_name;
 			
 			} elseif ($rb_agency_option_profilenaming == 3) { // by firstname
 				$profile_contact_display = "ID-". $new_user;
@@ -341,6 +346,14 @@
 		echo "       	<label for=\"profile_password\">". __("Password (required)", RBAGENCY_interact_TEXTDOMAIN) ."</label>\n";
 		echo "       	<div><input class=\"text-input\" name=\"profile_password\" type=\"password\" id=\"profile_password\" value=\""; if ( $error ) echo esc_html( $_POST['profile_password'], 1 ); echo "\" /></div>\n";
 		echo "       </div><!-- #profile-password -->\n";
+	}
+	
+	if($rb_agency_option_profilenaming == 2){
+		echo "       <div id=\"profile-contact-display-name\" class=\"rbfield rbtext rbsingle\">\n";
+		echo "       	<label for=\"profile_contact_display_name\">". __("Display Name", RBAGENCY_interact_TEXTDOMAIN) ."</label>\n";
+		echo "       	<div><input class=\"text-input\" name=\"profile_contact_display_name\" type=\"text\" id=\"profile_contact_display_name\" value=\""; if ( $error ) echo esc_html( $_POST['profile_contact_display_name'], 1 ); echo "\" /></div>\n";
+		echo "       </div><!-- #profile-contact-display-name -->\n";
+
 	}
 	echo "       <div id=\"profile-first-name\" class=\"rbfield rbtext rbsingle\">\n";
 	echo "       	<label for=\"profile_first_name\">". __("First Name", RBAGENCY_interact_TEXTDOMAIN) ."</label>\n";
