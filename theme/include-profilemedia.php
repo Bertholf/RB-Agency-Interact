@@ -138,7 +138,7 @@
 						  	$styleClass = "primary-picture ";
 						  	$isChecked = " checked";
 						  	$isCheckedText = " Primary";
-						  	$toDelete = "";
+							$toDelete = "  <div class=\"delete\"><a href=\"javascript:;\" class=\"btn-small-red\" onclick=\"confirmDelete('". $dataImg['ProfileMediaID'] ."','".$dataImg['ProfileMediaType']."');\"><span>Delete</span> &raquo;</a></div>\n";
 					  	} else {						  
 						  	$styleClass = "";
 						  	$isChecked = "";
