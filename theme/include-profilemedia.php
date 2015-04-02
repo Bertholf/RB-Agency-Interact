@@ -165,21 +165,21 @@
 						echo "<p>". __("There are no images loaded for this profile yet.", RBAGENCY_interact_TEXTDOMAIN) ."</p>\n";
 					}
 
-	    echo "<div class=\"rbspacer\"></div>";
-	    echo "<div id=\"upload-photos\">";
+		echo "<div class=\"rbspacer\"></div>";
+		echo "<div id=\"upload-photos\">";
 		echo "		<h3>". __("Upload Photos", RBAGENCY_interact_TEXTDOMAIN) ."</h3>\n";
 		echo "		<p>". __("Upload photos using the forms below. The following formats allowed are jpg and png only ", RBAGENCY_interact_TEXTDOMAIN) .".</p>\n";
-	
+
 				for( $i=0; $i<5; $i++ ) {
 				echo "<div class=\"upload-photo\"><label>Type: </label><select name=\"profileMedia". $i ."Type\"><option value=\"Image\">Photo</option>"; echo"</select><input type='file' id='profileMedia". $i ."' name='profileMedia". $i ."' /></div>\n";
-				}			
-		echo "</div>";			
+				}
+		echo "</div>";
 		echo "		</div>\n";
 		echo "	<div class=\"manage-section media\">\n";
 		echo "		<h3>". __("Media Files", RBAGENCY_interact_TEXTDOMAIN) ."</h3>\n";
 		echo "		<p>". __("The following files (pdf, audio file, etc.) are associated with this record", RBAGENCY_interact_TEXTDOMAIN) .".</p>\n";
-	
-					$queryMedia = "SELECT * FROM ". table_agency_profile_media ." WHERE ProfileID =  \"". $ProfileID ."\" AND ProfileMediaType <> \"Image\"";
+
+					$queryMedia = "SELECT * FROM ". table_agency_profile_media ." WHERE ProfileID =  \"". $ProfileID ."\" AND ProfileMediaType <> \"Link\" AND ProfileMediaType <> \"Image\"";
 					$resultsMedia = $wpdb->get_results($queryMedia,ARRAY_A);
 					$countMedia =  $wpdb->num_rows;
 					foreach($resultsMedia as $dataMedia) {
