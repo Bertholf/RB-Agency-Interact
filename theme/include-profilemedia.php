@@ -181,14 +181,7 @@
 					$countMedia =  $wpdb->num_rows;
 					foreach($resultsMedia as $dataMedia) {
 						if ($dataMedia['ProfileMediaType'] == "Demo Reel" || $dataMedia['ProfileMediaType'] == "Video Monologue" || $dataMedia['ProfileMediaType'] == "Video Slate") {
-						//	$outVideoMedia .= "<div class=\"media-video\">". $dataMedia['ProfileMediaType'] ."<br />". rb_agency_get_videothumbnail($dataMedia['ProfileMediaURL']) ."<br /><a href=\"http://www.youtube.com/watch?v=". $dataMedia['ProfileMediaURL'] ."\" target=\"_blank\">Link to Video</a><br />[<a href=\"javascript:confirmDelete('". $dataMedia['ProfileMediaID'] ."','".$dataMedia['ProfileMediaType']."')\">DELETE</a>]</div>\n";
-							if($dataMedia['ProfileVideoType'] == "" || $dataMedia['ProfileVideoType'] == "youtube"){
-								$outVideoMedia .= "<div class=\"file\">" . rb_agency_get_videothumbnail($dataMedia['ProfileMediaURL']) . "<br />" . $dataMedia['ProfileMediaType'] . "<br /><a href=\"" . $dataMedia['ProfileMediaURL'] . "\" target=\"_blank\">Link</a><br />[<a href=\"javascript:confirmDelete('" . $dataMedia['ProfileMediaID'] . "','" . $dataMedia['ProfileMediaType'] . "')\">DELETE</a>]</div>\n";
-							}elseif($dataMedia['ProfileVideoType'] == "vimeo"){
-								$outVideoMedia .= "<div class=\"file\">" . rb_agency_get_videothumbnail($dataMedia['ProfileMediaURL']) . "<br />" . $dataMedia['ProfileMediaType'] . "<br /><a href=\"" . $dataMedia['ProfileMediaURL'] . "\" target=\"_blank\">Link</a><br />[<a href=\"javascript:confirmDelete('" . $dataMedia['ProfileMediaID'] . "','" . $dataMedia['ProfileMediaType'] . "')\">DELETE</a>]</div>\n";
-							}else{
-								$outVideoMedia .= "<div class=\"file\">" . rb_agency_get_videothumbnail($dataMedia['ProfileMediaURL']) . "<br />" . $dataMedia['ProfileMediaType'] . "<br /><a href=\"" . $dataMedia['ProfileMediaURL'] . "\" target=\"_blank\">Link</a><br />[<a href=\"javascript:confirmDelete('" . $dataMedia['ProfileMediaID'] . "','" . $dataMedia['ProfileMediaType'] . "')\">DELETE</a>]</div>\n";
-							}
+							$outVideoMedia .= "<div class=\"media-video\">" . $dataMedia['ProfileMediaType'] . "<br />" . rb_agency_get_videothumbnail($dataMedia['ProfileMediaURL'], $dataMedia['ProfileVideoType']) . "<br /><a href=\"" . $dataMedia['ProfileMediaURL'] . "\" target=\"_blank\">Link to ".ucfirst($dataMedia['ProfileVideoType'])." Video</a><br />[<a href=\"javascript:confirmDelete('" . $dataMedia['ProfileMediaID'] . "','" . $dataMedia['ProfileMediaType'] . "')\">DELETE</a>]</div>\n";
 						} elseif ($dataMedia['ProfileMediaType'] == "VoiceDemo") {
 							$outLinkVoiceDemo .= "<div> <a href=\"". RBAGENCY_UPLOADDIR . $ProfileGallery ."/". $dataMedia['ProfileMediaURL'] ."\" target=\"_blank\">". $dataMedia['ProfileMediaType'] ."</a> [<a href=\"javascript:confirmDelete('". $dataMedia['ProfileMediaID'] ."','".$dataMedia['ProfileMediaType']."')\">DELETE</a>]</div>\n";
 						}
@@ -200,16 +193,13 @@
 						}elseif ($dataMedia['ProfileMediaType'] == "CompCard") {
 							$outLinkComCard .= "<div> <a href=\"". RBAGENCY_UPLOADDIR . $ProfileGallery ."/". $dataMedia['ProfileMediaURL'] ."\" target=\"_blank\">". $dataMedia['ProfileMediaType'] ."</a> [<a href=\"javascript:confirmDelete('". $dataMedia['ProfileMediaID'] ."','".$dataMedia['ProfileMediaType']."')\">DELETE</a>]</div>\n";
 						}elseif ($dataMedia['ProfileMediaType'] == "SoundCloud") {
-										
-						$outSoundCloud .= RBAgency_Common::rb_agency_embed_soundcloud($dataMedia['ProfileMediaURL'])." [<a href=\"javascript:confirmDelete('". $dataMedia['ProfileMediaID'] ."','".$dataMedia['ProfileMediaType']."')\">DELETE</a>]<br/>\n";					
-								
+							$outSoundCloud .= RBAgency_Common::rb_agency_embed_soundcloud($dataMedia['ProfileMediaURL'])." [<a href=\"javascript:confirmDelete('". $dataMedia['ProfileMediaID'] ."','".$dataMedia['ProfileMediaType']."')\">DELETE</a>]<br/>\n";
 						}else if (strpos($dataMedia['ProfileMediaType'] ,"rbcustommedia") !== false) { 
-							$custom_media_info 	= explode("_",$dataMedia['ProfileMediaType']);
+							$custom_media_info = explode("_",$dataMedia['ProfileMediaType']);
 							$custom_media_title = str_replace("-"," ",$custom_media_info[1]);
-							 $custom_media_type = $custom_media_info[2];
-							   $custom_media_id = $custom_media_info[4];
-							             $query = current($wpdb->get_results("SELECT MediaCategoryTitle, MediaCategoryFileType FROM  ".table_agency_data_media." WHERE MediaCategoryID='".$custom_media_id."'",ARRAY_A));
-							
+							$custom_media_type = $custom_media_info[2];
+							$custom_media_id = $custom_media_info[4];
+							$query = current($wpdb->get_results("SELECT MediaCategoryTitle, MediaCategoryFileType FROM  ".table_agency_data_media." WHERE MediaCategoryID='".$custom_media_id."'",ARRAY_A));
 							$outCustomMediaLink .= "<div><a href=\"" . RBAGENCY_UPLOADDIR . $ProfileGallery . "/" . $dataMedia['ProfileMediaURL'] . "\" target=\"_blank\">" . (isset($query["MediaCategoryTitle"])?$query["MediaCategoryTitle"]:$custom_media_title). "</a> [<a href=\"javascript:confirmDelete('" . $dataMedia['ProfileMediaID'] . "','" . $dataMedia['ProfileMediaType'] . "')\" title=\"Delete this File\" class=\"delete-file\">DELETE</a>]</div>\n";
 						}else{
 							$outCustomMediaLink .= "<div> <a href=\"". RBAGENCY_UPLOADDIR . $ProfileGallery ."/". $dataMedia['ProfileMediaURL'] ."\" target=\"_blank\">". $dataMedia['ProfileMediaType'] ."</a> [<a href=\"javascript:confirmDelete('". $dataMedia['ProfileMediaID'] ."','".$dataMedia['ProfileMediaType']."')\">DELETE</a>]</div>\n";
