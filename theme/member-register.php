@@ -178,14 +178,12 @@
 	            $profile_contact_display = $first_name;
 	        }
 			
-	  		//Set for generating ID and folders
-	  		if($rb_agency_option_profilenaming == 3){
-	  			$profile_gallery = "";
-	  		}elseif($rb_agency_option_profilenaming != 3){
-	  			$profile_gallery = RBAgency_Common::format_stripchars($profile_contact_display);
+	        if($rb_agency_option_profilenaming != 3){
+				$profile_gallery = RBAgency_Common::format_stripchars($profile_contact_display); 
 	  		}else{
 	  			$profile_gallery = $profile_contact_display;
-	  		}	
+	  		}
+			$profile_gallery = rb_agency_createdir($profile_gallery);
 			
 			
 			// Model or Client
@@ -224,13 +222,15 @@
 				 $profile_gallery
 				));
 
+			$id = $wpdb->insert_id;
+			$NewProfileID = $id;
 			//Update and set ProfileUserLinked,ProfileGallery and ProfileContactDisplay with the ProfileID
 			if($rb_agency_option_profilenaming == 3){
-				$id = $wpdb->insert_id;
-				$update = $wpdb->query("UPDATE " . table_agency_profile . " SET ProfileUserLinked=" . $id . ", ProfileGallery='ID-" . $id . "', ProfileContactDisplay='ID-" . $id . "' WHERE ProfileID='" . $id . "'");
+				$update = $wpdb->query("UPDATE " . table_agency_profile . " SET ProfileGallery='ID-" . $id . "', ProfileContactDisplay='ID-" . $id . "' WHERE ProfileID='" . $id . "'");
 				$profile_gallery = "ID-".$id;
 				rb_agency_createdir($profile_gallery);
 			}
+			add_user_meta( $new_user, 'user_profile_id', $NewProfileID);
 
 			//Custom Fields
 			$arr = array();
