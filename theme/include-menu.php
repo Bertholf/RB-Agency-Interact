@@ -53,7 +53,7 @@ global $wpdb;
 		echo " 			</a>\n";
 		echo " 		</div>\n";
 		}
-
+		
 		if ( ($_SERVER["REQUEST_URI"]) == "/profile/") { $tabclass = "active"; } else { $tabclass = "inactive"; }
 		$profile_gallery = $wpdb->get_row($wpdb->prepare("SELECT ProfileGallery FROM ".table_agency_profile." WHERE ProfileUserLinked = %d",get_user_meta( $current_user->ID, 'user_profile_id', true)));
 		if(!empty($profile_gallery->ProfileGallery)){

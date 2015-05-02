@@ -230,7 +230,7 @@
 				$profile_gallery = "ID-".$id;
 				rb_agency_createdir($profile_gallery);
 			}
-			add_user_meta( $new_user, 'user_profile_id', $NewProfileID);
+			add_user_meta( $new_user, 'user_profile_id', $new_user);
 
 			//Custom Fields
 			$arr = array();
