@@ -270,3 +270,33 @@ msgstr ""
 msgid "I agree to the %s terms of service"
 msgstr ""
 
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/include-menu.php
+#, php-format
+msgid "Overview"
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/include-menu.php
+#, php-format
+msgid "My Account"
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/include-menu.php
+#, php-format
+msgid "My Profile"
+msgstr ""
+
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/include-menu.php
+#, php-format
+msgid "My Media"
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/include-menu.php
+#, php-format
+msgid "View My Profile"
+msgstr ""
