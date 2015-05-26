@@ -300,3 +300,279 @@ msgstr ""
 #, php-format
 msgid "View My Profile"
 msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/member-overview.php
+#, php-format
+msgid "Welcome Back"
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/member-overview.php
+#, php-format
+msgid "Edit Your Account Details"
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/member-overview.php
+#, php-format
+msgid "Manage Your Profile Information"
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/member-overview.php
+#, php-format
+msgid "Manage Photos and Media"
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/member-overview.php
+#, php-format
+msgid "Log out"
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/include-profileaccount.php
+#, php-format
+msgid "Hi"
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/include-profileaccount.php
+#, php-format
+msgid "You are registered as"
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/include-profileaccount.php
+#, php-format
+msgid "Contact Information"
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/include-profileaccount.php
+#, php-format
+msgid "Gallery Folder"
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/include-profileaccount.php
+#, php-format
+msgid "Display Name"
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/include-profileaccount.php
+#, php-format
+msgid "First Name"
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/include-profileaccount.php
+#, php-format
+msgid "Last Name"
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/include-profileaccount.php
+#, php-format
+msgid "Gender"
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/include-profileaccount.php
+#, php-format
+msgid "Private Information"
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/include-profileaccount.php
+#, php-format
+msgid "The following information will appear only in administrative areas."
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/include-profileaccount.php
+#, php-format
+msgid "Email Address"
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/include-profileaccount.php
+#, php-format
+msgid "Birthdate YYYY-MM-DD"
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/include-profileaccount.php
+#, php-format
+msgid "Street"
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/include-profileaccount.php
+#, php-format
+msgid "City"
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/include-profileaccount.php
+#, php-format
+msgid "Country"
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/include-profileaccount.php
+#, php-format
+msgid "State"
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/include-profileaccount.php
+#, php-format
+msgid "Zip"
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/include-profileaccount.php
+#, php-format
+msgid "Phone"
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/include-profileaccount.php
+#, php-format
+msgid "Home:"
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/include-profileaccount.php
+#, php-format
+msgid "Cell:"
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/include-profileaccount.php
+#, php-format
+msgid "Work:"
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/include-profileaccount.php
+#, php-format
+msgid "Website"
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/include-profileaccount.php
+#, php-format
+msgid "Visa Number"
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/include-profileaccount.php
+#, php-format
+msgid "Social Media Profiles"
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/include-profileaccount.php
+#, php-format
+msgid "Cannot be changed"
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/include-profileaccount.php
+#, php-format
+msgid "Leave blank to keep same password"
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/include-profileaccount.php
+#, php-format
+msgid "Retype to Confirm"
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/include-profileaccount.php
+#, php-format
+msgid "Username"
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/include-profileaccount.php
+#, php-format
+msgid "Password"
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/include-profileaccount.php
+#, php-format
+msgid "Retype Password"
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/include-profileaccount.php
+#, php-format
+msgid "Last updated"
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/include-profileaccount.php
+#, php-format
+msgid "Save and Continue"
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/include-profilemanage.php
+#, php-format
+msgid "Classification:"
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/include-profilemanage.php
+#, php-format
+msgid "Last updated:"
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/include-profilemanage.php
+#, php-format
+msgid "Save and Continue"
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/include-profilemanage.php
+#, php-format
+msgid "Save and Continue"
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/include-profilemedia.php
+#, php-format
+msgid "Upload Photos"
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/include-profilemedia.php
+#, php-format
+msgid "Media Files"
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/include-profilemedia.php
+#, php-format
+msgid "Upload Media Files"
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/include-profilemedia.php
+#, php-format
+msgid "Paste the video URL below."
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/include-profilemedia.php
+#, php-format
+msgid "Press the "Save and Continue" button only once. Depending on the number of files and or your connection speed, it may take a few moments to fully upload your new files/changes. When the page refreshes, you should see your new media."
+msgstr ""
