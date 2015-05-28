@@ -103,7 +103,7 @@
 		echo "		<div class=\"rbmessage\">\n";
 					if (!empty($ProfileGallery) && is_dir(RBAGENCY_UPLOADPATH .$ProfileGallery)) { 
 						echo "<span class=\"updated\"><a href=\"".network_site_url("/")."profile/". $ProfileGallery ."/\" target=\"_blank\">/profile/". $ProfileGallery ."/</a></span>\n";
-						echo "<input type=\"hidden\" id=\"ProfileGallery\" name=\"ProfileGallery\" value=\"". $ProfileGallery ."\" />\n";
+						echo "<input type=\"text\" id=\"ProfileGallery\" name=\"ProfileGallery\" value=\"". $ProfileGallery ."\" />\n";
 					} else {
 						echo "<input type=\"text\" id=\"ProfileGallery\" name=\"ProfileGallery\" value=\"". $ProfileGallery ."\" />\n";
 						echo "<small class=\"". $styleclass ."-note error\">". __("Folder Pending Creation", RBAGENCY_interact_TEXTDOMAIN) ."</small>\n";
