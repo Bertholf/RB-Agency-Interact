@@ -120,8 +120,8 @@ if($rb_agencyinteract_option_profilemanage_sidebar){
 	$column_class = fullwidth_class();
 }
 
-	echo "<div id=\"container\" class=\"".$column_class." column rb-agency-interact rb-agency-interact-profile\">\n";
-	echo "  <div id=\"content\">\n";
+	echo "<div class=\"".$column_class." column rb-agency-interact member-profile\">\n";
+	echo "  <div id=\"rbcontent\">\n";
 
 		// ****************************************************************************************** //
 		// Check if User is Logged in or not

@@ -45,8 +45,8 @@ add_filter('wp_title', 'rb_agencyinteractive_override_title', 10, 2);
 // Call Header
 echo $rb_header = RBAgency_Common::rb_header();
 	
-	echo "	<div id=\"primary\" class=\"rb-agency-interact rb-agency-interact-overview\">\n";
-	echo "  	<div id=\"content\">\n";
+	echo "	<div id=\"primary\" class=\"rb-agency-interact member-overview\">\n";
+	echo "  	<div id=\"rbcontent\">\n";
 
 		// get profile Custom fields value
 		$rb_agency_new_registeredUser = get_user_meta($current_user->ID,'rb_agency_new_registeredUser',true);

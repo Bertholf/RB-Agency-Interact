@@ -358,7 +358,7 @@ if (is_user_logged_in()) {
 
 		// get profile Custom fields value
 	echo "<div id=\"container\" class=\"rb-agency-interact-account\">\n";
-	echo "  <div id=\"content\">\n";
+	echo "  <div id=\"rbcontent\">\n";
 	
 		// ****************************************************************************************** //
 		// Check if User is Logged in or not
@@ -420,14 +420,14 @@ if (is_user_logged_in()) {
 			echo " </div>\n"; // .manage-account
 			echo "</div>\n"; // #profile-manage
 		} else {
-			echo "<p class=\"rbwarning\">\n";
+			echo "<p class=\"rbalert warning\">\n";
 					_e('You must be logged in to edit your profile.', 'frontendprofile');
 			echo "</p><!-- .warning -->\n";
 			// Show Login Form
 			include("include-login.php"); 	
 		}
 		
-	echo "  </div><!-- #content -->\n";
+	echo "  </div><!-- #rbcontent -->\n";
 	echo "</div><!-- #container -->\n";
 	
 	if (is_user_logged_in()) {

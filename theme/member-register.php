@@ -283,8 +283,8 @@
 	if(!$shortcode_register){
 		echo $rb_header = RBAgency_Common::rb_header();
 	}
-	echo "<div id=\"primary\" class=\"".$column_class." column rb-agency-interact rb-agency-interact-register\">\n";
-	echo "  <div id=\"content member-register\">\n";
+	echo "<div class=\"".$column_class." column rb-agency-interact profile-register\">\n";
+	echo "  <div id=\"rbcontent\">\n";
    
     // ****************************************************************************************** //
 	// Already logged in 

@@ -1,18 +1,23 @@
-.rbwarning {
+.rbalert {
 	padding: 15px;
-	background:#ddd;
-	border: 1px solid #fff;
+	border: 1px solid;
+}
+.rbalert a {
+	color: inherit;
+	font-weight: bold;	
+}
+.rbalert.success {
+	color: #3c763d;
+	background-color: #dff0d8;
+	border-color: #d6e9c6;
+}
+.rbalert.warning {
+	color: #8a6d3b;
+	background-color: #fcf8e3;
+	border-color: #faebcc;
 }
 .rb-agency-interact p.rberror {
 	color: #000;
-}
-.rb-agency-interact p.rbalert,
-.rb-agency-interact p.rberror {	
-	padding: 10px;
-	background: #fafafa;
-	margin-bottom: 15px;	
-	line-height: normal;
-	border-bottom: 3px solid #0C0;
 }
 .rbspacer {
 	clear: both;

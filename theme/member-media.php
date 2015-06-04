@@ -252,14 +252,10 @@ echo $rb_header = RBAgency_Common::rb_header();
 $rb_agency_interact_options_arr = get_option('rb_agencyinteract_options');
 $rb_agencyinteract_option_profilemanage_sidebar = isset($rb_agency_interact_options_arr['rb_agencyinteract_option_profilemanage_sidebar'])?$rb_agency_interact_options_arr['rb_agencyinteract_option_profilemanage_sidebar']:"";
 $content_class = "";
-if (is_user_logged_in()) {
-	$content_class = "rbcol-12";
-} else {
-	$content_class = "rbcol-8";
-}
+$content_class = "rbcol-12";
 	
-	echo "<div id=\"container\" class=\"".$content_class." rbcolumn rb-agency-interact rb-agency-interact-media\">\n";
-	echo "  <div id=\"content\">\n";
+	echo "<div class=\"".$content_class." rbcolumn rb-agency-interact rb-agency-interact-media\">\n";
+	echo "  <div id=\"rbcontent\">\n";
 	
 		// ****************************************************************************************** //
 		// Check if User is Logged in or not
