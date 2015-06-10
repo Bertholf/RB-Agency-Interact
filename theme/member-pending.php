@@ -27,7 +27,7 @@ $profile_gallery = $wpdb->get_row($wpdb->prepare("SELECT ProfileGallery FROM ".t
 echo $rb_header = RBAgency_Common::rb_header();
 	
 	echo "	<div id=\"primary\" class=\"rb-agency-interact rb-agency-interact-overview\">\n";
-	echo "  	<div id=\"content\">\n";
+	echo "  	<div id=\"rbcontent\">\n";
          if(is_user_logged_in()){
 			echo "	<div id=\"profile-manage\" class=\"profile-overview\">\n";
 
@@ -36,7 +36,7 @@ echo $rb_header = RBAgency_Common::rb_header();
 					echo "<br/>";
 					echo "Your account is pending for approval. We will send you a confirmation once account is approved.";
 					echo "<br/>";
-					echo "<a href=\"".get_bloginfo("url")."/profile/".$profile_gallery->ProfileGallery."\">View my profile</a> | ";
+					echo "<a href=\"".get_bloginfo("url")."/profile/".$profile_gallery->ProfileGallery."\">View my profile</a>";
 					echo "<a href=\"".get_bloginfo("url")."/profile-member/account\">Edit your profile</a>";
 					echo " </div>\n";
 
@@ -49,7 +49,7 @@ echo $rb_header = RBAgency_Common::rb_header();
 			include("include-login.php");
 		}
 		
-	echo "  </div><!-- #content -->\n";
+	echo "  </div><!-- #rbcontent -->\n";
 	echo "</div><!-- #primary -->\n";
 
 // Call Footer

@@ -1,10 +1,20 @@
 .rbalert {
 	padding: 15px;
 	border: 1px solid;
+	font-size: medium;
 }
 .rbalert a {
 	color: inherit;
-	font-weight: bold;	
+	font-weight: bold;
+	margin-right: 10px;
+}
+.rbalert a:last-child {
+	margin-right: 0;
+}
+.rbalert.info {
+	color: #31708f;
+	background-color: #d9edf7;
+	border-color: #bce8f1;
 }
 .rbalert.success {
 	color: #3c763d;
@@ -16,6 +26,11 @@
 	background-color: #fcf8e3;
 	border-color: #faebcc;
 }
+.rbalert.error {
+	color: #a94442;
+	background-color: #f2dede;
+	border-color: #ebccd1;
+}
 .rb-agency-interact p.rberror {
 	color: #000;
 }
@@ -25,7 +40,6 @@
 	margin: 15px 0px;	
 }
 
-#profile-manage .manage-content { padding: 15px; background: #fff; overflow: hidden; }
 #profile-manage .manage-content h1,
 #profile-manage .manage-content h3 { margin-bottom: 15px; }
 #profile-manage .manage-content p { margin: 0 0 15px 0; line-height: 18px; }
@@ -45,14 +59,12 @@ p.submit { margin-top: 15px!important; }
 
 #profile-steps { font-size: 22px; text-align: center; background: #eee; border-bottom: 3px solid #aaa; padding: 10px; }
 
-#profile-manage { overflow: hidden; margin: 20px 10px; }
 #profile-manage h2 { margin: 20px 0 10px 0; }
 #profile-manage table { border:none }
 #profile-manage table tr td { font-size: 13px; padding: 5px; }
 #profile-manage table tr td h3 { font-size: 16px; margin-bottom:10px; }
 #profile-manage table tr td select { width: 200px; }
 #profile-manage table tr td input[type="text"], #profile-manage table tr td input[type="email"], #profile-manage table tr td input[type="password"] { width: 194px; }
-#profile-manage .profile-manage-menu { overflow: hidden; margin: 20px 0 0 0; }
 #profile-manage .profile-manage-menu #subMenuTab { overflow: hidden; }
 #profile-manage .profile-manage-menu #subMenuTab a { float: left; border-left: 1px solid #fff; padding: 10px 20px; color: #555; /*background: url(/wp-content/uploads/2012/01/bg-tab.png) repeat-x; */text-decoration: none; }
 #profile-manage .profile-manage-menu #subMenuTab a:hover { color: #444; /*background: url(/wp-content/uploads/2012/01/bg-tab.png) 0 -38px repeat-x */ }
@@ -99,6 +111,7 @@ p.submit { margin-top: 15px!important; }
 #rbsignin-register .inline-block .field-row input[type="text"],
 #rbsignin-register .inline-block .field-row input[type="password"] { width: 100%; }
 #rbsignin-register .inline-block .field-row input[type="password"] { margin-bottom: 5px; }
+#rbsignin-register .inline-block .field-row.submit-row { padding-top: 0; }
 
 /* Register */
 #rbsignin-register .inline-block h3 { margin: 20px 0 10px 0; }
