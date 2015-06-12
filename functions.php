@@ -55,7 +55,7 @@
 			$query_vars[] = 'typeofprofile';
 			$query_vars[] = 'ref';
 			$query_vars[] = 'rbgroup';
-			
+
 			return $query_vars;
 		}
 
@@ -63,7 +63,7 @@
 	add_filter('template_include', 'rb_agency_interact_template_include', 1, 1); 
 		function rb_agency_interact_template_include( $template ) {
 			if ( get_query_var( 'type' ) && get_query_var( 'rbgroup' ) == "models") {
-				
+
 				if(function_exists("rb_agency_group_permission")){
 					rb_agency_group_permission(get_query_var( 'rbgroup' ));
 				}
@@ -85,7 +85,7 @@
 					return dirname(__FILE__) . '/theme/member-register.php'; 
 				} elseif (get_query_var( 'type' ) == "dashboard") {
 					return dirname(__FILE__) . '/theme/view-dashboard.php';
-				}elseif (get_query_var( 'type' ) == "pending") {
+				} elseif (get_query_var( 'type' ) == "pending") {
 					return dirname(__FILE__) . '/theme/member-pending.php';
 				}
 			}
@@ -109,41 +109,41 @@
 	/*/
 /*
 	function rb_agency_interact_postURILanguage($request_URI){
-		 if(!in_array(substr($_SERVER['REQUEST_URI'],1,2), array("en","nl"))){
+		if(!in_array(substr($_SERVER['REQUEST_URI'],1,2), array("en","nl"))){
 			if (function_exists('trans_getLanguage')) {
-				 if(qtrans_getLanguage()=='nl') {
+				if(qtrans_getLanguage()=='nl') {
 					return "/".qtrans_getLanguage();
-				
+
 				} elseif(qtrans_getLanguage()=='en') {
 					return "/".qtrans_getLanguage();
 				}
-			 }
+			}
 		}
 	}
-	*/
+	 */
 
 // *************************************************************************************************** //
 // Handle Emails
 
 	// Redefine user notification function  
-	if ( !function_exists('rb_new_user_notification') ) {  
-		function rb_new_user_notification( $user_id, $plaintext_pass = '' ) {  
-	
+	if ( !function_exists('rb_new_user_notification') ) { 
+		function rb_new_user_notification( $user_id, $plaintext_pass = '' ) { 
 
-			$user = new WP_User($user_id);  
 
-			$user_login = stripslashes($user->user_login);  
-			$user_email = stripslashes($user->user_email);  
+			$user = new WP_User($user_id);
 
-			$message  = sprintf(__('New user registration on your blog %s:'), get_option('blogname')) . "\r\n\r\n";  
-			$message .= sprintf(__('Username: %s'), $user_login) . "\r\n\r\n";  
-			$message .= sprintf(__('E-mail: %s'), $user_email) . "\r\n";  
+			$user_login = stripslashes($user->user_login);
+			$user_email = stripslashes($user->user_email);
 
-			@wp_mail(get_option('admin_email'), sprintf(__('[%s] New User Registration'), get_option('blogname')), make_clickable($message));  
+			$message  = sprintf(__('New user registration on your blog %s:'), get_option('blogname')) . "\r\n\r\n";
+			$message .= sprintf(__('Username: %s'), $user_login) . "\r\n\r\n";
+			$message .= sprintf(__('E-mail: %s'), $user_email) . "\r\n";
+
+			@wp_mail(get_option('admin_email'), sprintf(__('[%s] New User Registration'), get_option('blogname')), make_clickable($message));
 
 			if ( empty($plaintext_pass) )  
-				return;  
-			$message  = __('Hi there,') . "\r\n\r\n";  
+				return;
+			$message  = __('Hi there,') . "\r\n\r\n";
 			$message .= sprintf(__("Thanks for joining %s! Here's how to log in:"), get_option('blogname')) . "\r\n\r\n"; 
 			$message .= get_option('home') ."/profile-login/\r\n"; 
 			$message .= sprintf(__('Username: %s'), $user_login) . "\r\n"; 
@@ -154,27 +154,27 @@
 			$message .= get_option('home') ."\r\n"; 
 
 			$headers = 'From: '. get_option('blogname') .' <'. get_option('admin_email') .'>' . "\r\n";
-			wp_mail($user_email, sprintf(__('%s Registration Successful! Login Details'), get_option('blogname')), $message, $headers);  
+			wp_mail($user_email, sprintf(__('%s Registration Successful! Login Details'), get_option('blogname')), $message, $headers);
 
 		}
 
-		
+
 	}
 
-	if ( !function_exists('wp_new_user_notification_pending') ) {  
-		function wp_new_user_notification_pending( $user_id) {  
-				$user = new WP_User($user_id);  
+	if ( !function_exists('wp_new_user_notification_pending') ) { 
+		function wp_new_user_notification_pending( $user_id) { 
+				$user = new WP_User($user_id);
 
-				$user_login = stripslashes($user->user_login);  
-				$user_email = stripslashes($user->user_email);  
+				$user_login = stripslashes($user->user_login);
+				$user_email = stripslashes($user->user_email);
 
-				$message  = sprintf(__('New user registration on your blog %s:'), get_option('blogname')) . "\r\n\r\n";  
-				$message .= sprintf(__('Username: %s'), $user_login) . "\r\n\r\n";  
-				$message .= sprintf(__('E-mail: %s'), $user_email) . "\r\n";  
+				$message  = sprintf(__('New user registration on your blog %s:'), get_option('blogname')) . "\r\n\r\n";
+				$message .= sprintf(__('Username: %s'), $user_login) . "\r\n\r\n";
+				$message .= sprintf(__('E-mail: %s'), $user_email) . "\r\n";
 
-				@wp_mail(get_option('admin_email'), sprintf(__('[%s] New User Registration'), get_option('blogname')), make_clickable($message));  
+				@wp_mail(get_option('admin_email'), sprintf(__('[%s] New User Registration'), get_option('blogname')), make_clickable($message));
 
-				$message  = __('Hi there,') . "\r\n\r\n";  
+				$message  = __('Hi there,') . "\r\n\r\n";
 				$message .= sprintf(__("Thanks for joining %s! "), get_option('blogname')) . "\r\n\r\n"; 
 				$message .= sprintf(__('Your account is pending for approval. We will send you a confirmation once account is approved.'), $user_login) . "\r\n"; 
 				$message .= sprintf(__('If you have any problems, please contact us at %s.'), get_option('admin_email')) . "\r\n\r\n"; 
@@ -183,37 +183,37 @@
 				$message .= get_option('home') ."\r\n"; 
 
 				$headers = 'From: '. get_option('blogname') .' <'. get_option('admin_email') .'>' . "\r\n";
-				wp_mail($user_email, sprintf(__('%s Registration Successful!  Account is pending for approval'), get_option('blogname')), make_clickable($message), $headers);  
+				wp_mail($user_email, sprintf(__('%s Registration Successful!  Account is pending for approval'), get_option('blogname')), make_clickable($message), $headers);
 
 		}
 	}
 
-	if ( !function_exists('wp_new_user_notification_approve') ) {  
-		function wp_new_user_notification_approve( $user_id) {  
-				$user = get_userdata($user_id);  
+	if ( !function_exists('wp_new_user_notification_approve') ) { 
+		function wp_new_user_notification_approve( $user_id) { 
+				$user = get_userdata($user_id);
 				$rb_agency_interact_options_arr = get_option('rb_agencyinteract_options');
-    		    $rb_agencyinteract_option_registerapproval = isset($rb_agency_interact_options_arr['rb_agencyinteract_option_registerapproval'])?$rb_agency_interact_options_arr['rb_agencyinteract_option_registerapproval']:0;
-	
+				$rb_agencyinteract_option_registerapproval = isset($rb_agency_interact_options_arr['rb_agencyinteract_option_registerapproval'])?$rb_agency_interact_options_arr['rb_agencyinteract_option_registerapproval']:0;
+
 				if($user){
-					$user_login = stripslashes($user->user_login);  
-					$user_email = stripslashes($user->user_email);  
-					
+					$user_login = stripslashes($user->user_login);
+					$user_email = stripslashes($user->user_email);
+
 					/*if($rb_agencyinteract_option_registerapproval == 0){
 						$new_pass = wp_generate_password();
-					 	wp_set_password( $new_pass, $user_id );
-					 	$user_pass = $new_pass;
+						wp_set_password( $new_pass, $user_id );
+						$user_pass = $new_pass;
 					}*/
 
-					$message  = __('Hi there,') . "\r\n\r\n";  
+					$message  = __('Hi there,') . "\r\n\r\n";
 					$message .= sprintf(__('Congratulations! Your account is approved.'), $user_login) . "\r\n"; 
 					//$message .= sprintf(__("Here's how to log in:"), get_option('blogname')) . "\r\n\r\n"; 
 					//$message .= get_option('home') ."/profile-login/\r\n"; 
 					//if($rb_agencyinteract_option_registerapproval == 1){ // automally approved
 					//			$message .= sprintf(__('Username: %s'), $user_login) . "\r\n"; 
 					//			$message .= sprintf(__('Password: %s'),  $user_pass) . "\r\n\r\n"; 
-					//}/*else{ // manually approved
+					//}/*else { // manually approved
 					//			$message .= sprintf(__('Password: %s'),  "Your Password") . "\r\n\r\n"; 
-					
+
 					//}
 					$message .= sprintf(__('If you have any problems, please contact us at %s.'), get_option('admin_email')) . "\r\n\r\n"; 
 					$message .= __('Regards,')."\r\n";
@@ -221,7 +221,7 @@
 					$message .= get_option('home') ."\r\n"; 
 
 					$headers = 'From: '. get_option('blogname') .' <'. get_option('admin_email') .'>' . "\r\n";
-					wp_mail($user_email, sprintf(__('%s Congratulations! Your account is approved.'), get_option('blogname')), make_clickable($message), $headers);  
+					wp_mail($user_email, sprintf(__('%s Congratulations! Your account is approved.'), get_option('blogname')), make_clickable($message), $headers);
 				}
 		}
 	}
@@ -332,7 +332,7 @@
 		function rb_agency_interact_register_redirect() {
 			return "/profile-member/";
 		}
-		
+
 
 	// Change Login URL
 	// Change Registration Form Submit Titles
@@ -346,7 +346,7 @@
 			$link = str_replace(">Register<", ">Sign up<", $link);
 			return $link;
 		}
-	*/
+	 */
 
 
 
@@ -354,27 +354,27 @@
 	if ( !function_exists('gender_filter') ) {
 		function gender_filter($gender=0) {
 			global $wpdb;
-			
+
 			$query_gender = "SELECT GenderTitle FROM ".table_agency_data_gender." WHERE GenderID = %d  LIMIT 1";
 			$results = $wpdb->get_results($wpdb->prepare($query_gender,$gender));
-			
+
 			$gender_title = "";
 			foreach($results as $gname){
 				$gender_title = strtolower($gname->GenderTitle);
 			}
-			
+
 			if($gender_title == 'male'){
 				return "male_filter";
-			}elseif($gender_title == 'female'){
+			} elseif($gender_title == 'female'){
 				return "female_filter";
-			}else{
+			} else {
 				return "";
 			}
 		}
 	}
 
 	// retrieving value of saved fields for edit
-	if ( !function_exists('retrieve_datavalue') ) {  
+	if ( !function_exists('retrieve_datavalue') ) { 
 		function retrieve_datavalue($field="",$customID=0,$ID=0,$type="", $val="") {
 			global $wpdb;
 			/* 
@@ -382,7 +382,7 @@
 			 *    for comparison
 			 */
 			if($ID != 0){
-					 
+
 				if($type == "dropdown"){
 					$result = $wpdb->get_results($wpdb->prepare("SELECT ProfileCustomValue FROM "
 							. table_agency_customfield_mux .
@@ -390,7 +390,7 @@
 							" AND ProfileCustomValue = %s "
 							." AND ProfileID = "
 							. $ID,$val),ARRAY_A);
-				}else if($type == "date"){
+				} else if($type == "date"){
 					$result = $wpdb->get_results("SELECT ProfileCustomDateValue FROM "
 							. table_agency_customfield_mux .
 							" WHERE ProfileCustomID = ". $customID 
@@ -406,11 +406,11 @@
 				foreach($result as $row){
 					if($type == "textbox"){
 						return $row["ProfileCustomValue"];
-					}elseif($type == "date"){
+					} elseif($type == "date"){
 						return $row["ProfileCustomDateValue"];
 					} elseif($type == "dropdown") {
 						return "selected";
-					}elseif($type == "multiple" && in_array($val,explode(",",$row["ProfileCustomValue"]))) {
+					} elseif($type == "multiple" && in_array($val,explode(",",$row["ProfileCustomValue"]))) {
 						return "selected";
 					}
 				}
@@ -432,7 +432,7 @@
 	}
 
 	// retrieving data type title
-	if ( !function_exists('retrieve_title') ) {  
+	if ( !function_exists('retrieve_title') ) { 
 		function retrieve_title($id=0) {
 			global $wpdb;
 
@@ -449,7 +449,7 @@
 
 	// Remove user Profile
 
-	function Profile_Account(){  
+	function Profile_Account(){ 
 		global $rb_profile_delete;
 		echo "<h2>Account Settings</h2><br/>";
 		echo "<input type='hidden' id='delete_opt' value='".$rb_profile_delete."'>";
@@ -489,7 +489,7 @@
 
 
 
-function delete_script() {?>
+function delete_script() { ?>
 
 	<script type="text/javascript">
 		jQuery(document).ready(function(){
@@ -505,7 +505,7 @@ function delete_script() {?>
 						type: "POST",
 						url: '<?php echo plugins_url( 'rb-agency-interact/theme/userdelete.php' , dirname(__FILE__) ); ?>',
 						dataType: "html",
-						data: { ID : "<?php echo rb_agency_get_current_userid(); ?>", OPT: jQuery('#delete_opt').val() },
+						data: {ID : "<?php echo rb_agency_get_current_userid(); ?>", OPT: jQuery('#delete_opt').val() },
 
 						beforeSend: function() {
 						},
@@ -531,7 +531,7 @@ function delete_script() {?>
 						}
 					});
 				}
-			});	
+			});
 		});
 	</script>
 	<?php
@@ -567,26 +567,26 @@ function self_delete() {
 
 
 function rb_get_user_linkedID($ProfileID){
-	   global $wpdb;
+		global $wpdb;
 
-	    $result = $wpdb->get_row($wpdb->prepare("SELECT ProfileUserLinked FROM ".table_agency_profile." WHERE ProfileID = %d",$ProfileID));
+		$result = $wpdb->get_row($wpdb->prepare("SELECT ProfileUserLinked FROM ".table_agency_profile." WHERE ProfileID = %d",$ProfileID));
         $found = $wpdb->num_rows;
         if($found > 0)
-	    return $result->ProfileUserLinked;
+		return $result->ProfileUserLinked;
         else
         return 0;
 }
 
 function rb_get_user_profilstatus(){
-	   global $wpdb, $current_user;
+		global $wpdb, $current_user;
 		$query = "SELECT ProfileIsActive FROM ". table_agency_profile ." WHERE ProfileUserLinked = ". $current_user->ID;
 		$results = $wpdb->get_row($query);
 		if(isset($results->ProfileIsActive)){
 			return $results->ProfileIsActive;
-		}else{
+		} else {
 			return null;
 		}
-		
+
 }
 
 

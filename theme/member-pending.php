@@ -19,13 +19,13 @@ add_filter('wp_title', 'rb_agencyinteractive_override_title', 10, 2);
 		return "Profile Pending";
 	}
 $profile_gallery = $wpdb->get_row($wpdb->prepare("SELECT ProfileGallery FROM ".table_agency_profile." WHERE ProfileUserLinked = %d",$current_user->ID));
-		
+
 /* Display Page ******************************************/ 
 
 
 // Call Header
 echo $rb_header = RBAgency_Common::rb_header();
-	
+
 	echo "	<div id=\"primary\" class=\"rb-agency-interact rb-agency-interact-overview\">\n";
 	echo "  	<div id=\"rbcontent\">\n";
          if(is_user_logged_in()){
@@ -41,14 +41,14 @@ echo $rb_header = RBAgency_Common::rb_header();
 					echo " </div>\n";
 
 			echo " </div>\n"; // .welcome
-			  
-		
+
+
 		} else {
 
 			// Show Login Form
 			include("include-login.php");
 		}
-		
+
 	echo "  </div><!-- #rbcontent -->\n";
 	echo "</div><!-- #primary -->\n";
 

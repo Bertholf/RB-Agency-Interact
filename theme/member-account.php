@@ -22,14 +22,14 @@ $alert = "";
 
 // Were they users or agents?
 $profiletype = (int)get_user_meta($current_user->ID, "rb_agency_interact_profiletype", true);
-if(get_user_meta($current_user->ID, 'rb_agency_interact_clientdata', true)) { $profiletypetext = __("Agent/Producer", RBAGENCY_interact_TEXTDOMAIN); } else { $profiletypetext = __("Model/Talent", RBAGENCY_interact_TEXTDOMAIN); }
+if(get_user_meta($current_user->ID, 'rb_agency_interact_clientdata', true)) {$profiletypetext = __("Agent/Producer", RBAGENCY_interact_TEXTDOMAIN); } else {$profiletypetext = __("Model/Talent", RBAGENCY_interact_TEXTDOMAIN); }
 
 	// Change Title
 	add_filter('wp_title', 'rb_agencyinteractive_override_title', 10, 2);
 		function rb_agencyinteractive_override_title(){
 			return __("Manage Profile", RBAGENCY_interact_TEXTDOMAIN);
-		}   
-	
+		}
+
 	/* Load the registration file. */
 	//require_once( ABSPATH . WPINC . '/registration.php' );
 	require_once( ABSPATH . 'wp-admin/includes' . '/template.php' ); // this is only for the selected() function
@@ -45,12 +45,12 @@ if (isset($_POST['action'])) {
 	$ProfileContactNameLast		=trim($_POST['ProfileContactNameLast']);
 	$ProfileContactDisplay		=trim($_POST['ProfileContactDisplay']);
 
- 	if (empty($ProfileContactDisplay)) {  // Probably a new record... 
-		if ($rb_agency_option_profilenaming == 0) { 
+ 	if (empty($ProfileContactDisplay)) { // Probably a new record... 
+		if ($rb_agency_option_profilenaming == 0) {
 			$ProfileContactDisplay = $ProfileContactNameFirst . " ". $ProfileContactNameLast;
-		} elseif ($rb_agency_option_profilenaming == 1) { 
+		} elseif ($rb_agency_option_profilenaming == 1) {
 			$ProfileContactDisplay = $ProfileContactNameFirst . " ". substr($ProfileContactNameLast, 0, 1);
-		} elseif ($rb_agency_option_profilenaming == 2) { 
+		} elseif ($rb_agency_option_profilenaming == 2) {
 			$error .= "<b><i>". __(LabelSingular ." must have a display name identified", RBAGENCY_interact_TEXTDOMAIN) . ".</i></b><br>";
 			$have_error = true;
 		} elseif ($rb_agency_option_profilenaming == 3) { // by firstname
@@ -62,7 +62,7 @@ if (isset($_POST['action'])) {
 
 	$ProfileGallery				=$_POST['ProfileGallery'];
 
-  	if (empty($ProfileGallery)) {  // Probably a new record... 
+  	if (empty($ProfileGallery)) { // Probably a new record... 
 		$ProfileGallery = RBAgency_Common::format_stripchars($ProfileContactDisplay); 
   	}
 
@@ -75,9 +75,9 @@ if (isset($_POST['action'])) {
 	$ProfileContactPhoneHome	=$_POST['ProfileContactPhoneHome'];
 	$ProfileContactPhoneCell	=$_POST['ProfileContactPhoneCell'];
 	$ProfileContactPhoneWork	=$_POST['ProfileContactPhoneWork'];
-	$ProfileGender    		=$_POST['ProfileGender'];
-	$ProfileType    		=$_POST['ProfileType'];
-	$ProfileDateBirth	    		=$_POST['ProfileDateBirth'];
+	$ProfileGender			=$_POST['ProfileGender'];
+	$ProfileType			=$_POST['ProfileType'];
+	$ProfileDateBirth				=$_POST['ProfileDateBirth'];
 	$ProfileLocationStreet		=$_POST['ProfileLocationStreet'];
 	$ProfileLocationCity		=RBAgency_Common::format_propercase($_POST['ProfileLocationCity']);
 	$ProfileLocationState		=strtoupper($_POST['ProfileLocationState']);
@@ -99,7 +99,7 @@ if (isset($_POST['action'])) {
 		$error .= "<b><i>".__("Name is required.", RBAGENCY_interact_TEXTDOMAIN) ."</i></b><br>";
 		$have_error = true;
 	}
-	
+
 	/* Update user password. */
 	if ( !empty($ProfilePassword) && !empty($ProfilePasswordConfirm) ) {
 		if ( $ProfilePassword == $ProfilePasswordConfirm ) {
@@ -109,10 +109,10 @@ if (isset($_POST['action'])) {
 			$error .= __("The passwords you entered do not match.  Your password was not updated.", RBAGENCY_interact_TEXTDOMAIN);
 		}
 	}
-	
+
 	// Get Post State
 	$action = $_POST['action'];
-	
+
 	// *************************************************************************************************** //
 	// Add Record
 	if($action == 'addRecord'){
@@ -121,19 +121,19 @@ if (isset($_POST['action'])) {
 			$ProfileIsFeatured	= 0;
 			$ProfileIsPromoted	= 0;
 			$ProfileStatHits		= 0;
-			$ProfileDateBirth	    	= $_POST['ProfileDateBirth_Year'] ."-". $_POST['ProfileDateBirth_Month'] ."-". $_POST['ProfileDateBirth_Day'];
+			$ProfileDateBirth			= $_POST['ProfileDateBirth_Year'] ."-". $_POST['ProfileDateBirth_Month'] ."-". $_POST['ProfileDateBirth_Day'];
 			//$ProfileGallery 		= rb_agency_interact_checkdir($ProfileGallery); // Check directory existence , create if does not exist.
 			$ProfileGallery = rb_agency_createdir($ProfileGallery);
 			// Create Record
 			$insert = "INSERT INTO " . table_agency_profile .
 			" (ProfileUserLinked,ProfileGallery,ProfileContactDisplay,ProfileContactNameFirst,ProfileContactNameLast,
-			   ProfileContactEmail,ProfileContactWebsite,ProfileGender,ProfileType, ProfileDateBirth,
-			   ProfileContactLinkFacebook,ProfileContactLinkTwitter,ProfileContactLinkYoutube,ProfileContactLinkFlickr,
-			   ProfileLocationStreet,ProfileLocationCity,ProfileLocationState,ProfileLocationZip,ProfileLocationCountry,
-			   ProfileContactPhoneHome, ProfileContactPhoneCell, ProfileContactPhoneWork,
-			   ProfileDateUpdated,ProfileIsActive)" .
+				ProfileContactEmail,ProfileContactWebsite,ProfileGender,ProfileType, ProfileDateBirth,
+				ProfileContactLinkFacebook,ProfileContactLinkTwitter,ProfileContactLinkYoutube,ProfileContactLinkFlickr,
+				ProfileLocationStreet,ProfileLocationCity,ProfileLocationState,ProfileLocationZip,ProfileLocationCountry,
+				ProfileContactPhoneHome, ProfileContactPhoneCell, ProfileContactPhoneWork,
+				ProfileDateUpdated,ProfileIsActive)" .
 			"VALUES (". $ProfileUserLinked . 
-			         ",'" . $wpdb->escape($ProfileGallery) . "','" . 
+					   ",'" . $wpdb->escape($ProfileGallery) . "','" . 
 				$wpdb->escape($ProfileContactDisplay) . 
 				"','" . $wpdb->escape($ProfileContactNameFirst) . "','" . 
 				$wpdb->escape($ProfileContactNameLast) . 
@@ -156,20 +156,20 @@ if (isset($_POST['action'])) {
 				$wpdb->escape($ProfileContactPhoneWork) . "',now(), ". 
 				$ProfileIsActive .")";
 
-		      $results = $wpdb->query($insert);
+				$results = $wpdb->query($insert);
               $ProfileID = $wpdb->insert_id;
- 			 
+ 
 			// Add New Custom Field Values
 			$pos = 0;
-			foreach($_POST as $key => $value) {			
-			         
+			foreach($_POST as $key => $value) {
+					   
 				if ((substr($key, 0, 15) == "ProfileCustomID") && (isset($value) && !empty($value))) {
 
 					$pos++; 
 					if($pos == 1){
 						// Remove Old Custom Field Values
 						$delete1 = "DELETE FROM " . table_agency_customfield_mux . " WHERE ProfileID = \"". $ProfileID ."\"";
-						$results1 = $wpdb->query($delete1);	
+						$results1 = $wpdb->query($delete1);
 					}
 
 					$ProfileCustomID = substr($key, 15);
@@ -188,12 +188,12 @@ if (isset($_POST['action'])) {
 			update_usermeta( $current_user->ID, 'nickname', esc_attr( $ProfileContactDisplay ) );
 			update_usermeta( $current_user->ID, 'display_name', esc_attr( $ProfileContactDisplay ) );
 			update_usermeta( $current_user->ID, 'user_email', esc_attr( $ProfileContactEmail ) );
-			update_usermeta( $current_user->ID, 'rb_agency_interact_pgender', esc_attr( $ProfileGender ) );			
-			
-	        #DEBUG
-	        #echo "<script>alert('".$ProfileUsername."');<\/script>";		 
+			update_usermeta( $current_user->ID, 'rb_agency_interact_pgender', esc_attr( $ProfileGender ) );
+
+			  #DEBUG
+			  #echo "<script>alert('".$ProfileUsername."');<\/script>";
 			// Link to Wordpress user_meta
-			 
+
 			if ( username_exists( $ProfileUsername) ) {
 
 				$isLinked =  $wpdb->query("UPDATE ". table_agency_profile ." SET ProfileUserLinked =  ". $current_user->ID ." WHERE ProfileID = ".$ProfileID." ");
@@ -203,14 +203,14 @@ if (isset($_POST['action'])) {
 
 				} else {
 						$user_data = array(
-						    'ID' => $current_user->ID,
-						    'user_pass' => wp_generate_password(),
-						    'user_login' => $ProfileUsername,
-						    'user_email' => $ProfileContactEmail,
-						    'display_name' => $ProfileContactDisplay,
-						    'first_name' => $ProfileContactNameFirst,
-						    'last_name' => $ProfileContactNameLast,
-						    'role' =>  get_option('default_role') // Use default role or another role, e.g. 'editor'
+							'ID' => $current_user->ID,
+							'user_pass' => wp_generate_password(),
+							'user_login' => $ProfileUsername,
+							'user_email' => $ProfileContactEmail,
+							'display_name' => $ProfileContactDisplay,
+							'first_name' => $ProfileContactNameFirst,
+							'last_name' => $ProfileContactNameLast,
+							'role' =>  get_option('default_role') // Use default role or another role, e.g. 'editor'
 						);
 						$user_id = wp_insert_user( $user_data );
 						wp_set_password($ProfilePassword, $user_id);
@@ -221,7 +221,7 @@ if (isset($_POST['action'])) {
 				/*$ProfileContactDisplay = "ID-". $ProfileID;
 				$ProfileGallery = "ID". $ProfileID."-";*/
 
-				if (empty($ProfileContactDisplay)) {  // Probably a new record... 
+				if (empty($ProfileContactDisplay)) { // Probably a new record... 
 					if ($rb_agency_option_profilenaming == 0) {
 						$ProfileContactDisplay = $ProfileContactNameFirst . " " . $ProfileContactNameLast;
 					} elseif ($rb_agency_option_profilenaming == 1) {
@@ -244,33 +244,33 @@ if (isset($_POST['action'])) {
 					} elseif ($rb_agency_option_profilenaming == 5) {
 						$ProfileContactDisplay = $ProfileContactNameLast;
 					}
-				}				
+				}
 
-				 $update = $wpdb->query("UPDATE " . table_agency_profile . " SET ProfileContactDisplay='". $ProfileContactDisplay. "', ProfileGallery='". $ProfileGallery. "' WHERE ProfileID='". $ProfileID ."'");
+				$update = $wpdb->query("UPDATE " . table_agency_profile . " SET ProfileContactDisplay='". $ProfileContactDisplay. "', ProfileGallery='". $ProfileGallery. "' WHERE ProfileID='". $ProfileID ."'");
 				$updated = $wpdb->query($update);
-			//}			
-			
+			//}
+
 			$alerts = "<div id=\"message\" class=\"updated\"><p>". __("New Profile added successfully", RBAGENCY_interact_TEXTDOMAIN) ."!</p></div>"; 
-					
+
 			/* Redirect so the page will show updated info. */
 			if ( !$error ) {
-				
+
 				wp_redirect(get_bloginfo("wpurl") . "/profile-member/manage/");
 			}
 		} else {
-			
-       	$alerts = "<div id=\"message\" class=\"error\"><p>". __("Error creating record, please ensure you have filled out all required fields.", RBAGENCY_interact_TEXTDOMAIN) ."<br />". $error ."</p></div>"; 
+
+   		$alerts = "<div id=\"message\" class=\"error\"><p>". __("Error creating record, please ensure you have filled out all required fields.", RBAGENCY_interact_TEXTDOMAIN) ."<br />". $error ."</p></div>"; 
 		}
-	
-	
+
+
 		}
-	}elseif($action == 'editRecord'){
+	} elseif($action == 'editRecord'){
 		// *************************************************************************************************** //
 		// Edit Record
-		
+
 			if(!$have_error){
 
-			
+
 
 				// Update Record
 				$update = "UPDATE " . table_agency_profile . " SET 
@@ -295,29 +295,29 @@ if (isset($_POST['action'])) {
 				ProfileLocationCountry='" . $wpdb->escape($ProfileLocationCountry) . "',
 				ProfileDateUpdated=now()
 				WHERE ProfileID=$ProfileID";
-			    $results = $wpdb->query($update);             
-			    
+				$results = $wpdb->query($update);     
+
 				/* Update WordPress user information. */
 				update_usermeta( $current_user->ID, 'first_name', esc_attr( $ProfileContactNameFirst ) );
 				update_usermeta( $current_user->ID, 'last_name', esc_attr( $ProfileContactNameLast ) );
 				update_usermeta( $current_user->ID, 'nickname', esc_attr( $ProfileContactDisplay ) );
 				update_usermeta( $current_user->ID, 'display_name', esc_attr( $ProfileContactDisplay ) );
 				update_usermeta( $current_user->ID, 'user_email', esc_attr( $ProfileContactEmail ) );
-				update_usermeta( $current_user->ID, 'rb_agency_interact_pgender', esc_attr( $ProfileGender ) );	
-			 
-				// Add New Custom Field Values			 
+				update_usermeta( $current_user->ID, 'rb_agency_interact_pgender', esc_attr( $ProfileGender ) );
+
+				// Add New Custom Field Values
 				foreach($_POST as $key => $value) {
-				
-					
+
+
 					if ((substr($key, 0, 15) == "ProfileCustomID") && (isset($value) && !empty($value))) {
-						
+
 							$ProfileCustomID = substr($key, 15);
-						
+
 						// Remove Old Custom Field Values
 						$delete1 = "DELETE FROM " . table_agency_customfield_mux . " WHERE ProfileCustomID = ". $ProfileCustomID ." AND ProfileID = ".$ProfileID."";
-						$results1 = $wpdb->query($delete1);	
-						
-						
+						$results1 = $wpdb->query($delete1);
+
+
 						if(is_array($value)){
 							$value =  implode(",",$value);
 						}
@@ -327,14 +327,14 @@ if (isset($_POST['action'])) {
 						}
 					}
 				}
-			
+
 
 				$alerts = "<div id=\"message\" class=\"updated\"><p>". __("Profile updated successfully", RBAGENCY_interact_TEXTDOMAIN) ."!</a></p></div>";
 				wp_redirect( $rb_agency_interact_WPURL ."/profile-member/manage/" );
 			} else {
 				$alerts = "<div id=\"message\" class=\"error\"><p>". __("Error updating record, please ensure you have filled out all required fields.", RBAGENCY_interact_TEXTDOMAIN) ."<br />". $error ."</p></div>"; 
 			}
-			
+
 	}
 
 }
@@ -359,17 +359,17 @@ if (is_user_logged_in()) {
 		// get profile Custom fields value
 	echo "<div id=\"container\" class=\"rb-agency-interact-account\">\n";
 	echo "  <div id=\"rbcontent\">\n";
-	
+
 		// ****************************************************************************************** //
 		// Check if User is Logged in or not
-		if (is_user_logged_in()) { 
-			
+		if (is_user_logged_in()) {
+
 			/*
 			 * Set Media to not show to
 			 * client/s, agents, producers,
 			 */
 			$ptype = (int)get_user_meta($current_user->ID, "rb_agency_interact_profiletype", true);
-	                $ptype = retrieve_title($ptype);
+			          $ptype = retrieve_title($ptype);
 			$restrict = array('client','clients','agents','agent','producer','producers');
 			$rb_agency_new_registeredUser = get_user_meta($current_user->ID,'rb_agency_new_registeredUser');
 			if(!empty($rb_agency_new_registeredUser)){
@@ -382,7 +382,7 @@ if (is_user_logged_in()) {
 
 			echo "<div id=\"profile-manage\" class=\"profile-account\">\n";
 			// Menu
-			include("include-menu.php"); 	
+			include("include-menu.php"); 
 			echo " <div class=\"manage-account manage-content\">\n";
 			// Show Errors & Alerts
 			if(!empty($alerts))
@@ -393,29 +393,29 @@ if (is_user_logged_in()) {
 			$results = $wpdb->get_results($sql,ARRAY_A);
 			$count = $wpdb->num_rows;
 			if ($count > 0) {
-			  	foreach ($results as $data) {
-			
+					foreach ($results as $data) {
+
 					// Manage Profile
-					include("include-profileaccount.php"); 	
-						
-						
-			  	} // is there record?
+					include("include-profileaccount.php"); 
+
+
+					}// is there record?
 			} else {
-			  if ($rb_agencyinteract_option_registerallow  == 1) {
+				if ($rb_agencyinteract_option_registerallow  == 1) {
 				// Users CAN register themselves
-				
+
 				// No Record Exists, register them
 				echo "<p>". __("Records show you are not currently linked to a model or agency profile.  Lets setup your profile now!", RBAGENCY_interact_TEXTDOMAIN) ."</p>";
-				
+
 				// Register Profile
 				include("include-profileregister.php");
-				
-				
-			  } else {
+
+
+				} else {
 				// Cant register
 				echo "<strong>". __("Self registration is not permitted.", RBAGENCY_interact_TEXTDOMAIN) ."</strong>";
-			  }
-				
+				}
+
 			}
 			echo " </div>\n"; // .manage-account
 			echo "</div>\n"; // #profile-manage
@@ -424,12 +424,12 @@ if (is_user_logged_in()) {
 					_e('You must be logged in to edit your profile.', 'frontendprofile');
 			echo "</p><!-- .warning -->\n";
 			// Show Login Form
-			include("include-login.php"); 	
+			include("include-login.php"); 
 		}
-		
+
 	echo "  </div><!-- #rbcontent -->\n";
 	echo "</div><!-- #container -->\n";
-	
+
 	if (is_user_logged_in()) {
 
 		// Get Sidebar 

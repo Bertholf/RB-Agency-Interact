@@ -17,19 +17,19 @@ get_currentuserinfo();
 // Were they users or agents?
 $profiletype = (int)get_user_meta($current_user->ID, "rb_agency_interact_profiletype", true);
 
-if(get_user_meta($current_user->ID, 'rb_agency_interact_clientdata', true)) { $profiletypetext = __("Agent/Producer", RBAGENCY_interact_TEXTDOMAIN); } else { $profiletypetext = __("Model/Talent", RBAGENCY_interact_TEXTDOMAIN); }
+if(get_user_meta($current_user->ID, 'rb_agency_interact_clientdata', true)) {$profiletypetext = __("Agent/Producer", RBAGENCY_interact_TEXTDOMAIN); } else {$profiletypetext = __("Model/Talent", RBAGENCY_interact_TEXTDOMAIN); }
 
 // Change Title
 add_filter('wp_title', 'rb_agencyinteractive_override_title', 10, 2);
 	function rb_agencyinteractive_override_title(){
 		return "Manage Profile";
-	}   
+	}
 
 // declare alert
 $alerts = "";
 
 // Form Post
-if (isset($_POST['action'])) { 
+if (isset($_POST['action'])) {
 
 	$ProfileID					=$_POST['ProfileID'];
 	$ProfileUserLinked			=$_POST['ProfileUserLinked'];
@@ -38,9 +38,9 @@ if (isset($_POST['action'])) {
 	$ProfileStatWeight			=$_POST['ProfileStatWeight'];
 	$ProfileDateViewLast		=$_POST['ProfileDateViewLast'];
 	$ProfileType				=$_POST['ProfileType'];
-	  if (is_array($ProfileType)) { 
+		if (is_array($ProfileType)) {
 		$ProfileType = implode(",", $ProfileType);
-	  } 	
+		}
 
     // Custom Fields
 	foreach($_POST as $key => $value) {
@@ -48,23 +48,23 @@ if (isset($_POST['action'])) {
 				$profilecustomfield_date = explode("_",$key);
 				if(count($profilecustomfield_date) == 2){ // customfield date
 					$ProfileCustomID = substr($profilecustomfield_date[0], 15);
-				}else{	
+				} else {
 					$ProfileCustomID = substr($key, 15);
 				}
 			// Remove Old Custom Field Values
 			$delete1 = "DELETE FROM " . table_agency_customfield_mux . " WHERE ProfileCustomID = ". $ProfileCustomID ." AND ProfileID = ".$ProfileID."";
-			$results1 = $wpdb->query($delete1); 	
+			$results1 = $wpdb->query($delete1); 
 			if(is_array($value)){
 				$value =  implode(",",$value);
 			}
 				if(count($profilecustomfield_date) == 2){ // customfield date
 					$value = date("y-m-d h:i:s",strtotime($value));
 					$insert1 = $wpdb->prepare("INSERT INTO " . table_agency_customfield_mux . " (ProfileID,ProfileCustomID,ProfileCustomDateValue)" . "VALUES (%d,%d,%s)",$ProfileID,$ProfileCustomID,$value);
-				}else{
+				} else {
 					$insert1 = $wpdb->prepare("INSERT INTO " . table_agency_customfield_mux . " (ProfileID,ProfileCustomID,ProfileCustomValue)" . "VALUES (%d,%d,%s)",$ProfileID,$ProfileCustomID,$value);
 				}
 				$results1 = $wpdb->query($insert1);
-			
+
 		}
 	}
 	// Get Primary Image
@@ -100,7 +100,7 @@ if (isset($_POST['action'])) {
 
 	case 'addRecord':
 		if (!$have_error){
-		
+
 		}
 	}
 }
@@ -125,18 +125,18 @@ if($rb_agencyinteract_option_profilemanage_sidebar){
 
 		// ****************************************************************************************** //
 		// Check if User is Logged in or not
-		if (is_user_logged_in()) { 
+		if (is_user_logged_in()) {
 
             /*
 			 * Set Media to not show to
 			 * client/s, agents, producers,
 			 */
 			$ptype = (int)get_user_meta($current_user->ID, "rb_agency_interact_profiletype", true);
-	                $ptype = retrieve_title($ptype);
+			          $ptype = retrieve_title($ptype);
 			$restrict = array('client','clients','agents','agent','producer','producers');
 			$rb_agency_new_registeredUser = get_user_meta($current_user->ID,'rb_agency_new_registeredUser');
 			if(!empty($rb_agency_new_registeredUser)){
-						
+
 						if(in_array(strtolower($ptype),$restrict)){
 							echo "<div id=\"profile-steps\">Profile Setup: Step 2 of 2</div>\n";
 						} else {
@@ -146,7 +146,7 @@ if($rb_agencyinteract_option_profilemanage_sidebar){
 			echo "<div id=\"profile-manage\" class=\"overview\">\n";
 
 			// Menu
-			include("include-menu.php"); 	
+			include("include-menu.php"); 
 			echo " <div class=\"manage-profile manage-content\">\n";
 
 			// Show Errors & Alerts
@@ -158,7 +158,7 @@ if($rb_agencyinteract_option_profilemanage_sidebar){
 			$data = $wpdb->get_row($sql,ARRAY_A);
 			$count =  $wpdb->num_rows;
 			if ($count > 0) {
-			  	// Manage Profile
+					// Manage Profile
 				include("include-profilemanage.php");
 			} else {
 
@@ -171,7 +171,7 @@ if($rb_agencyinteract_option_profilemanage_sidebar){
 			echo " </div>\n"; // .profile-manage-inner
 			echo "</div>\n"; // #profile-manage
 		} else {
-			
+
 			// Show Login Form
 			include("include-login.php");
 		}

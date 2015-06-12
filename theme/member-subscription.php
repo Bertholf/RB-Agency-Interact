@@ -23,35 +23,35 @@ $rb_agency_interact_options_arr = get_option('rb_agencyinteract_options');
 
 // Were they users or agents?
 $profiletype = (int)get_user_meta($current_user->ID, "rb_agency_interact_profiletype", true);
-if(get_user_meta($current_user->ID, 'rb_agency_interact_clientdata', true)) { $profiletypetext = __("Agent/Producer", RBAGENCY_interact_TEXTDOMAIN); } else { $profiletypetext = __("Model/Talent", RBAGENCY_interact_TEXTDOMAIN); }
+if(get_user_meta($current_user->ID, 'rb_agency_interact_clientdata', true)) {$profiletypetext = __("Agent/Producer", RBAGENCY_interact_TEXTDOMAIN); } else {$profiletypetext = __("Model/Talent", RBAGENCY_interact_TEXTDOMAIN); }
 
 
 	// Change Title
 	add_filter('wp_title', 'rb_agencyinteractive_override_title', 10, 2);
 		function rb_agencyinteractive_override_title(){
 			return "Manage Subscription";
-		}   
-	
+		}
+
 /* Display Page ******************************************/ 
 
 // Call Header
 echo $rb_header = RBAgency_Common::rb_header();
-	
+
 	echo "<div id=\"container\" class=\"one-column rb-agency-interact rb-agency-interact-subscribe\">\n";
 	echo "  <div id=\"content\">\n";
-	
-	
+
+
 		// ****************************************************************************************** //
 		// Check if User is Logged in or not
 		if (is_user_logged_in()) {
-			
+
 			/// Show registration steps
 			echo "<div id=\"profile-steps\">Profile Setup: Step 4 of 4</div>\n";
-			
+
 			echo "<div id=\"profile-manage\" class=\"profile-admin account\">\n";
-			
+
 			// Menu
-			include("include-menu.php"); 	
+			include("include-menu.php"); 
 			echo " <div class=\"manage-subscription manage-content\">\n";
 
 			/* Check if the user is regsitered *****************************************/ 
@@ -60,8 +60,8 @@ echo $rb_header = RBAgency_Common::rb_header();
 			$results = $wpdb->get_results($sql,ARRAY_A);
 			$count =  $wpdb->num_rows;
 			if ($count > 0) {
-			  foreach($results as $data) {
-			
+				foreach($results as $data) {
+
 					// Is there a subscription?
 					if (isset($SubscriberDateExpire)) {
 						echo "<h1>". $current_user->first_name .", ". __("enjoying your membership?", RBAGENCY_interact_TEXTDOMAIN) ."</h1>";
@@ -72,12 +72,12 @@ echo $rb_header = RBAgency_Common::rb_header();
 					}
 
 					// What are the rates?
-					    $sql = "SELECT * FROM ". table_agencyinteract_subscription_rates ."";
+						$sql = "SELECT * FROM ". table_agencyinteract_subscription_rates ."";
 					$results = $wpdb->get_results($sql,ARRAY_A);
-					  $count =  $wpdb->num_rows;
+						$count =  $wpdb->num_rows;
 					if ($count > 0) {
 						echo "<div id=\"subscription-wrapper\">";
-					  	foreach($results as $data) {
+							foreach($results as $data) {
 							echo " <div class=\"subscription-rate\">";
 							echo "  <div class=\"subscription-rate-title\">". stripslashes($data['SubscriptionRateTitle']) ."</div>\n";
 							echo "  <div class=\"subscription-rate-price\">$". $data['SubscriptionRatePrice'] ."</div>\n";
@@ -101,26 +101,26 @@ echo $rb_header = RBAgency_Common::rb_header();
 							echo "  <div class=\"subscription-rate-text\">". stripslashes($data['SubscriptionRateText']) ."</div>\n";
 
 							echo " </div>";
-					  	} // is there record?
+							}// is there record?
 					echo " <div class=\"clear\"></div>";
 					echo "</div>";
-					}		
-						
+					}
+
 					echo "  <div id=\"subscription-customtext\">\n";
 						$Page = get_page($rb_agencyinteract_option_subscribepagedetails);
 						echo apply_filters('the_content', $Page->post_content);
 					echo " </div>";
-			
-		  		} // is there record?
+
+					}// is there record?
 
 			} else {
-				
+
 				// No Record Exists, register them
 				echo "". __("Records show you are not currently linked to a model or agency profile.  Lets setup your profile now!", RBAGENCY_interact_TEXTDOMAIN) ."";
-				
+
 				// Register Profile
-				include("include-profileregister.php"); 	
-				
+				include("include-profileregister.php"); 
+
 			}
 
 			echo " </div>\n"; // .profile-manage-inner
@@ -130,12 +130,12 @@ echo $rb_header = RBAgency_Common::rb_header();
 					_e('You must be logged in to edit your profile.', RBAGENCY_interact_TEXTDOMAIN);
 			echo "</p><!-- .warning -->\n";
 			// Show Login Form
-			include("include-login.php"); 	
+			include("include-login.php"); 
 		}
-		
+
 	echo "  </div><!-- #content -->\n";
 	echo "</div><!-- #container -->\n";
-	
+
 // Get Sidebar 
 $rb_agency_interact_options_arr = get_option('rb_agencyinteract_options');
 	$rb_agencyinteract_option_profilemanage_sidebar = $rb_agency_interact_options_arr['rb_agencyinteract_option_profilemanage_sidebar'];

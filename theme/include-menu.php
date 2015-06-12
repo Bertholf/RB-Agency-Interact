@@ -3,42 +3,42 @@ global $wpdb,$current_user;
 get_currentuserinfo();
 		echo " <div class=\"profile-manage-menu\">\n";
 		echo "   <div id=\"subMenuTab\">\n";
-					if ( ($_SERVER["REQUEST_URI"]) == "/profile-member/") { $tabclass = "active"; } else { $tabclass = "inactive"; }
+					if ( ($_SERVER["REQUEST_URI"]) == "/profile-member/") {$tabclass = "active"; } else {$tabclass = "inactive"; }
 		echo " 		<div class=\"tab-left tab-". $tabclass ."\">\n";
 		echo " 			<a href=\"". get_bloginfo("wpurl") ."/profile-member/\">\n";
-		echo " 			  <div class=\"subMenuTabBG\"><div class=\"subMenuTabBorders\"><div class=\"subMenuTabText\">".__("Overview", RBAGENCY_interact_TEXTDOMAIN) ."</div></div></div>\n";
+		echo " 				<div class=\"subMenuTabBG\"><div class=\"subMenuTabBorders\"><div class=\"subMenuTabText\">".__("Overview", RBAGENCY_interact_TEXTDOMAIN) ."</div></div></div>\n";
 		echo " 			</a>\n";
 		echo " 		</div>\n";
-					if ( ($_SERVER["REQUEST_URI"]) == "/profile-member/account/") { $tabclass = "active"; } else { $tabclass = "inactive"; }
+					if ( ($_SERVER["REQUEST_URI"]) == "/profile-member/account/") {$tabclass = "active"; } else {$tabclass = "inactive"; }
 		echo " 		<div class=\"tab-inner tab-". $tabclass ."\">\n";
 		echo " 			<a  href=\"". get_bloginfo("wpurl") ."/profile-member/account/\">\n";
-		echo " 			  <div class=\"subMenuTabBG\"><div class=\"subMenuTabBorders\"><div class=\"subMenuTabText\">".__("My Account", RBAGENCY_interact_TEXTDOMAIN) ."</div></div></div>\n";
+		echo " 				<div class=\"subMenuTabBG\"><div class=\"subMenuTabBorders\"><div class=\"subMenuTabText\">".__("My Account", RBAGENCY_interact_TEXTDOMAIN) ."</div></div></div>\n";
 		echo " 			</a>\n";
 		echo " 		</div>\n";
 		if(get_user_meta($current_user->ID, 'rb_agency_interact_clientdata', true)) {
 		// Agents
 
-					if ( ($_SERVER["REQUEST_URI"]) == "/profile-favorite/") { $tabclass = "active"; } else { $tabclass = "inactive"; }
+					if ( ($_SERVER["REQUEST_URI"]) == "/profile-favorite/") {$tabclass = "active"; } else {$tabclass = "inactive"; }
 		echo " 		<div class=\"tab-inner tab-". $tabclass ."\">\n";
 		echo " 			<a href=\"\">\n";
-		echo " 			  <div class=\"subMenuTabBG\"><div class=\"subMenuTabBorders\"><div class=\"subMenuTabText\">".__("Favorites", RBAGENCY_interact_TEXTDOMAIN) ."</div></div></div>\n";
+		echo " 				<div class=\"subMenuTabBG\"><div class=\"subMenuTabBorders\"><div class=\"subMenuTabText\">".__("Favorites", RBAGENCY_interact_TEXTDOMAIN) ."</div></div></div>\n";
 		echo " 			</a>\n";
 		echo " 		</div>\n";
 		} else {
 		//Models Talent
-					if ( ($_SERVER["REQUEST_URI"]) == "/profile-member/manage/") { $tabclass = "active"; } else { $tabclass = "inactive"; }
+					if ( ($_SERVER["REQUEST_URI"]) == "/profile-member/manage/") {$tabclass = "active"; } else {$tabclass = "inactive"; }
 		echo " 		<div class=\"tab-inner tab-". $tabclass ."\">\n";
 		echo " 			<a  href=\"". get_bloginfo("wpurl") ."/profile-member/manage/\">\n";
-		echo " 			  <div class=\"subMenuTabBG\"><div class=\"subMenuTabBorders\"><div class=\"subMenuTabText\">".__("My Profile", RBAGENCY_interact_TEXTDOMAIN) ."</div></div></div>\n";
+		echo " 				<div class=\"subMenuTabBG\"><div class=\"subMenuTabBorders\"><div class=\"subMenuTabText\">".__("My Profile", RBAGENCY_interact_TEXTDOMAIN) ."</div></div></div>\n";
 		echo " 			</a>\n";
 		echo " 		</div>\n";
-		
+
 		/*
 		 * Set Media to not show to
 		 * client/s, agents, producers,
 		 */
 		$ptype = (int)get_user_meta($current_user->ID, "rb_agency_interact_profiletype", true);
-	        $ptype = retrieve_title($ptype);
+			  $ptype = retrieve_title($ptype);
 		$restrict = array('client','clients','agents','producers');
 		if(in_array(strtolower($ptype),$restrict)){
 			$d = 'display:none;';
@@ -46,20 +46,20 @@ get_currentuserinfo();
 			$d = '';
 		}
 
-		if ( ($_SERVER["REQUEST_URI"]) == "/profile-member/media/") { $tabclass = "active"; } else { $tabclass = "inactive"; }
+		if ( ($_SERVER["REQUEST_URI"]) == "/profile-member/media/") {$tabclass = "active"; } else {$tabclass = "inactive"; }
 		echo ' 		<div class="tab-inner tab-'. $tabclass .'" style="'.$d.'">';
 		echo " 			<a href=\"". get_bloginfo("wpurl") ."/profile-member/media/\">\n";
-		echo " 			  <div class=\"subMenuTabBG\"><div class=\"subMenuTabBorders\"><div class=\"subMenuTabText\">".__("My Media", RBAGENCY_interact_TEXTDOMAIN) ."</div></div></div>\n";
+		echo " 				<div class=\"subMenuTabBG\"><div class=\"subMenuTabBorders\"><div class=\"subMenuTabText\">".__("My Media", RBAGENCY_interact_TEXTDOMAIN) ."</div></div></div>\n";
 		echo " 			</a>\n";
 		echo " 		</div>\n";
 		}
-		
-		if ( ($_SERVER["REQUEST_URI"]) == "/profile/") { $tabclass = "active"; } else { $tabclass = "inactive"; }
+
+		if ( ($_SERVER["REQUEST_URI"]) == "/profile/") {$tabclass = "active"; } else {$tabclass = "inactive"; }
 		$profile_gallery = $wpdb->get_row($wpdb->prepare("SELECT ProfileGallery FROM ".table_agency_profile." WHERE ProfileContactEmail = '$current_user->user_email'"));
 		if(!empty($profile_gallery->ProfileGallery)){
 		echo " 		<div class=\"tab-inner tab-". $tabclass ."\">\n";
 		echo " 			<a  href=\"". get_bloginfo("wpurl") ."/profile/".$profile_gallery->ProfileGallery."\">\n";
-		echo " 			  <div class=\"subMenuTabBG\"><div class=\"subMenuTabBorders\"><div class=\"subMenuTabText\">".__("View My Profile", RBAGENCY_interact_TEXTDOMAIN) ."</div></div></div>\n";
+		echo " 				<div class=\"subMenuTabBG\"><div class=\"subMenuTabBorders\"><div class=\"subMenuTabText\">".__("View My Profile", RBAGENCY_interact_TEXTDOMAIN) ."</div></div></div>\n";
 		echo " 			</a>\n";
 		echo " 		</div>\n";
 		}
@@ -73,19 +73,19 @@ get_currentuserinfo();
 			$results = $wpdb->get_results($sql,ARRAY_A);
 			$count = $wpdb->num_rows;
 			if ($count > 0) {
-			  foreach($results as $data) {
+				foreach($results as $data) {
 				$SubscriberDateExpire = $data["SubscriberDateExpire"];
 				echo " 		<div class=\"tab-right tab-". $tabclass ."\">\n";
 				echo " 			<a href=\"". get_bloginfo("wpurl") ."/profile-member/subscription/\">\n";
-				echo " 			  <div class=\"subMenuTabBG\"><div class=\"subMenuTabBorders\"><div class=\"subMenuTabText\">".__("My Subscription", RBAGENCY_interact_TEXTDOMAIN) ."</div></div></div>\n";
+				echo " 				<div class=\"subMenuTabBG\"><div class=\"subMenuTabBorders\"><div class=\"subMenuTabText\">".__("My Subscription", RBAGENCY_interact_TEXTDOMAIN) ."</div></div></div>\n";
 				echo " 			</a>\n";
 				echo " 		</div>\n";
-			  } // is there record?
+				}// is there record?
 			} else {
 				$SubscriberDateExpire = NULL;
 				echo " 		<div class=\"tab-right tab-". $tabclass ."\">\n";
 				echo " 			<a href=\"". get_bloginfo("wpurl") ."/profile-member/subscription/\">\n";
-				echo " 			  <div class=\"subMenuTabBG\"><div class=\"subMenuTabBorders\"><div class=\"subMenuTabText\">".__("My Subscription", RBAGENCY_interact_TEXTDOMAIN) ."</div></div></div>\n";
+				echo " 				<div class=\"subMenuTabBG\"><div class=\"subMenuTabBorders\"><div class=\"subMenuTabText\">".__("My Subscription", RBAGENCY_interact_TEXTDOMAIN) ."</div></div></div>\n";
 				echo " 			</a>\n";
 				echo " 		</div>\n";
 			}

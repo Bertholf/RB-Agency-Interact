@@ -41,15 +41,15 @@ See license.txt for full details.
 	// Version
 	define("RBAGENCY_interact_VERSION", $RBAGENCY_interact_VERSION); // e.g. 1.0
 	// Paths
-	define("RBAGENCY_interact_BASENAME", plugin_basename(__FILE__) );  // rb-agency/rb-agency.php
+	define("RBAGENCY_interact_BASENAME", plugin_basename(__FILE__) );// rb-agency/rb-agency.php
 	$rb_agency_interact_WPURL = get_bloginfo("wpurl"); // http://domain.com/wordpress
 	$rb_agency_interact_WPUPLOADARRAY = wp_upload_dir(); // Array  $rb_agency_interact_WPUPLOADARRAY['baseurl'] $rb_agency_interact_WPUPLOADARRAY['basedir']
-	define("RBAGENCY_interact_BASEDIR", get_bloginfo("wpurl") ."/". PLUGINDIR ."/". dirname( plugin_basename(__FILE__) ) ."/" );  // http://domain.com/wordpress/wp-content/plugins/rb-agency-interact/
-	define("RBAGENCY_interact_UPLOADDIR", $rb_agency_interact_WPUPLOADARRAY['baseurl'] ."/profile-media/" );  // http://domain.com/wordpress/wp-content/uploads/profile-media/
+	define("RBAGENCY_interact_BASEDIR", get_bloginfo("wpurl") ."/". PLUGINDIR ."/". dirname( plugin_basename(__FILE__) ) ."/" );// http://domain.com/wordpress/wp-content/plugins/rb-agency-interact/
+	define("RBAGENCY_interact_UPLOADDIR", $rb_agency_interact_WPUPLOADARRAY['baseurl'] ."/profile-media/" );// http://domain.com/wordpress/wp-content/uploads/profile-media/
 	define("RBAGENCY_interact_UPLOADPATH", $rb_agency_interact_WPUPLOADARRAY['basedir'] ."/profile-media/" ); // /home/content/99/6048999/html/domain.com/wordpress/wp-content/uploads/profile-media/
 	define("RBAGENCY_interact_TEXTDOMAIN", basename(dirname( __FILE__ )) ); //   rb-agency
 	define("RBAGENCY_interact_BASEREL", plugin_dir_path( __FILE__ ) );
-	
+
 
 	// RB Agency Plugin Path
 	if (!defined('RBAGENCY_INTERACT_PLUGIN_NAME')) // rb-agency-interact
@@ -196,7 +196,7 @@ class RBAgencyInteract {
 						SubscriptionRateText text NOT NULL,
 						SubscriptionRatePrice int(11) NOT NULL,
 						SubscriptionRateTerm int(11) NOT NULL,
-						  PRIMARY KEY (SubscriptionRateID)
+							PRIMARY KEY (SubscriptionRateID)
 					);";
 				dbDelta($sql);
 
@@ -339,7 +339,7 @@ class RBAgencyInteract {
 	// Login / Actions Widget
 	add_action('widgets_init', create_function('', 'return register_widget("rb_agency_interact_widget_loginactions");'));
 		class rb_agency_interact_widget_loginactions extends WP_Widget {
-			
+
 			// Setup
 			function rb_agency_interact_widget_loginactions() {
 				$widget_ops = array('classname' => 'rb_agency_interact_widget_profileaction', 'description' => __("Displays profile actions such as login and links to edit", RBAGENCY_interact_TEXTDOMAIN) );
@@ -360,34 +360,34 @@ class RBAgencyInteract {
 
 				if(!is_user_logged_in()){
 
-						if ( !empty( $title ) ) { echo $before_title . $title . $after_title; };
+						if ( !empty( $title ) ) {echo $before_title . $title . $after_title; };
 						echo "	<div class=\"rbform\">\n";
 						echo "  	<form name=\"loginform\" id=\"rbform-login\" action=\"". network_site_url("/") ."profile-login/\" method=\"post\">\n";
-						echo "      	<div class=\"rbfield rbtext rbsingle\">\n";
-						echo "          	<label for=\"user-name\">". __("Username", RBAGENCY_interact_TEXTDOMAIN). "</label>";
+						echo "  		<div class=\"rbfield rbtext rbsingle\">\n";
+						echo "      		<label for=\"user-name\">". __("Username", RBAGENCY_interact_TEXTDOMAIN). "</label>";
 						echo "				<div><input type=\"text\" name=\"user-name\" value=\"". wp_specialchars( isset($_POST['user-name']) ?$_POST['user-name']:"", 1 ) ."\" id=\"user-name\" /></div>\n";
 						echo "          </div>\n";
 						echo "          <div class=\"rbfield rbpassrword rbsingle\">\n";
-						echo "             	<label for=\"password\">". __("Password", RBAGENCY_interact_TEXTDOMAIN). "</label>";
+						echo "         		<label for=\"password\">". __("Password", RBAGENCY_interact_TEXTDOMAIN). "</label>";
 						echo "				<div>";
 						echo "					<input type=\"password\" name=\"password\" value=\"\" id=\"password\" />";
 						echo "					<small class=\"rbfield-note\"><a href=\"". get_bloginfo('wpurl') ."/wp-login.php?action=lostpassword\">". __("forgot password", RBAGENCY_interact_TEXTDOMAIN). "?</a></small>\n";
-						echo "          	</div>\n";
+						echo "      		</div>\n";
 						echo "          </div>\n";
 						echo "          <div class=\"rbfield rbcheckbox rbsingle\">\n";
-						echo "          	<label></label>\n";
+						echo "      		<label></label>\n";
 						echo "              <div><label><input type=\"checkbox\" name=\"remember-me\" value=\"forever\" /> ". __("Keep me signed in", RBAGENCY_interact_TEXTDOMAIN). "</label></div>\n";
 						echo "          </div>\n";
 						echo "          <div class=\"rbfield rbsubmit rbsingle\">\n";
-						echo "         		<input type=\"hidden\" name=\"action\" value=\"log-in\" />\n";
-						echo "             	<input type=\"submit\" value=\"". __("Sign In", RBAGENCY_interact_TEXTDOMAIN). "\" />\n";
+						echo "     			<input type=\"hidden\" name=\"action\" value=\"log-in\" />\n";
+						echo "         		<input type=\"submit\" value=\"". __("Sign In", RBAGENCY_interact_TEXTDOMAIN). "\" />\n";
 						echo "          </div>\n";
 						echo "  	</form>\n";
 						echo "	</div>\n";
 
 				} else {
 					if(current_user_can('level_10')){
-						if ( !empty( $title ) ) { echo $before_title . "RB Agency Settings" . $after_title; };
+						if ( !empty( $title ) ) {echo $before_title . "RB Agency Settings" . $after_title; };
 						echo "<ul>";
 						echo "<li><a href=\"".admin_url("admin.php?page=rb_agency_menu")."\">Overview</a></li>";
 						echo "<li><a href=\"".admin_url("admin.php?page=rb_agency_profiles")."\">Manage Profiles</a></li>";
@@ -396,10 +396,10 @@ class RBAgencyInteract {
 						echo "<li><a href=\"".admin_url("admin.php?page=rb_agency_searchsaved")."\">Saved Searches</a></li>";
 						echo "<li><a href=\"".admin_url("admin.php?page=rb_agency_reports")."\">Tools &amp; Reports</a></li>";
 						echo "<li><a href=\"".admin_url("admin.php?page=rb_agency_settings")."\">Settings</a></li>";
-						echo "<li><a href=\"/wp-login.php?action=logout&_wpnonce=3bb3c87a3d\">Logout</a></li>";	    
+						echo "<li><a href=\"/wp-login.php?action=logout&_wpnonce=3bb3c87a3d\">Logout</a></li>";
 						echo "</ul>";
 
-					} else{
+					} else {
 
 						rb_agency_profilesearch(array("layout" =>"simple"));
 
@@ -417,9 +417,9 @@ class RBAgencyInteract {
 				$instance['trendShowCount'] = strip_tags($new_instance['trendShowCount']);
 				return $instance;
 			}
-		
+
 			// Form
-			function form($instance) {				
+			function form($instance) {
 				$instance = wp_parse_args( (array) $instance, array( 'title' => '' ) );
 				$title = esc_attr($instance['title']);
 				$trendShowCount = isset($instance['trendShowCount'])?esc_attr($instance['trendShowCount']):"";
@@ -429,7 +429,7 @@ class RBAgencyInteract {
 				<?php 
 			}
 
-		} // class
+		}// class
 
 
 

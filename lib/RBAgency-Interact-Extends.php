@@ -42,15 +42,15 @@ class RBAgency_Interact_Extends {
 
 			// Get Options
 			$shortcode_register = true;
-			
+
 			$rb_agency_options_arr = get_option('rb_agency_options');
 			/*if($mode == "client"){
 				include(RBAGENCY_INTERACT_PLUGIN_DIR ."theme/client-register.php");
-			}else*/if($mode == "talent"){
+			} else*/if($mode == "talent"){
 				include(RBAGENCY_INTERACT_PLUGIN_DIR ."theme/member-register.php");
-			}elseif($mode == "casting" && class_exists("RBAgencyCasting")){
+			} elseif($mode == "casting" && class_exists("RBAgencyCasting")){
 				include(RBAGENCY_casting_PLUGIN_DIR."view/casting-register.php");
-			}else{
+			} else {
 				echo "Registration mode is not set.";
 			}
 

@@ -1,13 +1,13 @@
 <?php
 	/* Load registration file. */
 	//require_once( ABSPATH . WPINC . '/registration.php' );
-	
+
 	/* Check if users can register. */
 	$registration = get_option( 'rb_agencyinteract_options' );
 	$rb_agencyinteract_option_registerallow = isset($registration["rb_agencyinteract_option_registerallow"]) ?$registration["rb_agencyinteract_option_registerallow"]:"";
 	$rb_agencyinteract_option_registerallowAgentProducer = isset($registration['rb_agencyinteract_option_registerallowAgentProducer'])?$registration['rb_agencyinteract_option_registerallowAgentProducer']:0;
 	$rb_agencyinteract_option_switch_sidebar = isset($registration["rb_agencyinteract_option_switch_sidebar"])?(int)$registration["rb_agencyinteract_option_switch_sidebar"]:"";
-			
+
 	if (( current_user_can("create_users") || $rb_agencyinteract_option_registerallow )) {
 		$widthClass = "half";
 	} else {
@@ -29,8 +29,8 @@ echo "     <div id=\"rbsignin-register\" class=\"rbinteract\">\n";
 			if (isset($ref) && $ref == "casting") {
 			echo "<p id=\"message\" class=\"updated\">". __("Your account is not registered as Talent/Model.", RBAGENCY_interact_TEXTDOMAIN).  __(" Click", RBAGENCY_interact_TEXTDOMAIN)." <a href=\"".get_bloginfo("url")."/casting-login/\">".__("here", RBAGENCY_interact_TEXTDOMAIN)."</a> ".__("to login as Casting.", RBAGENCY_interact_TEXTDOMAIN)."</p>\n";
 			}
-			
-			
+
+
 			if(isset($ref) && $ref == "reset_password"){
 				echo "<p  id=\"message\" class=\"updated\">".__("Check your e-mail for the reset link to create a new password.", RBAGENCY_interact_TEXTDOMAIN)."</p>\n";
 			}
@@ -83,14 +83,14 @@ if(isset($rb_agencyinteract_option_switch_sidebar) && $rb_agencyinteract_option_
 								echo "            </ul>\n";
 								echo "          </div> <!-- talent-register -->\n";
 						}*/
-				
+
 				}
 			echo "        </div> <!-- rbsign-up -->\n";
 }
-else{
+else {
 	echo "        <div id=\"rbsign-up\" class=\"inline-block\">\n";
 	echo "          <div id=\"talent-register\" class=\"register\">\n";
-	 if ( dynamic_sidebar('rb-agency-interact-login-sidebar') ) :endif; 
+	if ( dynamic_sidebar('rb-agency-interact-login-sidebar') ) :endif; 
 	echo "          </div> <!-- talent-register -->\n";
 	echo "          <div class=\"clear line\"></div>\n";
 	echo "        </div> <!-- rbsign-up -->\n";

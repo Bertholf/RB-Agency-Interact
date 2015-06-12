@@ -12,16 +12,16 @@
 			$ProfileCustomOptions_String = str_replace(",",":",strtok(strtok($data1['ProfileCustomOptions'],"}"),"{"));
 			list($ProfileCustomOptions_Min_label,$ProfileCustomOptions_Min_value,$ProfileCustomOptions_Max_label,$Profi
 			if(!empty($ProfileCustomOptions_Min_value) && !empty($ProfileCustomOptions_Max_value)){
-				    echo "<br /><br /> <label for=\"ProfileCustomLabel_min\" style=\"text-align:right;\">". __("Min", RBAGENCY_TEXTDOMAIN) . "&nbsp;&nbsp;</label>\n";
+					echo "<br /><br /> <label for=\"ProfileCustomLabel_min\" style=\"text-align:right;\">". __("Min", RBAGENCY_TEXTDOMAIN) . "&nbsp;&nbsp;</label>\n";
 					echo "<input type=\"text\" name=\"ProfileCustomID". $data1['ProfileCustomID'] ."\" value=\"". $ProfileCustomOptions_Min_value ."\" />\n";
 					echo "<br /><br /><br /><label for=\"ProfileCustomLabel_min\" style=\"text-align:right;\">". __("Max", RBAGENCY_TEXTDOMAIN) . "&nbsp;&nbsp;</label>\n";
 					echo "<input type=\"text\" name=\"ProfileCustomID". $data1['ProfileCustomID'] ."\" value=\"". $ProfileCustomOptions_Max_value ."\" /><br />\n";
-		
-				
-			}else{
-				    echo "<br /><br />  <label for=\"ProfileCustomLabel_min\" style=\"text-align:right;\">". __("Min", RBAGENCY_TEXTDOMAIN) . "&nbsp;&nbsp;</label>\n";
+
+
+			} else {
+					echo "<br /><br />  <label for=\"ProfileCustomLabel_min\" style=\"text-align:right;\">". __("Min", RBAGENCY_TEXTDOMAIN) . "&nbsp;&nbsp;</label>\n";
 					echo "<input type=\"text\" name=\"ProfileCustomID". $data1['ProfileCustomID'] ."\" value=\"".$_SESSION["ProfileCustomID". $data1['ProfileCustomID']]."\" />\n";
-				    echo "<br /><br /><br /><label for=\"ProfileCustomLabel_min\" style=\"text-align:right;\">". __("Max", RBAGENCY_TEXTDOMAIN) . "&nbsp;&nbsp;</label>\n";
+					echo "<br /><br /><br /><label for=\"ProfileCustomLabel_min\" style=\"text-align:right;\">". __("Max", RBAGENCY_TEXTDOMAIN) . "&nbsp;&nbsp;</label>\n";
 					echo "<input type=\"text\" name=\"ProfileCustomID". $data1['ProfileCustomID'] ."\" value=\"".$_SESSION["ProfileCustomID". $data1['ProfileCustomID']]."\" /><br />\n";
 
 			}
@@ -41,8 +41,8 @@
 								if($val1 != end($data1) && $val1 != $data1[0]){
 										if(in_array($val1,explode(",",$ProfileCustomValue))){
 											$isSelected = "selected=\"selected\"";
-											echo "<option value=\"".$val1."\" ".$isSelected .">".$val1."</option>";  
-										}else{
+											echo "<option value=\"".$val1."\" ".$isSelected .">".$val1."</option>";
+										} else {
 											echo "<option value=\"".$val1."\">".$val1."</option>";
 										}
 								}
@@ -59,69 +59,69 @@
 									echo "lol$val2 == $ProfileCustomValue";
 										if(in_array($val2,explode(",",$ProfileCustomValue))){
 											$isSelected = "selected=\"selected\"";
-											echo "<option value=\"".$val2."\" ".$isSelected .">".$val2."</option>";  
-										}else{
+											echo "<option value=\"".$val2."\" ".$isSelected .">".$val2."</option>";
+										} else {
 											echo "<option value=\"".$val2."\">".$val2."</option>";
 										}
 								}
-								
+
 							}
 						echo "</select>\n";
-				
+
 				}
-		   
-			
-			
+
+
+
 		}
-		
-		 elseif ($ProfileCustomType == 4) {
+
+		elseif ($ProfileCustomType == 4) {
 			echo "<textarea name=\"ProfileCustomID". $data1['ProfileCustomID'] ."\">". $ProfileCustomValue ."</textarea>";
 		}
-		 elseif ($ProfileCustomType == 5) {
-			   $array_customOptions_values = explode("|",$data1['ProfileCustomOptions']);
-			          echo "<div style=\"width:300px;float:left;\">";
-					  foreach($array_customOptions_values as $val){
-						
-						     if(in_array($val,explode(",",$ProfileCustomValue))){
-								  $isChecked = "checked=\"checked\"";
-								   echo "<label><input type=\"checkbox\" value=\"".$val."\" ".$isChecked." name=\"ProfileCustomID". $data1['ProfileCustomID'] ."[]\" />";
-							 echo "". $val."</label>";
-							 }else{
-							 echo "<label><input type=\"checkbox\" value=\"".$val."\"  name=\"ProfileCustomID". $data1['ProfileCustomID'] ."[]\" />";
-							 echo "". $val."</label>";
-							 }
-					  }
-					  echo "</div>";
-		       
+		elseif ($ProfileCustomType == 5) {
+				$array_customOptions_values = explode("|",$data1['ProfileCustomOptions']);
+					    echo "<div style=\"width:300px;float:left;\">";
+						foreach($array_customOptions_values as $val){
+
+								if(in_array($val,explode(",",$ProfileCustomValue))){
+									$isChecked = "checked=\"checked\"";
+									echo "<label><input type=\"checkbox\" value=\"".$val."\" ".$isChecked." name=\"ProfileCustomID". $data1['ProfileCustomID'] ."[]\" />";
+							echo "". $val."</label>";
+							} else {
+							echo "<label><input type=\"checkbox\" value=\"".$val."\"  name=\"ProfileCustomID". $data1['ProfileCustomID'] ."[]\" />";
+							echo "". $val."</label>";
+							}
+						}
+						echo "</div>";
+				 
 		}
 		elseif ($ProfileCustomType == 6) {
-			   $array_customOptions_values = explode("|",$data1['ProfileCustomOptions']);
+				$array_customOptions_values = explode("|",$data1['ProfileCustomOptions']);
 					foreach($array_customOptions_values as $val){
 						if($val == $ProfileCustomValue){
 							$isChecked = "checked=\"checked\" ";
 							echo "<input type=\"radio\" value=\"". $val."\"  $isChecked  name=\"ProfileCustomID". $data1['ProfileCustomID'] ."\" />";
-							echo "<span style=\"color:white;\">". $val."</span><br/>";   
-						}else{
+							echo "<span style=\"color:white;\">". $val."</span><br/>"; 
+						} else {
 							echo "<input type=\"radio\" value=\"". $val."\"  name=\"ProfileCustomID". $data1['ProfileCustomID'] ."\" />";
 							echo "<span style=\"color:white;\">". $val."</span><br/>";
 						}
 					}
 		}
-		
+
 		else {
-			
-			
-			
-		
+
+
+
+
 			if(!empty($ProfileCustomValue)){
-				
+
 					echo "<input type=\"text\" name=\"ProfileCustomID". $data1['ProfileCustomID'] ."\" value=\"". $ProfileCustomValue ."\" /><br />\n";
-		
-				
-			}else{
+
+
+			} else {
 					echo "<input type=\"text\" name=\"ProfileCustomID". $data1['ProfileCustomID'] ."\" value=\"".$_SESSION["ProfileCustomID". $data1['ProfileCustomID']]."\" /><br />\n";
-		
-			   
+
+
 			}
 		}
 ?>
