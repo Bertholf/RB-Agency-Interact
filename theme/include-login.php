@@ -65,7 +65,7 @@ if(isset($rb_agencyinteract_option_switch_sidebar) && $rb_agencyinteract_option_
 				echo "              <li>". __("Create your free profile page", RBAGENCY_interact_TEXTDOMAIN). "</li>\n";
 				echo "              <li>". __("Apply to Auditions & Jobs", RBAGENCY_interact_TEXTDOMAIN). "</li>\n";
 				echo "            </ul>\n";
-				echo "              <a href=\"". get_bloginfo("wpurl") ."/profile-register/\" class=\"rb_button\">". __("Register Now", RBAGENCY_interact_TEXTDOMAIN). "</a>\n";
+				echo "              <input type=\"button\" onClick=\"location.href='". get_bloginfo("wpurl") ."/profile-register/'\" value=\"". __("Register Now", RBAGENCY_interact_TEXTDOMAIN). "\" />\n";
 				echo "          </div> <!-- talent-register -->\n";
 				echo "          <div class=\"clear line\"></div>\n";
 
