@@ -124,6 +124,10 @@
 				$have_error = true;
 			}
 		}
+		if ( username_exists($userdata['user_login'])) {
+				$error .= __("Sorry, that username already exists!<br />", RBAGENCY_interact_TEXTDOMAIN);
+				$have_error = true;
+		}
 		if ( !is_email($userdata['user_email'])) {
 			$error .= __("You must enter a valid email address.<br />", RBAGENCY_interact_TEXTDOMAIN);
 			$have_error = true;
@@ -255,12 +259,14 @@
 			if ($rb_agencyinteract_option_registerapproval == 1) { // automatically approval
 
 					// Notify admin and user
-					rb_new_user_notification($new_user,$user_pass);
+					//rb_new_user_notification($new_user,$user_pass);
+				rb_new_user_notification_for_payment($new_user,$user_pass);
 
 			} else { // manually approval
 
 						// Notify admin and user
-						rb_new_user_notification($new_user,$user_pass);
+						//rb_new_user_notification($new_user,$user_pass);
+				rb_new_user_notification_for_payment($new_user,$user_pass);
 			}
 
 
