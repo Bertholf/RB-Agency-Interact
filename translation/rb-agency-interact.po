@@ -576,3 +576,37 @@ msgstr ""
 #, php-format
 msgid "Press the "Save and Continue" button only once. Depending on the number of files and or your connection speed, it may take a few moments to fully upload your new files/changes. When the page refreshes, you should see your new media."
 msgstr ""
+
+
+msgid "Hi there"
+msgstr ""
+
+msgid "Thanks for joining %s!"
+msgstr ""
+
+msgid "You need to choose your membership option and pay via paypal."
+msgstr ""
+
+msgid "If you have any problems, please contact us at %s."
+msgstr ""
+
+msgid "Regards,"
+msgstr ""
+
+msgid "Thanks for joining %s! Here's how to log in:"
+msgstr ""
+
+msgid "Username: %s"
+msgstr ""
+
+msgid "Password: %s"
+msgstr ""
+
+msgid "New user registration on your blog %s:"
+msgstr ""
+
+msgid "[%s] New User Registration"
+msgstr ""
+
+msgid "Your account is pending for approval. We will send you a confirmation once account is approved."
+msgstr ""
