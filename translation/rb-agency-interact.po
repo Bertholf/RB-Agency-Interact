@@ -580,7 +580,7 @@ msgstr ""
 msgid "Join Our Team"
 msgstr ""
 
-msgid "To Join Our Team please complete the application below"
+msgid "To Join Our Team please complete the application below."
 msgstr ""
 
 msgid "Hi there"
@@ -617,4 +617,10 @@ msgid "Your account is pending for approval. We will send you a confirmation onc
 msgstr ""
 
 msgid "Congratulations! Your account is approved."
+msgstr ""
+
+msgid "Congratulations! Your account is approved."
+msgstr ""
+
+msgid "Thank you for registering, %s."
 msgstr ""
