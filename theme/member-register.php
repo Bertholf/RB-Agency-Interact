@@ -343,7 +343,7 @@
 	// Self Registration
 	if ( $registration || current_user_can("create_users") ) {
 	echo "  <header class=\"entry-header member-register\">";
-	echo "  	<h1 class=\"entry-title\">Join Our Team</h1>";
+	echo "  	<h1 class=\"entry-title\">".__("Join Our Team", RBAGENCY_interact_TEXTDOMAIN)."</h1>";
 	echo "  </header>";
 	echo "  <div id=\"member-register\" class=\"rbform\">";
 	echo "	<p class=\"rbform-description\">".__("To Join Our Team please complete the application below.", RBAGENCY_interact_TEXTDOMAIN)."</p>";

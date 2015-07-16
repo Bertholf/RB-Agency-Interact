@@ -577,6 +577,11 @@ msgstr ""
 msgid "Press the "Save and Continue" button only once. Depending on the number of files and or your connection speed, it may take a few moments to fully upload your new files/changes. When the page refreshes, you should see your new media."
 msgstr ""
 
+msgid "Join Our Team"
+msgstr ""
+
+msgid "To Join Our Team please complete the application below"
+msgstr ""
 
 msgid "Hi there"
 msgstr ""
