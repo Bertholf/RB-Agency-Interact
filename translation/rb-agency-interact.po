@@ -610,3 +610,6 @@ msgstr ""
 
 msgid "Your account is pending for approval. We will send you a confirmation once account is approved."
 msgstr ""
+
+msgid "Congratulations! Your account is approved."
+msgstr ""

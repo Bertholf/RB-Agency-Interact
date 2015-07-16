@@ -143,11 +143,11 @@
 
 			if ( empty($plaintext_pass) )  
 				return;
-			$message  = __('Hi there,') . "\r\n\r\n";
-			$message .= sprintf(__("Thanks for joining %s! Here's how to log in:"), get_option('blogname')) . "\r\n\r\n"; 
+			$message  = __('Hi there,', RBAGENCY_interact_TEXTDOMAIN) . "\r\n\r\n";
+			$message .= sprintf(__("Thanks for joining %s! Here's how to log in:", RBAGENCY_interact_TEXTDOMAIN), get_option('blogname')) . "\r\n\r\n"; 
 			$message .= get_option('home') ."/profile-login/\r\n"; 
-			$message .= sprintf(__('Username: %s'), $user_login) . "\r\n"; 
-			$message .= sprintf(__('Password: %s'), $plaintext_pass) . "\r\n\r\n"; 
+			$message .= sprintf(__('Username: %s', RBAGENCY_interact_TEXTDOMAIN), $user_login) . "\r\n"; 
+			$message .= sprintf(__('Password: %s', RBAGENCY_interact_TEXTDOMAIN), $plaintext_pass) . "\r\n\r\n"; 
 			$message .= sprintf(__('If you have any problems, please contact us at %s.'), get_option('admin_email')) . "\r\n\r\n"; 
 			$message .= __('Regards,')."\r\n";
 			$message .= get_option('blogname') . __(' Team') ."\r\n"; 
@@ -174,11 +174,11 @@
 
 				@wp_mail(get_option('admin_email'), sprintf(__('[%s] New User Registration'), get_option('blogname')), make_clickable($message));
 
-				$message  = __('Hi there,') . "\r\n\r\n";
-				$message .= sprintf(__("Thanks for joining %s! "), get_option('blogname')) . "\r\n\r\n"; 
-				$message .= sprintf(__('Your account is pending for approval. We will send you a confirmation once account is approved.'), $user_login) . "\r\n"; 
-				$message .= sprintf(__('If you have any problems, please contact us at %s.'), get_option('admin_email')) . "\r\n\r\n"; 
-				$message .= __('Regards,')."\r\n";
+				$message  = __('Hi there,', RBAGENCY_interact_TEXTDOMAIN) . "\r\n\r\n";
+				$message .= sprintf(__("Thanks for joining %s! ", RBAGENCY_interact_TEXTDOMAIN), get_option('blogname')) . "\r\n\r\n"; 
+				$message .= sprintf(__('Your account is pending for approval. We will send you a confirmation once account is approved.', RBAGENCY_interact_TEXTDOMAIN), $user_login) . "\r\n"; 
+				$message .= sprintf(__('If you have any problems, please contact us at %s.', RBAGENCY_interact_TEXTDOMAIN), get_option('admin_email')) . "\r\n\r\n"; 
+				$message .= __('Regards,', RBAGENCY_interact_TEXTDOMAIN)."\r\n";
 				$message .= get_option('blogname') . __(' Team') ."\r\n"; 
 				$message .= get_option('home') ."\r\n"; 
 
@@ -204,8 +204,8 @@
 						$user_pass = $new_pass;
 					}*/
 
-					$message  = __('Hi there,') . "\r\n\r\n";
-					$message .= sprintf(__('Congratulations! Your account is approved.'), $user_login) . "\r\n"; 
+					$message  = __('Hi there,', RBAGENCY_interact_TEXTDOMAIN) . "\r\n\r\n";
+					$message .= sprintf(__('Congratulations! Your account is approved.', RBAGENCY_interact_TEXTDOMAIN), $user_login) . "\r\n"; 
 					//$message .= sprintf(__("Here's how to log in:"), get_option('blogname')) . "\r\n\r\n"; 
 					//$message .= get_option('home') ."/profile-login/\r\n"; 
 					//if($rb_agencyinteract_option_registerapproval == 1){ // automally approved
@@ -215,8 +215,8 @@
 					//			$message .= sprintf(__('Password: %s'),  "Your Password") . "\r\n\r\n"; 
 
 					//}
-					$message .= sprintf(__('If you have any problems, please contact us at %s.'), get_option('admin_email')) . "\r\n\r\n"; 
-					$message .= __('Regards,')."\r\n";
+					$message .= sprintf(__('If you have any problems, please contact us at %s.', RBAGENCY_interact_TEXTDOMAIN), get_option('admin_email')) . "\r\n\r\n"; 
+					$message .= __('Regards,', RBAGENCY_interact_TEXTDOMAIN)."\r\n";
 					$message .= get_option('blogname') . __(' Team') ."\r\n"; 
 					$message .= get_option('home') ."\r\n"; 
 
