@@ -124,10 +124,6 @@
 				$have_error = true;
 			}
 		}
-		if ( username_exists($userdata['user_login'])) {
-				$error .= __("Sorry, that username already exists!<br />", RBAGENCY_interact_TEXTDOMAIN);
-				$have_error = true;
-		}
 		if ( !is_email($userdata['user_email'])) {
 			$error .= __("You must enter a valid email address.<br />", RBAGENCY_interact_TEXTDOMAIN);
 			$have_error = true;
@@ -259,14 +255,12 @@
 			if ($rb_agencyinteract_option_registerapproval == 1) { // automatically approval
 
 					// Notify admin and user
-					//rb_new_user_notification($new_user,$user_pass);
-				rb_new_user_notification_for_payment($new_user,$user_pass);
+					rb_new_user_notification($new_user,$user_pass);
 
 			} else { // manually approval
 
 						// Notify admin and user
-						//rb_new_user_notification($new_user,$user_pass);
-				rb_new_user_notification_for_payment($new_user,$user_pass);
+						rb_new_user_notification($new_user,$user_pass);
 			}
 
 
@@ -343,7 +337,7 @@
 	// Self Registration
 	if ( $registration || current_user_can("create_users") ) {
 	echo "  <header class=\"entry-header member-register\">";
-	echo "  	<h1 class=\"entry-title\">".__("Join Our Team", RBAGENCY_interact_TEXTDOMAIN)."</h1>";
+	echo "  	<h1 class=\"entry-title\">Join Our Team</h1>";
 	echo "  </header>";
 	echo "  <div id=\"member-register\" class=\"rbform\">";
 	echo "	<p class=\"rbform-description\">".__("To Join Our Team please complete the application below.", RBAGENCY_interact_TEXTDOMAIN)."</p>";
