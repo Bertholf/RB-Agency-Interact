@@ -313,9 +313,13 @@
 						$check = "checked";
 					}
 
-					echo "<div><label><input type=\"radio\" value=\"". $val."\" " . $check .
+					if(!empty($val)){
+						echo "<div><label><input type=\"radio\" value=\"". $val."\" " . $check .
 							" name=\"ProfileCustomID". $data3['ProfileCustomID'] ."[]\" /> ";
-					echo "<span> ".$val."</span></label></div>";
+						echo "<span> ".$val."</span></label></div>";
+					}
+
+					
 				}
 				echo "</div>";
 				echo "</fieldset>";
