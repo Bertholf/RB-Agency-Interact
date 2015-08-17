@@ -42,6 +42,21 @@ function get_user_login_info(){
     $profile_is_active = $wpdb->get_row($wpdb->prepare("SELECT * FROM ".table_agency_profile." WHERE ProfileUserLinked = %d  ",$user_ID));
     $is_model_or_talent  = $wpdb->num_rows;
    
+   
+   
+   $rb_agencyinteract_options_arr = get_option('rb_agencyinteract_options');
+	$rb_agencyinteract_option_redirect_first_time = isset($rb_agencyinteract_options_arr['rb_agencyinteract_option_redirect_first_time'])?$rb_agencyinteract_options_arr['rb_agencyinteract_option_redirect_first_time']:1;
+	$rb_agencyinteract_option_redirect_first_time_url = isset($rb_agencyinteract_options_arr['rb_agencyinteract_option_redirect_first_time_url'])?$rb_agencyinteract_options_arr['rb_agencyinteract_option_redirect_first_time_url']:"/profile-member/account/";
+	$rb_agencyinteract_option_redirect_custom_login = isset($rb_agencyinteract_options_arr['rb_agencyinteract_option_redirect_custom_login'])?$rb_agencyinteract_options_arr['rb_agencyinteract_option_redirect_custom_login']:0;
+	$rb_agencyinteract_option_redirect_afterlogin = isset($rb_agencyinteract_options_arr['rb_agencyinteract_option_redirect_afterlogin'])?$rb_agencyinteract_options_arr['rb_agencyinteract_option_redirect_afterlogin']:1;
+	$rb_agencyinteract_option_redirect_afterlogin_url = isset($rb_agencyinteract_options_arr['rb_agencyinteract_option_redirect_afterlogin_url'])?$rb_agencyinteract_options_arr['rb_agencyinteract_option_redirect_afterlogin_url']:"/profile-member/account/";
+
+
+					
+					
+					
+					
+					
     if(isset($user_ID) && ($is_model_or_talent > 0) || current_user_can("edit_posts")){
 
 			// If user_registered date/time is less than 48hrs from now
@@ -66,8 +81,44 @@ function get_user_login_info(){
 					}
 				}*/
 				else {
+				
+				
+				
+				
+						
+				 
 						$rb_agency_new_registeredUser = get_user_meta($user_ID,'rb_agency_new_registeredUser',true);
 						if(!empty($rb_agency_new_registeredUser)){
+						
+						
+							/* delete_user_meta( $user_ID, '_lastlogin' );
+							
+							echo 'data reset .. ';
+							exit; */
+					        $meta = get_user_meta( $user_ID,'_lastlogin', true );
+							update_user_meta( $user_ID, '_lastlogin', 'true');
+							
+							$rb_agencyinteract_options_arr = get_option('rb_agencyinteract_options');
+							if( empty($meta)){
+								//echo 'welcome first time.';
+								$url = $rb_agencyinteract_options_arr['rb_agencyinteract_option_redirect_first_time'];
+								if( !empty($url)){
+									$customUrl = '/profile-member/account/';
+								}else{
+									$customUrl = $rb_agencyinteract_options_arr['rb_agencyinteract_option_redirect_first_time_url'];
+								}
+							}
+							else{
+								//echo 'Welcome back.';
+								$url = (int)$rb_agencyinteract_options_arr['rb_agencyinteract_option_redirect_afterlogin'];
+								if( !empty($url)){
+									$customUrl = '/profile-member/account/';
+								}else{
+									$customUrl = $rb_agencyinteract_options_arr['rb_agencyinteract_option_redirect_afterlogin_url'];
+								}
+							}
+							
+				
 								if($rb_agencyinteract_option_redirect_first_time == 1){
 										wp_redirect(get_bloginfo("url"). "/profile-member/account/");
 
@@ -75,6 +126,18 @@ function get_user_login_info(){
 									wp_redirect($rb_agencyinteract_option_redirect_first_time_url);
 
 								}
+								
+								
+										//echo $user_ID. 'xx'.$customUrl;
+										
+										//exit;
+										/* echo get_bloginfo("url") . $customUrl;
+										
+										exit; */
+								//wp_redirect(get_bloginfo("url") . $customUrl);
+								
+								
+								
 						} else {
 							if(get_user_meta($user_ID, 'rb_agency_interact_clientdata', true)){
 									wp_redirect(get_bloginfo("url"). "/casting-dashboard/");
