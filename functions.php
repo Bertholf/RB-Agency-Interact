@@ -139,7 +139,7 @@
 			$message .= sprintf(__('Username: %s'), $user_login) . "\r\n\r\n";
 			$message .= sprintf(__('E-mail: %s'), $user_email) . "\r\n";
 
-			@wp_mail(get_option('admin_email'), sprintf(__('[%s] New User Registration'), get_option('blogname')), make_clickable($message));
+			@wp_mail(get_option('admin_email'), sprintf(__('[%s] New User Registration'), get_option('blogname')), $message);
 
 			if ( empty($plaintext_pass) )  
 				return;
