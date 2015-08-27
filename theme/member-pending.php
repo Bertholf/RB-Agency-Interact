@@ -26,22 +26,21 @@ $profile_gallery = $wpdb->get_row($wpdb->prepare("SELECT ProfileGallery FROM ".t
 // Call Header
 echo $rb_header = RBAgency_Common::rb_header();
 
-	echo "	<div id=\"primary\" class=\"rb-agency-interact rb-agency-interact-overview\">\n";
+	echo "	<div id=\"primary\" class=\"rb-agency-interact rb-agency-interact-overview member-overview\">\n";
 	echo "  	<div id=\"rbcontent\">\n";
          if(is_user_logged_in()){
-			echo "	<div id=\"profile-manage\" class=\"profile-overview\">\n";
-
-					echo " <div class=\"manage-overview manage-content\">\n";
-					echo sprintf(__("<h3>Thanks for joining %s!</h3>"), get_option('blogname'));
-					echo "<br/>";
-					echo "Your account is pending for approval. We will send you a confirmation once account is approved.";
-					echo "<br/>";
-					echo "<a href=\"".get_bloginfo("url")."/profile/".$profile_gallery->ProfileGallery."\">View my profile</a>";
-					echo "<a href=\"".get_bloginfo("url")."/profile-member/account\">Edit your profile</a>";
-					echo " </div>\n";
-
-			echo " </div>\n"; // .welcome
-
+         
+         
+         
+			echo '<p class="rbalert success">';
+			echo sprintf(__("Thank you for joining %s! "), get_option('blogname'));
+			
+			echo 'Your account is pending for approval. We will send you an email once your account is approved.';
+			
+			echo "<a href=\"".get_bloginfo("url")."/profile/".$profile_gallery->ProfileGallery."\">View My Profile</a>";
+			echo "<a href=\"".get_bloginfo("url")."/profile-member/account\">Manage Account</a>";
+					
+			echo "</p> </div>\n"; // .welcome
 
 		} else {
 
