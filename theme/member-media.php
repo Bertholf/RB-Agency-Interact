@@ -20,6 +20,8 @@ $rb_agency_options_arr = get_option('rb_agency_options');
 		if (empty($rb_agency_option_agencyimagemaxheight) || $rb_agency_option_agencyimagemaxheight < 500) {$rb_agency_option_agencyimagemaxheight = 800; }
 	$rb_agency_option_profilenaming 		= (int)$rb_agency_options_arr['rb_agency_option_profilenaming'];
 	$rb_agency_option_locationtimezone 		= (int)$rb_agency_options_arr['rb_agency_option_locationtimezone'];
+	
+$rb_agency_option_inactive_profile_on_update = (int)$rb_agency_options_arr['rb_agency_option_inactive_profile_on_update'];
 
 // Change Title
 add_filter('wp_title', 'rb_agencyinteractive_override_title', 10, 2);
@@ -50,6 +52,17 @@ if (isset($_POST['action'])) {
 	case 'editRecord':
 		if (!$have_error){
 
+		
+			$ProfileStatus = 0;
+			if($rb_agency_option_inactive_profile_on_update == 1){
+				//nevermind if your admin
+				if(is_user_logged_in() && current_user_can( 'edit_posts' )){
+					$ProfileStatus = 1;//stay active admin account
+				}else{
+					$ProfileStatus = 3; //inactive
+				}
+			} 
+			
         // fixed error of folder is not created 
 		$ProfileGallery = rb_agency_createdir($ProfileGallery,false);// Check Directory - create directory if does not exist
 
@@ -216,6 +229,10 @@ if (isset($_POST['action'])) {
 					$results = $wpdb->query("UPDATE " . table_agency_profile_media . " SET ProfileMediaPrimary='0' WHERE ProfileID=$ProfileID");
 					$results = $wpdb->query("UPDATE " . table_agency_profile_media . " SET ProfileMediaPrimary='1' WHERE ProfileID=$ProfileID AND ProfileMediaID=$ProfileMediaPrimaryID");
 			}
+			
+			// Update Record
+				$update = "UPDATE " . table_agency_profile . " SET ProfileDateUpdated=now(), ProfileIsActive='" . $ProfileStatus. "' WHERE ProfileID=$ProfileID";
+				$results = $wpdb->query($update);     
 
 			/* --------------------------------------------------------- CLEAN THIS UP -------------- */
 

@@ -17,6 +17,10 @@ $rb_agency_options_arr = get_option('rb_agency_options');
 	$rb_agency_option_profilenaming 		= (int)$rb_agency_options_arr['rb_agency_option_profilenaming'];
 $rb_agency_interact_options_arr = get_option('rb_agencyinteract_options');
 	$rb_agencyinteract_option_registerallow = (int)$rb_agency_interact_options_arr['rb_agencyinteract_option_registerallow'];
+	
+$rb_agency_option_inactive_profile_on_update = (int)$rb_agency_options_arr['rb_agency_option_inactive_profile_on_update'];
+$rb_agencyinteract_option_registerapproval = (int)$rb_agency_interact_options_arr['rb_agencyinteract_option_registerapproval'];
+
 // Declare alert
 $alert = "";
 
@@ -251,7 +255,6 @@ if (isset($_POST['action'])) {
 			//}
 
 			$alerts = "<div id=\"message\" class=\"updated\"><p>". __("New Profile added successfully", RBAGENCY_interact_TEXTDOMAIN) ."!</p></div>"; 
-
 			/* Redirect so the page will show updated info. */
 			if ( !$error ) {
 
@@ -264,13 +267,24 @@ if (isset($_POST['action'])) {
 
 
 		}
-	} elseif($action == 'editRecord'){
+	} 
+	elseif($action == 'editRecord'){
 		// *************************************************************************************************** //
 		// Edit Record
 
 			if(!$have_error){
 
-
+				$ProfileStatus = 0;
+				if($rb_agency_option_inactive_profile_on_update == 1){
+					//nevermind if your admin
+					if(is_user_logged_in() && current_user_can( 'edit_posts' )){
+						$ProfileStatus = 1;//stay active admin account
+					}else{
+						$ProfileStatus = 3; //inactive
+					}
+					
+				} 
+				
 
 				// Update Record
 				$update = "UPDATE " . table_agency_profile . " SET 
@@ -293,6 +307,7 @@ if (isset($_POST['action'])) {
 				ProfileLocationState='" . $wpdb->escape($ProfileLocationState) . "',
 				ProfileLocationZip ='" . $wpdb->escape($ProfileLocationZip) . "',
 				ProfileLocationCountry='" . $wpdb->escape($ProfileLocationCountry) . "',
+				ProfileIsActive='" . $ProfileStatus. "',
 				ProfileDateUpdated=now()
 				WHERE ProfileID=$ProfileID";
 				$results = $wpdb->query($update);     
@@ -327,7 +342,6 @@ if (isset($_POST['action'])) {
 						}
 					}
 				}
-
 
 				$alerts = "<div id=\"message\" class=\"updated\"><p>". __("Profile updated successfully", RBAGENCY_interact_TEXTDOMAIN) ."!</a></p></div>";
 				wp_redirect( $rb_agency_interact_WPURL ."/profile-member/manage/" );

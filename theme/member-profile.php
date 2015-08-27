@@ -83,11 +83,27 @@ if (isset($_POST['action'])) {
 	// Edit Record
 	case 'editRecord':
 		if (!$have_error){
+		
+			$rb_agency_options_arr = get_option('rb_agency_options');
+			$rb_agency_option_inactive_profile_on_update = (int)$rb_agency_options_arr['rb_agency_option_inactive_profile_on_update'];
+			
+			// pending the account
+			$ProfileStatus = '';
+			if($rb_agency_option_inactive_profile_on_update == 1){
+				//nevermind if your admin
+				if(is_user_logged_in() && current_user_can( 'edit_posts' )){
+					$ProfileStatus = '';
+				}else{
+					$ProfileStatus = " ProfileIsActive = 3, ";
+				}
+				
+			} 
+		
 			// Update Record
 			$update = "UPDATE " . table_agency_profile . " SET 
-			ProfileDateUpdated=now(),
+			ProfileDateUpdated=now(), $ProfileStatus
 			ProfileType='" . $wpdb->escape($ProfileType) . "'
-			WHERE ProfileID=$ProfileID";
+			WHERE ProfileID=$ProfileID ";
 
 			$results = $wpdb->query($update);
 			$alerts = "<div id=\"message\" class=\"updated\"><p>". __("Profile updated successfully", RBAGENCY_interact_TEXTDOMAIN) ."!</a></p></div>";
@@ -95,7 +111,6 @@ if (isset($_POST['action'])) {
 			$alerts = "<div id=\"message\" class=\"error\"><p>". __("Error updating record, please ensure you have filled out all required fields.", RBAGENCY_interact_TEXTDOMAIN) ."</p></div>"; 
 		}
 		wp_redirect( $rb_agency_interact_WPURL ."/profile-member/media/" );
-		exit;
 	break;
 
 	case 'addRecord':
