@@ -63,6 +63,8 @@ if (isset($_POST['action'])) {
 				}
 			} 
 			
+			
+			
         // fixed error of folder is not created 
 		$ProfileGallery = rb_agency_createdir($ProfileGallery,false);// Check Directory - create directory if does not exist
 
@@ -230,6 +232,9 @@ if (isset($_POST['action'])) {
 					$results = $wpdb->query("UPDATE " . table_agency_profile_media . " SET ProfileMediaPrimary='1' WHERE ProfileID=$ProfileID AND ProfileMediaID=$ProfileMediaPrimaryID");
 			}
 			
+			
+			rb_interact_sendadmin_pending_info($ProfileID);
+			
 			// Update Record
 				$update = "UPDATE " . table_agency_profile . " SET ProfileDateUpdated=now(), ProfileIsActive='" . $ProfileStatus. "' WHERE ProfileID=$ProfileID";
 				$results = $wpdb->query($update);     
@@ -248,7 +253,7 @@ if (isset($_POST['action'])) {
              $rb_agency_new_registeredUser = get_user_meta($current_user->ID,'rb_agency_new_registeredUser');
 			if(empty($rb_agency_new_registeredUser) && rb_get_user_profilstatus() == 3){
 
-				wp_new_user_notification_pending($current_user->ID);
+				//wp_new_user_notification_pending($current_user->ID , false);
 
 				wp_redirect( $rb_agency_interact_WPURL ."/profile-member/pending/" );
 			}

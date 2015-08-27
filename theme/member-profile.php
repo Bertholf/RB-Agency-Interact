@@ -97,8 +97,10 @@ if (isset($_POST['action'])) {
 					$ProfileStatus = " ProfileIsActive = 3, ";
 				}
 				
-			} 
+			}
 		
+			rb_interact_sendadmin_pending_info($ProfileID);
+			
 			// Update Record
 			$update = "UPDATE " . table_agency_profile . " SET 
 			ProfileDateUpdated=now(), $ProfileStatus
@@ -110,6 +112,9 @@ if (isset($_POST['action'])) {
 		} else {
 			$alerts = "<div id=\"message\" class=\"error\"><p>". __("Error updating record, please ensure you have filled out all required fields.", RBAGENCY_interact_TEXTDOMAIN) ."</p></div>"; 
 		}
+		
+		//wp_new_user_notification_pending($current_user->ID , false);
+		
 		wp_redirect( $rb_agency_interact_WPURL ."/profile-member/media/" );
 	break;
 

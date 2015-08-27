@@ -162,29 +162,40 @@
 	}
 
 	if ( !function_exists('wp_new_user_notification_pending') ) { 
-		function wp_new_user_notification_pending( $user_id) { 
+		function wp_new_user_notification_pending( $user_id , $new_user = true) { 
+		
 				$user = new WP_User($user_id);
-
+				
 				$user_login = stripslashes($user->user_login);
 				$user_email = stripslashes($user->user_email);
-
-				$message  = sprintf(__('New user registration on your blog %s:'), get_option('blogname')) . "\r\n\r\n";
-				$message .= sprintf(__('Username: %s'), $user_login) . "\r\n\r\n";
-				$message .= sprintf(__('E-mail: %s'), $user_email) . "\r\n";
-
-				@wp_mail(get_option('admin_email'), sprintf(__('[%s] New User Registration'), get_option('blogname')), make_clickable($message));
-
-				$message  = __('Hi there,', RBAGENCY_interact_TEXTDOMAIN) . "\r\n\r\n";
-				$message .= sprintf(__("Thanks for joining %s! ", RBAGENCY_interact_TEXTDOMAIN), get_option('blogname')) . "\r\n\r\n"; 
-				$message .= sprintf(__('Your account is pending for approval. We will send you a confirmation once account is approved.', RBAGENCY_interact_TEXTDOMAIN), $user_login) . "\r\n"; 
-				$message .= sprintf(__('If you have any problems, please contact us at %s.', RBAGENCY_interact_TEXTDOMAIN), get_option('admin_email')) . "\r\n\r\n"; 
-				$message .= __('Regards,', RBAGENCY_interact_TEXTDOMAIN)."\r\n";
-				$message .= get_option('blogname') . __(' Team') ."\r\n"; 
-				$message .= get_option('home') ."\r\n"; 
-
-				$headers = 'From: '. get_option('blogname') .' <'. get_option('admin_email') .'>' . "\r\n";
-				wp_mail($user_email, sprintf(__('%s Registration Successful!  Account is pending for approval'), get_option('blogname')), make_clickable($message), $headers);
-
+				
+				if($new_user == true){
+					$message  = sprintf(__('New user registration on your blog %s:'), get_option('blogname')) . "\r\n\r\n";
+					$_subject = sprintf(__('[%s] New User Registration'), get_option('blogname'));
+				}else{
+					$message  = sprintf(__('User Account Pending for Approval on your blog %s:'), get_option('blogname')) . "\r\n\r\n";
+					$_subject = sprintf(__('[%s] : Pending for Approval : %s'), get_option('blogname') , $user_login);
+				}
+				$message .= sprintf(__('Username: %s'), $user_login) . "\r\n";
+				$message .= sprintf(__('E-mail: %s'), $user_email) . "\r\n\r\n\r\n";
+				
+				$message .= 'Manage Pending Account: '. admin_url('admin.php?page=rb_agency_interact_approvemembers');
+			
+			
+				@wp_mail(get_option('admin_email'), $_subject, $message);
+				
+				if($new_user == true){
+					$message  = __('Hi there,', RBAGENCY_interact_TEXTDOMAIN) . "\r\n\r\n";
+					$message .= sprintf(__("Thanks for joining %s! ", RBAGENCY_interact_TEXTDOMAIN), get_option('blogname')) . "\r\n\r\n"; 
+					$message .= sprintf(__('Your account is pending for approval. We will send you a confirmation once account is approved.', RBAGENCY_interact_TEXTDOMAIN), $user_login) . "\r\n"; 
+					$message .= sprintf(__('If you have any problems, please contact us at %s.', RBAGENCY_interact_TEXTDOMAIN), get_option('admin_email')) . "\r\n\r\n"; 
+					$message .= __('Regards,', RBAGENCY_interact_TEXTDOMAIN)."\r\n";
+					$message .= get_option('blogname') . __(' Team') ."\r\n"; 
+					$message .= get_option('home') ."\r\n"; 
+	
+					$headers = 'From: '. get_option('blogname') .' <'. get_option('admin_email') .'>' . "\r\n";
+					wp_mail($user_email, sprintf(__('%s Registration Successful!  Account is pending for approval'), get_option('blogname')), make_clickable($message), $headers);
+				}
 		}
 	}
 
@@ -606,4 +617,46 @@ function rb_get_user_profilstatus(){
 		}
 		add_action( 'widgets_init', 'rb_interactlogin_widgets_init' );
 
+	if(!function_exists('rb_days_diff')){
+	function rb_days_diff($_day1 , $day_2 = ''){
+		//$date_dbupdate = '2015-08-28 08:33:52';
+		$date_2 = empty( $day_2) ? date("Y-m-d H:i:s") : $day_2;
+		$datetime1 = date_create($_day1);
+		$datetime2 = date_create($date_2);
+		$interval = date_diff($datetime1, $datetime2);
+		
+		$last_day_update = $interval->days;
+		return (int)$last_day_update;	
+	}
+	}
+	
+	function rb_interact_sendadmin_pending_info($_userID){
+		global $wpdb;
+		$query_lastinfo = "SELECT ProfileDateUpdated,ProfileIsActive,ProfileUserLinked FROM  " . table_agency_profile . " WHERE ProfileID=$_userID";
+		$results_lastinfo = $wpdb->get_row( $wpdb->prepare( $query_lastinfo ), ARRAY_A );
+		
+		$_lastinfoDateUpdated = $results_lastinfo['ProfileDateUpdated'];// => 2015-08-27 08:57:33
+		$_lastinfoStatus = $results_lastinfo['ProfileIsActive'];
+		$_wp_userID = $results_lastinfo['ProfileUserLinked'];
+		
+		//echo 'test - '.$_lastinfoStatus;
+		//means its active before then proceed to email.
+		if($_lastinfoStatus == 1){
+			//echo 'active before';
+			wp_new_user_notification_pending($_wp_userID , false);
+			return true;
+		}else{
+			//either currently inactive or pending for approval.
+			$last_day_update = rb_days_diff($_lastinfoDateUpdated);
+			if($last_day_update >=1){
+				wp_new_user_notification_pending($_wp_userID  , false);
+				return true;
+				//echo 'More than 1 day last update.';
+			}
+			//echo 'day based';
+		}
+		return false;
+	}
+		
+		
 ?>
