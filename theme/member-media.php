@@ -251,6 +251,14 @@ if (isset($_POST['action'])) {
 						// delete temporary storage
 			delete_user_meta($current_user->ID, 'rb_agency_new_registeredUser');
              $rb_agency_new_registeredUser = get_user_meta($current_user->ID,'rb_agency_new_registeredUser');
+             
+            //exist user should be in pending page
+			$old_exist_user = get_user_meta( $current_user->ID, 'rb_agency_interact_clientold', true);
+            if(!empty($old_exist_user)){
+                wp_redirect( $rb_agency_interact_WPURL ."/profile-member/pending/?e" );
+                exit;
+            }
+            
 			if(empty($rb_agency_new_registeredUser) && rb_get_user_profilstatus() == 3){
 
 				//wp_new_user_notification_pending($current_user->ID , false);
@@ -263,7 +271,13 @@ if (isset($_POST['action'])) {
 	}
 }
 
+global $current_user;
+$check_type = get_user_meta($current_user->ID, 'rb_agency_interact_clientdata', true);
+/* 
 
+echo 'xxxx';
+print_r($current_user);
+exit; */
 
 /* Display Page ******************************************/ 
 

@@ -114,7 +114,12 @@ if (isset($_POST['action'])) {
 		}
 		
 		//wp_new_user_notification_pending($current_user->ID , false);
-		
+		//exist user should be in pending page
+		$old_exist_user = get_user_meta( $current_user->ID, 'rb_agency_interact_clientold', true);
+        if(!empty($old_exist_user)){
+            wp_redirect( $rb_agency_interact_WPURL ."/profile-member/pending/?e" );
+            exit;
+        }
 		wp_redirect( $rb_agency_interact_WPURL ."/profile-member/media/" );
 	break;
 

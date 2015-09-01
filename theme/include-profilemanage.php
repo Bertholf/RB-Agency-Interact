@@ -393,5 +393,18 @@
 		echo "	</div>\n";
 		echo "</form>\n";
 		echo "</div>\n";
+		
+		echo '
+		
+		<script type="text/javascript">
+				jQuery(function(){
+					jQuery( "input[id=rb_datepicker22]").datepicker({
+						dateFormat: "yy-mm-dd"
+					});
+				});
+				</script>
+		';
+		
+		
 	}
 ?>

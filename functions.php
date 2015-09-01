@@ -194,7 +194,8 @@
 					$message .= get_option('home') ."\r\n"; 
 	
 					$headers = 'From: '. get_option('blogname') .' <'. get_option('admin_email') .'>' . "\r\n";
-					wp_mail($user_email, sprintf(__('%s Registration Successful!  Account is pending for approval'), get_option('blogname')), make_clickable($message), $headers);
+					//wp_mail($user_email, sprintf(__('%s Registration Successful!  Account is pending for approval'), get_option('blogname')), make_clickable($message), $headers);
+					wp_mail($user_email, sprintf(__('%s Registration Successful!  Account is pending for approval'), get_option('blogname')), $message, $headers);
 				}
 		}
 	}
@@ -232,7 +233,8 @@
 					$message .= get_option('home') ."\r\n"; 
 
 					$headers = 'From: '. get_option('blogname') .' <'. get_option('admin_email') .'>' . "\r\n";
-					wp_mail($user_email, sprintf(__('%s Congratulations! Your account is approved.'), get_option('blogname')), make_clickable($message), $headers);
+					//wp_mail($user_email, sprintf(__('%s Congratulations! Your account is approved.'), get_option('blogname')), make_clickable($message), $headers);
+					wp_mail($user_email, sprintf(__('%s Congratulations! Your account is approved.'), get_option('blogname')), $message, $headers);
 				}
 		}
 	}
@@ -618,20 +620,23 @@ function rb_get_user_profilstatus(){
 		add_action( 'widgets_init', 'rb_interactlogin_widgets_init' );
 
 	if(!function_exists('rb_days_diff')){
-	function rb_days_diff($_day1 , $day_2 = ''){
+	function rb_days_diff($_day1 , $day_2 = '',$ret_all = false){
 		//$date_dbupdate = '2015-08-28 08:33:52';
 		$date_2 = empty( $day_2) ? date("Y-m-d H:i:s") : $day_2;
 		$datetime1 = date_create($_day1);
 		$datetime2 = date_create($date_2);
 		$interval = date_diff($datetime1, $datetime2);
 		
+		if($ret_all == true){
+			return $interval;
+		}
 		$last_day_update = $interval->days;
 		return (int)$last_day_update;	
 	}
 	}
 	
 	function rb_interact_sendadmin_pending_info($_userID){
-		global $wpdb;
+		global $wpdb, $current_user, $wp_roles;
 		$query_lastinfo = "SELECT ProfileDateUpdated,ProfileIsActive,ProfileUserLinked FROM  " . table_agency_profile . " WHERE ProfileID=$_userID";
 		$results_lastinfo = $wpdb->get_row( $wpdb->prepare( $query_lastinfo ), ARRAY_A );
 		
@@ -639,8 +644,16 @@ function rb_get_user_profilstatus(){
 		$_lastinfoStatus = $results_lastinfo['ProfileIsActive'];
 		$_wp_userID = $results_lastinfo['ProfileUserLinked'];
 		
+		//admin is requesting for this event
+		if(is_user_logged_in() && current_user_can( 'edit_posts' )){
+			wp_new_user_notification_pending($_wp_userID , false);
+			return true;
+		}
+		
+		
 		//echo 'test - '.$_lastinfoStatus;
 		//means its active before then proceed to email.
+		
 		if($_lastinfoStatus == 1){
 			//echo 'active before';
 			wp_new_user_notification_pending($_wp_userID , false);

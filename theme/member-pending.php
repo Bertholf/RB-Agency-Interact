@@ -28,14 +28,21 @@ echo $rb_header = RBAgency_Common::rb_header();
 
 	echo "	<div id=\"primary\" class=\"rb-agency-interact rb-agency-interact-overview member-overview\">\n";
 	echo "  	<div id=\"rbcontent\">\n";
-         if(is_user_logged_in()){
+        if(is_user_logged_in()){
          
-         
-         
+            //so we know that he is no a first time user.. 
+            update_user_meta( $current_user->ID, 'rb_agency_interact_clientold', date('m.d.y. h:i:s'));
+
 			echo '<p class="rbalert success">';
-			echo sprintf(__("Thank you for joining %s! "), get_option('blogname'));
 			
-			echo 'Your account is pending for approval. We will send you an email once your account is approved.';
+			
+			if(isset($_GET['e'])){
+				echo 'Account updated! ';
+			}else{
+				echo sprintf(__("Thank you for joining %s! "), get_option('blogname'));
+			}
+			
+			echo 'Your account is pending for approval. We will send you an email once your account is approved.<br/>';
 			
 			echo "<a href=\"".get_bloginfo("url")."/profile/".$profile_gallery->ProfileGallery."\">View My Profile</a>";
 			echo "<a href=\"".get_bloginfo("url")."/profile-member/account\">Manage Account</a>";

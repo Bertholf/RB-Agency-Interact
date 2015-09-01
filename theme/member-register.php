@@ -299,14 +299,18 @@
 
 	} elseif ( isset($new_user) ) {
 
-	echo "    <p class=\"rbalert\">\n";
+	echo "    <p class=\"rbalert success\">\n";
 				if ( current_user_can( 'create_users' ) )
 					printf( __("A user account for %s has been created.", RBAGENCY_interact_TEXTDOMAIN), $user_login );
 				else 
 					printf( __("Thank you for registering, %s.", RBAGENCY_interact_TEXTDOMAIN), $user_login );
 					echo "<br/>";
 					//if ($rb_agencyinteract_option_registerapproval == 1) { // automatically approve
-					printf( __("Please check your email address. That's where you'll receive your login password.<br/> (It might go into your spam folder)", RBAGENCY_interact_TEXTDOMAIN) );
+					printf( __("You may now login and continue registration. <br/>", RBAGENCY_interact_TEXTDOMAIN) );
+					
+					echo "<a href=\"".get_bloginfo("url")."/profile-login/\">Account Login</a>";
+					printf( __("<br/>Your login credentials are also sent to your email.", RBAGENCY_interact_TEXTDOMAIN) );
+					printf( __("<br/>(It might go into your spam forlder)", RBAGENCY_interact_TEXTDOMAIN) );
 					//} else { // manually approve
 					//	if($profileactive == 3){
 					//		printf( __("Your account is pending for approval. We will send your login once account is approved.", RBAGENCY_interact_TEXTDOMAIN) );
@@ -320,7 +324,7 @@
 	} else {
 
 		if ( $error ) {
-			echo "<p class=\"rberror\">". $error ."</p>\n";
+			echo "<p class=\"rbalert rberror\">". $error ."</p>\n";
 		}
 		// Show some admin loving.... (Admins can create)
 		if ( current_user_can("create_users") && $registration ) {

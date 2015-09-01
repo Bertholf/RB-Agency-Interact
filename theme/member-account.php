@@ -257,7 +257,7 @@ if (isset($_POST['action'])) {
 			$alerts = "<div id=\"message\" class=\"updated\"><p>". __("New Profile added successfully", RBAGENCY_interact_TEXTDOMAIN) ."!</p></div>"; 
 			/* Redirect so the page will show updated info. */
 			if ( !$error ) {
-
+				
 				wp_redirect(get_bloginfo("wpurl") . "/profile-member/manage/");
 			}
 		} else {
@@ -267,7 +267,7 @@ if (isset($_POST['action'])) {
 
 
 		}
-	} 
+	}
 	elseif($action == 'editRecord'){
 		// *************************************************************************************************** //
 		// Edit Record
@@ -348,7 +348,12 @@ if (isset($_POST['action'])) {
 
 				$alerts = "<div id=\"message\" class=\"updated\"><p>". __("Profile updated successfully", RBAGENCY_interact_TEXTDOMAIN) ."!</a></p></div>";
 				
-				
+				//exist user should be in pending page
+				$old_exist_user = get_user_meta( $current_user->ID, 'rb_agency_interact_clientold', true);
+	            if(!empty($old_exist_user)){
+	                wp_redirect( $rb_agency_interact_WPURL ."/profile-member/pending/?e" );
+	                exit;
+	            }
 				wp_redirect( $rb_agency_interact_WPURL ."/profile-member/manage/" );
 			} else {
 				$alerts = "<div id=\"message\" class=\"error\"><p>". __("Error updating record, please ensure you have filled out all required fields.", RBAGENCY_interact_TEXTDOMAIN) ."<br />". $error ."</p></div>"; 
