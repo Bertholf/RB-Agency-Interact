@@ -109,7 +109,7 @@ echo $rb_header = RBAgency_Common::rb_header();
 				echo "      <li><a href=\"subscription/\">Manage your Subscription</a></li>\n";
 				}
 				if(function_exists('rb_agency_casting_menu')){
-					if(rb_get_user_profilstatus() != 3){
+					if(rb_get_user_profilstatus() == 3){
 							echo "      <li><a href=\"".get_bloginfo('wpurl')."/browse-jobs/\">Browse and Apply for a Job</a></li>\n";
 					}
 				}
