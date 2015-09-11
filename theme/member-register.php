@@ -189,11 +189,29 @@
 			update_user_meta($new_user, 'rb_agency_interact_pgender', $gender);
 
 			$profileactive = null; 
-			if ($rb_agencyinteract_option_registerapproval == 1) { // automatically approved
+			/* if ($rb_agencyinteract_option_registerapproval == 1) { // automatically approved
 				$profileactive = 1;
 			} else { // manually approved
 				$profileactive = $rb_agencyinteract_option_default_registered_users;
+			} */
+			$_registerapproval = $rb_agencyinteract_option_registerapproval;
+			$_default_registered = $rb_agencyinteract_option_default_registered_users;
+			//manually approve(0)
+			if($_registerapproval == 0){
+				if($_default_registered == 1){
+					$profileactive = 1;
+				}else{
+					$profileactive = 3;
+				}
+			}else{
+				//automatic but do not allow the active as default..
+				if($_default_registered != 1){
+					$profileactive = $_default_registered;
+				}else{
+					$profileactive = 0; //inactive
+				}
 			}
+			
 
 			// Insert to table_agency_profile
 			$wpdb->query($wpdb->prepare("INSERT INTO ".table_agency_profile."
