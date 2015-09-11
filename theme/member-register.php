@@ -36,7 +36,7 @@
     $rb_agencyinteract_option_useraccountcreation = isset($rb_agency_interact_options_arr['rb_agencyinteract_option_useraccountcreation'])?(int)$rb_agency_interact_options_arr['rb_agencyinteract_option_useraccountcreation']:0;
 	/* Check if users can register. */
 	$registration = get_option( 'users_can_register' );
-     
+    
     if(!function_exists("parse_signed_request")){
 		function parse_signed_request($signed_request, $secret) {
 			list($encoded_sig, $payload) = explode('.', $signed_request, 2); 
@@ -114,7 +114,7 @@
 		// Error checking
 		$error = "";
 		$have_error = false;
-		if($rb_agencyinteract_option_useraccountcreation == 1){
+		//if($rb_agencyinteract_option_useraccountcreation == 1){ //username always required
 			if (empty($userdata['user_login'])) {
 				$error .= __("A username is required for registration.<br />", RBAGENCY_interact_TEXTDOMAIN);
 				$have_error = true;
@@ -123,7 +123,7 @@
 				$error .= __("Sorry, that username already exists!<br />", RBAGENCY_interact_TEXTDOMAIN);
 				$have_error = true;
 			}
-		}
+		//}
 		if ( !is_email($userdata['user_email'])) {
 			$error .= __("You must enter a valid email address.<br />", RBAGENCY_interact_TEXTDOMAIN);
 			$have_error = true;
@@ -211,6 +211,13 @@
 					$profileactive = 0; //inactive
 				}
 			}
+			echo "
+			$_registerapproval = approval <br/>
+			$_default_registered = default <br/>
+			$profileactive = profiule stats
+			";
+			
+			
 			
 
 			// Insert to table_agency_profile
