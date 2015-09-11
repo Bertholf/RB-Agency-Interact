@@ -211,11 +211,11 @@
 					$profileactive = 0; //inactive
 				}
 			}
-			echo "
+			/* echo "
 			$_registerapproval = approval <br/>
 			$_default_registered = default <br/>
 			$profileactive = profiule stats
-			";
+			"; */
 			
 			
 			
