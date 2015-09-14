@@ -89,12 +89,30 @@ if (isset($_POST['action'])) {
 	$ProfileLocationCountry		=$_POST['ProfileLocationCountry'];
 	$ProfileLanguage			=$_POST['ProfileLanguage'];
 
-	if ($rb_agencyinteract_option_registerapproval == 1) {
+	/* if ($rb_agencyinteract_option_registerapproval == 1) {
 
 		// 0 Inactive | 1 Active | 2 Archived | 3 Pending Approval
 		$ProfileIsActive			= 0; 
 	} else {
 		$ProfileIsActive			= 3; 
+	}
+	 */
+	$_pending_update = $rb_agency_option_inactive_profile_on_update;
+	$_registerapproval = $rb_agencyinteract_option_registerapproval;
+	//manually approve(0)
+	if($_registerapproval == 0){
+		if($_pending_update == 1){
+			$ProfileIsActive = 3;
+		}else{
+			$ProfileIsActive = 0;//inactive
+		}
+	}else{
+		//automatic but do not allow the active as default..
+		if($_pending_update != 1){
+			$ProfileIsActive = 0; //inactive
+		}else{
+			$ProfileIsActive = 3;//pending
+		}
 	}
 
 	// Error checking
@@ -121,7 +139,7 @@ if (isset($_POST['action'])) {
 	// Add Record
 	if($action == 'addRecord'){
 		if(!$have_error){
-			$ProfileIsActive		= 3;
+			//$ProfileIsActive		= 3; // in upper part of codes - initialize
 			$ProfileIsFeatured	= 0;
 			$ProfileIsPromoted	= 0;
 			$ProfileStatHits		= 0;
@@ -274,6 +292,7 @@ if (isset($_POST['action'])) {
 
 			if(!$have_error){
 
+				//nevermind if your admin
 				$ProfileStatus = 0;
 				if($rb_agency_option_inactive_profile_on_update == 1){
 					//nevermind if your admin
@@ -282,8 +301,7 @@ if (isset($_POST['action'])) {
 					}else{
 						$ProfileStatus = 3; //inactive
 					}
-					
-				} 
+				}
 				
 				
 				rb_interact_sendadmin_pending_info($ProfileID);
