@@ -116,6 +116,17 @@ function rb_display_list() {
 			$filter .= " AND profile.ProfileContactNameLast LIKE '". $selectedNameLast ."%'";
 			  }
 		}
+		if (isset($_GET['ProfileUsername']) && !empty($_GET['ProfileUsername'])){
+			$selectedUsername = $_GET['ProfileUsername'];
+			$query .= "&ProfileUsername=". $selectedUsername ."";
+			$filter .= " AND users.user_login='". $selectedUsername ."'";
+		}
+		if (isset($_GET['ProfileContactEmail']) && !empty($_GET['ProfileContactEmail'])){
+			$selectedEmail = $_GET['ProfileContactEmail'];
+			$query .= "&ProfileContactEmail=". $selectedEmail ."";
+			$filter .= " AND profile.ProfileContactEmail='". $selectedEmail ."'";
+		}
+		
 		if (isset($_GET['ProfileLocationCity']) && !empty($_GET['ProfileLocationCity'])){
 			$selectedCity = $_GET['ProfileLocationCity'];
 			$query .= "&ProfileLocationCity=". $selectedCity ."";
@@ -183,7 +194,6 @@ function rb_display_list() {
 									echo ('<div id="message" class="updated"><p>'. __("Profile deleted successfully!", RBAGENCY_interact_TEXTDOMAIN) .'</p></div>');
 									}// is there record?
 
-
 					}
 
 				}
@@ -229,8 +239,13 @@ function rb_display_list() {
 			}
 		}
 
-		$results = $wpdb->get_results("SELECT * FROM ". table_agency_profile ." profile LEFT JOIN ". table_agency_data_type ." profiletype ON profile.ProfileType = profiletype.DataTypeID ". $filter  .""); // number of total rows in the database
+		
+		$results = $wpdb->get_results("SELECT *,users.user_login as ProfileUsername FROM ". table_agency_profile ." profile 
+			LEFT JOIN ". table_agency_data_type ." profiletype ON profile.ProfileType = profiletype.DataTypeID 
+			LEFT JOIN ".$wpdb->prefix."users users ON users.ID = profile.ProfileUserLinked 
+			". $filter  .""); // number of total rows in the database
 		//Paginate
+
 		$items = $wpdb->num_rows;
 		if($items > 0) {
 			$p = new RBAGENCY_Pagination;
@@ -281,6 +296,8 @@ function rb_display_list() {
 		echo "    			". __("Search By", RBAGENCY_interact_TEXTDOMAIN) .": \n";
 		echo "    			". __("First Name", RBAGENCY_interact_TEXTDOMAIN) .": <input type=\"text\" name=\"ProfileContactNameFirst\" value=\"". (isset($selectedNameFirst)?$selectedNameFirst:"") ."\" style=\"width: 100px;\" />\n";
 		echo "    			". __("Last Name", RBAGENCY_interact_TEXTDOMAIN) .": <input type=\"text\" name=\"ProfileContactNameLast\" value=\"". (isset($selectedNameLast)?$selectedNameLast:"") ."\" style=\"width: 100px;\" />\n";
+		echo "    			". __("Username", RBAGENCY_interact_TEXTDOMAIN) .": <input type=\"text\" name=\"ProfileUsername\" value=\"". (isset($selectedUsername)?$selectedUsername:"") ."\" style=\"width: 100px;\" />\n";
+		echo "    			". __("Email Address", RBAGENCY_interact_TEXTDOMAIN) .": <input type=\"text\" name=\"ProfileContactEmail\" value=\"". (isset($selectedEmail)?$selectedEmail:"") ."\" style=\"width: 100px;\" />\n";
 		echo "    			". __("Location", RBAGENCY_interact_TEXTDOMAIN) .": \n";
 		echo "    			<select name=\"ProfileLocationCity\">\n";
 		echo "					<option value=\"\">". __("Any Location", RBAGENCY_interact_TEXTDOMAIN) ."</option>";
@@ -315,9 +332,11 @@ function rb_display_list() {
 		echo "        </td>\n";
 		echo "        <td>&nbsp;</td>\n";
 
+		
 		echo "    </tr>\n";
 		echo "  </thead>\n";
 		echo "</table>\n";
+     
      
 		echo "<form method=\"post\" action=\"". admin_url("admin.php?page=". $_GET['page']) ."\" id=\"formMainBulk\">\n";
 		echo "    			<select name=\"BulkAction_ProfileApproval\">\n";
@@ -331,10 +350,14 @@ function rb_display_list() {
 		echo "    <tr class=\"thead\">\n";
 		echo "        <th class=\"manage-column column-cb check-column\" id=\"cb\" scope=\"col\"><input type=\"checkbox\"/></th>\n";
 		echo "        <th class=\"column-ProfileID\" id=\"ProfileID\" scope=\"col\" style=\"width:50px;\"><a href=\"". admin_url("admin.php?page=". $_GET['page'] ."&sort=ProfileID&dir=". $sortDirection) ."\">ID</a></th>\n";
+		
 		echo "        <th class=\"column-ProfileContactNameFirst\" id=\"ProfileContactNameFirst\" scope=\"col\" style=\"width:130px;\"><a href=\"". admin_url("admin.php?page=". $_GET['page'] ."&sort=ProfileContactNameFirst&dir=". $sortDirection) ."\">First Name</a></th>\n";
 		echo "        <th class=\"column-ProfileContactNameLast\" id=\"ProfileContactNameLast\" scope=\"col\" style=\"width:130px;\"><a href=\"". admin_url("admin.php?page=". $_GET['page'] ."&sort=ProfileContactNameLast&dir=". $sortDirection) ."\">Last Name</a></th>\n";
+		echo "        <th class=\"column-ProfileUsername\" id=\"ProfileUsername\" scope=\"col\" style=\"width:130px;\"><a href=\"". admin_url("admin.php?page=". $_GET['page'] ."&sort=ProfileUsername&dir=". $sortDirection) ."\">Username</a></th>\n";
+		
 		echo "        <th class=\"column-ProfileGender\" id=\"ProfileGender\" scope=\"col\" style=\"width:65px;\"><a href=\"". admin_url("admin.php?page=". $_GET['page'] ."&sort=ProfileGender&dir=". $sortDirection) ."\">Gender</a></th>\n";
 		echo "        <th class=\"column-ProfilesProfileDate\" id=\"ProfilesProfileDate\" scope=\"col\" style=\"width:50px;\"><a href=\"". admin_url("admin.php?page=". $_GET['page'] ."&sort=ProfileDateBirth&dir=". $sortDirection) ."\">Age</a></th>\n";
+		echo "        <th class=\"column-ProfileContactEmail\" id=\"ProfileContactEmail\" scope=\"col\" style=\"width:150px;\"><a href=\"". admin_url("admin.php?page=". $_GET['page'] ."&sort=ProfileContactEmail&dir=". $sortDirection) ."\">Email Address</a></th>\n";
 		echo "        <th class=\"column-ProfileLocationCity\" id=\"ProfileLocationCity\" scope=\"col\" style=\"width:100px;\"><a href=\"". admin_url("admin.php?page=". $_GET['page'] ."&sort=ProfileLocationCity&dir=". $sortDirection) ."\">City</a></th>\n";
 		echo "        <th class=\"column-ProfileLocationState\" id=\"ProfileLocationState\" scope=\"col\" style=\"width:50px;\"><a href=\"". admin_url("admin.php?page=". $_GET['page'] ."&sort=ProfileLocationState&dir=". $sortDirection) ."\">State</a></th>\n";
 		echo "        <th class=\"column-ProfileDetails\" id=\"ProfileDetails\" scope=\"col\" style=\"width:100px;\">Category</th>\n";
@@ -347,10 +370,13 @@ function rb_display_list() {
 		echo "    <tr class=\"thead\">\n";
 		echo "        <th class=\"manage-column column-cb check-column\" id=\"cb\" scope=\"col\"><input type=\"checkbox\"/></th>\n";
 		echo "        <th class=\"column\" scope=\"col\">ID</th>\n";
+		
 		echo "        <th class=\"column\" scope=\"col\">First Name</th>\n";
 		echo "        <th class=\"column\" scope=\"col\">Last Name</th>\n";
+		echo "        <th class=\"column\" scope=\"col\">Username</th>\n";
 		echo "        <th class=\"column\" scope=\"col\">Gender</th>\n";
 		echo "        <th class=\"column\" scope=\"col\">Age</th>\n";
+		echo "        <th class=\"column\" scope=\"col\">Email Address</th>\n";
 		echo "        <th class=\"column\" scope=\"col\">City</th>\n";
 		echo "        <th class=\"column\" scope=\"col\">State</th>\n";
 		echo "        <th class=\"column\" scope=\"col\">Category</th>\n";
@@ -360,15 +386,24 @@ function rb_display_list() {
 		echo "    </tr>\n";
 		echo " </tfoot>\n";
 		echo " <tbody>\n";
-        $query = "SELECT * FROM ". table_agency_profile ." profile LEFT JOIN ". table_agency_data_type ." profiletype ON profile.ProfileType = profiletype.DataTypeID ". $filter  ." ORDER BY $sort $limit";
+        $query = "SELECT *,users.user_login ProfileUsername FROM ". table_agency_profile ." profile 
+            LEFT JOIN ". table_agency_data_type ." profiletype ON profile.ProfileType = profiletype.DataTypeID 
+            LEFT JOIN ".$wpdb->prefix."users users ON users.ID = profile.ProfileUserLinked 
+            ". $filter  ." ORDER BY $sort $dir $limit";
+        
+        //echo $query;
         $results2 = $wpdb->get_results($query,ARRAY_A);
+        echo $wpdb->last_error;
+        
         $count_clients = $wpdb->num_rows;
         foreach ($results2 as $data) {
             
             $ProfileID = $data['ProfileID'];
             $ProfileGallery = stripslashes($data['ProfileGallery']);
+            $ProfileUsername = stripslashes($data['ProfileUsername']);
             $ProfileContactNameFirst = stripslashes($data['ProfileContactNameFirst']);
             $ProfileContactNameLast = stripslashes($data['ProfileContactNameLast']);
+            $ProfileContactEmail = stripslashes($data['ProfileContactEmail']);
             $ProfileLocationCity = RBAgency_Common::format_propercase(stripslashes($data['ProfileLocationCity']));
             $ProfileLocationState = stripslashes($data['ProfileLocationState']);
             $ProfileGender = stripslashes($data['ProfileGender']);
@@ -417,6 +452,7 @@ function rb_display_list() {
 		echo "          <input type=\"checkbox\" value=\"". $ProfileID ."\" class=\"administrator\" id=\"". $ProfileID ."\" name=\"profileID[". $ProfileID ."]\"/>\n";
 		echo "        </th>\n";
 		echo "        <td class=\"ProfileID column-ProfileID\">". $ProfileID ."</td>\n";
+		
 		echo "        <td class=\"ProfileContactNameFirst column-ProfileContactNameFirst\">\n";
 		echo "          ". $ProfileContactNameFirst ."\n";
 		echo "          <div class=\"row-actions\">\n";
@@ -427,8 +463,11 @@ function rb_display_list() {
 		echo "          </div>\n";
 		echo "        </td>\n";
 		echo "        <td class=\"ProfileContactNameLast column-ProfileContactNameLast\">". $ProfileContactNameLast ."</td>\n";
+		echo "        <td class=\"ProfileUsername column-ProfileUsername\">". $ProfileUsername ."</td>\n";
 		echo "        <td class=\"ProfileGender column-ProfileGender\">". $ProfileGender ."</td>\n";
 		echo "        <td class=\"ProfilesProfileDate column-ProfilesProfileDate\">". rb_agency_get_age($ProfileDateBirth) ."</td>\n";
+		echo "        <td class=\"ProfileContactEmail column-ProfileContactEmail\">". $ProfileContactEmail ."</td>\n";
+		
 		echo "        <td class=\"ProfileLocationCity column-ProfileLocationCity\">". $ProfileLocationCity ."</td>\n";
 		echo "        <td class=\"ProfileLocationCity column-ProfileLocationState\">". $ProfileLocationState ."</td>\n";
 		echo "        <td class=\"ProfileDetails column-ProfileDetails\">". $DataTypeTitle ."</td>\n";
@@ -438,9 +477,6 @@ function rb_display_list() {
 		echo "           ". rb_agency_makeago(rb_agency_convertdatetime($ProfileDateCreated), $rb_agency_option_locationtimezone);
 		echo "        </td>\n";
 		echo "    </tr>\n";
-
-
-
 
         }
             if ($count_clients < 1) {
