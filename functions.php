@@ -129,17 +129,22 @@
 	if ( !function_exists('rb_new_user_notification') ) { 
 		function rb_new_user_notification( $user_id, $plaintext_pass = '' ) { 
 
-
+			global $wpdb;
 			$user = new WP_User($user_id);
 
 			$user_login = stripslashes($user->user_login);
 			$user_email = stripslashes($user->user_email);
-
+			
 			$message  = sprintf(__('New user registration on your blog %s:'), get_option('blogname')) . "\r\n\r\n";
 			$message .= sprintf(__('Username: %s'), $user_login) . "\r\n\r\n";
 			$message .= sprintf(__('E-mail: %s'), $user_email) . "\r\n";
 
-			@wp_mail(get_option('admin_email'), sprintf(__('[%s] New User Registration'), get_option('blogname')), $message);
+			$rb_agency_options_arr = get_option('rb_agency_options');
+			$_sendEmailtoAdmin = isset($rb_agency_options_arr['rb_agency_option_notify_admin_new_user'])?$rb_agency_options_arr['rb_agency_option_notify_admin_new_user']:0;
+			
+			if($_sendEmailtoAdmin == 1){
+				@wp_mail(get_option('admin_email'), sprintf(__('[%s] New User Registration'), get_option('blogname')), $message);
+			}
 
 			if ( empty($plaintext_pass) )  
 				return;
