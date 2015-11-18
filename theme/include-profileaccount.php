@@ -94,7 +94,7 @@
 		$styleclass = "rbfield";
 
 		echo "<div id=\"profile-account\" class=\"rbform\">\n";
-		echo "<h3>Hi ".$ProfileContactDisplay."! You are registered as ".implode(",",$registered_as)."</h3>";
+		echo "<h3>". __("Hi", RBAGENCY_interact_TEXTDOMAIN) ." ".$ProfileContactDisplay."! ". __("You are registered as", RBAGENCY_interact_TEXTDOMAIN) ." ".implode(",",$registered_as)."</h3>";
 		echo "<form method=\"post\" enctype=\"multipart/form-data\" action=\"". get_bloginfo("wpurl") ."/profile-member/account/\">\n";
 		echo "	<input type=\"hidden\" name=\"ProfileID\" value=\"". $ProfileID ."\" />\n";
 		echo "	<h3>". __("Contact Information", RBAGENCY_interact_TEXTDOMAIN) ."</h3>\n";
@@ -142,13 +142,13 @@
 
 		// Private Information
 		echo "	<h3>". __("Private Information", RBAGENCY_interact_TEXTDOMAIN) ."</h3>";
-		echo "  <p>The following information will appear only in administrative areas.</p>\n";
+		echo "  <p>". __("The following information will appear only in administrative areas", RBAGENCY_interact_TEXTDOMAIN) .".</p>\n";
 		echo "	<div id=\"profile-email\" class=\"". $styleclass ." rbemail rbsingle\">\n";
-		echo "		<label>". __("Email Address", RBAGENCY_interact_TEXTDOMAIN) ."</label>\n";
+		echo "		<label>". __("Email Address", RBAGENCY_TEXTDOMAIN) ."</label>\n";
 		echo "		<div><input type=\"text\" id=\"ProfileContactEmail\" name=\"ProfileContactEmail\" value=\"". $ProfileContactEmail ."\" /></div>\n";
 		echo "	</div>\n";
 		echo "	<div id=\"profile-birthdate\" class=\"". $styleclass ." rbtext rbsingle\">\n";
-		echo "		<label>". __("Birthdate", RBAGENCY_interact_TEXTDOMAIN) ."</label>\n";
+		echo "		<label>". __("Birthdate", RBAGENCY_TEXTDOMAIN) ."</label>\n";
 		echo "		<div><input class=\"rb-datepicker\" type=\"text\" id=\"ProfileDateBirth\" name=\"ProfileDateBirth\" value=\"". $ProfileDateBirth ."\" /></div>\n";
 		echo "	</div>\n";
 
@@ -167,15 +167,15 @@
 		
 		// Address
 		echo "	<div id=\"profile-street\" class=\"". $styleclass ." rbtext rbsingle\">\n";
-		echo "		<label>". __("Street", RBAGENCY_interact_TEXTDOMAIN) ."</label>\n";
+		echo "		<label>". __("Street", RBAGENCY_TEXTDOMAIN) ."</label>\n";
 		echo "		<div><input type=\"text\" id=\"ProfileLocationStreet\" name=\"ProfileLocationStreet\" value=\"". $ProfileLocationStreet ."\" /></div>\n";
 		echo "	</div>\n";
 		echo "	<div id=\"profile-city\" class=\"". $styleclass ." rbtext rbsingle\">\n";
-		echo "		<label>". __("City", RBAGENCY_interact_TEXTDOMAIN) ."</label>\n";
+		echo "		<label>". __("City", RBAGENCY_TEXTDOMAIN) ."</label>\n";
 		echo "		<div><input type=\"text\" id=\"ProfileLocationCity\" name=\"ProfileLocationCity\" value=\"". $ProfileLocationCity ."\" /></div>\n";
 		echo "	</div>\n";
 		echo "	<div id=\"profile-country\" class=\"". $styleclass ." rbtext rbsingle\">\n";
-		echo "		<label>". __("Country", RBAGENCY_interact_TEXTDOMAIN) ."</label>\n";
+		echo "		<label>". __("Country", RBAGENCY_TEXTDOMAIN) ."</label>\n";
 		echo "		<div>";
 		//<input type=\"text\" id=\"ProfileLocationCountry\" name=\"ProfileLocationCountry\" value=\"". $ProfileLocationCountry ."\" />
 								$query_get ="SELECT * FROM `". table_agency_data_country ."`" ;
@@ -193,7 +193,7 @@
 		echo "      </div>\n";
 		echo "	</div>\n";
 		echo "	<div id=\"profile-state\" class=\"". $styleclass ." rbtext rbsingle\">\n";
-		echo "		<label>". __("State", RBAGENCY_interact_TEXTDOMAIN) ."</label>\n";
+		echo "		<label>". __("State", RBAGENCY_TEXTDOMAIN) ."</label>\n";
 		//echo "		<div><input type=\"text\" id=\"ProfileLocationState\" name=\"ProfileLocationState\" value=\"". $ProfileLocationState ."\" /></div>\n";
 		echo "			<div>";
 								$query_get ="SELECT * FROM `".table_agency_data_state."` WHERE CountryID='".(isset($ProfileLocationCountry)?$ProfileLocationCountry:"")."'" ;
@@ -208,12 +208,12 @@
 		echo "			</div>";
 		echo "	</div>\n";
 		echo "	<div id=\"profile-zip\" class=\"". $styleclass ." rbtext rbsingle\">\n";
-		echo "		<label>". __("Zip", RBAGENCY_interact_TEXTDOMAIN) ."</label>\n";
+		echo "		<label>". __("Zip", RBAGENCY_TEXTDOMAIN) ."</label>\n";
 		echo "		<div><input type=\"text\" id=\"ProfileLocationZip\" name=\"ProfileLocationZip\" value=\"". $ProfileLocationZip ."\" /></div>\n";
 		echo "	</div>\n";
 
 		echo "	<div id=\"profile-phone\" class=\"". $styleclass ." rbtext rbmulti rbblock\">\n";
-		echo "		<label>". __("Phone", RBAGENCY_interact_TEXTDOMAIN) ."</label>\n";
+		echo "		<label>". __("Phone", RBAGENCY_TEXTDOMAIN) ."</label>\n";
 		echo "		<div>\n";
 		echo "			<div><label>Home:</label><div><input type=\"text\" id=\"ProfileContactPhoneHome\" name=\"ProfileContactPhoneHome\" value=\"". $ProfileContactPhoneHome ."\" /></div></div>\n";
 		echo "			<div><label>Cell:</label><div><input type=\"text\" id=\"ProfileContactPhoneCell\" name=\"ProfileContactPhoneCell\" value=\"". $ProfileContactPhoneCell ."\" /></div></div>\n";
@@ -222,7 +222,7 @@
 		echo "	</div>\n";
 
 		echo "	<div id=\"profile-website\" class=\"". $styleclass ." rbtext rbsingle\">\n";
-		echo "		<label>". __("Website", RBAGENCY_interact_TEXTDOMAIN) ."</label>\n";
+		echo "		<label>". __("Website", RBAGENCY_TEXTDOMAIN) ."</label>\n";
 		echo "		<div><input type=\"text\" id=\"ProfileContactWebsite\" name=\"ProfileContactWebsite\" value=\"". $ProfileContactWebsite ."\" /></div>\n";
 		echo "	</div>\n";
 
