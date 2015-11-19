@@ -630,7 +630,11 @@ function rb_get_user_profilstatus(){
 		$date_2 = empty( $day_2) ? date("Y-m-d H:i:s") : $day_2;
 		$datetime1 = date_create($_day1);
 		$datetime2 = date_create($date_2);
-		$interval = date_diff($datetime1, $datetime2);
+		if(function_exists('date_diff')){
+			$interval = date_diff($datetime1, $datetime2);
+		}else{
+			return 0;
+		}
 		
 		if($ret_all == true){
 			return $interval;
