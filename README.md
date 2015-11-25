@@ -6,6 +6,9 @@ Allows profiles to self regsiter and manage their information.
 
 ## Change Log
 
+### 2.4.3
+
+
 ### 2.4.2
 * created "RB Login Widget" widget which you can add to the sidebar. This widget will show the "Log Out" if user is logged in.
 * fixed - blank page upon registration
