@@ -215,9 +215,9 @@
 		echo "	<div id=\"profile-phone\" class=\"". $styleclass ." rbtext rbmulti rbblock\">\n";
 		echo "		<label>". __("Phone", RBAGENCY_interact_TEXTDOMAIN) ."</label>\n";
 		echo "		<div>\n";
-		echo "			<div><label>Home:</label><div><input type=\"text\" id=\"ProfileContactPhoneHome\" name=\"ProfileContactPhoneHome\" value=\"". $ProfileContactPhoneHome ."\" /></div></div>\n";
-		echo "			<div><label>Cell:</label><div><input type=\"text\" id=\"ProfileContactPhoneCell\" name=\"ProfileContactPhoneCell\" value=\"". $ProfileContactPhoneCell ."\" /></div></div>\n";
-		echo "			<div><label>Work:</label><div><input type=\"text\" id=\"ProfileContactPhoneWork\" name=\"ProfileContactPhoneWork\" value=\"". $ProfileContactPhoneWork ."\" /></div></div>\n";
+		echo "			<div><label>". __("Home", RBAGENCY_interact_TEXTDOMAIN) .":</label><div><input type=\"text\" id=\"ProfileContactPhoneHome\" name=\"ProfileContactPhoneHome\" value=\"". $ProfileContactPhoneHome ."\" /></div></div>\n";
+		echo "			<div><label>". __("Cell", RBAGENCY_interact_TEXTDOMAIN) .":</label><div><input type=\"text\" id=\"ProfileContactPhoneCell\" name=\"ProfileContactPhoneCell\" value=\"". $ProfileContactPhoneCell ."\" /></div></div>\n";
+		echo "			<div><label>". __("Work", RBAGENCY_interact_TEXTDOMAIN) .":</label><div><input type=\"text\" id=\"ProfileContactPhoneWork\" name=\"ProfileContactPhoneWork\" value=\"". $ProfileContactPhoneWork ."\" /></div></div>\n";
 		echo "		</div>\n";
 		echo "	</div>\n";
 
@@ -559,7 +559,7 @@
 			} else {
 			echo "			<input type=\"text\" id=\"ProfileUsername\"  name=\"ProfileUsername\" value=\"\" />\n";
 			}
-			echo "			<small class=\"". $styleclass ."-note\">Cannot be changed</small>";
+			echo "			<small class=\"". $styleclass ."-note\">". __("Cannot be changed", RBAGENCY_interact_TEXTDOMAIN) ."</small>";
 			echo "		</div>\n";
 			echo "  </div>\n";
 		}
@@ -567,14 +567,14 @@
 		echo "		<label>". __("Password", RBAGENCY_interact_TEXTDOMAIN) ."</label>\n";
 		echo "		<div>";
 		echo "			<input type=\"password\" id=\"ProfilePassword\" name=\"ProfilePassword\" />\n";
-		echo "			<small class=\"". $styleclass ."-note\">Leave blank to keep same password</small>";
+		echo "			<small class=\"". $styleclass ."-note\">". __("Leave blank to keep same password", RBAGENCY_interact_TEXTDOMAIN) ."</small>";
 		echo "		</div>\n";
 		echo "	</div>\n";
 		echo "	<div id=\"rbprofile-retype-password\" class=\"". $styleclass ." rbtext rbsingle\">\n";
 		echo "		<label>". __("Retype Password", RBAGENCY_interact_TEXTDOMAIN) ."</label>\n";
 		echo "		<div>";
 		echo "			<input type=\"password\" id=\"ProfilePasswordConfirm\" name=\"ProfilePasswordConfirm\" />";
-		echo "			<small class=\"". $styleclass ."-note\">Retype to Confirm</small>";
+		echo "			<small class=\"". $styleclass ."-note\">". __("Retype to Confirm", RBAGENCY_interact_TEXTDOMAIN) ."</small>";
 		echo "		</div>\n";
 		echo "	</div>\n";
 		echo "	<div id=\"rbform-last-updated\" class=\"". $styleclass ." rbtext rbsingle\">\n";

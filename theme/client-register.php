@@ -327,10 +327,10 @@
 			// Self Registration
 			if ( $registration || current_user_can("create_users") ) {
 	echo "  <header class=\"entry-header client-register\">";
-	echo "  	<h1 class=\"entry-title\">Join Our Team</h1>";
+	echo "  	<h1 class=\"entry-title\">". __("Join Our Team", RBAGENCY_interact_TEXTDOMAIN) ."</h1>";
 	echo "  </header>";
 	echo "  <div id=\"client-register\" class=\"rbform\">";
-	echo "		<p class=\"rbform-description\">To Join Our Team please complete the application below.</p>";
+	echo "		<p class=\"rbform-description\">". __("To Join Our Team please complete the application below", RBAGENCY_interact_TEXTDOMAIN) .".</p>";
 	if(!$shortcode_register){
 		echo "    <form method=\"post\" action=\"". $rb_agency_interact_WPURL ."/profile-register/client\">\n";
 	} else {
@@ -432,7 +432,7 @@
 	echo "       </div><!-- #profile-agree -->\n";
  
 	echo "       <div id=\"profile-submit\" class=\"rbfield rbsubmit rbsingle\">\n";
-	echo "   		<input name=\"adduser\" type=\"submit\" id=\"addusersub\" class=\"submit button\" value='Register'/>";
+	echo "   		<input name=\"adduser\" type=\"submit\" id=\"addusersub\" class=\"submit button\" value='". __("Register", RBAGENCY_interact_TEXTDOMAIN) ."'/>";
 
 					// if ( current_user_can("create_users") ) { _e("Add User", RBAGENCY_interact_TEXTDOMAIN); } else { _e("Register", RBAGENCY_interact_TEXTDOMAIN); }echo "\" />\n";
 

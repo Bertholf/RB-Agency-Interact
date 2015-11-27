@@ -39,9 +39,9 @@ global $wpdb;
 	echo "	<div id=\"profile-phone\" class=\"rbfield rbtext rbmulti rbblock\">\n";
 	echo "		<label>". __("Phone", RBAGENCY_interact_TEXTDOMAIN) ."</label>\n";
 	echo "		<div>\n";
-	echo "			<div><label>Home:</label><div><input type=\"text\" id=\"ProfileContactPhoneHome\" name=\"ProfileContactPhoneHome\" value=\"". (isset($ProfileContactPhoneHome)?$ProfileContactPhoneHome:"") ."\" /></div></div>\n";
-	echo "			<div><label>Cell:</label><div><input type=\"text\" id=\"ProfileContactPhoneCell\" name=\"ProfileContactPhoneCell\" value=\"". (isset($ProfileContactPhoneCell)?$ProfileContactPhoneCell:"") ."\" /></div></div>\n";
-	echo "			<div><label>Work:</label><div><input type=\"text\" id=\"ProfileContactPhoneWork\" name=\"ProfileContactPhoneWork\" value=\"". (isset($ProfileContactPhoneWork)?$ProfileContactPhoneWork:"") ."\" /></div></div>\n";
+	echo "			<div><label>". __("Home", RBAGENCY_interact_TEXTDOMAIN) .":</label><div><input type=\"text\" id=\"ProfileContactPhoneHome\" name=\"ProfileContactPhoneHome\" value=\"". (isset($ProfileContactPhoneHome)?$ProfileContactPhoneHome:"") ."\" /></div></div>\n";
+	echo "			<div><label>". __("Cell", RBAGENCY_interact_TEXTDOMAIN) .":</label><div><input type=\"text\" id=\"ProfileContactPhoneCell\" name=\"ProfileContactPhoneCell\" value=\"". (isset($ProfileContactPhoneCell)?$ProfileContactPhoneCell:"") ."\" /></div></div>\n";
+	echo "			<div><label>". __("Work", RBAGENCY_interact_TEXTDOMAIN) .":</label><div><input type=\"text\" id=\"ProfileContactPhoneWork\" name=\"ProfileContactPhoneWork\" value=\"". (isset($ProfileContactPhoneWork)?$ProfileContactPhoneWork:"") ."\" /></div></div>\n";
 	echo "		</div>\n";
 	echo "	</div>\n";
 	echo "	<div id=\"profile-website\" class=\"rbfield rbtext rbsingle\">\n";
@@ -255,7 +255,7 @@ global $wpdb;
 	} else {
 	echo "			<input type=\"text\" id=\"ProfileUsername\"  name=\"ProfileUsername\" value=\"\" />\n";
 	}
-	echo "			<small class=\"rbfield-note\">Cannot be changed</small>";
+	echo "			<small class=\"rbfield-note\">". __("Cannot be changed", RBAGENCY_interact_TEXTDOMAIN) ."</small>";
 	echo "		</div>\n";
 	echo "	</div>\n";
 	}
@@ -264,14 +264,14 @@ global $wpdb;
 	echo "		<label>". __("Password", RBAGENCY_interact_TEXTDOMAIN) ."</label>\n";
 	echo "		<div>\n";
 	echo "			<input type=\"password\" id=\"ProfilePassword\" name=\"ProfilePassword\" />\n";
-	echo "			<small class=\"rbfield-note\">Leave blank to keep same password</small>";
+	echo "			<small class=\"rbfield-note\">". __("Leave blank to keep same password", RBAGENCY_interact_TEXTDOMAIN) ."</small>";
 	echo "		</div>\n";
 	echo "	</div>\n";
 	echo "	<div id=\"profile-password\" class=\"rbfield rbtext rbsingle\">\n";
 	echo "		<label>". __("Password", RBAGENCY_interact_TEXTDOMAIN) ."</label>\n";
 	echo "		<div>\n";
 	echo "			<input type=\"password\" id=\"ProfilePasswordConfirm\" name=\"ProfilePasswordConfirm\" />\n";
-	echo "			<small class=\"rbfield-note\">Retype to Confirm</small>";
+	echo "			<small class=\"rbfield-note\">". __("Retype to Confirm", RBAGENCY_interact_TEXTDOMAIN) ."</small>";
 	echo "		</div>\n";
 	echo "	</div>\n";
 	echo "	<div id=\"profile-submit\" class=\"rbfield rbsubmit rbsingle\">\n";

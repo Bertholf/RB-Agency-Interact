@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: RB Agency Interactive\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-26 13:20+0800\n"
-"PO-Revision-Date: 2015-11-26 13:07-0200\n"
+"POT-Creation-Date: 2015-11-27 09:44+0800\n"
+"PO-Revision-Date: 2015-11-27 09:44+0800\n"
 "Last-Translator: admin <martinicadev@martinicadev.com.br>\n"
 "Language-Team: RB Plugin <info@rbplugin.com>\n"
 "Language: pt_BR\n"
@@ -18,7 +18,7 @@ msgstr ""
 "esc_attr__:1;esc_html__:1;esc_attr_e:1;esc_html_e:1;esc_attr_x:1,2c;"
 "esc_html_x:1,2c;comments_number_link:2,3;t:1;st:1;trans:1;transChoice:1,2\n"
 "X-Poedit-Basepath: .\n"
-"X-Generator: Poedit 1.8.5\n"
+"X-Generator: Poedit 1.8.6\n"
 "X-Loco-Target-Locale: pt_BR\n"
 "X-Poedit-SearchPath-0: C:/Dropbox/Users/Rob/Scripts/RB Plugin/rb-agency-"
 "interact\n"
@@ -391,6 +391,14 @@ msgstr ""
 "Os usuários não podem registar-se, mas você pode criar manualmente os "
 "usuários aqui."
 
+#: ../theme/client-register.php:330 ../theme/member-register.php:369
+msgid "Join Our Team"
+msgstr ""
+
+#: ../theme/client-register.php:333
+msgid "To Join Our Team please complete the application below"
+msgstr ""
+
 #: ../theme/client-register.php:340 ../theme/member-register.php:378
 msgid "Username (required)"
 msgstr "Login  (obrigatório)"
@@ -440,6 +448,10 @@ msgstr "País"
 #, php-format
 msgid "I agree to the %s terms of service"
 msgstr "Eu concordo com %s termos de serviço"
+
+#: ../theme/client-register.php:435 ../theme/member-register.php:454
+msgid "Register"
+msgstr ""
 
 #: ../theme/include-login.php:27
 msgid "Your account is pending for approval."
@@ -590,6 +602,21 @@ msgstr ""
 msgid "Phone"
 msgstr "Telefone"
 
+#: ../theme/include-profileaccount.php:218
+#: ../theme/include-profileregister.php:42
+msgid "Home"
+msgstr ""
+
+#: ../theme/include-profileaccount.php:219
+#: ../theme/include-profileregister.php:43
+msgid "Cell"
+msgstr ""
+
+#: ../theme/include-profileaccount.php:220
+#: ../theme/include-profileregister.php:44
+msgid "Work"
+msgstr ""
+
 #: ../theme/include-profileaccount.php:348
 #: ../theme/include-profileaccount.php:362
 #: ../theme/include-profilemanage.php:181
@@ -630,9 +657,24 @@ msgstr ""
 msgid "Flickr"
 msgstr ""
 
+#: ../theme/include-profileaccount.php:562
+#: ../theme/include-profileregister.php:258
+msgid "Cannot be changed"
+msgstr ""
+
+#: ../theme/include-profileaccount.php:570
+#: ../theme/include-profileregister.php:267
+msgid "Leave blank to keep same password"
+msgstr ""
+
 #: ../theme/include-profileaccount.php:574
 msgid "Retype Password"
 msgstr "Digite novamente a senha"
+
+#: ../theme/include-profileaccount.php:577
+#: ../theme/include-profileregister.php:274
+msgid "Retype to Confirm"
+msgstr ""
 
 #: ../theme/include-profileaccount.php:581
 #: ../theme/include-profilemanage.php:387
@@ -640,7 +682,7 @@ msgid "Last updated "
 msgstr "Última atualização"
 
 #: ../theme/include-profileaccount.php:586
-#: ../theme/include-profilemanage.php:392 ../theme/include-profilemedia.php:275
+#: ../theme/include-profilemanage.php:392 ../theme/include-profilemedia.php:277
 #: ../theme/include-profileregister.php:279
 msgid "Save and Continue"
 msgstr "Salvar e continuar"
@@ -690,26 +732,36 @@ msgstr ""
 "Enviar fotos usando os formulários abaixo. Os seguintes formatos permitidos "
 "são JPG e PNG"
 
-#: ../theme/include-profilemedia.php:175
+#: ../theme/include-profilemedia.php:170 ../theme/include-profilemedia.php:241
+#: ../theme/include-profilemedia.php:245 ../theme/include-profilemedia.php:251
+#: ../theme/include-profilemedia.php:257 ../theme/include-profilemedia.php:263
+msgid "Type"
+msgstr ""
+
+#: ../theme/include-profilemedia.php:171
+msgid "Photo"
+msgstr ""
+
+#: ../theme/include-profilemedia.php:177
 msgid "Media Files"
 msgstr "Arquivos de Mídia"
 
-#: ../theme/include-profilemedia.php:176
+#: ../theme/include-profilemedia.php:178
 msgid ""
 "The following files (pdf, audio file, etc.) are associated with this record"
 msgstr ""
 "Os arquivos seguintes (PDF, arquivos de áudio, etc.) estão associados a esse "
 "registro"
 
-#: ../theme/include-profilemedia.php:230
+#: ../theme/include-profilemedia.php:232
 msgid "There are no additional media linked"
 msgstr "Não há midias adicionais ligados"
 
-#: ../theme/include-profilemedia.php:235
+#: ../theme/include-profilemedia.php:237
 msgid "Upload Media Files"
 msgstr "Fazer upload de arquivos de mídia"
 
-#: ../theme/include-profilemedia.php:236
+#: ../theme/include-profilemedia.php:238
 msgid ""
 "Upload new media using the forms below. The following formats are available: "
 "jpg, png, mp3, and pdf. If uploading an mp3 for a voice monolouge, use the  "
@@ -720,31 +772,31 @@ msgstr ""
 "mp3 para um monologo da voz, use a opção \"Demo de voz\". Para currículos, "
 "verifique se o arquivo é um PDF"
 
-#: ../theme/include-profilemedia.php:241
+#: ../theme/include-profilemedia.php:243
 msgid "Paste the video URL below"
 msgstr "Cole o URL do vídeo abaixo"
 
-#: ../theme/include-profilemedia.php:244 ../theme/include-profilemedia.php:250
-#: ../theme/include-profilemedia.php:256 ../theme/include-profilemedia.php:262
+#: ../theme/include-profilemedia.php:246 ../theme/include-profilemedia.php:252
+#: ../theme/include-profilemedia.php:258 ../theme/include-profilemedia.php:264
 msgid "Video Slate"
 msgstr "vídeo Slate"
 
-#: ../theme/include-profilemedia.php:245 ../theme/include-profilemedia.php:251
-#: ../theme/include-profilemedia.php:257 ../theme/include-profilemedia.php:263
+#: ../theme/include-profilemedia.php:247 ../theme/include-profilemedia.php:253
+#: ../theme/include-profilemedia.php:259 ../theme/include-profilemedia.php:265
 msgid "Video Monologue"
 msgstr "Video Monologue"
 
-#: ../theme/include-profilemedia.php:246 ../theme/include-profilemedia.php:252
-#: ../theme/include-profilemedia.php:258 ../theme/include-profilemedia.php:264
+#: ../theme/include-profilemedia.php:248 ../theme/include-profilemedia.php:254
+#: ../theme/include-profilemedia.php:260 ../theme/include-profilemedia.php:266
 msgid "Demo Reel"
 msgstr "Demo Reel"
 
-#: ../theme/include-profilemedia.php:247 ../theme/include-profilemedia.php:253
-#: ../theme/include-profilemedia.php:259 ../theme/include-profilemedia.php:265
+#: ../theme/include-profilemedia.php:249 ../theme/include-profilemedia.php:255
+#: ../theme/include-profilemedia.php:261 ../theme/include-profilemedia.php:267
 msgid "SoundCloud"
 msgstr "SoundCloud"
 
-#: ../theme/include-profilemedia.php:276
+#: ../theme/include-profilemedia.php:278
 msgid "Back to Overview"
 msgstr "Voltar ao menu principal"
 
@@ -798,12 +850,12 @@ msgstr ""
 "Erro ao criar o registro, certifique-se de ter preenchido todos os campos "
 "necessários."
 
-#: ../theme/member-account.php:367 ../theme/member-media.php:244
+#: ../theme/member-account.php:368 ../theme/member-media.php:244
 #: ../theme/member-profile.php:111
 msgid "Profile updated successfully"
 msgstr "Perfil atualizado com sucesso"
 
-#: ../theme/member-account.php:377 ../theme/member-media.php:246
+#: ../theme/member-account.php:378 ../theme/member-media.php:246
 #: ../theme/member-profile.php:113
 msgid ""
 "Error updating record, please ensure you have filled out all required fields."
@@ -811,7 +863,7 @@ msgstr ""
 "Erro ao atualizar registro, certifique-se de ter preenchido todos os campos "
 "necessários."
 
-#: ../theme/member-account.php:450 ../theme/member-profile.php:191
+#: ../theme/member-account.php:451 ../theme/member-profile.php:191
 #: ../theme/member-subscription.php:119
 msgid ""
 "Records show you are not currently linked to a model or agency profile.  "
@@ -820,11 +872,11 @@ msgstr ""
 "Os registros mostram que você não está ligado a um perfil de modelo ou de "
 "uma agência. Permite configurar o seu perfil agora!"
 
-#: ../theme/member-account.php:458 ../theme/member-overview.php:154
+#: ../theme/member-account.php:459 ../theme/member-overview.php:154
 msgid "Self registration is not permitted."
 msgstr "O auto-registro não é permitido."
 
-#: ../theme/member-account.php:466 ../theme/member-subscription.php:130
+#: ../theme/member-account.php:467 ../theme/member-subscription.php:130
 msgid "You must be logged in to edit your profile."
 msgstr "Você precisa estar logado para editar o seu perfil."
 
@@ -931,6 +983,10 @@ msgstr "Obrigado por se registar, %s."
 #: ../theme/member-register.php:334
 msgid "You may now login and continue registration. <br/>"
 msgstr "Agora você pode acessar e continuar o cadastro. <br/>"
+
+#: ../theme/member-register.php:336
+msgid "Account Login"
+msgstr ""
 
 #: ../theme/member-register.php:337
 msgid "<br/>Your login credentials are also sent to your email."

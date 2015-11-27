@@ -153,13 +153,13 @@
 			$message .= get_option('home') ."/profile-login/\r\n"; 
 			$message .= sprintf(__('Username: %s', RBAGENCY_interact_TEXTDOMAIN), $user_login) . "\r\n"; 
 			$message .= sprintf(__('Password: %s', RBAGENCY_interact_TEXTDOMAIN), $plaintext_pass) . "\r\n\r\n"; 
-			$message .= sprintf(__('If you have any problems, please contact us at %s.'), get_option('admin_email')) . "\r\n\r\n"; 
-			$message .= __('Regards,')."\r\n";
-			$message .= get_option('blogname') . __(' Team') ."\r\n"; 
+			$message .= sprintf(__('If you have any problems, please contact us at %s.', RBAGENCY_interact_TEXTDOMAIN), get_option('admin_email')) . "\r\n\r\n"; 
+			$message .= __('Regards,', RBAGENCY_interact_TEXTDOMAIN)."\r\n";
+			$message .= get_option('blogname') . __(' Team', RBAGENCY_interact_TEXTDOMAIN) ."\r\n"; 
 			$message .= get_option('home') ."\r\n"; 
 
 			$headers = 'From: '. get_option('blogname') .' <'. get_option('admin_email') .'>' . "\r\n";
-			wp_mail($user_email, sprintf(__('%s Registration Successful! Login Details'), get_option('blogname')), $message, $headers);
+			wp_mail($user_email, sprintf(__('%s Registration Successful! Login Details', RBAGENCY_interact_TEXTDOMAIN), get_option('blogname')), $message, $headers);
 
 		}
 
@@ -200,7 +200,7 @@
 	
 					$headers = 'From: '. get_option('blogname') .' <'. get_option('admin_email') .'>' . "\r\n";
 					//wp_mail($user_email, sprintf(__('%s Registration Successful!  Account is pending for approval'), get_option('blogname')), make_clickable($message), $headers);
-					wp_mail($user_email, sprintf(__('%s Registration Successful!  Account is pending for approval'), get_option('blogname')), $message, $headers);
+					wp_mail($user_email, sprintf(__('%s Registration Successful!  Account is pending for approval', RBAGENCY_interact_TEXTDOMAIN), get_option('blogname')), $message, $headers);
 				}
 		}
 	}

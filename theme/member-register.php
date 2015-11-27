@@ -333,7 +333,7 @@
 					//if ($rb_agencyinteract_option_registerapproval == 1) { // automatically approve
 					printf( __("You may now login and continue registration. <br/>", RBAGENCY_interact_TEXTDOMAIN) );
 					
-					echo "<a href=\"".get_bloginfo("url")."/profile-login/\">Account Login</a>";
+					echo "<a href=\"".get_bloginfo("url")."/profile-login/\">". __("Account Login", RBAGENCY_interact_TEXTDOMAIN) ."</a>";
 					printf( __("<br/>Your login credentials are also sent to your email.", RBAGENCY_interact_TEXTDOMAIN) );
 					printf( __("<br/>(It might go into your spam forlder)", RBAGENCY_interact_TEXTDOMAIN) );
 					//} else { // manually approve
@@ -366,7 +366,7 @@
 	// Self Registration
 	if ( $registration || current_user_can("create_users") ) {
 	echo "  <header class=\"entry-header member-register\">";
-	echo "  	<h1 class=\"entry-title\">Join Our Team</h1>";
+	echo "  	<h1 class=\"entry-title\">". __("Join Our Team", RBAGENCY_interact_TEXTDOMAIN) ."</h1>";
 	echo "  </header>";
 	echo "  <div id=\"member-register\" class=\"rbform\">";
 	echo "	<p class=\"rbform-description\">".__("To Join Our Team please complete the application below.", RBAGENCY_interact_TEXTDOMAIN)."</p>";
@@ -451,7 +451,7 @@
 	echo "      </div><!-- #profile-agree -->\n";
  
 	echo "      <div id=\"profile-submit\" class=\"rbfield rbsubmit rbsingle\">\n";
-	echo "   		<input name=\"adduser\" type=\"submit\" id=\"addusersub\" class=\"submit button\" value='Register'/>";
+	echo "   		<input name=\"adduser\" type=\"submit\" id=\"addusersub\" class=\"submit button\" value='". __("Register", RBAGENCY_interact_TEXTDOMAIN) ."'/>";
 
 					// if ( current_user_can("create_users") ) { _e("Add User", RBAGENCY_interact_TEXTDOMAIN); } else { _e("Register", RBAGENCY_interact_TEXTDOMAIN); }echo "\" />\n";
 					wp_nonce_field("add-user");
