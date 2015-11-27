@@ -333,7 +333,7 @@ if (isset($_POST['action'])) {
 				WHERE ProfileID=$ProfileID";
 				$results = $wpdb->query($update);     
 
-				/* Update WordPress user information. */
+				
 				update_usermeta( $current_user->ID, 'first_name', esc_attr( $ProfileContactNameFirst ) );
 				update_usermeta( $current_user->ID, 'last_name', esc_attr( $ProfileContactNameLast ) );
 				update_usermeta( $current_user->ID, 'nickname', esc_attr( $ProfileContactDisplay ) );
@@ -342,6 +342,7 @@ if (isset($_POST['action'])) {
 				update_usermeta( $current_user->ID, 'rb_agency_interact_pgender', esc_attr( $ProfileGender ) );
 
 				// Add New Custom Field Values
+				
 				foreach($_POST as $key => $value) {
 
 

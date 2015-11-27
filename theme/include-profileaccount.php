@@ -92,7 +92,7 @@
 		}
 
 		$styleclass = "rbfield";
-
+		
 		echo "<div id=\"profile-account\" class=\"rbform\">\n";
 		echo "<h3>". __("Hi", RBAGENCY_interact_TEXTDOMAIN) ." ".$ProfileContactDisplay."! ". __("You are registered as", RBAGENCY_interact_TEXTDOMAIN) ." ".implode(",",$registered_as)."</h3>";
 		echo "<form method=\"post\" enctype=\"multipart/form-data\" action=\"". get_bloginfo("wpurl") ."/profile-member/account/\">\n";
@@ -144,11 +144,11 @@
 		echo "	<h3>". __("Private Information", RBAGENCY_interact_TEXTDOMAIN) ."</h3>";
 		echo "  <p>". __("The following information will appear only in administrative areas", RBAGENCY_interact_TEXTDOMAIN) .".</p>\n";
 		echo "	<div id=\"profile-email\" class=\"". $styleclass ." rbemail rbsingle\">\n";
-		echo "		<label>". __("Email Address", RBAGENCY_TEXTDOMAIN) ."</label>\n";
+		echo "		<label>". __("Email Address", RBAGENCY_interact_TEXTDOMAIN) ."</label>\n";
 		echo "		<div><input type=\"text\" id=\"ProfileContactEmail\" name=\"ProfileContactEmail\" value=\"". $ProfileContactEmail ."\" /></div>\n";
 		echo "	</div>\n";
 		echo "	<div id=\"profile-birthdate\" class=\"". $styleclass ." rbtext rbsingle\">\n";
-		echo "		<label>". __("Birthdate", RBAGENCY_TEXTDOMAIN) ."</label>\n";
+		echo "		<label>". __("Birthdate", RBAGENCY_interact_TEXTDOMAIN) ."</label>\n";
 		echo "		<div><input class=\"rb-datepicker\" type=\"text\" id=\"ProfileDateBirth\" name=\"ProfileDateBirth\" value=\"". $ProfileDateBirth ."\" /></div>\n";
 		echo "	</div>\n";
 
@@ -167,15 +167,15 @@
 		
 		// Address
 		echo "	<div id=\"profile-street\" class=\"". $styleclass ." rbtext rbsingle\">\n";
-		echo "		<label>". __("Street", RBAGENCY_TEXTDOMAIN) ."</label>\n";
+		echo "		<label>". __("Street", RBAGENCY_interact_TEXTDOMAIN) ."</label>\n";
 		echo "		<div><input type=\"text\" id=\"ProfileLocationStreet\" name=\"ProfileLocationStreet\" value=\"". $ProfileLocationStreet ."\" /></div>\n";
 		echo "	</div>\n";
 		echo "	<div id=\"profile-city\" class=\"". $styleclass ." rbtext rbsingle\">\n";
-		echo "		<label>". __("City", RBAGENCY_TEXTDOMAIN) ."</label>\n";
+		echo "		<label>". __("City", RBAGENCY_interact_TEXTDOMAIN) ."</label>\n";
 		echo "		<div><input type=\"text\" id=\"ProfileLocationCity\" name=\"ProfileLocationCity\" value=\"". $ProfileLocationCity ."\" /></div>\n";
 		echo "	</div>\n";
 		echo "	<div id=\"profile-country\" class=\"". $styleclass ." rbtext rbsingle\">\n";
-		echo "		<label>". __("Country", RBAGENCY_TEXTDOMAIN) ."</label>\n";
+		echo "		<label>". __("Country", RBAGENCY_interact_TEXTDOMAIN) ."</label>\n";
 		echo "		<div>";
 		//<input type=\"text\" id=\"ProfileLocationCountry\" name=\"ProfileLocationCountry\" value=\"". $ProfileLocationCountry ."\" />
 								$query_get ="SELECT * FROM `". table_agency_data_country ."`" ;
@@ -184,7 +184,7 @@
 
 								echo '<input type="hidden" id="url" value="'.$location.'">';
 								echo "<select name=\"ProfileLocationCountry\" id=\"ProfileLocationCountry\"  onchange='javascript:populateStates(\"ProfileLocationCountry\",\"ProfileLocationState\");'>";
-								echo '<option value="">'. __("Select country", RBAGENCY_TEXTDOMAIN) .'</option>';
+								echo '<option value="">'. __("Select country", RBAGENCY_interact_TEXTDOMAIN) .'</option>';
 								foreach($result_query_get as $r){
 										$selected = isset($ProfileLocationCountry) && $ProfileLocationCountry==$r->CountryID?"selected=selected":"";
 									echo '<option '.$selected.' value='.$r->CountryID.' >'.$r->CountryTitle.'</option>';
@@ -193,13 +193,13 @@
 		echo "      </div>\n";
 		echo "	</div>\n";
 		echo "	<div id=\"profile-state\" class=\"". $styleclass ." rbtext rbsingle\">\n";
-		echo "		<label>". __("State", RBAGENCY_TEXTDOMAIN) ."</label>\n";
+		echo "		<label>". __("State", RBAGENCY_interact_TEXTDOMAIN) ."</label>\n";
 		//echo "		<div><input type=\"text\" id=\"ProfileLocationState\" name=\"ProfileLocationState\" value=\"". $ProfileLocationState ."\" /></div>\n";
 		echo "			<div>";
 								$query_get ="SELECT * FROM `".table_agency_data_state."` WHERE CountryID='".(isset($ProfileLocationCountry)?$ProfileLocationCountry:"")."'" ;
 								$result_query_get = $wpdb->get_results($query_get);
 								echo '<select name="ProfileLocationState" id="ProfileLocationState">';
-								echo '<option value="">'. __("Select state", RBAGENCY_TEXTDOMAIN) .'</option>';
+								echo '<option value="">'. __("Select state", RBAGENCY_interact_TEXTDOMAIN) .'</option>';
 								foreach($result_query_get as $r){
 									$selected = isset($ProfileLocationState) && $ProfileLocationState==$r->StateID?"selected=selected":"";
 									echo '<option '.$selected.' value='.$r->StateID.' >'.$r->StateTitle.'</option>';
@@ -208,12 +208,12 @@
 		echo "			</div>";
 		echo "	</div>\n";
 		echo "	<div id=\"profile-zip\" class=\"". $styleclass ." rbtext rbsingle\">\n";
-		echo "		<label>". __("Zip", RBAGENCY_TEXTDOMAIN) ."</label>\n";
+		echo "		<label>". __("Zip", RBAGENCY_interact_TEXTDOMAIN) ."</label>\n";
 		echo "		<div><input type=\"text\" id=\"ProfileLocationZip\" name=\"ProfileLocationZip\" value=\"". $ProfileLocationZip ."\" /></div>\n";
 		echo "	</div>\n";
 
 		echo "	<div id=\"profile-phone\" class=\"". $styleclass ." rbtext rbmulti rbblock\">\n";
-		echo "		<label>". __("Phone", RBAGENCY_TEXTDOMAIN) ."</label>\n";
+		echo "		<label>". __("Phone", RBAGENCY_interact_TEXTDOMAIN) ."</label>\n";
 		echo "		<div>\n";
 		echo "			<div><label>Home:</label><div><input type=\"text\" id=\"ProfileContactPhoneHome\" name=\"ProfileContactPhoneHome\" value=\"". $ProfileContactPhoneHome ."\" /></div></div>\n";
 		echo "			<div><label>Cell:</label><div><input type=\"text\" id=\"ProfileContactPhoneCell\" name=\"ProfileContactPhoneCell\" value=\"". $ProfileContactPhoneCell ."\" /></div></div>\n";
@@ -222,7 +222,7 @@
 		echo "	</div>\n";
 
 		echo "	<div id=\"profile-website\" class=\"". $styleclass ." rbtext rbsingle\">\n";
-		echo "		<label>". __("Website", RBAGENCY_TEXTDOMAIN) ."</label>\n";
+		echo "		<label>". __("Website", RBAGENCY_interact_TEXTDOMAIN) ."</label>\n";
 		echo "		<div><input type=\"text\" id=\"ProfileContactWebsite\" name=\"ProfileContactWebsite\" value=\"". $ProfileContactWebsite ."\" /></div>\n";
 		echo "	</div>\n";
 
@@ -345,26 +345,26 @@
 				if (!empty($ProfileCustomOptions_Min_value) && !empty($ProfileCustomOptions_Max_value)) {
 
 						echo "<div><label for=\"ProfileCustomLabel_min\">"
-							. __("Min", RBAGENCY_TEXTDOMAIN) . " </label>\n";
+							. __("Min", RBAGENCY_interact_TEXTDOMAIN) . " </label>\n";
 						echo "<div><input type=\"text\" name=\"ProfileCustomID". $data3['ProfileCustomID'] 
 							."\" value=\"". 
 							retrieve_datavalue($ProfileCustomOptions_Min_value,
 												$data3['ProfileCustomID'],$ProfileID,"textbox")
 								."\" /></div></div>\n";
 						echo "<div><label for=\"ProfileCustomLabel_min\">"
-							. __("Max", RBAGENCY_TEXTDOMAIN) . " </label>\n";
+							. __("Max", RBAGENCY_interact_TEXTDOMAIN) . " </label>\n";
 						echo "<div><input type=\"text\" name=\"ProfileCustomID". $data3['ProfileCustomID'] ."\" value=\""
 							.  retrieve_datavalue($ProfileCustomOptions_Max_value,
 													$data3['ProfileCustomID'],$ProfileID,"textbox") ."\" /></div></div>\n";
 
 				} else {
 						echo "<div><label for=\"ProfileCustomLabel_min\">"
-							. __("Min", RBAGENCY_TEXTDOMAIN) . " </label>\n";
+							. __("Min", RBAGENCY_interact_TEXTDOMAIN) . " </label>\n";
 						echo "<div><input type=\"text\" name=\"ProfileCustomID". $data3['ProfileCustomID'] ."\" value=\""
 							.retrieve_datavalue($_REQUEST["ProfileCustomID". $data3['ProfileCustomID']],
 													$data3['ProfileCustomID'],$ProfileID,"textbox") ."\" /></div></div>\n";
 						echo "<div><label for=\"ProfileCustomLabel_min\">"
-							. __("Max", RBAGENCY_TEXTDOMAIN) . " </label>\n";
+							. __("Max", RBAGENCY_interact_TEXTDOMAIN) . " </label>\n";
 						echo "<div><input type=\"text\" name=\"ProfileCustomID". $data3['ProfileCustomID'] ."\" value=\""
 							.retrieve_datavalue($_REQUEST["ProfileCustomID". $data3['ProfileCustomID']],
 													$data3['ProfileCustomID'],$ProfileID,"textbox") ."\" /></div></div>\n";

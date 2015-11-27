@@ -635,7 +635,6 @@ function rb_get_user_profilstatus(){
 		}else{
 			return 0;
 		}
-		
 		if($ret_all == true){
 			return $interval;
 		}

@@ -102,9 +102,9 @@ echo $rb_header = RBAgency_Common::rb_header();
 
 				echo " <div class=\"section-content section-account\">\n"; // .account
 				echo " 	<ul>\n";
-				echo "      <li><a href=\"account/\">Edit Your Account Details</a></li>\n";
-				echo "      <li><a href=\"manage/\">Manage Your Profile Information</a></li>\n";
-				echo "      <li><a href=\"media/\">Manage Photos and Media</a></li>\n";
+				echo "      <li><a href=\"account/\">". __("Edit Your Account Details", RBAGENCY_interact_TEXTDOMAIN) ."</a></li>\n";
+				echo "      <li><a href=\"manage/\">". __("Manage Your Profile Information", RBAGENCY_interact_TEXTDOMAIN) ."</a></li>\n";
+				echo "      <li><a href=\"media/\">". __("Manage Photos and Media", RBAGENCY_interact_TEXTDOMAIN) ."</a></li>\n";
 				if($rb_subscription){
 				echo "      <li><a href=\"subscription/\">Manage your Subscription</a></li>\n";
 				}
