@@ -205,11 +205,13 @@
 				}
 			}else{
 				//automatic but do not allow the active as default..
-				if($_default_registered != 1){
+				/* if($_default_registered != 1){
 					$profileactive = $_default_registered;
 				}else{
 					$profileactive = 0; //inactive
-				}
+				} */
+				 // decided to make it really automatic whatever it is.
+				$profileactive = $_default_registered;
 			}
 			/* echo "
 			$_registerapproval = approval <br/>
