@@ -1,15 +1,15 @@
 <?php
 // *************************************************************************************************** //
 // Prepare Page
-    global $wpdb;
-    
-    if(is_user_logged_in()){
+	global $wpdb;
+	
+	if(is_user_logged_in()){
 		wp_redirect(get_bloginfo("url")); exit;
-    }
+	}
 
 	/* Get Options */
 	$rb_agency_interact_options_arr = get_option('rb_agencyinteract_options');
-    $rb_agency_options_arr = get_option('rb_agency_options');
+	$rb_agency_options_arr = get_option('rb_agency_options');
 	$rb_agency_option_model_toc = isset($rb_agency_options_arr['rb_agency_option_agency_model_toc'])?$rb_agency_options_arr['rb_agency_option_agency_model_toc']: "/models-terms-of-conditions";
 	$rb_agencyinteract_option_registerapproval = isset($rb_agency_interact_options_arr['rb_agencyinteract_option_registerapproval'])?$rb_agency_interact_options_arr['rb_agencyinteract_option_registerapproval']:"";
 	//Sidebar
@@ -23,8 +23,8 @@
 
 	$rb_agency_uri_profiletype = get_query_var("typeofprofile");
    
-    // Profile Naming
-  	$rb_agency_option_profilenaming = (int)$rb_agency_options_arr['rb_agency_option_profilenaming'];
+	// Profile Naming
+	$rb_agency_option_profilenaming = (int)$rb_agency_options_arr['rb_agency_option_profilenaming'];
 
 	//+Registration
 	// - show/hide registration for Agent/Producers
@@ -32,12 +32,12 @@
 
 	// - show/hide  self-generate password
 	$rb_agencyinteract_option_registerconfirm = isset($rb_agency_interact_options_arr['rb_agencyinteract_option_registerconfirm'])?(int)$rb_agency_interact_options_arr['rb_agencyinteract_option_registerconfirm']:0;
-    // show/hide username and password
-    $rb_agencyinteract_option_useraccountcreation = isset($rb_agency_interact_options_arr['rb_agencyinteract_option_useraccountcreation'])?(int)$rb_agency_interact_options_arr['rb_agencyinteract_option_useraccountcreation']:0;
+	// show/hide username and password
+	$rb_agencyinteract_option_useraccountcreation = isset($rb_agency_interact_options_arr['rb_agencyinteract_option_useraccountcreation'])?(int)$rb_agency_interact_options_arr['rb_agencyinteract_option_useraccountcreation']:0;
 	/* Check if users can register. */
 	$registration = get_option( 'users_can_register' );
-    
-    if(!function_exists("parse_signed_request")){
+	
+	if(!function_exists("parse_signed_request")){
 		function parse_signed_request($signed_request, $secret) {
 			list($encoded_sig, $payload) = explode('.', $signed_request, 2); 
 
@@ -173,7 +173,7 @@
 			} elseif ($rb_agency_option_profilenaming == 3) { // by firstname
 				$profile_contact_display = "ID-". $new_user;
 			} elseif ($rb_agency_option_profilenaming == 4) {
-			      $profile_contact_display = $first_name;
+				  $profile_contact_display = $first_name;
 			  }
 
 			  if($rb_agency_option_profilenaming != 3){
@@ -218,9 +218,7 @@
 			$_default_registered = default <br/>
 			$profileactive = profiule stats
 			"; */
-			
-			
-			
+
 
 			// Insert to table_agency_profile
 			$wpdb->query($wpdb->prepare("INSERT INTO ".table_agency_profile."
@@ -313,7 +311,7 @@
 	echo "<div class=\"".$column_class." column rb-agency-interact profile-register\">\n";
 	echo "  <div id=\"rbcontent\">\n";
    
-    // ****************************************************************************************** //
+	// ****************************************************************************************** //
 	// Already logged in 
 
 	if ( is_user_logged_in() && !current_user_can( 'create_users' ) ) {
@@ -429,7 +427,7 @@
 				$results3 = $wpdb->get_results($query3,ARRAY_A);
 				$count3 =  $wpdb->num_rows;
 	echo "		<div>";
-			      $ptype_arr = isset($_POST["ProfileType"]) && !empty($_POST["ProfileType"])?$_POST["ProfileType"]: array();
+				  $ptype_arr = isset($_POST["ProfileType"]) && !empty($_POST["ProfileType"])?$_POST["ProfileType"]: array();
 				foreach($results3 as $data3) {
 
 					$rb_agency_uri_profiletype = ucfirst($rb_agency_uri_profiletype);
