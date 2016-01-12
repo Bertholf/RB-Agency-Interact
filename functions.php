@@ -99,9 +99,9 @@
 			global $wp_rewrite;
 			$wp_rewrite->flush_rules();
 		}*/
-    
+	
    
-    
+	
 
 
 	/*/
@@ -276,7 +276,8 @@
 	// TODO : Refactor
 	add_action( 'init', 'rb_agency_interact_login_rewrite' );
 		function rb_agency_interact_login_rewrite() {
-			add_rewrite_rule(get_bloginfo("wpurl"). "profile-register/?$", 'wp-login.php', 'top');
+			$url = get_bloginfo("wpurl");
+			add_rewrite_rule($url.(substr($url,-1) != '/' ? '/' : '')."profile-register/?$", 'wp-login.php', 'top');
 		}
 
 
@@ -588,11 +589,11 @@ function rb_get_user_linkedID($ProfileID){
 		global $wpdb;
 
 		$result = $wpdb->get_row($wpdb->prepare("SELECT ProfileUserLinked FROM ".table_agency_profile." WHERE ProfileID = %d",$ProfileID));
-        $found = $wpdb->num_rows;
-        if($found > 0)
+		$found = $wpdb->num_rows;
+		if($found > 0)
 		return $result->ProfileUserLinked;
-        else
-        return 0;
+		else
+		return 0;
 }
 
 function rb_get_user_profilstatus(){
