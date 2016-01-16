@@ -87,17 +87,24 @@ if (isset($_POST['action'])) {
 			$rb_agency_options_arr = get_option('rb_agency_options');
 			$rb_agency_option_inactive_profile_on_update = (int)$rb_agency_options_arr['rb_agency_option_inactive_profile_on_update'];
 			
-			// pending the account
+			
+			//nevermind if your admin
 			$ProfileStatus = '';
 			if($rb_agency_option_inactive_profile_on_update == 1){
 				//nevermind if your admin
 				if(is_user_logged_in() && current_user_can( 'edit_posts' )){
-					$ProfileStatus = '';
+					$ProfileStatus = '';//stay active admin account
 				}else{
-					$ProfileStatus = " ProfileIsActive = 3, ";
+					$ProfileStatus = " ProfileIsActive = 3, "; //inactive
+					
 				}
+			}else{
+				// get user current status so theres no changes would be happen,
+				(int)$ProfileStatus_int = $wpdb->get_var("SELECT  ProfileIsActive FROM " . table_agency_profile . " WHERE ProfileID=$ProfileID");
 				
+				$ProfileStatus = " ProfileIsActive = $ProfileStatus_int, ";
 			}
+			
 		
 			rb_interact_sendadmin_pending_info($ProfileID);
 			

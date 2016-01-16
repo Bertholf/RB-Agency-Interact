@@ -97,23 +97,7 @@ if (isset($_POST['action'])) {
 		$ProfileIsActive			= 3; 
 	}
 	 */
-	$_pending_update = $rb_agency_option_inactive_profile_on_update;
-	$_registerapproval = $rb_agencyinteract_option_registerapproval;
-	//manually approve(0)
-	if($_registerapproval == 0){
-		if($_pending_update == 1){
-			$ProfileIsActive = 3;
-		}else{
-			$ProfileIsActive = 0;//inactive
-		}
-	}else{
-		//automatic but do not allow the active as default..
-		if($_pending_update != 1){
-			$ProfileIsActive = 0; //inactive
-		}else{
-			$ProfileIsActive = 3;//pending
-		}
-	}
+	
 
 	// Error checking
 	$have_error = false;
@@ -138,6 +122,26 @@ if (isset($_POST['action'])) {
 	// *************************************************************************************************** //
 	// Add Record
 	if($action == 'addRecord'){
+		
+		
+		$_pending_update = $rb_agency_option_inactive_profile_on_update;
+		$_registerapproval = $rb_agencyinteract_option_registerapproval;
+		//manually approve(0)
+		if($_registerapproval == 0){
+			if($_pending_update == 1){
+				$ProfileIsActive = 3;
+			}else{
+				$ProfileIsActive = 0;//inactive
+			}
+		}else{
+			//automatic but do not allow the active as default..
+			if($_pending_update != 1){
+				$ProfileIsActive = 0; //inactive
+			}else{
+				$ProfileIsActive = 3;//pending
+			}
+		}
+		
 		if(!$have_error){
 			//$ProfileIsActive		= 3; // in upper part of codes - initialize
 			$ProfileIsFeatured	= 0;
@@ -300,8 +304,16 @@ if (isset($_POST['action'])) {
 						$ProfileStatus = 1;//stay active admin account
 					}else{
 						$ProfileStatus = 3; //inactive
+						
 					}
+				}else{
+					// get user current status so theres no changes would be happen,
+					$ProfileStatus = $wpdb->get_var("SELECT  ProfileIsActive FROM " . table_agency_profile . " WHERE ProfileID=$ProfileID");
+						
 				}
+				
+				
+				
 				
 				
 				rb_interact_sendadmin_pending_info($ProfileID);
