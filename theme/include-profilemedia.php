@@ -1,5 +1,5 @@
 <?php
-	global $user_ID; 
+	global $user_ID;
 	global $current_user;
 	global $wpdb;
 	get_currentuserinfo();
@@ -17,7 +17,7 @@
 		echo " <input type=\"hidden\" name=\"ProfileID\" value=\"".$ProfileID."\" />";
 		echo " <input type=\"hidden\" name=\"targetid\" id=\"targetid\" value=\"\" />";
 		echo " <input type=\"hidden\" name=\"actionsub\" value=\"photodelete\" />";
-		echo "</form>";              
+		echo "</form>";
 
 		echo "<form method=\"post\" enctype=\"multipart/form-data\" action=\"". get_bloginfo("wpurl") ."/profile-member/media/\">\n";
 
@@ -28,11 +28,11 @@
 			if(!empty($UploadMedia)) {
 				echo "<div id=\"message\" class=\"uploaded\">";
 				foreach ($UploadMedia as $mediaFile) {
-					echo "<p>File <strong>".$mediaFile. "</strong> successfully uploaded!</p>";
+					echo "<p>". sprintf( __( 'File %s successfully uploaded', RBAGENCY_interact_TEXTDOMAIN ), "<strong>". $mediaFile. "</strong>" ) ."  !</p>";
 				}
-				echo "<p>You may continue uploading more files. If you are done, please click the EXIT link below to go back to homepage.</p>";
+				echo "<p>". __("You may continue uploading more files. If you are done, please click the EXIT link below to go back to homepage.", RBAGENCY_interact_TEXTDOMAIN) ."</p>";
 				$back = $rb_agency_interact_WPURL ."/profile-member/";
-				echo '<p><a class="rb_button" href='.$back.'>EXIT</a></p>';
+				echo "<p><a class=\"rb_button\" href=\"". $back ."\">". __("EXIT", RBAGENCY_interact_TEXTDOMAIN) ."</a></p>";
 				echo "</div>";
 			}
 			if(isset($_POST["deletePhoto"])){
@@ -59,9 +59,9 @@
 					$dirURL = RBAGENCY_UPLOADPATH . $ProfileGallery;
 					foreach ($mass_image_data as $mid => $ProfileMediaURL) {
 						if (!unlink($dirURL . "/" . $ProfileMediaURL)) {
-							echo ("<div id=\"message\" class=\"error\"><p>" . __("Error removing", RBAGENCY_TEXTDOMAIN) . " <strong>" . $ProfileMediaURL . "</strong>. " . __("File did not exist.", RBAGENCY_TEXTDOMAIN) . ".</p></div>");
+							echo ("<div id=\"message\" class=\"error\"><p>" . __("Error removing", RBAGENCY_TEXTDOMAIN) ." <strong>" . $ProfileMediaURL . "</strong>. " . __("File did not exist.", RBAGENCY_TEXTDOMAIN) . ".</p></div>");
 						} else {
-							echo ("<div id=\"message\" class=\"updated\"><p>File <strong>'. $ProfileMediaURL .'</strong> " . __("successfully removed", RBAGENCY_TEXTDOMAIN) . ".</p></div>");
+							echo ("<div id=\"message\" class=\"updated\"><p>" . __("File", RBAGENCY_TEXTDOMAIN) ." <strong>'. $ProfileMediaURL .'</strong> " . __("successfully removed", RBAGENCY_TEXTDOMAIN) . ".</p></div>");
 						}
 					}
 				echo "</div>";
@@ -109,14 +109,14 @@
 							echo ("<div id=\"message\" class=\"updated\"><p>File <strong>'. $ProfileMediaURL .'</strong> ". __("successfully removed", RBAGENCY_interact_TEXTDOMAIN) .".</p></div>");
 						} else {
 							// Remove File
-							$dirURL = RBAGENCY_UPLOADPATH . $ProfileGallery; 
+							$dirURL = RBAGENCY_UPLOADPATH . $ProfileGallery;
 							if($ProfileMediaType == "SoundCloud"){
-								echo "<div id=\"message\" class=\"updated\"><p>Successfully removed the Soundcloud link.</p></div>";
+								echo "<div id=\"message\" class=\"updated\"><p>". __("Successfully removed the Soundcloud link.", RBAGENCY_interact_TEXTDOMAIN) ."</p></div>";
 							} else {
 								if (!@unlink($dirURL ."/". $ProfileMediaURL)) {
 										echo ("<div id=\"message\" class=\"error\"><p>". __("Error removing", RBAGENCY_interact_TEXTDOMAIN) ." <strong>". $ProfileMediaURL ."</strong>. ". __("Please try again", RBAGENCY_interact_TEXTDOMAIN) .".</p></div>");
 								} else {
-										echo ("<div id=\"message\" class=\"updated\"><p>File <strong>'. $ProfileMediaURL .'</strong> ". __("successfully removed", RBAGENCY_interact_TEXTDOMAIN) .".</p></div>");
+										echo ("<div id=\"message\" class=\"updated\"><p>". __("File", RBAGENCY_interact_TEXTDOMAIN) ." <strong>'. $ProfileMediaURL .'</strong> ". __("successfully removed", RBAGENCY_interact_TEXTDOMAIN) .".</p></div>");
 								}
 							}
 						}
@@ -133,16 +133,16 @@
 							if ($dataImg['ProfileMediaPrimary']) {
 								$styleClass = "primary-picture ";
 								$isChecked = " checked";
-								$isCheckedText = " Primary";
-							$toDelete = "  <div class=\"delete\"><a href=\"javascript:;\" class=\"btn-small-red\" onclick=\"confirmDelete('". $dataImg['ProfileMediaID'] ."','".$dataImg['ProfileMediaType']."');\"><span>Delete</span> &raquo;</a></div>\n";
+								$isCheckedText = __(" Primary", RBAGENCY_interact_TEXTDOMAIN);
+							$toDelete = "  <div class=\"delete\"><a href=\"javascript:;\" class=\"btn-small-red\" onclick=\"confirmDelete('". $dataImg['ProfileMediaID'] ."','".$dataImg['ProfileMediaType']."');\"><span>". __("Delete", RBAGENCY_TEXTDOMAIN) ."</span> &raquo;</a></div>\n";
 							} else {
 								$styleClass = "";
 								$isChecked = "";
-								$isCheckedText = " set as primary";
-							$toDelete = "  <div class=\"delete\"><a href=\"javascript:;\" class=\"btn-small-red\" onclick=\"confirmDelete('". $dataImg['ProfileMediaID'] ."','".$dataImg['ProfileMediaType']."');\"><span>Delete</span> &raquo;</a></div>\n";
+								$isCheckedText = __(" set as primary", RBAGENCY_interact_TEXTDOMAIN);
+							$toDelete = "  <div class=\"delete\"><a href=\"javascript:;\" class=\"btn-small-red\" onclick=\"confirmDelete('". $dataImg['ProfileMediaID'] ."','".$dataImg['ProfileMediaType']."');\"><span>". __("Delete", RBAGENCY_TEXTDOMAIN) ."</span> &raquo;</a></div>\n";
 							}
 						echo "<div class=\"profileimage\" class=\"". $styleClass ."\">\n". $toDelete ."";
-                        
+
 						echo '<input type="hidden" name="pgallery" value="'.$ProfileGallery.'">';
 
 						echo '<input type="hidden" name="pmedia_url" value="'.$dataImg['ProfileMediaURL'].'">';
@@ -151,7 +151,7 @@
 						echo "  <div class=\"". $styleClass ."make-primary\">";
 						echo "	<label><input type=\"radio\" name=\"ProfileMediaPrimary\" value=\"". $dataImg['ProfileMediaID'] ."\" class=\"button-primary\"". $isChecked ." /> ". $isCheckedText ."</label>";
 						if(empty($dataImg['ProfileMediaPrimary'])){
-							echo "<label><input type=\"checkbox\" value=\"".$dataImg['ProfileMediaID']."\" name=\"deletePhoto[]\"/> Delete</label>";
+							echo "<label><input type=\"checkbox\" value=\"".$dataImg['ProfileMediaID']."\" name=\"deletePhoto[]\"/> ". __("Delete", RBAGENCY_TEXTDOMAIN) ."</label>";
 						}
 						echo "</div>\n";
 
@@ -168,7 +168,7 @@
 
 				for( $i=0; $i<5; $i++ ) {
 				echo "<div class=\"upload-photo\"><label>". __("Type", RBAGENCY_interact_TEXTDOMAIN) .": </label>
-					<select name=\"profileMedia". $i ."Type\"><option value=\"Image\">". __("Photo", RBAGENCY_interact_TEXTDOMAIN) ."</option>"; 
+					<select name=\"profileMedia". $i ."Type\"><option value=\"Image\">". __("Photo", RBAGENCY_interact_TEXTDOMAIN) ."</option>";
 					echo"</select><input type='file' id='profileMedia". $i ."' name='profileMedia". $i ."' /></div>\n";
 				}
 		echo "</div>";
@@ -268,7 +268,7 @@
 					."</select><textarea id='profileMediaV4' name='profileMediaV4'></textarea></div>\n";
 
 			}
-		echo "<p><strong>Press the \"Save and Continue\" button only once</strong>. Depending on the number of files and or your connection speed, it may take a few moments to fully upload your new files/changes. When the page refreshes, you should see your new media.</p>\n";
+		echo "<p><strong>". __("Press the Save and Continue button only once", RBAGENCY_interact_TEXTDOMAIN) ."</strong>. ". __("Depending on the number of files and or your connection speed, it may take a few moments to fully upload your new files/changes. When the page refreshes, you should see your new media.", RBAGENCY_interact_TEXTDOMAIN) ."</p>\n";
 		echo "		</div>\n";
 		echo "<p class=\"submit\">\n";
 		echo "     <input type=\"hidden\" name=\"ProfileID\" value=\"". $ProfileID ."\" />\n";

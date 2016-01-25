@@ -1,5 +1,5 @@
 <?php
-	global $user_ID; 
+	global $user_ID;
 	global $current_user;
 	global $wpdb;
 	get_currentuserinfo();
@@ -19,7 +19,7 @@
 		$ptype = retrieve_title($ptype);
 		$ProfileGender = get_user_meta($current_user->ID, "rb_agency_interact_pgender", true);
 		$ProfileTypeArray = array();
-		$profileType = ""; 
+		$profileType = "";
 		$ptype1 = get_user_meta($current_user->ID, "rb_agency_interact_profiletype", true);
 		$ProfileTypeArray = explode(",", $ptype1);
 		$query3 = "SELECT * FROM " . table_agency_data_type . " ORDER BY DataTypeTitle";
@@ -32,7 +32,7 @@
 		$ProfileType				=stripslashes($data['ProfileType']);
 		$ProfileType 				=explode(",",$ProfileType);
 
-		$i=1; 
+		$i=1;
 		foreach($results3 as $data3) {
 
 				$profileType .=  "<input type=\"checkbox\" name=\"ProfileType[]\" value=\"".$data3['DataTypeID']."\" ".(in_array($data3['DataTypeID'], $ProfileType)?"checked=\"checked\"":"")."/>".$data3['DataTypeTitle'] ;
@@ -56,11 +56,11 @@
 		echo "</div>";
 
 	/*
-	 *   added this new custom field display 
+	 *   added this new custom field display
 	 */
 	$rb_agency_option_profilenaming 		= isset($rb_agency_options_arr['rb_agency_option_profilenaming']) ?(int)$rb_agency_options_arr['rb_agency_option_profilenaming']:0;
 
-	$query3 = "SELECT * FROM ". table_agency_customfields ." 
+	$query3 = "SELECT * FROM ". table_agency_customfields ."
 				WHERE ProfileCustomView = 0 AND ProfileCustomShowRegistration = 1 ORDER BY ProfileCustomOrder";
 
 	$results3 = $wpdb->get_results($query3,ARRAY_A);
@@ -101,9 +101,9 @@
 		}
 
 		if($types != "" || $types != NULL){
-			$types = explode(",",trim($types)); 
+			$types = explode(",",trim($types));
 			if(count(array_intersect($ptype,$types))>0){
-					$permit_type=true; 
+					$permit_type=true;
 			}
 		}
 
@@ -152,11 +152,11 @@
 
 			echo "<div id=\"". $styleid ."\" class=\"". $styleclass ." rbtext rbsingle\">";
 			echo "<label for=\"".strtolower(trim($data3['ProfileCustomTitle']))."\">"
-				. __( $data3['ProfileCustomTitle'].$measurements_label, RBAGENCY_interact_TEXTDOMAIN) 
+				. __( $data3['ProfileCustomTitle'].$measurements_label, RBAGENCY_interact_TEXTDOMAIN)
 				."</label>\n";
-			echo '<div><input type="text" name="ProfileCustomID'. $data3['ProfileCustomID'] 
+			echo '<div><input type="text" name="ProfileCustomID'. $data3['ProfileCustomID']
 				.'" value="'. retrieve_datavalue(isset($_REQUEST["ProfileCustomID". $data3['ProfileCustomID']])?$_REQUEST["ProfileCustomID". $data3['ProfileCustomID']]:"",
-					$data3['ProfileCustomID'],$ProfileID,"textbox") 
+					$data3['ProfileCustomID'],$ProfileID,"textbox")
 				.'" /></div>';
 			echo "</div>";
 			}
@@ -165,22 +165,22 @@
 
 			echo "<div id=\"". $styleid ."\" class=\"". $styleclass ." rbtext rbmulti\">";
 			echo "<label for=\"".strtolower(trim($data3['ProfileCustomTitle']))."\">"
-				. __( $data3['ProfileCustomTitle'].$measurements_label, RBAGENCY_interact_TEXTDOMAIN) 
+				. __( $data3['ProfileCustomTitle'].$measurements_label, RBAGENCY_interact_TEXTDOMAIN)
 				."</label>\n";
 			echo "<div>";
 				$ProfileCustomOptions_String = str_replace(",",":",
 												strtok(strtok($data3['ProfileCustomOptions'],"}"),"{"));
 
 				list($ProfileCustomOptions_Min_label,$ProfileCustomOptions_Min_value,
-				$ProfileCustomOptions_Max_label,$ProfileCustomOptions_Max_value) 
+				$ProfileCustomOptions_Max_label,$ProfileCustomOptions_Max_value)
 				= explode(":", $ProfileCustomOptions_String);
 
 				if (!empty($ProfileCustomOptions_Min_value) && !empty($ProfileCustomOptions_Max_value)) {
 
 						echo "<div><label for=\"ProfileCustomLabel_min\">"
 							. __("Min", RBAGENCY_TEXTDOMAIN) . " </label>\n";
-						echo "<div><input type=\"text\" name=\"ProfileCustomID". $data3['ProfileCustomID'] 
-							."\" value=\"". 
+						echo "<div><input type=\"text\" name=\"ProfileCustomID". $data3['ProfileCustomID']
+							."\" value=\"".
 							retrieve_datavalue($ProfileCustomOptions_Min_value,
 												$data3['ProfileCustomID'],$ProfileID,"textbox")
 								."\" /></div></div>\n";
@@ -210,9 +210,9 @@
 
 			echo "<div id=\"". $styleid ."\" class=\"". $styleclass ." rbselect rbsingle\">";
 			echo "<label for=\"".strtolower(trim($data3['ProfileCustomTitle']))."\">"
-				. __( $data3['ProfileCustomTitle'].$measurements_label, RBAGENCY_interact_TEXTDOMAIN) 
+				. __( $data3['ProfileCustomTitle'].$measurements_label, RBAGENCY_interact_TEXTDOMAIN)
 				."</label>\n";
-				    
+
 				@list($option1,$option2) = @explode(":",$data3['ProfileCustomOptions']);
 
 				$data = explode("|",$option1);
@@ -247,7 +247,7 @@
 						foreach($data2 as $val2){
 								if($val2 != end($data2) && $val2 !=  $data2[0]){
 									echo "<option value=\"".$val2."\" ". selected($val2, $_REQUEST["ProfileCustomID"
-										. $data3['ProfileCustomID']]) 
+										. $data3['ProfileCustomID']])
 										." >".$val2."</option>";
 								}
 							}
@@ -259,7 +259,7 @@
 			} elseif ($ProfileCustomType == 4) {
 				echo "<div id=\"". $styleid ."\" class=\"". $styleclass ." rbtextarea rbsingle\">";
 				echo "<label for=\"".strtolower(trim($data3['ProfileCustomTitle']))."\">"
-				. __( $data3['ProfileCustomTitle'].$measurements_label, RBAGENCY_interact_TEXTDOMAIN) 
+				. __( $data3['ProfileCustomTitle'].$measurements_label, RBAGENCY_interact_TEXTDOMAIN)
 				."</label>\n";
 				echo "<div><textarea name=\"ProfileCustomID". $data3['ProfileCustomID'] ."\">"
 					. retrieve_datavalue(isset($_REQUEST["ProfileCustomID". $data3['ProfileCustomID']])?$_REQUEST["ProfileCustomID". $data3['ProfileCustomID']]:"",
@@ -268,9 +268,9 @@
 			} elseif ($ProfileCustomType == 5) {
 				echo "<div id=\"". $styleid ."\" class=\"". $styleclass ." rbcheckbox rbsingle\">";
 				echo "<label for=\"".strtolower(trim($data3['ProfileCustomTitle']))."\">"
-				. __( $data3['ProfileCustomTitle'].$measurements_label, RBAGENCY_interact_TEXTDOMAIN) 
+				. __( $data3['ProfileCustomTitle'].$measurements_label, RBAGENCY_interact_TEXTDOMAIN)
 				."</label>\n";
-				$xplode =array(); 
+				$xplode =array();
 				$myquery = "SELECT ProfileCustomValue FROM " . table_agency_customfield_mux . " WHERE ProfileID=".$ProfileID." and ProfileCustomID=".$data3['ProfileCustomID']." ";
 				$myresults = $wpdb->get_results($myquery,ARRAY_A);
 				foreach($myresults as $mydata) {
@@ -281,7 +281,7 @@
 				echo "<div>";
 				foreach($array_customOptions_values as $val){
 					if(isset($val) && $val!=""){
-					echo "<div><label><input type=\"checkbox\" value=\"". $val."\"   "; 
+					echo "<div><label><input type=\"checkbox\" value=\"". $val."\"   ";
 
 					if(in_array($val,$xplode)){echo "checked=\"checked\""; }
 
@@ -298,7 +298,7 @@
 
 				echo "<fieldset id=\"". $styleid ."\" class=\"". $styleclass ." rbcheckbox rbsingle\">";
 				echo "<label for=\"".strtolower(trim($data3['ProfileCustomTitle']))."\">"
-				. __( $data3['ProfileCustomTitle'].$measurements_label, RBAGENCY_interact_TEXTDOMAIN) 
+				. __( $data3['ProfileCustomTitle'].$measurements_label, RBAGENCY_interact_TEXTDOMAIN)
 				."</label>\n";
 				echo "<div>";
 				$array_customOptions_values = explode("|",$data3['ProfileCustomOptions']);
@@ -319,7 +319,7 @@
 						echo "<span> ".$val."</span></label></div>";
 					}
 
-					
+
 				}
 				echo "</div>";
 				echo "</fieldset>";
@@ -327,7 +327,7 @@
 			} elseif ($ProfileCustomType == 10) { //Date
 				echo "<div id=\"". $styleid ."\" class=\"". $styleclass ." rbselect rbsingle\">";
 				echo "<label for=\"".strtolower(trim($data3['ProfileCustomTitle']))."\">"
-				. __( $data3['ProfileCustomTitle'].$measurements_label, RBAGENCY_interact_TEXTDOMAIN) 
+				. __( $data3['ProfileCustomTitle'].$measurements_label, RBAGENCY_interact_TEXTDOMAIN)
 				."</label>\n";
 							echo "<div>";
 
@@ -343,7 +343,7 @@
 
 				echo "<div id=\"". $styleid ."\" class=\"". $styleclass ." rbselect rbsingle\">";
 				echo "<label for=\"".strtolower(trim($data3['ProfileCustomTitle']))."\">"
-				. __( $data3['ProfileCustomTitle'].$measurements_label, RBAGENCY_interact_TEXTDOMAIN) 
+				. __( $data3['ProfileCustomTitle'].$measurements_label, RBAGENCY_interact_TEXTDOMAIN)
 				."</label>\n";
 				if($data3['ProfileCustomTitle']=="Height" AND $rb_agency_option_unittype==1){
 					echo "<div>";
@@ -370,9 +370,9 @@
 				}
 					else {
 
-			echo '<div><input type="text" name="ProfileCustomID'. $data3['ProfileCustomID'] 
+			echo '<div><input type="text" name="ProfileCustomID'. $data3['ProfileCustomID']
 				.'" value="'. retrieve_datavalue(isset($_REQUEST["ProfileCustomID". $data3['ProfileCustomID']])?$_REQUEST["ProfileCustomID". $data3['ProfileCustomID']]:"",
-													$data3['ProfileCustomID'],$ProfileID, 'textbox') 
+													$data3['ProfileCustomID'],$ProfileID, 'textbox')
 				.'" /></div>';
 				;
 				}
@@ -393,9 +393,9 @@
 		echo "	</div>\n";
 		echo "</form>\n";
 		echo "</div>\n";
-		
+
 		echo '
-		
+
 		<script type="text/javascript">
 				jQuery(function(){
 					jQuery( "input[id=rb_datepicker22]").datepicker({
@@ -404,7 +404,7 @@
 				});
 				</script>
 		';
-		
-		
+
+
 	}
 ?>

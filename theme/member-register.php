@@ -2,7 +2,7 @@
 // *************************************************************************************************** //
 // Prepare Page
 	global $wpdb;
-	
+
 	if(is_user_logged_in()){
 		wp_redirect(get_bloginfo("url")); exit;
 	}
@@ -22,7 +22,7 @@
 	}
 
 	$rb_agency_uri_profiletype = get_query_var("typeofprofile");
-   
+
 	// Profile Naming
 	$rb_agency_option_profilenaming = (int)$rb_agency_options_arr['rb_agency_option_profilenaming'];
 
@@ -36,10 +36,10 @@
 	$rb_agencyinteract_option_useraccountcreation = isset($rb_agency_interact_options_arr['rb_agencyinteract_option_useraccountcreation'])?(int)$rb_agency_interact_options_arr['rb_agencyinteract_option_useraccountcreation']:0;
 	/* Check if users can register. */
 	$registration = get_option( 'users_can_register' );
-	
+
 	if(!function_exists("parse_signed_request")){
 		function parse_signed_request($signed_request, $secret) {
-			list($encoded_sig, $payload) = explode('.', $signed_request, 2); 
+			list($encoded_sig, $payload) = explode('.', $signed_request, 2);
 
 			// decode the data
 			$sig = base64_url_decode($encoded_sig);
@@ -177,7 +177,7 @@
 			  }
 
 			  if($rb_agency_option_profilenaming != 3){
-				$profile_gallery = RBAgency_Common::format_stripchars($profile_contact_display); 
+				$profile_gallery = RBAgency_Common::format_stripchars($profile_contact_display);
 				} else {
 					$profile_gallery = $profile_contact_display;
 				}
@@ -188,7 +188,7 @@
 			update_user_meta($new_user, 'rb_agency_interact_profiletype', $new_user_type);
 			update_user_meta($new_user, 'rb_agency_interact_pgender', $gender);
 
-			$profileactive = null; 
+			$profileactive = null;
 			/* if ($rb_agencyinteract_option_registerapproval == 1) { // automatically approved
 				$profileactive = 1;
 			} else { // manually approved
@@ -232,7 +232,7 @@
 				ProfileUserLinked,
 				ProfileType,
 				ProfileGallery
-				) 
+				)
 					VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s)",
 					$profile_contact_display,
 				$first_name,
@@ -299,7 +299,7 @@
 			}
 		}	 */
 	}
- 
+
 
 // *************************************************************************************************** //
 // Prepare Page
@@ -310,9 +310,9 @@
 	}
 	echo "<div class=\"".$column_class." column rb-agency-interact profile-register\">\n";
 	echo "  <div id=\"rbcontent\">\n";
-   
+
 	// ****************************************************************************************** //
-	// Already logged in 
+	// Already logged in
 
 	if ( is_user_logged_in() && !current_user_can( 'create_users' ) ) {
 
@@ -327,15 +327,15 @@
 	echo "    <p class=\"rbalert success\">\n";
 				if ( current_user_can( 'create_users' ) )
 					printf( __("A user account for %s has been created.", RBAGENCY_interact_TEXTDOMAIN), $user_login );
-				else 
+				else
 					printf( __("Thank you for registering, %s.", RBAGENCY_interact_TEXTDOMAIN), $user_login );
 					echo "<br/>";
 					//if ($rb_agencyinteract_option_registerapproval == 1) { // automatically approve
 					printf( __("You may now login and continue registration. <br/>", RBAGENCY_interact_TEXTDOMAIN) );
-					
+
 					echo "<a href=\"".get_bloginfo("url")."/profile-login/\">". __("Account Login", RBAGENCY_interact_TEXTDOMAIN) ."</a>";
 					printf( __("<br/>Your login credentials are also sent to your email.", RBAGENCY_interact_TEXTDOMAIN) );
-					printf( __("<br/>(It might go into your spam forlder)", RBAGENCY_interact_TEXTDOMAIN) );
+					printf( __("<br/>(It might go into your spam folder)", RBAGENCY_interact_TEXTDOMAIN) );
 					//} else { // manually approve
 					//	if($profileactive == 3){
 					//		printf( __("Your account is pending for approval. We will send your login once account is approved.", RBAGENCY_interact_TEXTDOMAIN) );
@@ -449,7 +449,7 @@
 	echo "  		<label></label>\n";
 	echo "  		<div><input type=\"checkbox\" name=\"profile_agree\" value=\"yes\" /> ". sprintf(__("I agree to the %s terms of service", RBAGENCY_interact_TEXTDOMAIN), "<a href=\"".$rb_agency_option_model_toc ."\" target=\"_blank\">") ."</a></div>\n";
 	echo "      </div><!-- #profile-agree -->\n";
- 
+
 	echo "      <div id=\"profile-submit\" class=\"rbfield rbsubmit rbsingle\">\n";
 	echo "   		<input name=\"adduser\" type=\"submit\" id=\"addusersub\" class=\"submit button\" value='". __("Register", RBAGENCY_interact_TEXTDOMAIN) ."'/>";
 
@@ -469,12 +469,12 @@ if(!$registration){echo "<p class='alert'>".__("The administrator currently disa
 
 echo "  </div><!-- #content -->\n";
 echo "</div><!-- #container -->\n";
-   
-// Get Sidebar 
+
+// Get Sidebar
 	$LayoutType = "";
 	if ($rb_agencyinteract_option_profilemanage_sidebar) {
 		$LayoutType = "profile";
-		get_sidebar(); 
+		get_sidebar();
 	}
 
 // Call Footer
