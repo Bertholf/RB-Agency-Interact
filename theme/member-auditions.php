@@ -93,34 +93,110 @@ echo $rb_header = RBAgency_Common::rb_header();
 			if ($count > 0) {
 
 			$data = $results;// is there record?
+			
 
 				echo "	<div class=\"manage-section welcome\">\n";
-				echo "	<h1>". __("Welcome Back", RBAGENCY_interact_TEXTDOMAIN) ." ". $current_user->first_name ."!</h1>";
-				// Record Exists
 
-				/* Show account information here *****************************************/
+				//loop all auditions with mp3 audio files
+
+				$ProfileID = isset($_REQUEST['ProfileID'])?$_REQUEST['ProfileID'] : $data['ProfileID'];
+					
+					$q = "SELECT cs_job.*, avail.* FROM  ".table_agency_casting_job." AS cs_job INNER JOIN ".table_agency_castingcart_availability."
+					AS avail ON cs_job.Job_ID = avail.CastingJobID WHERE avail.CastingAvailabilityProfileID = ".$ProfileID."
+					";
+					$job_data = $wpdb->get_results($q);
+
+				echo '<table cellpadding="10">
+								<tbody>
+									<tr>
+										<th>Job ID</th>
+										<th>Job Title</th>
+										<th>Date Confirmed</th>
+										<th>MP3 Audition Files</th>
+										<th>Availability</th>
+									</tr>';
+
+									?>
+									<?php
+									
+									//audio files
+									$dir = RBAGENCY_UPLOADPATH ."_casting-jobs/";
+									$files = scandir($dir, 0);
+									
+									$medialink_option = $rb_agency_options_arr['rb_agency_option_profilemedia_links'];
+
+
+									?>
+									<?php
+									if(count($job_data) > 0)
+									{
+										foreach($job_data as $job)
+										{
+											
+										?><tr>
+											<td><?php echo $job->Job_ID ; ?> </td>
+											<td><a href="<?php echo site_url(); ?>/job-detail/<?php echo $job->Job_ID ?>"><?php echo $job->Job_Title ; ?> </a></td>
+											<td><?php echo $job->CastingAvailabilityDateCreated ; ?> </td>
+											<td>
+												<?php 
+												for($i = 0; $i < count($files); $i++){
+												$parsedFile = explode('-',$files[$i]);
+
+													if($parsedFile[0] == $job->Job_ID && $ProfileID == $parsedFile[1]){
+														$mp3_file = str_replace(array($parsedFile[0].'-',$parsedFile[1].'-'),'',$files[$i]);
+														if($medialink_option == 2){
+															//open in new window and play
+															echo '<a href="'.site_url().'/wp-content/uploads/profile-media/_casting-jobs/'.$files[$i].'" target="_blank">'.$mp3_file.'</a>';
+														}elseif($medialink_option == 3){
+															//open in new window and download
+															$force_download_url = RBAGENCY_PLUGIN_URL."ext/forcedownload.php?file=".'_casting-jobs/'.$files[$i];
+															echo '<a href="'.$force_download_url.'" target="_blank">'.$mp3_file.'</a>';
+														}
+														
+													}
+												}
+												?>
+
+											</td>
+											<td>
+												<?php
+
+													$query = "SELECT CastingAvailabilityStatus as status FROM ".table_agency_castingcart_availability." WHERE CastingAvailabilityProfileID = %d AND CastingJobID = %d";
+													$prepared = $wpdb->prepare($query,$ProfileID,$job->Job_ID);
+													$availability = current($wpdb->get_results($prepared));
+													if($availability->status == 'notavailable'){
+														echo 'Not Available';
+													}else{
+														echo ucfirst($availability->status);
+													}
+													
+												?>
+
+											</td>
+										</tr>
+									<?php
+											
+										}
+									}
+									else
+									{
+										?>
+										<tr>
+											<td colspan="3"> No Record Found !</td>
+										</tr>
+										<?php
+									}
+									
+									?>
+									
+									
+								</tbody>
+							</table>
+
+							<?php
 
 				echo " <div class=\"section-content section-account\">\n"; // .account
-				echo " 	<ul>\n";
-				echo "      <li><a href=\"account/\">". __("Edit Your Account Details", RBAGENCY_interact_TEXTDOMAIN) ."</a></li>\n";
-				echo "      <li><a href=\"manage/\">". __("Manage Your Profile Information", RBAGENCY_interact_TEXTDOMAIN) ."</a></li>\n";
-				echo "      <li><a href=\"media/\">". __("Manage Photos and Media", RBAGENCY_interact_TEXTDOMAIN) ."</a></li>\n";
-				if($rb_subscription){
-				echo "      <li><a href=\"subscription/\">Manage your Subscription</a></li>\n";
-				}
-				if(function_exists('rb_agency_casting_menu')){
-					if(rb_get_user_profilstatus() == 1){ //means only visible if account is active
-							echo "      <li><a href=\"".get_bloginfo('wpurl')."/browse-jobs/\">Browse and Apply for a Job</a></li>\n";
-					}
-				}
-				echo "      <li><a href=\"".get_bloginfo('wpurl')."/logout/\">Log out</a></li>\n";
-
-				echo "	</ul>\n";
-				/*if(function_exists('rb_agency_casting_menu')){
-					echo "</hr>\n";
-					echo "<h3>Jobs and Auditions</h3>";
-
-				}*/
+				
 				echo " </div>\n";
 					echo " </div>\n"; // .welcome
 					echo " </div>\n"; // .profile-manage-inner
@@ -128,32 +204,7 @@ echo $rb_header = RBAgency_Common::rb_header();
 			// No Record Exists, register them
 			} else {
 
-				echo "<h1>". __("Welcome", RBAGENCY_interact_TEXTDOMAIN) ." ". $current_user->first_name ."!</h1>";
-
-				if(get_user_meta($current_user->ID, 'rb_agency_interact_clientdata', true)){
-					echo "<p>". __("We have you registered as", RBAGENCY_interact_TEXTDOMAIN) ." <strong>". $profiletypetext ."</strong></p>";
-					echo "<h2><a href=\"". $rb_agency_interact_WPURL ."/profile-search/\">". __("Begin Your Search", RBAGENCY_interact_TEXTDOMAIN) ."</a></h2>";
-
-					echo " <div id=\"subscription-customtext\">\n";
-					$Page = get_page($rb_agencyinteract_option_subscribepagedetails);
-					echo apply_filters('the_content', $Page->post_content);
-					echo " </div>";
-
-				} else {
-					if ($rb_agencyinteract_option_registerallow == 1) {
-
-						// Users CAN register themselves
-						echo "". __("We have you registered as", RBAGENCY_interact_TEXTDOMAIN) ." <strong>". $profiletypetext ."</strong>";
-						echo "<h2>". __("Setup Your Profile", RBAGENCY_interact_TEXTDOMAIN) ."</h2>";
-
-						// Register Profile
-						include("include-profileregister.php");
-					} else {
-
-						// Cant register
-						echo "<strong>". __("Self registration is not permitted.", RBAGENCY_interact_TEXTDOMAIN) ."</strong>";
-					}
-				}
+				
 			}
 		}// if pending for approval
 			echo "</div><!-- #profile-manage -->\n";
