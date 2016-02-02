@@ -87,6 +87,8 @@
 					return dirname(__FILE__) . '/theme/view-dashboard.php';
 				} elseif (get_query_var( 'type' ) == "pending") {
 					return dirname(__FILE__) . '/theme/member-pending.php';
+				} elseif (get_query_var('type') == 'auditions'){
+					return dirname(__FILE__) . '/theme/member-auditions.php';
 				}
 			}
 			return $template;

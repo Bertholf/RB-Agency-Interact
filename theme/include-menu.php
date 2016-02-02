@@ -63,6 +63,13 @@ get_currentuserinfo();
 		echo " 			</a>\n";
 		echo " 		</div>\n";
 		}
+
+		if ( ($_SERVER["REQUEST_URI"]) == "/profile-member/auditions/") {$tabclass = "active"; } else {$tabclass = "inactive"; }
+		echo " 		<div class=\"tab-inner tab-". $tabclass ."\">\n";
+		echo " 			<a  href=\"". get_bloginfo("wpurl") ."/profile-member/auditions/\">\n";
+		echo " 				<div class=\"subMenuTabBG\"><div class=\"subMenuTabBorders\"><div class=\"subMenuTabText\">".__("Auditions", RBAGENCY_interact_TEXTDOMAIN) ."</div></div></div>\n";
+		echo " 			</a>\n";
+		echo " 		</div>\n";
                 
 		$rb_agency_interact_options_arr = get_option('rb_agencyinteract_options');
 			$rb_agencyinteract_option_subscribeupsell = isset($rb_agency_interact_options_arr['rb_agencyinteract_option_subscribeupsell']) ?(int)$rb_agency_interact_options_arr['rb_agencyinteract_option_subscribeupsell']:0;
