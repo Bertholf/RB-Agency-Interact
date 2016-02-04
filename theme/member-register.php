@@ -332,12 +332,20 @@
 					$rbagency_use_s2member_option = get_option('rbagency_use_s2member');
 
 					if($rbagency_use_s2member_option == true){
-						printf( __("Thank you for registering %s!.", RBAGENCY_interact_TEXTDOMAIN), $user_login );
-						echo "<br/><br/>";
-						//if ($rb_agencyinteract_option_registerapproval == 1) { // automatically approve
-						
-						printf( __("Please check your email for the next step to complete registration.<br>", RBAGENCY_interact_TEXTDOMAIN), $user_login );
-						echo "<i>(It might go to your spam folder )</i>";
+						$rbagency_initial_message_after_registration = get_option('rbagency_initial_message_after_registration');
+						if(!empty($rbagency_initial_message_after_registration)){
+							//$message = "";
+							$message = str_replace('[username]',$user_login,$rbagency_initial_message_after_registration);
+							echo nl2br($message);
+
+						}else{
+							printf( __("Thank you for registering %s!.", RBAGENCY_interact_TEXTDOMAIN), $user_login );
+							echo "<br/><br/>";
+							//if ($rb_agencyinteract_option_registerapproval == 1) { // automatically approve
+							
+							printf( __("Please check your email for the next step to complete registration.<br>", RBAGENCY_interact_TEXTDOMAIN), $user_login );
+							echo "<i>(It might go to your spam folder )</i>";
+						}
 					}else{
 						printf( __("Thank you for creating an account for your pet.", RBAGENCY_interact_TEXTDOMAIN), $user_login );
 						echo "<br/><br/>";

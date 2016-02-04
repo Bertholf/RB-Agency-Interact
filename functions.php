@@ -144,36 +144,57 @@
 		function rb_new_user_notification( $user_id, $plaintext_pass = '' ) { 
 
 			global $wpdb;
+			
 			$user = new WP_User($user_id);
 
 			$user_login = stripslashes($user->user_login);
 			$user_email = stripslashes($user->user_email);
-			
-			$message  = sprintf(__('New user registration on your blog %s:'), get_option('blogname')) . "\r\n\r\n";
-			$message .= sprintf(__('Username: %s'), $user_login) . "\r\n\r\n";
-			$message .= sprintf(__('E-mail: %s'), $user_email) . "\r\n";
 
+			$rbagency_initial_email_after_registration = get_option('rbagency_initial_email_after_registration');
 			$rb_agency_options_arr = get_option('rb_agency_options');
-			$_sendEmailtoAdmin = isset($rb_agency_options_arr['rb_agency_option_notify_admin_new_user'])?$rb_agency_options_arr['rb_agency_option_notify_admin_new_user']:0;
 			
-			if($_sendEmailtoAdmin == 1){
-				@wp_mail(get_option('admin_email'), sprintf(__('[%s] New User Registration'), get_option('blogname')), $message);
+			if(!empty($rbagency_initial_email_after_registration)){
+				$message = str_replace('[username]',$user_login,$rbagency_initial_email_after_registration);
+				$message = str_replace('[login_url]',get_option('home') ."/profile-login",$message);
+				$message = str_replace('[username]',$user_login,$message);
+				$message = str_replace('[password]',$plaintext_pass,$message);
+				$message = str_replace('[agency_email]',get_option('admin_email'),$message);
+				$message = str_replace('[agency_name]',get_option('blogname'),$message);
+				$message = str_replace('[domain_url]',get_option('home'),$message);
+				$message = str_replace('[path_to_logo]',$rb_agency_options_arr['rb_agency_option_agencylogo'],$message);
+
+				$headers = 'From: '. get_option('blogname') .' <'. get_option('admin_email') .'>' . "\r\n";
+				wp_mail($user_email, sprintf(__('%s Registration Successful! Login Details'), get_option('blogname')), nl2br($message), $headers);
+			}else{
+				$message  = sprintf(__('New user registration on your blog %s:'), get_option('blogname')) . "\r\n\r\n";
+				$message .= sprintf(__('Username: %s'), $user_login) . "\r\n\r\n";
+				$message .= sprintf(__('E-mail: %s'), $user_email) . "\r\n";
+
+				$rb_agency_options_arr = get_option('rb_agency_options');
+				$_sendEmailtoAdmin = isset($rb_agency_options_arr['rb_agency_option_notify_admin_new_user'])?$rb_agency_options_arr['rb_agency_option_notify_admin_new_user']:0;
+				
+				if($_sendEmailtoAdmin == 1){
+					@wp_mail(get_option('admin_email'), sprintf(__('[%s] New User Registration'), get_option('blogname')), $message);
+				}
+
+				if ( empty($plaintext_pass) )  
+					return;
+				$message  = __('Hi there,', RBAGENCY_interact_TEXTDOMAIN) . "\r\n\r\n";
+				$message .= sprintf(__("Thanks for joining %s! Here's how to log in:", RBAGENCY_interact_TEXTDOMAIN), get_option('blogname')) . "\r\n\r\n"; 
+				$message .= get_option('home') ."/profile-login/\r\n"; 
+				$message .= sprintf(__('Username: %s', RBAGENCY_interact_TEXTDOMAIN), $user_login) . "\r\n"; 
+				$message .= sprintf(__('Password: %s', RBAGENCY_interact_TEXTDOMAIN), $plaintext_pass) . "\r\n\r\n"; 
+				$message .= sprintf(__('If you have any problems, please contact us at %s.', RBAGENCY_interact_TEXTDOMAIN), get_option('admin_email')) . "\r\n\r\n"; 
+				$message .= __('Regards,', RBAGENCY_interact_TEXTDOMAIN)."\r\n";
+				$message .= get_option('blogname') . __(' Team', RBAGENCY_interact_TEXTDOMAIN) ."\r\n"; 
+				$message .= get_option('home') ."\r\n"; 
+
+				$headers = 'From: '. get_option('blogname') .' <'. get_option('admin_email') .'>' . "\r\n";
+				wp_mail($user_email, sprintf(__('%s Registration Successful! Login Details', RBAGENCY_interact_TEXTDOMAIN), get_option('blogname')), $message, $headers);
 			}
 
-			if ( empty($plaintext_pass) )  
-				return;
-			$message  = __('Hi there,', RBAGENCY_interact_TEXTDOMAIN) . "\r\n\r\n";
-			$message .= sprintf(__("Thanks for joining %s! Here's how to log in:", RBAGENCY_interact_TEXTDOMAIN), get_option('blogname')) . "\r\n\r\n"; 
-			$message .= get_option('home') ."/profile-login/\r\n"; 
-			$message .= sprintf(__('Username: %s', RBAGENCY_interact_TEXTDOMAIN), $user_login) . "\r\n"; 
-			$message .= sprintf(__('Password: %s', RBAGENCY_interact_TEXTDOMAIN), $plaintext_pass) . "\r\n\r\n"; 
-			$message .= sprintf(__('If you have any problems, please contact us at %s.', RBAGENCY_interact_TEXTDOMAIN), get_option('admin_email')) . "\r\n\r\n"; 
-			$message .= __('Regards,', RBAGENCY_interact_TEXTDOMAIN)."\r\n";
-			$message .= get_option('blogname') . __(' Team', RBAGENCY_interact_TEXTDOMAIN) ."\r\n"; 
-			$message .= get_option('home') ."\r\n"; 
-
-			$headers = 'From: '. get_option('blogname') .' <'. get_option('admin_email') .'>' . "\r\n";
-			wp_mail($user_email, sprintf(__('%s Registration Successful! Login Details', RBAGENCY_interact_TEXTDOMAIN), get_option('blogname')), $message, $headers);
+			
+			
 
 		}
 
