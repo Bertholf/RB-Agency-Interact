@@ -242,7 +242,9 @@
 
 	if ( !function_exists('wp_new_user_notification_approve') ) { 
 		function wp_new_user_notification_approve( $user_id) { 
-				$user = get_userdata($user_id);
+				global $wpdb;
+			
+			$user = new WP_User($user_id);
 				$rb_agency_interact_options_arr = get_option('rb_agencyinteract_options');
 				$rb_agencyinteract_option_registerapproval = isset($rb_agency_interact_options_arr['rb_agencyinteract_option_registerapproval'])?$rb_agency_interact_options_arr['rb_agencyinteract_option_registerapproval']:0;
 
