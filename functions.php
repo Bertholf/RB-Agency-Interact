@@ -45,6 +45,10 @@
 			$newrules['profile-register/(.*)$'] = 'index.php?type=profileregister&typeofprofile=$matches[1]&rbgroup=models';
 			$newrules['profile-register'] = 'index.php?type=profileregister&rbgroup=models';
 			$newrules['profile-login'] = 'index.php?type=profilelogin&rbgroup=models';
+
+			$newrules['membership'] = 'index.php?type=membership&v=$matches[1]';
+			$newrules['registration-success'] = 'index.php?type=membershipsuccess';
+			$newrules['user-membership-page'] = 'index.php?type=usermembershippage';
 			return $newrules + $rules;
 		}
 
@@ -90,6 +94,14 @@
 				} elseif (get_query_var('type') == 'auditions'){
 					return dirname(__FILE__) . '/theme/member-auditions.php';
 				}
+			}
+
+			if (get_query_var( 'type' ) == "membership"){
+				return dirname(__FILE__). '/theme/s2member/membership_page.php';
+			}elseif (get_query_var( 'type' ) == "membershipsuccess"){
+				return dirname(__FILE__). '/theme/s2member/membership_success.php';
+			}elseif (get_query_var('type') == "usermembershippage"){
+				return dirname(__FILE__).'/theme/s2member/user-membership-page.php';
 			}
 			return $template;
 		}

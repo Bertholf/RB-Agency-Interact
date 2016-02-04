@@ -328,6 +328,26 @@
 				if ( current_user_can( 'create_users' ) )
 					printf( __("A user account for %s has been created.", RBAGENCY_interact_TEXTDOMAIN), $user_login );
 				else
+
+					$rbagency_use_s2member_option = get_option('rbagency_use_s2member');
+
+					if($rbagency_use_s2member_option == true){
+						printf( __("Thank you for registering %s!.", RBAGENCY_interact_TEXTDOMAIN), $user_login );
+						echo "<br/><br/>";
+						//if ($rb_agencyinteract_option_registerapproval == 1) { // automatically approve
+						
+						printf( __("Please check your email for the next step to complete registration.<br>", RBAGENCY_interact_TEXTDOMAIN), $user_login );
+						echo "<i>(It might go to your spam folder )</i>";
+					}else{
+						printf( __("Thank you for creating an account for your pet.", RBAGENCY_interact_TEXTDOMAIN), $user_login );
+						echo "<br/><br/>";
+						//if ($rb_agencyinteract_option_registerapproval == 1) { // automatically approve
+						
+						printf( __("Please click below to login and complete your pets profile.<br><br>", RBAGENCY_interact_TEXTDOMAIN), $user_login );
+						printf( __("<a href=\"../profile-login/\">Account Login</a>", RBAGENCY_interact_TEXTDOMAIN), $user_login );
+					}
+
+					/**
 					printf( __("Thank you for registering, %s.", RBAGENCY_interact_TEXTDOMAIN), $user_login );
 					echo "<br/>";
 					//if ($rb_agencyinteract_option_registerapproval == 1) { // automatically approve
@@ -344,6 +364,8 @@
 					//	}
 
 					//}
+
+					**/
 	echo "    </p><!-- .rbalert -->\n";
 
 	} else {
