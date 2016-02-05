@@ -8,14 +8,17 @@ session_start();
 <?php
 
 if(!isset($_GET['status'])){
+	$rbagency_use_s2member_option = get_option('rbagency_use_s2member');
 	$rbagency_message_after_payment = get_option('rbagency_message_after_payment');
 
-	if(!empty($rbagency_message_after_payment)){
-		echo nl2br($rbagency_message_after_payment);
-	}else{
-			echo "<h2>".__("Registration Complete!",RBAGENCY_interact_TEXTDOMAIN)."</h2>";
-			echo "<h3>".__("Your account is currently pending for approval.",RBAGENCY_interact_TEXTDOMAIN)."</h3>";
-			echo "<h3>".__("We will email you once your account is approved.",RBAGENCY_interact_TEXTDOMAIN)."</h3>";
+	if($rbagency_use_s2member_option == true){
+		if(!empty($rbagency_message_after_payment)){
+			echo nl2br($rbagency_message_after_payment);
+		}else{
+				echo "<h2>".__("Registration Complete!",RBAGENCY_interact_TEXTDOMAIN)."</h2>";
+				echo "".__("Your account is currently pending for approval.",RBAGENCY_interact_TEXTDOMAIN)."";
+				echo "".__("We will email you once your account is approved.",RBAGENCY_interact_TEXTDOMAIN)."";
+		}
 	}
 	
 	          			
