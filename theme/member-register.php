@@ -347,12 +347,40 @@
 							echo "<i>(It might go to your spam folder )</i>";
 						}
 					}else{
-						printf( __("Thank you for creating an account for your pet.", RBAGENCY_interact_TEXTDOMAIN), $user_login );
-						echo "<br/><br/>";
-						//if ($rb_agencyinteract_option_registerapproval == 1) { // automatically approve
+
+						if($rb_agencyinteract_option_registerconfirm == 1){
+							$notification_password_self_generated = $rb_agency_interact_options_arr['notification_password_self_generated'];
+							if(!empty($notification_password_self_generated)){
+								$notification_password_self_generated_message = str_replace('[username]',$user_login,$notification_password_self_generated);
+								echo nl2br($notification_password_self_generated_message);
+							}else{
+								printf( __("Thank you for registering %s!, ", RBAGENCY_interact_TEXTDOMAIN), $user_login );
+								echo "<br/><br/>";
+								//if ($rb_agencyinteract_option_registerapproval == 1) { // automatically approve
+								
+								printf( __("Please click login button below to continue your registration.<br><br>", RBAGENCY_interact_TEXTDOMAIN), $user_login );
+								printf( __("<a href=\"../profile-login/\">Account Login</a>", RBAGENCY_interact_TEXTDOMAIN), $user_login );
+							}
+							
+						}else{
+
+							
+							$notification_password_auto_generated = $rb_agency_interact_options_arr['notification_password_auto_generated'];
+
+							if(!empty($notification_password_auto_generated)) {
+								$notification_password_auto_generated_message = str_replace('[username]',$user_login,$notification_password_auto_generated);
+								echo nl2br($notification_password_auto_generated_message);
+							}else{
+								printf( __("Thank you for registering %s!, ", RBAGENCY_interact_TEXTDOMAIN), $user_login );
+								echo "<br/><br/>";
+								//if ($rb_agencyinteract_option_registerapproval == 1) { // automatically approve
+								
+								printf( __("Please check your email for your login credentials to continue your registration.<br><br>", RBAGENCY_interact_TEXTDOMAIN), $user_login );
+								printf( __("<a href=\"../profile-login/\">Account Login</a>", RBAGENCY_interact_TEXTDOMAIN), $user_login );
+							}
+							
+						}
 						
-						printf( __("Please click below to login and complete your pets profile.<br><br>", RBAGENCY_interact_TEXTDOMAIN), $user_login );
-						printf( __("<a href=\"../profile-login/\">Account Login</a>", RBAGENCY_interact_TEXTDOMAIN), $user_login );
 					}
 
 					/**
