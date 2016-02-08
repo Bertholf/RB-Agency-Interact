@@ -274,11 +274,12 @@ if (isset($_POST['action'])) {
                 exit;
             }
             
-			if(empty($rb_agency_new_registeredUser) && rb_get_user_profilstatus() == 3){
+			if(empty($rb_agency_new_registeredUser) || (rb_get_user_profilstatus() == 3 || rb_get_user_profilstatus() == 1)){
 
-				//wp_new_user_notification_pending($current_user->ID , false);
+				wp_new_user_notification_pending($current_user->ID , false);
 
 				wp_redirect( $rb_agency_interact_WPURL ."/profile-member/pending/" );
+				exit;
 			}
 
 		}
