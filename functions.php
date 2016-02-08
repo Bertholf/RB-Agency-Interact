@@ -157,6 +157,32 @@
 			
 			if($rbagency_use_s2member == true){
 				if(!empty($rbagency_initial_email_after_registration)){
+
+
+					$message  = sprintf(__('New user registration on your blog %s:'), get_option('blogname')) . "\r\n\r\n";
+					$message .= sprintf(__('Username: %s'), $user_login) . "\r\n\r\n";
+					$message .= sprintf(__('E-mail: %s'), $user_email) . "\r\n";
+
+					$rb_agency_options_arr = get_option('rb_agency_options');
+					$_sendEmailtoAdmin = isset($rb_agency_options_arr['rb_agency_option_notify_admin_new_user'])?$rb_agency_options_arr['rb_agency_option_notify_admin_new_user']:0;
+					
+					if($_sendEmailtoAdmin == 1){
+						@wp_mail(get_option('admin_email'), sprintf(__('[%s] New User Registration'), get_option('blogname')), $message);
+					}
+
+					
+					$message = str_replace('[username]',$user_login,$rbagency_initial_email_after_registration);
+					$message = str_replace('[login_url]',get_option('home') ."/profile-login",$message);
+					$message = str_replace('[username]',$user_login,$message);
+					$message = str_replace('[password]',$plaintext_pass,$message);
+					$message = str_replace('[agency_email]',get_option('admin_email'),$message);
+					$message = str_replace('[agency_name]',get_option('blogname'),$message);
+					$message = str_replace('[domain_url]',get_option('home'),$message);
+					$message = str_replace('[path_to_logo]',$rb_agency_options_arr['rb_agency_option_agencylogo'],$message);
+
+					$headers = 'From: '. get_option('blogname') .' <'. get_option('admin_email') .'>' . "\r\n";
+					wp_mail($user_email, sprintf(__('%s Registration Successful! Login Details'), get_option('blogname')), nl2br($message), $headers);
+				}else{
 					$message  = sprintf(__('New user registration on your blog %s:'), get_option('blogname')) . "\r\n\r\n";
 					$message .= sprintf(__('Username: %s'), $user_login) . "\r\n\r\n";
 					$message .= sprintf(__('E-mail: %s'), $user_email) . "\r\n";
@@ -178,18 +204,6 @@
 
 					$headers = 'From: '. get_option('blogname') .' <'. get_option('admin_email') .'>' . "\r\n";
 					wp_mail($user_email, sprintf(__('%s Registration Successful! Login Details'), get_option('blogname')), $message, $headers);
-				}else{
-					$message = str_replace('[username]',$user_login,$rbagency_initial_email_after_registration);
-					$message = str_replace('[login_url]',get_option('home') ."/profile-login",$message);
-					$message = str_replace('[username]',$user_login,$message);
-					$message = str_replace('[password]',$plaintext_pass,$message);
-					$message = str_replace('[agency_email]',get_option('admin_email'),$message);
-					$message = str_replace('[agency_name]',get_option('blogname'),$message);
-					$message = str_replace('[domain_url]',get_option('home'),$message);
-					$message = str_replace('[path_to_logo]',$rb_agency_options_arr['rb_agency_option_agencylogo'],$message);
-
-					$headers = 'From: '. get_option('blogname') .' <'. get_option('admin_email') .'>' . "\r\n";
-					wp_mail($user_email, sprintf(__('%s Registration Successful! Login Details'), get_option('blogname')), nl2br($message), $headers);
 				}
 			}else{
 				$message  = sprintf(__('New user registration on your blog %s:'), get_option('blogname')) . "\r\n\r\n";
