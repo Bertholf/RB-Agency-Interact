@@ -138,6 +138,18 @@
 
 // *************************************************************************************************** //
 // Handle Emails
+		//FIXED if wp_mail function fail to send email
+	remove_filter('wp_mail_from','custom_wp_mail_from');
+	remove_filter('wp_mail_from_name','custom_wp_mail_from_name');
+	add_filter('wp_mail_from','custom_wp_mail_from');
+	function custom_wp_mail_from($email) {
+	  return get_option('admin_email');
+	}
+	 
+	add_filter('wp_mail_from_name','custom_wp_mail_from_name');
+	function custom_wp_mail_from_name($name) {
+	  return get_option('blogname');
+	}
 
 	// Redefine user notification function  
 	if ( !function_exists('rb_new_user_notification') ) { 
