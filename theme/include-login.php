@@ -42,7 +42,7 @@ echo "            <div class=\"field-row\">\n";
 echo "              <label for=\"user-name\">". __("Username", RBAGENCY_interact_TEXTDOMAIN). "</label><input type=\"text\" name=\"user-name\" value=\"". (isset($_POST['user-name']) ? esc_html($_POST['user-name']):"") ."\" id=\"user-name\" />\n";
 echo "            </div>\n";
 echo "            <div class=\"field-row\">\n";
-echo "              <label for=\"password\">". __("Password", RBAGENCY_interact_TEXTDOMAIN). "</label><input type=\"password\" name=\"password\" value=\"\" id=\"password\" /> <a href=\"". get_bloginfo('wpurl') ."/wp-login.php?action=lostpassword&redirect_to=/profile-login/?ref=reset_password\">". __("forgot password", RBAGENCY_interact_TEXTDOMAIN). "?</a>\n";
+echo "              <label for=\"password\">". __("Password", RBAGENCY_interact_TEXTDOMAIN). "</label><input type=\"password\" name=\"password\" value=\"\" id=\"password\" /> <a href=\"". get_bloginfo('wpurl') ."/wp-login.php?action=lostpassword\">". __("forgot password", RBAGENCY_interact_TEXTDOMAIN). "?</a>\n";
 echo "            </div>\n";
 echo "            <div class=\"field-row\">\n";
 echo "              <label><input type=\"checkbox\" name=\"remember-me\" value=\"forever\" /> ". __("Keep me signed in", RBAGENCY_interact_TEXTDOMAIN). "</label>\n";
