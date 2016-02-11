@@ -35,6 +35,10 @@ echo "     <div id=\"rbsignin-register\" class=\"rbinteract\">\n";
 				echo "<p  id=\"message\" class=\"updated\">".__("Check your e-mail for the reset link to create a new password.", RBAGENCY_interact_TEXTDOMAIN)."</p>\n";
 			}
 
+			if(isset($_GET['action']) && $_GET['action']== "resetpass"){
+				echo "<p  id=\"message\" class=\"updated\">".__("Your password has been reset.", RBAGENCY_interact_TEXTDOMAIN)."</p>\n";
+			}
+
 echo "        <div id=\"rbsign-in\" class=\"inline-block\">\n";
 echo "          <h1>". __("Members Sign in", RBAGENCY_interact_TEXTDOMAIN). "</h1>\n";
 echo "          <form name=\"loginform\" id=\"login\" action=\"". network_site_url("/"). "profile-login/\" method=\"post\">\n";

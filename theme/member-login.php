@@ -1,4 +1,5 @@
 <?php
+session_start();
 // *************************************************************************************************** //
 // Respond to Login Request
 $error = "";
@@ -28,6 +29,24 @@ if ( $_SERVER['REQUEST_METHOD'] == "POST" && !empty( $_POST['action'] ) && $_POS
 
 
 	}
+}
+
+//fixed for this site only (password reset form)
+if($_GET['action'] == 'rp'){
+	$_SESSION['login_username'] = $_GET['login'];
+	wp_redirect(site_url()."/wp-login.php?action=".$_GET['action']."&key=".$_GET['key']."&login=".$_GET['login']);
+	exit();
+}
+if($_GET['action'] == 'resetpass'){
+	global $wpdb;
+	$uid = '';
+	$user_table = $wpdb->prefix.'users';
+	$users = $wpdb->get_results("SELECT ID FROM $user_table WHERE user_login =  '".$_SESSION['login_username']."'");
+	foreach($users as $user){
+		$uid = $user->ID;
+	}
+	//echo $uid;
+	wp_set_password( $_POST['pass1-text'], $uid ) ;
 }
 
 function get_user_login_info(){
