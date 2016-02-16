@@ -278,7 +278,13 @@ if (isset($_POST['action'])) {
 
 				wp_new_user_notification_pending($current_user->ID , false);
 
-				wp_redirect( $rb_agency_interact_WPURL ."/profile-member/pending/" );
+				//wp_redirect( $rb_agency_interact_WPURL ."/profile-member/pending/" );
+				$useS2member = get_option('rbagency_use_s2member');
+				if($useS2member == true){
+					wp_redirect($rb_agency_interact_WPURL."/user-membership-page/");
+				}else{
+					wp_redirect( $rb_agency_interact_WPURL ."/profile-member/pending/" );
+				}
 				exit;
 			}
 

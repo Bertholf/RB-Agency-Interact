@@ -55,7 +55,7 @@ echo $rb_header = RBAgency_Common::rb_header();
 					echo "<h3>To complete registration, please click button below to pay membership via paypal.</h3><br><br>";
 
 				}
-				
+				/**
 				$paypal_code = get_option('rbagency_paypal_button_code');
 				$change = array(
 					site_url()."/?s2member_paypal_return=1"
@@ -75,6 +75,7 @@ echo $rb_header = RBAgency_Common::rb_header();
 				$pcode_final = str_replace($change,$return_url,$pcode);
 
 				echo $pcode_final;
+				**/
 
 			}else{
 				echo 'Your account is pending for approval. We will send you an email once your account is approved.<br/>';
