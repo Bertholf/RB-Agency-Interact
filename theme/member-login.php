@@ -163,10 +163,22 @@ function get_user_login_info(){
 
 							} else {
 								if($rb_agencyinteract_option_redirect_afterlogin == 1){
+									if(isset($_GET["h"])){
+										wp_redirect(get_bloginfo("url").$_GET["h"]);
+										exit();
+									}else{
 										wp_redirect(get_bloginfo("url"). "/profile-member/");
+									}
+										
 
 								} else {
+									if(isset($_GET["h"])){
+										wp_redirect(get_bloginfo("url").$_GET["h"]);
+										exit();
+									}else{
 										wp_redirect($rb_agencyinteract_option_redirect_afterlogin_url);
+									}
+										
 
 								}
 							}
@@ -186,10 +198,22 @@ function get_user_login_info(){
 
 				} else { // user is a model/talent but wp user_id is not linked to any rb profile.
 					if($rb_agencyinteract_option_redirect_afterlogin == 1){
-										wp_redirect(get_bloginfo("url"). "/profile-member/");
+						if(isset($_GET["h"])){
+							wp_redirect(get_bloginfo("url").$_GET["h"]);
+							exit();
+						}else{
+							wp_redirect(get_bloginfo("url"). "/profile-member/");
+						}
+										
 
 					} else {
-										wp_redirect($rb_agencyinteract_option_redirect_afterlogin_url);
+						if(isset($_GET["h"])){
+							wp_redirect(get_bloginfo("url").$_GET["h"]);
+							exit();
+						}else{
+							wp_redirect($rb_agencyinteract_option_redirect_afterlogin_url);
+						}
+										
 
 					}
 				}
@@ -208,20 +232,26 @@ add_filter('login_redirect', 'rb_agency_interact_login_redirect', 10, 3);
 
 		}
 
+		//redirect to job
+		if(isset($_GET["h"])){
+			wp_redirect(get_bloginfo("url").$_GET["h"]);
+			exit();
+		}
+
 		$wpdb->get_row($wpdb->prepare("SELECT * FROM ".table_agency_casting." WHERE CastingUserLinked = %d  ",$user_ID));
 			$is_casting  = $wpdb->num_rows;
 
-			if( $is_casting > 0){
-									wp_redirect(get_bloginfo("url"). "/casting-dashboard/");
+		if( $is_casting > 0){
+			wp_redirect(get_bloginfo("url"). "/casting-dashboard/");
 
 		} else { // user is a model/talent but wp user_id is not linked to any rb profile.
-					if($rb_agencyinteract_option_redirect_afterlogin == 1){
-										wp_redirect(get_bloginfo("url"). "/profile-member/");
+			if($rb_agencyinteract_option_redirect_afterlogin == 1){
+				wp_redirect(get_bloginfo("url"). "/profile-member/");
 
-					} else {
-										wp_redirect($rb_agencyinteract_option_redirect_afterlogin_url);
+			} else {
+				wp_redirect($rb_agencyinteract_option_redirect_afterlogin_url);
 
-					}
+			}
 		}
 
 		// Call Header
@@ -230,7 +260,8 @@ add_filter('login_redirect', 'rb_agency_interact_login_redirect', 10, 3);
 
 		global $user_ID; 
 		$login = get_userdata( $user_ID );
-				get_user_login_info();
+		
+		get_user_login_info();
 
 
 			echo "    <p class=\"alert\">\n";

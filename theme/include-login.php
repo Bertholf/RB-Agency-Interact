@@ -41,7 +41,12 @@ echo "     <div id=\"rbsignin-register\" class=\"rbinteract\">\n";
 
 echo "        <div id=\"rbsign-in\" class=\"inline-block\">\n";
 echo "          <h1>". __("Members Sign in", RBAGENCY_interact_TEXTDOMAIN). "</h1>\n";
-echo "          <form name=\"loginform\" id=\"login\" action=\"". network_site_url("/"). "profile-login/\" method=\"post\">\n";
+if(isset($_GET["h"])){
+echo "          <form name=\"loginform\" id=\"login\" action=\"". network_site_url("/"). "profile-login/?h=".$_GET["h"]."\" method=\"post\">\n";
+}else{
+	echo "          <form name=\"loginform\" id=\"login\" action=\"". network_site_url("/"). "profile-login/\" method=\"post\">\n";
+}
+
 echo "            <div class=\"field-row\">\n";
 echo "              <label for=\"user-name\">". __("Username", RBAGENCY_interact_TEXTDOMAIN). "</label><input type=\"text\" name=\"user-name\" value=\"". (isset($_POST['user-name']) ? esc_html($_POST['user-name']):"") ."\" id=\"user-name\" />\n";
 echo "            </div>\n";
