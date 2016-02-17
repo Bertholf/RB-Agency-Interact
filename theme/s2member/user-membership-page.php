@@ -18,8 +18,10 @@ echo "<div id=\"main-content\" class=\"main-content col-sm-8\">";
 echo "<div id=\"primary\" class=\"content-area\">";
 echo "<div id=\"content\" class=\"site-content\" role=\"main\">";
 
-
-
+$rbagency_message_below_paypal_btns = get_option('rbagency_message_below_paypal_btns');
+if(!empty($rbagency_message_below_paypal_btns)){
+	echo nl2br($rbagency_message_below_paypal_btns);
+}
 
 echo "<h2 style=\" margin-top: 0px; margin-bottom: 10px; \">Choose Membership Plan</h2>";
 
