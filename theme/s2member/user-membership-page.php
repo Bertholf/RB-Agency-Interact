@@ -32,6 +32,8 @@ echo "<h2 style=\" margin-top: 0px; margin-bottom: 10px; \">Choose Membership Pl
 echo "<ul style=\" -webkit-padding-start: 0px; \">";
 for($idx=1;$idx<4;$idx++){
 	echo "<li style='float:left;margin-right:40px;list-style-type:none;'>";
+	
+		$discount = get_option("subscription_discount_coupon_$idx");
 		$paypal_code = get_option("subscription_paypal_btn_$idx");
 		$change = array(
 			site_url()."/?s2member_paypal_return=1"
@@ -58,6 +60,17 @@ for($idx=1;$idx<4;$idx++){
 		echo "<tr>";
 		echo "<td>".$pcode_final."</td>";
 		echo "</tr>";
+		if(!empty($discount)){
+			echo "<tr>";
+			echo "<td><b>Apply Discount Coupon</b></td>";
+			echo "</tr>";
+			echo "<tr>";
+			echo "<td>".do_shortcode($discount)."</td>";
+			echo "</tr>";
+		}
+		
+
+
 		echo "</table>";
 
 	echo "</li>";
