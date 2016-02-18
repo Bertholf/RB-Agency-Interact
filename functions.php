@@ -1928,7 +1928,7 @@ function talent_model_login_form($atts){
 							$OUTPUT .= "	<li>". __("List Auditions & Jobs Free", RBAGENCY_casting_TEXTDOMAIN). "</li>";
 							$OUTPUT .= "	<li>". __("Contact People in the talent Directory", RBAGENCY_casting_TEXTDOMAIN). "</li>";
 							$OUTPUT .= "</ul>";
-							$OUTPUT .= "<input type=\"button\" onclick=\"location.href='/casting-register'\" value=\"". __("Register Now", RBAGENCY_casting_TEXTDOMAIN). "\">";
+							$OUTPUT .= "<input type=\"button\" onclick=\"location.href='".site_url()."/casting-register'\" value=\"". __("Register Now", RBAGENCY_casting_TEXTDOMAIN). "\">";
 							$OUTPUT .= "          </div> <!-- talent-register -->\n";
 							$OUTPUT .= "          <div class=\"clear line\"></div>\n";
 							$OUTPUT .= "        </div> <!-- rbsign-up -->\n";
