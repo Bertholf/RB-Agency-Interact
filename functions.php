@@ -1247,7 +1247,7 @@ function talent_model_login_form($atts){
 			$OUTPUT = '';
 
 			// Call Header
-			$OUTPUT .= $rb_header = RBAgency_Common::rb_header();
+			//$OUTPUT .= $rb_header = RBAgency_Common::rb_header();
 			$OUTPUT .= "<div id=\"rbcontent\" class=\"rb-interact rb-interact-login\">\n";
 
 			global $user_ID; 
@@ -1263,7 +1263,7 @@ function talent_model_login_form($atts){
 			$OUTPUT .= "</div><!-- #rbcontent -->\n";
 
 			// Call Footer
-			$OUTPUT .= $rb_footer = RBAgency_Common::rb_footer();
+			//$OUTPUT .= $rb_footer = RBAgency_Common::rb_footer();
 
 		}// :end already logged in
 
@@ -1272,7 +1272,7 @@ function talent_model_login_form($atts){
 			// Prepare Page
 
 			// Call Header
-			$OUTPUT .= $rb_header = RBAgency_Common::rb_header();
+			//$OUTPUT .= $rb_header = RBAgency_Common::rb_header();
 
 				$OUTPUT .= "<div id=\"rbcontent\" class=\"rb-interact rb-interact-login\">\n";
 
@@ -1289,7 +1289,7 @@ function talent_model_login_form($atts){
 				
 
 			// Call Footer
-			$OUTPUT .= $rb_footer = RBAgency_Common::rb_footer();
+			//$OUTPUT .= $rb_footer = RBAgency_Common::rb_footer();
 
 		}
 
@@ -1693,7 +1693,7 @@ function talent_model_login_form($atts){
 			$OUTPUT = '';
 
 			// Call Header
-			$OUTPUT .= $rb_header = RBAgency_Common::rb_header();
+			//$OUTPUT .= $rb_header = RBAgency_Common::rb_header();
 			$OUTPUT .= "<div id=\"rbcontent\" class=\"rb-interact rb-interact-login\">\n";
 
 			global $user_ID; 
@@ -1709,7 +1709,7 @@ function talent_model_login_form($atts){
 			$OUTPUT .= "</div><!-- #rbcontent -->\n";
 
 			// Call Footer
-			$OUTPUT .= $rb_footer = RBAgency_Common::rb_footer();
+			//$OUTPUT .= $rb_footer = RBAgency_Common::rb_footer();
 
 		}// :end already logged in
 
@@ -1718,7 +1718,7 @@ function talent_model_login_form($atts){
 			// Prepare Page
 
 			// Call Header
-			$OUTPUT .= $rb_header = RBAgency_Common::rb_header();
+			//$OUTPUT .= $rb_header = RBAgency_Common::rb_header();
 
 				$OUTPUT .= "<div id=\"rbcontent\" class=\"rb-interact rb-interact-login\">\n";
 
@@ -1734,7 +1734,7 @@ function talent_model_login_form($atts){
 				
 
 			// Call Footer
-			$OUTPUT .= $rb_footer = RBAgency_Common::rb_footer();
+			//$OUTPUT .= $rb_footer = RBAgency_Common::rb_footer();
 
 		}
 
