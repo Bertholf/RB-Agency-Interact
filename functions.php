@@ -769,5 +769,1616 @@ function rb_get_user_profilstatus(){
 		return false;
 	}
 		
+	function rb_login_shortcode(){
+		session_start();
+		$rb_agencyinteract_options_arr = get_option('rb_agencyinteract_options');
+		$rb_agencyinteract_option_redirect_first_time = isset($rb_agencyinteract_options_arr['rb_agencyinteract_option_redirect_first_time'])?$rb_agencyinteract_options_arr['rb_agencyinteract_option_redirect_first_time']:1;
+		$rb_agencyinteract_option_redirect_first_time_url = isset($rb_agencyinteract_options_arr['rb_agencyinteract_option_redirect_first_time_url'])?$rb_agencyinteract_options_arr['rb_agencyinteract_option_redirect_first_time_url']:"/profile-member/account/";
+		$rb_agencyinteract_option_redirect_custom_login = isset($rb_agencyinteract_options_arr['rb_agencyinteract_option_redirect_custom_login'])?$rb_agencyinteract_options_arr['rb_agencyinteract_option_redirect_custom_login']:0;
+		$rb_agencyinteract_option_redirect_afterlogin = isset($rb_agencyinteract_options_arr['rb_agencyinteract_option_redirect_afterlogin'])?$rb_agencyinteract_options_arr['rb_agencyinteract_option_redirect_afterlogin']:1;
+		$rb_agencyinteract_option_redirect_afterlogin_url = isset($rb_agencyinteract_options_arr['rb_agencyinteract_option_redirect_afterlogin_url'])?$rb_agencyinteract_options_arr['rb_agencyinteract_option_redirect_afterlogin_url']:"/profile-member/account/";
 		
+
+		//if login submit
+		if ( $_SERVER['REQUEST_METHOD'] == "POST" && !empty( $_POST['action'] ) && $_POST['action'] == 'log-in' ) {
+			
+			global $error;
+		    $login = wp_signon( array( 'user_login' => $_POST['user-name'], 'user_password' => $_POST['password'], 'remember' => isset($_POST['remember-me'])?$_POST['remember-me']:false ), false );
+
+		    get_currentuserinfo();
+
+
+			if(!is_wp_error($login)) {
+				wp_set_current_user($login->ID);// populate
+
+				rb_get_user_info_for_shortcode_login();
+			} else {
+				$error .= __( $login->get_error_message(), RBAGENCY_interact_TEXTDOMAIN);
+				$have_error = true;
+			}
+		}
+		//:end login submit
+
+		//this is for reset password
+		if($_GET['action'] == 'rp'){
+			$_SESSION['login_username'] = $_GET['login'];
+			wp_redirect(site_url()."/wp-login.php?action=".$_GET['action']."&key=".$_GET['key']."&login=".$_GET['login']);
+			exit();
+		}
+		if($_GET['action'] == 'resetpass'){
+			global $wpdb;
+			$uid = '';
+			$user_table = $wpdb->prefix.'users';
+			$users = $wpdb->get_results("SELECT ID FROM $user_table WHERE user_login =  '".$_SESSION['login_username']."'");
+			foreach($users as $user){
+				$uid = $user->ID;
+			}
+			//echo $uid;
+			wp_set_password( $_POST['pass1-text'], $uid ) ;
+		}
+		//:end this is for reset password
+
+
+		// Already logged in 
+		if(is_user_logged_in()){
+			global $user_ID;
+			$user_ID = get_current_user_id();
+
+			if(current_user_can("edit_posts")) {
+				wp_redirect(admin_url("admin.php?page=rb_agency_menu"));
+
+			}
+
+			//redirect to job
+			if(isset($_GET["h"])){
+				wp_redirect(get_bloginfo("url").$_GET["h"]);
+				exit();
+			}
+
+			$wpdb->get_row($wpdb->prepare("SELECT * FROM ".table_agency_casting." WHERE CastingUserLinked = %d  ",$user_ID));
+			$is_casting  = $wpdb->num_rows;
+
+			if( $is_casting > 0){
+				wp_redirect(get_bloginfo("url"). "/casting-dashboard/");
+
+			} else { // user is a model/talent but wp user_id is not linked to any rb profile.
+				if($rb_agencyinteract_option_redirect_afterlogin == 1){
+					wp_redirect(get_bloginfo("url"). "/profile-member/");
+
+				} else {
+					wp_redirect($rb_agencyinteract_option_redirect_afterlogin_url);
+
+				}
+			}
+
+			$OUTPUT = '';
+
+			// Call Header
+			$OUTPUT .= $rb_header = RBAgency_Common::rb_header();
+			$OUTPUT .= "<div id=\"rbcontent\" class=\"rb-interact rb-interact-login\">\n";
+
+			global $user_ID; 
+			$login = get_userdata( $user_ID );
+			
+			get_user_login_info();
+
+
+			$OUTPUT .= "    <p class=\"alert\">\n";
+							printf( __('You have successfully logged in as <a href="%1$s" title="%2$s">%2$s</a>.', RBAGENCY_interact_TEXTDOMAIN), "/profile-member/", $login->display_name );
+			$OUTPUT .= "		<a href=\"". wp_logout_url( get_permalink() ) ."\" title=\"". __('Log out of this account', RBAGENCY_interact_TEXTDOMAIN) ."\">". __('Log out &raquo;', RBAGENCY_interact_TEXTDOMAIN) ."</a>\n";
+			$OUTPUT .= "    </p><!-- .alert -->\n";
+			$OUTPUT .= "</div><!-- #rbcontent -->\n";
+
+			// Call Footer
+			$OUTPUT .= $rb_footer = RBAgency_Common::rb_footer();
+
+		}// :end already logged in
+
+		else{ //not logged in
+
+			// Prepare Page
+
+			// Call Header
+			$OUTPUT .= $rb_header = RBAgency_Common::rb_header();
+
+				$OUTPUT .= "<div id=\"rbcontent\" class=\"rb-interact rb-interact-login\">\n";
+
+					// Show Login Form
+					$hideregister = true;
+					//include("include-login.php");
+				$OUTPUT .= rb_login_form_for_shortcode();
+
+			// Call Footer
+			$OUTPUT .= $rb_footer = RBAgency_Common::rb_footer();
+
+		}
+
+		return $OUTPUT;
+
+	}	
+
+	add_shortcode('login-for-all','rb_login_shortcode');
+
+	function rb_get_user_info_for_shortcode_login(){
+		global $user_ID, $wpdb;
+		$redirect = isset($_POST["lastviewed"])?$_POST["lastviewed"]:"";
+		get_currentuserinfo();
+		$user_info = get_userdata( $user_ID );
+
+		// Check if user is registered as Model/Talent
+    	$profile_is_active = $wpdb->get_row($wpdb->prepare("SELECT * FROM ".table_agency_profile." WHERE ProfileUserLinked = %d  ",$user_ID));
+    	$is_model_or_talent  = $wpdb->num_rows;
+
+    	// Check if user is agent
+    	$casting_is_active = $wpdb->get_row($wpdb->prepare("SELECT * FROM ".table_agency_casting." WHERE CastingUserLinked = %d  ",$user_ID));
+    	$is_casting_agent  = $wpdb->num_rows;
+
+    	// login options
+    	$rb_agencyinteract_options_arr = get_option('rb_agencyinteract_options');
+		$rb_agencyinteract_option_redirect_first_time = isset($rb_agencyinteract_options_arr['rb_agencyinteract_option_redirect_first_time'])?$rb_agencyinteract_options_arr['rb_agencyinteract_option_redirect_first_time']:1;
+		$rb_agencyinteract_option_redirect_first_time_url = isset($rb_agencyinteract_options_arr['rb_agencyinteract_option_redirect_first_time_url'])?$rb_agencyinteract_options_arr['rb_agencyinteract_option_redirect_first_time_url']:"/profile-member/account/";
+		$rb_agencyinteract_option_redirect_custom_login = isset($rb_agencyinteract_options_arr['rb_agencyinteract_option_redirect_custom_login'])?$rb_agencyinteract_options_arr['rb_agencyinteract_option_redirect_custom_login']:0;
+		$rb_agencyinteract_option_redirect_afterlogin = isset($rb_agencyinteract_options_arr['rb_agencyinteract_option_redirect_afterlogin'])?$rb_agencyinteract_options_arr['rb_agencyinteract_option_redirect_afterlogin']:1;
+		$rb_agencyinteract_option_redirect_afterlogin_url = isset($rb_agencyinteract_options_arr['rb_agencyinteract_option_redirect_afterlogin_url'])?$rb_agencyinteract_options_arr['rb_agencyinteract_option_redirect_afterlogin_url']:"/profile-member/account/";
+		
+		//start conditions	
+		if( (isset($user_ID) && ($is_model_or_talent > 0)) || current_user_can("edit_posts") || ($is_casting_agent > 0)){
+
+			if(!empty($redirect)){
+				wp_redirect($redirect);
+				exit();
+			}
+
+			if(current_user_can("edit_posts")) {
+				wp_redirect(admin_url("admin.php?page=rb_agency_menu"));
+				exit();
+			}else{ //if none admin
+
+				//if model or talent
+				if($is_model_or_talent > 0){
+
+					$rb_agency_new_registeredUser = get_user_meta($user_ID,'rb_agency_new_registeredUser',true);
+					if(!empty($rb_agency_new_registeredUser)){
+
+						if($rb_agencyinteract_option_redirect_first_time == 1){
+							wp_redirect(get_bloginfo("url"). "/profile-member/account/");
+						} else {
+							wp_redirect($rb_agencyinteract_option_redirect_first_time_url);
+						}
+
+					}else{
+
+						if(get_user_meta($user_ID, 'rb_agency_interact_clientdata', true)){
+							wp_redirect(get_bloginfo("url"). "/casting-dashboard/");
+						} else {
+							if($rb_agencyinteract_option_redirect_afterlogin == 1){
+
+								if(isset($_GET["h"])){
+									wp_redirect(get_bloginfo("url").$_GET["h"]);
+									exit();
+								}else{
+									wp_redirect(get_bloginfo("url"). "/profile-member/");
+								}
+											
+
+							} else {
+										
+								if(isset($_GET["h"])){
+									wp_redirect(get_bloginfo("url").$_GET["h"]);
+									exit();
+								}else{
+									wp_redirect($rb_agencyinteract_option_redirect_afterlogin_url);
+								}
+											
+
+							}
+						}
+
+
+					}
+				} // :end if model or talent
+				elseif($is_casting_agent > 0) {//if casting agent
+
+					$casting_status = "";
+					$q = "SELECT * FROM ".table_agency_casting." WHERE CastingUserLinked = ".$user_ID;
+					$result = $wpdb->get_results($q);
+					foreach($result as $r){
+						$casting_status = $r->CastingIsActive;
+					}
+
+					$url = $rb_agencyinteract_options_arr['rb_agencyinteract_option_redirect_afterlogin_agent'];
+					if( !empty($url)){
+
+						$customUrl = '/casting-dashboard/';
+					}else{
+
+						$customUrl = $rb_agencyinteract_options_arr['rb_agencyinteract_option_redirect_afterlogin_agent_url'];
+					}
+
+					if($casting_status == 3){
+						//header("Location:".get_bloginfo("wpurl").'/casting-pending?status=pending');
+						wp_redirect(get_bloginfo("wpurl").'/casting-pending?status=pending');
+						exit();
+					}else{
+						//header("Location: ". get_bloginfo("wpurl").  $customUrl);
+						wp_redirect(get_bloginfo("wpurl").  $customUrl);
+						exit();
+					}
+
+				} // :end if casting agent
+				
+			}//:end if not admin
+
+		}//:end conditions
+		elseif($profile_is_active->ProfileIsActive == 3){
+			wp_redirect(get_bloginfo("url"). "/profile-member/pending/"); 
+		} // :end if profile is pending
+		else{
+
+			$wpdb->get_row($wpdb->prepare("SELECT * FROM ".table_agency_casting." WHERE CastingUserLinked = %d  ",$user_ID));
+			$is_casting  = $wpdb->num_rows;
+
+			if( $is_casting > 0){
+				wp_logout();
+				wp_redirect(get_bloginfo("url"). "/profile-login/?ref=casting");
+
+			} else { // user is a model/talent but wp user_id is not linked to any rb profile.
+
+				if($rb_agencyinteract_option_redirect_afterlogin == 1){
+
+					if(isset($_GET["h"])){
+						wp_redirect(get_bloginfo("url").$_GET["h"]);
+						exit();
+					}else{
+						wp_redirect(get_bloginfo("url"). "/profile-member/");
+					}
+										
+
+				} else {
+
+					if(isset($_GET["h"])){
+						wp_redirect(get_bloginfo("url").$_GET["h"]);
+						exit();
+					}else{
+						wp_redirect($rb_agencyinteract_option_redirect_afterlogin_url);
+					}
+							
+				}
+			}
+		} // : end last else
+	}
+
+
+	function rb_login_form_for_shortcode(){
+				$LOGIN_URL = trim($_SERVER['REQUEST_URI'],'/');
+		$OUTPUT = '';
+			/* Check if users can register. */
+	$registration = get_option( 'rb_agencyinteract_options' );
+	$rb_agencyinteract_option_registerallow = isset($registration["rb_agencyinteract_option_registerallow"]) ?$registration["rb_agencyinteract_option_registerallow"]:"";
+	$rb_agencyinteract_option_registerallowAgentProducer = isset($registration['rb_agencyinteract_option_registerallowAgentProducer'])?$registration['rb_agencyinteract_option_registerallowAgentProducer']:0;
+	$rb_agencyinteract_option_switch_sidebar = isset($registration["rb_agencyinteract_option_switch_sidebar"])?(int)$registration["rb_agencyinteract_option_switch_sidebar"]:"";
+
+	if (( current_user_can("create_users") || $rb_agencyinteract_option_registerallow )) {
+		$widthClass = "half";
+	} else {
+		$widthClass = "full";
+	}
+
+	// File Path: interact/theme/include-login.php
+	// Site Url : /profile-login/
+
+$OUTPUT .= "     <div id=\"rbsignin-register\" class=\"rbinteract\">\n";
+			$ref = get_query_var("ref");
+
+			if (isset($error)){
+			$OUTPUT .= "<p class=\"error\">". $error ."</p>\n";
+			}
+			if (isset($ref) && $ref == "pending-approval") {
+			$OUTPUT .= "<p id=\"message\" class=\"updated\">". __("Your account is pending for approval.", RBAGENCY_interact_TEXTDOMAIN). "</p>\n";
+			}
+			if (isset($ref) && $ref == "casting") {
+			$OUTPUT .= "<p id=\"message\" class=\"updated\">". __("Your account is not registered as Talent/Model.", RBAGENCY_interact_TEXTDOMAIN).  __(" Click", RBAGENCY_interact_TEXTDOMAIN)." <a href=\"".get_bloginfo("url")."/casting-login/\">".__("here", RBAGENCY_interact_TEXTDOMAIN)."</a> ".__("to login as Casting.", RBAGENCY_interact_TEXTDOMAIN)."</p>\n";
+			}
+
+
+			if(isset($ref) && $ref == "reset_password"){
+				$OUTPUT .= "<p  id=\"message\" class=\"updated\">".__("Check your e-mail for the reset link to create a new password.", RBAGENCY_interact_TEXTDOMAIN)."</p>\n";
+			}
+
+			if(isset($_GET['action']) && $_GET['action']== "resetpass"){
+				$OUTPUT .= "<p  id=\"message\" class=\"updated\">".__("Your password has been reset.", RBAGENCY_interact_TEXTDOMAIN)."</p>\n";
+			}
+
+$OUTPUT .= "        <div id=\"rbsign-in\" class=\"inline-block\">\n";
+$OUTPUT .= "          <h1>". __("Members Sign in", RBAGENCY_interact_TEXTDOMAIN). "</h1>\n";
+if(isset($_GET["h"])){
+$OUTPUT .= "          <form name=\"loginform\" id=\"login\" action=\"".site_url().$LOGIN_URL."\" method=\"post\">\n";
+}else{
+	$OUTPUT .= "          <form name=\"loginform\" id=\"login\" action=\"http://castinghive.com/cmi/new-login/\" method=\"post\">\n";
+}
+
+$OUTPUT .= "            <div class=\"field-row\">\n";
+$OUTPUT .= "              <label for=\"user-name\">". __("Username", RBAGENCY_interact_TEXTDOMAIN). "</label><input type=\"text\" name=\"user-name\" value=\"". (isset($_POST['user-name']) ? esc_html($_POST['user-name']):"") ."\" id=\"user-name\" />\n";
+$OUTPUT .= "            </div>\n";
+$OUTPUT .= "            <div class=\"field-row\">\n";
+$OUTPUT .= "              <label for=\"password\">". __("Password", RBAGENCY_interact_TEXTDOMAIN). "</label><input type=\"password\" name=\"password\" value=\"\" id=\"password\" /> <a href=\"". get_bloginfo('wpurl') ."/wp-login.php?action=lostpassword&redirect_to=".$_SERVER['REQUEST_URI']."?ref=reset_password\">". __("forgot password", RBAGENCY_interact_TEXTDOMAIN). "?</a>\n";
+$OUTPUT .= "            </div>\n";
+$OUTPUT .= "            <div class=\"field-row\">\n";
+$OUTPUT .= "              <label><input type=\"checkbox\" name=\"remember-me\" value=\"forever\" /> ". __("Keep me signed in", RBAGENCY_interact_TEXTDOMAIN). "</label>\n";
+$OUTPUT .= "            </div>\n";
+$OUTPUT .= "            <div class=\"field-row submit-row\">\n";
+$OUTPUT .= "              <input type=\"hidden\" name=\"action\" value=\"log-in\" />\n";
+$OUTPUT .= "              <input type=\"submit\" value=\"". __("Sign In", RBAGENCY_interact_TEXTDOMAIN). "\" /><br />\n";
+$OUTPUT .= "            </div>\n";
+$OUTPUT .= "          </form>\n";
+$OUTPUT .= "        </div> <!-- rbsign-in -->\n";
+
+if(isset($rb_agencyinteract_option_switch_sidebar) && $rb_agencyinteract_option_switch_sidebar == 1){
+			$OUTPUT .= "        <div id=\"rbsign-up\" class=\"inline-block\">\n";
+			if (( current_user_can("create_users") || $rb_agencyinteract_option_registerallow == 1)) {
+
+				$OUTPUT .= "          <div id=\"talent-register\" class=\"register\">\n";
+				$OUTPUT .= "            <h1>". __("Not a member", RBAGENCY_interact_TEXTDOMAIN). "?</h1>\n";
+				$OUTPUT .= "            <h3>". __("Talent", RBAGENCY_interact_TEXTDOMAIN). " - ". __("Register here", RBAGENCY_interact_TEXTDOMAIN). "</h3>\n";
+				$OUTPUT .= "            <ul>\n";
+				$OUTPUT .= "              <li>". __("Create your free profile page", RBAGENCY_interact_TEXTDOMAIN). "</li>\n";
+				$OUTPUT .= "              <li>". __("Apply to Auditions & Jobs", RBAGENCY_interact_TEXTDOMAIN). "</li>\n";
+				$OUTPUT .= "            </ul>\n";
+				$OUTPUT .= "              <input type=\"button\" onClick=\"location.href='". get_bloginfo("wpurl") ."/profile-register/'\" value=\"". __("Register Now", RBAGENCY_interact_TEXTDOMAIN). "\" />\n";
+				$OUTPUT .= "          </div> <!-- talent-register -->\n";
+				$OUTPUT .= "          <div class=\"clear line\"></div>\n";
+
+
+				}
+			$OUTPUT .= "        </div> <!-- rbsign-up -->\n";
+}
+else {
+	$OUTPUT .= "        <div id=\"rbsign-up\" class=\"inline-block\">\n";
+	$OUTPUT .= "          <div id=\"talent-register\" class=\"register\">\n";
+	if ( dynamic_sidebar('rb-agency-interact-login-sidebar') ) :endif; 
+	$OUTPUT .= "          </div> <!-- talent-register -->\n";
+	$OUTPUT .= "          <div class=\"clear line\"></div>\n";
+	$OUTPUT .= "        </div> <!-- rbsign-up -->\n";
+
+}
+
+$OUTPUT .= "      <div class=\"clear line\"></div>\n";
+$OUTPUT .= "      </div>\n";
+		return $OUTPUT;
+	}
+
+
+
+function rb_login_shortcode(){
+		session_start();
+		$rb_agencyinteract_options_arr = get_option('rb_agencyinteract_options');
+		$rb_agencyinteract_option_redirect_first_time = isset($rb_agencyinteract_options_arr['rb_agencyinteract_option_redirect_first_time'])?$rb_agencyinteract_options_arr['rb_agencyinteract_option_redirect_first_time']:1;
+		$rb_agencyinteract_option_redirect_first_time_url = isset($rb_agencyinteract_options_arr['rb_agencyinteract_option_redirect_first_time_url'])?$rb_agencyinteract_options_arr['rb_agencyinteract_option_redirect_first_time_url']:"/profile-member/account/";
+		$rb_agencyinteract_option_redirect_custom_login = isset($rb_agencyinteract_options_arr['rb_agencyinteract_option_redirect_custom_login'])?$rb_agencyinteract_options_arr['rb_agencyinteract_option_redirect_custom_login']:0;
+		$rb_agencyinteract_option_redirect_afterlogin = isset($rb_agencyinteract_options_arr['rb_agencyinteract_option_redirect_afterlogin'])?$rb_agencyinteract_options_arr['rb_agencyinteract_option_redirect_afterlogin']:1;
+		$rb_agencyinteract_option_redirect_afterlogin_url = isset($rb_agencyinteract_options_arr['rb_agencyinteract_option_redirect_afterlogin_url'])?$rb_agencyinteract_options_arr['rb_agencyinteract_option_redirect_afterlogin_url']:"/profile-member/account/";
+		
+
+		//if login submit
+		if ( $_SERVER['REQUEST_METHOD'] == "POST" && !empty( $_POST['action'] ) && $_POST['action'] == 'log-in' ) {
+			
+			global $error;
+		    $login = wp_signon( array( 'user_login' => $_POST['user-name'], 'user_password' => $_POST['password'], 'remember' => isset($_POST['remember-me'])?$_POST['remember-me']:false ), false );
+
+		    get_currentuserinfo();
+
+
+			if(!is_wp_error($login)) {
+				wp_set_current_user($login->ID);// populate
+
+				rb_get_user_info_for_shortcode_login();
+			} else {
+				$error .= __( $login->get_error_message(), RBAGENCY_interact_TEXTDOMAIN);
+				$have_error = true;
+			}
+		}
+		//:end login submit
+
+		//this is for reset password
+		if($_GET['action'] == 'rp'){
+			$_SESSION['login_username'] = $_GET['login'];
+			wp_redirect(site_url()."/wp-login.php?action=".$_GET['action']."&key=".$_GET['key']."&login=".$_GET['login']);
+			exit();
+		}
+		if($_GET['action'] == 'resetpass'){
+			global $wpdb;
+			$uid = '';
+			$user_table = $wpdb->prefix.'users';
+			$users = $wpdb->get_results("SELECT ID FROM $user_table WHERE user_login =  '".$_SESSION['login_username']."'");
+			foreach($users as $user){
+				$uid = $user->ID;
+			}
+			//echo $uid;
+			wp_set_password( $_POST['pass1-text'], $uid ) ;
+		}
+		//:end this is for reset password
+
+
+		// Already logged in 
+		if(is_user_logged_in()){
+			global $user_ID;
+			$user_ID = get_current_user_id();
+
+			if(current_user_can("edit_posts")) {
+				wp_redirect(admin_url("admin.php?page=rb_agency_menu"));
+
+			}
+
+			//redirect to job
+			if(isset($_GET["h"])){
+				wp_redirect(get_bloginfo("url").$_GET["h"]);
+				exit();
+			}
+
+			$wpdb->get_row($wpdb->prepare("SELECT * FROM ".table_agency_casting." WHERE CastingUserLinked = %d  ",$user_ID));
+			$is_casting  = $wpdb->num_rows;
+
+			if( $is_casting > 0){
+				wp_redirect(get_bloginfo("url"). "/casting-dashboard/");
+
+			} else { // user is a model/talent but wp user_id is not linked to any rb profile.
+				if($rb_agencyinteract_option_redirect_afterlogin == 1){
+					wp_redirect(get_bloginfo("url"). "/profile-member/");
+
+				} else {
+					wp_redirect($rb_agencyinteract_option_redirect_afterlogin_url);
+
+				}
+			}
+
+			$OUTPUT = '';
+
+			// Call Header
+			$OUTPUT .= $rb_header = RBAgency_Common::rb_header();
+			$OUTPUT .= "<div id=\"rbcontent\" class=\"rb-interact rb-interact-login\">\n";
+
+			global $user_ID; 
+			$login = get_userdata( $user_ID );
+			
+			get_user_login_info();
+
+
+			$OUTPUT .= "    <p class=\"alert\">\n";
+							printf( __('You have successfully logged in as <a href="%1$s" title="%2$s">%2$s</a>.', RBAGENCY_interact_TEXTDOMAIN), "/profile-member/", $login->display_name );
+			$OUTPUT .= "		<a href=\"". wp_logout_url( get_permalink() ) ."\" title=\"". __('Log out of this account', RBAGENCY_interact_TEXTDOMAIN) ."\">". __('Log out &raquo;', RBAGENCY_interact_TEXTDOMAIN) ."</a>\n";
+			$OUTPUT .= "    </p><!-- .alert -->\n";
+			$OUTPUT .= "</div><!-- #rbcontent -->\n";
+
+			// Call Footer
+			$OUTPUT .= $rb_footer = RBAgency_Common::rb_footer();
+
+		}// :end already logged in
+
+		else{ //not logged in
+
+			// Prepare Page
+
+			// Call Header
+			$OUTPUT .= $rb_header = RBAgency_Common::rb_header();
+
+				$OUTPUT .= "<div id=\"rbcontent\" class=\"rb-interact rb-interact-login\">\n";
+
+					// Show Login Form
+					$hideregister = true;
+					//include("include-login.php");
+				$OUTPUT .= rb_login_form_for_shortcode();
+
+			// Call Footer
+			$OUTPUT .= $rb_footer = RBAgency_Common::rb_footer();
+
+		}
+
+		return $OUTPUT;
+
+	}	
+
+	add_shortcode('login-for-all','rb_login_shortcode');
+
+	function rb_get_user_info_for_shortcode_login(){
+		global $user_ID, $wpdb;
+		$redirect = isset($_POST["lastviewed"])?$_POST["lastviewed"]:"";
+		get_currentuserinfo();
+		$user_info = get_userdata( $user_ID );
+
+		// Check if user is registered as Model/Talent
+    	$profile_is_active = $wpdb->get_row($wpdb->prepare("SELECT * FROM ".table_agency_profile." WHERE ProfileUserLinked = %d  ",$user_ID));
+    	$is_model_or_talent  = $wpdb->num_rows;
+
+    	// Check if user is agent
+    	$casting_is_active = $wpdb->get_row($wpdb->prepare("SELECT * FROM ".table_agency_casting." WHERE CastingUserLinked = %d  ",$user_ID));
+    	$is_casting_agent  = $wpdb->num_rows;
+
+    	// login options
+    	$rb_agencyinteract_options_arr = get_option('rb_agencyinteract_options');
+		$rb_agencyinteract_option_redirect_first_time = isset($rb_agencyinteract_options_arr['rb_agencyinteract_option_redirect_first_time'])?$rb_agencyinteract_options_arr['rb_agencyinteract_option_redirect_first_time']:1;
+		$rb_agencyinteract_option_redirect_first_time_url = isset($rb_agencyinteract_options_arr['rb_agencyinteract_option_redirect_first_time_url'])?$rb_agencyinteract_options_arr['rb_agencyinteract_option_redirect_first_time_url']:"/profile-member/account/";
+		$rb_agencyinteract_option_redirect_custom_login = isset($rb_agencyinteract_options_arr['rb_agencyinteract_option_redirect_custom_login'])?$rb_agencyinteract_options_arr['rb_agencyinteract_option_redirect_custom_login']:0;
+		$rb_agencyinteract_option_redirect_afterlogin = isset($rb_agencyinteract_options_arr['rb_agencyinteract_option_redirect_afterlogin'])?$rb_agencyinteract_options_arr['rb_agencyinteract_option_redirect_afterlogin']:1;
+		$rb_agencyinteract_option_redirect_afterlogin_url = isset($rb_agencyinteract_options_arr['rb_agencyinteract_option_redirect_afterlogin_url'])?$rb_agencyinteract_options_arr['rb_agencyinteract_option_redirect_afterlogin_url']:"/profile-member/account/";
+		
+		//start conditions	
+		if( (isset($user_ID) && ($is_model_or_talent > 0)) || current_user_can("edit_posts") || ($is_casting_agent > 0)){
+
+			if(!empty($redirect)){
+				wp_redirect($redirect);
+				exit();
+			}
+
+			if(current_user_can("edit_posts")) {
+				wp_redirect(admin_url("admin.php?page=rb_agency_menu"));
+				exit();
+			}else{ //if none admin
+
+				//if model or talent
+				if($is_model_or_talent > 0){
+
+					$rb_agency_new_registeredUser = get_user_meta($user_ID,'rb_agency_new_registeredUser',true);
+					if(!empty($rb_agency_new_registeredUser)){
+
+						if($rb_agencyinteract_option_redirect_first_time == 1){
+							wp_redirect(get_bloginfo("url"). "/profile-member/account/");
+						} else {
+							wp_redirect($rb_agencyinteract_option_redirect_first_time_url);
+						}
+
+					}else{
+
+						if(get_user_meta($user_ID, 'rb_agency_interact_clientdata', true)){
+							wp_redirect(get_bloginfo("url"). "/casting-dashboard/");
+						} else {
+							if($rb_agencyinteract_option_redirect_afterlogin == 1){
+
+								if(isset($_GET["h"])){
+									wp_redirect(get_bloginfo("url").$_GET["h"]);
+									exit();
+								}else{
+									wp_redirect(get_bloginfo("url"). "/profile-member/");
+								}
+											
+
+							} else {
+										
+								if(isset($_GET["h"])){
+									wp_redirect(get_bloginfo("url").$_GET["h"]);
+									exit();
+								}else{
+									wp_redirect($rb_agencyinteract_option_redirect_afterlogin_url);
+								}
+											
+
+							}
+						}
+
+
+					}
+				} // :end if model or talent
+				elseif($is_casting_agent > 0) {//if casting agent
+
+					$casting_status = "";
+					$q = "SELECT * FROM ".table_agency_casting." WHERE CastingUserLinked = ".$user_ID;
+					$result = $wpdb->get_results($q);
+					foreach($result as $r){
+						$casting_status = $r->CastingIsActive;
+					}
+
+					$url = $rb_agencyinteract_options_arr['rb_agencyinteract_option_redirect_afterlogin_agent'];
+					if( !empty($url)){
+
+						$customUrl = '/casting-dashboard/';
+					}else{
+
+						$customUrl = $rb_agencyinteract_options_arr['rb_agencyinteract_option_redirect_afterlogin_agent_url'];
+					}
+
+					if($casting_status == 3){
+						//header("Location:".get_bloginfo("wpurl").'/casting-pending?status=pending');
+						wp_redirect(get_bloginfo("wpurl").'/casting-pending?status=pending');
+						exit();
+					}else{
+						//header("Location: ". get_bloginfo("wpurl").  $customUrl);
+						wp_redirect(get_bloginfo("wpurl").  $customUrl);
+						exit();
+					}
+
+				} // :end if casting agent
+				
+			}//:end if not admin
+
+		}//:end conditions
+		elseif($profile_is_active->ProfileIsActive == 3){
+			wp_redirect(get_bloginfo("url"). "/profile-member/pending/"); 
+		} // :end if profile is pending
+		else{
+
+			$wpdb->get_row($wpdb->prepare("SELECT * FROM ".table_agency_casting." WHERE CastingUserLinked = %d  ",$user_ID));
+			$is_casting  = $wpdb->num_rows;
+
+			if( $is_casting > 0){
+				wp_logout();
+				wp_redirect(get_bloginfo("url"). "/profile-login/?ref=casting");
+
+			} else { // user is a model/talent but wp user_id is not linked to any rb profile.
+
+				if($rb_agencyinteract_option_redirect_afterlogin == 1){
+
+					if(isset($_GET["h"])){
+						wp_redirect(get_bloginfo("url").$_GET["h"]);
+						exit();
+					}else{
+						wp_redirect(get_bloginfo("url"). "/profile-member/");
+					}
+										
+
+				} else {
+
+					if(isset($_GET["h"])){
+						wp_redirect(get_bloginfo("url").$_GET["h"]);
+						exit();
+					}else{
+						wp_redirect($rb_agencyinteract_option_redirect_afterlogin_url);
+					}
+							
+				}
+			}
+		} // : end last else
+	}
+
+
+	function rb_login_form_for_shortcode(){
+		$LOGIN_URL = trim($_SERVER['REQUEST_URI'],'/');
+		$OUTPUT = '';
+		/* Check if users can register. */
+		$registration = get_option( 'rb_agencyinteract_options' );
+		$rb_agencyinteract_option_registerallow = isset($registration["rb_agencyinteract_option_registerallow"]) ?$registration["rb_agencyinteract_option_registerallow"]:"";
+		$rb_agencyinteract_option_registerallowAgentProducer = isset($registration['rb_agencyinteract_option_registerallowAgentProducer'])?$registration['rb_agencyinteract_option_registerallowAgentProducer']:0;
+		$rb_agencyinteract_option_switch_sidebar = isset($registration["rb_agencyinteract_option_switch_sidebar"])?(int)$registration["rb_agencyinteract_option_switch_sidebar"]:"";
+
+		if (( current_user_can("create_users") || $rb_agencyinteract_option_registerallow )) {
+			$widthClass = "half";
+		} else {
+			$widthClass = "full";
+		}
+
+	// File Path: interact/theme/include-login.php
+	// Site Url : /profile-login/
+
+		$OUTPUT .= "     <div id=\"rbsignin-register\" class=\"rbinteract\">\n";
+			$ref = get_query_var("ref");
+
+		if (isset($error)){
+		$OUTPUT .= "<p class=\"error\">". $error ."</p>\n";
+		}
+		if (isset($ref) && $ref == "pending-approval") {
+		$OUTPUT .= "<p id=\"message\" class=\"updated\">". __("Your account is pending for approval.", RBAGENCY_interact_TEXTDOMAIN). "</p>\n";
+		}
+		if (isset($ref) && $ref == "casting") {
+		$OUTPUT .= "<p id=\"message\" class=\"updated\">". __("Your account is not registered as Talent/Model.", RBAGENCY_interact_TEXTDOMAIN).  __(" Click", RBAGENCY_interact_TEXTDOMAIN)." <a href=\"".get_bloginfo("url")."/casting-login/\">".__("here", RBAGENCY_interact_TEXTDOMAIN)."</a> ".__("to login as Casting.", RBAGENCY_interact_TEXTDOMAIN)."</p>\n";
+		}
+
+
+		if(isset($ref) && $ref == "reset_password"){
+			$OUTPUT .= "<p  id=\"message\" class=\"updated\">".__("Check your e-mail for the reset link to create a new password.", RBAGENCY_interact_TEXTDOMAIN)."</p>\n";
+		}
+
+		if(isset($_GET['action']) && $_GET['action']== "resetpass"){
+			$OUTPUT .= "<p  id=\"message\" class=\"updated\">".__("Your password has been reset.", RBAGENCY_interact_TEXTDOMAIN)."</p>\n";
+		}
+
+		$OUTPUT .= "        <div id=\"rbsign-in\" class=\"inline-block\">\n";
+		$OUTPUT .= "          <h1>". __("Members Sign in", RBAGENCY_interact_TEXTDOMAIN). "</h1>\n";
+		if(isset($_GET["h"])){
+			$OUTPUT .= "          <form name=\"loginform\" id=\"login\" action=\"".site_url().$LOGIN_URL."\" method=\"post\">\n";
+		}else{
+			$OUTPUT .= "          <form name=\"loginform\" id=\"login\" action=\"http://castinghive.com/cmi/new-login/\" method=\"post\">\n";
+		}
+
+		$OUTPUT .= "            <div class=\"field-row\">\n";
+		$OUTPUT .= "              <label for=\"user-name\">". __("Username", RBAGENCY_interact_TEXTDOMAIN). "</label><input type=\"text\" name=\"user-name\" value=\"". (isset($_POST['user-name']) ? esc_html($_POST['user-name']):"") ."\" id=\"user-name\" />\n";
+		$OUTPUT .= "            </div>\n";
+		$OUTPUT .= "            <div class=\"field-row\">\n";
+		$OUTPUT .= "              <label for=\"password\">". __("Password", RBAGENCY_interact_TEXTDOMAIN). "</label><input type=\"password\" name=\"password\" value=\"\" id=\"password\" /> <a href=\"". get_bloginfo('wpurl') ."/wp-login.php?action=lostpassword&redirect_to=".$_SERVER['REQUEST_URI']."?ref=reset_password\">". __("forgot password", RBAGENCY_interact_TEXTDOMAIN). "?</a>\n";
+		$OUTPUT .= "            </div>\n";
+		$OUTPUT .= "            <div class=\"field-row\">\n";
+		$OUTPUT .= "              <label><input type=\"checkbox\" name=\"remember-me\" value=\"forever\" /> ". __("Keep me signed in", RBAGENCY_interact_TEXTDOMAIN). "</label>\n";
+		$OUTPUT .= "            </div>\n";
+		$OUTPUT .= "            <div class=\"field-row submit-row\">\n";
+		$OUTPUT .= "              <input type=\"hidden\" name=\"action\" value=\"log-in\" />\n";
+		$OUTPUT .= "              <input type=\"submit\" value=\"". __("Sign In", RBAGENCY_interact_TEXTDOMAIN). "\" /><br />\n";
+		$OUTPUT .= "            </div>\n";
+		$OUTPUT .= "          </form>\n";
+		$OUTPUT .= "        </div> <!-- rbsign-in -->\n";
+
+		if(isset($rb_agencyinteract_option_switch_sidebar) && $rb_agencyinteract_option_switch_sidebar == 1){
+					$OUTPUT .= "        <div id=\"rbsign-up\" class=\"inline-block\">\n";
+					if (( current_user_can("create_users") || $rb_agencyinteract_option_registerallow == 1)) {
+
+						$OUTPUT .= "          <div id=\"talent-register\" class=\"register\">\n";
+						$OUTPUT .= "            <h1>". __("Not a member", RBAGENCY_interact_TEXTDOMAIN). "?</h1>\n";
+						$OUTPUT .= "            <h3>". __("Talent", RBAGENCY_interact_TEXTDOMAIN). " - ". __("Register here", RBAGENCY_interact_TEXTDOMAIN). "</h3>\n";
+						$OUTPUT .= "            <ul>\n";
+						$OUTPUT .= "              <li>". __("Create your free profile page", RBAGENCY_interact_TEXTDOMAIN). "</li>\n";
+						$OUTPUT .= "              <li>". __("Apply to Auditions & Jobs", RBAGENCY_interact_TEXTDOMAIN). "</li>\n";
+						$OUTPUT .= "            </ul>\n";
+						$OUTPUT .= "              <input type=\"button\" onClick=\"location.href='". get_bloginfo("wpurl") ."/profile-register/'\" value=\"". __("Register Now", RBAGENCY_interact_TEXTDOMAIN). "\" />\n";
+						$OUTPUT .= "          </div> <!-- talent-register -->\n";
+						$OUTPUT .= "          <div class=\"clear line\"></div>\n";
+
+
+						}
+					$OUTPUT .= "        </div> <!-- rbsign-up -->\n";
+		}
+		else {
+			$OUTPUT .= "        <div id=\"rbsign-up\" class=\"inline-block\">\n";
+			$OUTPUT .= "          <div id=\"talent-register\" class=\"register\">\n";
+			if ( dynamic_sidebar('rb-agency-interact-login-sidebar') ) :endif; 
+			$OUTPUT .= "          </div> <!-- talent-register -->\n";
+			$OUTPUT .= "          <div class=\"clear line\"></div>\n";
+			$OUTPUT .= "        </div> <!-- rbsign-up -->\n";
+
+		}
+
+		$OUTPUT .= "      <div class=\"clear line\"></div>\n";
+		$OUTPUT .= "      </div>\n";
+				return $OUTPUT;
+	}
+
+
+
+
+
+	/**
+	*
+	* FOR TALENTs
+	*
+	*/
+function talent_model_login_form($atts){
+
+		$a = shortcode_atts( array(
+			        'registration_widget' => "true",
+			        'registration_widget' => "true"
+			    ), $atts );
+		
+		session_start();
+		$rb_agencyinteract_options_arr = get_option('rb_agencyinteract_options');
+		$rb_agencyinteract_option_redirect_first_time = isset($rb_agencyinteract_options_arr['rb_agencyinteract_option_redirect_first_time'])?$rb_agencyinteract_options_arr['rb_agencyinteract_option_redirect_first_time']:1;
+		$rb_agencyinteract_option_redirect_first_time_url = isset($rb_agencyinteract_options_arr['rb_agencyinteract_option_redirect_first_time_url'])?$rb_agencyinteract_options_arr['rb_agencyinteract_option_redirect_first_time_url']:"/profile-member/account/";
+		$rb_agencyinteract_option_redirect_custom_login = isset($rb_agencyinteract_options_arr['rb_agencyinteract_option_redirect_custom_login'])?$rb_agencyinteract_options_arr['rb_agencyinteract_option_redirect_custom_login']:0;
+		$rb_agencyinteract_option_redirect_afterlogin = isset($rb_agencyinteract_options_arr['rb_agencyinteract_option_redirect_afterlogin'])?$rb_agencyinteract_options_arr['rb_agencyinteract_option_redirect_afterlogin']:1;
+		$rb_agencyinteract_option_redirect_afterlogin_url = isset($rb_agencyinteract_options_arr['rb_agencyinteract_option_redirect_afterlogin_url'])?$rb_agencyinteract_options_arr['rb_agencyinteract_option_redirect_afterlogin_url']:"/profile-member/account/";
+		
+
+		//if login submit
+		if ( $_SERVER['REQUEST_METHOD'] == "POST" && !empty( $_POST['action'] ) && $_POST['action'] == 'log-in' ) {
+			
+			global $error;
+		    $login = wp_signon( array( 'user_login' => $_POST['user-name'], 'user_password' => $_POST['password'], 'remember' => isset($_POST['remember-me'])?$_POST['remember-me']:false ), false );
+
+		    get_currentuserinfo();
+
+
+			if(!is_wp_error($login)) {
+				wp_set_current_user($login->ID);// populate
+
+				rb_get_user_info_for_shortcode_talent_login($show_registration);
+			} else {
+				$error .= __( $login->get_error_message(), RBAGENCY_interact_TEXTDOMAIN);
+				$have_error = true;
+			}
+		}
+		//:end login submit
+
+		//this is for reset password
+		if($_GET['action'] == 'rp'){
+			$_SESSION['login_username'] = $_GET['login'];
+			wp_redirect(site_url()."/wp-login.php?action=".$_GET['action']."&key=".$_GET['key']."&login=".$_GET['login']);
+			exit();
+		}
+		if($_GET['action'] == 'resetpass'){
+			global $wpdb;
+			$uid = '';
+			$user_table = $wpdb->prefix.'users';
+			$users = $wpdb->get_results("SELECT ID FROM $user_table WHERE user_login =  '".$_SESSION['login_username']."'");
+			foreach($users as $user){
+				$uid = $user->ID;
+			}
+			//echo $uid;
+			wp_set_password( $_POST['pass1-text'], $uid ) ;
+		}
+		//:end this is for reset password
+
+
+		// Already logged in 
+		if(is_user_logged_in()){
+			global $user_ID;
+			$user_ID = get_current_user_id();
+
+			if(current_user_can("edit_posts")) {
+				wp_redirect(admin_url("admin.php?page=rb_agency_menu"));
+
+			}
+
+			//redirect to job
+			if(isset($_GET["h"])){
+				wp_redirect(get_bloginfo("url").$_GET["h"]);
+				exit();
+			}
+
+			$wpdb->get_row($wpdb->prepare("SELECT * FROM ".table_agency_casting." WHERE CastingUserLinked = %d  ",$user_ID));
+			$is_casting  = $wpdb->num_rows;
+
+			if( $is_casting > 0){
+				wp_redirect(get_bloginfo("url"). "/casting-dashboard/");
+
+			} else { // user is a model/talent but wp user_id is not linked to any rb profile.
+				if($rb_agencyinteract_option_redirect_afterlogin == 1){
+					wp_redirect(get_bloginfo("url"). "/profile-member/");
+
+				} else {
+					wp_redirect($rb_agencyinteract_option_redirect_afterlogin_url);
+
+				}
+			}
+
+			$OUTPUT = '';
+
+			// Call Header
+			$OUTPUT .= $rb_header = RBAgency_Common::rb_header();
+			$OUTPUT .= "<div id=\"rbcontent\" class=\"rb-interact rb-interact-login\">\n";
+
+			global $user_ID; 
+			$login = get_userdata( $user_ID );
+			
+			get_user_login_info();
+
+
+			$OUTPUT .= "    <p class=\"alert\">\n";
+							printf( __('You have successfully logged in as <a href="%1$s" title="%2$s">%2$s</a>.', RBAGENCY_interact_TEXTDOMAIN), "/profile-member/", $login->display_name );
+			$OUTPUT .= "		<a href=\"". wp_logout_url( get_permalink() ) ."\" title=\"". __('Log out of this account', RBAGENCY_interact_TEXTDOMAIN) ."\">". __('Log out &raquo;', RBAGENCY_interact_TEXTDOMAIN) ."</a>\n";
+			$OUTPUT .= "    </p><!-- .alert -->\n";
+			$OUTPUT .= "</div><!-- #rbcontent -->\n";
+
+			// Call Footer
+			$OUTPUT .= $rb_footer = RBAgency_Common::rb_footer();
+
+		}// :end already logged in
+
+		else{ //not logged in
+
+			// Prepare Page
+
+			// Call Header
+			$OUTPUT .= $rb_header = RBAgency_Common::rb_header();
+
+				$OUTPUT .= "<div id=\"rbcontent\" class=\"rb-interact rb-interact-login\">\n";
+
+					// Show Login Form
+					$hideregister = true;
+					//include("include-login.php");
+					if($a['registration_widget'] == 'true') {
+						
+						$OUTPUT .= rb_login_form_for_talent_wid_reg();
+					}else{
+						$OUTPUT .= rb_login_form_for_talent_wid_reg();
+					}
+					
+				
+
+			// Call Footer
+			$OUTPUT .= $rb_footer = RBAgency_Common::rb_footer();
+
+		}
+
+		return $OUTPUT;
+
+	}	
+
+	add_shortcode('talent_login_form','talent_model_login_form');
+
+
+	function rb_get_user_info_for_shortcode_talent_login($show_registration){
+		global $user_ID, $wpdb;
+		$redirect = isset($_POST["lastviewed"])?$_POST["lastviewed"]:"";
+		get_currentuserinfo();
+		$user_info = get_userdata( $user_ID );
+
+		// Check if user is registered as Model/Talent
+    	$profile_is_active = $wpdb->get_row($wpdb->prepare("SELECT * FROM ".table_agency_profile." WHERE ProfileUserLinked = %d  ",$user_ID));
+    	$is_model_or_talent  = $wpdb->num_rows;
+
+    	// Check if user is agent
+    	$casting_is_active = $wpdb->get_row($wpdb->prepare("SELECT * FROM ".table_agency_casting." WHERE CastingUserLinked = %d  ",$user_ID));
+    	$is_casting_agent  = $wpdb->num_rows;
+
+    	// login options
+    	$rb_agencyinteract_options_arr = get_option('rb_agencyinteract_options');
+		$rb_agencyinteract_option_redirect_first_time = isset($rb_agencyinteract_options_arr['rb_agencyinteract_option_redirect_first_time'])?$rb_agencyinteract_options_arr['rb_agencyinteract_option_redirect_first_time']:1;
+		$rb_agencyinteract_option_redirect_first_time_url = isset($rb_agencyinteract_options_arr['rb_agencyinteract_option_redirect_first_time_url'])?$rb_agencyinteract_options_arr['rb_agencyinteract_option_redirect_first_time_url']:"/profile-member/account/";
+		$rb_agencyinteract_option_redirect_custom_login = isset($rb_agencyinteract_options_arr['rb_agencyinteract_option_redirect_custom_login'])?$rb_agencyinteract_options_arr['rb_agencyinteract_option_redirect_custom_login']:0;
+		$rb_agencyinteract_option_redirect_afterlogin = isset($rb_agencyinteract_options_arr['rb_agencyinteract_option_redirect_afterlogin'])?$rb_agencyinteract_options_arr['rb_agencyinteract_option_redirect_afterlogin']:1;
+		$rb_agencyinteract_option_redirect_afterlogin_url = isset($rb_agencyinteract_options_arr['rb_agencyinteract_option_redirect_afterlogin_url'])?$rb_agencyinteract_options_arr['rb_agencyinteract_option_redirect_afterlogin_url']:"/profile-member/account/";
+		
+		//start conditions	
+		if( isset($user_ID) && ($is_model_or_talent > 0) || current_user_can("edit_posts")){
+
+			if(!empty($redirect)){
+				wp_redirect($redirect);
+				exit();
+			}
+
+			if(current_user_can("edit_posts")) {
+				wp_redirect(admin_url("admin.php?page=rb_agency_menu"));
+				exit();
+			}else{ //if none admin
+
+				//if model or talent
+				if($is_model_or_talent > 0){
+
+					$rb_agency_new_registeredUser = get_user_meta($user_ID,'rb_agency_new_registeredUser',true);
+					if(!empty($rb_agency_new_registeredUser)){
+
+						if($rb_agencyinteract_option_redirect_first_time == 1){
+							wp_redirect(get_bloginfo("url"). "/profile-member/account/");
+						} else {
+							wp_redirect($rb_agencyinteract_option_redirect_first_time_url);
+						}
+
+					}else{
+
+						if(get_user_meta($user_ID, 'rb_agency_interact_clientdata', true)){
+							wp_redirect(get_bloginfo("url"). "/casting-dashboard/");
+						} else {
+							if($rb_agencyinteract_option_redirect_afterlogin == 1){
+
+								if(isset($_GET["h"])){
+									wp_redirect(get_bloginfo("url").$_GET["h"]);
+									exit();
+								}else{
+									wp_redirect(get_bloginfo("url"). "/profile-member/");
+								}
+											
+
+							} else {
+										
+								if(isset($_GET["h"])){
+									wp_redirect(get_bloginfo("url").$_GET["h"]);
+									exit();
+								}else{
+									wp_redirect($rb_agencyinteract_option_redirect_afterlogin_url);
+								}
+											
+
+							}
+						}
+
+
+					}
+				} // :end if model or talent
+				elseif($is_casting_agent > 0) {//if casting agent
+
+					//should notify user that we is unable to login here
+
+				} // :end if casting agent
+				
+			}//:end if not admin
+
+		}//:end conditions
+		elseif($profile_is_active->ProfileIsActive == 3){
+			wp_redirect(get_bloginfo("url"). "/profile-member/pending/"); 
+		} // :end if profile is pending
+		else{
+
+			$wpdb->get_row($wpdb->prepare("SELECT * FROM ".table_agency_casting." WHERE CastingUserLinked = %d  ",$user_ID));
+			$is_casting  = $wpdb->num_rows;
+
+			if( $is_casting > 0){
+				wp_logout();
+				wp_redirect(get_bloginfo("url"). "/profile-login/?ref=casting");
+
+			} else { // user is a model/talent but wp user_id is not linked to any rb profile.
+
+				if($rb_agencyinteract_option_redirect_afterlogin == 1){
+
+					if(isset($_GET["h"])){
+						wp_redirect(get_bloginfo("url").$_GET["h"]);
+						exit();
+					}else{
+						wp_redirect(get_bloginfo("url"). "/profile-member/");
+					}
+										
+
+				} else {
+
+					if(isset($_GET["h"])){
+						wp_redirect(get_bloginfo("url").$_GET["h"]);
+						exit();
+					}else{
+						wp_redirect($rb_agencyinteract_option_redirect_afterlogin_url);
+					}
+							
+				}
+			}
+		} // : end last else
+	}
+
+
+		function rb_login_form_for_talent_wid_reg(){
+			$LOGIN_URL = trim($_SERVER['REQUEST_URI'],'/');
+			$OUTPUT = '';
+			/* Check if users can register. */
+			$registration = get_option( 'rb_agencyinteract_options' );
+			$rb_agencyinteract_option_registerallow = isset($registration["rb_agencyinteract_option_registerallow"]) ?$registration["rb_agencyinteract_option_registerallow"]:"";
+			$rb_agencyinteract_option_registerallowAgentProducer = isset($registration['rb_agencyinteract_option_registerallowAgentProducer'])?$registration['rb_agencyinteract_option_registerallowAgentProducer']:0;
+			$rb_agencyinteract_option_switch_sidebar = isset($registration["rb_agencyinteract_option_switch_sidebar"])?(int)$registration["rb_agencyinteract_option_switch_sidebar"]:"";
+
+			if (( current_user_can("create_users") || $rb_agencyinteract_option_registerallow )) {
+				$widthClass = "half";
+			} else {
+				$widthClass = "full";
+			}
+
+		// File Path: interact/theme/include-login.php
+		// Site Url : /profile-login/
+
+			$OUTPUT .= "     <div id=\"rbsignin-register\" class=\"rbinteract\">\n";
+				$ref = get_query_var("ref");
+
+			if (isset($error)){
+			$OUTPUT .= "<p class=\"error\">". $error ."</p>\n";
+			}
+			if (isset($ref) && $ref == "pending-approval") {
+			$OUTPUT .= "<p id=\"message\" class=\"updated\">". __("Your account is pending for approval.", RBAGENCY_interact_TEXTDOMAIN). "</p>\n";
+			}
+			if (isset($ref) && $ref == "casting") {
+			$OUTPUT .= "<p id=\"message\" class=\"updated\">". __("Your account is not registered as Talent/Model.", RBAGENCY_interact_TEXTDOMAIN).  __(" Click", RBAGENCY_interact_TEXTDOMAIN)." <a href=\"".get_bloginfo("url")."/casting-login/\">".__("here", RBAGENCY_interact_TEXTDOMAIN)."</a> ".__("to login as Casting.", RBAGENCY_interact_TEXTDOMAIN)."</p>\n";
+			}
+
+
+			if(isset($ref) && $ref == "reset_password"){
+				$OUTPUT .= "<p  id=\"message\" class=\"updated\">".__("Check your e-mail for the reset link to create a new password.", RBAGENCY_interact_TEXTDOMAIN)."</p>\n";
+			}
+
+			if(isset($_GET['action']) && $_GET['action']== "resetpass"){
+				$OUTPUT .= "<p  id=\"message\" class=\"updated\">".__("Your password has been reset.", RBAGENCY_interact_TEXTDOMAIN)."</p>\n";
+			}
+
+			$OUTPUT .= "        <div id=\"rbsign-in\" class=\"inline-block\">\n";
+			$OUTPUT .= "          <h1>". __("Talents Sign In", RBAGENCY_interact_TEXTDOMAIN). "</h1>\n";
+			if(isset($_GET["h"])){
+				$OUTPUT .= "          <form name=\"loginform\" id=\"login\" action=\"". network_site_url("/"). "profile-login/?h=".$_GET["h"]."\" method=\"post\">\n";
+			}else{
+				$OUTPUT .= "          <form name=\"loginform\" id=\"login\" action=\"". network_site_url("/"). "profile-login/\" method=\"post\">\n";
+			}
+
+			$OUTPUT .= "            <div class=\"field-row\">\n";
+			$OUTPUT .= "              <label for=\"user-name\">". __("Username", RBAGENCY_interact_TEXTDOMAIN). "</label><input type=\"text\" name=\"user-name\" value=\"". (isset($_POST['user-name']) ? esc_html($_POST['user-name']):"") ."\" id=\"user-name\" />\n";
+			$OUTPUT .= "            </div>\n";
+			$OUTPUT .= "            <div class=\"field-row\">\n";
+			$OUTPUT .= "              <label for=\"password\">". __("Password", RBAGENCY_interact_TEXTDOMAIN). "</label><input type=\"password\" name=\"password\" value=\"\" id=\"password\" /> <a href=\"". get_bloginfo('wpurl') ."/wp-login.php?action=lostpassword&redirect_to=".$_SERVER['REQUEST_URI']."?ref=reset_password\">". __("forgot password", RBAGENCY_interact_TEXTDOMAIN). "?</a>\n";
+			$OUTPUT .= "            </div>\n";
+			$OUTPUT .= "            <div class=\"field-row\">\n";
+			$OUTPUT .= "              <label><input type=\"checkbox\" name=\"remember-me\" value=\"forever\" /> ". __("Keep me signed in", RBAGENCY_interact_TEXTDOMAIN). "</label>\n";
+			$OUTPUT .= "            </div>\n";
+			$OUTPUT .= "            <div class=\"field-row submit-row\">\n";
+			$OUTPUT .= "              <input type=\"hidden\" name=\"action\" value=\"log-in\" />\n";
+			$OUTPUT .= "              <input type=\"submit\" value=\"". __("Sign In", RBAGENCY_interact_TEXTDOMAIN). "\" /><br />\n";
+			$OUTPUT .= "            </div>\n";
+			$OUTPUT .= "          </form>\n";
+			$OUTPUT .= "        </div> <!-- rbsign-in -->\n";
+
+			//if( isset($rb_agencyinteract_option_switch_sidebar) && $rb_agencyinteract_option_switch_sidebar == 1){
+						$OUTPUT .= "        <div id=\"rbsign-up\" class=\"inline-block\">\n";
+						if (( current_user_can("create_users") || $rb_agencyinteract_option_registerallow == 1)) {
+
+							$OUTPUT .= "          <div id=\"talent-register\" class=\"register\">\n";
+							$OUTPUT .= "            <h1>". __("Not a member", RBAGENCY_interact_TEXTDOMAIN). "?</h1>\n";
+							$OUTPUT .= "            <h3>". __("Talent", RBAGENCY_interact_TEXTDOMAIN). " - ". __("Register here", RBAGENCY_interact_TEXTDOMAIN). "</h3>\n";
+							$OUTPUT .= "            <ul>\n";
+							$OUTPUT .= "              <li>". __("Create your free profile page", RBAGENCY_interact_TEXTDOMAIN). "</li>\n";
+							$OUTPUT .= "              <li>". __("Apply to Auditions & Jobs", RBAGENCY_interact_TEXTDOMAIN). "</li>\n";
+							$OUTPUT .= "            </ul>\n";
+							$OUTPUT .= "              <input type=\"button\" onClick=\"location.href='". get_bloginfo("wpurl") ."/profile-register/'\" value=\"". __("Register Now", RBAGENCY_interact_TEXTDOMAIN). "\" />\n";
+							$OUTPUT .= "          </div> <!-- talent-register -->\n";
+							$OUTPUT .= "          <div class=\"clear line\"></div>\n";
+
+
+							}
+						$OUTPUT .= "        </div> <!-- rbsign-up -->\n";
+			//}
+			//else {
+				$OUTPUT .= "        <div id=\"rbsign-up\" class=\"inline-block\">\n";
+				$OUTPUT .= "          <div id=\"talent-register\" class=\"register\">\n";
+				if ( dynamic_sidebar('rb-agency-interact-login-sidebar') ) :endif; 
+				$OUTPUT .= "          </div> <!-- talent-register -->\n";
+				$OUTPUT .= "          <div class=\"clear line\"></div>\n";
+				$OUTPUT .= "        </div> <!-- rbsign-up -->\n";
+
+			//}
+
+			$OUTPUT .= "      <div class=\"clear line\"></div>\n";
+			$OUTPUT .= "      </div>\n";
+					return $OUTPUT;
+	}
+
+	function rb_login_form_for_talent_wo_reg(){
+			$LOGIN_URL = trim($_SERVER['REQUEST_URI'],'/');
+			$OUTPUT = '';
+			/* Check if users can register. */
+			$registration = get_option( 'rb_agencyinteract_options' );
+			$rb_agencyinteract_option_registerallow = isset($registration["rb_agencyinteract_option_registerallow"]) ?$registration["rb_agencyinteract_option_registerallow"]:"";
+			$rb_agencyinteract_option_registerallowAgentProducer = isset($registration['rb_agencyinteract_option_registerallowAgentProducer'])?$registration['rb_agencyinteract_option_registerallowAgentProducer']:0;
+			$rb_agencyinteract_option_switch_sidebar = isset($registration["rb_agencyinteract_option_switch_sidebar"])?(int)$registration["rb_agencyinteract_option_switch_sidebar"]:"";
+
+			if (( current_user_can("create_users") || $rb_agencyinteract_option_registerallow )) {
+				$widthClass = "half";
+			} else {
+				$widthClass = "full";
+			}
+
+		// File Path: interact/theme/include-login.php
+		// Site Url : /profile-login/
+
+			$OUTPUT .= "     <div id=\"rbsignin-register\" class=\"rbinteract\">\n";
+				$ref = get_query_var("ref");
+
+			if (isset($error)){
+			$OUTPUT .= "<p class=\"error\">". $error ."</p>\n";
+			}
+			if (isset($ref) && $ref == "pending-approval") {
+			$OUTPUT .= "<p id=\"message\" class=\"updated\">". __("Your account is pending for approval.", RBAGENCY_interact_TEXTDOMAIN). "</p>\n";
+			}
+			if (isset($ref) && $ref == "casting") {
+			$OUTPUT .= "<p id=\"message\" class=\"updated\">". __("Your account is not registered as Talent/Model.", RBAGENCY_interact_TEXTDOMAIN).  __(" Click", RBAGENCY_interact_TEXTDOMAIN)." <a href=\"".get_bloginfo("url")."/casting-login/\">".__("here", RBAGENCY_interact_TEXTDOMAIN)."</a> ".__("to login as Casting.", RBAGENCY_interact_TEXTDOMAIN)."</p>\n";
+			}
+
+
+			if(isset($ref) && $ref == "reset_password"){
+				$OUTPUT .= "<p  id=\"message\" class=\"updated\">".__("Check your e-mail for the reset link to create a new password.", RBAGENCY_interact_TEXTDOMAIN)."</p>\n";
+			}
+
+			if(isset($_GET['action']) && $_GET['action']== "resetpass"){
+				$OUTPUT .= "<p  id=\"message\" class=\"updated\">".__("Your password has been reset.", RBAGENCY_interact_TEXTDOMAIN)."</p>\n";
+			}
+
+			$OUTPUT .= "        <div id=\"rbsign-in\" class=\"inline-block\">\n";
+			$OUTPUT .= "          <h1>". __("Talents Sign In", RBAGENCY_interact_TEXTDOMAIN). "</h1>\n";
+			if(isset($_GET["h"])){
+				$OUTPUT .= "          <form name=\"loginform\" id=\"login\" action=\"". network_site_url("/"). "profile-login/?h=".$_GET["h"]."\" method=\"post\">\n";
+			}else{
+				$OUTPUT .= "          <form name=\"loginform\" id=\"login\" action=\"". network_site_url("/"). "profile-login/\" method=\"post\">\n";
+			}
+
+			$OUTPUT .= "            <div class=\"field-row\">\n";
+			$OUTPUT .= "              <label for=\"user-name\">". __("Username", RBAGENCY_interact_TEXTDOMAIN). "</label><input type=\"text\" name=\"user-name\" value=\"". (isset($_POST['user-name']) ? esc_html($_POST['user-name']):"") ."\" id=\"user-name\" />\n";
+			$OUTPUT .= "            </div>\n";
+			$OUTPUT .= "            <div class=\"field-row\">\n";
+			$OUTPUT .= "              <label for=\"password\">". __("Password", RBAGENCY_interact_TEXTDOMAIN). "</label><input type=\"password\" name=\"password\" value=\"\" id=\"password\" /> <a href=\"". get_bloginfo('wpurl') ."/wp-login.php?action=lostpassword&redirect_to=".$_SERVER['REQUEST_URI']."?ref=reset_password\">". __("forgot password", RBAGENCY_interact_TEXTDOMAIN). "?</a>\n";
+			$OUTPUT .= "            </div>\n";
+			$OUTPUT .= "            <div class=\"field-row\">\n";
+			$OUTPUT .= "              <label><input type=\"checkbox\" name=\"remember-me\" value=\"forever\" /> ". __("Keep me signed in", RBAGENCY_interact_TEXTDOMAIN). "</label>\n";
+			$OUTPUT .= "            </div>\n";
+			$OUTPUT .= "            <div class=\"field-row submit-row\">\n";
+			$OUTPUT .= "              <input type=\"hidden\" name=\"action\" value=\"log-in\" />\n";
+			$OUTPUT .= "              <input type=\"submit\" value=\"". __("Sign In", RBAGENCY_interact_TEXTDOMAIN). "\" /><br />\n";
+			$OUTPUT .= "            </div>\n";
+			$OUTPUT .= "          </form>\n";
+			$OUTPUT .= "        </div> <!-- rbsign-in -->\n";
+
+			
+
+			$OUTPUT .= "      <div class=\"clear line\"></div>\n";
+			$OUTPUT .= "      </div>\n";
+					return $OUTPUT;
+	}
+
+	/**
+	*
+	* FOR CASTING AGENT
+	*
+	*/
+
+	function agent_login_form($atts){
+
+		$a = shortcode_atts( array(
+			        'registration_widget' => "false"
+			    ), $atts );
+
+		
+
+		session_start();
+		$rb_agencyinteract_options_arr = get_option('rb_agencyinteract_options');
+		$rb_agencyinteract_option_redirect_first_time = isset($rb_agencyinteract_options_arr['rb_agencyinteract_option_redirect_first_time'])?$rb_agencyinteract_options_arr['rb_agencyinteract_option_redirect_first_time']:1;
+		$rb_agencyinteract_option_redirect_first_time_url = isset($rb_agencyinteract_options_arr['rb_agencyinteract_option_redirect_first_time_url'])?$rb_agencyinteract_options_arr['rb_agencyinteract_option_redirect_first_time_url']:"/profile-member/account/";
+		$rb_agencyinteract_option_redirect_custom_login = isset($rb_agencyinteract_options_arr['rb_agencyinteract_option_redirect_custom_login'])?$rb_agencyinteract_options_arr['rb_agencyinteract_option_redirect_custom_login']:0;
+		$rb_agencyinteract_option_redirect_afterlogin = isset($rb_agencyinteract_options_arr['rb_agencyinteract_option_redirect_afterlogin'])?$rb_agencyinteract_options_arr['rb_agencyinteract_option_redirect_afterlogin']:1;
+		$rb_agencyinteract_option_redirect_afterlogin_url = isset($rb_agencyinteract_options_arr['rb_agencyinteract_option_redirect_afterlogin_url'])?$rb_agencyinteract_options_arr['rb_agencyinteract_option_redirect_afterlogin_url']:"/profile-member/account/";
+		
+
+		//if login submit
+		if ( $_SERVER['REQUEST_METHOD'] == "POST" && !empty( $_POST['action'] ) && $_POST['action'] == 'log-in' ) {
+			
+			global $error;
+		    $login = wp_signon( array( 'user_login' => $_POST['user-name'], 'user_password' => $_POST['password'], 'remember' => isset($_POST['remember-me'])?$_POST['remember-me']:false ), false );
+
+		    get_currentuserinfo();
+
+
+			if(!is_wp_error($login)) {
+				wp_set_current_user($login->ID);// populate
+
+				rb_get_user_info_for_shortcode_agent_login();
+			} else {
+				$error .= __( $login->get_error_message(), RBAGENCY_interact_TEXTDOMAIN);
+				$have_error = true;
+			}
+		}
+		//:end login submit
+
+		//this is for reset password
+		if($_GET['action'] == 'rp'){
+			$_SESSION['login_username'] = $_GET['login'];
+			wp_redirect(site_url()."/wp-login.php?action=".$_GET['action']."&key=".$_GET['key']."&login=".$_GET['login']);
+			exit();
+		}
+		if($_GET['action'] == 'resetpass'){
+			global $wpdb;
+			$uid = '';
+			$user_table = $wpdb->prefix.'users';
+			$users = $wpdb->get_results("SELECT ID FROM $user_table WHERE user_login =  '".$_SESSION['login_username']."'");
+			foreach($users as $user){
+				$uid = $user->ID;
+			}
+			//echo $uid;
+			wp_set_password( $_POST['pass1-text'], $uid ) ;
+		}
+		//:end this is for reset password
+
+
+		// Already logged in 
+		if(is_user_logged_in()){
+			global $user_ID;
+			$user_ID = get_current_user_id();
+
+			if(current_user_can("edit_posts")) {
+				wp_redirect(admin_url("admin.php?page=rb_agency_menu"));
+
+			}
+
+			//redirect to job
+			if(isset($_GET["h"])){
+				wp_redirect(get_bloginfo("url").$_GET["h"]);
+				exit();
+			}
+
+			$wpdb->get_row($wpdb->prepare("SELECT * FROM ".table_agency_casting." WHERE CastingUserLinked = %d  ",$user_ID));
+			$is_casting  = $wpdb->num_rows;
+
+			if( $is_casting > 0){
+				wp_redirect(get_bloginfo("url"). "/casting-dashboard/");
+
+			} else { // user is a model/talent but wp user_id is not linked to any rb profile.
+				if($rb_agencyinteract_option_redirect_afterlogin == 1){
+					wp_redirect(get_bloginfo("url"). "/profile-member/");
+
+				} else {
+					wp_redirect($rb_agencyinteract_option_redirect_afterlogin_url);
+
+				}
+			}
+
+			$OUTPUT = '';
+
+			// Call Header
+			$OUTPUT .= $rb_header = RBAgency_Common::rb_header();
+			$OUTPUT .= "<div id=\"rbcontent\" class=\"rb-interact rb-interact-login\">\n";
+
+			global $user_ID; 
+			$login = get_userdata( $user_ID );
+			
+			get_user_login_info();
+
+
+			$OUTPUT .= "    <p class=\"alert\">\n";
+							printf( __('You have successfully logged in as <a href="%1$s" title="%2$s">%2$s</a>.', RBAGENCY_interact_TEXTDOMAIN), "/profile-member/", $login->display_name );
+			$OUTPUT .= "		<a href=\"". wp_logout_url( get_permalink() ) ."\" title=\"". __('Log out of this account', RBAGENCY_interact_TEXTDOMAIN) ."\">". __('Log out &raquo;', RBAGENCY_interact_TEXTDOMAIN) ."</a>\n";
+			$OUTPUT .= "    </p><!-- .alert -->\n";
+			$OUTPUT .= "</div><!-- #rbcontent -->\n";
+
+			// Call Footer
+			$OUTPUT .= $rb_footer = RBAgency_Common::rb_footer();
+
+		}// :end already logged in
+
+		else{ //not logged in
+
+			// Prepare Page
+
+			// Call Header
+			$OUTPUT .= $rb_header = RBAgency_Common::rb_header();
+
+				$OUTPUT .= "<div id=\"rbcontent\" class=\"rb-interact rb-interact-login\">\n";
+
+					// Show Login Form
+					$hideregister = true;
+					//include("include-login.php");
+
+					if($a['registration_widget'] == "true"){
+						$OUTPUT .= rb_login_form_for_agent_wid_reg();
+					}else{
+						$OUTPUT .= rb_login_form_for_agent_wo_reg();
+					}
+				
+
+			// Call Footer
+			$OUTPUT .= $rb_footer = RBAgency_Common::rb_footer();
+
+		}
+
+		return $OUTPUT;
+
+	}	
+
+	add_shortcode('agent_login_form','agent_login_form');
+
+
+	function rb_get_user_info_for_shortcode_agent_login(){
+		global $user_ID, $wpdb;
+		$redirect = isset($_POST["lastviewed"])?$_POST["lastviewed"]:"";
+		get_currentuserinfo();
+		$user_info = get_userdata( $user_ID );
+
+		// Check if user is registered as Model/Talent
+    	$profile_is_active = $wpdb->get_row($wpdb->prepare("SELECT * FROM ".table_agency_profile." WHERE ProfileUserLinked = %d  ",$user_ID));
+    	$is_model_or_talent  = $wpdb->num_rows;
+
+    	// Check if user is agent
+    	$casting_is_active = $wpdb->get_row($wpdb->prepare("SELECT * FROM ".table_agency_casting." WHERE CastingUserLinked = %d  ",$user_ID));
+    	$is_casting_agent  = $wpdb->num_rows;
+
+    	// login options
+    	$rb_agencyinteract_options_arr = get_option('rb_agencyinteract_options');
+		$rb_agencyinteract_option_redirect_first_time = isset($rb_agencyinteract_options_arr['rb_agencyinteract_option_redirect_first_time'])?$rb_agencyinteract_options_arr['rb_agencyinteract_option_redirect_first_time']:1;
+		$rb_agencyinteract_option_redirect_first_time_url = isset($rb_agencyinteract_options_arr['rb_agencyinteract_option_redirect_first_time_url'])?$rb_agencyinteract_options_arr['rb_agencyinteract_option_redirect_first_time_url']:"/profile-member/account/";
+		$rb_agencyinteract_option_redirect_custom_login = isset($rb_agencyinteract_options_arr['rb_agencyinteract_option_redirect_custom_login'])?$rb_agencyinteract_options_arr['rb_agencyinteract_option_redirect_custom_login']:0;
+		$rb_agencyinteract_option_redirect_afterlogin = isset($rb_agencyinteract_options_arr['rb_agencyinteract_option_redirect_afterlogin'])?$rb_agencyinteract_options_arr['rb_agencyinteract_option_redirect_afterlogin']:1;
+		$rb_agencyinteract_option_redirect_afterlogin_url = isset($rb_agencyinteract_options_arr['rb_agencyinteract_option_redirect_afterlogin_url'])?$rb_agencyinteract_options_arr['rb_agencyinteract_option_redirect_afterlogin_url']:"/profile-member/account/";
+		
+		//start conditions	
+		if( isset($user_ID) && ($is_model_or_talent > 0) || current_user_can("edit_posts")){
+
+			if(!empty($redirect)){
+				wp_redirect($redirect);
+				exit();
+			}
+
+			if(current_user_can("edit_posts")) {
+				wp_redirect(admin_url("admin.php?page=rb_agency_menu"));
+				exit();
+			}else{ //if none admin
+
+				//if model or talent
+				if($is_model_or_talent > 0){
+
+					//should notify user that we is unable to login here
+
+				} // :end if model or talent
+				elseif($is_casting_agent > 0) {//if casting agent
+
+					
+					$casting_status = "";
+					$q = "SELECT * FROM ".table_agency_casting." WHERE CastingUserLinked = ".$user_ID;
+					$result = $wpdb->get_results($q);
+					foreach($result as $r){
+						$casting_status = $r->CastingIsActive;
+					}
+
+					$url = $rb_agencyinteract_options_arr['rb_agencyinteract_option_redirect_afterlogin_agent'];
+					if( !empty($url)){
+
+						$customUrl = '/casting-dashboard/';
+					}else{
+
+						$customUrl = $rb_agencyinteract_options_arr['rb_agencyinteract_option_redirect_afterlogin_agent_url'];
+					}
+
+					if($casting_status == 3){
+						//header("Location:".get_bloginfo("wpurl").'/casting-pending?status=pending');
+						wp_redirect(get_bloginfo("wpurl").'/casting-pending?status=pending');
+						exit();
+					}else{
+						//header("Location: ". get_bloginfo("wpurl").  $customUrl);
+						wp_redirect(get_bloginfo("wpurl").  $customUrl);
+						exit();
+					}
+
+				} // :end if casting agent
+				
+			}//:end if not admin
+
+		}//:end conditions
+		elseif($profile_is_active->ProfileIsActive == 3){
+			wp_redirect(get_bloginfo("url"). "/profile-member/pending/"); 
+		} // :end if profile is pending
+		else{
+
+			$wpdb->get_row($wpdb->prepare("SELECT * FROM ".table_agency_casting." WHERE CastingUserLinked = %d  ",$user_ID));
+			$is_casting  = $wpdb->num_rows;
+
+			if( $is_casting > 0){
+				wp_logout();
+				wp_redirect(get_bloginfo("url"). "/profile-login/?ref=casting");
+
+			} else { // user is a model/talent but wp user_id is not linked to any rb profile.
+
+				if($rb_agencyinteract_option_redirect_afterlogin == 1){
+
+					if(isset($_GET["h"])){
+						wp_redirect(get_bloginfo("url").$_GET["h"]);
+						exit();
+					}else{
+						wp_redirect(get_bloginfo("url"). "/profile-member/");
+					}
+										
+
+				} else {
+
+					if(isset($_GET["h"])){
+						wp_redirect(get_bloginfo("url").$_GET["h"]);
+						exit();
+					}else{
+						wp_redirect($rb_agencyinteract_option_redirect_afterlogin_url);
+					}
+							
+				}
+			}
+		} // : end last else
+	}
+
+
+		function rb_login_form_for_agent_wid_reg(){
+			
+			$OUTPUT = "";
+
+			/* Check if users can register. */
+			$registration = get_option( 'rb_agencyinteract_options' );
+			$rb_agencyinteract_option_registerallow = isset($registration["rb_agencyinteract_option_registerallow"]) ? $registration["rb_agencyinteract_option_registerallow"]:0;
+			$rb_agencyinteract_option_registerallowAgentProducer = isset($registration['rb_agencyinteract_option_registerallowAgentProducer'])?$registration['rb_agencyinteract_option_registerallowAgentProducer']:0;
+
+			$rb_agencyinteract_option_switch_sidebar_agent = isset($registration["rb_agencyinteract_option_switch_sidebar_agent"])?(int)$registration["rb_agencyinteract_option_switch_sidebar_agent"]:"";
+
+			if (( current_user_can("create_users") || $rb_agencyinteract_option_registerallow )) {
+				$widthClass = "half";
+			} else {
+				$widthClass = "full";
+			}
+
+			$OUTPUT .= "     <div id=\"rbsignin-register\" class=\"rbinteract\">\n";
+
+			if ( $error ) {
+			$OUTPUT .= "<p class=\"error\">". $error ."</p>\n";
+			}
+
+			$OUTPUT .= "        <div id=\"rbsign-in\" class=\"inline-block\">\n";
+			$OUTPUT .= "          <h1>". __("Clients Sign In", RBAGENCY_interact_TEXTDOMAIN). "</h1>\n";
+			$OUTPUT .= "          <form name=\"loginform\" id=\"login\" action=\"". network_site_url("/"). "casting-login/\" method=\"post\">\n";
+			$OUTPUT .= "            <div class=\"field-row\">\n";
+			$OUTPUT .= "              <label for=\"user-name\">". __("Username", RBAGENCY_interact_TEXTDOMAIN). "</label><input type=\"text\" name=\"user-name\" value=\"". esc_attr( isset($_POST['user-name'])?$_POST['user-name']:"", 1 ) ."\" id=\"user-name\" />\n";
+			$OUTPUT .= "            </div>\n";
+			$OUTPUT .= "            <div class=\"field-row\">\n";
+			$OUTPUT .= "              <label for=\"password\">". __("Password", RBAGENCY_interact_TEXTDOMAIN). "</label><input type=\"password\" name=\"password\" value=\"\" id=\"password\" /> <a href=\"". get_bloginfo('wpurl') ."/wp-login.php?action=lostpassword\">". __("forgot password", RBAGENCY_interact_TEXTDOMAIN). "?</a>\n";
+			$OUTPUT .= "            </div>\n";
+			$OUTPUT .= "            <div class=\"field-row\">\n";
+			$OUTPUT .= "              <label><input type=\"checkbox\" name=\"remember-me\" value=\"forever\" /> ". __("Keep me signed in", RBAGENCY_interact_TEXTDOMAIN). "</label>\n";
+			$OUTPUT .= "            </div>\n";
+			$OUTPUT .= "            <div class=\"field-row submit-row\">\n";
+			$OUTPUT .= "              <input type=\"hidden\" name=\"action\" value=\"log-in\" />\n";
+			$OUTPUT .= "              <input type=\"submit\" value=\"". __("Sign In", RBAGENCY_interact_TEXTDOMAIN). "\" /><br />\n";
+			$OUTPUT .= "            </div>\n";
+			$OUTPUT .= "          </form>\n";
+			$OUTPUT .= "        </div> <!-- rbsign-in -->\n";
+
+
+
+
+			//if($registration == "true"){
+
+				//if ( $registration == "true") {
+
+						/*	echo "        <div id=\"rbsign-up\" class=\"inline-block\">\n";
+							echo "          <div id=\"talent-register\" class=\"register\">\n";
+							echo "            <h1>". __("Not a member", RBAGENCY_interact_TEXTDOMAIN). "?</h1>\n";
+							echo "            <h3>". __("Client", RBAGENCY_interact_TEXTDOMAIN). " - ". __("Register here", RBAGENCY_interact_TEXTDOMAIN). "</h3>\n";
+							echo "            <ul>\n";
+							echo "              <li>". __("Create your free profile page", RBAGENCY_interact_TEXTDOMAIN). "</li>\n";
+							echo "              <li><a href=\"". get_bloginfo("wpurl") ."/casting-register\" class=\"rb_button\">". __("Register as Casting Agent", RBAGENCY_interact_TEXTDOMAIN). "</a></li>\n";
+							echo "            </ul>\n";
+							echo "          </div> <!-- talent-register -->\n";
+							echo "          <div class=\"clear line\"></div>\n";*/
+							$OUTPUT .= "        <div id=\"rbsign-up\" class=\"inline-block\">\n";
+							$OUTPUT .= "          <div id=\"talent-register\" class=\"register\">\n";
+							$OUTPUT .= "            <h1>". __("Not a member", RBAGENCY_interact_TEXTDOMAIN). "?</h1>\n";
+
+							$OUTPUT .= "<h3>". __("Client - Register here", RBAGENCY_interact_TEXTDOMAIN). "</h3>";
+							$OUTPUT .= "<ul>";
+							$OUTPUT .= "	<li>". __("Create your free profile page", RBAGENCY_casting_TEXTDOMAIN). "</li>";
+							$OUTPUT .= "	<li>". __("List Auditions & Jobs Free", RBAGENCY_casting_TEXTDOMAIN). "</li>";
+							$OUTPUT .= "	<li>". __("Contact People in the talent Directory", RBAGENCY_casting_TEXTDOMAIN). "</li>";
+							$OUTPUT .= "</ul>";
+							$OUTPUT .= "<input type=\"button\" onclick=\"location.href='/casting-register'\" value=\"". __("Register Now", RBAGENCY_casting_TEXTDOMAIN). "\">";
+							$OUTPUT .= "          </div> <!-- talent-register -->\n";
+							$OUTPUT .= "          <div class=\"clear line\"></div>\n";
+							$OUTPUT .= "        </div> <!-- rbsign-up -->\n";
+
+							$OUTPUT .= "        </div> <!-- rbsign-up -->\n";
+				//}
+			//}
+			//else {
+				$OUTPUT .= "        <div id=\"rbsign-up\" class=\"inline-block\">\n";
+				$OUTPUT .= "          <div id=\"talent-register\" class=\"register\">\n";
+				if ( dynamic_sidebar('rb-agency-casting-login-sidebar') ) :endif;
+				$OUTPUT .= "          </div> <!-- talent-register -->\n";
+				$OUTPUT .= "          <div class=\"clear line\"></div>\n";
+				$OUTPUT .= "        </div> <!-- rbsign-up -->\n";
+
+			//}
+
+
+			$OUTPUT .= "      <div class=\"clear line\"></div>\n";
+			$OUTPUT .= "      </div>\n";
+			return $OUTPUT;
+		}
+
+		function rb_login_form_for_agent_wo_reg(){
+			
+			$OUTPUT = "";
+
+			/* Check if users can register. */
+			$registration = get_option( 'rb_agencyinteract_options' );
+			$rb_agencyinteract_option_registerallow = isset($registration["rb_agencyinteract_option_registerallow"]) ? $registration["rb_agencyinteract_option_registerallow"]:0;
+			$rb_agencyinteract_option_registerallowAgentProducer = isset($registration['rb_agencyinteract_option_registerallowAgentProducer'])?$registration['rb_agencyinteract_option_registerallowAgentProducer']:0;
+
+			$rb_agencyinteract_option_switch_sidebar_agent = isset($registration["rb_agencyinteract_option_switch_sidebar_agent"])?(int)$registration["rb_agencyinteract_option_switch_sidebar_agent"]:"";
+
+			if (( current_user_can("create_users") || $rb_agencyinteract_option_registerallow )) {
+				$widthClass = "half";
+			} else {
+				$widthClass = "full";
+			}
+
+			$OUTPUT .= "     <div id=\"rbsignin-register\" class=\"rbinteract\">\n";
+
+			if ( $error ) {
+			$OUTPUT .= "<p class=\"error\">". $error ."</p>\n";
+			}
+
+			$OUTPUT .= "        <div id=\"rbsign-in\" class=\"inline-block\">\n";
+			$OUTPUT .= "          <h1>". __("Clients Sign In", RBAGENCY_interact_TEXTDOMAIN). "</h1>\n";
+			$OUTPUT .= "          <form name=\"loginform\" id=\"login\" action=\"". network_site_url("/"). "casting-login/\" method=\"post\">\n";
+			$OUTPUT .= "            <div class=\"field-row\">\n";
+			$OUTPUT .= "              <label for=\"user-name\">". __("Username", RBAGENCY_interact_TEXTDOMAIN). "</label><input type=\"text\" name=\"user-name\" value=\"". esc_attr( isset($_POST['user-name'])?$_POST['user-name']:"", 1 ) ."\" id=\"user-name\" />\n";
+			$OUTPUT .= "            </div>\n";
+			$OUTPUT .= "            <div class=\"field-row\">\n";
+			$OUTPUT .= "              <label for=\"password\">". __("Password", RBAGENCY_interact_TEXTDOMAIN). "</label><input type=\"password\" name=\"password\" value=\"\" id=\"password\" /> <a href=\"". get_bloginfo('wpurl') ."/wp-login.php?action=lostpassword\">". __("forgot password", RBAGENCY_interact_TEXTDOMAIN). "?</a>\n";
+			$OUTPUT .= "            </div>\n";
+			$OUTPUT .= "            <div class=\"field-row\">\n";
+			$OUTPUT .= "              <label><input type=\"checkbox\" name=\"remember-me\" value=\"forever\" /> ". __("Keep me signed in", RBAGENCY_interact_TEXTDOMAIN). "</label>\n";
+			$OUTPUT .= "            </div>\n";
+			$OUTPUT .= "            <div class=\"field-row submit-row\">\n";
+			$OUTPUT .= "              <input type=\"hidden\" name=\"action\" value=\"log-in\" />\n";
+			$OUTPUT .= "              <input type=\"submit\" value=\"". __("Sign In", RBAGENCY_interact_TEXTDOMAIN). "\" /><br />\n";
+			$OUTPUT .= "            </div>\n";
+			$OUTPUT .= "          </form>\n";
+			$OUTPUT .= "        </div> <!-- rbsign-in -->\n";
+
+
+
+			$OUTPUT .= "      <div class=\"clear line\"></div>\n";
+			$OUTPUT .= "      </div>\n";
+			return $OUTPUT;
+		}
+	
 ?>
