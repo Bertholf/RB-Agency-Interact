@@ -55,7 +55,7 @@ get_currentuserinfo();
 		}
 
 		if ( ($_SERVER["REQUEST_URI"]) == "/profile/") {$tabclass = "active"; } else {$tabclass = "inactive"; }
-		$profile_gallery = $wpdb->get_row($wpdb->prepare("SELECT ProfileGallery FROM ".table_agency_profile." WHERE ProfileContactEmail = '$current_user->user_email'"));
+		$profile_gallery = $wpdb->get_row($wpdb->prepare("SELECT ProfileGallery FROM ".table_agency_profile." WHERE ProfileContactEmail = '%s'",$current_user->user_email));
 		if(!empty($profile_gallery->ProfileGallery)){
 		echo " 		<div class=\"tab-inner tab-". $tabclass ."\">\n";
 		echo " 			<a  href=\"". get_bloginfo("wpurl") ."/profile/".$profile_gallery->ProfileGallery."\">\n";
