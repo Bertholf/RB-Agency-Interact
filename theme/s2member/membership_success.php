@@ -58,9 +58,9 @@ if(!isset($_GET['status'])){
 	//echo "<pre>";
 	//print_r($r);
 	//echo "</pre>";
-	//echo "<a href='".get_bloginfo("url")."/registration-success/?status=pending' style='background-color: rgb(0, 0, 0); color: rgb(255, 255, 255); padding: 10px;'>View My Profile</a>";
-	//echo "<a href='".get_bloginfo("url")."/registration-success/?status=pending' style='margin-left:10px;background-color: rgb(0, 0, 0); color: rgb(255, 255, 255); padding: 10px;'>Manage Account</a>";
-	//echo "<a href='".get_bloginfo("url")."' style='margin-left:10px;background-color: rgb(0, 0, 0); color: rgb(255, 255, 255); padding: 10px;'>Logout</a>";
+	echo "<a href='".get_bloginfo("url")."/registration-success/?status=pending' style='background-color: rgb(0, 0, 0); color: rgb(255, 255, 255); padding: 10px;'>View My Profile</a>";
+	echo "<a href='".get_bloginfo("url")."/registration-success/?status=pending' style='margin-left:10px;background-color: rgb(0, 0, 0); color: rgb(255, 255, 255); padding: 10px;'>Manage Account</a>";
+	echo "<a href='".get_bloginfo("url")."' style='margin-left:10px;background-color: rgb(0, 0, 0); color: rgb(255, 255, 255); padding: 10px;'>Logout</a>";
 }else{
 	echo '<h2>Your account is pending for approval. We will send you an email once your account is approved.</h2><br/>';
 }
