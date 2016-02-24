@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: RB Agency Interactive\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-01-26 07:24-1000\n"
-"PO-Revision-Date: 2015-11-20 16:40+0800\n"
+"PO-Revision-Date: 2016-02-23 15:09+0800\n"
 "Last-Translator: Rob Bertholf <rob@bertholf.com>\n"
 "Language-Team: RB Plugin <info@rbplugin.com>\n"
 "MIME-Version: 1.0\n"
@@ -11,420 +11,420 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-KeywordsList: __;gettext;gettext_noop\n"
 "X-Poedit-Basepath: .\n"
-"Language: en_US\n"
-"X-Generator: Poedit 1.8.1\n"
+"Language: it_IT\n"
+"X-Generator: Poedit 1.8.6\n"
 "X-Poedit-SearchPath-0: C:/Dropbox/Users/Rob/Scripts/RB Plugin/rb-agency-interact\n"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/rb-agency-interact.php:17
 msgid "This plugin requires WordPress version 2.8 or newer"
-msgstr "Wordpress 2.8 (richiesto)"
+msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/rb-agency-interact.php:102
 msgid "Profile Registration"
-msgstr "Registrazione profilo"
+msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/rb-agency-interact.php:105
 msgid "Approve Users"
-msgstr "Approva Utente"
+msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/rb-agency-interact.php:118
 msgid "Settings"
-msgstr "Impostazioni"
+msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/rb-agency-interact.php:184
 msgid "Almost done..."
-msgstr "Quasi finito..."
+msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/rb-agency-interact.php:184
 msgid "One More Step"
-msgstr "Primo step"
+msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/rb-agency-interact.php:184
 msgid "Please click here to complete the uninstallation process"
-msgstr "Clicca qui per terminare il processo"
+msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-login.php:5
 #: Plugin\rb-agency-interact/theme/member-login.php:52
 msgid "Members Sign in"
-msgstr "Login"
+msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-login.php:12
 #: Plugin\rb-agency-interact/theme/member-login.php:63
 msgid "forgot password"
-msgstr "password dimenticata"
+msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-login.php:15
 #: Plugin\rb-agency-interact/theme/member-login.php:66
 msgid "Keep me signed in"
-msgstr "Ricordami"
+msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-login.php:18
 #: Plugin\rb-agency-interact/theme/member-login.php:70
 msgid "Sign In"
-msgstr "Entra"
+msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-login.php:25
 msgid "Not a member"
-msgstr "Non registrato"
+msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-login.php:26
 msgid "Talent"
-msgstr "Profilo"
+msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-login.php:26
 msgid "Register here"
-msgstr "Registrati qui"
+msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-login.php:28
 msgid "Create your free profile page"
-msgstr "Crea il tuo profilo"
+msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-login.php:29
 msgid "Apply to Auditions & Jobs"
-msgstr "Applica su audizioni"
+msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-login.php:31
 msgid "Register as Talent / Model"
-msgstr "Registrati come profilo"
+msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-login.php:35
 msgid "Casting Agents & Producers"
-msgstr "Casting e Produttori"
+msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-login.php:37
 msgid "List Auditions & Jobs free"
-msgstr "Lista Audizioni e Lavori"
+msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-login.php:38
 msgid "Contact People in the Talent Directory"
-msgstr "Contatta il profilo"
+msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-login.php:40
 msgid "Register as Agent / Producer"
-msgstr "Registrati come agenzia"
+msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/member-login.php:28
 #, php-format
 msgid "You are currently logged in as <a href=\\\"%1$s\\\" title=\\\"%2$s\\\">%2$s</a>."
-msgstr "Tu sei entrato come <a href=\\\"%1$s\\\" title=\\\"%2$s\\\">%2$s</a>."
+msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/member-login.php:29
 #: Plugin\rb-agency-interact/theme/member-register.php:75
 msgid "Log out of this account"
-msgstr "Esci da questo account"
+msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/member-login.php:29
 msgid "Log out &raquo;"
-msgstr "Esci"
+msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/member-login.php:39
 #, php-format
 msgid "You have successfully logged in as <a href=\"%1$s\" title=\"%2$s\">%2$s</a>."
-msgstr "Sei uscito da <a href=\"%1$s\" title=\"%2$s\">%2$s</a>."
+msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/member-manage.php:23
 msgid "The passwords you entered do not match.  Your password was not updated."
-msgstr "Le password non coincidono. La tua passwors non sarà aggiornata"
+msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/member-manage.php:105
 msgid "Pages: "
-msgstr "Pagine"
+msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/member-manage.php:107
 msgid "Edit"
-msgstr "Edita"
+msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/member-manage.php:228
 msgid "Select Year"
-msgstr "Seleziona anno"
+msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/member-register.php:28
 msgid "A username is required for registration.<br />"
-msgstr "Richiesto un username per la registrazione<br />"
+msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/member-register.php:32
 msgid "Sorry, that username already exists!<br />"
-msgstr "L'username utilizzato esiste<br />"
+msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/member-register.php:36
 msgid "You must enter a valid email address.<br />"
-msgstr "Indirizzo email non valido<br />"
+msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/member-register.php:40
 msgid "Sorry, that email address is already used!<br />"
-msgstr "Indirizzo email già esiste<br />"
+msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/member-register.php:44
 msgid "You must agree to the terms and conditions to register.<br />"
-msgstr "Devi accettare i termini e le nostre condizioni<br />"
+msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/member-register.php:73
 msgid "You are currently logged in as ."
-msgstr "Sei attualmente connesso come"
+msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/member-register.php:75
 msgid "Log out"
-msgstr "Esci"
+msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/member-register.php:87
 msgid "Please check your email address. That's where you'll receive your login password.<br/> (It might go into your spam folder)"
-msgstr "Prego controlla la tua casella email. Dovresti aver ricevuto i dati per il login.<br/> (Controlla anche la cartella spam)"
+msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/member-register.php:98
 msgid "Users can register themselves or you can manually create users here."
-msgstr "I profili si possono registrare oppure è possibile creare manualmente gli utenti qui"
+msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/member-register.php:102
 msgid "Users cannot currently register themselves, but you can manually create users here."
-msgstr "I profili non possono registrarsi oppure è possibile creare manualmente gli utenti qui"
+msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/member-register.php:113
 msgid "Username (required)"
-msgstr "Username (richiesto)"
+msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/member-register.php:118
 msgid "First Name"
-msgstr "Nome"
+msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/member-register.php:123
 msgid "Last Name"
-msgstr "Cognome"
+msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/member-register.php:128
 msgid "E-mail (required)"
-msgstr "Email (richiesto)"
+msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/member-register.php:133
 msgid "Type of Profile"
-msgstr "Tipo profilo per cui ti vuoi candidare"
+msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/member-register.php:135
 msgid "Talent / Model"
-msgstr "Profilo"
+msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/member-register.php:136
 msgid "Agent / Producer"
-msgstr "Agente / Produttore"
+msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/member-register.php:142
 #, php-format
 msgid "I agree to the %s terms of service"
-msgstr "Accetto %s termini e condizioni"
+msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-menu.php
 #, php-format
 msgid "Overview"
-msgstr "Panoramica"
+msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-menu.php
 #, php-format
 msgid "My Account"
-msgstr "Il Mio Account"
+msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-menu.php
 #, php-format
 msgid "My Profile"
-msgstr "Il Mio Profilo"
+msgstr ""
 
 msgid "Edit your profile"
-msgstr "Modifica Profilo"
+msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-menu.php
 #, php-format
 msgid "My Media"
-msgstr "I miei media"
+msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-menu.php
 #, php-format
 msgid "View My Profile"
-msgstr "Visualizza profilo"
+msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/member-overview.php
 #, php-format
 msgid "Welcome Back"
-msgstr "Ben Tornato"
+msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/member-overview.php
 #, php-format
 msgid "Edit Your Account Details"
-msgstr "Aggiungi o Modifica i dati del tuo Account"
+msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/member-overview.php
 #, php-format
 msgid "Manage Your Profile Information"
-msgstr "Aggiungi le tue Informazioni Pubbliche"
+msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/member-overview.php
 #, php-format
 msgid "Manage Photos and Media"
-msgstr "Aggiungi le tue Foto (max.5) e Media"
+msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-profileaccount.php
 #, php-format
 msgid "Contact Information"
-msgstr "Informazioni Di Contatto"
+msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-profileaccount.php
 #, php-format
 msgid "Gallery Folder"
-msgstr "Folder Galleria"
+msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-profileaccount.php
 #, php-format
 msgid "Display Name"
-msgstr "Mostra Il Nome"
+msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-profileaccount.php
 #, php-format
 msgid "Gender"
-msgstr "Sesso"
+msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-profileaccount.php
 #, php-format
 msgid "Private Information"
-msgstr "Informazioni private"
+msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-profileaccount.php
 #, php-format
 msgid "The following information will appear only in administrative areas."
-msgstr "Le  seguenti informazioni saranno visibili soltanto all'Amministratore di Casting Club"
+msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-profileaccount.php
 #, php-format
 msgid "Email Address"
-msgstr "Indirizzo Email"
+msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-profileaccount.php
 #, php-format
 msgid "Birthdate YYYY-MM-DD"
-msgstr "Data di nascita YYYY-MM-DD"
+msgstr ""
 
 msgid "Birthdate"
-msgstr "Data di nascita"
+msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-profileaccount.php
 #, php-format
 msgid "Street"
-msgstr "Indirizzo"
+msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-profileaccount.php
 #, php-format
 msgid "City"
-msgstr "Città"
+msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-profileaccount.php
 #, php-format
 msgid "Country"
-msgstr "Regione"
+msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-profileaccount.php
 #, php-format
 msgid "State"
-msgstr "Provincia"
+msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-profileaccount.php
 #, php-format
 msgid "Zip"
-msgstr "C.A.P"
+msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-profileaccount.php
 #, php-format
 msgid "Phone"
-msgstr "Telefono"
+msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-profileaccount.php
 #, php-format
 msgid "Home:"
-msgstr "Casa:"
+msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-profileaccount.php
 #, php-format
 msgid "Cell:"
-msgstr "Mobile:"
+msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-profileaccount.php
 #, php-format
 msgid "Work:"
-msgstr "Ufficio:"
+msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-profileaccount.php
 #, php-format
 msgid "Website"
-msgstr "Sito Web"
+msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-profileaccount.php
@@ -436,193 +436,277 @@ msgstr ""
 #: Plugin\rb-agency-interact/theme/include-profileaccount.php
 #, php-format
 msgid "Social Media Profiles"
-msgstr "Social Media Profili"
+msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-profileaccount.php
 #, php-format
 msgid "Cannot be changed"
-msgstr "Non può essere combiato"
+msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-profileaccount.php
 #, php-format
 msgid "Leave blank to keep same password"
-msgstr "Lasciare vuoto per mantenere la stessa Password"
+msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-profileaccount.php
 #, php-format
 msgid "Retype to Confirm"
-msgstr "Digitare nuovamente per confermare"
+msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-profileaccount.php
 #, php-format
 msgid "Username"
-msgstr "nome utente"
+msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-profileaccount.php
 #, php-format
 msgid "Password"
-msgstr "Password"
+msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-profileaccount.php
 #, php-format
 msgid "Retype Password"
-msgstr "Ripeti Password"
+msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-profileaccount.php
 #, php-format
 msgid "Last updated"
-msgstr "ultimo aggiornamento"
+msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-profilemanage.php
 #, php-format
 msgid "Classification:"
-msgstr "Classificazione:"
+msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-profilemanage.php
 #, php-format
 msgid "Save and Continue"
-msgstr "Salva e continua"
+msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-profilemedia.php
 #, php-format
 msgid "Upload Photos"
-msgstr "Caricare Foto"
+msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-profilemedia.php
 #, php-format
 msgid "Media Files"
-msgstr "File Multimediali"
+msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-profilemedia.php
 #, php-format
 msgid "Upload Media Files"
-msgstr "Carica File Multimediali"
+msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-profilemedia.php
 #, php-format
 msgid "Paste the video URL below."
-msgstr "Digita o incolla URL del Video qui sotto. Per motivi di Privacy i Video caricati non dovranno contenere informazioni personali. I video sarrano soggetti ad approvazione da parte de Casting Club e rimossi qualora non ritenuti idonei."
+msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-profilemedia.php
 #, php-format
-msgid "Press the \"Save and Continue\" button only once. Depending on the number of files and or your connection speed, it may take a few moments to fully upload your new files/changes. When the page refreshes, you should see your new media."
-msgstr "Premera una sola volta il pulsante \"salva e continua\". A seconda del numero di file e la velocita di connessiona potrebbero essere necessari alcuni minuti per caricare completamente i tuoi nuovi file / modifiche. Quando la pagina viene aggiornata, si dovrebbero vedere i voatri nuovi media."
+msgid "Press the Save and Continue button only once."
+msgstr ""
+
+msgid "Depending on the number of files and or your connection speed, it may take a few moments to fully upload your new files/changes. When the page refreshes, you should see your new media."
+msgstr ""
 
 msgid "Join Our Team"
-msgstr "Unisciti al nostro team"
+msgstr ""
 
 msgid "To Join Our Team please complete the application below."
-msgstr "Far parte del nostro team si prega di compilare la domanda qui sotto."
+msgstr ""
 
 msgid "Hi there,"
-msgstr "Ciao,"
+msgstr ""
 
 msgid "Hi"
-msgstr "Ciao"
+msgstr ""
 
 msgid "You are registered as"
-msgstr "Sei Registrato come"
+msgstr ""
 
 msgid "Thanks for joining %s!"
-msgstr "Grazie per I'iscrizione a %s!"
+msgstr ""
 
 msgid "You need to choose your membership option and pay via paypal."
-msgstr "È necessario scegliere l'opzione di adesione e pagare via paypal."
+msgstr ""
 
 msgid "If you have any problems, please contact us at %s."
-msgstr "Se avete problemi, vi preghiamo di contattarci all'indirizzo %s. oppure al 3665441400"
+msgstr ""
 
 msgid "Regards,"
-msgstr "Cordialita,"
+msgstr ""
 
 msgid "Thanks for joining %s! Here's how to log in:"
-msgstr "Grazie per la Registrazione a %s! Ecco come accedere:"
+msgstr ""
 
 msgid "Username: %s"
-msgstr "Nome utente: %s"
+msgstr ""
 
 msgid "Password: %s"
-msgstr "Password: %s"
+msgstr ""
 
 msgid "New user registration on your blog %s:"
-msgstr "Registrazione nuovo utente nel tuo blog% s:"
+msgstr ""
 
 msgid "[%s] New User Registration"
-msgstr "[% s] Registrazione Nuovo Utente"
+msgstr ""
 
 msgid "Your account is pending for approval. We will send you a confirmation once account is approved."
-msgstr "Il tuo Profilo è in attesa di approvazione. Vi invieremo email di conferma appena sara approvato."
+msgstr ""
 
 msgid "Congratulations! Your account is approved."
-msgstr "Complimenti! Il tuo Profilo è stato approvato."
+msgstr ""
 
 msgid "Thank you for registering, %s."
-msgstr "Grazie per esserti registrato,% s."
+msgstr ""
 
 msgid "%s Registration Successful! Login Details"
-msgstr "%s Registrazione avvenuta con successo! Dettagli per il Login"
+msgstr ""
 
 msgid "%s Step - 1 Registration Process"
-msgstr "%s Step - 1 Registrazione"
+msgstr ""
 
 msgid "%s Registration Successful!  Account is pending for approval"
-msgstr "%s Registrazione avvenuta con successo! Il tuo Profilo e in attesa di Approvazione"
+msgstr ""
 
 msgid "%s Congratulations! Your account is approved."
 msgstr ""
 
 msgid "You have successfully registered!"
-msgstr "Hai completato la registrazione!"
+msgstr ""
 
 msgid "Please check your email for your login details."
-msgstr "Controlla la tua e-mail per i tuoi dati di accesso."
+msgstr ""
 
 msgid "Select country"
-msgstr "Seleziona Regione"
+msgstr ""
 
 msgid "Select state"
-msgstr "Seleziona Provincia"
+msgstr ""
 
 msgid "There are no images loaded for this profile yet."
-msgstr "Non ci sono ancora immagini caricate per queso Profilo"
+msgstr ""
 
 msgid "Upload photos using the forms below. The following formats allowed are jpg and png only "
-msgstr "Carica le Foto utilizzando il modulo qui sotto. I Formati consentiti sono solo jpg e png"
+msgstr ""
 
 msgid "The following files (pdf, audio file, etc.) are associated with this record"
-msgstr "I sequenti file (pdf,file audio, ecc.) sono associati a questo Profilo"
+msgstr ""
 
 msgid "There are no additional media linked"
-msgstr "Non sono stati aggiunti file multimediali"
+msgstr ""
 
 msgid "Upload new media using the forms below. The following formats are available: jpg, png, mp3, and pdf. If uploading an mp3 for a voice monolouge, use the  \"Voice Demo\" option. For Resumes, make sure the file is a PDF "
-msgstr "Carica i nuovi File Multimediali utilizzando il modulo qui sotto. I formati disponibili sono i seguenti: jpg, png, mp3 Se vuoi cariace un pm3 per un monologo solo voce, utilizzare 1 opzione \"Demo Voce\""
+msgstr ""
 
 msgid "Headshot"
-msgstr "Foto Tesera"
+msgstr ""
 
 msgid "Comp Card"
-msgstr "Composit"
+msgstr ""
 
 msgid "Voice Demo"
-msgstr "Demo Voce"
+msgstr ""
 
 msgid "Back to Overview"
-msgstr "Indietro"
+msgstr ""
 
 msgid "Other Payment Methods"
-msgstr "Altri metodi di pagamento"
+msgstr ""
+
+msgid "Register"
+msgstr ""
+
+msgid "Register Now"
+msgstr ""
+
+msgid "Choose Membership Type"
+msgstr ""
+
+msgid "Free"
+msgstr ""
+
+msgid "Premium"
+msgstr ""
+
+msgid "Next"
+msgstr ""
+
+msgid "You may now login and continue registration."
+msgstr ""
+
+msgid "Account Login"
+msgstr ""
+
+msgid "Your login credentials are also sent to your email."
+msgstr ""
+
+msgid "(It might go into your spam forlder)"
+msgstr ""
+
+msgid "Profile Setup: Step 1 of 2"
+msgstr ""
+
+msgid "Profile Setup: Step 1 of 3"
+msgstr ""
+
+msgid "Profile Setup: Step 3 of 3"
+msgstr ""
+
+msgid "Profile Setup: Step 2 of 2"
+msgstr ""
+
+msgid "Profile Setup: Step 2 of 3"
+msgstr ""
+
+msgid "Photo Gallery"
+msgstr ""
+
+msgid "Type:"
+msgstr ""
+
+msgid "Paste the video URL below"
+msgstr ""
+
+msgid "Thank you for joining %s!"
+msgstr ""
+
+msgid "Your account is pending for approval. We will send you an email once your account is approved."
+msgstr ""
+
+msgid "Manage Account"
+msgstr ""
+
+msgid "Photo"
+msgstr ""
+
+msgid "--Please Select--"
+msgstr ""
+
+msgid "Video Slate"
+msgstr ""
+
+msgid "Video Monologue"
+msgstr ""
+
+msgid "Demo Reel"
+msgstr ""
+
+msgid "SoundCloud"
+msgstr ""

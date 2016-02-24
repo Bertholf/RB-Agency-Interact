@@ -1,1188 +1,712 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: RB Agency Interact\n"
+"Project-Id-Version: RB Agency Interactive\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-16 23:19+0800\n"
-"PO-Revision-Date: 2012-09-17 13:17+0800\n"
+"POT-Creation-Date: 2012-01-26 07:24-1000\n"
+"PO-Revision-Date: 2016-02-23 15:09+0800\n"
 "Last-Translator: Rob Bertholf <rob@bertholf.com>\n"
-"Language-Team: Rob Bertholf <rob@bertholf.com>\n"
-"Language: nl_NL\n"
+"Language-Team: RB Plugin <info@rbplugin.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-KeywordsList: _;_e;__ngettext:1,2;__ngettext_noop:1,2;_n:1,2;"
-"_nx_noop:4c,1,2;_nx:4c,1,2;_ex:1,2c;_x:1,2c;_c,_nc:4c,1,2;_n_noop:1,2;__\n"
-"X-Poedit-Basepath: D:\\wamp\\www\\ClearlyM\\agency1.rgbplugin.com\\wp-content"
-"\\plugins\\rb-agency-interact\\\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-SearchPath-0: D:\\wamp\\www\\ClearlyM\\agency1.rgbplugin.com\\wp-"
-"content\\plugins\\rb-agency-interact\n"
+"X-Poedit-KeywordsList: __;gettext;gettext_noop\n"
+"X-Poedit-Basepath: .\n"
+"Language: nl_NL\n"
+"X-Generator: Poedit 1.8.6\n"
+"X-Poedit-SearchPath-0: C:/Dropbox/Users/Rob/Scripts/RB Plugin/rb-agency-interact\n"
 
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/functions.php:111
-#, php-format
-msgid "New user registration on your blog %s:"
-msgstr "Nieuwe gebruiker registreren op uw blog% s:"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/functions.php:112
-#, php-format
-msgid "Username: %s"
-msgstr "Gebruikersnaam: %s"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/functions.php:113
-#, php-format
-msgid "E-mail: %s"
-msgstr "Email: %s"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/functions.php:115
-#, php-format
-msgid "[%s] New User Registration"
-msgstr "[% s] Registratie nieuwe gebruiker"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/functions.php:120
-msgid "Hi"
-msgstr "Hi"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/functions.php:121
-#, php-format
-msgid "Thank you for your membership in %s. So you can log in:"
-msgstr "Hartelijk dank voor je lidmaatschap bij %s. Zo kun je inloggen:"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/functions.php:123
-msgid "Username: "
-msgstr "Gebruikersnaam: %s"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/functions.php:124
-#, php-format
-msgid "Password: %s"
-msgstr "Wachtwoord: %s"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/functions.php:125
-#, php-format
-msgid "If you have questions, please send an email to %s."
-msgstr "Mocht je vragen hebben, stuur dan een mail naar %s."
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/functions.php:126
-msgid "Sincerely,"
-msgstr "Met vriendelijke groet,"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/functions.php:127
-msgid " Team"
-msgstr " Team"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/functions.php:131
-#, php-format
-msgid "%s Registration Successful! Login Details"
-msgstr "% s Registratie Succesvolle Log in Details"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/rb-agency-interact.php:17
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/rb-agency-interact.php:17
 msgid "This plugin requires WordPress version 2.8 or newer"
-msgstr "Deze plugin vereist WordPress versie 2.8 of nieuwer"
+msgstr ""
 
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/rb-agency-interact.php:139
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/rb-agency-interact.php:102
+msgid "Profile Registration"
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/rb-agency-interact.php:105
 msgid "Approve Users"
-msgstr "Akkoord Gebruikers"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/rb-agency-interact.php:183
-msgid "Displays profile actions such as login and links to edit"
 msgstr ""
-"Geeft het profiel van acties, zoals de login en koppelingen bewerken om"
 
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/rb-agency-interact.php:184
-msgid "Agency Interact Login"
-msgstr "Bureau Interact Login"
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/rb-agency-interact.php:118
+msgid "Settings"
+msgstr ""
 
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/rb-agency-interact.php:220
-msgid "Title:"
-msgstr "Titel"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/rb-agency-interact.php:221
-msgid "Show Count:"
-msgstr "Toon Tellen"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/rb-agency-interact.php:270
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/rb-agency-interact.php:184
 msgid "Almost done..."
-msgstr "Bijna klaar..."
+msgstr ""
 
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/rb-agency-interact.php:270
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/rb-agency-interact.php:184
 msgid "One More Step"
-msgstr "Nog een stap"
+msgstr ""
 
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/rb-agency-interact.php:270
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/rb-agency-interact.php:184
 msgid "Please click here to complete the uninstallation process"
-msgstr "Please click here to complete the uninstallation process"
+msgstr ""
 
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/admin/profile-approve.php:57
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/admin/profile-approve.php:104
-msgid "No valid record found."
-msgstr "Geen gevonden geldige opnemen"
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/include-login.php:5
+#: Plugin\rb-agency-interact/theme/member-login.php:52
+msgid "Members Sign in"
+msgstr ""
 
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/admin/profile-approve.php:60
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/admin/profile-approve.php:107
-msgid "Profile deleted successfully!"
-msgstr "Profiel met succes verwijderd"
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/include-login.php:12
+#: Plugin\rb-agency-interact/theme/member-login.php:63
+msgid "forgot password"
+msgstr ""
 
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/admin/profile-approve.php:121
-msgid "Profile approved successfully!"
-msgstr "Profiel bijgewerkt"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/admin/profile-approve.php:142
-msgid "List"
-msgstr "Lijst"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/admin/profile-approve.php:144
-msgid "All Records"
-msgstr "Alle records"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/admin/profile-approve.php:219
-msgid "Create New Record"
-msgstr "Maak een nieuw record"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/admin/profile-approve.php:235
-msgid "Search By"
-msgstr "Zoek op"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/admin/profile-approve.php:236
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profileaccount.php:64
-msgid "First Name"
-msgstr "Voornaam"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/admin/profile-approve.php:237
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profileaccount.php:70
-msgid "Last Name"
-msgstr "Achternaam"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/admin/profile-approve.php:238
-msgid "Location"
-msgstr "Plaats"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/admin/profile-approve.php:240
-msgid "Any Location"
-msgstr "Elke locatie"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/admin/profile-approve.php:251
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profilemanage.php:48
-msgid "Category"
-msgstr "Categorie"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/admin/profile-approve.php:253
-msgid "Any Category"
-msgstr "Elke categorie"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/admin/profile-approve.php:262
-msgid "Filter"
-msgstr "Filter"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/admin/profile-approve.php:269
-msgid "Clear Filters"
-msgstr "Filter verwijderen"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/admin/profile-approve.php:341
-msgid "Approve this Record"
-msgstr "Goedkeuren dit Record"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/admin/profile-approve.php:341
-msgid "Approve"
-msgstr "Goedkeuren"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/admin/profile-approve.php:342
-msgid "Edit this Record"
-msgstr "Wijzig dit record"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/admin/profile-approve.php:342
-msgid "Edit"
-msgstr "Bewerken"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/admin/profile-approve.php:343
-msgid "View"
-msgstr "Zien"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/admin/profile-approve.php:393
-msgid "Delete"
-msgstr "Verwijder"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-login.php:20
-msgid "Login for Members"
-msgstr "Login Voor Leden"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-login.php:23
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/member-register.php:142
-msgid "Login name"
-msgstr "Loginnaam"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-login.php:26
-msgid "Password"
-msgstr "Wachtwoord"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-login.php:26
-msgid "Forgot password"
-msgstr "Wachtwoord vergeten"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-login.php:29
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/include-login.php:15
+#: Plugin\rb-agency-interact/theme/member-login.php:66
 msgid "Keep me signed in"
-msgstr "Ik wil ingelogd blijven"
+msgstr ""
 
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-login.php:33
-msgid "Log in"
-msgstr "Inloggen"
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/include-login.php:18
+#: Plugin\rb-agency-interact/theme/member-login.php:70
+msgid "Sign In"
+msgstr ""
 
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-login.php:42
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/include-login.php:25
 msgid "Not a member"
-msgstr "Nog Geen Lid"
+msgstr ""
 
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-login.php:43
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/member-overview.php:26
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/member-register.php:175
-msgid "Model"
-msgstr "Model"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-login.php:43
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-login.php:52
-msgid "Register here"
-msgstr "Registreer hier"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-login.php:45
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-login.php:54
-msgid "Create your free profile page"
-msgstr "Maak uw gratis profielpagina"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-login.php:48
-msgid "Register as Model"
-msgstr "Registreer als  Model"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-login.php:52
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/member-overview.php:26
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/member-register.php:177
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/include-login.php:26
 msgid "Talent"
-msgstr "Talent"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-login.php:57
-msgid "Register as Talent"
-msgstr "Registreer als  Talent"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-menu.php:9
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profileaccount.php:15
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profilemanage.php:14
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profilemedia.php:8
-msgid "Error, query failed"
-msgstr "Error, query failed"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-menu.php:18
-msgid "Overview"
-msgstr "Overzicht"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-menu.php:24
-msgid "My Account"
-msgstr "Mijn Account"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-menu.php:36
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-menu.php:70
-msgid "My Profile"
-msgstr "Mijn Profiel"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-menu.php:42
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-menu.php:76
-msgid "My Media"
-msgstr "Mijn Media"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-menu.php:48
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-menu.php:82
-msgid "My Subscriptions"
-msgstr "Mijn Registratie"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-menu.php:54
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-menu.php:88
-msgid "View Your Online Profile"
-msgstr "Stel uw Profiel in"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-menu.php:61
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-menu.php:94
-msgid "Log Out"
-msgstr "Log uit"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-menu.php:113
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-menu.php:121
-msgid "My Subscription"
-msgstr "Beschrijving"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profileaccount.php:48
-msgid "Contact Information"
-msgstr "Contact Informatie"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profileaccount.php:51
-msgid "Gallery Folder"
-msgstr "Galerij Folder"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profileaccount.php:58
-msgid "Folder Pending Creation"
-msgstr "Folder In afwachting van Creatie"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profileaccount.php:76
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profileregister.php:34
-msgid "Gender"
-msgstr "Geslacht"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profileaccount.php:78
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profileregister.php:36
-msgid "Not Specified"
-msgstr "Selecteer..."
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profileaccount.php:79
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profileregister.php:37
-msgid "Male"
-msgstr "Man"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profileaccount.php:80
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profileregister.php:38
-msgid "Female"
-msgstr "Vrouw"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profileaccount.php:86
-msgid "Private Information"
-msgstr "Privé informatie"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profileaccount.php:89
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profileregister.php:73
-msgid "Parent (if minor)"
-msgstr "Ouder (indien minderjarig)"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profileaccount.php:95
-msgid "Email Address"
-msgstr "E-mail adres"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profileaccount.php:101
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profileregister.php:43
-msgid "Birthdate"
-msgstr "Geboortedatum"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profileaccount.php:108
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profileregister.php:79
-msgid "Street"
-msgstr "Straat"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profileaccount.php:114
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profileregister.php:85
-msgid "City"
-msgstr "Plaats"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profileaccount.php:120
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profileregister.php:91
-msgid "State"
-msgstr "Provincie"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profileaccount.php:126
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profileregister.php:97
-msgid "Zip"
-msgstr "Postcode"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profileaccount.php:132
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profileregister.php:103
-msgid "Country"
-msgstr "Land"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profileaccount.php:192
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profileregister.php:24
-msgid "Phone"
-msgstr "Telefoonnummer"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profileaccount.php:194
-msgid "Home:"
-msgstr "Huis:"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profileaccount.php:195
-msgid "Cell:"
-msgstr "Mobiel:"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profileaccount.php:196
-msgid "Work:"
-msgstr "Werk:"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profileaccount.php:200
-msgid "Website"
-msgstr "Website"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profileaccount.php:208
-msgid "Social Media Profiles"
-msgstr "Social Media Profielen"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profileaccount.php:211
-msgid "Facebook"
-msgstr "Facebook"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profileaccount.php:217
-msgid "Twitter"
-msgstr "Twitter"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profileaccount.php:223
-msgid "YouTube"
-msgstr "YouTube"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profileaccount.php:229
-msgid "Flickr"
-msgstr "Flickr"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profileaccount.php:236
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profileregister.php:145
-msgid "Password (Leave blank to keep same password)"
-msgstr "Wachtwoord (Laat leeg om hetzelfde wachtwoord te behouden)"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profileaccount.php:242
-msgid "Password (Retype to Confirm)"
-msgstr "Wachtwoord (Herhaal om te bevestigen)"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profileaccount.php:250
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profilemanage.php:384
-msgid "Last updated "
-msgstr "Laatst bijgewerkt"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profileaccount.php:254
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profilemanage.php:389
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profilemedia.php:132
-msgid "Save and Continue"
-msgstr "Opslaan en volgende"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profilemanage.php:42
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profilemanage.php:46
-msgid "Classification"
-msgstr "Classificatie"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profilemanage.php:71
-msgid "Dancer"
-msgstr "Danser"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profilemanage.php:72
-msgid "Dance Group"
-msgstr "Dansgroep"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profilemanage.php:73
-msgid "Singer"
-msgstr "Zanger"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profilemanage.php:74
-msgid "Choir"
-msgstr "Zanggroep"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profilemanage.php:75
-msgid "DJ"
-msgstr "DJ"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profilemanage.php:76
-msgid "MC"
-msgstr "MC"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profilemanage.php:77
-msgid "Musician"
-msgstr "Muzikant"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profilemanage.php:78
-msgid "Music Bands"
-msgstr "Muziekband"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profilemanage.php:79
-msgid "Songwriter"
-msgstr "Songwriter"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profilemanage.php:80
-msgid "Film Maker"
-msgstr "Filmmaker"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profilemanage.php:81
-msgid "Camera Man"
-msgstr "Cameraman"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profilemanage.php:82
-msgid "Photographer"
-msgstr "Fotograaf"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profilemanage.php:83
-msgid "Make-up Artist"
-msgstr "MakeUp Artiest"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profilemanage.php:131
-msgid "Eye Color"
-msgstr "Kleur ogen"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profilemanage.php:133
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profilemanage.php:153
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profilemanage.php:173
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profilemanage.php:270
-msgid "--"
-msgstr "Selecteer..."
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profilemanage.php:143
-msgid "Black"
-msgstr "Zwart"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profilemanage.php:144
-msgid "Red"
-msgstr "Rood"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profilemanage.php:145
-msgid "Brown"
-msgstr "Bruin"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profilemanage.php:146
-msgid "Blonde"
-msgstr "Blond"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profilemanage.php:151
-msgid "Hair Color"
-msgstr "Kleur haar"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profilemanage.php:169
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profilemanage.php:192
-msgid "Height"
-msgstr "Lengte"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profilemanage.php:169
-msgid "In Inches"
-msgstr "In Inches"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profilemanage.php:192
-msgid "cm"
-msgstr "cm"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profilemanage.php:218
-msgid "Shoe Size"
-msgstr "Schoenmaat"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profilemanage.php:225
-msgid "Suit Size"
-msgstr "Confectiemaat"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profilemanage.php:225
-msgid "Dress Size"
-msgstr "Confectiemaat"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profilemanage.php:225
-msgid "Suit"
-msgstr "Pak"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profilemanage.php:324
-msgid "Group Name / Band"
-msgstr "Naam groep/band"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profilemanage.php:377
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profilemanage.php:378
-msgid "Cup size"
-msgstr "Cupmaat"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profilemanage.php:379
-msgid "Blue"
-msgstr "Blauw"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profilemanage.php:380
-msgid "Hips(cm)"
-msgstr "Heup(cm)"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profilemanage.php:381
-msgid "Chest(cm)"
-msgstr "Borst(cm)"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profilemedia.php:19
-msgid "Gallery"
-msgstr "Galerij"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profilemedia.php:23
-msgid "Are you sure you want to delete this?"
-msgstr "Weet u zeker dat u deze foto verwijderen"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profilemedia.php:52
-msgid "Error removing"
-msgstr "Fout bij het verwijderen"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profilemedia.php:52
-msgid "Please try again"
-msgstr "Probeer het opnieuw"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profilemedia.php:54
-msgid "successfully removed"
-msgstr "succesvol verwijderd"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profilemedia.php:85
-msgid "There are no images loaded for this profile yet."
-msgstr "Er zijn geen foto's geladen voor dit profiel."
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profilemedia.php:89
-msgid "Media"
-msgstr "Media"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profilemedia.php:90
-msgid ""
-"The following downloadable files (pdf, audio file, etc.) are associated with "
-"this record"
 msgstr ""
-"De volgende downloadbare bestanden (pdf, audio-bestand, enz.) worden "
-"geassocieerd met dit rec"
 
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profilemedia.php:103
-msgid "There is not any additional media linked"
-msgstr "Er is geen gekoppelde extra media"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profilemedia.php:106
-msgid "Upload"
-msgstr "uploaden"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profilemedia.php:107
-msgid "Upload new media using the forms below"
-msgstr "Upload nieuwe media met behulp van de onderstaande formulieren"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profilemedia.php:110
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profilemedia.php:120
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profilemedia.php:126
-msgid "Image"
-msgstr "Foto"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profilemedia.php:110
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profilemedia.php:122
-msgid "Set Card"
-msgstr "Set Card"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profilemedia.php:110
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profilemedia.php:124
-msgid "Headshot"
-msgstr "Headshot"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profilemedia.php:110
-msgid "Comp Card"
-msgstr "Comp Card"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profilemedia.php:110
-msgid "Resume"
-msgstr "hervatten"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profilemedia.php:110
-msgid "Voice Demo"
-msgstr "Stem Demo"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profileregister.php:9
-msgid "Contact information"
-msgstr "Contact Informatie"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profileregister.php:12
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/member-register.php:155
-msgid "First name"
-msgstr "Voornaam"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profileregister.php:18
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/member-register.php:160
-msgid "Last name"
-msgstr "Achternaam"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profileregister.php:31
-msgid "Public information"
-msgstr "Openbare informatie"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profileregister.php:31
-msgid "The following information may appear in profile pages"
-msgstr "De onderstaande informatie kan op profielpagina's voorkomen"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profileregister.php:46
-msgid "January"
-msgstr "Januari"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profileregister.php:46
-msgid "February"
-msgstr "Februari"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profileregister.php:46
-msgid "March"
-msgstr "Maart"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profileregister.php:46
-msgid "April"
-msgstr "April"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profileregister.php:46
-msgid "May"
-msgstr "Mei"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profileregister.php:46
-msgid "June"
-msgstr "Juni"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profileregister.php:46
-msgid "July"
-msgstr "Juli"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profileregister.php:46
-msgid "August"
-msgstr "Augustus"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profileregister.php:46
-msgid "September"
-msgstr "September"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profileregister.php:46
-msgid "October"
-msgstr "Oktober"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profileregister.php:46
-msgid "November"
-msgstr "November"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profileregister.php:46
-msgid "December"
-msgstr "December"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profileregister.php:70
-msgid "Private information"
-msgstr "Privé informatie"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profileregister.php:70
-msgid ""
-"The following information will NOT appear in public areas and is for "
-"administrative use only."
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/include-login.php:26
+msgid "Register here"
 msgstr ""
-"De onderstaande informatie verschijnt NIET op publieke pagina's en is alleen "
-"bestemd voor administratieve doeleinden."
 
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profileregister.php:151
-msgid "Password (Retype to confirm)"
-msgstr "Wachtwoord (Herhaal om te bevestigen)"
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/include-login.php:28
+msgid "Create your free profile page"
+msgstr ""
 
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/include-profileregister.php:160
-msgid "Save and continue"
-msgstr "Opslaan en volgende"
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/include-login.php:29
+msgid "Apply to Auditions & Jobs"
+msgstr ""
 
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/member-account.php:29
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/member-profile.php:19
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/member-subscription.php:26
-msgid "Agent/Producer"
-msgstr "Agent/Producer"
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/include-login.php:31
+msgid "Register as Talent / Model"
+msgstr ""
 
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/member-account.php:29
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/member-profile.php:19
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/member-subscription.php:26
-msgid "Model/Talent"
-msgstr "Model/Talent"
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/include-login.php:35
+msgid "Casting Agents & Producers"
+msgstr ""
 
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/member-account.php:84
-msgid "Name is required."
-msgstr "Gebruikersnaam (verplicht)"
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/include-login.php:37
+msgid "List Auditions & Jobs free"
+msgstr ""
 
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/member-account.php:94
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/include-login.php:38
+msgid "Contact People in the Talent Directory"
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/include-login.php:40
+msgid "Register as Agent / Producer"
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/member-login.php:28
+#, php-format
+msgid "You are currently logged in as <a href=\\\"%1$s\\\" title=\\\"%2$s\\\">%2$s</a>."
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/member-login.php:29
+#: Plugin\rb-agency-interact/theme/member-register.php:75
+msgid "Log out of this account"
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/member-login.php:29
+msgid "Log out &raquo;"
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/member-login.php:39
+#, php-format
+msgid "You have successfully logged in as <a href=\"%1$s\" title=\"%2$s\">%2$s</a>."
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/member-manage.php:23
 msgid "The passwords you entered do not match.  Your password was not updated."
 msgstr ""
-"De ingevoerde wachtwoorden komen niet overeen. Je wachtwoord is niet "
-"bijgewerkt."
 
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/member-account.php:235
-msgid "New Profile added successfully"
-msgstr "Nieuw profiel succesvol toegevoegd"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/member-account.php:243
-msgid ""
-"Error creating record, please ensure you have filled out all required fields."
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/member-manage.php:105
+msgid "Pages: "
 msgstr ""
-"Fout bij het ​​maken van opnemen, zorg er dan voor je hebt ingevuld alle "
-"verplichte velden in."
 
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/member-account.php:299
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/member-media.php:134
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/member-profile.php:104
-msgid "Profile updated successfully"
-msgstr "Profiel bijgewerkt"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/member-account.php:301
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/member-media.php:136
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/member-profile.php:106
-msgid ""
-"Error updating record, please ensure you have filled out all required fields."
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/member-manage.php:107
+msgid "Edit"
 msgstr ""
-"Fout bij het updaten opnemen, zorg er dan voor je hebt ingevuld alle "
-"verplichte velden in."
 
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/member-account.php:325
-msgid "Profile Setup: Step 1 of 4 "
-msgstr "Profiel Setup: Stap 1 van 4"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/member-account.php:355
-msgid ""
-"<p>Records show you are not currently linked to a model or agency profile.  "
-"Lets setup your profile now!</p><br />"
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/member-manage.php:228
+msgid "Select Year"
 msgstr ""
-"Gegevens blijkt dat u op dit moment niet gekoppeld aan een model of bureau "
-"profiel. Laten we nu het opzetten van je profiel!"
 
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/member-account.php:363
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/member-overview.php:123
-msgid "Self registration is not permitted."
-msgstr "Zelf registratie is niet toegestaan."
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/member-account.php:380
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/member-subscription.php:129
-msgid "You must be logged in to edit your profile."
-msgstr "U moet ingelogd zijn om je profiel te bewerken."
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/member-media.php:64
-msgid "Please upload an image file only"
-msgstr "Gelieve alleen een afbeelding uploaden bestand"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/member-media.php:69
-msgid "Please upload a PDF or image file only"
-msgstr "Gelieve enkel te uploaden een PDF-of image-bestand"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/member-media.php:158
-msgid "Profile Setup: Step 3 of 4"
-msgstr "Profiel Setup: Stap 3 van 4"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/member-media.php:182
-msgid "Records show you are not currently linked to a model or agency profile."
-msgstr ""
-"Gegevens blijkt dat u op dit moment niet gekoppeld aan een model of bureau "
-"profiel. Laten we nu het opzetten van je profiel!"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/member-media.php:184
-msgid "Featured"
-msgstr "Aanbevolen"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/member-overview.php:46
-msgid "Profile Setup: Step 1 of 4"
-msgstr "Profiel Setup: Stap 1 van 4"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/member-overview.php:66
-msgid "Welcome Back"
-msgstr "Welkom Terug"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/member-overview.php:72
-msgid "Manage your Account details"
-msgstr "Beheer uw Accountgegevens"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/member-overview.php:73
-msgid "Manage your Profile information"
-msgstr "Beheer uw Profiel"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/member-overview.php:74
-msgid "Manage Photos and Media"
-msgstr "Beheer Foto's en Media"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/member-overview.php:75
-msgid "Manage your Subscriptions"
-msgstr "Beheer uw Registratie"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/member-overview.php:101
-msgid "Welcome"
-msgstr "Welkom"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/member-overview.php:104
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/member-overview.php:114
-msgid "We have you registered as"
-msgstr "Wij hebben u ​​geregistreerd als"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/member-overview.php:107
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/member-overview.php:115
-msgid "Setup your profile"
-msgstr "Stel uw profiel in"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/member-profile.php:128
-msgid "Profile Setup: Step 2 of 4"
-msgstr "Profiel Setup: Stap 2 van 4"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/member-profile.php:156
-msgid ""
-"<p>Records show you are not currently linked to a model or agency profile.  "
-"Lets setup your profile now!"
-msgstr ""
-"Gegevens blijkt dat u op dit moment niet gekoppeld aan een model of bureau "
-"profiel. Laten we nu het opzetten van je profiel!"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/member-register.php:36
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/member-register.php:28
 msgid "A username is required for registration.<br />"
-msgstr "Een gebruikersnaam is verplicht voor registratie. <br />"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/member-register.php:40
-msgid "First Name is required for registration.<br />"
-msgstr "Een Voornaam is verplicht voor registratie. <br />"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/member-register.php:44
-msgid "Last Name is required for registration.<br />"
-msgstr "Een Achternaam is verplicht voor registratie. <br />"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/member-register.php:48
-msgid "Sorry, that username already exists!<br />"
-msgstr "Sorry, die gebruikersnaam bestaat al! <br />"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/member-register.php:52
-msgid "You must enter a valid email address.<br />"
-msgstr "U moet een geldig e-mailadres. <br />"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/member-register.php:56
-msgid "Sorry, that email address is already used!<br />"
-msgstr "Sorry, dat e-mailadres al in gebruik! <br />"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/member-register.php:60
-msgid "You must agree to the terms and conditions to register.<br />"
-msgstr "U moet akkoord gaan met de voorwaarden om te registreren. <br />"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/member-register.php:98
-msgid "You are currently logged in as ."
-msgstr "Je bent momenteel aangemeld als."
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/member-register.php:100
-msgid "Log out of this account"
-msgstr "Log uit van deze rekening"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/member-register.php:100
-msgid "Log out"
-msgstr "Log out"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/member-register.php:110
-msgid "Thank you for registering."
-msgstr "Bedankt voor je registratie."
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/member-register.php:112
-msgid ""
-"You will receive an e-mail with your username and password. <br/>(This e-"
-"mail may also be located in your spam folder)"
 msgstr ""
-"Je ontvangt jouw loginnaam en wachtwoord via e-mail. <br/>(Deze e-mail kan "
-"eventueel ook in jouw spam map terechtkomen)"
 
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/member-register.php:124
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/member-register.php:32
+msgid "Sorry, that username already exists!<br />"
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/member-register.php:36
+msgid "You must enter a valid email address.<br />"
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/member-register.php:40
+msgid "Sorry, that email address is already used!<br />"
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/member-register.php:44
+msgid "You must agree to the terms and conditions to register.<br />"
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/member-register.php:73
+msgid "You are currently logged in as ."
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/member-register.php:75
+msgid "Log out"
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/member-register.php:87
+msgid "Please check your email address. That's where you'll receive your login password.<br/> (It might go into your spam folder)"
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/member-register.php:98
 msgid "Users can register themselves or you can manually create users here."
 msgstr ""
-"Gebruikers kunnen zich registreren zelf of u kunt handmatig hier gebruikers "
-"aanmaken."
 
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/member-register.php:128
-msgid ""
-"Users cannot currently register themselves, but you can manually create "
-"users here."
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/member-register.php:102
+msgid "Users cannot currently register themselves, but you can manually create users here."
 msgstr ""
-"Gebruikers kunnen op dit moment niet zichzelf registreren, maar u kunt hier "
-"handmatig gebruikers aanmaken."
 
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/member-register.php:137
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/member-register.php:194
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/member-register.php:113
+msgid "Username (required)"
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/member-register.php:118
+msgid "First Name"
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/member-register.php:123
+msgid "Last Name"
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/member-register.php:128
+msgid "E-mail (required)"
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/member-register.php:133
+msgid "Type of Profile"
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/member-register.php:135
+msgid "Talent / Model"
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/member-register.php:136
+msgid "Agent / Producer"
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/member-register.php:142
+#, php-format
+msgid "I agree to the %s terms of service"
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/include-menu.php
+#, php-format
+msgid "Overview"
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/include-menu.php
+#, php-format
+msgid "My Account"
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/include-menu.php
+#, php-format
+msgid "My Profile"
+msgstr ""
+
+msgid "Edit your profile"
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/include-menu.php
+#, php-format
+msgid "My Media"
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/include-menu.php
+#, php-format
+msgid "View My Profile"
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/member-overview.php
+#, php-format
+msgid "Welcome Back"
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/member-overview.php
+#, php-format
+msgid "Edit Your Account Details"
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/member-overview.php
+#, php-format
+msgid "Manage Your Profile Information"
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/member-overview.php
+#, php-format
+msgid "Manage Photos and Media"
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/include-profileaccount.php
+#, php-format
+msgid "Contact Information"
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/include-profileaccount.php
+#, php-format
+msgid "Gallery Folder"
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/include-profileaccount.php
+#, php-format
+msgid "Display Name"
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/include-profileaccount.php
+#, php-format
+msgid "Gender"
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/include-profileaccount.php
+#, php-format
+msgid "Private Information"
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/include-profileaccount.php
+#, php-format
+msgid "The following information will appear only in administrative areas."
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/include-profileaccount.php
+#, php-format
+msgid "Email Address"
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/include-profileaccount.php
+#, php-format
+msgid "Birthdate YYYY-MM-DD"
+msgstr ""
+
+msgid "Birthdate"
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/include-profileaccount.php
+#, php-format
+msgid "Street"
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/include-profileaccount.php
+#, php-format
+msgid "City"
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/include-profileaccount.php
+#, php-format
+msgid "Country"
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/include-profileaccount.php
+#, php-format
+msgid "State"
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/include-profileaccount.php
+#, php-format
+msgid "Zip"
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/include-profileaccount.php
+#, php-format
+msgid "Phone"
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/include-profileaccount.php
+#, php-format
+msgid "Home:"
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/include-profileaccount.php
+#, php-format
+msgid "Cell:"
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/include-profileaccount.php
+#, php-format
+msgid "Work:"
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/include-profileaccount.php
+#, php-format
+msgid "Website"
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/include-profileaccount.php
+#, php-format
+msgid "Visa Number"
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/include-profileaccount.php
+#, php-format
+msgid "Social Media Profiles"
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/include-profileaccount.php
+#, php-format
+msgid "Cannot be changed"
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/include-profileaccount.php
+#, php-format
+msgid "Leave blank to keep same password"
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/include-profileaccount.php
+#, php-format
+msgid "Retype to Confirm"
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/include-profileaccount.php
+#, php-format
+msgid "Username"
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/include-profileaccount.php
+#, php-format
+msgid "Password"
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/include-profileaccount.php
+#, php-format
+msgid "Retype Password"
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/include-profileaccount.php
+#, php-format
+msgid "Last updated"
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/include-profilemanage.php
+#, php-format
+msgid "Classification:"
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/include-profilemanage.php
+#, php-format
+msgid "Save and Continue"
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/include-profilemedia.php
+#, php-format
+msgid "Upload Photos"
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/include-profilemedia.php
+#, php-format
+msgid "Media Files"
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/include-profilemedia.php
+#, php-format
+msgid "Upload Media Files"
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/include-profilemedia.php
+#, php-format
+msgid "Paste the video URL below."
+msgstr ""
+
+#: C:\Dropbox\Users\Rob\Scripts\RB
+#: Plugin\rb-agency-interact/theme/include-profilemedia.php
+#, php-format
+msgid "Press the Save and Continue button only once."
+msgstr ""
+
+msgid "Depending on the number of files and or your connection speed, it may take a few moments to fully upload your new files/changes. When the page refreshes, you should see your new media."
+msgstr ""
+
+msgid "Join Our Team"
+msgstr ""
+
+msgid "To Join Our Team please complete the application below."
+msgstr ""
+
+msgid "Hi there,"
+msgstr ""
+
+msgid "Hi"
+msgstr ""
+
+msgid "You are registered as"
+msgstr ""
+
+msgid "Thanks for joining %s!"
+msgstr ""
+
+msgid "You need to choose your membership option and pay via paypal."
+msgstr ""
+
+msgid "If you have any problems, please contact us at %s."
+msgstr ""
+
+msgid "Regards,"
+msgstr ""
+
+msgid "Thanks for joining %s! Here's how to log in:"
+msgstr ""
+
+msgid "Username: %s"
+msgstr ""
+
+msgid "Password: %s"
+msgstr ""
+
+msgid "New user registration on your blog %s:"
+msgstr ""
+
+msgid "[%s] New User Registration"
+msgstr ""
+
+msgid "Your account is pending for approval. We will send you a confirmation once account is approved."
+msgstr ""
+
+msgid "Congratulations! Your account is approved."
+msgstr ""
+
+msgid "Thank you for registering, %s."
+msgstr ""
+
+msgid "%s Registration Successful! Login Details"
+msgstr ""
+
+msgid "%s Step - 1 Registration Process"
+msgstr ""
+
+msgid "%s Registration Successful!  Account is pending for approval"
+msgstr ""
+
+msgid "%s Congratulations! Your account is approved."
+msgstr ""
+
+msgid "You have successfully registered!"
+msgstr ""
+
+msgid "Please check your email for your login details."
+msgstr ""
+
+msgid "Select country"
+msgstr ""
+
+msgid "Select state"
+msgstr ""
+
+msgid "There are no images loaded for this profile yet."
+msgstr ""
+
+msgid "Upload photos using the forms below. The following formats allowed are jpg and png only "
+msgstr ""
+
+msgid "The following files (pdf, audio file, etc.) are associated with this record"
+msgstr ""
+
+msgid "There are no additional media linked"
+msgstr ""
+
+msgid "Upload new media using the forms below. The following formats are available: jpg, png, mp3, and pdf. If uploading an mp3 for a voice monolouge, use the  \"Voice Demo\" option. For Resumes, make sure the file is a PDF "
+msgstr ""
+
+msgid "Headshot"
+msgstr ""
+
+msgid "Comp Card"
+msgstr ""
+
+msgid "Voice Demo"
+msgstr ""
+
+msgid "Back to Overview"
+msgstr ""
+
+msgid "Other Payment Methods"
+msgstr ""
+
 msgid "Register"
-msgstr "Registreer"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/member-register.php:139
-msgid "Registration"
-msgstr "Registreren"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/member-register.php:165
-msgid "E-mail"
-msgstr "Email"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/member-register.php:170
-msgid "Type of profile"
-msgstr "Profiel Type"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/member-register.php:186
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/member-register.php:188
-msgid "I agree to the terms and conditions*"
-msgstr "Ik ga akkoord met de algemene voorwaarden. <br />"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/member-register.php:194
-msgid "Add User"
-msgstr "Gebruiker toevoegen"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/member-subscription.php:47
-msgid "Profile Setup: Step 4 of 4"
-msgstr "Profiel Setup: Stap 4 van 4"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/member-subscription.php:65
-msgid "enjoying your membership?"
-msgstr "genieten van uw lidmaatschap?"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/member-subscription.php:66
-msgid "Your membership expires on "
-msgstr "Uw lidmaatschap loopt af op"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/member-subscription.php:68
-msgid "you are ready to be discovered!"
-msgstr "je bent klaar om ondekt te worden!"
-
-#: D:\wamp\www\ClearlyM\agency1.rgbplugin.com\wp-content\plugins\rb-agency-interact/theme/member-subscription.php:118
-msgid ""
-"Records show you are not currently linked to a model or agency profile.  "
-"Lets setup your profile now!"
 msgstr ""
-"Gegevens blijkt dat u op dit moment niet gekoppeld aan een model of bureau "
-"profiel. Laten we nu het opzetten van je profiel!"
 
-#~ msgid "Username"
-#~ msgstr "Login naam:"
+msgid "Register Now"
+msgstr ""
 
-#~ msgid "Login Name (required)"
-#~ msgstr "Loginnaam"
+msgid "Choose Membership Type"
+msgstr ""
 
-#~ msgid "E-mail (required)"
-#~ msgstr "E-mail"
+msgid "Free"
+msgstr ""
 
-#~ msgid "Hi there,"
-#~ msgstr "Hi there,"
+msgid "Premium"
+msgstr ""
 
-#~ msgid "Thanks for joining %s! Here's how to log in:"
-#~ msgstr "Dank je voor het samenvoegen van %s Hier ziet u hoe in te loggen:"
+msgid "Next"
+msgstr ""
 
-#~ msgid "Regards,"
-#~ msgstr "Met vriendelijke groet,"
+msgid "You may now login and continue registration."
+msgstr ""
 
-#~ msgid ""
-#~ "Please check your email address. That's where you'll receive your login "
-#~ "password.<br/> (It might go into your spam folder)"
-#~ msgstr ""
-#~ "Controleer uw e-mailadres. Dat is waar ontvangt u uw login wachtwoord. "
-#~ "<br/> (Het zou kunnen gaan in uw spam-map)"
+msgid "Account Login"
+msgstr ""
 
-#~ msgid "Skin Color"
-#~ msgstr "Huidskleur"
+msgid "Your login credentials are also sent to your email."
+msgstr ""
 
-#~ msgid "White"
-#~ msgstr "Blank"
+msgid "(It might go into your spam forlder)"
+msgstr ""
 
-#~ msgid "Dark"
-#~ msgstr "Donker"
+msgid "Profile Setup: Step 1 of 2"
+msgstr ""
 
-#~ msgid "Tinted"
-#~ msgstr "Getint"
+msgid "Profile Setup: Step 1 of 3"
+msgstr ""
 
-#~ msgid ""
-#~ "Your passwords provided didn't match and must be at least 6 characters "
-#~ "long.<br />"
-#~ msgstr ""
-#~ "Op voorwaarde dat uw wachtwoorden kwamen niet overeen en moet minstens 6 "
-#~ "tekens lang zijn.<br />"
+msgid "Profile Setup: Step 3 of 3"
+msgstr ""
 
-#~ msgid "Sign In"
-#~ msgstr "Meld u aan  "
+msgid "Profile Setup: Step 2 of 2"
+msgstr ""
 
-#~ msgid "Members Sign in"
-#~ msgstr "Lid Aanmelden"
+msgid "Profile Setup: Step 2 of 3"
+msgstr ""
 
-#~ msgid "Measurements"
-#~ msgstr "Metingen"
+msgid "Photo Gallery"
+msgstr ""
 
-#~ msgid "Bust"
-#~ msgstr "Buste"
+msgid "Type:"
+msgstr ""
 
-#~ msgid "Waist"
-#~ msgstr "Taille"
+msgid "Paste the video URL below"
+msgstr ""
 
-#~ msgid "Inseam"
-#~ msgstr "Binnenbeenlengte"
+msgid "Thank you for joining %s!"
+msgstr ""
 
-#~ msgid ""
-#~ "Subscribe now, and start applying to Casting Calls, join the Talent "
-#~ "Directory, and more."
-#~ msgstr ""
-#~ "Schrijf je nu in en start van toepassing zijn op Casting verzoekt, lid "
-#~ "worden van de Talent-gids, en nog veel meer."
+msgid "Your account is pending for approval. We will send you an email once your account is approved."
+msgstr ""
 
-#~ msgid "Weight"
-#~ msgstr "Gewicht"
+msgid "Manage Account"
+msgstr ""
 
-#~ msgid "In Pounds"
-#~ msgstr "In Pounds"
+msgid "Photo"
+msgstr ""
 
-#~ msgid "In Kilo"
-#~ msgstr "In Kilo"
+msgid "--Please Select--"
+msgstr ""
 
-#~ msgid "Gray"
-#~ msgstr "Grijs"
+msgid "Video Slate"
+msgstr ""
 
-#~ msgid "Green"
-#~ msgstr "Groen"
+msgid "Video Monologue"
+msgstr ""
 
-#~ msgid "Ethnicity"
-#~ msgstr "Etniciteit"
+msgid "Demo Reel"
+msgstr ""
 
-#~ msgid "Apply to Auditions & Jobs"
-#~ msgstr "Toepassen op Auditions & Jobs"
-
-#~ msgid "Details"
-#~ msgstr "Meer informatie"
-
-#~ msgid "Description"
-#~ msgstr "Beschrijving"
-
-#~ msgid "Genre"
-#~ msgstr "Genre"
-
-#~ msgid "Paste the YouTube video URL below"
-#~ msgstr "Plak de YouTube-video onderstaande URL"
-
-#~ msgid "Video Slate"
-#~ msgstr "Video Leisteen"
-
-#~ msgid "Video Monologue"
-#~ msgstr "Video Monoloog"
-
-#~ msgid "Demo Reel"
-#~ msgstr "Demo Reel"
-
-#~ msgid "I agree to the terms of service"
-#~ msgstr "Ik ga akkoord met wat de algemene voorwaarden"
-
-#~ msgid "Favorites"
-#~ msgstr "Favoriet"
-
-#~ msgid " must have a display name identified"
-#~ msgstr "moet een geïdentificeerd weergavenaam"
-
-#~ msgid "Begin Your Search"
-#~ msgstr "Beginnen met zoeken"
-
-#, fuzzy
-#~ msgid "Create New "
-#~ msgstr "Maak een nieuw record"
-
-#~ msgid "Bulk Action"
-#~ msgstr "Bulkactie"
-
-#~ msgid "Apply"
-#~ msgstr "Aanvragen"
-
-#~ msgid "Casting Agents & Producers"
-#~ msgstr "Casting Agenten & Producenten"
-
-#~ msgid "List Auditions & Jobs free"
-#~ msgstr "Lijst Audities & Jobs gratis"
-
-#~ msgid "Contact People in the Talent Directory"
-#~ msgstr "Neem contact op met Mensen in de Talent-gids"
-
-#~ msgid "Register as Agent / Producer"
-#~ msgstr "Registreer als Agent / Producer"
-
-#~ msgid "Talent / Model"
-#~ msgstr "Talent / Model"
-
-#~ msgid "Agent / Producer"
-#~ msgstr "Agent / Producer"
-
-#~ msgid "Username(cannot be changed.)"
-#~ msgstr "Gebruikersnaam (kan niet worden gewijzigd.)"
-
-#~ msgid ""
-#~ "The following files (pdf, audio file, etc.) are associated with this "
-#~ "record"
-#~ msgstr ""
-#~ "De volgende bestanden (pdf, audio-bestand, enz.) worden geassocieerd met "
-#~ "dit record"
-
-#~ msgid "There are no additional media linked"
-#~ msgstr "Er zijn geen gekoppelde extra media"
-
-#~ msgid "Upload Media Files"
-#~ msgstr "Upload Media-bestanden"
-
-#~ msgid ""
-#~ "Upload new media using the forms below. The following formats are "
-#~ "available: jpg, png, mp3, and pdf. If uploading an mp3 for a voice "
-#~ "monolouge, use the  \"Voice Demo\" option. For Resumes, make sure the "
-#~ "file is a PDF "
-#~ msgstr ""
-#~ "Upload new media using the forms below. The following formats are "
-#~ "available: jpg, png, mp3, and pdf. If uploading an mp3 for a voice "
-#~ "monolouge, use the  \"Voice Demo\" option. For Resumes, make sure the "
-#~ "file is a PDF "
-
-#~ msgid "Password (required)"
-#~ msgstr "Wachtwoord (verplicht)"
-
-#~ msgid "Min"
-#~ msgstr "Min"
+msgid "SoundCloud"
+msgstr ""
