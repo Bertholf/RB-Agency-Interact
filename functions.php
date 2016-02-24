@@ -96,9 +96,7 @@
 				}
 			}
 
-			if (get_query_var( 'type' ) == "membership"){
-				return dirname(__FILE__). '/theme/s2member/membership_page.php';
-			}elseif (get_query_var( 'type' ) == "membershipsuccess"){
+			if (get_query_var( 'type' ) == "membershipsuccess"){
 				return dirname(__FILE__). '/theme/s2member/membership_success.php';
 			}elseif (get_query_var('type') == "usermembershippage"){
 				return dirname(__FILE__).'/theme/s2member/user-membership-page.php';
