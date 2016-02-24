@@ -349,7 +349,7 @@
 					}else{
 
 						if($rb_agencyinteract_option_registerconfirm == 1){
-							$notification_password_self_generated = $rb_agency_interact_options_arr['notification_password_self_generated'];
+							$notification_password_self_generated = trim($rb_agency_interact_options_arr['notification_password_self_generated']);
 							if(!empty($notification_password_self_generated)){
 								$notification_password_self_generated_message = str_replace('[username]',$user_login,$notification_password_self_generated);
 								echo nl2br($notification_password_self_generated_message);
@@ -365,7 +365,7 @@
 						}else{
 
 							
-							$notification_password_auto_generated = $rb_agency_interact_options_arr['notification_password_auto_generated'];
+							$notification_password_auto_generated = trim($rb_agency_interact_options_arr['notification_password_auto_generated']);
 
 							if(!empty($notification_password_auto_generated)) {
 								$notification_password_auto_generated_message = str_replace('[username]',$user_login,$notification_password_auto_generated);
