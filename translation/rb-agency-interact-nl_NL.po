@@ -710,3 +710,18 @@ msgstr ""
 
 msgid "SoundCloud"
 msgstr ""
+
+msgid "Registration Complete!"
+msgstr ""
+
+msgid "Your account is currently pending for approval."
+msgstr ""
+
+msgid "We will email you once your account is approved."
+msgstr ""
+
+msgid "Unable to complete your registration!"
+msgstr ""
+
+msgid "Choose Membership Plan."
+msgstr ""
