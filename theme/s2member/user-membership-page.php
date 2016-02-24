@@ -18,10 +18,8 @@ echo "<div id=\"main-content\" class=\"main-content col-sm-8\">";
 echo "<div id=\"primary\" class=\"content-area\">";
 echo "<div id=\"content\" class=\"site-content\" role=\"main\">";
 
-$rbagency_message_below_paypal_btns = get_option('rbagency_message_below_paypal_btns');
-if(!empty($rbagency_message_below_paypal_btns)){
-	echo nl2br($rbagency_message_below_paypal_btns);
-}
+
+
 
 echo "<h2 style=\" margin-top: 0px; margin-bottom: 10px; \">Choose Membership Plan</h2>";
 
@@ -29,12 +27,15 @@ echo "<h2 style=\" margin-top: 0px; margin-bottom: 10px; \">Choose Membership Pl
 			add_option("subscription_description_$idx",false);
 			add_option("subscription_paypal_btn_$idx",false);
 
-echo "<ul style=\" -webkit-padding-start: 0px; \">";
+
+if(is_user_logged_in()){
+	$token = md5(time() . rand());
+	$_SESSION['S2MEMBER_user_payment_session'] = $token;
+	echo "<ul style=\" -webkit-padding-start: 0px; \">";
 for($idx=1;$idx<4;$idx++){
 	echo "<li style='float:left;margin-right:40px;list-style-type:none;'>";
-	
-		$discount = get_option("subscription_discount_coupon_$idx");
 		$paypal_code = get_option("subscription_paypal_btn_$idx");
+		$subscription_type = get_option("subscription_type_$idx");
 		$change = array(
 			site_url()."/?s2member_paypal_return=1"
 		);
@@ -46,9 +47,11 @@ for($idx=1;$idx<4;$idx++){
 			'<?php echo S2MEMBER_CURRENT_USER_VALUE_FOR_PP_OS1; ?>');
 
 		//$return_url = site_url()."/?s2member_paypal_return=1&s2member_paypal_return_success=".site_url()."/registration-success";
-		$return_url = site_url()."/?s2member_paypal_return=1&s2member_paypal_return_success=".site_url()."/registration-success";
-		$pcode = str_replace($change2, '', $paypal_code);
-		$pcode_final = str_replace($change,$return_url,$pcode);
+		$return_url = site_url()."/registration-success";
+		$custom_field = '<input type="hidden" name="custom" value="s2member_level'.$idx.'">';
+		$pcode = str_replace($change2, "", $paypal_code);		
+		$pcode_pre = str_replace($change,$return_url,$pcode);
+		$pcode_final = str_replace('</form>',$custom_field.'</form>',$pcode_pre);
 
 		echo "<table>";
 		echo "<tr>";
@@ -60,22 +63,16 @@ for($idx=1;$idx<4;$idx++){
 		echo "<tr>";
 		echo "<td>".$pcode_final."</td>";
 		echo "</tr>";
-		if(!empty($discount)){
-			echo "<tr>";
-			echo "<td><b>Apply Discount Coupon</b></td>";
-			echo "</tr>";
-			echo "<tr>";
-			echo "<td>".do_shortcode($discount)."</td>";
-			echo "</tr>";
-		}
-		
-
-
 		echo "</table>";
 
 	echo "</li>";
 }
 echo "</ul>";
+
+	
+}
+
+
 
 
 echo "</div></div></div>";
