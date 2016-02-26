@@ -348,22 +348,22 @@ function rb_display_list() {
 		echo "<table cellspacing=\"0\" class=\"widefat fixed\">\n";
 		echo " <thead>\n";
 		echo "    <tr class=\"thead\">\n";
-		echo "        <th class=\"manage-column column-cb check-column\" id=\"cb\" scope=\"col\"><input type=\"checkbox\"/></th>\n";
-		echo "        <th class=\"column-ProfileID\" id=\"ProfileID\" scope=\"col\" style=\"width:50px;\"><a href=\"". admin_url("admin.php?page=". $_GET['page'] ."&sort=ProfileID&dir=". $sortDirection) ."\">ID</a></th>\n";
+		echo "        <th class=\"manage-column column-cb check-column\" id=\"cb\" style=\"width:60px;height:20px;\" scope=\"col\"><input type=\"checkbox\"/></th>\n";
+		echo "        <th class=\"column-ProfileID\" id=\"ProfileID\" scope=\"col\" style=\"width:50px;height:20px;\"><a href=\"". admin_url("admin.php?page=". $_GET['page'] ."&sort=ProfileID&dir=". $sortDirection) ."\">ID</a></th>\n";
 		
-		echo "        <th class=\"column-ProfileContactNameFirst\" id=\"ProfileContactNameFirst\" scope=\"col\" style=\"width:130px;\"><a href=\"". admin_url("admin.php?page=". $_GET['page'] ."&sort=ProfileContactNameFirst&dir=". $sortDirection) ."\">First Name</a></th>\n";
-		echo "        <th class=\"column-ProfileContactNameLast\" id=\"ProfileContactNameLast\" scope=\"col\" style=\"width:130px;\"><a href=\"". admin_url("admin.php?page=". $_GET['page'] ."&sort=ProfileContactNameLast&dir=". $sortDirection) ."\">Last Name</a></th>\n";
-		echo "        <th class=\"column-ProfileUsername\" id=\"ProfileUsername\" scope=\"col\" style=\"width:130px;\"><a href=\"". admin_url("admin.php?page=". $_GET['page'] ."&sort=ProfileUsername&dir=". $sortDirection) ."\">Username</a></th>\n";
+		echo "        <th class=\"column-ProfileContactNameFirst\" id=\"ProfileContactNameFirst\" scope=\"col\" style=\"width:130px;height:20px;\"><a href=\"". admin_url("admin.php?page=". $_GET['page'] ."&sort=ProfileContactNameFirst&dir=". $sortDirection) ."\">First Name</a></th>\n";
+		echo "        <th class=\"column-ProfileContactNameLast\" id=\"ProfileContactNameLast\" scope=\"col\" style=\"width:130px;height:20px;\"><a href=\"". admin_url("admin.php?page=". $_GET['page'] ."&sort=ProfileContactNameLast&dir=". $sortDirection) ."\">Last Name</a></th>\n";
+		echo "        <th class=\"column-ProfileUsername\" id=\"ProfileUsername\" scope=\"col\" style=\"width:130px;height:20px;\"><a href=\"". admin_url("admin.php?page=". $_GET['page'] ."&sort=ProfileUsername&dir=". $sortDirection) ."\">Username</a></th>\n";
 		
-		echo "        <th class=\"column-ProfileGender\" id=\"ProfileGender\" scope=\"col\" style=\"width:65px;\"><a href=\"". admin_url("admin.php?page=". $_GET['page'] ."&sort=ProfileGender&dir=". $sortDirection) ."\">Gender</a></th>\n";
-		echo "        <th class=\"column-ProfilesProfileDate\" id=\"ProfilesProfileDate\" scope=\"col\" style=\"width:50px;\"><a href=\"". admin_url("admin.php?page=". $_GET['page'] ."&sort=ProfileDateBirth&dir=". $sortDirection) ."\">Age</a></th>\n";
-		echo "        <th class=\"column-ProfileContactEmail\" id=\"ProfileContactEmail\" scope=\"col\" style=\"width:150px;\"><a href=\"". admin_url("admin.php?page=". $_GET['page'] ."&sort=ProfileContactEmail&dir=". $sortDirection) ."\">Email Address</a></th>\n";
-		echo "        <th class=\"column-ProfileLocationCity\" id=\"ProfileLocationCity\" scope=\"col\" style=\"width:100px;\"><a href=\"". admin_url("admin.php?page=". $_GET['page'] ."&sort=ProfileLocationCity&dir=". $sortDirection) ."\">City</a></th>\n";
-		echo "        <th class=\"column-ProfileLocationState\" id=\"ProfileLocationState\" scope=\"col\" style=\"width:50px;\"><a href=\"". admin_url("admin.php?page=". $_GET['page'] ."&sort=ProfileLocationState&dir=". $sortDirection) ."\">State</a></th>\n";
-		echo "        <th class=\"column-ProfileDetails\" id=\"ProfileDetails\" scope=\"col\" style=\"width:100px;\">Category</th>\n";
-		echo "        <th class=\"column-ProfileDetails\" id=\"ProfileDetails\" scope=\"col\" style=\"width:65px;\">Images</th>\n";
-		echo "        <th class=\"column-ProfileStatHits\" id=\"ProfileStatHits\" scope=\"col\" style=\"width:60px;\">Views</th>\n";
-		echo "        <th class=\"column-ProfileDateViewLast\" id=\"ProfileDateViewLast\" scope=\"col\">Last Viewed Date</th>\n";
+		echo "        <th class=\"column-ProfileGender\" id=\"ProfileGender\" scope=\"col\" style=\"width:65px;height:20px;\"><a href=\"". admin_url("admin.php?page=". $_GET['page'] ."&sort=ProfileGender&dir=". $sortDirection) ."\">Gender</a></th>\n";
+		echo "        <th class=\"column-ProfilesProfileDate\" id=\"ProfilesProfileDate\" scope=\"col\" style=\"width:50px;height:20px;\"><a href=\"". admin_url("admin.php?page=". $_GET['page'] ."&sort=ProfileDateBirth&dir=". $sortDirection) ."\">Age</a></th>\n";
+		echo "        <th class=\"column-ProfileContactEmail\" id=\"ProfileContactEmail\" scope=\"col\" style=\"width:150px;height:20px;\"><a href=\"". admin_url("admin.php?page=". $_GET['page'] ."&sort=ProfileContactEmail&dir=". $sortDirection) ."\">Email Address</a></th>\n";
+		echo "        <th class=\"column-ProfileLocationCity\" id=\"ProfileLocationCity\" scope=\"col\" style=\"width:100px;height:20px;\"><a href=\"". admin_url("admin.php?page=". $_GET['page'] ."&sort=ProfileLocationCity&dir=". $sortDirection) ."\">City</a></th>\n";
+		echo "        <th class=\"column-ProfileLocationState\" id=\"ProfileLocationState\" scope=\"col\" style=\"width:50px;height:20px;\"><a href=\"". admin_url("admin.php?page=". $_GET['page'] ."&sort=ProfileLocationState&dir=". $sortDirection) ."\">State</a></th>\n";
+		echo "        <th class=\"column-ProfileDetails\" id=\"ProfileDetails\" scope=\"col\" style=\"width:100px;height:20px;\">Category</th>\n";
+		echo "        <th class=\"column-ProfileDetails\" id=\"ProfileDetails\" scope=\"col\" style=\"width:65px;height:20px;\">Images</th>\n";
+		echo "        <th class=\"column-ProfileStatHits\" id=\"ProfileStatHits\" scope=\"col\" style=\"width:60px;height:20px;\">Views</th>\n";
+		echo "        <th class=\"column-ProfileDateViewLast\" id=\"ProfileDateViewLast\" style=\"width:60px;height:20px;\" scope=\"col\">Last Viewed Date</th>\n";
 		echo "    </tr>\n";
 		echo " </thead>\n";
 		echo " <tfoot>\n";
