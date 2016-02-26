@@ -286,19 +286,27 @@ function rb_display_list() {
 		echo "  <thead>\n";
 		echo "    <tr>\n";
 		echo "        <td style=\"width: 90%;\" nowrap=\"nowrap\">    \n";
-       
-
-
 		echo "    		<form method=\"GET\" action=\"". admin_url("admin.php?page=". (isset($_GET['page'])?$_GET["page"]:"")) ."\">\n";
+		echo "    			<style type=\"text/css\">
+								.filter-col { float: left; width:32%; }
+								.filter-col label { width: 32%; display: inline-block; }
+								.filter-col input[type=\"text\"] { margin-left: 0; padding: 3px; width: 60%!important; margin-bottom:5px; }
+								.filter-col select { margin0; width: 60%; margin: 0; margin-bottom:4px; }
+							</style>\n";
 		echo "    			<input type=\"hidden\" name=\"page_index\" id=\"page_index\" value=\"". (isset($_GET['page_index'])?$_GET["page_index"]:"") ."\" />  \n";
 		echo "    			<input type=\"hidden\" name=\"page\" id=\"page\" value=\"". $_GET['page'] ."\" />\n";
-		echo "    			<input type=\"hidden\" name=\"type\" value=\"name\" />\n";
-		echo "    			". __("Search By", RBAGENCY_interact_TEXTDOMAIN) .": \n";
-		echo "    			". __("First Name", RBAGENCY_interact_TEXTDOMAIN) .": <input type=\"text\" name=\"ProfileContactNameFirst\" value=\"". (isset($selectedNameFirst)?$selectedNameFirst:"") ."\" style=\"width: 100px;\" />\n";
-		echo "    			". __("Last Name", RBAGENCY_interact_TEXTDOMAIN) .": <input type=\"text\" name=\"ProfileContactNameLast\" value=\"". (isset($selectedNameLast)?$selectedNameLast:"") ."\" style=\"width: 100px;\" />\n";
-		echo "    			". __("Username", RBAGENCY_interact_TEXTDOMAIN) .": <input type=\"text\" name=\"ProfileUsername\" value=\"". (isset($selectedUsername)?$selectedUsername:"") ."\" style=\"width: 100px;\" />\n";
-		echo "    			". __("Email Address", RBAGENCY_interact_TEXTDOMAIN) .": <input type=\"text\" name=\"ProfileContactEmail\" value=\"". (isset($selectedEmail)?$selectedEmail:"") ."\" style=\"width: 100px;\" />\n";
-		echo "    			". __("Location", RBAGENCY_interact_TEXTDOMAIN) .": \n";
+		echo "    			<input type=\"hidden\" name=\"type\" value=\"name\" />\n";		
+		echo "    			<h4 style=\"margin:0 0 5px 0\">". __("Search By", RBAGENCY_interact_TEXTDOMAIN) .":</h4>\n";
+		echo "    			<p class=\"filter-col\">\n";
+		echo "    			<label>". __("First Name", RBAGENCY_interact_TEXTDOMAIN) ."</label><input type=\"text\" name=\"ProfileContactNameFirst\" value=\"". (isset($selectedNameFirst)?$selectedNameFirst:"") ."\" style=\"width: 100px;\" /><br>\n";
+		echo "    			<label>". __("Last Name", RBAGENCY_interact_TEXTDOMAIN) ."</label><input type=\"text\" name=\"ProfileContactNameLast\" value=\"". (isset($selectedNameLast)?$selectedNameLast:"") ."\" style=\"width: 100px;\" />\n";
+		echo "    			</p>\n";
+		echo "    			<p class=\"filter-col\">\n";
+		echo "    			<label>". __("Username", RBAGENCY_interact_TEXTDOMAIN) ."</label><input type=\"text\" name=\"ProfileUsername\" value=\"". (isset($selectedUsername)?$selectedUsername:"") ."\" style=\"width: 100px;\" /><br>\n";
+		echo "    			<label>". __("Email Address", RBAGENCY_interact_TEXTDOMAIN) ."</label><input type=\"text\" name=\"ProfileContactEmail\" value=\"". (isset($selectedEmail)?$selectedEmail:"") ."\" style=\"width: 100px;\" />\n";
+		echo "    			</p>\n";
+		echo "    			<p class=\"filter-col\">\n";
+		echo "    			<label>". __("Location", RBAGENCY_interact_TEXTDOMAIN) ."</label>\n";
 		echo "    			<select name=\"ProfileLocationCity\">\n";
 		echo "					<option value=\"\">". __("Any Location", RBAGENCY_interact_TEXTDOMAIN) ."</option>";
 								$query = "SELECT DISTINCT ProfileLocationCity, ProfileLocationState FROM ". table_agency_profile ." ORDER BY ProfileLocationState, ProfileLocationCity ASC";
@@ -309,8 +317,8 @@ function rb_display_list() {
 									echo "<option value=\"". $data['ProfileLocationCity'] ."\" ". selected((isset($selectedCity)?$selectedCity:""), $data["ProfileLocationCity"]) ."\">". $data['ProfileLocationCity'] .", ". strtoupper(isset($dataLocation["ProfileLocationState"])?$dataLocation["ProfileLocationState"]:"") ."</option>\n";
 									}
 								}
-		echo "    			</select>\n";
-		echo "    			". __("Category", RBAGENCY_interact_TEXTDOMAIN) .":\n";
+		echo "    			</select><br>\n";
+		echo "    			<label>". __("Category", RBAGENCY_interact_TEXTDOMAIN) ."</label>\n";
 		echo "    			<select name=\"ProfileType\">\n";
 		echo "					<option value=\"\">". __("Any Category", RBAGENCY_interact_TEXTDOMAIN) ."</option>";
 								$query = "SELECT DataTypeID, DataTypeTitle FROM ". table_agency_data_type ." ORDER BY DataTypeTitle ASC";
@@ -320,6 +328,8 @@ function rb_display_list() {
 									echo "<option value=\"". $data['DataTypeID'] ."\" ". selected((isset($selectedCity)?$selectedCity:""), $data["DataTypeTitle"]) ."\">". $data['DataTypeTitle'] ."</option>\n";
 								}
 		echo "    			</select>\n";
+		echo "    			</p>\n";
+		
 		echo "    			<input type=\"submit\" value=\"". __("Filter", RBAGENCY_interact_TEXTDOMAIN) ."\" class=\"button-primary\" />\n";
 		echo "          </form>\n";
 		echo "        </td>\n";
@@ -327,7 +337,7 @@ function rb_display_list() {
 		echo "    		<form method=\"GET\" action=\"". admin_url("admin.php?page=". $_GET['page']) ."\">\n";
 		echo "    			<input type=\"hidden\" name=\"page_index\" id=\"page_index\" value=\"". (isset($_GET['page_index'])?$_GET['page_index']:"") ."\" />  \n";
 		echo "    			<input type=\"hidden\" name=\"page\" id=\"page\" value=\"". $_GET['page'] ."\" />\n";
-		echo "    			<input type=\"submit\" value=\"". __("Clear Filters", RBAGENCY_interact_TEXTDOMAIN) ."\" class=\"button-secondary\" />\n";
+		echo "    			<input type=\"submit\" value=\"". __("Clear Filters", RBAGENCY_interact_TEXTDOMAIN) ."\" class=\"button-secondary\" style=\"margin-top: 24px;\" />\n";
 		echo "    		</form>\n";
 		echo "        </td>\n";
 		echo "        <td>&nbsp;</td>\n";
@@ -345,25 +355,24 @@ function rb_display_list() {
 		echo "              <option value=\"Delete\"> ". __("Delete", RBAGENCY_interact_TEXTDOMAIN) ."<option\>\n";
 		echo "              </select>"; 
 		echo "    <input type=\"submit\" value=\"". __("Apply", RBAGENCY_interact_TEXTDOMAIN) ."\" name=\"ProfileBulkAction\" class=\"button-secondary\"  />\n";
-		echo "<table cellspacing=\"0\" class=\"widefat fixed\">\n";
+		echo "<table cellspacing=\"0\" class=\"widefat\">\n";
 		echo " <thead>\n";
 		echo "    <tr class=\"thead\">\n";
-		echo "        <th class=\"manage-column column-cb check-column\" id=\"cb\" style=\"width:60px;height:20px;\" scope=\"col\"><input type=\"checkbox\"/></th>\n";
-		echo "        <th class=\"column-ProfileID\" id=\"ProfileID\" scope=\"col\" style=\"width:50px;height:20px;\"><a href=\"". admin_url("admin.php?page=". $_GET['page'] ."&sort=ProfileID&dir=". $sortDirection) ."\">ID</a></th>\n";
+		echo "        <th class=\"manage-column column-cb check-column\" id=\"cb\" scope=\"col\"><input type=\"checkbox\"/></th>\n";
+		echo "        <th class=\"column-ProfileID\" id=\"ProfileID\" scope=\"col\" style=\"width:50px;\"><a href=\"". admin_url("admin.php?page=". $_GET['page'] ."&sort=ProfileID&dir=". $sortDirection) ."\">ID</a></th>\n";		
+		echo "        <th class=\"column-ProfileContactNameFirst\" id=\"ProfileContactNameFirst\" scope=\"col\" style=\"width:130px;\"><a href=\"". admin_url("admin.php?page=". $_GET['page'] ."&sort=ProfileContactNameFirst&dir=". $sortDirection) ."\">First Name</a></th>\n";
+		echo "        <th class=\"column-ProfileContactNameLast\" id=\"ProfileContactNameLast\" scope=\"col\" style=\"width:130px;\"><a href=\"". admin_url("admin.php?page=". $_GET['page'] ."&sort=ProfileContactNameLast&dir=". $sortDirection) ."\">Last Name</a></th>\n";
+		echo "        <th class=\"column-ProfileUsername\" id=\"ProfileUsername\" scope=\"col\" style=\"width:130px;\"><a href=\"". admin_url("admin.php?page=". $_GET['page'] ."&sort=ProfileUsername&dir=". $sortDirection) ."\">Username</a></th>\n";
 		
-		echo "        <th class=\"column-ProfileContactNameFirst\" id=\"ProfileContactNameFirst\" scope=\"col\" style=\"width:130px;height:20px;\"><a href=\"". admin_url("admin.php?page=". $_GET['page'] ."&sort=ProfileContactNameFirst&dir=". $sortDirection) ."\">First Name</a></th>\n";
-		echo "        <th class=\"column-ProfileContactNameLast\" id=\"ProfileContactNameLast\" scope=\"col\" style=\"width:130px;height:20px;\"><a href=\"". admin_url("admin.php?page=". $_GET['page'] ."&sort=ProfileContactNameLast&dir=". $sortDirection) ."\">Last Name</a></th>\n";
-		echo "        <th class=\"column-ProfileUsername\" id=\"ProfileUsername\" scope=\"col\" style=\"width:130px;height:20px;\"><a href=\"". admin_url("admin.php?page=". $_GET['page'] ."&sort=ProfileUsername&dir=". $sortDirection) ."\">Username</a></th>\n";
-		
-		echo "        <th class=\"column-ProfileGender\" id=\"ProfileGender\" scope=\"col\" style=\"width:65px;height:20px;\"><a href=\"". admin_url("admin.php?page=". $_GET['page'] ."&sort=ProfileGender&dir=". $sortDirection) ."\">Gender</a></th>\n";
-		echo "        <th class=\"column-ProfilesProfileDate\" id=\"ProfilesProfileDate\" scope=\"col\" style=\"width:50px;height:20px;\"><a href=\"". admin_url("admin.php?page=". $_GET['page'] ."&sort=ProfileDateBirth&dir=". $sortDirection) ."\">Age</a></th>\n";
-		echo "        <th class=\"column-ProfileContactEmail\" id=\"ProfileContactEmail\" scope=\"col\" style=\"width:150px;height:20px;\"><a href=\"". admin_url("admin.php?page=". $_GET['page'] ."&sort=ProfileContactEmail&dir=". $sortDirection) ."\">Email Address</a></th>\n";
-		echo "        <th class=\"column-ProfileLocationCity\" id=\"ProfileLocationCity\" scope=\"col\" style=\"width:100px;height:20px;\"><a href=\"". admin_url("admin.php?page=". $_GET['page'] ."&sort=ProfileLocationCity&dir=". $sortDirection) ."\">City</a></th>\n";
-		echo "        <th class=\"column-ProfileLocationState\" id=\"ProfileLocationState\" scope=\"col\" style=\"width:50px;height:20px;\"><a href=\"". admin_url("admin.php?page=". $_GET['page'] ."&sort=ProfileLocationState&dir=". $sortDirection) ."\">State</a></th>\n";
-		echo "        <th class=\"column-ProfileDetails\" id=\"ProfileDetails\" scope=\"col\" style=\"width:100px;height:20px;\">Category</th>\n";
-		echo "        <th class=\"column-ProfileDetails\" id=\"ProfileDetails\" scope=\"col\" style=\"width:65px;height:20px;\">Images</th>\n";
-		echo "        <th class=\"column-ProfileStatHits\" id=\"ProfileStatHits\" scope=\"col\" style=\"width:60px;height:20px;\">Views</th>\n";
-		echo "        <th class=\"column-ProfileDateViewLast\" id=\"ProfileDateViewLast\" style=\"width:60px;height:20px;\" scope=\"col\">Last Viewed Date</th>\n";
+		echo "        <th class=\"column-ProfileGender\" id=\"ProfileGender\" scope=\"col\" style=\"width:65px;\"><a href=\"". admin_url("admin.php?page=". $_GET['page'] ."&sort=ProfileGender&dir=". $sortDirection) ."\">Gender</a></th>\n";
+		echo "        <th class=\"column-ProfilesProfileDate\" id=\"ProfilesProfileDate\" scope=\"col\" style=\"width:100px;\"><a href=\"". admin_url("admin.php?page=". $_GET['page'] ."&sort=ProfileDateBirth&dir=". $sortDirection) ."\">Age</a></th>\n";
+		echo "        <th class=\"column-ProfileContactEmail\" id=\"ProfileContactEmail\" scope=\"col\" style=\"width:150px;\"><a href=\"". admin_url("admin.php?page=". $_GET['page'] ."&sort=ProfileContactEmail&dir=". $sortDirection) ."\">Email Address</a></th>\n";
+		echo "        <th class=\"column-ProfileLocationCity\" id=\"ProfileLocationCity\" scope=\"col\" style=\"width:100px;\"><a href=\"". admin_url("admin.php?page=". $_GET['page'] ."&sort=ProfileLocationCity&dir=". $sortDirection) ."\">City</a></th>\n";
+		echo "        <th class=\"column-ProfileLocationState\" id=\"ProfileLocationState\" scope=\"col\" style=\"width:50px;\"><a href=\"". admin_url("admin.php?page=". $_GET['page'] ."&sort=ProfileLocationState&dir=". $sortDirection) ."\">State</a></th>\n";
+		echo "        <th class=\"column-ProfileDetails\" id=\"ProfileDetails\" scope=\"col\" style=\"width:100px;\">Category</th>\n";
+		echo "        <th class=\"column-ProfileDetails\" id=\"ProfileDetails\" scope=\"col\" style=\"width:65px;\">Images</th>\n";
+		echo "        <th class=\"column-ProfileStatHits\" id=\"ProfileStatHits\" scope=\"col\" style=\"width:60px;\">Views</th>\n";
+		echo "        <th class=\"column-ProfileDateViewLast\" id=\"ProfileDateViewLast\" scope=\"col\">Last Viewed Date</th>\n";
 		echo "    </tr>\n";
 		echo " </thead>\n";
 		echo " <tfoot>\n";
@@ -470,8 +479,13 @@ function rb_display_list() {
 		
 		echo "        <td class=\"ProfileLocationCity column-ProfileLocationCity\">". $ProfileLocationCity ."</td>\n";
 		echo "        <td class=\"ProfileLocationCity column-ProfileLocationState\">". $ProfileLocationState ."</td>\n";
-		echo "        <td class=\"ProfileDetails column-ProfileDetails\">". $DataTypeTitle ."</td>\n";
-		echo "        <td class=\"ProfileDetails column-ProfileDetails\">". $profileImageCount ."</td>\n";
+		echo "        <td class=\"ProfileDetails column-ProfileCategory\">";
+							$ProfileCategories = explode(",", $DataTypeTitle);
+							foreach ($ProfileCategories as $ProfileCategory) {
+								echo $ProfileCategory."<br>\n";
+							}
+		echo "		  </td>\n";
+		echo "        <td class=\"ProfileDetails column-ProfileImageCount\">". $profileImageCount ."</td>\n";
 		echo "        <td class=\"ProfileStatHits column-ProfileStatHits\">". $ProfileStatHits ."</td>\n";
 		echo "        <td class=\"ProfileDateViewLast column-ProfileDateViewLast\">\n";
 		echo "           ". rb_agency_makeago(rb_agency_convertdatetime($ProfileDateCreated), $rb_agency_option_locationtimezone);
