@@ -200,8 +200,14 @@
 			if($_registerapproval == 0){
 				if($_default_registered == 1){
 					$profileactive = 1;
-				}else{
+				}elseif($_default_registered == 2){
+					$profileactive = 2;
+				}elseif($_default_registered == 3){
 					$profileactive = 3;
+				}elseif($_default_registered == 4){
+					$profileactive = 4;
+				}elseif($_default_registered == 0){
+					$profileactive = 0;
 				}
 			}else{
 				//automatic but do not allow the active as default..
