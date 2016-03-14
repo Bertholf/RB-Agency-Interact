@@ -324,10 +324,8 @@ echo $rb_header = RBAgency_Common::rb_header();
 // Check Sidebar
 $rb_agency_interact_options_arr = get_option('rb_agencyinteract_options');
 $rb_agencyinteract_option_profilemanage_sidebar = isset($rb_agency_interact_options_arr['rb_agencyinteract_option_profilemanage_sidebar'])?$rb_agency_interact_options_arr['rb_agencyinteract_option_profilemanage_sidebar']:"";
-$content_class = "";
-$content_class = "rbcol-12";
 
-	echo "<div class=\"".$content_class." rbcolumn rb-agency-interact rb-agency-interact-media\">\n";
+	echo "<div rb-agency-interact rb-agency-interact-media\"><!-- member-media.php --!>\n";
 	echo "  <div id=\"rbcontent\">\n";
 
 		// ****************************************************************************************** //

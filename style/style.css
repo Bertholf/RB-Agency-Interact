@@ -65,8 +65,9 @@ p.submit { margin-top: 15px!important; }
 #profile-manage table tr td h3 { font-size: 16px; margin-bottom:10px; }
 #profile-manage table tr td select { width: 200px; }
 #profile-manage table tr td input[type="text"], #profile-manage table tr td input[type="email"], #profile-manage table tr td input[type="password"] { width: 194px; }
+#profile-manage .profile-manage-menu { margin-bottom: 30px; }
 #profile-manage .profile-manage-menu #subMenuTab { overflow: hidden; }
-#profile-manage .profile-manage-menu #subMenuTab a { float: left; border-left: 1px solid #fff; padding: 10px 20px; color: #555; /*background: url(/wp-content/uploads/2012/01/bg-tab.png) repeat-x; */text-decoration: none; }
+#profile-manage .profile-manage-menu #subMenuTab a { float: left; border-left: 1px solid #fff; padding: 7px 15px; color: #555; /*background: url(/wp-content/uploads/2012/01/bg-tab.png) repeat-x; */text-decoration: none; }
 #profile-manage .profile-manage-menu #subMenuTab a:hover { color: #444; /*background: url(/wp-content/uploads/2012/01/bg-tab.png) 0 -38px repeat-x */ }
 #profile-manage .profile-manage-menu #subMenuTab div.tab-inner, #profile-manage .profile-manage-menu #subMenuTab .tab-left, #profile-manage .profile-manage-menu #subMenuTab .tab-right { float: left; border-left: 1px solid #d1d1d1; border-top: 1px solid #d1d1d1; border-right: 1px solid #d1d1d1; }
 #profile-manage .profile-manage-menu #subMenuTab div.tab-inner, #profile-manage .profile-manage-menu #subMenuTab .tab-right { border-left: none; }
