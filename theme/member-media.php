@@ -270,37 +270,37 @@ if (isset($_POST['action'])) {
             //exist user should be in pending page
 			$old_exist_user = get_user_meta( $current_user->ID, 'rb_agency_interact_clientold', true);
             if(!empty($old_exist_user)){
-                wp_redirect( $rb_agency_interact_WPURL ."/profile-member/pending/?e" );
-                exit;
+                //wp_redirect( $rb_agency_interact_WPURL ."/profile-member/pending/?e" );
+                //exit;
             }
             
-			if(empty($rb_agency_new_registeredUser) || (rb_get_user_profilstatus() == 3 || rb_get_user_profilstatus() == 1)){
+			if(empty($rb_agency_new_registeredUser) || rb_get_user_profilstatus() == 1){
 
 				wp_new_user_notification_pending($current_user->ID , false);
 
 				global $user_ID;
 				$user_info = new WP_User($user_ID);
-				$s2member_role = 's2Member';
-				$has_role = array();
+				$s2member_roles = array('s2member_level1','s2member_level2','s2member_level3','s2member_level4');
+				$s2role = '';
 
 				foreach($user_info->roles as $k=>$v){
-					if(strpos($s2member_role,$v) !== false){
-						$has_role[] = $v;
-					}
+					$s2role = $v;
 				}
 
 				$useS2member = get_option('rbagency_use_s2member');
 				if($useS2member == true){
 					//if not yet paid
-			    	if(empty($has_role)){
+			    	if(!in_array($s2role,$s2member_roles)){			    		
 						wp_redirect($rb_agency_interact_WPURL."/user-membership-page/");
 					}else{
-						wp_redirect( $rb_agency_interact_WPURL ."/profile-member/pending/" );
+						//wp_redirect( $rb_agency_interact_WPURL ."/profile-member/pending/" );
+						wp_redirect( $rb_agency_interact_WPURL ."/profile-member/media/" );
 					}
 				}else{
-					wp_redirect( $rb_agency_interact_WPURL ."/profile-member/pending/" );
+					//wp_redirect( $rb_agency_interact_WPURL ."/profile-member/pending/" );
+					wp_redirect( $rb_agency_interact_WPURL ."/profile-member/media/" );
 				}
-				exit;
+				exit;	
 			}
 
 		}
