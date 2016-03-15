@@ -289,17 +289,18 @@ if (isset($_POST['action'])) {
 					}
 				}
 
-				//if not yet paid
-			    if(empty($has_role)){
-			    	//wp_redirect( $rb_agency_interact_WPURL ."/profile-member/pending/" );
-					$useS2member = get_option('rbagency_use_s2member');
-					if($useS2member == true){
+				$useS2member = get_option('rbagency_use_s2member');
+				if($useS2member == true){
+					//if not yet paid
+			    	if(empty($has_role)){
 						wp_redirect($rb_agency_interact_WPURL."/user-membership-page/");
 					}else{
 						wp_redirect( $rb_agency_interact_WPURL ."/profile-member/pending/" );
 					}
-					exit;
-			    }
+				}else{
+					wp_redirect( $rb_agency_interact_WPURL ."/profile-member/pending/" );
+				}
+				exit;
 			}
 
 		}
