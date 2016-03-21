@@ -289,7 +289,7 @@ if (isset($_POST['action'])) {
 				$useS2member = get_option('rbagency_use_s2member');
 				if($useS2member == true){
 					//if not yet paid
-					$role_found = strpos('s2member',strtolower($s2role));
+					$role_found = strpos($s2role,'s2member');
 			    	if($role_found === false){			    		
 						wp_redirect($rb_agency_interact_WPURL."/user-membership-page/");
 					}else{
