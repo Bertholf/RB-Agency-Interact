@@ -283,7 +283,7 @@ if (isset($_POST['action'])) {
 				$s2role = '';
 
 				foreach($user_info->roles as $k=>$v){
-					$s2role = $v;
+					$s2role = strtolower($v);
 				}
 
 				$useS2member = get_option('rbagency_use_s2member');
@@ -294,11 +294,11 @@ if (isset($_POST['action'])) {
 						wp_redirect($rb_agency_interact_WPURL."/user-membership-page/");
 					}else{
 						//wp_redirect( $rb_agency_interact_WPURL ."/profile-member/pending/" );
-						wp_redirect( $rb_agency_interact_WPURL ."/profile-member/media/" );
+						wp_redirect( $rb_agency_interact_WPURL ."/profile-member/media/?st=updated" );
 					}
 				}else{
 					//wp_redirect( $rb_agency_interact_WPURL ."/profile-member/pending/" );
-					wp_redirect( $rb_agency_interact_WPURL ."/profile-member/media/" );
+					wp_redirect( $rb_agency_interact_WPURL ."/profile-member/media/?st=updated" );
 				}
 				exit;	
 			}
@@ -342,6 +342,9 @@ $rb_agencyinteract_option_profilemanage_sidebar = isset($rb_agency_interact_opti
 			include("include-menu.php"); 
 			echo " <div class=\"manage-media manage-content\">\n";
 
+			if(isset($_GET['st']) && $_GET['st'] == 'updated'){
+				echo "<div id=\"message\" class=\"updated\"><p>". __("Profile updated successfully", RBAGENCY_interact_TEXTDOMAIN) ."!</a></p></div>";
+			}
 
 			/* Check if the user is regsitered *****************************************/ 
 			// Verify Record
