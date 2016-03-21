@@ -280,7 +280,6 @@ if (isset($_POST['action'])) {
 
 				global $user_ID;
 				$user_info = new WP_User($user_ID);
-				$s2member_roles = array('s2member_level1','s2member_level2','s2member_level3','s2member_level4');
 				$s2role = '';
 
 				foreach($user_info->roles as $k=>$v){
@@ -290,7 +289,8 @@ if (isset($_POST['action'])) {
 				$useS2member = get_option('rbagency_use_s2member');
 				if($useS2member == true){
 					//if not yet paid
-			    	if(!in_array($s2role,$s2member_roles)){			    		
+					$role_found = strpos('s2member',strtolower($s2role));
+			    	if($role_found === false){			    		
 						wp_redirect($rb_agency_interact_WPURL."/user-membership-page/");
 					}else{
 						//wp_redirect( $rb_agency_interact_WPURL ."/profile-member/pending/" );
