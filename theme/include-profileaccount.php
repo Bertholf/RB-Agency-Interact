@@ -129,7 +129,7 @@
 		echo "		<div>";
 
 					echo "<select name=\"ProfileGender\">";
-					echo "<option value=\"\">All Gender</option>";
+					echo "<option value=\"\">". __("All Gender", RBAGENCY_interact_TEXTDOMAIN) ."</option>";
 					$query= "SELECT GenderID, GenderTitle FROM " .  table_agency_data_gender . " GROUP BY GenderTitle ";
 					$queryShowGender = $wpdb->get_results($query,ARRAY_A);
 
@@ -290,19 +290,19 @@
 
 				if($rb_agency_option_unittype ==0) { // 0 = Metrics(ft/kg)
 					if($data3['ProfileCustomOptions'] == 1){
-						$measurements_label  ="<em> (cm)</em>";
-					} elseif($data3['ProfileCustomOptions'] == 2){
-						$measurements_label  ="<em> (kg)</em>";
-					} elseif($data3['ProfileCustomOptions'] == 3){
-						$measurements_label  ="<em> (Inches/Feet)</em>";
+						$measurements_label  ="<em>(".__('cm',RBAGENCY_interact_TEXTDOMAIN).")</em>";
+					} elseif($data1['ProfileCustomOptions'] == 2){
+						$measurements_label  ="<em>(".__('kg',RBAGENCY_interact_TEXTDOMAIN).")</em>";
+					} elseif($data1['ProfileCustomOptions'] == 3){
+						$measurements_label  ="<em>(".__('Inches/Feet',RBAGENCY_interact_TEXTDOMAIN).")</em>";
 					}
 				} elseif($rb_agency_option_unittype ==1){ //1 = Imperial(in/lb)
 					if($data3['ProfileCustomOptions'] == 1){
-						$measurements_label  ="<em> (Inches)</em>";
+						$measurements_label  ="<em>(".__('In Inches',RBAGENCY_interact_TEXTDOMAIN).")</em>";
 					} elseif($data3['ProfileCustomOptions'] == 2){
-						$measurements_label  ="<em> (Pounds)</em>";
+							$measurements_label  ="<em>(".__('In Pounds',RBAGENCY_interact_TEXTDOMAIN).")</em>";
 					} elseif($data3['ProfileCustomOptions'] == 3){
-						$measurements_label  ="<em> (Inches/Feet)</em>";
+							$measurements_label  ="<em>(".__('In Inches/Feet',RBAGENCY_interact_TEXTDOMAIN).")</em>";
 					}
 				}
 			}

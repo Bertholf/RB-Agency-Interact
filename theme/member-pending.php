@@ -16,7 +16,7 @@ get_currentuserinfo();
 // Change Title
 add_filter('wp_title', 'rb_agencyinteractive_override_title', 10, 2);
 	function rb_agencyinteractive_override_title(){
-		return "Profile Pending";
+		return __("Profile Pending",RBAGENCY_interact_TEXTDOMAIN);
 	}
 $profile_gallery = $wpdb->get_row($wpdb->prepare("SELECT ProfileGallery FROM ".table_agency_profile." WHERE ProfileUserLinked = %d",$current_user->ID));
 
@@ -37,9 +37,9 @@ echo $rb_header = RBAgency_Common::rb_header();
 			
 			
 			if(isset($_GET['e'])){
-				echo 'Account updated! ';
+				echo __('Account updated!',RBAGENCY_interact_TEXTDOMAIN);
 			}else{
-				echo sprintf(__("Thank you for joining %s! "), get_option('blogname'));
+				echo sprintf(__("Thank you for joining %s! ",RBAGENCY_interact_TEXTDOMAIN), get_option('blogname'));
 			}
 			
 
@@ -51,8 +51,8 @@ echo $rb_header = RBAgency_Common::rb_header();
 					echo nl2br($rbagency_message_after_steps);
 				}else{
 
-					echo "<h2>Registration almost complete.</h2><br>";
-					echo "<h3>To complete registration, please click button below to pay membership via paypal.</h3><br><br>";
+					echo "<h2>".__('Registration almost complete.',RBAGENCY_interact_TEXTDOMAIN)."</h2><br>";
+					echo "<h3>".__('To complete registration, please click button below to pay membership via paypal.',RBAGENCY_interact_TEXTDOMAIN)."</h3><br><br>";
 
 				}
 				/**
@@ -78,10 +78,10 @@ echo $rb_header = RBAgency_Common::rb_header();
 				**/
 
 			}else{
-				echo 'Your account is pending for approval. We will send you an email once your account is approved.<br/>';
+				echo __('Your account is pending for approval. We will send you an email once your account is approved.',RBAGENCY_interact_TEXTDOMAIN). '<br/>';
 			
-				echo "<a href=\"".get_bloginfo("url")."/profile/".$profile_gallery->ProfileGallery."\">View My Profile</a>";
-				echo "<a href=\"".get_bloginfo("url")."/profile-member/account\">Manage Account</a>";
+				echo "<a href=\"".get_bloginfo("url")."/profile/".$profile_gallery->ProfileGallery."\">".__('View My Profile',RBAGENCY_interact_TEXTDOMAIN )."</a>";
+				echo "<a href=\"".get_bloginfo("url")."/profile-member/account\">".__('Manage Account',RBAGENCY_interact_TEXTDOMAIN )."</a>";
 					
 				echo "</p> </div>\n"; // .welcome
 			}

@@ -16,19 +16,19 @@ $measurements_label = "";
 if ($ProfileCustomType == 7) { //measurements field type
     if($rb_agency_option_unittype ==0){ // 0 = Metrics(ft/kg)
 		if($data1['ProfileCustomOptions'] == 1){
-			$measurements_label  ="<em>(cm)</em>";
+			$measurements_label  ="<em>(".__('cm',RBAGENCY_interact_TEXTDOMAIN).")</em>";
 		} elseif($data1['ProfileCustomOptions'] == 2){
-			$measurements_label  ="<em>(kg)</em>";
+			$measurements_label  ="<em>(".__('kg',RBAGENCY_interact_TEXTDOMAIN).")</em>";
 		} elseif($data1['ProfileCustomOptions'] == 3){
-			$measurements_label  ="<em>(In Inches/Feet)</em>";
+			$measurements_label  ="<em>(".__('Inches/Feet',RBAGENCY_interact_TEXTDOMAIN).")</em>";
 		}
 	} elseif($rb_agency_option_unittype ==1){ //1 = Imperial(in/lb)
 		if($data1['ProfileCustomOptions'] == 1){
-			$measurements_label  ="<em>(In Inches)</em>";
+			$measurements_label  ="<em>(".__('In Inches',RBAGENCY_interact_TEXTDOMAIN).")</em>";
 		} elseif($data1['ProfileCustomOptions'] == 2){
-				$measurements_label  ="<em>(In Pounds)</em>";
+				$measurements_label  ="<em>(".__('In Pounds',RBAGENCY_interact_TEXTDOMAIN).")</em>";
 		} elseif($data1['ProfileCustomOptions'] == 3){
-				$measurements_label  ="<em>(In Inches/Feet)</em>";
+				$measurements_label  ="<em>(".__('In Inches/Feet',RBAGENCY_interact_TEXTDOMAIN).")</em>";
 		}
 	}
 }

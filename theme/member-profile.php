@@ -170,9 +170,9 @@ if($rb_agencyinteract_option_profilemanage_sidebar){
 			if(!empty($rb_agency_new_registeredUser)){
 
 						if(in_array(strtolower($ptype),$restrict)){
-							echo "<div id=\"profile-steps\">Profile Setup: Step 2 of 2</div>\n";
+							echo "<div id=\"profile-steps\">".__('Profile Setup: Step 2 of 2',RBAGENCY_interact_TEXTDOMAIN)."</div>\n";
 						} else {
-							echo "<div id=\"profile-steps\">Profile Setup: Step 2 of 3</div>\n";
+							echo "<div id=\"profile-steps\">".__('Profile Setup: Step 2 of 3',RBAGENCY_interact_TEXTDOMAIN)."</div>\n";
 						}
 			}
 			echo "<div id=\"profile-manage\" class=\"overview\">\n";

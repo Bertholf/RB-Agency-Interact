@@ -55,7 +55,7 @@ if (isset($_POST['action'])) {
 		} elseif ($rb_agency_option_profilenaming == 1) {
 			$ProfileContactDisplay = $ProfileContactNameFirst . " ". substr($ProfileContactNameLast, 0, 1);
 		} elseif ($rb_agency_option_profilenaming == 2) {
-			$error .= "<b><i>". __(LabelSingular ." must have a display name identified", RBAGENCY_interact_TEXTDOMAIN) . ".</i></b><br>";
+			$error .= "<b><i>".LabelSingular. __( " must have a display name identified", RBAGENCY_interact_TEXTDOMAIN) . ".</i></b><br>";
 			$have_error = true;
 		} elseif ($rb_agency_option_profilenaming == 3) { // by firstname
 			$ProfileContactDisplay = "ID ". $ProfileID;
@@ -261,7 +261,7 @@ if (isset($_POST['action'])) {
 						}
 
 					} elseif ($rb_agency_option_profilenaming == 2) {
-						$errorValidation['rb_agency_option_profilenaming'] = "<b><i>" . __(LabelSingular . " must have a display name identified", RBAGENCY_TEXTDOMAIN) . ".</i></b><br>";
+						$errorValidation['rb_agency_option_profilenaming'] = "<b><i>".LabelSingular . __(" must have a display name identified", RBAGENCY_TEXTDOMAIN) . ".</i></b><br>";
 						$have_error = true;
 					} elseif ($rb_agency_option_profilenaming == 3) {
 						$ProfileContactDisplay = "ID " . $ProfileID;
@@ -429,9 +429,9 @@ if (is_user_logged_in()) {
 			$rb_agency_new_registeredUser = get_user_meta($current_user->ID,'rb_agency_new_registeredUser');
 			if(!empty($rb_agency_new_registeredUser)){
 				if(in_array(strtolower($ptype),$restrict)){
-					echo "<div id=\"profile-steps\">Profile Setup: Step 1 of 2</div>\n";
+					echo "<div id=\"profile-steps\">".__('Profile Setup: Step 1 of 2',RBAGENCY_interact_TEXTDOMAIN)."</div>\n";
 				} else {
-					echo "<div id=\"profile-steps\">Profile Setup: Step 1 of 3</div>\n";
+					echo "<div id=\"profile-steps\">".__('Profile Setup: Step 1 of 3',RBAGENCY_interact_TEXTDOMAIN)."</div>\n";
 				}
 			}
 

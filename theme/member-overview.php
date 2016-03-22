@@ -36,7 +36,7 @@ if(get_user_meta($current_user->ID, 'rb_agency_interact_clientdata', true)){$pro
 // Change Title
 add_filter('wp_title', 'rb_agencyinteractive_override_title', 10, 2);
 	function rb_agencyinteractive_override_title(){
-		return "Member Overview";
+		return __("Member Overview",RBAGENCY_interact_TEXTDOMAIN);
 	}
 
 /* Display Page ******************************************/ 

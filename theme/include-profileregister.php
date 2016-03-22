@@ -114,7 +114,7 @@ global $wpdb;
 			echo "		<div>\n";
 							$monthName = array(1=> "January", "February", "March","April", "May", "June", "July", "August","September", "October", "November", "December"); 
 			echo "			<select name=\"ProfileDateBirth_Month\" id=\"ProfileDateBirth_Month\">\n";
-			echo "			<option value=\"\"> -- Select Month -- </option>\n";
+			echo "			<option value=\"\">".__("-- Select Month --",RBAGENCY_interact_TEXTDOMAIN)." </option>\n";
 				for ($currentMonth = 1; $currentMonth <= 12; $currentMonth++ ) {
 					echo "			<option value=\"". $currentMonth ."\">". $monthName[$currentMonth] ."</option>\n";
 			}
@@ -123,7 +123,7 @@ global $wpdb;
 							/* Day */ 
 			echo "		<div>\n";
 			echo "			<select name=\"ProfileDateBirth_Day\" id=\"ProfileDateBirth_Day\">\n";
-			echo "			<option value=\"\"> -- Select Day -- </option>\n";
+			echo "			<option value=\"\">".__("-- Select Day --",RBAGENCY_interact_TEXTDOMAIN)."  </option>\n";
 				for ($currentDay = 1; $currentDay <= 31; $currentDay++ ) {
 					echo "			<option value=\"". $currentDay ."\">". $currentDay ."</option>\n";
 				}
@@ -133,7 +133,7 @@ global $wpdb;
 							/* Year */ 
 			echo "		<div>\n";
 			echo "			<select name=\"ProfileDateBirth_Year\" id=\"ProfileDateBirth_Year\">\n";
-			echo "			<option value=\"\"> -- Select Year -- </option>\n";
+			echo "			<option value=\"\">".__("-- Select Year --",RBAGENCY_interact_TEXTDOMAIN)."  </option>\n";
 				for ($currentYear = 1940; $currentYear <= date("Y")+6; $currentYear++ ) {
 					echo "			<option value=\"". $currentYear ."\">". $currentYear ."</option>\n";
 			}

@@ -26,7 +26,7 @@ $rb_agency_option_inactive_profile_on_update = (int)$rb_agency_options_arr['rb_a
 // Change Title
 add_filter('wp_title', 'rb_agencyinteractive_override_title', 10, 2);
 	function rb_agencyinteractive_override_title(){
-		return "Manage Media";
+		return __("Manage Media",RBAGENCY_interact_TEXTDOMAIN);
 	}
 
 // Form Post
@@ -334,7 +334,7 @@ $rb_agencyinteract_option_profilemanage_sidebar = isset($rb_agency_interact_opti
 			$rb_agency_new_registeredUser = get_user_meta($current_user->ID,'rb_agency_new_registeredUser');
 			if(!empty($rb_agency_new_registeredUser)){
 				/// Show registration steps
-				echo "<div id=\"profile-steps\">Profile Setup: Step 3 of 3</div>\n";
+				echo "<div id=\"profile-steps\">". __("Profile Setup: Step 3 of 3", RBAGENCY_interact_TEXTDOMAIN) ."</div>\n";
 			}
 			echo "<div id=\"profile-manage\" class=\"profile-media\">\n";
 

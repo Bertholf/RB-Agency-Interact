@@ -106,7 +106,7 @@
 						$ProfileMediaURL = $dataImgConfirm['ProfileMediaURL'];
 
 						if ($ProfileMediaType == "Demo Reel" || $ProfileMediaType == "Video Monologue" || $ProfileMediaType == "Video Slate") {
-							echo ("<div id=\"message\" class=\"updated\"><p>File <strong>'. $ProfileMediaURL .'</strong> ". __("successfully removed", RBAGENCY_interact_TEXTDOMAIN) .".</p></div>");
+							echo ("<div id=\"message\" class=\"updated\"><p>". __("File", RBAGENCY_interact_TEXTDOMAIN) ." <strong>'. $ProfileMediaURL .'</strong> ". __("successfully removed", RBAGENCY_interact_TEXTDOMAIN) .".</p></div>");
 						} else {
 							// Remove File
 							$dirURL = RBAGENCY_UPLOADPATH . $ProfileGallery;
@@ -238,7 +238,7 @@
 		echo "		<p>". __("Upload new media using the forms below. The following formats are available: jpg, png, mp3, and pdf. If uploading an mp3 for a voice monolouge, use the  \"Voice Demo\" option. For Resumes, make sure the file is a PDF ", RBAGENCY_interact_TEXTDOMAIN) .".</p>\n";
 
 				for( $i=5; $i<=9; $i++ ) {
-				echo "<div><label>". __("Type", RBAGENCY_interact_TEXTDOMAIN) .": </label><select name=\"profileMedia". $i ."Type\"><option value=\"\">--Please Select--</option><option value=\"Headshot\">Headshot</option><option value=\"CompCard\">Comp Card</option><option>Resume</option><option value=\"VoiceDemo\">Voice Demo</option>"; rb_agency_getMediaCategories($data['ProfileGender']); echo"</select><input type='file' id='profileMedia". $i ."' name='profileMedia". $i ."' /></div>\n";
+				echo "<div><label>". __("Type", RBAGENCY_interact_TEXTDOMAIN) .": </label><select name=\"profileMedia". $i ."Type\"><option value=\"\">".__('--Please Select--',RBAGENCY_interact_TEXTDOMAIN)."</option><option value=\"Headshot\">".__('Headshot',RBAGENCY_interact_TEXTDOMAIN)."</option><option value=\"CompCard\">".__('Comp Card',RBAGENCY_interact_TEXTDOMAIN)."</option><option>".__('Resume',RBAGENCY_interact_TEXTDOMAIN)."</option><option value=\"VoiceDemo\">".__('Voice Demo',RBAGENCY_interact_TEXTDOMAIN).."</option>"; rb_agency_getMediaCategories($data['ProfileGender']); echo"</select><input type='file' id='profileMedia". $i ."' name='profileMedia". $i ."' /></div>\n";
 				}
 		echo "		<p>". __("Paste the video URL below", RBAGENCY_interact_TEXTDOMAIN) .".</p>\n";
 
@@ -268,7 +268,7 @@
 					."</select><textarea id='profileMediaV4' name='profileMediaV4'></textarea></div>\n";
 
 			}
-		echo "<p><strong>". __("Press the Save and Continue button only once", RBAGENCY_interact_TEXTDOMAIN) ."</strong>. ". __("Depending on the number of files and or your connection speed, it may take a few moments to fully upload your new files/changes. When the page refreshes, you should see your new media.", RBAGENCY_interact_TEXTDOMAIN) ."</p>\n";
+		echo "<p><strong>". __("Press the Save and Continue button only once.", RBAGENCY_interact_TEXTDOMAIN) ."</strong> ". __("Depending on the number of files and or your connection speed, it may take a few moments to fully upload your new files/changes. When the page refreshes, you should see your new media.", RBAGENCY_interact_TEXTDOMAIN) ."</p>\n";
 		echo "		</div>\n";
 		echo "<p class=\"submit\">\n";
 		echo "     <input type=\"hidden\" name=\"ProfileID\" value=\"". $ProfileID ."\" />\n";
