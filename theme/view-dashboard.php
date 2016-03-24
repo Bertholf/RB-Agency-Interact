@@ -112,8 +112,8 @@ if (is_user_logged_in()) {
 		}
 
 		echo "<div class=\"event\">\n";
-		echo "<h3>You have successfully logged in!</h3>\n";
-		echo "You may now access the profile data.  You may now return to <strong><a href=\"". RBAGENCY_PROFILEDIR ."". $ProfileGallery ."\">". $ProfileContactDisplay ."'s</strong></a> profile.\n";
+		echo "<h3>".__("You have successfully logged in!",RBAGENCY_interact_TEXTDOMAIN)."</h3>\n";
+		echo __("You may now access the profile data.  You may now return to",RBAGENCY_interact_TEXTDOMAIN)."<strong><a href=\"". RBAGENCY_PROFILEDIR ."". $ProfileGallery ."\">". $ProfileContactDisplay ."'s</strong></a> ".__("profile",RBAGENCY_interact_TEXTDOMAIN)."\n";
 		echo "</div>\n";
 		$_SESSION['ProfileLastViewed'] = "";
 	}
@@ -133,13 +133,13 @@ if (isset($curauth->user_login)) {
 	echo "  <div id=\"profile-info\">\n";
 	echo "		<h3>Profile</h3>\n";
 	echo "		<ul>\n";
-	echo "		<li>Username: <strong>" . $curauth->user_login . "</strong></li>\n";
-	echo "		<li>Company: <strong>" . $user_company . "</strong></li>\n";
-	echo "		<li>First Name: <strong>" . $curauth->user_firstname . "</strong></li>\n";
-	echo "		<li>Last Name: <strong>" . $curauth->user_lastname . "</strong></li>\n";
-	echo "		<li>User Email: <strong>" . $curauth->user_email . "</strong></li>\n";
-	echo "		<li>Work Phone: <strong>" . $curauth->phone_work . "</strong></li>\n";
-	echo "		<li>Cell Phone: <strong>" . $curauth->phone_cell . "</strong></li>\n";
+	echo "		<li>".__("Username:",RBAGENCY_interact_TEXTDOMAIN)." <strong>" . $curauth->user_login . "</strong></li>\n";
+	echo "		<li>".__("Company:",RBAGENCY_interact_TEXTDOMAIN)." <strong>" . $user_company . "</strong></li>\n";
+	echo "		<li>".__("First Name:",RBAGENCY_interact_TEXTDOMAIN)." <strong>" . $curauth->user_firstname . "</strong></li>\n";
+	echo "		<li>".__("Last Name:",RBAGENCY_interact_TEXTDOMAIN)." <strong>" . $curauth->user_lastname . "</strong></li>\n";
+	echo "		<li>".__("User Email:",RBAGENCY_interact_TEXTDOMAIN)." <strong>" . $curauth->user_email . "</strong></li>\n";
+	echo "		<li>".__("Work Phone:",RBAGENCY_interact_TEXTDOMAIN)." <strong>" . $curauth->phone_work . "</strong></li>\n";
+	echo "		<li>".__("Cell Phone:",RBAGENCY_interact_TEXTDOMAIN)." <strong>" . $curauth->phone_cell . "</strong></li>\n";
 	echo "		</ul>\n";
 	//echo "User level: " . $current_user->user_level . "<br />\n";
 	//echo "User display name: " . $current_user->display_name . "<br />\n";
@@ -148,7 +148,7 @@ if (isset($curauth->user_login)) {
 	echo "  </div>\n";
 
 	echo "  <div id=\"search\">\n";
-	echo "    <h2>Search Database</h2>\n";
+	echo "    <h2>".__("Search Database",RBAGENCY_interact_TEXTDOMAIN)."</h2>\n";
 
 			echo RBAgency_Profile::search_form('', '', 0, 0);
 	echo "  </div>\n";

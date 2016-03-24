@@ -106,14 +106,14 @@ echo $rb_header = RBAgency_Common::rb_header();
 				echo "      <li><a href=\"manage/\">". __("Manage Your Profile Information", RBAGENCY_interact_TEXTDOMAIN) ."</a></li>\n";
 				echo "      <li><a href=\"media/\">". __("Manage Photos and Media", RBAGENCY_interact_TEXTDOMAIN) ."</a></li>\n";
 				if($rb_subscription){
-				echo "      <li><a href=\"subscription/\">Manage your Subscription</a></li>\n";
+				echo "      <li><a href=\"subscription/\">".__("Manage your Subscription",RBAGENCY_interact_TEXTDOMAIN)."</a></li>\n";
 				}
 				if(function_exists('rb_agency_casting_menu')){
 					if(rb_get_user_profilstatus() == 1){ //means only visible if account is active
-							echo "      <li><a href=\"".get_bloginfo('wpurl')."/browse-jobs/\">Browse and Apply for a Job</a></li>\n";
+							echo "      <li><a href=\"".get_bloginfo('wpurl')."/browse-jobs/\">".__("Browse and Apply for a Job",RBAGENCY_interact_TEXTDOMAIN)."</a></li>\n";
 					}
 				}
-				echo "      <li><a href=\"".get_bloginfo('wpurl')."/logout/\">Log out</a></li>\n";
+				echo "      <li><a href=\"".get_bloginfo('wpurl')."/logout/\">".__("Logout",RBAGENCY_interact_TEXTDOMAIN)."</a></li>\n";
 
 				echo "	</ul>\n";
 				/*if(function_exists('rb_agency_casting_menu')){

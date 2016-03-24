@@ -87,7 +87,7 @@ function get_user_login_info(){
 				// If Admin, redirect to plugin
 				if(current_user_can("edit_posts")) {
 					wp_redirect(admin_url("admin.php?page=rb_agency_menu"));
-
+					exit();
 				}
 
 				// Message will show for 48hrs after registration
@@ -229,7 +229,7 @@ add_filter('login_redirect', 'rb_agency_interact_login_redirect', 10, 3);
 
 		if(current_user_can("edit_posts")) {
 			wp_redirect(admin_url("admin.php?page=rb_agency_menu"));
-
+			exit();
 		}
 
 		//redirect to job
@@ -254,6 +254,8 @@ add_filter('login_redirect', 'rb_agency_interact_login_redirect', 10, 3);
 			}
 		}
 
+		get_user_login_info();
+		
 		// Call Header
 		echo $rb_header = RBAgency_Common::rb_header();
 		echo "<div id=\"rbcontent\" class=\"rb-interact rb-interact-login\">\n";
@@ -261,7 +263,7 @@ add_filter('login_redirect', 'rb_agency_interact_login_redirect', 10, 3);
 		global $user_ID; 
 		$login = get_userdata( $user_ID );
 		
-		get_user_login_info();
+		
 
 
 			echo "    <p class=\"alert\">\n";

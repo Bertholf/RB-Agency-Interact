@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: RB Agency Interactive\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-01-26 07:24-1000\n"
-"PO-Revision-Date: 2016-03-22 00:29-0700\n"
+"PO-Revision-Date: 2016-03-23 19:35-0700\n"
 "Last-Translator: Rob Bertholf <rob@bertholf.com>\n"
 "Language-Team: RB Plugin <info@rbplugin.com>\n"
 "MIME-Version: 1.0\n"
@@ -988,4 +988,46 @@ msgid "We have you registered as"
 msgstr ""
 
 msgid "Setup Your Profile"
+msgstr ""
+
+msgid "successfully uploaded!"
+msgstr ""
+
+msgid "Manage your Subscription"
+msgstr ""
+
+msgid "Browse and Apply for a Job"
+msgstr ""
+
+msgid "Logout"
+msgstr ""
+
+msgid "You have successfully logged in!"
+msgstr ""
+
+msgid "profile"
+msgstr ""
+
+msgid "Search Database"
+msgstr ""
+
+msgid "Username:"
+msgstr ""
+
+msgid "Company:"
+msgstr ""
+
+msgid "First Name:"
+msgstr ""
+
+msgid "Last Name:"
+msgstr ""
+
+msgid "User Email:"
+msgstr ""
+
+msgid "Work Phone:"
+msgstr ""
+
+msgid "Cell Phone:"
 msgstr ""
