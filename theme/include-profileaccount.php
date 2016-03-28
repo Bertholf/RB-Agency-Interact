@@ -578,7 +578,7 @@
 		echo "		</div>\n";
 		echo "	</div>\n";
 		echo "	<div id=\"rbform-last-updated\" class=\"". $styleclass ." rbtext rbsingle\">\n";
-		echo "		<label>". __("Last updated ", RBAGENCY_interact_TEXTDOMAIN) ."</label>";
+		echo "		<label>". __("Last updated", RBAGENCY_interact_TEXTDOMAIN) ."</label>";
 		echo "		<div>". rb_agency_makeago(rb_agency_convertdatetime($ProfileDateUpdated), $rb_agency_option_locationtimezone) ."</div>\n";
 		echo "	</div>\n";
 		echo "	<div id=\"rbform-submit\" class=\"". $styleclass ." rbsubmit rbsingle\">\n";

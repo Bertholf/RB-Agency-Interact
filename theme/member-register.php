@@ -345,7 +345,7 @@
 							echo nl2br($message);
 
 						}else{
-							printf( __("Thank you for registering %s!.", RBAGENCY_interact_TEXTDOMAIN), $user_login );
+							printf( __("Thank you for registering, %s!", RBAGENCY_interact_TEXTDOMAIN), $user_login );
 							echo "<br/><br/>";
 							//if ($rb_agencyinteract_option_registerapproval == 1) { // automatically approve
 							
@@ -360,11 +360,12 @@
 								$notification_password_self_generated_message = str_replace('[username]',$user_login,$notification_password_self_generated);
 								echo nl2br($notification_password_self_generated_message);
 							}else{
-								printf( __("Thank you for registering %s!, ", RBAGENCY_interact_TEXTDOMAIN), $user_login );
+								printf( __("Thank you for registering, %s!", RBAGENCY_interact_TEXTDOMAIN), $user_login );
 								echo "<br/><br/>";
 								//if ($rb_agencyinteract_option_registerapproval == 1) { // automatically approve
 								
-								printf( __("Please click login button below to continue your registration.<br><br>", RBAGENCY_interact_TEXTDOMAIN), $user_login );
+								printf( __("Please click login button below to continue your registration.", RBAGENCY_interact_TEXTDOMAIN), $user_login );
+								echo "<br><br>";
 								printf( "<a href=\"../profile-login/\">".__("Account Login", RBAGENCY_interact_TEXTDOMAIN)."</a>", $user_login );
 							}
 							
@@ -377,7 +378,7 @@
 								$notification_password_auto_generated_message = str_replace('[username]',$user_login,$notification_password_auto_generated);
 								echo nl2br($notification_password_auto_generated_message);
 							}else{
-								printf( __("Thank you for registering %s!, ", RBAGENCY_interact_TEXTDOMAIN), $user_login );
+								printf( __("Thank you for registering, %s!", RBAGENCY_interact_TEXTDOMAIN), $user_login );
 								echo "<br/><br/>";
 								//if ($rb_agencyinteract_option_registerapproval == 1) { // automatically approve
 								
