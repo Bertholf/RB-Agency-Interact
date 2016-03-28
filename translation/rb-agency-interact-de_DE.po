@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: RB Agency Interactive\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-01-26 07:24-1000\n"
-"PO-Revision-Date: 2016-03-28 12:22+0800\n"
+"PO-Revision-Date: 2016-03-28 17:45+0800\n"
 "Last-Translator: Rob Bertholf <rob@bertholf.com>\n"
 "Language-Team: RB Plugin <info@rbplugin.com>\n"
 "MIME-Version: 1.0\n"
@@ -406,7 +406,7 @@ msgstr "Telefon"
 #: Plugin\rb-agency-interact/theme/include-profileaccount.php
 #, php-format
 msgid "Home:"
-msgstr "Zuhause"
+msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-profileaccount.php
@@ -418,7 +418,7 @@ msgstr "Zelle"
 #: Plugin\rb-agency-interact/theme/include-profileaccount.php
 #, php-format
 msgid "Work:"
-msgstr "Arbeit"
+msgstr ""
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-profileaccount.php
@@ -496,19 +496,19 @@ msgstr "Speichern und Fortfahren"
 #: Plugin\rb-agency-interact/theme/include-profilemedia.php
 #, php-format
 msgid "Upload Photos"
-msgstr ""
+msgstr "Fotos hochladen"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-profilemedia.php
 #, php-format
 msgid "Media Files"
-msgstr ""
+msgstr "Mediendateien"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-profilemedia.php
 #, php-format
 msgid "Upload Media Files"
-msgstr ""
+msgstr "Hochladen von Mediendateien"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-profilemedia.php
@@ -520,10 +520,10 @@ msgstr ""
 #: Plugin\rb-agency-interact/theme/include-profilemedia.php
 #, php-format
 msgid "Press the Save and Continue button only once."
-msgstr ""
+msgstr "Drücken Sie die Schaltfläche Speichern und fortfahren nur einmal."
 
 msgid "Depending on the number of files and or your connection speed, it may take a few moments to fully upload your new files/changes. When the page refreshes, you should see your new media."
-msgstr ""
+msgstr "In Abhängigkeit von der Anzahl der Dateien und oder Verbindungsgeschwindigkeit kann es ein paar Minuten dauern, um vollständig Ihre neue Dateien / Änderungen hochladen. Wenn die Seite aktualisiert, sollten Sie Ihren neuen Medien zu sehen."
 
 msgid "Join Our Team"
 msgstr "Trete unserem Team bei"
@@ -532,7 +532,7 @@ msgid "To Join Our Team please complete the application below."
 msgstr "Um Trete unserem Team bei vervollständigen Sie bitte das folgende Anwendung."
 
 msgid "Hi there,"
-msgstr ""
+msgstr "Hallo,"
 
 msgid "Hi"
 msgstr "Hallo"
@@ -547,19 +547,19 @@ msgid "You need to choose your membership option and pay via paypal."
 msgstr ""
 
 msgid "If you have any problems, please contact us at %s."
-msgstr ""
+msgstr "Wenn Sie Probleme haben, wenden Sie sich bitte an %s."
 
 msgid "Regards,"
-msgstr ""
+msgstr "Grüße,"
 
 msgid "Thanks for joining %s! Here's how to log in:"
-msgstr ""
+msgstr "Danke fürs Beitreten %s! Hier ist, wie in loggt sein:"
 
 msgid "Username: %s"
-msgstr ""
+msgstr "Benutzername: %s"
 
 msgid "Password: %s"
-msgstr ""
+msgstr "Passwort: %s"
 
 msgid "New user registration on your blog %s:"
 msgstr ""
@@ -574,10 +574,10 @@ msgid "Congratulations! Your account is approved."
 msgstr ""
 
 msgid "Thank you for registering, %s."
-msgstr "Danke für die Registrierung, %s."
+msgstr ""
 
 msgid "%s Registration Successful! Login Details"
-msgstr ""
+msgstr "%s Registrierung erfolgreich! Login-Daten"
 
 msgid "%s Step - 1 Registration Process"
 msgstr ""
@@ -601,31 +601,31 @@ msgid "Select state"
 msgstr "Wählen Bundesland"
 
 msgid "There are no images loaded for this profile yet."
-msgstr ""
+msgstr "Es gibt keine Bilder, die für dieses Profil geladen ist leer."
 
 msgid "Upload photos using the forms below. The following formats allowed are jpg and png only "
-msgstr ""
+msgstr "Laden Sie Fotos, die Formen unten. Folgende Formate erlaubt sind jpg und png nur"
 
 msgid "The following files (pdf, audio file, etc.) are associated with this record"
-msgstr ""
+msgstr "Die folgenden Dateien (pdf, Audio-Datei, etc.) sind mit diesem Datensatz zugeordnet"
 
 msgid "There are no additional media linked"
-msgstr ""
+msgstr "Es gibt keine zusätzlichen Medien verknüpft"
 
 msgid "Upload new media using the forms below. The following formats are available: jpg, png, mp3, and pdf. If uploading an mp3 for a voice monolouge, use the  \"Voice Demo\" option. For Resumes, make sure the file is a PDF "
-msgstr ""
+msgstr "Laden Sie die neuen Medien die Formulare unten. Folgende Formate stehen zur Verfügung: jpg, png, mp3, und pdf. einen MP3 für eine Stimme Monolog, verwenden Sie die \"Voice Demo\" Option hochzuladen. Bewerber, stellen Sie sicher, ist die Datei eine PDF"
 
 msgid "Headshot"
-msgstr ""
+msgstr "Kopfschuss"
 
 msgid "Comp Card"
-msgstr ""
+msgstr "Setcard"
 
 msgid "Voice Demo"
-msgstr ""
+msgstr "Stimme Demo"
 
 msgid "Back to Overview"
-msgstr ""
+msgstr "Zurück zur Übersicht"
 
 msgid "Other Payment Methods"
 msgstr ""
@@ -667,22 +667,22 @@ msgid "Profile Setup: Step 1 of 3"
 msgstr "Profil Konfiguration: Schritt 1 nach 3"
 
 msgid "Profile Setup: Step 3 of 3"
-msgstr ""
+msgstr "Profil Konfiguration: Schritt 3 nach 3"
 
 msgid "Profile Setup: Step 2 of 2"
 msgstr ""
 
 msgid "Profile Setup: Step 2 of 3"
-msgstr ""
+msgstr "Profil Konfiguration: Schritt 2 nach 3"
 
 msgid "Photo Gallery"
-msgstr ""
+msgstr "Fotogallerie"
 
 msgid "Type:"
 msgstr ""
 
 msgid "Paste the video URL below"
-msgstr ""
+msgstr "Fügen Sie die Video-URL unten"
 
 msgid "Thank you for joining %s!"
 msgstr ""
@@ -694,19 +694,19 @@ msgid "Manage Account"
 msgstr ""
 
 msgid "Photo"
-msgstr ""
+msgstr "Foto"
 
 msgid "--Please Select--"
 msgstr "--Bitte Wählen--"
 
 msgid "Video Slate"
-msgstr ""
+msgstr "Video Schiefer"
 
 msgid "Video Monologue"
-msgstr ""
+msgstr "Video Monolog"
 
 msgid "Demo Reel"
-msgstr ""
+msgstr "Ein Beispielfilm"
 
 msgid "SoundCloud"
 msgstr ""
@@ -769,7 +769,7 @@ msgid "In Pounds"
 msgstr ""
 
 msgid "In Pound"
-msgstr ""
+msgstr "Pfund"
 
 msgid "Inches/Feet"
 msgstr ""
@@ -811,16 +811,16 @@ msgid "Please try again"
 msgstr ""
 
 msgid " Primary"
-msgstr ""
+msgstr "Primär"
 
 msgid " set as primary"
-msgstr ""
+msgstr "gesetzt als primäre"
 
 msgid "Delete"
 msgstr ""
 
 msgid "Type"
-msgstr ""
+msgstr "Art"
 
 msgid "Public Information"
 msgstr ""
@@ -922,7 +922,7 @@ msgid "A user account for %s has been created."
 msgstr ""
 
 msgid "Thank you for registering %s!."
-msgstr ""
+msgstr "Danke für die Registrierung %s!."
 
 msgid "Please check your email for the next step to complete registration.<br>"
 msgstr ""
@@ -934,7 +934,7 @@ msgid "Thank you for registering %s!, "
 msgstr ""
 
 msgid "Please click login button below to continue your registration.<br><br>"
-msgstr ""
+msgstr "Bitte klicken Sie Login-Button unten Ihre Anmeldung fortzusetzen"
 
 msgid "The administrator currently disabled the registration."
 msgstr ""
@@ -1036,16 +1036,16 @@ msgid "Cell Phone:"
 msgstr ""
 
 msgid " Team"
-msgstr ""
+msgstr "Mannschaft"
 
 msgid "Home"
-msgstr ""
+msgstr "Zuhause"
 
 msgid "Cell"
-msgstr ""
+msgstr "Mobile"
 
 msgid "Work"
-msgstr ""
+msgstr "Arbeit"
 
 msgid "Last Updated"
-msgstr ""
+msgstr "Letzte Aktualisierung"
