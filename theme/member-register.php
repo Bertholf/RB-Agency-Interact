@@ -350,6 +350,7 @@
 							//if ($rb_agencyinteract_option_registerapproval == 1) { // automatically approve
 							
 							printf( __("Please check your email for the next step to complete registration.<br>", RBAGENCY_interact_TEXTDOMAIN), $user_login );
+							echo "<br/><br/>";
 							echo __("<i>(It might go to your spam folder )</i>", RBAGENCY_interact_TEXTDOMAIN);
 						}
 					}else{
@@ -397,6 +398,7 @@
 								//if ($rb_agencyinteract_option_registerapproval == 1) { // automatically approve
 								
 								printf( __("Please check your email for your login credentials to continue your registration.<br><br>", RBAGENCY_interact_TEXTDOMAIN), $user_login );
+								echo "<br/><br/>";
 								printf( "<a href=\"../profile-login/\">".__("Account Login", RBAGENCY_interact_TEXTDOMAIN)."</a>", $user_login );
 							}
 							
