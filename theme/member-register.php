@@ -477,7 +477,7 @@
 					$query= "SELECT GenderID, GenderTitle FROM " .  table_agency_data_gender . " GROUP BY GenderTitle ";
 	echo "			<div><select id='ProfileGender' name=\"ProfileGender\">";
 						$queryShowGender = $wpdb->get_results($query,ARRAY_A);
-						echo "<option value=''>--Please Select--</option>";
+						echo "<option value=''>".__("--Please Select--",RBAGENCY_interact_TEXTDOMAIN)."</option>";
 						foreach($queryShowGender as $dataShowGender){
 							echo "<option value=\"".$dataShowGender["GenderID"]."\" ". selected($ProfileGender ,$dataShowGender["GenderID"],false).">".$dataShowGender["GenderTitle"]."</option>";
 						}
