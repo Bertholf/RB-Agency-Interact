@@ -357,8 +357,15 @@
 						if($rb_agencyinteract_option_registerconfirm == 1){
 							$notification_password_self_generated = trim($rb_agency_interact_options_arr['notification_password_self_generated']);
 							if(!empty($notification_password_self_generated)){
-								$notification_password_self_generated_message = str_replace('[username]',$user_login,$notification_password_self_generated);
-								echo nl2br($notification_password_self_generated_message);
+								
+								$message = str_replace('[agency_name]',get_option('blogname'),$notification_password_self_generated_message);
+								$message = str_replace('[login_url]',site_url()."/profile-login",$message);
+								$message = str_replace('[username]',$user_login,$message);
+								$message = str_replace('[password]',$user_pass,$message);
+								$message = str_replace('[agency_email]',get_option('admin_email'),$message);
+								$message = str_replace('[agency_name]',get_option('blogname'),$message);
+								$message = str_replace('[domain]',site_url(),$message);
+								echo nl2br($message);
 							}else{
 								printf( __("Thank you for registering, %s!", RBAGENCY_interact_TEXTDOMAIN), $user_login );
 								echo "<br/><br/>";
@@ -375,8 +382,15 @@
 							$notification_password_auto_generated = trim($rb_agency_interact_options_arr['notification_password_auto_generated']);
 
 							if(!empty($notification_password_auto_generated)) {
-								$notification_password_auto_generated_message = str_replace('[username]',$user_login,$notification_password_auto_generated);
-								echo nl2br($notification_password_auto_generated_message);
+
+								$message = str_replace('[agency_name]',get_option('blogname'),$notification_password_auto_generated);
+								$message = str_replace('[login_url]',site_url()."/profile-login",$message);
+								$message = str_replace('[username]',$user_login,$message);
+								$message = str_replace('[password]',$user_pass,$message);
+								$message = str_replace('[agency_email]',get_option('admin_email'),$message);
+								$message = str_replace('[agency_name]',get_option('blogname'),$message);
+								$message = str_replace('[domain]',site_url(),$message);
+								echo nl2br($message);
 							}else{
 								printf( __("Thank you for registering, %s!", RBAGENCY_interact_TEXTDOMAIN), $user_login );
 								echo "<br/><br/>";
