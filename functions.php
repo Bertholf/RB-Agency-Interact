@@ -191,7 +191,7 @@
 					$message = str_replace('[path_to_logo]',$rb_agency_options_arr['rb_agency_option_agencylogo'],$message);
 
 					$headers = 'From: '. get_option('blogname') .' <'. get_option('admin_email') .'>' . "\r\n";
-					wp_mail($user_email, sprintf(__('%s Registration Successful! Login Details'), get_option('blogname')), nl2br($message), $headers);
+					wp_mail($user_email, sprintf(__('%s Registration Successful! Login Details',RBAGENCY_interact_TEXTDOMAIN), get_option('blogname')), nl2br($message), $headers);
 				}else{
 					$message  = sprintf(__('New user registration on your blog %s:'), get_option('blogname')) . "\r\n\r\n";
 					$message .= sprintf(__('Username: %s'), $user_login) . "\r\n\r\n";

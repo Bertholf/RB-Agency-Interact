@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: RB Agency Interactive\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-01-26 07:24-1000\n"
-"PO-Revision-Date: 2016-03-28 10:23+0800\n"
+"PO-Revision-Date: 2016-03-28 12:11+0800\n"
 "Last-Translator: Rob Bertholf <rob@bertholf.com>\n"
 "Language-Team: RB Plugin <info@rbplugin.com>\n"
 "MIME-Version: 1.0\n"
@@ -262,19 +262,19 @@ msgstr "Ich bin damit einverstanden, die %s Nutzungsbedingungen"
 #: Plugin\rb-agency-interact/theme/include-menu.php
 #, php-format
 msgid "Overview"
-msgstr ""
+msgstr "Überblick"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-menu.php
 #, php-format
 msgid "My Account"
-msgstr ""
+msgstr "Mein Konto"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-menu.php
 #, php-format
 msgid "My Profile"
-msgstr ""
+msgstr "Mein Profil"
 
 msgid "Edit your profile"
 msgstr ""
@@ -283,49 +283,49 @@ msgstr ""
 #: Plugin\rb-agency-interact/theme/include-menu.php
 #, php-format
 msgid "My Media"
-msgstr ""
+msgstr "Meine Medien"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-menu.php
 #, php-format
 msgid "View My Profile"
-msgstr ""
+msgstr "Mein Profil anzeigen"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/member-overview.php
 #, php-format
 msgid "Welcome Back"
-msgstr ""
+msgstr "Willkommen Zurück"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/member-overview.php
 #, php-format
 msgid "Edit Your Account Details"
-msgstr ""
+msgstr "Bearbeiten Sie Ihre Kontodaten"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/member-overview.php
 #, php-format
 msgid "Manage Your Profile Information"
-msgstr ""
+msgstr "Verwalten Sie Ihr Profil Informationen"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/member-overview.php
 #, php-format
 msgid "Manage Photos and Media"
-msgstr ""
+msgstr "Fotos Verwalten und Medien"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-profileaccount.php
 #, php-format
 msgid "Contact Information"
-msgstr ""
+msgstr "Kontakt Informationen"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-profileaccount.php
 #, php-format
 msgid "Gallery Folder"
-msgstr ""
+msgstr "Galerie Mappe"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-profileaccount.php
@@ -343,19 +343,19 @@ msgstr "Geschlecht"
 #: Plugin\rb-agency-interact/theme/include-profileaccount.php
 #, php-format
 msgid "Private Information"
-msgstr ""
+msgstr "Privat Informationen"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-profileaccount.php
 #, php-format
 msgid "The following information will appear only in administrative areas"
-msgstr ""
+msgstr "Die folgenden Informationen werden nur angezeigt, in administrativen Bereichen"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-profileaccount.php
 #, php-format
 msgid "Email Address"
-msgstr ""
+msgstr "Email Adresse"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-profileaccount.php
@@ -364,67 +364,67 @@ msgid "Birthdate YYYY-MM-DD"
 msgstr ""
 
 msgid "Birthdate"
-msgstr ""
+msgstr "Geburtsdatum"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-profileaccount.php
 #, php-format
 msgid "Street"
-msgstr ""
+msgstr "Straße"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-profileaccount.php
 #, php-format
 msgid "City"
-msgstr ""
+msgstr "Stadt"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-profileaccount.php
 #, php-format
 msgid "Country"
-msgstr ""
+msgstr "Land"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-profileaccount.php
 #, php-format
 msgid "State"
-msgstr ""
+msgstr "Bundesland"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-profileaccount.php
 #, php-format
 msgid "Zip"
-msgstr ""
+msgstr "Reißverschluss"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-profileaccount.php
 #, php-format
 msgid "Phone"
-msgstr ""
+msgstr "Telefon"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-profileaccount.php
 #, php-format
 msgid "Home:"
-msgstr ""
+msgstr "Zuhause"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-profileaccount.php
 #, php-format
 msgid "Cell:"
-msgstr ""
+msgstr "Zelle"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-profileaccount.php
 #, php-format
 msgid "Work:"
-msgstr ""
+msgstr "Arbeit"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-profileaccount.php
 #, php-format
 msgid "Website"
-msgstr ""
+msgstr "Webseite"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-profileaccount.php
@@ -436,25 +436,25 @@ msgstr ""
 #: Plugin\rb-agency-interact/theme/include-profileaccount.php
 #, php-format
 msgid "Social Media Profiles"
-msgstr ""
+msgstr "Social Media Profil"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-profileaccount.php
 #, php-format
 msgid "Cannot be changed"
-msgstr ""
+msgstr "Kann nicht geändert werden"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-profileaccount.php
 #, php-format
 msgid "Leave blank to keep same password"
-msgstr ""
+msgstr "Freilassen gleiche Passwort zu halten"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-profileaccount.php
 #, php-format
 msgid "Retype to Confirm"
-msgstr ""
+msgstr "Erneut eingeben zu bestätigen"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-profileaccount.php
@@ -472,25 +472,25 @@ msgstr "Passwort"
 #: Plugin\rb-agency-interact/theme/include-profileaccount.php
 #, php-format
 msgid "Retype Password"
-msgstr ""
+msgstr "Passwort erneut eingeben"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-profileaccount.php
 #, php-format
 msgid "Last updated"
-msgstr ""
+msgstr "Letzte Aktualisierung"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-profilemanage.php
 #, php-format
 msgid "Classification:"
-msgstr ""
+msgstr "Einstufung"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-profilemanage.php
 #, php-format
 msgid "Save and Continue"
-msgstr ""
+msgstr "Speichern und Fortfahren"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-profilemedia.php
@@ -535,10 +535,10 @@ msgid "Hi there,"
 msgstr ""
 
 msgid "Hi"
-msgstr ""
+msgstr "Hallo"
 
 msgid "You are registered as"
-msgstr ""
+msgstr "Sie sind als Groß"
 
 msgid "Thanks for joining %s!"
 msgstr ""
@@ -595,10 +595,10 @@ msgid "Please check your email for your login details."
 msgstr ""
 
 msgid "Select country"
-msgstr ""
+msgstr "Wählen Land"
 
 msgid "Select state"
-msgstr ""
+msgstr "Wählen Bundesland"
 
 msgid "There are no images loaded for this profile yet."
 msgstr ""
@@ -664,7 +664,7 @@ msgid "Profile Setup: Step 1 of 2"
 msgstr ""
 
 msgid "Profile Setup: Step 1 of 3"
-msgstr ""
+msgstr "Profil Konfiguration: Schritt 1 nach 3"
 
 msgid "Profile Setup: Step 3 of 3"
 msgstr ""
@@ -763,16 +763,19 @@ msgid "kg"
 msgstr ""
 
 msgid "In Inches"
-msgstr ""
+msgstr "Zoll"
 
 msgid "In Pounds"
+msgstr ""
+
+msgid "In Pound"
 msgstr ""
 
 msgid "Inches/Feet"
 msgstr ""
 
 msgid "In Inches/Feet"
-msgstr ""
+msgstr "Zoll/Feet"
 
 msgid "Pounds"
 msgstr ""
@@ -1000,7 +1003,7 @@ msgid "Browse and Apply for a Job"
 msgstr ""
 
 msgid "Logout"
-msgstr ""
+msgstr "Ausloggen"
 
 msgid "You have successfully logged in!"
 msgstr ""
@@ -1030,4 +1033,19 @@ msgid "Work Phone:"
 msgstr ""
 
 msgid "Cell Phone:"
+msgstr ""
+
+msgid " Team"
+msgstr ""
+
+msgid "Home"
+msgstr ""
+
+msgid "Cell"
+msgstr ""
+
+msgid "Work"
+msgstr ""
+
+msgid "Last Updated"
 msgstr ""

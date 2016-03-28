@@ -102,7 +102,7 @@
 		echo "		<label>". __("Gallery Folder", RBAGENCY_interact_TEXTDOMAIN) ."</label>\n";
 		echo "		<div class=\"rbmessage\">\n";
 					if (!empty($ProfileGallery) && is_dir(RBAGENCY_UPLOADPATH .$ProfileGallery)) {
-						echo "<span class=\"updated\"><a href=\"".network_site_url("/")."profile/". $ProfileGallery ."/\" target=\"_blank\">/profile/". $ProfileGallery ."/</a></span>\n";
+						echo "<span class=\"updated\" style=\"display:block!important;\"><a href=\"".network_site_url("/")."profile/". $ProfileGallery ."/\" target=\"_blank\">/profile/". $ProfileGallery ."/</a></span>\n";
 						echo "<input type=\"hidden\" id=\"ProfileGallery\" name=\"ProfileGallery\" value=\"". $ProfileGallery ."\" />\n";
 					} else {
 						echo "<input type=\"hidden\" id=\"ProfileGallery\" name=\"ProfileGallery\" value=\"". $ProfileGallery ."\" />\n";

@@ -238,7 +238,7 @@
 		echo "		<p>". __("Upload new media using the forms below. The following formats are available: jpg, png, mp3, and pdf. If uploading an mp3 for a voice monolouge, use the  \"Voice Demo\" option. For Resumes, make sure the file is a PDF ", RBAGENCY_interact_TEXTDOMAIN) .".</p>\n";
 
 				for( $i=5; $i<=9; $i++ ) {
-				echo "<div><label>". __("Type", RBAGENCY_interact_TEXTDOMAIN) .": </label><select name=\"profileMedia". $i ."Type\"><option value=\"\">".__('--Please Select--',RBAGENCY_interact_TEXTDOMAIN)."</option><option value=\"Headshot\">".__('Headshot',RBAGENCY_interact_TEXTDOMAIN)."</option><option value=\"CompCard\">".__('Comp Card',RBAGENCY_interact_TEXTDOMAIN)."</option><option>".__('Resume',RBAGENCY_interact_TEXTDOMAIN)."</option><option value=\"VoiceDemo\">".__('Voice Demo',RBAGENCY_interact_TEXTDOMAIN).."</option>"; rb_agency_getMediaCategories($data['ProfileGender']); echo"</select><input type='file' id='profileMedia". $i ."' name='profileMedia". $i ."' /></div>\n";
+				echo "<div><label>". __("Type", RBAGENCY_interact_TEXTDOMAIN) .": </label><select name=\"profileMedia". $i ."Type\"><option value=\"\">".__('--Please Select--',RBAGENCY_interact_TEXTDOMAIN)."</option><option value=\"Headshot\">".__('Headshot',RBAGENCY_interact_TEXTDOMAIN)."</option><option value=\"CompCard\">".__('Comp Card',RBAGENCY_interact_TEXTDOMAIN)."</option><option>".__('Resume',RBAGENCY_interact_TEXTDOMAIN)."</option><option value=\"VoiceDemo\">".__('Voice Demo',RBAGENCY_interact_TEXTDOMAIN)."</option>"; rb_agency_getMediaCategories($data['ProfileGender']); echo"</select><input type='file' id='profileMedia". $i ."' name='profileMedia". $i ."' /></div>\n";
 				}
 		echo "		<p>". __("Paste the video URL below", RBAGENCY_interact_TEXTDOMAIN) .".</p>\n";
 

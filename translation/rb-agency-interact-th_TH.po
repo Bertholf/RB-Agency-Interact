@@ -1031,3 +1031,18 @@ msgstr ""
 
 msgid "Cell Phone:"
 msgstr ""
+
+msgid " Team"
+msgstr ""
+
+msgid "Home"
+msgstr ""
+
+msgid "Cell"
+msgstr ""
+
+msgid "Work"
+msgstr ""
+
+msgid "Last Updated"
+msgstr ""
