@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: RB Agency Interactive\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-01-26 07:24-1000\n"
-"PO-Revision-Date: 2016-03-23 19:35-0700\n"
+"PO-Revision-Date: 2016-03-28 10:23+0800\n"
 "Last-Translator: Rob Bertholf <rob@bertholf.com>\n"
 "Language-Team: RB Plugin <info@rbplugin.com>\n"
 "MIME-Version: 1.0\n"
@@ -12,7 +12,7 @@ msgstr ""
 "X-Poedit-KeywordsList: __;gettext;gettext_noop\n"
 "X-Poedit-Basepath: .\n"
 "Language: de_DE\n"
-"X-Generator: Poedit 1.8.7\n"
+"X-Generator: Poedit 1.8.4\n"
 "X-Poedit-SearchPath-0: C:/Dropbox/Users/Rob/Scripts/RB Plugin/rb-agency-interact\n"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
@@ -54,30 +54,30 @@ msgstr ""
 #: Plugin\rb-agency-interact/theme/include-login.php:5
 #: Plugin\rb-agency-interact/theme/member-login.php:52
 msgid "Members Sign in"
-msgstr ""
+msgstr "Mitglied Anmelden"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-login.php:12
 #: Plugin\rb-agency-interact/theme/member-login.php:63
 msgid "forgot password"
-msgstr ""
+msgstr "Passwort vergessen?"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-login.php:15
 #: Plugin\rb-agency-interact/theme/member-login.php:66
 msgid "Keep me signed in"
-msgstr ""
+msgstr "Ich möchte angemeldet bleiben"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-login.php:18
 #: Plugin\rb-agency-interact/theme/member-login.php:70
 msgid "Sign In"
-msgstr ""
+msgstr "Anmelden"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-login.php:25
 msgid "Not a member"
-msgstr ""
+msgstr "Kein Mitglied"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-login.php:26
@@ -87,17 +87,17 @@ msgstr ""
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-login.php:26
 msgid "Register here"
-msgstr ""
+msgstr "Hier registrieren"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-login.php:28
 msgid "Create your free profile page"
-msgstr ""
+msgstr "Legen Sie Ihr gratis Profilseite"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-login.php:29
 msgid "Apply to Auditions & Jobs"
-msgstr ""
+msgstr "Bewerben Sie sich Castings und Jobs"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-login.php:31
@@ -220,27 +220,27 @@ msgstr ""
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/member-register.php:113
 msgid "Username (required)"
-msgstr ""
+msgstr "Benutzername (erforderlich)"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/member-register.php:118
 msgid "First Name"
-msgstr ""
+msgstr "Vorname"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/member-register.php:123
 msgid "Last Name"
-msgstr ""
+msgstr "Familienname"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/member-register.php:128
 msgid "E-mail (required)"
-msgstr ""
+msgstr "Email (erforderlich)"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/member-register.php:133
 msgid "Type of Profile"
-msgstr ""
+msgstr "Profiltyp"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/member-register.php:135
@@ -256,7 +256,7 @@ msgstr ""
 #: Plugin\rb-agency-interact/theme/member-register.php:142
 #, php-format
 msgid "I agree to the %s terms of service"
-msgstr ""
+msgstr "Ich bin damit einverstanden, die %s Nutzungsbedingungen"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-menu.php
@@ -337,7 +337,7 @@ msgstr ""
 #: Plugin\rb-agency-interact/theme/include-profileaccount.php
 #, php-format
 msgid "Gender"
-msgstr ""
+msgstr "Geschlecht"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-profileaccount.php
@@ -460,13 +460,13 @@ msgstr ""
 #: Plugin\rb-agency-interact/theme/include-profileaccount.php
 #, php-format
 msgid "Username"
-msgstr ""
+msgstr "Benutzername"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-profileaccount.php
 #, php-format
 msgid "Password"
-msgstr ""
+msgstr "Passwort"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-profileaccount.php
@@ -526,10 +526,10 @@ msgid "Depending on the number of files and or your connection speed, it may tak
 msgstr ""
 
 msgid "Join Our Team"
-msgstr ""
+msgstr "Trete unserem Team bei"
 
 msgid "To Join Our Team please complete the application below."
-msgstr ""
+msgstr "Um Trete unserem Team bei vervollständigen Sie bitte das folgende Anwendung."
 
 msgid "Hi there,"
 msgstr ""
@@ -574,7 +574,7 @@ msgid "Congratulations! Your account is approved."
 msgstr ""
 
 msgid "Thank you for registering, %s."
-msgstr ""
+msgstr "Danke für die Registrierung, %s."
 
 msgid "%s Registration Successful! Login Details"
 msgstr ""
@@ -631,10 +631,10 @@ msgid "Other Payment Methods"
 msgstr ""
 
 msgid "Register"
-msgstr ""
+msgstr "Neu registrieren"
 
 msgid "Register Now"
-msgstr ""
+msgstr "Jetzt registrieren"
 
 msgid "Choose Membership Type"
 msgstr ""
@@ -652,7 +652,7 @@ msgid "You may now login and continue registration."
 msgstr ""
 
 msgid "Account Login"
-msgstr ""
+msgstr "Konto Anmeldung"
 
 msgid "Your login credentials are also sent to your email."
 msgstr ""
@@ -697,7 +697,7 @@ msgid "Photo"
 msgstr ""
 
 msgid "--Please Select--"
-msgstr ""
+msgstr "--Bitte Wählen--"
 
 msgid "Video Slate"
 msgstr ""
@@ -964,7 +964,7 @@ msgid "Your account is pending for approval. We will notify once your account is
 msgstr ""
 
 msgid "Password (required)"
-msgstr ""
+msgstr "Passwort (erforderlich)"
 
 msgid "Company"
 msgstr ""
