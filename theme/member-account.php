@@ -184,6 +184,21 @@ if (isset($_POST['action'])) {
 
 				$results = $wpdb->query($insert);
               $ProfileID = $wpdb->insert_id;
+
+              //user meta social media
+             foreach($_POST['profile_social_media_name'] as $k=>$v){
+				if(!empty($v) && !empty($_POST['profile_social_media_url'][$k])){
+					add_user_meta($ProfileID,'SocialMediaName_'.$v,$v);
+				}								
+			}
+
+			//user meta social media url
+			foreach($_POST['profile_social_media_url'] as $k=>$v){
+				if(!empty($v) && !empty($_POST['profile_social_media_name'][$k])){
+					add_user_meta($ProfileID,'SocialMediaURL_'.$_POST['profile_social_media_name'][$k],$v);
+				}
+
+			}
  
 			// Add New Custom Field Values
 			$pos = 0;
@@ -353,6 +368,29 @@ if (isset($_POST['action'])) {
 				update_usermeta( $current_user->ID, 'user_email', esc_attr( $ProfileContactEmail ) );
 				update_usermeta( $current_user->ID, 'rb_agency_interact_pgender', esc_attr( $ProfileGender ) );
 
+				$list = array();
+				$custom_social_media = rb_get_custom_social_media();
+				foreach($custom_social_media as $social){
+					array_push($list,$social["SocialMedia_Name"]);
+				}
+				foreach($list as $k=>$v){
+					@$wpdb->query("DELETE FROM ".$wpdb->prefix."usermeta WHERE meta_key = 'SocialMediaURL_".$v."' AND user_id = ".$ProfileID);
+					@$wpdb->query("DELETE FROM ".$wpdb->prefix."usermeta WHERE meta_key = 'SocialMediaName_".$v."' AND user_id = ".$ProfileID);
+				}
+
+				foreach($_POST['profile_social_media_name'] as $k=>$v){
+					if(!empty($v) && !empty($_POST['profile_social_media_url'][$k])){
+						add_user_meta($ProfileID,'SocialMediaName_'.$v,$v);
+					}								
+				}
+
+				//user meta social media url
+				foreach($_POST['profile_social_media_url'] as $k=>$v){
+					if(!empty($v) && !empty($_POST['profile_social_media_name'][$k])){
+						add_user_meta($ProfileID,'SocialMediaURL_'.$_POST['profile_social_media_name'][$k],$v);
+					}
+
+				}
 				// Add New Custom Field Values
 				
 				foreach($_POST as $key => $value) {
@@ -382,7 +420,7 @@ if (isset($_POST['action'])) {
 				//exist user should be in pending page
 				$old_exist_user = get_user_meta( $current_user->ID, 'rb_agency_interact_clientold', true);
 	            if(!empty($old_exist_user)){
-	                wp_redirect( $rb_agency_interact_WPURL ."/profile-member/pending/?e" );
+	               wp_redirect( $rb_agency_interact_WPURL ."/profile-member/pending/?e" );
 	                exit;
 	            }
 				wp_redirect( $rb_agency_interact_WPURL ."/profile-member/manage/" );

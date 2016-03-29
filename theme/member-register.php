@@ -359,7 +359,8 @@
 							$notification_password_self_generated = trim($rb_agency_interact_options_arr['notification_password_self_generated']);
 							if(!empty($notification_password_self_generated)){
 								
-								$message = str_replace('[agency_name]',get_option('blogname'),$notification_password_self_generated_message);
+								$message = str_replace('[agency_name]',get_option('blogname'),$notification_password_self_generated);
+								$message = str_replace('[first_name]',$_POST["ProfileContactNameFirst"],$notification_password_self_generated);
 								$message = str_replace('[login_url]',site_url()."/profile-login",$message);
 								$message = str_replace('[username]',$user_login,$message);
 								$message = str_replace('[password]',$user_pass,$message);
@@ -385,6 +386,7 @@
 							if(!empty($notification_password_auto_generated)) {
 
 								$message = str_replace('[agency_name]',get_option('blogname'),$notification_password_auto_generated);
+								$message = str_replace('[first_name]',$_POST["ProfileContactNameFirst"],$notification_password_auto_generated);
 								$message = str_replace('[login_url]',site_url()."/profile-login",$message);
 								$message = str_replace('[username]',$user_login,$message);
 								$message = str_replace('[password]',$user_pass,$message);

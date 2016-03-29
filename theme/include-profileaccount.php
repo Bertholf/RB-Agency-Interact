@@ -533,7 +533,22 @@
 		// Show Social Media Links
 		if ($rb_agency_option_showsocial == "1") {
 		echo "	<h3>". __("Social Media Profiles", RBAGENCY_interact_TEXTDOMAIN) ."</h3>\n";
-		echo "	<div id=\"profile-facebook\" class=\"". $styleclass ." rbtext rbsingle\">\n";
+
+
+
+								$custom_social_media = rb_get_custom_social_media();
+
+								foreach($custom_social_media as $social){
+									$socialMediaName = get_user_meta($ProfileID,'SocialMediaName_'.$social["SocialMedia_Name"],true);
+									$socialMediaURL = get_user_meta($ProfileID,'SocialMediaURL_'.$social["SocialMedia_Name"],true);
+									echo "	<div id=\"profile-facebook\" class=\"". $styleclass ." rbtext rbsingle\">\n";
+									echo "		<label>". __($social["SocialMedia_Name"], RBAGENCY_interact_TEXTDOMAIN) ."</label>\n";
+									echo "		<div><input type=\"text\" id=\"".$social["SocialMedia_Name"]."\" name=\"profile_social_media_url[]\" placeholder=\"insert url here\" value=\"".(!empty($socialMediaURL) ? $socialMediaURL : "")."\"/></div>\n";
+									echo "<input type=\"hidden\" id=\"".$social["SocialMedia_Name"]."\" name=\"profile_social_media_name[]\" value=\"".(!empty($socialMediaName) ? $socialMediaName : $social["SocialMedia_Name"])."\"/>";
+									echo "	</div>\n";
+								}
+		
+		/**echo "	<div id=\"profile-facebook\" class=\"". $styleclass ." rbtext rbsingle\">\n";
 		echo "		<label>". __("Facebook", RBAGENCY_interact_TEXTDOMAIN) ."</label>\n";
 		echo "		<div><input type=\"text\" id=\"ProfileContactLinkFacebook\" name=\"ProfileContactLinkFacebook\" value=\"". $ProfileContactLinkFacebook ."\" /></div>\n";
 		echo "	</div>\n";
@@ -548,7 +563,7 @@
 		echo "	<div id=\"profile-flickr\" class=\"". $styleclass ." rbtext rbsingle\">\n";
 		echo "		<label>". __("Flickr", RBAGENCY_interact_TEXTDOMAIN) ."</label>\n";
 		echo "		<div><input type=\"text\" id=\"ProfileContactLinkFlickr\" name=\"ProfileContactLinkFlickr\" value=\"". $ProfileContactLinkFlickr ."\" /></div>\n";
-		echo "	</div>\n";
+		echo "	</div>\n"; **/
 		}
 		if ($rb_agencyinteract_option_registerallow  == 1) {
 			echo "	<div id=\"profile-username\" class=\"". $styleclass ." rbtext rbsingle\">\n";
