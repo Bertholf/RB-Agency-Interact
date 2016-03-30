@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: RB Agency Interactive\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-01-26 07:24-1000\n"
-"PO-Revision-Date: 2016-03-30 10:41+0800\n"
+"PO-Revision-Date: 2016-03-30 12:11+0800\n"
 "Last-Translator: Rob Bertholf <rob@bertholf.com>\n"
 "Language-Team: RB Plugin <info@rbplugin.com>\n"
 "MIME-Version: 1.0\n"
@@ -262,19 +262,19 @@ msgstr "Accetto il %s termini di servizio"
 #: Plugin\rb-agency-interact/theme/include-menu.php
 #, php-format
 msgid "Overview"
-msgstr ""
+msgstr "Panoramica"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-menu.php
 #, php-format
 msgid "My Account"
-msgstr ""
+msgstr "Il mio account"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-menu.php
 #, php-format
 msgid "My Profile"
-msgstr ""
+msgstr "Il mio profilo"
 
 msgid "Edit your profile"
 msgstr ""
@@ -283,49 +283,49 @@ msgstr ""
 #: Plugin\rb-agency-interact/theme/include-menu.php
 #, php-format
 msgid "My Media"
-msgstr ""
+msgstr "I miei media"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-menu.php
 #, php-format
 msgid "View My Profile"
-msgstr ""
+msgstr "Guarda il mio profilo"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/member-overview.php
 #, php-format
 msgid "Welcome Back"
-msgstr ""
+msgstr "Ben tornato"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/member-overview.php
 #, php-format
 msgid "Edit Your Account Details"
-msgstr ""
+msgstr "Modifica i tuoi Dettagli account"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/member-overview.php
 #, php-format
 msgid "Manage Your Profile Information"
-msgstr ""
+msgstr "Gestisci il tuo profilo Informazioni"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/member-overview.php
 #, php-format
 msgid "Manage Photos and Media"
-msgstr ""
+msgstr "Gestire Foto e contenuti multimediali"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-profileaccount.php
 #, php-format
 msgid "Contact Information"
-msgstr ""
+msgstr "Informazioni sui contatti"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-profileaccount.php
 #, php-format
 msgid "Gallery Folder"
-msgstr ""
+msgstr "Cartella Galleria"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-profileaccount.php
@@ -343,19 +343,19 @@ msgstr "Genere"
 #: Plugin\rb-agency-interact/theme/include-profileaccount.php
 #, php-format
 msgid "Private Information"
-msgstr ""
+msgstr "Informazioni riservate"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-profileaccount.php
 #, php-format
 msgid "The following information will appear only in administrative areas."
-msgstr ""
+msgstr "Le seguenti informazioni apparirà solo nelle aree amministrative"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-profileaccount.php
 #, php-format
 msgid "Email Address"
-msgstr ""
+msgstr "Indirizzo email"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-profileaccount.php
@@ -364,67 +364,67 @@ msgid "Birthdate YYYY-MM-DD"
 msgstr ""
 
 msgid "Birthdate"
-msgstr ""
+msgstr "Data di nascita"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-profileaccount.php
 #, php-format
 msgid "Street"
-msgstr ""
+msgstr "Strada"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-profileaccount.php
 #, php-format
 msgid "City"
-msgstr ""
+msgstr "Città"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-profileaccount.php
 #, php-format
 msgid "Country"
-msgstr ""
+msgstr "Nazione"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-profileaccount.php
 #, php-format
 msgid "State"
-msgstr ""
+msgstr "Stato"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-profileaccount.php
 #, php-format
 msgid "Zip"
-msgstr ""
+msgstr "Cerniera lampo"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-profileaccount.php
 #, php-format
 msgid "Phone"
-msgstr ""
+msgstr "Telefono"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-profileaccount.php
 #, php-format
 msgid "Home:"
-msgstr ""
+msgstr "Casa:"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-profileaccount.php
 #, php-format
 msgid "Cell:"
-msgstr ""
+msgstr "Cella:"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-profileaccount.php
 #, php-format
 msgid "Work:"
-msgstr ""
+msgstr "Lavoro:"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-profileaccount.php
 #, php-format
 msgid "Website"
-msgstr ""
+msgstr "Sito web"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-profileaccount.php
@@ -436,25 +436,25 @@ msgstr ""
 #: Plugin\rb-agency-interact/theme/include-profileaccount.php
 #, php-format
 msgid "Social Media Profiles"
-msgstr ""
+msgstr "Social Media Profili"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-profileaccount.php
 #, php-format
 msgid "Cannot be changed"
-msgstr ""
+msgstr "Non può essere cambiato"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-profileaccount.php
 #, php-format
 msgid "Leave blank to keep same password"
-msgstr ""
+msgstr "Lasciare vuoto per mantenere stessa parola d'ordine"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-profileaccount.php
 #, php-format
 msgid "Retype to Confirm"
-msgstr ""
+msgstr "Digitare nuovamente per confermare"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-profileaccount.php
@@ -472,43 +472,43 @@ msgstr "Parola d'ordine"
 #: Plugin\rb-agency-interact/theme/include-profileaccount.php
 #, php-format
 msgid "Retype Password"
-msgstr ""
+msgstr "Retype Parola d'ordine"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-profileaccount.php
 #, php-format
 msgid "Last updated"
-msgstr ""
+msgstr "Ultimo aggiornamento"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-profilemanage.php
 #, php-format
 msgid "Classification:"
-msgstr ""
+msgstr "Classificazione:"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-profilemanage.php
 #, php-format
 msgid "Save and Continue"
-msgstr ""
+msgstr "Salva e Continua"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-profilemedia.php
 #, php-format
 msgid "Upload Photos"
-msgstr ""
+msgstr "Caricare foto"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-profilemedia.php
 #, php-format
 msgid "Media Files"
-msgstr ""
+msgstr "File Multimediali"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-profilemedia.php
 #, php-format
 msgid "Upload Media Files"
-msgstr ""
+msgstr "Carica file multimediali"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
 #: Plugin\rb-agency-interact/theme/include-profilemedia.php
@@ -520,10 +520,10 @@ msgstr ""
 #: Plugin\rb-agency-interact/theme/include-profilemedia.php
 #, php-format
 msgid "Press the Save and Continue button only once."
-msgstr ""
+msgstr "Premere il pulsante Salva e continua solo una volta. "
 
 msgid "Depending on the number of files and or your connection speed, it may take a few moments to fully upload your new files/changes. When the page refreshes, you should see your new media."
-msgstr ""
+msgstr "A seconda del numero di file e o la velocità di connessione, potrebbero essere necessari alcuni istanti per caricare completamente il vostro nuovo file / modifiche. Quando la pagina viene aggiornata, si dovrebbe vedere il nuovo supporto."
 
 msgid "Join Our Team"
 msgstr "Unisciti al nostro team"
@@ -535,10 +535,10 @@ msgid "Hi there,"
 msgstr "Ciao,"
 
 msgid "Hi"
-msgstr ""
+msgstr "Ciao"
 
 msgid "You are registered as"
-msgstr ""
+msgstr "Siete registrati come"
 
 msgid "Thanks for joining %s!"
 msgstr ""
@@ -568,7 +568,7 @@ msgid "[%s] New User Registration"
 msgstr ""
 
 msgid "Your account is pending for approval. We will send you a confirmation once account is approved."
-msgstr ""
+msgstr "Il tuo account è in attesa di approvazione. Vi invieremo una conferma, una volta account è stato approvato."
 
 msgid "Congratulations! Your account is approved."
 msgstr ""
@@ -595,37 +595,37 @@ msgid "Please check your email for your login details."
 msgstr ""
 
 msgid "Select country"
-msgstr ""
+msgstr "Selezionare Nazione"
 
 msgid "Select state"
-msgstr ""
+msgstr "Selezionare Stato"
 
 msgid "There are no images loaded for this profile yet."
-msgstr ""
+msgstr "Non ci sono immagini caricate per questo profilo ancora."
 
 msgid "Upload photos using the forms below. The following formats allowed are jpg and png only "
-msgstr ""
+msgstr "Carica foto utilizzando il modulo qui sotto. I seguenti formati ammessi sono JPG e PNG solo"
 
 msgid "The following files (pdf, audio file, etc.) are associated with this record"
-msgstr ""
+msgstr "I seguenti file (PDF, i file audio, ecc) sono associati con questo disco"
 
 msgid "There are no additional media linked"
-msgstr ""
+msgstr "Non ci sono mezzi aggiuntivi connessi"
 
 msgid "Upload new media using the forms below. The following formats are available: jpg, png, mp3, and pdf. If uploading an mp3 for a voice monolouge, use the  \"Voice Demo\" option. For Resumes, make sure the file is a PDF "
-msgstr ""
+msgstr "Carica nuovi media utilizzando i moduli sottostanti. I seguenti formati sono disponibili: jpg, png, mp3 e pdf. Di caricare un mp3 per un monologo voce, utilizzare l'opzione \"Voice Demo\". Per CV, assicurarsi che il file è in formato PDF"
 
 msgid "Headshot"
-msgstr ""
+msgstr "Colpo alla testa"
 
 msgid "Comp Card"
-msgstr ""
+msgstr "Carta Comp"
 
 msgid "Voice Demo"
-msgstr ""
+msgstr "Voce dimostrazione"
 
 msgid "Back to Overview"
-msgstr ""
+msgstr "Torna alla pagina principale"
 
 msgid "Other Payment Methods"
 msgstr ""
@@ -664,37 +664,37 @@ msgid "Profile Setup: Step 1 of 2"
 msgstr ""
 
 msgid "Profile Setup: Step 1 of 3"
-msgstr ""
+msgstr "Setup Profilo: Passo 1 di 3"
 
 msgid "Profile Setup: Step 3 of 3"
-msgstr ""
+msgstr "Setup Profilo: Passo 3 di 3"
 
 msgid "Profile Setup: Step 2 of 2"
 msgstr ""
 
 msgid "Profile Setup: Step 2 of 3"
-msgstr ""
+msgstr "Setup Profilo: Passo 2 di 3"
 
 msgid "Photo Gallery"
-msgstr ""
+msgstr "Galleria fotografica"
 
 msgid "Type:"
-msgstr ""
+msgstr "Digitare:"
 
 msgid "Paste the video URL below"
-msgstr ""
+msgstr "Incollare l'URL del video qui sotto."
 
 msgid "Thank you for joining %s!"
-msgstr ""
+msgstr "Grazie per essere %s!"
 
 msgid "Your account is pending for approval. We will send you an email once your account is approved."
-msgstr ""
+msgstr "Il tuo account è in attesa di approvazione. Vi invieremo una e-mail una volta che il tuo account è stato approvato."
 
 msgid "Manage Account"
-msgstr ""
+msgstr "Gestisci profilo"
 
 msgid "Photo"
-msgstr ""
+msgstr "Foto"
 
 msgid "--Please Select--"
 msgstr "--per favore selezionare--"
@@ -754,7 +754,7 @@ msgid "Folder Pending Creation"
 msgstr ""
 
 msgid "All Gender"
-msgstr ""
+msgstr "Tutti Genere"
 
 msgid "cm"
 msgstr ""
@@ -808,13 +808,13 @@ msgid "Please try again"
 msgstr ""
 
 msgid " Primary"
-msgstr ""
+msgstr "Primario"
 
 msgid " set as primary"
-msgstr ""
+msgstr "metti come primario"
 
 msgid "Delete"
-msgstr ""
+msgstr "Cancellare"
 
 msgid "Type"
 msgstr ""
@@ -901,7 +901,7 @@ msgid "Registration almost complete."
 msgstr ""
 
 msgid "Account updated!"
-msgstr ""
+msgstr "Account aggiornato!"
 
 msgid "To complete registration, please click button below to pay membership via paypal."
 msgstr ""
@@ -997,7 +997,7 @@ msgid "Browse and Apply for a Job"
 msgstr ""
 
 msgid "Logout"
-msgstr ""
+msgstr "Disconnettersi"
 
 msgid "You have successfully logged in!"
 msgstr ""
@@ -1045,7 +1045,7 @@ msgid "Last Updated"
 msgstr ""
 
 msgid "Resume"
-msgstr ""
+msgstr "Curriculum vitae"
 
 msgid "Please wait"
-msgstr ""
+msgstr "Attendere prego"
