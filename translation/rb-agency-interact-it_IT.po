@@ -1049,3 +1049,7 @@ msgstr "Curriculum vitae"
 
 msgid "Please wait"
 msgstr "Attendere prego"
+
+msgid "Login: "
+msgstr ""
+
