@@ -59,9 +59,9 @@
 					$dirURL = RBAGENCY_UPLOADPATH . $ProfileGallery;
 					foreach ($mass_image_data as $mid => $ProfileMediaURL) {
 						if (!unlink($dirURL . "/" . $ProfileMediaURL)) {
-							echo ("<div id=\"message\" class=\"error\"><p>" . __("Error removing", RBAGENCY_interact_TEXTDOMAIN) ." <strong>" . $ProfileMediaURL . "</strong>. " . __("File did not exist.", RBAGENCY_TEXTDOMAIN) . ".</p></div>");
+							echo ("<div id=\"message\" class=\"error\"><p>" . __("Error removing", RBAGENCY_interact_TEXTDOMAIN) ." <strong>" . $ProfileMediaURL . "</strong>. " . __("File did not exist.", RBAGENCY_interact_TEXTDOMAIN) . ".</p></div>");
 						} else {
-							echo ("<div id=\"message\" class=\"updated\"><p>" . __("File", RBAGENCY_interact_TEXTDOMAIN) ." <strong>'. $ProfileMediaURL .'</strong> " . __("successfully removed", RBAGENCY_TEXTDOMAIN) . ".</p></div>");
+							echo ("<div id=\"message\" class=\"updated\"><p>" . __("File", RBAGENCY_interact_TEXTDOMAIN) ." <strong>'. $ProfileMediaURL .'</strong> " . __("successfully removed", RBAGENCY_interact_TEXTDOMAIN) . ".</p></div>");
 						}
 					}
 				echo "</div>";
@@ -72,12 +72,53 @@
 
 				echo "<script type=\"text/javascript\">\n";
 				echo "function confirmDelete(delMedia,mediaType) {\n";
+				
+				echo "if(mediaType ==='VoiceDemo'){";
+				echo "  if (confirm(\"".__("Are you sure you want to delete this", RBAGENCY_interact_TEXTDOMAIN) ." ".__("Voice Demo",RBAGENCY_interact_TEXTDOMAIN)." ?\" )) {\n";
+				//echo "         document.getElementById('deletePost').submit(); \n";
+				echo "         document.getElementById('targetid').value=delMedia;";
+				echo "         document.deletePost.submit(); \n";
+				//echo "	document.location = \"?&action=editRecord&ProfileID=". $ProfileID ."&actionsub=photodelete&targetid=\"+delMedia;\n";
+				echo "  }\n";
+
+				echo "}else if(mediaType === 'Resume'){ ";
+				echo "  if (confirm(\"".__("Are you sure you want to delete this", RBAGENCY_interact_TEXTDOMAIN) ." ".__("Resume",RBAGENCY_interact_TEXTDOMAIN)." ?\" )) {\n";
+				//echo "         document.getElementById('deletePost').submit(); \n";
+				echo "         document.getElementById('targetid').value=delMedia;";
+				echo "         document.deletePost.submit(); \n";
+				//echo "	document.location = \"?&action=editRecord&ProfileID=". $ProfileID ."&actionsub=photodelete&targetid=\"+delMedia;\n";
+				echo "  }\n";
+
+
+				echo "}else if(mediaType === 'Headshot'){";
+				echo "  if (confirm(\"".__("Are you sure you want to delete this", RBAGENCY_interact_TEXTDOMAIN) ." ".__("Headshot",RBAGENCY_interact_TEXTDOMAIN)." ?\" )) {\n";
+				//echo "         document.getElementById('deletePost').submit(); \n";
+				echo "         document.getElementById('targetid').value=delMedia;";
+				echo "         document.deletePost.submit(); \n";
+				//echo "	document.location = \"?&action=editRecord&ProfileID=". $ProfileID ."&actionsub=photodelete&targetid=\"+delMedia;\n";
+				echo "  }\n";
+
+
+				echo "}else if(mediaType == 'CompCard'){";
+				echo "  if (confirm(\"".__("Are you sure you want to delete this", RBAGENCY_interact_TEXTDOMAIN) ." ".__("Comp Card",RBAGENCY_interact_TEXTDOMAIN)." ?\" )) {\n";
+				//echo "         document.getElementById('deletePost').submit(); \n";
+				echo "         document.getElementById('targetid').value=delMedia;";
+				echo "         document.deletePost.submit(); \n";
+				//echo "	document.location = \"?&action=editRecord&ProfileID=". $ProfileID ."&actionsub=photodelete&targetid=\"+delMedia;\n";
+				echo "  }\n";
+
+
+				echo "}else{";
+
 				echo "  if (confirm(\"".__("Are you sure you want to delete this", RBAGENCY_interact_TEXTDOMAIN) ." \"+mediaType+\"?\")) {\n";
 				//echo "         document.getElementById('deletePost').submit(); \n";
 				echo "         document.getElementById('targetid').value=delMedia;";
 				echo "         document.deletePost.submit(); \n";
 				//echo "	document.location = \"?&action=editRecord&ProfileID=". $ProfileID ."&actionsub=photodelete&targetid=\"+delMedia;\n";
 				echo "  }\n";
+
+				echo "}\n";
+				
 				echo "}\n";
 				echo "</script>\n";
 
@@ -134,12 +175,12 @@
 								$styleClass = "primary-picture ";
 								$isChecked = " checked";
 								$isCheckedText = __(" Primary", RBAGENCY_interact_TEXTDOMAIN);
-							$toDelete = "  <div class=\"delete\"><a href=\"javascript:;\" class=\"btn-small-red\" onclick=\"confirmDelete('". $dataImg['ProfileMediaID'] ."','".$dataImg['ProfileMediaType']."');\"><span>". __("Delete", RBAGENCY_TEXTDOMAIN) ."</span> &raquo;</a></div>\n";
+							$toDelete = "  <div class=\"delete\"><a href=\"javascript:;\" class=\"btn-small-red\" onclick=\"confirmDelete('". $dataImg['ProfileMediaID'] ."','".$dataImg['ProfileMediaType']."');\"><span>". __("Delete", RBAGENCY_interact_TEXTDOMAIN) ."</span> &raquo;</a></div>\n";
 							} else {
 								$styleClass = "";
 								$isChecked = "";
 								$isCheckedText = __(" set as primary", RBAGENCY_interact_TEXTDOMAIN);
-							$toDelete = "  <div class=\"delete\"><a href=\"javascript:;\" class=\"btn-small-red\" onclick=\"confirmDelete('". $dataImg['ProfileMediaID'] ."','".$dataImg['ProfileMediaType']."');\"><span>". __("Delete", RBAGENCY_TEXTDOMAIN) ."</span> &raquo;</a></div>\n";
+							$toDelete = "  <div class=\"delete\"><a href=\"javascript:;\" class=\"btn-small-red\" onclick=\"confirmDelete('". $dataImg['ProfileMediaID'] ."','".$dataImg['ProfileMediaType']."');\"><span>". __("Delete", RBAGENCY_interact_TEXTDOMAIN) ."</span> &raquo;</a></div>\n";
 							}
 						echo "<div class=\"profileimage\" class=\"". $styleClass ."\">\n". $toDelete ."";
 
@@ -151,7 +192,7 @@
 						echo "  <div class=\"". $styleClass ."make-primary\">";
 						echo "	<label><input type=\"radio\" name=\"ProfileMediaPrimary\" value=\"". $dataImg['ProfileMediaID'] ."\" class=\"button-primary\"". $isChecked ." /> ". $isCheckedText ."</label>";
 						if(empty($dataImg['ProfileMediaPrimary'])){
-							echo "<label><input type=\"checkbox\" value=\"".$dataImg['ProfileMediaID']."\" name=\"deletePhoto[]\"/> ". __("Delete", RBAGENCY_TEXTDOMAIN) ."</label>";
+							echo "<label><input type=\"checkbox\" value=\"".$dataImg['ProfileMediaID']."\" name=\"deletePhoto[]\"/> ". __("Delete", RBAGENCY_interact_TEXTDOMAIN) ."</label>";
 						}
 						echo "</div>\n";
 
@@ -185,16 +226,45 @@
 						if ($dataMedia['ProfileMediaType'] == "Demo Reel" || $dataMedia['ProfileMediaType'] == "Video Monologue" || $dataMedia['ProfileMediaType'] == "Video Slate") {
 							$outVideoMedia .= "<div class=\"media-video\">" . $dataMedia['ProfileMediaType'] . "<br />" . rb_agency_get_videothumbnail($dataMedia['ProfileMediaURL'], $dataMedia['ProfileVideoType']) . "<br /><a href=\"" . $dataMedia['ProfileMediaURL'] . "\" target=\"_blank\">".sprintf(__("Link to %s Video",RBAGENCY_interact_TEXTDOMAIN),ucfirst($dataMedia['ProfileVideoType']))."</a><br />[<a href=\"javascript:confirmDelete('" . $dataMedia['ProfileMediaID'] . "','" . $dataMedia['ProfileMediaType'] . "')\">".__('DELETE',RBAGENCY_interact_TEXTDOMAIN)."</a>]</div>\n";
 						} elseif ($dataMedia['ProfileMediaType'] == "VoiceDemo") {
-							$outLinkVoiceDemo .= "<div> <a href=\"". RBAGENCY_UPLOADDIR . $ProfileGallery ."/". $dataMedia['ProfileMediaURL'] ."\" target=\"_blank\">".RBAGENCY_UPLOADDIR . $ProfileGallery ."/".$dataMedia["ProfileMediaURL"]."</a>  ". __("Voice Demo",RBAGENCY_interact_TEXTDOMAIN) ." [<a href=\"javascript:confirmDelete('". $dataMedia['ProfileMediaID'] ."','".$dataMedia['ProfileMediaType']."')\">".__('DELETE',RBAGENCY_interact_TEXTDOMAIN)."</a>]</div>\n";
+							if($medialink_option == 2){
+								$outLinkVoiceDemo .= "<div> <a href=\"". RBAGENCY_UPLOADDIR . $ProfileGallery ."/". $dataMedia['ProfileMediaURL'] ."\" target=\"_blank\">". __("Voice Demo",RBAGENCY_interact_TEXTDOMAIN) ."</a> [<a href=\"javascript:confirmDelete('". $dataMedia['ProfileMediaID'] ."','".$dataMedia['ProfileMediaType']."')\">".__('DELETE',RBAGENCY_interact_TEXTDOMAIN)."</a>]</div>\n";
+							}else{//force download
+								$force_download_url = wpfdl_dl($ProfileGallery ."/". $dataMedia['ProfileMediaURL'],get_option('wpfdl_token'),'dl');
+								$outLinkVoiceDemo .= "<div> <a ".$force_download_url ." target=\"_blank\">". __("Voice Demo",RBAGENCY_interact_TEXTDOMAIN) ."</a> [<a href=\"javascript:confirmDelete('". $dataMedia['ProfileMediaID'] ."','".$dataMedia['ProfileMediaType']."')\">".__('DELETE',RBAGENCY_interact_TEXTDOMAIN)."</a>]</div>\n";
+							}
+
+
 						}
 						elseif ($dataMedia['ProfileMediaType'] == "Resume") {
 
-							$outLinkResume .= "<div> <a href=\"". RBAGENCY_UPLOADDIR . $ProfileGallery ."/". $dataMedia['ProfileMediaURL'] ."\" target=\"_blank\">".RBAGENCY_UPLOADDIR . $ProfileGallery ."/".$dataMedia["ProfileMediaURL"]."</a> ". __($dataMedia['ProfileMediaType'],RBAGENCY_interact_TEXTDOMAIN) ." [<a href=\"javascript:confirmDelete('". $dataMedia['ProfileMediaID'] ."','".$dataMedia['ProfileMediaType']."')\">".__('DELETE',RBAGENCY_interact_TEXTDOMAIN)."</a>]</div>\n";
+							if($medialink_option == 2){
+								$outLinkResume .= "<div> <a href=\"". RBAGENCY_UPLOADDIR . $ProfileGallery ."/". $dataMedia['ProfileMediaURL'] ."\" target=\"_blank\">". __($dataMedia['ProfileMediaType'],RBAGENCY_interact_TEXTDOMAIN) ."</a> [<a href=\"javascript:confirmDelete('". $dataMedia['ProfileMediaID'] ."','".$dataMedia['ProfileMediaType']."')\">".__('DELETE',RBAGENCY_interact_TEXTDOMAIN)."</a>]</div>\n";
+							}else{//force download
+								$force_download_url = wpfdl_dl($ProfileGallery ."/". $dataMedia['ProfileMediaURL'],get_option('wpfdl_token'),'dl');
+								$outLinkResume .= "<div> <a ".$force_download_url ." target=\"_blank\">". __($dataMedia['ProfileMediaType'],RBAGENCY_interact_TEXTDOMAIN) ."</a> [<a href=\"javascript:confirmDelete('". $dataMedia['ProfileMediaID'] ."','".$dataMedia['ProfileMediaType']."')\">".__('DELETE',RBAGENCY_interact_TEXTDOMAIN)."</a>]</div>\n";
+							}
+
+							
 						}
 						elseif ($dataMedia['ProfileMediaType'] == "Headshot") {
-							$outLinkHeadShot .= "<div> <a href=\"". RBAGENCY_UPLOADDIR . $ProfileGallery ."/". $dataMedia['ProfileMediaURL'] ."\" target=\"_blank\">".RBAGENCY_UPLOADDIR . $ProfileGallery ."/".$dataMedia["ProfileMediaURL"]."</a> ". __($dataMedia['ProfileMediaType'],RBAGENCY_interact_TEXTDOMAIN) ." [<a href=\"javascript:confirmDelete('". $dataMedia['ProfileMediaID'] ."','".$dataMedia['ProfileMediaType']."')\" >".__('DELETE',RBAGENCY_interact_TEXTDOMAIN)."</a>]</div>\n";
+
+							if($medialink_option == 2){
+								$outLinkHeadShot .= "<div> <a href=\"". RBAGENCY_UPLOADDIR . $ProfileGallery ."/". $dataMedia['ProfileMediaURL'] ."\" target=\"_blank\">". __($dataMedia['ProfileMediaType'],RBAGENCY_interact_TEXTDOMAIN) ."</a> [<a href=\"javascript:confirmDelete('". $dataMedia['ProfileMediaID'] ."','".$dataMedia['ProfileMediaType']."')\" >".__('DELETE',RBAGENCY_interact_TEXTDOMAIN)."</a>]</div>\n";
+							}else{//force download
+								$force_download_url = wpfdl_dl($ProfileGallery ."/". $dataMedia['ProfileMediaURL'],get_option('wpfdl_token'),'dl');
+								$outLinkHeadShot .= "<div> <a ".$force_download_url ." target=\"_blank\">". __($dataMedia['ProfileMediaType'],RBAGENCY_interact_TEXTDOMAIN) ."</a> [<a href=\"javascript:confirmDelete('". $dataMedia['ProfileMediaID'] ."','".$dataMedia['ProfileMediaType']."')\" >".__('DELETE',RBAGENCY_interact_TEXTDOMAIN)."</a>]</div>\n";
+							}
+							
 						} elseif ($dataMedia['ProfileMediaType'] == "CompCard") {
-							$outLinkComCard .= "<div> <a href=\"". RBAGENCY_UPLOADDIR . $ProfileGallery ."/". $dataMedia['ProfileMediaURL'] ."\" target=\"_blank\">".RBAGENCY_UPLOADDIR . $ProfileGallery ."/".$dataMedia["ProfileMediaURL"]."</a> ". __("Comp Card",RBAGENCY_interact_TEXTDOMAIN) ." [<a href=\"javascript:confirmDelete('". $dataMedia['ProfileMediaID'] ."','".$dataMedia['ProfileMediaType']."')\">".__('DELETE',RBAGENCY_interact_TEXTDOMAIN)."</a>]</div>\n";
+
+							if($medialink_option == 2){
+								$outLinkComCard .= "<div> <a href=\"". RBAGENCY_UPLOADDIR . $ProfileGallery ."/". $dataMedia['ProfileMediaURL'] ."\" target=\"_blank\">". __("Comp Card",RBAGENCY_interact_TEXTDOMAIN) ."</a> [<a href=\"javascript:confirmDelete('". $dataMedia['ProfileMediaID'] ."','".$dataMedia['ProfileMediaType']."')\">".__('DELETE',RBAGENCY_interact_TEXTDOMAIN)."</a>]</div>\n";
+							}else{//force download
+								$force_download_url = wpfdl_dl($ProfileGallery ."/". $dataMedia['ProfileMediaURL'],get_option('wpfdl_token'),'dl');
+								$outLinkComCard .= "<div> <a ".$force_download_url ." target=\"_blank\">". __("Comp Card",RBAGENCY_interact_TEXTDOMAIN) ."</a> [<a href=\"javascript:confirmDelete('". $dataMedia['ProfileMediaID'] ."','".$dataMedia['ProfileMediaType']."')\">".__('DELETE',RBAGENCY_interact_TEXTDOMAIN)."</a>]</div>\n";
+							}
+							
+							
 						}elseif ($dataMedia['ProfileMediaType'] == "SoundCloud") {
 							$outSoundCloud .= RBAgency_Common::rb_agency_embed_soundcloud($dataMedia['ProfileMediaURL'])." [<a href=\"javascript:confirmDelete('". $dataMedia['ProfileMediaID'] ."','".$dataMedia['ProfileMediaType']."')\">DELETE</a>]<br/>\n";
 						} else if (strpos($dataMedia['ProfileMediaType'] ,"rbcustommedia") !== false) {
@@ -247,25 +317,25 @@
 					."<option selected>". __("Video Slate", RBAGENCY_interact_TEXTDOMAIN) ."</option>"
 					."<option>". __("Video Monologue", RBAGENCY_interact_TEXTDOMAIN) ."</option>"
 					."<option>". __("Demo Reel", RBAGENCY_interact_TEXTDOMAIN) ."</option>"
-					."<option>" . __("SoundCloud", RBAGENCY_TEXTDOMAIN) . "</option>"
+					."<option>" . __("SoundCloud", RBAGENCY_interact_TEXTDOMAIN) . "</option>"
 					."</select><textarea id='profileMediaV1' name='profileMediaV1'></textarea></div>\n";
 				echo "<div><label>". __("Type", RBAGENCY_interact_TEXTDOMAIN) .": </label><select name=\"profileMediaV2Type\">"
 					."<option>". __("Video Slate", RBAGENCY_interact_TEXTDOMAIN) ."</option>"
 					."<option selected>". __("Video Monologue", RBAGENCY_interact_TEXTDOMAIN) ."</option>"
 					."<option>". __("Demo Reel", RBAGENCY_interact_TEXTDOMAIN) ."</option>"
-					."<option>" . __("SoundCloud", RBAGENCY_TEXTDOMAIN) . "</option>"
+					."<option>" . __("SoundCloud", RBAGENCY_interact_TEXTDOMAIN) . "</option>"
 					."</select><textarea id='profileMediaV2' name='profileMediaV2'></textarea></div>\n";
 				echo "<div><label>". __("Type", RBAGENCY_interact_TEXTDOMAIN) .": </label><select name=\"profileMediaV3Type\">"
 					."<option>". __("Video Slate", RBAGENCY_interact_TEXTDOMAIN) ."</option>"
 					."<option>". __("Video Monologue", RBAGENCY_interact_TEXTDOMAIN) ."</option>"
 					."<option selected>". __("Demo Reel", RBAGENCY_interact_TEXTDOMAIN) ."</option>"
-					."<option>" . __("SoundCloud", RBAGENCY_TEXTDOMAIN) . "</option>"
+					."<option>" . __("SoundCloud", RBAGENCY_interact_TEXTDOMAIN) . "</option>"
 					."</select><textarea id='profileMediaV3' name='profileMediaV3'></textarea></div>\n";
 				echo "<div><label>". __("Type", RBAGENCY_interact_TEXTDOMAIN) .": </label><select name=\"profileMediaV4Type\">"
 					."<option>". __("Video Slate", RBAGENCY_interact_TEXTDOMAIN) ."</option>"
 					."<option>". __("Video Monologue", RBAGENCY_interact_TEXTDOMAIN) ."</option>"
 					."<option>". __("Demo Reel", RBAGENCY_interact_TEXTDOMAIN) ."</option>"
-					."<option  selected>" . __("SoundCloud", RBAGENCY_TEXTDOMAIN) . "</option>"
+					."<option  selected>" . __("SoundCloud", RBAGENCY_interact_TEXTDOMAIN) . "</option>"
 					."</select><textarea id='profileMediaV4' name='profileMediaV4'></textarea></div>\n";
 
 			}
