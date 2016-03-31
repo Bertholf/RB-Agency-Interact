@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: RB Agency Interactive\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-01-26 07:24-1000\n"
-"PO-Revision-Date: 2016-03-30 14:46+0800\n"
+"PO-Revision-Date: 2016-03-31 10:33+0800\n"
 "Last-Translator: Rob Bertholf <rob@bertholf.com>\n"
 "Language-Team: RB Plugin <info@rbplugin.com>\n"
 "MIME-Version: 1.0\n"
@@ -12,7 +12,7 @@ msgstr ""
 "X-Poedit-KeywordsList: __;gettext;gettext_noop\n"
 "X-Poedit-Basepath: .\n"
 "Language: it_IT\n"
-"X-Generator: Poedit 1.8.7\n"
+"X-Generator: Poedit 1.8.4\n"
 "X-Poedit-SearchPath-0: C:/Dropbox/Users/Rob/Scripts/RB Plugin/rb-agency-interact\n"
 
 #: C:\Dropbox\Users\Rob\Scripts\RB
@@ -787,13 +787,13 @@ msgid "File %s successfully uploaded"
 msgstr ""
 
 msgid "You may continue uploading more files. If you are done, please click the EXIT link below to go back to homepage."
-msgstr ""
+msgstr "Si può continuare a caricare più file. Se hai finito, clicca sul link qui sotto USCITA per tornare alla pagina iniziale."
 
 msgid "Error removing"
 msgstr ""
 
 msgid "File"
-msgstr ""
+msgstr "Lima"
 
 msgid "Are you sure you want to delete this"
 msgstr ""
@@ -973,7 +973,7 @@ msgid "Favorites"
 msgstr ""
 
 msgid "EXIT"
-msgstr ""
+msgstr "USCITA"
 
 msgid "Please upload \".$custom_media_extenstion.\" files only"
 msgstr ""
@@ -988,7 +988,7 @@ msgid "Setup Your Profile"
 msgstr ""
 
 msgid "successfully uploaded!"
-msgstr ""
+msgstr "caricato con successo!"
 
 msgid "Manage your Subscription"
 msgstr ""
@@ -1052,3 +1052,9 @@ msgstr "Attendere prego"
 
 msgid "Login: "
 msgstr "Accesso:"
+
+msgid "DELETE"
+msgstr ""
+
+msgid "Link to %s Video"
+msgstr ""
