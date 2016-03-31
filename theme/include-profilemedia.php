@@ -59,9 +59,9 @@
 					$dirURL = RBAGENCY_UPLOADPATH . $ProfileGallery;
 					foreach ($mass_image_data as $mid => $ProfileMediaURL) {
 						if (!unlink($dirURL . "/" . $ProfileMediaURL)) {
-							echo ("<div id=\"message\" class=\"error\"><p>" . __("Error removing", RBAGENCY_TEXTDOMAIN) ." <strong>" . $ProfileMediaURL . "</strong>. " . __("File did not exist.", RBAGENCY_TEXTDOMAIN) . ".</p></div>");
+							echo ("<div id=\"message\" class=\"error\"><p>" . __("Error removing", RBAGENCY_interact_TEXTDOMAIN) ." <strong>" . $ProfileMediaURL . "</strong>. " . __("File did not exist.", RBAGENCY_TEXTDOMAIN) . ".</p></div>");
 						} else {
-							echo ("<div id=\"message\" class=\"updated\"><p>" . __("File", RBAGENCY_TEXTDOMAIN) ." <strong>'. $ProfileMediaURL .'</strong> " . __("successfully removed", RBAGENCY_TEXTDOMAIN) . ".</p></div>");
+							echo ("<div id=\"message\" class=\"updated\"><p>" . __("File", RBAGENCY_interact_TEXTDOMAIN) ." <strong>'. $ProfileMediaURL .'</strong> " . __("successfully removed", RBAGENCY_TEXTDOMAIN) . ".</p></div>");
 						}
 					}
 				echo "</div>";
@@ -185,16 +185,17 @@
 						if ($dataMedia['ProfileMediaType'] == "Demo Reel" || $dataMedia['ProfileMediaType'] == "Video Monologue" || $dataMedia['ProfileMediaType'] == "Video Slate") {
 							$outVideoMedia .= "<div class=\"media-video\">" . $dataMedia['ProfileMediaType'] . "<br />" . rb_agency_get_videothumbnail($dataMedia['ProfileMediaURL'], $dataMedia['ProfileVideoType']) . "<br /><a href=\"" . $dataMedia['ProfileMediaURL'] . "\" target=\"_blank\">".sprintf(__("Link to %s Video",RBAGENCY_interact_TEXTDOMAIN),ucfirst($dataMedia['ProfileVideoType']))."</a><br />[<a href=\"javascript:confirmDelete('" . $dataMedia['ProfileMediaID'] . "','" . $dataMedia['ProfileMediaType'] . "')\">".__('DELETE',RBAGENCY_interact_TEXTDOMAIN)."</a>]</div>\n";
 						} elseif ($dataMedia['ProfileMediaType'] == "VoiceDemo") {
-							$outLinkVoiceDemo .= "<div> <a href=\"". RBAGENCY_UPLOADDIR . $ProfileGallery ."/". $dataMedia['ProfileMediaURL'] ."\" target=\"_blank\">". $dataMedia['ProfileMediaType'] ."</a> [<a href=\"javascript:confirmDelete('". $dataMedia['ProfileMediaID'] ."','".$dataMedia['ProfileMediaType']."')\">".__('DELETE',RBAGENCY_interact_TEXTDOMAIN)."</a>]</div>\n";
+							$outLinkVoiceDemo .= "<div> <a href=\"". RBAGENCY_UPLOADDIR . $ProfileGallery ."/". $dataMedia['ProfileMediaURL'] ."\" target=\"_blank\">".RBAGENCY_UPLOADDIR . $ProfileGallery ."/".$dataMedia["ProfileMediaURL"]."</a>  ". __("Voice Demo",RBAGENCY_interact_TEXTDOMAIN) ." [<a href=\"javascript:confirmDelete('". $dataMedia['ProfileMediaID'] ."','".$dataMedia['ProfileMediaType']."')\">".__('DELETE',RBAGENCY_interact_TEXTDOMAIN)."</a>]</div>\n";
 						}
 						elseif ($dataMedia['ProfileMediaType'] == "Resume") {
-							$outLinkResume .= "<div> <a href=\"". RBAGENCY_UPLOADDIR . $ProfileGallery ."/". $dataMedia['ProfileMediaURL'] ."\" target=\"_blank\">". $dataMedia['ProfileMediaType'] ."</a> [<a href=\"javascript:confirmDelete('". $dataMedia['ProfileMediaID'] ."','".$dataMedia['ProfileMediaType']."')\">".__('DELETE',RBAGENCY_interact_TEXTDOMAIN)."</a>]</div>\n";
+
+							$outLinkResume .= "<div> <a href=\"". RBAGENCY_UPLOADDIR . $ProfileGallery ."/". $dataMedia['ProfileMediaURL'] ."\" target=\"_blank\">".RBAGENCY_UPLOADDIR . $ProfileGallery ."/".$dataMedia["ProfileMediaURL"]."</a> ". __($dataMedia['ProfileMediaType'],RBAGENCY_interact_TEXTDOMAIN) ." [<a href=\"javascript:confirmDelete('". $dataMedia['ProfileMediaID'] ."','".$dataMedia['ProfileMediaType']."')\">".__('DELETE',RBAGENCY_interact_TEXTDOMAIN)."</a>]</div>\n";
 						}
 						elseif ($dataMedia['ProfileMediaType'] == "Headshot") {
-							$outLinkHeadShot .= "<div> <a href=\"". RBAGENCY_UPLOADDIR . $ProfileGallery ."/". $dataMedia['ProfileMediaURL'] ."\" target=\"_blank\">". $dataMedia['ProfileMediaType'] ."</a> [<a href=\"javascript:confirmDelete('". $dataMedia['ProfileMediaID'] ."','".$dataMedia['ProfileMediaType']."')\">".__('DELETE',RBAGENCY_interact_TEXTDOMAIN)."</a>]</div>\n";
+							$outLinkHeadShot .= "<div> <a href=\"". RBAGENCY_UPLOADDIR . $ProfileGallery ."/". $dataMedia['ProfileMediaURL'] ."\" target=\"_blank\">".RBAGENCY_UPLOADDIR . $ProfileGallery ."/".$dataMedia["ProfileMediaURL"]."</a> ". __($dataMedia['ProfileMediaType'],RBAGENCY_interact_TEXTDOMAIN) ." [<a href=\"javascript:confirmDelete('". $dataMedia['ProfileMediaID'] ."','".$dataMedia['ProfileMediaType']."')\" >".__('DELETE',RBAGENCY_interact_TEXTDOMAIN)."</a>]</div>\n";
 						} elseif ($dataMedia['ProfileMediaType'] == "CompCard") {
-							$outLinkComCard .= "<div> <a href=\"". RBAGENCY_UPLOADDIR . $ProfileGallery ."/". $dataMedia['ProfileMediaURL'] ."\" target=\"_blank\">". $dataMedia['ProfileMediaType'] ."</a> [<a href=\"javascript:confirmDelete('". $dataMedia['ProfileMediaID'] ."','".$dataMedia['ProfileMediaType']."')\">".__('DELETE',RBAGENCY_interact_TEXTDOMAIN)."</a>]</div>\n";
-						} elseif ($dataMedia['ProfileMediaType'] == "SoundCloud") {
+							$outLinkComCard .= "<div> <a href=\"". RBAGENCY_UPLOADDIR . $ProfileGallery ."/". $dataMedia['ProfileMediaURL'] ."\" target=\"_blank\">".RBAGENCY_UPLOADDIR . $ProfileGallery ."/".$dataMedia["ProfileMediaURL"]."</a> ". __("Comp Card",RBAGENCY_interact_TEXTDOMAIN) ." [<a href=\"javascript:confirmDelete('". $dataMedia['ProfileMediaID'] ."','".$dataMedia['ProfileMediaType']."')\">".__('DELETE',RBAGENCY_interact_TEXTDOMAIN)."</a>]</div>\n";
+						}elseif ($dataMedia['ProfileMediaType'] == "SoundCloud") {
 							$outSoundCloud .= RBAgency_Common::rb_agency_embed_soundcloud($dataMedia['ProfileMediaURL'])." [<a href=\"javascript:confirmDelete('". $dataMedia['ProfileMediaID'] ."','".$dataMedia['ProfileMediaType']."')\">DELETE</a>]<br/>\n";
 						} else if (strpos($dataMedia['ProfileMediaType'] ,"rbcustommedia") !== false) {
 							$custom_media_info = explode("_",$dataMedia['ProfileMediaType']);
