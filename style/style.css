@@ -133,3 +133,7 @@ p.submit { margin-top: 15px!important; }
 .widget-area .rb_agency_widget_showpromoted h3.name { margin: 0px; padding: 15px 0px }
 #profile-featured .image-broken {  }
 #profile-featured .image-broken a {  }
+
+/*Login Form*/
+.rbform .box { margin-bottom: 10px; }
+.rbform .box label { margin-bottom: 0px; }
