@@ -1,13 +1,23 @@
 # RB Agency Interact
 Allows profiles to self regsiter and manage their information.
 
-### Current Version 2.4.2
+### Current Version 2.4.3
 
 
 ## Change Log
 
 ### 2.4.3
-
+* new feature - admin's ability to customize email notification for model/talent registration
+* fixed - gallery folder is not displaying on /profile-member/account/
+* fixed - when user's email is updated via profile editor, the email is not updating in wordpress manage users.
+* fixed - reset link is missing in email
+* fixed - forgot password feature - user is redirected to /profile-login/ page but no notification if reset link is emailed to user.
+* fixed - after admin approved casting agent, user is not getting an email notification.
+* fixed - casting agents are duplicated when admin approves user
+* new feature - added calendar select to the birthdate field in registration
+* fixed - when someone registers as model/talent, the user status is set to inactive instead of pending approval which is set in the settings.
+* fixed - when someone registers as model/talent, the user status is set to pending for approval but as soon as the user logs in to continue registration, the status becomes inactive.
+* fixed - admin and users are not getting email notifications.
 
 ### 2.4.2
 * created "RB Login Widget" widget which you can add to the sidebar. This widget will show the "Log Out" if user is logged in.
