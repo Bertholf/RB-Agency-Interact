@@ -399,7 +399,7 @@
 								echo "<br/><br/>";
 								//if ($rb_agencyinteract_option_registerapproval == 1) { // automatically approve
 								
-								printf( __("Please check your email for your login credentials to continue your registration.<br><br>", RBAGENCY_interact_TEXTDOMAIN), $user_login );
+								printf( __("Please check your email for your login credentials to continue your registration.", RBAGENCY_interact_TEXTDOMAIN), $user_login );
 								echo "<br/><br/>";
 								printf( "<a href=\"../profile-login/\">".__("Account Login", RBAGENCY_interact_TEXTDOMAIN)."</a>", $user_login );
 							}
