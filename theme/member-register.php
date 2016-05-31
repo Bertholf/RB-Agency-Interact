@@ -506,45 +506,68 @@
 	echo "	<fieldset id=\"profile-gender\" class=\"rbfield rbcheckbox rbmulti\">\n";
 	echo "		<legend for=\"profile_type\">". __("Type of Profile", RBAGENCY_interact_TEXTDOMAIN) ."</legend>\n";
 
-				//check for parentid column and level
+				//check for parentid column
 				$sql = "SELECT DataTypeParentID FROM ".$wpdb->prefix."agency_data_type LIMIT 1";
 				$r = $wpdb->get_results($sql);
 				if(count($r) == 0){
 					//create column
-					$queryAlter = "ALTER TABLE " . $wpdb->prefix ."agency_data_type ADD DataTypeParentID INT(10) default 0";
+					$queryAlter = "ALTER TABLE " . $wpdb->prefix ."agency_data_type ADD DataTypeParentID varchar(20) default 0";
 					$resultsDataAlter = $wpdb->query($queryAlter,ARRAY_A);
 				}
 
-				$sql = "SELECT DataTypeLevel FROM ".$wpdb->prefix."agency_data_type LIMIT 1";
-				$r = $wpdb->get_results($sql);
-				if(count($r) == 0){
-					//create column
-					$queryAlter = "ALTER TABLE " . $wpdb->prefix ."agency_data_type ADD DataTypeLevel INT(10) default 0";
-					$resultsDataAlter = $wpdb->query($queryAlter,ARRAY_A);
-				}
-
+				
+	echo "		<div id='ProfileType-div'>";
+	
 				$ProfileTypeArray = array();
-				$query3 = "SELECT * FROM " . table_agency_data_type . " WHERE DataTypeParentID = 0 ORDER BY DataTypeTitle";
+				$query3 = "SELECT * FROM " . table_agency_data_type . " WHERE DataTypeParentID = 0 AND DataTypeGenderID = 0 ORDER BY DataTypeTitle";
 				$results3 = $wpdb->get_results($query3,ARRAY_A);
 				$count3 =  $wpdb->num_rows;
-	echo "		<div>";
-				  $ptype_arr = isset($_POST["ProfileType"]) && !empty($_POST["ProfileType"])?$_POST["ProfileType"]: array();
-				foreach($results3 as $data3) {
+				
+				   $ptype_arr = isset($_POST["ProfileType"]) && !empty($_POST["ProfileType"])?$_POST["ProfileType"]: array();
+				 if($ProfileGender >= 1 ){
+					$query3 = "SELECT * FROM " . table_agency_data_type . " WHERE DataTypeParentID = 0 AND (DataTypeGenderID = {$ProfileGender} OR DataTypeGenderID = 0) ORDER BY DataTypeTitle";
+					$results3 = $wpdb->get_results($query3,ARRAY_A);
+					$count3 =  $wpdb->num_rows;
+					 
+					foreach($results3 as $data3) {
 
-					$rb_agency_uri_profiletype = ucfirst($rb_agency_uri_profiletype);
-					$profiletypeid = $wpdb->get_var($wpdb->prepare("SELECT DataTypeID FROM " . table_agency_data_type . " WHERE DataTypeTitle = %s",$rb_agency_uri_profiletype));
+						$rb_agency_uri_profiletype = ucfirst($rb_agency_uri_profiletype);
+						$profiletypeid = $wpdb->get_var($wpdb->prepare("SELECT DataTypeID FROM " . table_agency_data_type . " WHERE DataTypeTitle = %s",$rb_agency_uri_profiletype));
 
-					if(!empty($rb_agency_uri_profiletype) && isset($profiletypeid)){
-						if($profiletypeid ==  $data3["DataTypeID"]){
-								echo "<div><label><input type=\"checkbox\" checked='checked' name=\"ProfileType[]\" value=\"" . $data3['DataTypeID'] . "\" id=".$data3['DataTypeID']." myparent=".$data3['DataTypeParentID']." class=\"DataTypeIDClassCheckbox\" /><span> " . $data3['DataTypeTitle'] . "</span></label></div>";
+						if(!empty($rb_agency_uri_profiletype) && isset($profiletypeid)){
+							if($profiletypeid ==  $data3["DataTypeID"]){
+									echo "<div><label><input type=\"checkbox\" checked='checked' name=\"ProfileType[]\" value=\"" . $data3['DataTypeID'] . "\" id=".$data3['DataTypeID']." myparent=".$data3['DataTypeParentID']." class=\"DataTypeIDClassCheckbox\" /><span> " . $data3['DataTypeTitle'] . "</span></label></div>";
+							}
+						} else {
+							echo "<div><label><input type=\"checkbox\" ".(in_array($data3["DataTypeID"],$ptype_arr)?"checked='checked'":"")." name=\"ProfileType[]\" id=".$data3['DataTypeID']." myparent=".$data3['DataTypeParentID']." class=\"DataTypeIDClassCheckbox\" value=\"" . $data3['DataTypeID'] . "\"  /><span> " . $data3['DataTypeTitle'] . "</span></label></div>";
 						}
-					} else {
-						echo "<div><label><input type=\"checkbox\" ".(in_array($data3["DataTypeID"],$ptype_arr)?"checked='checked'":"")." name=\"ProfileType[]\" id=".$data3['DataTypeID']." myparent=".$data3['DataTypeParentID']." class=\"DataTypeIDClassCheckbox\" value=\"" . $data3['DataTypeID'] . "\"  /><span> " . $data3['DataTypeTitle'] . "</span></label></div>";
-					}
-
-					do_action('rb_get_profile_type_childs_checkbox_ajax_register_display',$data3["DataTypeID"]);
-				}
-	echo "		</div>";
+						do_action('rb_get_profile_type_childs_checkbox_ajax_register_display',$data3["DataTypeID"]);
+					} 
+				 }else{
+					echo "	Please select your gender first</div>";
+				 }
+	echo '
+			<script>
+				jQuery( "#ProfileGender" ).on("change",function() {
+				
+				var userGenderID = jQuery(this).val();
+				//var userGenderText = jQuery( "#ProfileGender option:selected").text();
+						
+					jQuery.post("'.admin_url("admin-ajax.php").'", 
+						{
+						GenderID: userGenderID,
+						action:"request_datatype_bygender_memberregister"
+						})
+					.done(function(data) {
+						console.log(data);
+						jQuery("#ProfileType-div").html(data);
+					});
+					return false;
+				});
+			</script>
+		';
+		
+	
 	echo "</fieldset><!-- #profile-gender -->\n";
 
 	echo "      <div id=\"profile-agree\" class=\"rbfield rbtext rbsingle\">\n";
