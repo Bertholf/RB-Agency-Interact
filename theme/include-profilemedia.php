@@ -314,28 +314,28 @@
 		echo "		<p>". __("Paste the video URL below", RBAGENCY_interact_TEXTDOMAIN) .".</p>\n";
 
 				echo "<div><label>". __("Type", RBAGENCY_interact_TEXTDOMAIN) .": </label><select name=\"profileMediaV1Type\">"
-					."<option selected>". __("Video Slate", RBAGENCY_interact_TEXTDOMAIN) ."</option>"
-					."<option>". __("Video Monologue", RBAGENCY_interact_TEXTDOMAIN) ."</option>"
-					."<option>". __("Demo Reel", RBAGENCY_interact_TEXTDOMAIN) ."</option>"
-					."<option>" . __("SoundCloud", RBAGENCY_interact_TEXTDOMAIN) . "</option>"
+					."<option value='Video Slate' selected>". __("Video Slate", RBAGENCY_interact_TEXTDOMAIN) ."</option>"
+					."<option value='Video Monologue'>". __("Video Monologue", RBAGENCY_interact_TEXTDOMAIN) ."</option>"
+					."<option value='Demo Reel'>". __("Demo Reel", RBAGENCY_interact_TEXTDOMAIN) ."</option>"
+					."<option value='SoundCloud'>" . __("SoundCloud", RBAGENCY_interact_TEXTDOMAIN) . "</option>"
 					."</select><textarea id='profileMediaV1' name='profileMediaV1'></textarea></div>\n";
 				echo "<div><label>". __("Type", RBAGENCY_interact_TEXTDOMAIN) .": </label><select name=\"profileMediaV2Type\">"
-					."<option>". __("Video Slate", RBAGENCY_interact_TEXTDOMAIN) ."</option>"
-					."<option selected>". __("Video Monologue", RBAGENCY_interact_TEXTDOMAIN) ."</option>"
-					."<option>". __("Demo Reel", RBAGENCY_interact_TEXTDOMAIN) ."</option>"
-					."<option>" . __("SoundCloud", RBAGENCY_interact_TEXTDOMAIN) . "</option>"
+					."<option value='Video Slate'>". __("Video Slate", RBAGENCY_interact_TEXTDOMAIN) ."</option>"
+					."<option value='Video Monologue' selected>". __("Video Monologue", RBAGENCY_interact_TEXTDOMAIN) ."</option>"
+					."<option value='Demo Reel'>". __("Demo Reel", RBAGENCY_interact_TEXTDOMAIN) ."</option>"
+					."<option value='SoundCloud'>" . __("SoundCloud", RBAGENCY_interact_TEXTDOMAIN) . "</option>"
 					."</select><textarea id='profileMediaV2' name='profileMediaV2'></textarea></div>\n";
 				echo "<div><label>". __("Type", RBAGENCY_interact_TEXTDOMAIN) .": </label><select name=\"profileMediaV3Type\">"
-					."<option>". __("Video Slate", RBAGENCY_interact_TEXTDOMAIN) ."</option>"
-					."<option>". __("Video Monologue", RBAGENCY_interact_TEXTDOMAIN) ."</option>"
-					."<option selected>". __("Demo Reel", RBAGENCY_interact_TEXTDOMAIN) ."</option>"
-					."<option>" . __("SoundCloud", RBAGENCY_interact_TEXTDOMAIN) . "</option>"
+					."<option value='Video Slate'>". __("Video Slate", RBAGENCY_interact_TEXTDOMAIN) ."</option>"
+					."<option value='Video Monologue'>". __("Video Monologue", RBAGENCY_interact_TEXTDOMAIN) ."</option>"
+					."<option value='Demo Reel' selected>". __("Demo Reel", RBAGENCY_interact_TEXTDOMAIN) ."</option>"
+					."<option value='SoundCloud'>" . __("SoundCloud", RBAGENCY_interact_TEXTDOMAIN) . "</option>"
 					."</select><textarea id='profileMediaV3' name='profileMediaV3'></textarea></div>\n";
 				echo "<div><label>". __("Type", RBAGENCY_interact_TEXTDOMAIN) .": </label><select name=\"profileMediaV4Type\">"
-					."<option>". __("Video Slate", RBAGENCY_interact_TEXTDOMAIN) ."</option>"
-					."<option>". __("Video Monologue", RBAGENCY_interact_TEXTDOMAIN) ."</option>"
-					."<option>". __("Demo Reel", RBAGENCY_interact_TEXTDOMAIN) ."</option>"
-					."<option  selected>" . __("SoundCloud", RBAGENCY_interact_TEXTDOMAIN) . "</option>"
+					."<option value='Video Slate'>". __("Video Slate", RBAGENCY_interact_TEXTDOMAIN) ."</option>"
+					."<option value='Video Monologue'>". __("Video Monologue", RBAGENCY_interact_TEXTDOMAIN) ."</option>"
+					."<option value='Demo Reel'>". __("Demo Reel", RBAGENCY_interact_TEXTDOMAIN) ."</option>"
+					."<option  value='SoundCloud' selected>" . __("SoundCloud", RBAGENCY_interact_TEXTDOMAIN) . "</option>"
 					."</select><textarea id='profileMediaV4' name='profileMediaV4'></textarea></div>\n";
 
 			}
