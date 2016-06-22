@@ -121,6 +121,12 @@ if (isset($_POST['action'])) {
 								$MIME = array('audio/mpeg', 'audio/mp3');
 								if(in_array($_FILES['profileMedia'. $i]['type'], $MIME)){
 									$results = $wpdb->query("INSERT INTO " . table_agency_profile_media . " (ProfileID, ProfileMediaType, ProfileMediaTitle, ProfileMediaURL) VALUES ('". $ProfileID ."','". $uploadMediaType ."','". $safeProfileMediaFilename ."','". $safeProfileMediaFilename ."')");
+									
+									$_voidemodID = $wpdb->insert_id;
+									if(!empty($_voidemodID)){
+										update_option("voicedemo_".$_voidemodID ,  $path_parts['filename'] );
+									}
+									
 						       		move_uploaded_file($_FILES['profileMedia'. $i]['tmp_name'], RBAGENCY_UPLOADPATH . $ProfileGallery ."/".$safeProfileMediaFilename);
 								} else {
 									$error .= "<b><i>".__("Please upload a mp3 file only", RBAGENCY_interact_TEXTDOMAIN) ."</i></b><br />";
