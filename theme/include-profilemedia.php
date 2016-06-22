@@ -226,11 +226,23 @@
 						if ($dataMedia['ProfileMediaType'] == "Demo Reel" || $dataMedia['ProfileMediaType'] == "Video Monologue" || $dataMedia['ProfileMediaType'] == "Video Slate") {
 							$outVideoMedia .= "<div class=\"media-video\">" . $dataMedia['ProfileMediaType'] . "<br />" . rb_agency_get_videothumbnail($dataMedia['ProfileMediaURL'], $dataMedia['ProfileVideoType']) . "<br /><a href=\"" . $dataMedia['ProfileMediaURL'] . "\" target=\"_blank\">".sprintf(__("Link to %s Video",RBAGENCY_interact_TEXTDOMAIN),ucfirst($dataMedia['ProfileVideoType']))."</a><br />[<a href=\"javascript:confirmDelete('" . $dataMedia['ProfileMediaID'] . "','" . $dataMedia['ProfileMediaType'] . "')\">".__('DELETE',RBAGENCY_interact_TEXTDOMAIN)."</a>]</div>\n";
 						} elseif ($dataMedia['ProfileMediaType'] == "VoiceDemo") {
+							
+							$_titleVoice = get_option("voicedemo_". $dataMedia['ProfileMediaID']);
+							if(empty($_titleVoice)){
+								$_titleVoice = __("Voice Demo",RBAGENCY_interact_TEXTDOMAIN);
+							}
+							
 							if($medialink_option == 2){
-								$outLinkVoiceDemo .= "<div> <a href=\"". RBAGENCY_UPLOADDIR . $ProfileGallery ."/". $dataMedia['ProfileMediaURL'] ."\" target=\"_blank\">". __("Voice Demo",RBAGENCY_interact_TEXTDOMAIN) ."</a> [<a href=\"javascript:confirmDelete('". $dataMedia['ProfileMediaID'] ."','".$dataMedia['ProfileMediaType']."')\">".__('DELETE',RBAGENCY_interact_TEXTDOMAIN)."</a>]</div>\n";
+							
+								$outLinkVoiceDemo .= "<div> <a href=\"". RBAGENCY_UPLOADDIR . $ProfileGallery ."/". $dataMedia['ProfileMediaURL'] ."\" target=\"_blank\">". 
+									$_titleVoice ."</a> [<a href=\"javascript:confirmDelete('". $dataMedia['ProfileMediaID'] ."','".$dataMedia['ProfileMediaType']."')\">".__('DELETE',RBAGENCY_interact_TEXTDOMAIN)."</a>]</div>\n";
 							}else{//force download
+							
+							
+							
 								$force_download_url = wpfdl_dl($ProfileGallery ."/". $dataMedia['ProfileMediaURL'],get_option('wpfdl_token'),'dl');
-								$outLinkVoiceDemo .= "<div> <a ".$force_download_url ." target=\"_blank\">". __("Voice Demo",RBAGENCY_interact_TEXTDOMAIN) ."</a> [<a href=\"javascript:confirmDelete('". $dataMedia['ProfileMediaID'] ."','".$dataMedia['ProfileMediaType']."')\">".__('DELETE',RBAGENCY_interact_TEXTDOMAIN)."</a>]</div>\n";
+								$outLinkVoiceDemo .= "<div> <a ".$force_download_url ." target=\"_blank\">". 
+								$_titleVoice ."</a> [<a href=\"javascript:confirmDelete('". $dataMedia['ProfileMediaID'] ."','".$dataMedia['ProfileMediaType']."')\">".__('DELETE',RBAGENCY_interact_TEXTDOMAIN)."</a>]</div>\n";
 							}
 
 

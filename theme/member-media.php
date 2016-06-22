@@ -128,6 +128,7 @@ if (isset($_POST['action'])) {
 									}
 									
 						       		move_uploaded_file($_FILES['profileMedia'. $i]['tmp_name'], RBAGENCY_UPLOADPATH . $ProfileGallery ."/".$safeProfileMediaFilename);
+									
 								} else {
 									$error .= "<b><i>".__("Please upload a mp3 file only", RBAGENCY_interact_TEXTDOMAIN) ."</i></b><br />";
 									$have_error = true;
