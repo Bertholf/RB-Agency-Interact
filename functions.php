@@ -517,12 +517,16 @@
 	// Remove user Profile
 
 	function Profile_Account(){ 
+		global $current_user,$wpdb;
+		get_currentuserinfo();
+		$currentUserID = $current_user->ID;
 		$rb_agencyinteract_options = get_option('rb_agencyinteract_options');
 		$rb_profile_delete = $rb_agencyinteract_options["rb_agencyinteract_option_profiledeletion"];
 		$profileStatus = getProfileStatus();
 		if($rb_profile_delete > 1){
 			echo "<h2>Account Settings</h2><br/>";
 			echo "<input type='hidden' id='delete_opt' value='".$rb_profile_delete."'>";
+			echo "<input type='hidden' id='userID' value='".$currentUserID."'>";
 			if($profileStatus == 2 || $profileStatus == 0){//archived
 				$delLabel = $rb_profile_delete == 2 ? 'Remove My Profile' : 'Reactivate Profile';
 				echo "<input type='hidden' id='reactivate_acc' value='1' >";
@@ -620,7 +624,7 @@ function delete_script() { ?>
 						type: "POST",
 						url: '<?php echo plugins_url( 'rb-agency-interact/theme/userdelete.php' , dirname(__FILE__) ); ?>',
 						dataType: "html",
-						data: {ID : "<?php echo getProfileIDbyUserID(); ?>", OPT: jQuery('#delete_opt').val(), REACTIVATE: jQuery("#reactivate_acc").val() },
+						data: {ID : "<?php echo getProfileIDbyUserID(); ?>", OPT: jQuery('#delete_opt').val(), REACTIVATE: jQuery("#reactivate_acc").val(),USERID: jQuery("#userID").val()},
 
 						beforeSend: function() {
 						},
