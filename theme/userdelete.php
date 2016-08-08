@@ -36,6 +36,14 @@ require_once('../../../../wp-admin/includes/user.php');
 			// allow for transaction statement
 			wp_delete_user( $userID);
 			do_action('delete_user', $userID);
+			$sql = "DELETE FROM ".table_agency_profile." WHERE ProfileID = ".$id;
+			$wpdb->query($sql);
+
+			$sql = "DELETE FROM ".table_agency_profile_media." WHERE ProfileID = ".$id;
+			$wpdb->query($sql);
+
+			$sql = "DELETE FROM ".table_agency_customfield_mux." WHERE ProfileID = ".$id;
+			$wpdb->query($sql);
 
 
 			
