@@ -642,8 +642,9 @@ function delete_script() { ?>
 									// alert(data);
 									//alert("Deletion success! You will now be redirected to our homepage.");
 									if(jQuery('#delete_opt').val() == 2){
+										console.log(data);
 										alert("Profile successfully deleted! You will now be redirected to our homepage.");
-										window.location.href = "<?php echo get_bloginfo('wpurl'); ?>";
+										//window.location.href = "<?php echo get_bloginfo('wpurl'); ?>";
 									}else{
 										if(jQuery("#reactivate_acc").val() == 1){
 											alert("Profile successfully re-activated!");
