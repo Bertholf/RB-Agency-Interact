@@ -113,9 +113,12 @@ echo $rb_header = RBAgency_Common::rb_header();
 							echo "      <li><a href=\"".get_bloginfo('wpurl')."/browse-jobs/\">".__("Browse and Apply for a Job",RBAGENCY_interact_TEXTDOMAIN)."</a></li>\n";
 					}
 				}
+
 				echo "      <li><a href=\"".get_bloginfo('wpurl')."/logout/\">".__("Logout",RBAGENCY_interact_TEXTDOMAIN)."</a></li>\n";
 
 				echo "	</ul>\n";
+				delete_script();
+				Profile_Account();
 				/*if(function_exists('rb_agency_casting_menu')){
 					echo "</hr>\n";
 					echo "<h3>Jobs and Auditions</h3>";

@@ -13,16 +13,22 @@ require_once('../../../../wp-admin/includes/user.php');
 	$id = (int) $_POST['ID'];
 	$option = (int) $_POST['OPT'];
 	$user = new WP_User( $id );
+	$reactivate = (int) $_POST["REACTIVATE"];
     
 	if($option == 3){
 
-		/*
-		 * Just update status to inactive
-		 */
-        $update = "UPDATE ". table_agency_profile ." SET ProfileIsActive = 0 WHERE ProfileID = " . $id;
-		$results = $wpdb->query($update);
-
-		wp_logout();
+		if($reactivate > 0){ //reactivate
+			$update = "UPDATE ". table_agency_profile ." SET ProfileIsActive = 1 WHERE ProfileID = " . $id;
+			$results = $wpdb->query($update);
+		}else{
+			$update = "UPDATE ". table_agency_profile ." SET ProfileIsActive = 2 WHERE ProfileID = " . $id;
+			$results = $wpdb->query($update);
+			wp_logout();
+		}
+        
+		
+		
+		
 
 	} elseif($option == 2) {
 

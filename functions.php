@@ -517,10 +517,23 @@
 	// Remove user Profile
 
 	function Profile_Account(){ 
-		global $rb_profile_delete;
-		echo "<h2>Account Settings</h2><br/>";
-		echo "<input type='hidden' id='delete_opt' value='".$rb_profile_delete."'>";
-		echo "<input id='self_del' type='button' name='remove' value='Remove My Profile' class='btn-primary'>";
+		$rb_agencyinteract_options = get_option('rb_agencyinteract_options');
+		$rb_profile_delete = $rb_agencyinteract_options["rb_agencyinteract_option_profiledeletion"];
+		$profileStatus = getProfileStatus();
+		if($rb_profile_delete > 1){
+			echo "<h2>Account Settings</h2><br/>";
+			echo "<input type='hidden' id='delete_opt' value='".$rb_profile_delete."'>";
+			if($profileStatus == 2 || $profileStatus == 0){//archived
+				$delLabel = $rb_profile_delete == 2 ? 'Remove My Profile' : 'Reactivate Profile';
+				echo "<input type='hidden' id='reactivate_acc' value='1' >";
+			}else{
+				echo "<input type='hidden' id='reactivate_acc' value='0' >";
+				$delLabel = $rb_profile_delete == 2 ? 'Remove My Profile' : 'Deactivate Profile';
+			}
+			
+			echo "<input id='self_del' type='button' name='remove' value='".$delLabel."' class='btn-primary'>";
+		}
+		
 
 	}
 
@@ -556,6 +569,28 @@
 
 
 
+function getProfileIDbyUserID(){
+	global $current_user,$wpdb;
+	get_currentuserinfo();
+	$currentUserID = $current_user->ID;
+	$q = "SELECT ProfileID FROM ".table_agency_profile." WHERE ProfileUserLinked = %d";
+	$results = $wpdb->get_results($wpdb->prepare($q,$currentUserID));
+	foreach($results as $result)
+		return $result->ProfileID;
+	
+}
+
+function getProfileStatus(){
+	global $wpdb;
+	get_currentuserinfo();
+	$profileID = getProfileIDbyUserID();
+	$q = "SELECT ProfileIsActive FROM ".table_agency_profile." WHERE profileID = %d";
+	$results = $wpdb->get_results($wpdb->prepare($q,$profileID));
+
+	foreach($results as $result)
+		return $result->ProfileIsActive;
+}
+
 function delete_script() { ?>
 
 	<script type="text/javascript">
@@ -563,7 +598,20 @@ function delete_script() { ?>
 
 			jQuery("#self_del").click(function(){
 
-				var continue_delete = confirm("Are you sure you want to delete your profile?");
+				if(jQuery('#delete_opt').val() > 1){
+					if(jQuery('#delete_opt').val() == 2){
+						var continue_delete = confirm("Are you sure you want to delete your profile?");
+					}else{
+						if(jQuery("#reactivate_acc").val() == 1){
+							var continue_delete = confirm("Are you sure you want to re-activate your profile?");
+						}else{
+							var continue_delete = confirm("Are you sure you want to de-activate your profile?");
+						}
+						
+					}
+				}
+				
+				
 
 				if (continue_delete) {
 					// ajax delete
@@ -572,7 +620,7 @@ function delete_script() { ?>
 						type: "POST",
 						url: '<?php echo plugins_url( 'rb-agency-interact/theme/userdelete.php' , dirname(__FILE__) ); ?>',
 						dataType: "html",
-						data: {ID : "<?php echo rb_agency_get_current_userid(); ?>", OPT: jQuery('#delete_opt').val() },
+						data: {ID : "<?php echo getProfileIDbyUserID(); ?>", OPT: jQuery('#delete_opt').val(), REACTIVATE: jQuery("#reactivate_acc").val() },
 
 						beforeSend: function() {
 						},
@@ -584,11 +632,25 @@ function delete_script() { ?>
 						},
 
 						success: function(data) {
+							console.log(data);
 							if (data != "") {
 								setTimeout(function(){
 									// alert(data);
 									//alert("Deletion success! You will now be redirected to our homepage.");
-									window.location.href = "<?php echo get_bloginfo('wpurl'); ?>";
+									if(jQuery('#delete_opt').val() == 2){
+										alert("Profile successfully deleted! You will now be redirected to our homepage.");
+										window.location.href = "<?php echo get_bloginfo('wpurl'); ?>";
+									}else{
+										if(jQuery("#reactivate_acc").val() == 1){
+											alert("Profile successfully re-activated!");
+											window.location.href = "<?php echo get_bloginfo('wpurl')."/profile-member/"; ?>";
+										}else{
+											alert("Profile successfully archived! You will now be redirected to our homepage.");
+											window.location.href = "<?php echo get_bloginfo('wpurl'); ?>";
+										}
+										
+									}
+									
 								}, 1000);
 							} else {
 								setTimeout(function(){
