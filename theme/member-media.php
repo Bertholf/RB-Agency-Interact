@@ -5,7 +5,9 @@ Template Name: Member Details
  * @type		PHP page
  * @desc		Member Details
 */
-
+ini_set("post_max_size", "30M");
+ini_set("upload_max_filesize", "30M");
+ini_set("memory_limit", "20000M"); 
 if (!headers_sent()) {
 header("Cache-control: private"); //IE 6 Fix
 }
