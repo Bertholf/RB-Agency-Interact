@@ -39,7 +39,7 @@ echo $rb_header = RBAgency_Common::rb_header();
 			if(isset($_GET['e'])){
 				echo __('Account updated!',RBAGENCY_interact_TEXTDOMAIN);
 			}else{
-				echo sprintf(__("Thank you for joining %s! ",RBAGENCY_interact_TEXTDOMAIN), get_option('blogname'));
+				echo sprintf(__("Thank you for joining %s!",RBAGENCY_interact_TEXTDOMAIN), get_option('blogname'));
 			}
 			
 

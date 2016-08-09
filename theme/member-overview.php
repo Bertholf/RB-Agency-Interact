@@ -64,7 +64,7 @@ echo $rb_header = RBAgency_Common::rb_header();
 			$ptype = retrieve_title($ptype);
 			$restrict = array('client','clients','agents','agent','producer','producers');
 	if(empty($rb_agency_new_registeredUser) && rb_get_user_profilstatus() == 3){
-		echo "<p class=\"rbalert success\">Thank you for joining ".get_bloginfo("name")."! Your account is pending for approval. We will send you an email once your account is approved.";
+		echo "<p class=\"rbalert success\">".sprintf(__("Thank you for joining %s!",RBAGENCY_interact_TEXTDOMAIN),get_bloginfo("name"))." ".__("Your account is pending for approval. We will send you an email once your account is approved.",RBAGENCY_interact_TEXTDOMAIN);
 		$profile_gallery = $wpdb->get_row($wpdb->prepare("SELECT ProfileGallery FROM ".table_agency_profile." WHERE ProfileUserLinked = %d",$current_user->ID));
 		echo "<a href=\"". get_bloginfo("wpurl") ."/profile/".$profile_gallery->ProfileGallery."\">View My Profile</a>";
 		echo "<a href=\"". get_bloginfo("wpurl") ."/profile-member/account/\">Manage Account</a></p>";
