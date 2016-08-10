@@ -137,3 +137,10 @@ p.submit { margin-top: 15px!important; }
 /*Login Form*/
 .rbform .box { margin-bottom: 10px; }
 .rbform .box label { margin-bottom: 0px; }
+
+/*Media Files Thumbnails*/
+.profile-media .media-files .soundcloud {
+	float: left;
+    width: 150px;
+    margin-right: 15px;
+}
