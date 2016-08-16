@@ -2048,6 +2048,12 @@ function rb_get_customfields_registration(){
 	$sql = "SELECT a.*,b.ProfileCustomTypes FROM ".table_agency_customfields." a INNER JOIN ".table_agency_customfields_types." b ON a.ProfileCustomID = b.ProfileCustomID AND a.ProfileCustomShowInitialRegistration = 1 WHERE ".$find_in_set." ORDER BY a.ProfileCustomOrder ASC";
 
 		$results = $wpdb->get_results($sql,ARRAY_A);
+
+		$q =  "SELECT a.*,b.ProfileCustomTypes FROM ".table_agency_customfields." a INNER JOIN ".table_agency_customfields_types." b ON a.ProfileCustomID = b.ProfileCustomID AND a.ProfileCustomShowInitialRegistration = 1";
+		$res = $wpdb->get_results($q,ARRAY_A);
+		//echo "<pre>";
+		//print_r($res);
+		//echo "</pre>";
 		foreach($results as $data){
 			if(!in_array($data["ProfileCustomID"],$arrChecker)){
 				if($data["ProfileCustomShowGender"] == 0 || $data["ProfileCustomShowGender"] == $_REQUEST['gender']){
@@ -2070,17 +2076,23 @@ function registration_form($atts){
     ), $atts );
 
     $registrationType = $a['type'];
-    if($registrationType == 'models'){
-    	return rbcustom_registration_form_param($_POST,'models');
-    }elseif($registrationType == 'locations'){
-    	return rbcustom_registration_form_param($_POST,'locations');
-    }elseif($registrationType == 'make-up-artists'){
-    	return rbcustom_registration_form_param($_POST,'make-up-artists');
+    if( !empty($registrationType) ){
+    	$type = str_replace(" ","_",getProfileTypeTitleByTag($registrationType));
+    	return rbcustom_registration_form_param($_POST,$type);
+    	
     }else{
     	return rbcustom_registration_form($_POST);    	    	
     }
 }
 add_shortcode( 'registration_form', 'registration_form' );
+
+function getProfileTypeTitleByTag($tag){
+	global $wpdb;
+	$sql = "SELECT DataTypeTitle FROM ".table_agency_data_type." WHERE DataTypeTag = '".$tag."' ";
+	$results = $wpdb->get_results($sql,ARRAY_A);
+	foreach($results as $result)
+	return $result["DataTypeTitle"];
+}
 
 function rbcustom_registration_form($request){
 
@@ -2700,6 +2712,8 @@ function rbcustom_registration_form_param($request,$ptype){
 		$dayDob = !empty($_POST["ProfileDateBirth_Day"]) ? $_POST["ProfileDateBirth_Day"] : "00";
 		$ProfileDateBirth = $yearDob."-".$monthDob."-".$dayDob;
 
+		$ProfileContactPhoneHome = !empty($_POST["ProfileContactPhoneHome"]) ? $_POST["ProfileContactPhoneHome"] : "";
+
 		if(empty($userdata['user_login'])) {
 			$error_msg[] = __("A username is required for registration.<br />", RBAGENCY_interact_TEXTDOMAIN);
 		}
@@ -2782,7 +2796,8 @@ function rbcustom_registration_form_param($request,$ptype){
 				ProfileLocationCity,
 				ProfileLocationState,
 				ProfileLocationZip,
-				ProfileLocationCountry
+				ProfileLocationCountry,
+				ProfileContactPhoneHome
 				)
 				VALUES(
 				'".$profile_contact_display."',
@@ -2799,7 +2814,8 @@ function rbcustom_registration_form_param($request,$ptype){
 				'".$ProfileLocationCity."',
 				'".$ProfileLocationState."',
 				'".$ProfileLocationZip."',
-				'".$ProfileLocationCountry."')";
+				'".$ProfileLocationCountry."',
+				'".$ProfileContactPhoneHome."')";
 
 			$wpdb->query($sql);
 			$id = $wpdb->insert_id;
@@ -2837,6 +2853,25 @@ function rbcustom_registration_form_param($request,$ptype){
 				}
 			} # End : Add Custom Field Values stored in Mux
 
+			//if($ptype == 'Locations'){
+				# upload photo here
+				$total = count($_FILES['profile_photo_registration']['name']);
+				if($total>0){
+					for($idx=0;$idx<=$total;$idx++){
+						$path_parts = pathinfo($_FILES['profile_photo_registration']['name'][$idx]);
+						$safeProfileMediaFilename = RBAgency_Common::format_stripchars($path_parts['filename'] ."_". RBAgency_Common::generate_random_string(6) . "." . $path_parts['extension']);
+						move_uploaded_file($_FILES['profile_photo_registration']['tmp_name'][$idx], RBAGENCY_UPLOADPATH . $profile_gallery . "/" . $safeProfileMediaFilename);
+
+						$results = $wpdb->query("INSERT INTO " . table_agency_profile_media . " (ProfileID, ProfileMediaType, ProfileMediaTitle, ProfileMediaURL) VALUES ('" . $NewProfileID . "','Headshot','" . $safeProfileMediaFilename . "','" . $safeProfileMediaFilename . "')");
+
+						echo RBAGENCY_UPLOADPATH . $profile_gallery . "/" . $safeProfileMediaFilename."<br />";
+					}
+				}
+				
+				
+			//}
+
+			
 			
 			$arr["new"] = true;
 			$arr["step1"] = true;
@@ -2892,12 +2927,12 @@ function rbcustom_registration_form_param($request,$ptype){
 									gender: jQuery("#ProfileGender").val()
 								},
 								success: function (results) {
-									//console.log(results);
+									console.log(results);
 									jQuery(".custom-fields-registration").html();
 									jQuery(".custom-fields-registration").html(results);
 
 									//hide necessary
-									if(ptypeParam.length && ptypeParam == "models"){
+									if(ptypeParam.length && ptypeParam == "Models" ){
 										//display consent and stage name
 										jQuery("#profile-stagename").removeAttr("style");
 										//display consent
@@ -2987,9 +3022,13 @@ function rbcustom_registration_form_param($request,$ptype){
 	<?php
 
 	if(!isset($_GET['st'])){
+		$hide = "";
+		if($ptype == 'Locations'){
+			$hide = "style='display:none;'";
+		}
 		//print (new ReflectionFunction("request_datatype_bygender_memberregister"))->getFileName();
 		# Default fields
-		echo "<form method=\"POST\" action=\"".$customRegistrationPageURL."\" >";
+		echo "<form method=\"POST\" action=\"".$customRegistrationPageURL."\" enctype=\"multipart/form-data\">";
 		echo "<div id='member-register' class='rbform'>";
 		echo "	<div id=\"profile-registration-error\" class=\"rbfield\">\n";
 		echo !empty($getErrorMessage) ? $getErrorMessage : "";
@@ -3017,7 +3056,7 @@ function rbcustom_registration_form_param($request,$ptype){
 		echo "		<label>". __("E-mail", RBAGENCY_interact_TEXTDOMAIN) .":</label>\n";
 		echo "		<div><input type=\"text\" id=\"ProfileEmail\" name=\"ProfileEmail\" value=\"".$user_email."\"/></div>\n";
 		echo "	</div>\n";
-		echo "	<div id=\"profile-birthdate\" class=\"rbfield rbselect rbmulti rbblock\">\n";
+		echo "	<div id=\"profile-birthdate\" class=\"rbfield rbselect rbmulti rbblock\" $hide>\n";
 			echo "		<label>". __("Birthdate", RBAGENCY_interact_TEXTDOMAIN) ."</label>\n";
 			echo "		<div>\n";
 								/* Month */ 
@@ -3089,18 +3128,28 @@ function rbcustom_registration_form_param($request,$ptype){
 		echo "      </div>\n";
 		echo "    </div>\n";
 
-		echo "	<div id=\"profile-street\" class=\"rbfield rbtext rbsingle\">\n";
+		echo "	<div id=\"profile-street\" class=\"rbfield rbtext rbsingle\" $hide>\n";
 		echo "		<label>". __("Street", RBAGENCY_interact_TEXTDOMAIN) .":</label>\n";
 		echo "		<div><input type=\"text\" id=\"ProfileLocationStreet\" name=\"ProfileLocationStreet\" /></div>\n";
 		echo "	</div>\n";
-		echo "	<div id=\"profile-city\" class=\"rbfield rbtext rbsingle\">\n";
+		echo "	<div id=\"profile-city\" class=\"rbfield rbtext rbsingle\" $hide>\n";
 		echo "		<label>". __("City", RBAGENCY_interact_TEXTDOMAIN) .":</label>\n";
 		echo "		<div><input type=\"text\" id=\"ProfileLocationCity\" name=\"ProfileLocationCity\" /></div>\n";
 		echo "	</div>\n";
-		echo "	<div id=\"profile-zip\" class=\"rbfield rbtext rbsingle\">\n";
+		echo "	<div id=\"profile-zip\" class=\"rbfield rbtext rbsingle\" $hide>\n";
 		echo "		<label>". __("Zip", RBAGENCY_interact_TEXTDOMAIN) .":</label>\n";
 		echo "		<div><input type=\"text\" id=\"ProfileLocationZip\" name=\"ProfileLocationZip\" /></div>\n";
 		echo "	</div>\n";
+
+		if($ptype == 'Locations'){
+			
+
+			# Tel no.
+			echo "	<div id=\"profile-telno\" class=\"rbfield rbtext rbsingle\">\n";
+			echo "		<label>". __("Telephone Number", RBAGENCY_interact_TEXTDOMAIN) .":</label>\n";
+			echo "		<div><input type=\"text\" id=\"ProfileContactPhoneHome\" name=\"ProfileContactPhoneHome\" /></div>\n";
+			echo "	</div>\n";
+		}
 
 
 		# Gender
@@ -3139,6 +3188,15 @@ function rbcustom_registration_form_param($request,$ptype){
 		echo "</div><!-- #profile-type -->\n";
 		# End : Display Profile Type
 
+		if($ptype == 'Locations'){
+			# display here bulk upload
+
+			echo "<div id=\"upload-casting-photo\" class=\"rbfield\">\n";
+			echo "		<label>". __("Select Photos", RBAGENCY_interact_TEXTDOMAIN) .":</label>\n";
+			echo "		<div><input type='file' name='profile_photo_registration[]' multiple></div>";
+			echo "</div>";
+		}
+		
 		# will show only if model
 		echo "	<div id=\"profile-stagename\" class=\"rbfield rbtext rbsingle\" style=\"display:none;\">\n";
 		echo "		<label>". __("Stage name", RBAGENCY_interact_TEXTDOMAIN) .":</label>\n";
