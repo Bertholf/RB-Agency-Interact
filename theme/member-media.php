@@ -54,7 +54,6 @@ if (isset($_POST['action'])) {
 	case 'editRecord':
 		if (!$have_error){
 
-		
 			//nevermind if your admin
 			$ProfileStatus = 0;
 			if($rb_agency_option_inactive_profile_on_update == 1){
