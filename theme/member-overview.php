@@ -48,54 +48,56 @@ echo $rb_header = RBAgency_Common::rb_header();
 	echo "	<div id=\"primary\" class=\"rb-agency-interact member-overview\">\n";
 	echo "  	<div id=\"rbcontent\">\n";
 
-		// get profile Custom fields value
-		$rb_agency_new_registeredUser = get_user_meta($current_user->ID,'rb_agency_new_registeredUser',true);
+	// get profile Custom fields value
+	$rb_agency_new_registeredUser = get_user_meta($current_user->ID,'rb_agency_new_registeredUser',true);
 
 
-		// ****************************************************************************************** //
-		// Check if User is Logged in or not
-		if (is_user_logged_in()) {
+	// ****************************************************************************************** //
+	// Check if User is Logged in or not
+	if (is_user_logged_in()) {
 
-                				/*
-			 * Set Media to not show to
-			 * client/s, agents, producers,
-			 */
-			$ptype = (int)get_user_meta($current_user->ID, "rb_agency_interact_profiletype", true);
-			$ptype = retrieve_title($ptype);
-			$restrict = array('client','clients','agents','agent','producer','producers');
-	if(empty($rb_agency_new_registeredUser) && rb_get_user_profilstatus() == 3){
-		echo "<p class=\"rbalert success\">".sprintf(__("Thank you for joining %s!",RBAGENCY_interact_TEXTDOMAIN),get_bloginfo("name"))." ".__("Your account is pending for approval. We will send you an email once your account is approved.",RBAGENCY_interact_TEXTDOMAIN);
-		$profile_gallery = $wpdb->get_row($wpdb->prepare("SELECT ProfileGallery FROM ".table_agency_profile." WHERE ProfileUserLinked = %d",$current_user->ID));
-		echo "<a href=\"". get_bloginfo("wpurl") ."/profile/".$profile_gallery->ProfileGallery."\">View My Profile</a>";
-		echo "<a href=\"". get_bloginfo("wpurl") ."/profile-member/account/\">Manage Account</a></p>";
+            				/*
+		 * Set Media to not show to
+		 * client/s, agents, producers,
+		 */
+		$ptype = (int)get_user_meta($current_user->ID, "rb_agency_interact_profiletype", true);
+		$ptype = retrieve_title($ptype);
+		$restrict = array('client','clients','agents','agent','producer','producers');
+		if(empty($rb_agency_new_registeredUser) && rb_get_user_profilstatus() == 3){
+			echo "<p class=\"rbalert success\">";
+			echo "	Thank you for joining ".get_bloginfo("name")."! Your account is pending for approval. We will send you an email once your account is approved.";
+			$profile_gallery = $wpdb->get_row($wpdb->prepare("SELECT ProfileGallery FROM ".table_agency_profile." WHERE ProfileUserLinked = %d",$current_user->ID));
+			echo "<a href=\"". get_bloginfo("wpurl") ."/profile/".$profile_gallery->ProfileGallery."\">View My Profile</a>";
+			echo "<a href=\"". get_bloginfo("wpurl") ."/profile-member/account/\">Manage Account</a>";
+			echo "</p>";
 
-	} else {
+		} else {
+				
 			if(!empty($rb_agency_new_registeredUser)){
 				if(in_array(strtolower($ptype),$restrict)){
 					echo "<div id=\"profile-steps\">".__("Profile Setup: Step 1 of 2",RBAGENCY_interact_TEXTDOMAIN)."</div>\n";
 				} else {
 					echo "<div id=\"profile-steps\">".__("Profile Setup: Step 1 of 3",RBAGENCY_interact_TEXTDOMAIN)."</div>\n";
 				}
-			}
-
+			}	
 
 			echo "	<div id=\"profile-manage\" class=\"profile-overview\">\n";
 
-
-
 			// Menu
 			include("include-menu.php");
+
 			echo " <div class=\"manage-overview manage-content\">\n";
-				/* Check if the user is regsitered *****************************************/ 
+
+			/* Check if the user is regsitered *****************************************/ 
 			$sql = "SELECT ProfileID FROM ". table_agency_profile ." WHERE ProfileUserLinked =  ". $current_user->ID ."";
 			$results = $wpdb->get_row($sql,ARRAY_A);
 			$count = $wpdb->num_rows;
 			if ($count > 0) {
 
-			$data = $results;// is there record?
+				$data = $results;// is there record?
 
 				echo "	<div class=\"manage-section welcome\">\n";
-				echo "	<h1>". __("Welcome Back", RBAGENCY_interact_TEXTDOMAIN) ." ". $current_user->first_name ."!</h1>";
+				echo "		<h1>". __("Welcome Back", RBAGENCY_interact_TEXTDOMAIN) ." ". $current_user->first_name ."!</h1>";
 				// Record Exists
 
 				/* Show account information here *****************************************/
@@ -105,15 +107,16 @@ echo $rb_header = RBAgency_Common::rb_header();
 				echo "      <li><a href=\"account/\">". __("Edit Your Account Details", RBAGENCY_interact_TEXTDOMAIN) ."</a></li>\n";
 				echo "      <li><a href=\"manage/\">". __("Manage Your Profile Information", RBAGENCY_interact_TEXTDOMAIN) ."</a></li>\n";
 				echo "      <li><a href=\"media/\">". __("Manage Photos and Media", RBAGENCY_interact_TEXTDOMAIN) ."</a></li>\n";
+
 				if($rb_subscription){
-				echo "      <li><a href=\"subscription/\">".__("Manage your Subscription",RBAGENCY_interact_TEXTDOMAIN)."</a></li>\n";
-				}
-				if(function_exists('rb_agency_casting_menu')){
-					if(rb_get_user_profilstatus() == 1){ //means only visible if account is active
-							echo "      <li><a href=\"".get_bloginfo('wpurl')."/browse-jobs/\">".__("Browse and Apply for a Job",RBAGENCY_interact_TEXTDOMAIN)."</a></li>\n";
-					}
+					echo "      <li><a href=\"subscription/\">".__("Manage your Subscription",RBAGENCY_interact_TEXTDOMAIN)."</a></li>\n";
 				}
 
+				if(function_exists('rb_agency_casting_menu')){
+					if(rb_get_user_profilstatus() == 1){ //means only visible if account is active
+						echo "      <li><a href=\"".get_bloginfo('wpurl')."/browse-jobs/\">".__("Browse and Apply for a Job",RBAGENCY_interact_TEXTDOMAIN)."</a></li>\n";
+					}
+				}
 				echo "      <li><a href=\"".get_bloginfo('wpurl')."/logout/\">".__("Logout",RBAGENCY_interact_TEXTDOMAIN)."</a></li>\n";
 
 				echo "	</ul>\n";
@@ -123,10 +126,9 @@ echo $rb_header = RBAgency_Common::rb_header();
 					echo "</hr>\n";
 					echo "<h3>Jobs and Auditions</h3>";
 
-				}*/
-				echo " </div>\n";
-					echo " </div>\n"; // .welcome
-					echo " </div>\n"; // .profile-manage-inner
+				}*/				
+				echo " </div>\n"; // .section-account
+				echo " </div>\n"; // .welcome
 
 			// No Record Exists, register them
 			} else {
@@ -158,14 +160,16 @@ echo $rb_header = RBAgency_Common::rb_header();
 					}
 				}
 			}
-		}// if pending for approval
-			echo "</div><!-- #profile-manage -->\n";
-
-		} else {
-
-			// Show Login Form
-			include("include-login.php");
+			// if pending for approval
+			echo "</div><!-- .manage-content -->\n";
+			echo "</div><!-- .profile-overview -->\n";
 		}
+
+	} else {
+
+		// Show Login Form
+		include("include-login.php");
+	}
 
 	echo "  </div><!-- #rbcontent -->\n";
 	echo "</div><!-- #primary -->\n";

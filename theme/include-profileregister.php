@@ -47,7 +47,7 @@ global $wpdb;
 	echo "	<div id=\"profile-website\" class=\"rbfield rbtext rbsingle\">\n";
 	echo "		<label>". __("Website", RBAGENCY_interact_TEXTDOMAIN) ."</label>\n";
 	echo "		<div><input type=\"text\" id=\"ProfileContactWebsite\" name=\"ProfileContactWebsite\" value=\"". (isset($ProfileContactWebsite)? $ProfileContactWebsite:"") ."\" /></div>\n";
-	echo "		</div>\n";
+	echo "	</div>\n";
 
 	// Public Information
 	echo "	<h3>". __("Public Information", RBAGENCY_interact_TEXTDOMAIN) ."</h3>\n";
@@ -108,83 +108,85 @@ global $wpdb;
 	echo "	<h3>". __("Private Information", RBAGENCY_interact_TEXTDOMAIN) ."</h3>";
 	echo "	<p>". __("The following information will NOT appear in public areas and is for administrative use only.", RBAGENCY_interact_TEXTDOMAIN) ."</p>\n";
 	echo "	<div id=\"profile-birthdate\" class=\"rbfield rbselect rbmulti rbblock\">\n";
-		echo "		<label>". __("Birthdate", RBAGENCY_interact_TEXTDOMAIN) ."</label>\n";
-		echo "		<div>\n";
-							/* Month */ 
-			echo "		<div>\n";
-							$monthName = array(1=> "January", "February", "March","April", "May", "June", "July", "August","September", "October", "November", "December"); 
-			echo "			<select name=\"ProfileDateBirth_Month\" id=\"ProfileDateBirth_Month\">\n";
-			echo "			<option value=\"\">".__("-- Select Month --",RBAGENCY_interact_TEXTDOMAIN)." </option>\n";
-				for ($currentMonth = 1; $currentMonth <= 12; $currentMonth++ ) {
-					echo "			<option value=\"". $currentMonth ."\">". $monthName[$currentMonth] ."</option>\n";
-			}
-			echo "			</select>\n";
-			echo "		</div>\n";
-							/* Day */ 
-			echo "		<div>\n";
-			echo "			<select name=\"ProfileDateBirth_Day\" id=\"ProfileDateBirth_Day\">\n";
-			echo "			<option value=\"\">".__("-- Select Day --",RBAGENCY_interact_TEXTDOMAIN)."  </option>\n";
-				for ($currentDay = 1; $currentDay <= 31; $currentDay++ ) {
-					echo "			<option value=\"". $currentDay ."\">". $currentDay ."</option>\n";
-				}
-			echo "			</select>\n";
-			echo "		</div>\n";
+	echo "		<label>". __("Birthdate", RBAGENCY_interact_TEXTDOMAIN) ."</label>\n";
+	echo "		<div>\n";
+						/* Month */ 
+	echo "			<div>\n";
+						$monthName = array(1=> "January", "February", "March","April", "May", "June", "July", "August","September", "October", "November", "December"); 
+	echo "				<select name=\"ProfileDateBirth_Month\" id=\"ProfileDateBirth_Month\">\n";
+	echo "					<option value=\"\">".__("-- Select Month --",RBAGENCY_interact_TEXTDOMAIN)." </option>\n";
+							for ($currentMonth = 1; $currentMonth <= 12; $currentMonth++ ) {
+								echo "			<option value=\"". $currentMonth ."\">". $monthName[$currentMonth] ."</option>\n";
+							}
+	echo "				</select>\n";
+	echo "			</div>\n";
+					/* Day */ 
+	echo "			<div>\n";
+	echo "				<select name=\"ProfileDateBirth_Day\" id=\"ProfileDateBirth_Day\">\n";
+	echo "					<option value=\"\">".__("-- Select Day --",RBAGENCY_interact_TEXTDOMAIN)."  </option>\n";
+							for ($currentDay = 1; $currentDay <= 31; $currentDay++ ) {
+								echo "			<option value=\"". $currentDay ."\">". $currentDay ."</option>\n";
+							}
+	echo "				</select>\n";
+	echo "			</div>\n";
 
-							/* Year */ 
-			echo "		<div>\n";
-			echo "			<select name=\"ProfileDateBirth_Year\" id=\"ProfileDateBirth_Year\">\n";
-			echo "			<option value=\"\">".__("-- Select Year --",RBAGENCY_interact_TEXTDOMAIN)."  </option>\n";
-				for ($currentYear = 1940; $currentYear <= date("Y")+6; $currentYear++ ) {
-					echo "			<option value=\"". $currentYear ."\">". $currentYear ."</option>\n";
-			}
-			echo "			</select>\n";
-			echo "		</div>\n";
-		echo "		</div>\n";
+					/* Year */ 
+	echo "			<div>\n";
+	echo "				<select name=\"ProfileDateBirth_Year\" id=\"ProfileDateBirth_Year\">\n";
+	echo "					<option value=\"\">".__("-- Select Year --",RBAGENCY_interact_TEXTDOMAIN)."  </option>\n";
+							for ($currentYear = 1940; $currentYear <= date("Y")+6; $currentYear++ ) {
+								echo "			<option value=\"". $currentYear ."\">". $currentYear ."</option>\n";
+							}
+	echo "				</select>\n";
+	echo "			</div>\n";
 	echo "		</div>\n";
+	echo "	</div><!-- #profile-birthdate -->\n";
+
 	echo "	<div id=\"profile-country\" class=\"rbfield rbselect rbsingle\">\n";
 	echo "      <label>" . __("Country", RBAGENCY_interact_TEXTDOMAIN) . "</label>\n";
 	echo "      <div>\n";
+					$query_get ="SELECT * FROM `". table_agency_data_country ."` ORDER BY CountryTitle ASC" ;
+					$result_query_get = $wpdb->get_results($query_get);
+					$location= site_url();
 
-	$query_get ="SELECT * FROM `". table_agency_data_country ."` ORDER BY CountryTitle ASC" ;
-	$result_query_get = $wpdb->get_results($query_get);
-	$location= site_url();
-
-	echo '<input type="hidden" id="url" value="'.$location.'">';
-	echo "<select name=\"ProfileLocationCountry\" id=\"ProfileLocationCountry\"  onchange='javascript:populateStates(\"ProfileLocationCountry\",\"ProfileLocationState\");'>";
-	echo '<option value="">'. __("Select country", RBAGENCY_interact_TEXTDOMAIN) .'</option>';
-	foreach($result_query_get as $r){
-			$selected =$ProfileLocationCountry==$r->CountryID?"selected=selected":"";
-		echo '<option '.$selected.' value='.$r->CountryID.' >'.$r->CountryTitle.'</option>';
-	}
-	echo '</select>';
+	echo '			<input type="hidden" id="url" value="'.$location.'">';
+	echo "			<select name=\"ProfileLocationCountry\" id=\"ProfileLocationCountry\"  onchange='javascript:populateStates(\"ProfileLocationCountry\",\"ProfileLocationState\");'>";
+	echo '				<option value="">'. __("Select country", RBAGENCY_interact_TEXTDOMAIN) .'</option>';
+						foreach($result_query_get as $r){
+							$selected =$ProfileLocationCountry==$r->CountryID?"selected=selected":"";
+							echo '<option '.$selected.' value='.$r->CountryID.' >'.$r->CountryTitle.'</option>';
+						}
+	echo '			</select>';
 	echo "      </div>\n";
-	echo "    </div>\n";
+	echo "   </div><!-- #profile-country -->\n";
 
 
 	echo "	<div id=\"profile-state\" class=\"rbfield rbtext rbsingle\">\n";
 	echo "      <label>" . __("State", RBAGENCY_interact_TEXTDOMAIN) . "</label>\n";
 	echo "      <div>\n";
-	$query_get ="SELECT * FROM `".table_agency_data_state."` ORDER BY StateTitle ASC" ;
-	$result_query_get = $wpdb->get_results($query_get);
-	echo '<select name="ProfileLocationState" id="ProfileLocationState">';
-	echo '<option value="">'. __("Select state", RBAGENCY_interact_TEXTDOMAIN) .'</option>';
-	foreach($result_query_get as $r){
-		$selected =$ProfileLocationState==$r->StateID?"selected=selected":"";
-		echo '<option '.$selected.' value='.$r->StateID.' >'.$r->StateTitle.'</option>';
-	}
-	echo '</select>';
+					$query_get ="SELECT * FROM `".table_agency_data_state."` ORDER BY StateTitle ASC" ;
+					$result_query_get = $wpdb->get_results($query_get);
+	echo '			<select name="ProfileLocationState" id="ProfileLocationState">';
+	echo '				<option value="">'. __("Select state", RBAGENCY_interact_TEXTDOMAIN) .'</option>';
+						foreach($result_query_get as $r){
+							$selected =$ProfileLocationState==$r->StateID?"selected=selected":"";
+							echo '<option '.$selected.' value='.$r->StateID.' >'.$r->StateTitle.'</option>';
+						}
+	echo '			</select>';
 
 	echo "      </div>\n";
-	echo "    </div>\n";
+	echo "   </div>\n";
 
 	echo "	<div id=\"profile-street\" class=\"rbfield rbtext rbsingle\">\n";
 	echo "		<label>". __("Street", RBAGENCY_interact_TEXTDOMAIN) ."</label>\n";
 	echo "		<div><input type=\"text\" id=\"ProfileLocationStreet\" name=\"ProfileLocationStreet\" /></div>\n";
 	echo "	</div>\n";
+
 	echo "	<div id=\"profile-city\" class=\"rbfield rbtext rbsingle\">\n";
 	echo "		<label>". __("City", RBAGENCY_interact_TEXTDOMAIN) ."</label>\n";
 	echo "		<div><input type=\"text\" id=\"ProfileLocationCity\" name=\"ProfileLocationCity\" /></div>\n";
 	echo "	</div>\n";
+
 	echo "	<div id=\"profile-zip\" class=\"rbfield rbtext rbsingle\">\n";
 	echo "		<label>". __("Zip", RBAGENCY_interact_TEXTDOMAIN) ."</label>\n";
 	echo "		<div><input type=\"text\" id=\"ProfileLocationZip\" name=\"ProfileLocationZip\" /></div>\n";
@@ -246,18 +248,18 @@ global $wpdb;
 	$rb_agencyinteract_option_registerallow = (int)$rb_agency_interact_options_arr['rb_agencyinteract_option_registerallow'];
 
 	if ($rb_agencyinteract_option_registerallow  == 1) {
-	echo "	<div id=\"profile-username\" class=\"rbfield rbtext rbsingle\">\n";
-	echo "		<label>". __("Username", RBAGENCY_interact_TEXTDOMAIN) ."</label>\n";
-	echo "		<div>\n";
-	if(isset($current_user->user_login)){
-	echo "			<input type=\"text\" id=\"ProfileUsername\"  disabled=\"disabled\" value=\"".$current_user->user_login."\" />\n";
-	echo "          <input type=\"hidden\" name=\"ProfileUsername\" value=\"".$current_user->user_login."\"  />";
-	} else {
-	echo "			<input type=\"text\" id=\"ProfileUsername\"  name=\"ProfileUsername\" value=\"\" />\n";
-	}
-	echo "			<small class=\"rbfield-note\">". __("Cannot be changed", RBAGENCY_interact_TEXTDOMAIN) ."</small>";
-	echo "		</div>\n";
-	echo "	</div>\n";
+		echo "	<div id=\"profile-username\" class=\"rbfield rbtext rbsingle\">\n";
+		echo "		<label>". __("Username", RBAGENCY_interact_TEXTDOMAIN) ."</label>\n";
+		echo "		<div>\n";
+		if(isset($current_user->user_login)){
+			echo "			<input type=\"text\" id=\"ProfileUsername\"  disabled=\"disabled\" value=\"".$current_user->user_login."\" />\n";
+			echo "          <input type=\"hidden\" name=\"ProfileUsername\" value=\"".$current_user->user_login."\"  />";
+		} else {
+			echo "			<input type=\"text\" id=\"ProfileUsername\"  name=\"ProfileUsername\" value=\"\" />\n";
+		}
+		echo "			<small class=\"rbfield-note\">". __("Cannot be changed", RBAGENCY_interact_TEXTDOMAIN) ."</small>";
+		echo "		</div>\n";
+		echo "	</div>\n";
 	}
 
 	echo "	<div id=\"profile-password\" class=\"rbfield rbpassword rbsingle\">\n";
@@ -267,6 +269,7 @@ global $wpdb;
 	echo "			<small class=\"rbfield-note\">". __("Leave blank to keep same password", RBAGENCY_interact_TEXTDOMAIN) ."</small>";
 	echo "		</div>\n";
 	echo "	</div>\n";
+
 	echo "	<div id=\"profile-password\" class=\"rbfield rbtext rbsingle\">\n";
 	echo "		<label>". __("Password", RBAGENCY_interact_TEXTDOMAIN) ."</label>\n";
 	echo "		<div>\n";
@@ -274,11 +277,13 @@ global $wpdb;
 	echo "			<small class=\"rbfield-note\">". __("Retype to Confirm", RBAGENCY_interact_TEXTDOMAIN) ."</small>";
 	echo "		</div>\n";
 	echo "	</div>\n";
+
 	echo "	<div id=\"profile-submit\" class=\"rbfield rbsubmit rbsingle\">\n";
 	echo "     <input type=\"hidden\" name=\"action\" value=\"addRecord\" />\n";
 	echo "     <input type=\"submit\" name=\"submit\" value=\"". __("Save and Continue", RBAGENCY_interact_TEXTDOMAIN) ."\" class=\"button-primary\" />\n";
 	echo "	</div>\n";
 
 	echo "</form>\n";
+	echo "</div> <!-- .rbform -->\n";
 
 ?>
