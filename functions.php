@@ -2034,12 +2034,18 @@ function rb_get_customfields_registration(){
 	$implodedProfileType = implode(",",$_REQUEST['profile_types']);
 	$arrChecker = [];
 	$find_in_set_arr = [];
-	foreach($_REQUEST['profile_types'] as $k=>$v){
-		$find_in_set_arr[] = " FIND_IN_SET('".$v."',b.ProfileCustomTypes)>0 ";
+	if(is_array($_REQUEST['profile_types'])){
+		foreach($_REQUEST['profile_types'] as $k=>$v){
+			$find_in_set_arr[] = " FIND_IN_SET('".$v."',b.ProfileCustomTypes)>0 ";
+		}
+		$find_in_set = implode("OR",$find_in_set_arr);
+	}else{
+		$find_in_set = " FIND_IN_SET('".$_REQUEST['profile_types']."',b.ProfileCustomTypes)>0 ";
 	}
-	$find_in_set = implode("OR",$find_in_set_arr);
+	
+	
 
-	$sql = "SELECT a.*,b.ProfileCustomTypes FROM ".table_agency_customfields." a INNER JOIN ".table_agency_customfields_types." b ON a.ProfileCustomID = b.ProfileCustomID WHERE ".$find_in_set." ORDER BY a.ProfileCustomOrder ASC";
+	$sql = "SELECT a.*,b.ProfileCustomTypes FROM ".table_agency_customfields." a INNER JOIN ".table_agency_customfields_types." b ON a.ProfileCustomID = b.ProfileCustomID AND a.ProfileCustomShowInitialRegistration = 1 WHERE ".$find_in_set." ORDER BY a.ProfileCustomOrder ASC";
 
 		$results = $wpdb->get_results($sql,ARRAY_A);
 		foreach($results as $data){
@@ -2060,17 +2066,23 @@ add_action( 'wp_ajax_nopriv_rb_get_customfields_registration', 'rb_get_customfie
 
 function registration_form($atts){
 	$a = shortcode_atts( array(
-        'type' => 'model'
+        'type' => 'common'
     ), $atts );
 
     $registrationType = $a['type'];
-    if($registrationType == 'model'){
-    	return registration_form_model($_POST);
+    if($registrationType == 'models'){
+    	return rbcustom_registration_form_param($_POST,'models');
+    }elseif($registrationType == 'locations'){
+    	return rbcustom_registration_form_param($_POST,'locations');
+    }elseif($registrationType == 'make-up-artists'){
+    	return rbcustom_registration_form_param($_POST,'make-up-artists');
+    }else{
+    	return rbcustom_registration_form($_POST);    	    	
     }
 }
 add_shortcode( 'registration_form', 'registration_form' );
 
-function registration_form_model($request){
+function rbcustom_registration_form($request){
 
 	global $wpdb;
 
@@ -2306,10 +2318,13 @@ function registration_form_model($request){
 		} # End : create user
 		
 	}
-
+	$uri = substr($_SERVER['REQUEST_URI'],1);
+	$requestURI =explode('/', $uri);
+				
 	echo '
 			<script type="text/javascript">
 			 jQuery(document).ready(function() {
+
 				jQuery( "#ProfileGender" ).on("change",function() {
 				jQuery(".custom-fields-registration").empty();
 				var userGenderID = jQuery(this).val();
@@ -2326,6 +2341,10 @@ function registration_form_model($request){
 						jQuery("#ProfileType-div").html(data);
 						jQuery("#consent-processing").attr("style","display:none!important");
 						jQuery("#registration-submit-btn").removeAttr("style");
+
+						
+
+
 					});
 					return false;
 				});
@@ -2530,6 +2549,575 @@ function registration_form_model($request){
 		echo "	</div>\n";
 
 		# Display Profile Type
+
+		echo "	<div id=\"profile-type\" class=\"rbfield rbcheckbox rbmulti\">\n";
+		echo "		<label for=\"profile_type\">". __("Type of Profile", RBAGENCY_interact_TEXTDOMAIN) .":</label>\n";
+
+					//check for parentid column
+					$sql = "SELECT DataTypeParentID FROM ".$wpdb->prefix."agency_data_type LIMIT 1";
+					$r = $wpdb->get_results($sql);
+					if(count($r) == 0){
+						//create column
+						$queryAlter = "ALTER TABLE " . $wpdb->prefix ."agency_data_type ADD DataTypeParentID varchar(20) default 0";
+						$resultsDataAlter = $wpdb->query($queryAlter,ARRAY_A);
+					}
+
+					
+		echo "		<div id='ProfileType-div'>";
+		
+		echo "			Please select your gender first";
+			
+		echo "		</div>";
+		echo "</div><!-- #profile-type -->\n";
+		# End : Display Profile Type
+
+		# will show only if model
+		echo "	<div id=\"profile-stagename\" class=\"rbfield rbtext rbsingle\" style=\"display:none;\">\n";
+		echo "		<label>". __("Stage name", RBAGENCY_interact_TEXTDOMAIN) .":</label>\n";
+		echo "		<div><input type=\"text\" id=\"ProfileDisplay\" name=\"ProfileDisplay\"/></div>\n";
+		echo "	</div>\n";
+
+		
+
+		
+		# Display custom fields
+		echo "<div class=\"custom-fields-registration\">";
+		echo "</div>";
+		# End : Display custom fields	
+
+		# Consent processing
+		echo "	<div id=\"consent-processing\" class=\"rbfield\" style=\"display:none;\">\n";
+		echo "		<h3 style=\"font-size:22px;text-align:center;\">". __("Consent to the processing of personal data", RBAGENCY_interact_TEXTDOMAIN) ."</h3><br/>\n";
+		echo "<p style=\"text-align:justify;font-size:12px;\">".__("Please note that Nikkis Models is an agency recruiting models for the production of erotic and sexual themes. The cooperation between the model and the agency take place only after the model was properly instructed about the content of such cooperation and only after granting unconditional consent to such type of cooperation.",RBAGENCY_interact_TEXTDOMAIN)."</p><br />";
+
+		# Yes, I Agree
+		echo "<input type=\"submit\" name=\"agree_btn\" class=\"agree-btn\" value=\"".__('Yes, I agree', RBAGENCY_interact_TEXTDOMAIN)."\" style=\"padding: 15px 30px;margin-left:165px;\"/>";
+		echo "	</div>\n";
+		# End : Consent processing
+
+		# Default submit button
+		echo "	<div id=\"registration-submit-btn\" class=\"rbfield\">\n";	
+		echo "<input type=\"submit\" name=\"agree_btn\" class=\"agree-btn\" value=\"".__('Submit', RBAGENCY_interact_TEXTDOMAIN)."\" style=\"padding: 15px 30px;margin-left:165px;\"/>";
+		echo "	</div>\n";
+
+		echo "</form>";
+		echo "</div>";
+
+
+	}else{ # End : st is not set
+
+		# Put in here what will happen after registration
+
+		printf( "<p style=\"text-align:center;\">".__("Thank you for registering, %s!", RBAGENCY_interact_TEXTDOMAIN)."<p>", $_SESSION['ProfileUserName'] );		
+		echo "<p style=\"text-align:center;\">".__("Please check your email for the next step to complete registration.", RBAGENCY_interact_TEXTDOMAIN)."</p>";		
+		echo "<p style=\"text-align:center;\">".__("<i>(It might go to your spam folder )</i>", RBAGENCY_interact_TEXTDOMAIN)."</p>";
+		//echo $_SESSION["PW"];
+		//echo "<input type=\"hidden\" value=\"".$_SESSION["PW"]."\" />";
+
+	} # End
+	
+}
+
+
+//custom registration form with parameters
+function rbcustom_registration_form_param($request,$ptype){
+
+	global $wpdb;
+
+	$q = "SELECT * FROM ".table_agency_customfields_types;
+	$res = $wpdb->get_results($q,ARRAY_A);
+	//echo "<pre>";
+	//print_r($res);
+	//echo "</pre>";
+
+	echo "<style>div label{text-align:left!important;}</style>";
+	$getErrorMessage = "";
+	$error_msg = array();
+	# Get options
+	$rb_agency_interact_options_arr = get_option('rb_agencyinteract_options');
+	$rb_agency_options_arr = get_option('rb_agency_options');
+	$rb_agency_option_model_toc = isset($rb_agency_options_arr['rb_agency_option_agency_model_toc'])?$rb_agency_options_arr['rb_agency_option_agency_model_toc']: "/models-terms-of-conditions";
+	$rb_agencyinteract_option_registerapproval = isset($rb_agency_interact_options_arr['rb_agencyinteract_option_registerapproval'])?$rb_agency_interact_options_arr['rb_agencyinteract_option_registerapproval']:"";
+
+	$rb_agencyinteract_option_default_registered_users = isset($rb_agency_interact_options_arr['rb_agencyinteract_option_default_registered_users'])?$rb_agency_interact_options_arr['rb_agencyinteract_option_default_registered_users']:"";
+
+	//+Registration
+	// - show/hide registration for Agent/Producers
+	$rb_agencyinteract_option_registerallowAgentProducer = isset($registration['rb_agencyinteract_option_registerallowAgentProducer'])?$registration['rb_agencyinteract_option_registerallowAgentProducer']:0;
+
+	// - show/hide  self-generate password
+	$rb_agencyinteract_option_registerconfirm = isset($rb_agency_interact_options_arr['rb_agencyinteract_option_registerconfirm'])?(int)$rb_agency_interact_options_arr['rb_agencyinteract_option_registerconfirm']:0;
+	// show/hide username and password
+	$rb_agencyinteract_option_useraccountcreation = isset($rb_agency_interact_options_arr['rb_agencyinteract_option_useraccountcreation'])?(int)$rb_agency_interact_options_arr['rb_agencyinteract_option_useraccountcreation']:0;
+	/* Check if users can register. */
+	$registration = get_option( 'users_can_register' );
+
+	$pageName = get_query_var('pagename');
+	if(empty($pageName)){
+		$customRegistrationPageURL = site_url()."/profile-register/";
+	}else{
+		$customRegistrationPageURL = site_url()."/".$pageName;
+	}
+	
+	
+	# Process registration
+	if(isset($_POST['agree_btn'])){
+		$first_name = !empty($_POST['ProfileContactNameFirst']) ? $_POST['ProfileContactNameFirst'] : "";
+		$last_name  = !empty($_POST['ProfileContactNameLast']) ? $_POST['ProfileContactNameLast'] : "";
+		$user_display = !empty($_POST['ProfileDisplay']) ? $_POST['ProfileDisplay'] : "";
+		$user_email = !empty($_POST['ProfileEmail']) ? $_POST['ProfileEmail'] : "";
+		$user_login = !empty($_POST['ProfileUserName']) ? $_POST['ProfileUserName'] : "";
+		$user_pass  = NULL;
+
+		if ($rb_agencyinteract_option_registerconfirm == 0) {
+			$user_pass = wp_generate_password();// generate a password if it's creation is disabled
+		} else {
+			$user_pass = $_POST['profile_password'];
+		}
+
+		$userdata = array(
+			'user_pass' => $user_pass ,
+			'user_login' => esc_attr( $user_login ),
+			'first_name' => esc_attr( $first_name ),
+			'last_name' => esc_attr( $last_name ),
+			'user_email' => esc_attr( $user_email ),
+			'role' => get_option( 'default_role' )
+		);
+
+		$ProfileDateBirth = $_POST['ProfileDateBirth'];
+		$ProfileAge = $_POST['ProfileAge'];
+		$ProfileGender = $_POST['ProfileGender'];
+		$ProfileResidence = $_POST['ProfileResidence'];
+		$ProfileType =implode(",", $_POST['ProfileType']);
+		$ProfileLocationStreet = isset($_POST['ProfileLocationStreet'])?$_POST['ProfileLocationStreet']:"";
+		$ProfileLocationCity = RBAgency_Common::format_propercase(isset($_POST['ProfileLocationCity'])?$_POST['ProfileLocationCity']:"");
+		$ProfileLocationState = strtoupper(isset($_POST['ProfileLocationState'])?$_POST['ProfileLocationState']:"");
+		$ProfileLocationZip = isset($_POST['ProfileLocationZip'])?$_POST['ProfileLocationZip']:"";
+		$ProfileLocationCountry = isset($_POST['ProfileLocationCountry'])?$_POST['ProfileLocationCountry']:"";
+
+		$yearDob = !empty($_POST["ProfileDateBirth_Year"]) ? $_POST["ProfileDateBirth_Year"] : "0000";
+		$monthDob = !empty($_POST["ProfileDateBirth_Month"]) ? $_POST["ProfileDateBirth_Month"] : "00";
+		$dayDob = !empty($_POST["ProfileDateBirth_Day"]) ? $_POST["ProfileDateBirth_Day"] : "00";
+		$ProfileDateBirth = $yearDob."-".$monthDob."-".$dayDob;
+
+		if(empty($userdata['user_login'])) {
+			$error_msg[] = __("A username is required for registration.<br />", RBAGENCY_interact_TEXTDOMAIN);
+		}
+		if(username_exists($userdata['user_login'])) {
+			$error_msg[] = __("Sorry, that username already exists!<br />", RBAGENCY_interact_TEXTDOMAIN);
+		}
+		if(!is_email($userdata['user_email'])) {
+			$error_msg[] = __("You must enter a valid email address.<br />", RBAGENCY_interact_TEXTDOMAIN);
+		}
+		if(email_exists($userdata['user_email'])) {
+			$error_msg[] = __("Sorry, that email address is already used!<br />", RBAGENCY_interact_TEXTDOMAIN);
+		}
+
+		if(!empty($error_msg)){
+			
+			foreach($error_msg as $err){
+				$getErrorMessage .= "<p style=\"color:red;\">".$err."</p>";
+			}
+		}else{
+			# create user			
+			$new_user = wp_insert_user( $userdata );
+
+			# Set Gallery
+			if ($rb_agency_option_profilenaming == 0) {
+				$profile_contact_display = $first_name . " ". $last_name;
+			} elseif ($rb_agency_option_profilenaming == 1) {
+				$profile_contact_display = $first_name . " ". substr($last_name, 0, 1);
+			} elseif ($rb_agency_option_profilenaming == 2) {
+				$profile_contact_display = $_POST["profile_contact_display_name"];//$first_name . " ". $last_name;
+			} elseif ($rb_agency_option_profilenaming == 3) { // by firstname
+				$profile_contact_display = "ID-". $new_user;
+			} elseif ($rb_agency_option_profilenaming == 4) {
+				$profile_contact_display = $first_name;
+			}
+
+			if($rb_agency_option_profilenaming != 3){
+				$profile_gallery = RBAgency_Common::format_stripchars($profile_contact_display);
+			} else {
+				$profile_gallery = $profile_contact_display;
+			}
+			# Profile Gallery
+			$profile_gallery = rb_agency_createdir($profile_gallery);
+
+			update_user_meta($new_user, 'rb_agency_interact_pgender', $ProfileGender);
+			$profileactive = null;
+
+			$_registerapproval = $rb_agencyinteract_option_registerapproval;
+			$_default_registered = $rb_agencyinteract_option_default_registered_users;
+			//manually approve(0)
+			if($_registerapproval == 0){
+				if($_default_registered == 1){
+					$profileactive = 1;
+				}elseif($_default_registered == 2){
+					$profileactive = 2;
+				}elseif($_default_registered == 3){
+					$profileactive = 3;
+				}elseif($_default_registered == 4){
+					$profileactive = 4;
+				}elseif($_default_registered == 0){
+					$profileactive = 0;
+				}
+			}else{				
+				$profileactive = $_default_registered;
+			}
+
+			# Insert to table_agency_profile
+			$sql = "INSERT INTO ".table_agency_profile."
+				(
+				ProfileContactDisplay,
+				ProfileContactNameFirst,
+				ProfileContactNameLast,
+				ProfileGender,
+				ProfileContactEmail,
+				ProfileIsActive,
+				ProfileUserLinked,
+				ProfileType,
+				ProfileGallery,
+				ProfileDateBirth,
+				ProfileLocationStreet,
+				ProfileLocationCity,
+				ProfileLocationState,
+				ProfileLocationZip,
+				ProfileLocationCountry
+				)
+				VALUES(
+				'".$profile_contact_display."',
+				'".$first_name."',
+				'".$last_name."',
+				'".$ProfileGender."',
+				'".$user_email."',
+				".$profileactive.",
+				".$new_user.",
+				'".$ProfileType."',
+				'".$profile_gallery."',
+				'".$ProfileDateBirth."',
+				'".$ProfileLocationStreet."',
+				'".$ProfileLocationCity."',
+				'".$ProfileLocationState."',
+				'".$ProfileLocationZip."',
+				'".$ProfileLocationCountry."')";
+
+			$wpdb->query($sql);
+			$id = $wpdb->insert_id;
+			$NewProfileID = $id;
+			# Update and set ProfileUserLinked,ProfileGallery and ProfileContactDisplay with the ProfileID
+			if($rb_agency_option_profilenaming == 3){
+				$update = $wpdb->query("UPDATE " . table_agency_profile . " SET ProfileGallery='ID-" . $id . "', ProfileContactDisplay='ID-" . $id . "' WHERE ProfileID='" . $id . "'");
+				$profile_gallery = "ID-".$id;
+				rb_agency_createdir($profile_gallery);
+			}
+			add_user_meta( $new_user, 'user_profile_id', $new_user);
+
+			# Add Custom Field Values stored in Mux
+			# For testing , add this array
+			foreach($_POST as $key => $value) {
+				if ((substr($key, 0, 15) == "ProfileCustomID") && (isset($value) && !empty($value))) {
+						$profilecustomfield_date = explode("_",$key);
+						if(count($profilecustomfield_date) == 2){ // customfield date
+							$ProfileCustomID = substr($profilecustomfield_date[0], 15);
+						} else {
+							$ProfileCustomID = substr($key, 15);
+						}
+					 
+					if(is_array($value)){
+						$value =  implode(",",$value);
+					}
+					if(count($profilecustomfield_date) == 2){ // customfield date
+						$value = date("y-m-d h:i:s",strtotime($value));
+						$insert1 = $wpdb->prepare("INSERT INTO " . table_agency_customfield_mux . " (ProfileID,ProfileCustomID,ProfileCustomDateValue)" . "VALUES (%d,%d,%s)",$NewProfileID,$ProfileCustomID,$value);
+					} else {
+						$insert1 = $wpdb->prepare("INSERT INTO " . table_agency_customfield_mux . " (ProfileID,ProfileCustomID,ProfileCustomValue)" . "VALUES (%d,%d,%s)",$NewProfileID,$ProfileCustomID,$value);
+					}
+					$results1 = $wpdb->query($insert1);
+
+				}
+			} # End : Add Custom Field Values stored in Mux
+
+			
+			$arr["new"] = true;
+			$arr["step1"] = true;
+			$arr["step2"] = true;
+			$arr["step3"] = true;
+			add_user_meta($new_user, 'rb_agency_new_registeredUser',$arr);
+			if ($rb_agencyinteract_option_registerapproval == 1) { // automatically approval
+				// Notify admin and user
+				rb_new_user_notification($new_user,$user_pass);
+			} else { // manually approval
+				// Notify admin and user
+				rb_new_user_notification($new_user,$user_pass);
+			}
+			$_SESSION["ProfileUserName"] = $_POST["ProfileUserName"];
+			$_SESSION["PW"] = $user_pass;
+			wp_redirect($customRegistrationPageURL."/?st=success");
+		} # End : create user
+		
+	}
+	$uri = substr($_SERVER['REQUEST_URI'],1);
+	$requestURI =explode('/', $uri);
+				
+	echo '
+			<script type="text/javascript">
+			 jQuery(document).ready(function() {
+
+				jQuery( "#ProfileGender" ).on("change",function() {
+				jQuery(".custom-fields-registration").empty();
+				var userGenderID = jQuery(this).val();
+				console.log(userGenderID);
+				//var userGenderText = jQuery( "#ProfileGender option:selected").text();
+					
+					var ptypeParam = "'.$ptype.'";
+
+					jQuery.post("'.admin_url("admin-ajax.php").'", 
+						{
+						GenderID: userGenderID,
+						action:"request_datatype_bygender_memberregister",
+						profileType : "'.$ptype.'"
+						})
+					.done(function(data) {
+						console.log(data);
+						jQuery("#ProfileType-div").html(data);
+						jQuery("#consent-processing").attr("style","display:none!important");
+						jQuery("#registration-submit-btn").removeAttr("style");					
+
+						jQuery.ajax({
+							type: "POST",
+							url: "' . admin_url('admin-ajax.php').'",
+							data: {
+								action: "rb_get_customfields_registration",
+									profile_types: "'.$ptype.'",
+									gender: jQuery("#ProfileGender").val()
+								},
+								success: function (results) {
+									//console.log(results);
+									jQuery(".custom-fields-registration").html();
+									jQuery(".custom-fields-registration").html(results);
+
+									//hide necessary
+									if(ptypeParam.length && ptypeParam == "models"){
+										//display consent and stage name
+										jQuery("#profile-stagename").removeAttr("style");
+										//display consent
+										jQuery("#consent-processing").removeAttr("style");
+										//hide default submit button
+										jQuery("#registration-submit-btn").attr("style","display:none!important");
+									}else{
+										jQuery("#profile-stagename").attr("style","display:none!important");
+										jQuery("#consent-processing").attr("style","display:none!important");
+										jQuery("#registration-submit-btn").removeAttr("style");
+									}
+								}
+						});	
+
+					});
+					return false;
+				});
+			});
+			</script>
+		';
+
+	?>
+	<script type="text/javascript">
+		jQuery(document).ready(function(){
+			var profileTypeIDs = [];
+			var ptypeParam = '<?php echo $ptype; ?>';
+			jQuery(".DataTypeIDClassCheckbox").live('click',function(){
+				var ajaxLoader = "<?php echo site_url().'/wp-content/plugins/rb-agency-interact/theme/ajax-loader-white.gif';  ?>";
+
+				jQuery(".custom-fields-registration").html('<img src="'+ajaxLoader+'" />');
+
+				var checkedProfileType = jQuery(this).attr('profile-type-title');
+				var checked = jQuery(this).is(':checked');
+				profileTypeIDs.push(checkedProfileType);
+				//remove if unchecked
+				if(checked!==true){
+					profileTypeIDs = jQuery.grep(profileTypeIDs, function(value) {
+						return value != checkedProfileType;
+					});
+				}else{
+					
+					jQuery(this).attr('checked','checked');
+				}												
+				
+				
+				console.log(jQuery.inArray('Models',profileTypeIDs));
+				if(ptypeParam.length && ptypeParam == 'models'){
+					//display consent and stage name
+					jQuery("#profile-stagename").removeAttr('style');
+					//display consent
+					jQuery("#consent-processing").removeAttr('style');
+					//hide default submit button
+					jQuery("#registration-submit-btn").attr('style','display:none!important');
+				}else{
+					jQuery("#profile-stagename").attr('style','display:none!important');
+					jQuery("#consent-processing").attr('style','display:none!important');
+					jQuery("#registration-submit-btn").removeAttr('style');
+				}
+										
+				//here , make ajax call to get custom fields
+				jQuery.ajax({
+					type: "POST",
+					url: "<?php echo admin_url('admin-ajax.php') ?>",
+					data: {
+						action: "rb_get_customfields_registration",
+							'profile_types': profileTypeIDs,
+							'gender': jQuery("#ProfileGender").val()
+						},
+						success: function (results) {
+							//console.log(results);
+							jQuery(".custom-fields-registration").html();
+							jQuery(".custom-fields-registration").html(results);
+						}
+				});	
+																			
+			});
+
+
+			jQuery("#ProfileLocationCountry").change(function(){
+				jQuery("#profile-state").removeAttr('style');
+			});
+
+
+								
+		});
+	</script>
+	<?php
+
+	if(!isset($_GET['st'])){
+		//print (new ReflectionFunction("request_datatype_bygender_memberregister"))->getFileName();
+		# Default fields
+		echo "<form method=\"POST\" action=\"".$customRegistrationPageURL."\" >";
+		echo "<div id='member-register' class='rbform'>";
+		echo "	<div id=\"profile-registration-error\" class=\"rbfield\">\n";
+		echo !empty($getErrorMessage) ? $getErrorMessage : "";
+		echo "</div>";
+		echo "	<div id=\"profile-firstname\" class=\"rbfield rbtext rbsingle\">\n";
+		echo "		<label>". __("First Name", RBAGENCY_interact_TEXTDOMAIN) .":</label>\n";
+		echo "		<div><input type=\"text\" id=\"ProfileContactNameFirst\" name=\"ProfileContactNameFirst\" value=\"".$first_name."\"/></div>\n";
+		echo "	</div>\n";
+		echo "	<div id=\"profile-surname\" class=\"rbfield rbtext rbsingle\">\n";
+		echo "		<label>". __("Surname", RBAGENCY_interact_TEXTDOMAIN) .":</label>\n";
+		echo "		<div><input type=\"text\" id=\"ProfileContactNameLast\" name=\"ProfileContactNameLast\" value=\"".$last_name."\"/></div>\n";
+		echo "	</div>\n";
+		echo "	<div id=\"profile-username\" class=\"rbfield rbtext rbsingle\">\n";
+		echo "		<label>". __("Username", RBAGENCY_interact_TEXTDOMAIN) .":</label>\n";
+		echo "		<div><input type=\"text\" id=\"ProfileUserName\" name=\"ProfileUserName\" value=\"".$user_login."\"/></div>\n";
+		echo "	</div>\n";
+		if ($rb_agencyinteract_option_registerconfirm == 1 && $rb_agencyinteract_option_useraccountcreation == 1) {
+
+		echo "       <div id=\"profile-password\" class=\"rbfield rbpassword rbsingle\">\n";
+		echo "   		<label for=\"profile_password\">". __("Password (required)", RBAGENCY_interact_TEXTDOMAIN) ."</label>\n";
+		echo "   		<div><input class=\"text-input\" name=\"profile_password\" type=\"password\" id=\"profile_password\" value=\""; if ( $error ) echo esc_html( $_POST['profile_password'], 1 ); echo "\" /></div>\n";
+		echo "       </div><!-- #profile-password -->\n";
+		}
+		echo "	<div id=\"profile-email\" class=\"rbfield rbtext rbsingle\">\n";
+		echo "		<label>". __("E-mail", RBAGENCY_interact_TEXTDOMAIN) .":</label>\n";
+		echo "		<div><input type=\"text\" id=\"ProfileEmail\" name=\"ProfileEmail\" value=\"".$user_email."\"/></div>\n";
+		echo "	</div>\n";
+		echo "	<div id=\"profile-birthdate\" class=\"rbfield rbselect rbmulti rbblock\">\n";
+			echo "		<label>". __("Birthdate", RBAGENCY_interact_TEXTDOMAIN) ."</label>\n";
+			echo "		<div>\n";
+								/* Month */ 
+				echo "		<div style=\"display:inline-block;width:33%;margin-right:1px;\">\n";
+								$monthName = array(1=> "January", "February", "March","April", "May", "June", "July", "August","September", "October", "November", "December"); 
+				echo "			<select name=\"ProfileDateBirth_Month\" id=\"ProfileDateBirth_Month\">\n";
+				echo "			<option value=\"\"><span style=\"font-size:9px;\" >".__("Month",RBAGENCY_interact_TEXTDOMAIN)."</span> </option>\n";
+					for ($currentMonth = 1; $currentMonth <= 12; $currentMonth++ ) {
+						echo "			<option value=\"". $currentMonth ."\">". $monthName[$currentMonth] ."</option>\n";
+				}
+				echo "			</select>\n";
+				echo "		</div>\n";
+								/* Day */ 
+				echo "		<div style=\"display:inline-block;width:33%;\">\n";
+				echo "			<select name=\"ProfileDateBirth_Day\" id=\"ProfileDateBirth_Day\">\n";
+				echo "			<option value=\"\"><span style=\"font-size:9px;\" >".__("Day",RBAGENCY_interact_TEXTDOMAIN)." </span> </option>\n";
+					for ($currentDay = 1; $currentDay <= 31; $currentDay++ ) {
+						echo "			<option value=\"". $currentDay ."\">". $currentDay ."</option>\n";
+					}
+				echo "			</select>\n";
+				echo "		</div>\n";
+
+								/* Year */ 
+				echo "		<div style=\"display:inline-block;width:33%;\">\n";
+				echo "			<select name=\"ProfileDateBirth_Year\" id=\"ProfileDateBirth_Year\">\n";
+				echo "			<option value=\"\"><span style=\"font-size:9px;\" >".__("Year",RBAGENCY_interact_TEXTDOMAIN)." </span> </option>\n";
+					for ($currentYear = 1940; $currentYear <= date("Y")+6; $currentYear++ ) {
+						echo "			<option value=\"". $currentYear ."\">". $currentYear ."</option>\n";
+				}
+				echo "			</select>\n";
+				echo "		</div>\n";
+			echo "		</div>\n";
+		echo "		</div>\n";
+		# End : Default fields
+
+		# Location address
+		echo "	<div id=\"profile-country\" class=\"rbfield rbselect rbsingle\">\n";
+		echo "      <label>" . __("Country", RBAGENCY_interact_TEXTDOMAIN) . ":</label>\n";
+		echo "      <div>\n";
+
+		$query_get ="SELECT * FROM `". table_agency_data_country ."` ORDER BY CountryTitle ASC" ;
+		$result_query_get = $wpdb->get_results($query_get);
+		$location= site_url();
+		echo '<input type="hidden" id="url" value="'.$location.'">';
+		echo "<select name=\"ProfileLocationCountry\" id=\"ProfileLocationCountry\"  onchange='javascript:populateStates(\"ProfileLocationCountry\",\"ProfileLocationState\");'>";
+		echo '<option value="">'. __("Select country", RBAGENCY_interact_TEXTDOMAIN) .'</option>';
+		foreach($result_query_get as $r){
+				$selected =$ProfileLocationCountry==$r->CountryID?"selected=selected":"";
+			echo '<option '.$selected.' value='.$r->CountryID.' >'.$r->CountryTitle.'</option>';
+		}
+		echo '</select>';
+		echo "      </div>\n";
+		echo "    </div>\n";
+
+
+		echo "	<div id=\"profile-state\" class=\"rbfield rbtext rbsingle\" style=\"display:none;\">\n";
+		echo "      <label>" . __("State", RBAGENCY_interact_TEXTDOMAIN) . ":</label>\n";
+		echo "      <div>\n";
+		$query_get ="SELECT * FROM `".table_agency_data_state."` ORDER BY StateTitle ASC" ;
+		$result_query_get = $wpdb->get_results($query_get);
+		echo '<select name="ProfileLocationState" id="ProfileLocationState">';
+		echo '<option value="">'. __("Select state", RBAGENCY_interact_TEXTDOMAIN) .'</option>';
+		foreach($result_query_get as $r){
+			$selected =$ProfileLocationState==$r->StateID?"selected=selected":"";
+			echo '<option '.$selected.' value='.$r->StateID.' >'.$r->StateTitle.'</option>';
+		}
+		echo '</select>';
+
+		echo "      </div>\n";
+		echo "    </div>\n";
+
+		echo "	<div id=\"profile-street\" class=\"rbfield rbtext rbsingle\">\n";
+		echo "		<label>". __("Street", RBAGENCY_interact_TEXTDOMAIN) .":</label>\n";
+		echo "		<div><input type=\"text\" id=\"ProfileLocationStreet\" name=\"ProfileLocationStreet\" /></div>\n";
+		echo "	</div>\n";
+		echo "	<div id=\"profile-city\" class=\"rbfield rbtext rbsingle\">\n";
+		echo "		<label>". __("City", RBAGENCY_interact_TEXTDOMAIN) .":</label>\n";
+		echo "		<div><input type=\"text\" id=\"ProfileLocationCity\" name=\"ProfileLocationCity\" /></div>\n";
+		echo "	</div>\n";
+		echo "	<div id=\"profile-zip\" class=\"rbfield rbtext rbsingle\">\n";
+		echo "		<label>". __("Zip", RBAGENCY_interact_TEXTDOMAIN) .":</label>\n";
+		echo "		<div><input type=\"text\" id=\"ProfileLocationZip\" name=\"ProfileLocationZip\" /></div>\n";
+		echo "	</div>\n";
+
+
+		# Gender
+		echo "	<div id=\"profile-gender\" class=\"rbfield rbselect rbsingle\">\n";
+		echo "		<label>". __("Gender", RBAGENCY_interact_TEXTDOMAIN) .":</label>\n";
+		echo "			<div><select id='ProfileGender' name=\"ProfileGender\">";
+		$query= "SELECT GenderID, GenderTitle FROM " .  table_agency_data_gender . " GROUP BY GenderTitle ";
+							$queryShowGender = $wpdb->get_results($query,ARRAY_A);
+							echo "<option value=''>".__("--Please Select--",RBAGENCY_interact_TEXTDOMAIN)."</option>";
+							foreach($queryShowGender as $dataShowGender){
+								echo "<option value=\"".$dataShowGender["GenderID"]."\" ". selected($ProfileGender ,$dataShowGender["GenderID"],false).">".$dataShowGender["GenderTitle"]."</option>";
+							}
+		echo "			</select></div>";
+		echo "	</div>\n";
+
+		# Display Profile Type
+
 		echo "	<div id=\"profile-type\" class=\"rbfield rbcheckbox rbmulti\">\n";
 		echo "		<label for=\"profile_type\">". __("Type of Profile", RBAGENCY_interact_TEXTDOMAIN) .":</label>\n";
 
