@@ -46,12 +46,37 @@ get_currentuserinfo();
 			$d = '';
 		}
 
-		if ( ($_SERVER["REQUEST_URI"]) == "/profile-member/media/") {$tabclass = "active"; } else {$tabclass = "inactive"; }
+		if ( ($_SERVER["REQUEST_URI"]) == "/profile-member/media/")
+		 {
+		 	$tabclass = "active"; 
+		} else 
+		{
+			$tabclass = "inactive"; 
+		}
 		echo ' 		<div class="tab-inner tab-'. $tabclass .'" style="'.$d.'">';
 		echo " 			<a href=\"". get_bloginfo("wpurl") ."/profile-member/media/\">\n";
 		echo " 				<div class=\"subMenuTabBG\"><div class=\"subMenuTabBorders\"><div class=\"subMenuTabText\">".__("My Media", RBAGENCY_interact_TEXTDOMAIN) ."</div></div></div>\n";
 		echo " 			</a>\n";
 		echo " 		</div>\n";
+		}
+
+		
+
+		if ( ($_SERVER["REQUEST_URI"]) == "/profile-member/accounts") {$tabclass = "active"; } else {$tabclass = "inactive"; }		
+		echo " 		<div class=\"tab-inner tab-". $tabclass ."\">\n";
+		echo " 			<a  href=\"". get_bloginfo("wpurl") ."/profile-member/accounts/"."\" >\n";
+		echo " 				<div class=\"subMenuTabBG\"><div class=\"subMenuTabBorders\"><div class=\"subMenuTabText\">".__("Other Accounts", RBAGENCY_interact_TEXTDOMAIN) ."</div></div></div>\n";
+		echo " 			</a>\n";
+		echo " 		</div>\n";
+
+
+		if(is_plugin_active( 'rb-agency-casting/rb-agency-casting.php' )){
+			if ( ($_SERVER["REQUEST_URI"]) == "/profile-member/auditions/") {$tabclass = "active"; } else {$tabclass = "inactive"; }
+			echo " 		<div class=\"tab-inner tab-". $tabclass ."\">\n";
+			echo " 			<a  href=\"". get_bloginfo("wpurl") ."/profile-member/auditions/\">\n";
+			echo " 				<div class=\"subMenuTabBG\"><div class=\"subMenuTabBorders\"><div class=\"subMenuTabText\">".__("Auditions", RBAGENCY_interact_TEXTDOMAIN) ."</div></div></div>\n";
+			echo " 			</a>\n";
+			echo " 		</div>\n";
 		}
 
 		if ( ($_SERVER["REQUEST_URI"]) == "/profile/") {$tabclass = "active"; } else {$tabclass = "inactive"; }
@@ -63,17 +88,6 @@ get_currentuserinfo();
 		echo " 			</a>\n";
 		echo " 		</div>\n";
 		}
-
-		if(is_plugin_active( 'rb-agency-casting/rb-agency-casting.php' )){
-			if ( ($_SERVER["REQUEST_URI"]) == "/profile-member/auditions/") {$tabclass = "active"; } else {$tabclass = "inactive"; }
-			echo " 		<div class=\"tab-inner tab-". $tabclass ."\">\n";
-			echo " 			<a  href=\"". get_bloginfo("wpurl") ."/profile-member/auditions/\">\n";
-			echo " 				<div class=\"subMenuTabBG\"><div class=\"subMenuTabBorders\"><div class=\"subMenuTabText\">".__("Auditions", RBAGENCY_interact_TEXTDOMAIN) ."</div></div></div>\n";
-			echo " 			</a>\n";
-			echo " 		</div>\n";
-		}
-
-		
                 
 		$rb_agency_interact_options_arr = get_option('rb_agencyinteract_options');
 			$rb_agencyinteract_option_subscribeupsell = isset($rb_agency_interact_options_arr['rb_agencyinteract_option_subscribeupsell']) ?(int)$rb_agency_interact_options_arr['rb_agencyinteract_option_subscribeupsell']:0;
