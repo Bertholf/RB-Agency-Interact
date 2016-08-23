@@ -63,7 +63,7 @@ function rb_model_registration_form($visibility = 0,$result){
 		echo "		</div>\n";
 		echo "	</div>\n";
 
-	} elseif ($ProfileCustomType == 3) { // SELECT
+	} elseif ($ProfileCustomType == 3 || $ProfileCustomType == 9) { // SELECT
 		echo "	<div id=\"rbfield-". $result['ProfileCustomID'] ."\" class=\"rbfield rbselect rbsingle\">\n";
 		echo "		<label for=\"ProfileCustomID". $result['ProfileCustomID'] ."\">".__($result['ProfileCustomTitle'].$measurements_label, RBAGENCY_TEXTDOMAIN).":</label>\n";
 		echo "	<div>\n";
