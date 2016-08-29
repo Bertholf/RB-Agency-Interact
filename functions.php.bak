@@ -76,6 +76,8 @@
 					return dirname(__FILE__) . '/theme/member-overview.php'; 
 				} elseif (get_query_var( 'type' ) == "account") {
 					return dirname(__FILE__) . '/theme/member-account.php'; 
+				} elseif (get_query_var( 'type' ) == "accounts") {
+					return dirname(__FILE__) . '/theme/member-accounts.php'; 
 				} elseif (get_query_var( 'type' ) == "subscription") {
 					return dirname(__FILE__) . '/theme/member-subscription.php'; 
 				} elseif (get_query_var( 'type' ) == "manage") {

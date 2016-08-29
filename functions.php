@@ -3440,4 +3440,28 @@ function rbGetCurrentUserProfileTypeTitle(){
 	return $profileDataTypeTitle;
 }
 
+function RbGetProfileTypeChildCheckboxAjaxRegistration($parentID){
+	global $wpdb;
+	$sql = "SELECT DISTINCT(DataTypeID),DataTypeTitle,DataTypeLevel,DataTypeParentID,DataTypeTag FROM ".$wpdb->prefix."agency_data_type WHERE DataTypeParentID = $parentID";
+	$childs = $wpdb->get_results($sql,ARRAY_A);
+	if($wpdb->num_rows > 0){
+		foreach($childs as $child){
+			$space = "";
+			for($idx=0;$idx<$child["DataTypeLevel"];$idx++){
+				$space .= "&nbsp;&nbsp;";
+			}
+			$childTitle = stripslashes($child['DataTypeTitle']);
+			echo "<label style=\"display:none;\" class=\"CDataTypeID".$child['DataTypeParentID']."\">";
+				$t = trim(str_replace(' ','_',$child['DataTypeTitle']));
+				echo $space.'<input type="checkbox" name="profiletype[]" value="'.$child['DataTypeID'].'" id="'.$child['DataTypeID'].'" myparent="'.$child['DataTypeParentID'].'" class="DataTypeIDClassCheckbox"/>&nbsp;'.
+				trim($child['DataTypeTitle'])
+				.'&nbsp;<br/>';
+			echo "</label>";
+
+			do_action('rb_get_profile_type_childs_checkbox_ajax_register_display',$child["DataTypeID"]);
+		}
+	}
+}
+add_action("rb_get_profile_type_childs_checkbox_ajax_register_display","RbGetProfileTypeChildCheckboxAjaxRegistration",11,1);
+
 ?>
