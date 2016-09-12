@@ -247,28 +247,26 @@
 				if ( empty($plaintext_pass) )  
 					return;
 
-				//add_filter( 'wp_mail_content_type', function( $content_type ) {
-					//return 'text/html';
-				//});
-				//add_filter( 'wp_mail_content_type', 'set_html_content_type' );
+				add_filter( 'wp_mail_content_type', 'set_html_content_type' );
 				
+				$logo_path = site_url().$rb_agency_options_arr['rb_agency_option_agencylogo'];
 	
-				$message  = __('Hi there,', RBAGENCY_interact_TEXTDOMAIN) . "\r\n\r\n";
-				$message .= sprintf(__("Thanks for joining %s! Here's how to log in:", RBAGENCY_interact_TEXTDOMAIN), get_option('blogname')) ; 
-				$message .= "\r\n\r\n";
+				$message  = __('Hi there,', RBAGENCY_interact_TEXTDOMAIN) . '<br><br>';
+				$message .= sprintf(__('Thanks for joining %s! Here\'s how to log in:', RBAGENCY_interact_TEXTDOMAIN), get_option('blogname')) ; 
+				$message .= '<br><br>';
 				$message .= get_option('home') .'/profile-login/'; 
-				$message .= "\r\n";
-				$message .= sprintf(__('Username: %s', RBAGENCY_interact_TEXTDOMAIN), $user_login) . "\r\n"; 
-				$message .= sprintf(__('Password: %s', RBAGENCY_interact_TEXTDOMAIN), $plaintext_pass) . "\r\n\r\n"; 
-				$message .= sprintf(__('If you have any problems, please contact us at %s.', RBAGENCY_interact_TEXTDOMAIN), get_option('admin_email')) . "\r\n\r\n"; 
-				$message .= __('Regards,', RBAGENCY_interact_TEXTDOMAIN)."\r\n";
-				$message .= get_option('blogname') . __(' Team', RBAGENCY_interact_TEXTDOMAIN) ."\r\n"; 
-				$message .= get_option('home') ."\r\n"; 
-				$message .= '<img src="'.site_url().$rb_agency_options_arr['rb_agency_option_agencylogo'].'"/>';
+				$message .= '<br>';
+				$message .= sprintf(__('Username: %s', RBAGENCY_interact_TEXTDOMAIN), $user_login) . '<br>'; 
+				$message .= sprintf(__('Password: %s', RBAGENCY_interact_TEXTDOMAIN), $plaintext_pass) . '<br><br>'; 
+				$message .= sprintf(__('If you have any problems, please contact us at %s.', RBAGENCY_interact_TEXTDOMAIN), get_option('admin_email')) . '<br><br>'; 
+				$message .= __('Regards,', RBAGENCY_interact_TEXTDOMAIN).'<br>'; 
+				$message .= get_option('blogname') . __(' Team', RBAGENCY_interact_TEXTDOMAIN) .'<br>'; 
+				$message .= get_option('home') .'<br>';  
+				//$message .= '<img src="'.$logo_path.'"/>';
 
-				//$headers[]  = 'MIME-Version: 1.0'. "\r\n";
-				//$headers[] = 'Content-type: text/html; charset=iso-8859-1'. "\r\n";
-				$headers[] = 'From: '. get_option('blogname') .' <'. get_option('admin_email') .'>' . "\r\n";
+				$headers[]  = 'MIME-Version: 1.0';
+				$headers[] = 'Content-type: text/html; charset=iso-8859-1';
+				$headers[] = 'From: '. get_option('blogname') .' <'. get_option('admin_email') .'>'; 
 				
 				
 
@@ -276,7 +274,7 @@
 
 				wp_mail($user_email, sprintf(__('%s Registration Successful! Login Details', RBAGENCY_interact_TEXTDOMAIN), get_option('blogname')), $message, $headers);
 
-				//remove_filter( 'wp_mail_content_type', 'set_html_content_type' );
+				remove_filter( 'wp_mail_content_type', 'set_html_content_type' );
 			}
 
 			

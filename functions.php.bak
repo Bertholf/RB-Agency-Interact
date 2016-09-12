@@ -185,7 +185,7 @@
 						@wp_mail(get_option('admin_email'), sprintf(__('[%s] New User Registration'), get_option('blogname')), $message);
 					}
 					if($rb_agency_email_can_received > 0){
-						wp_mail($rb_agency_email,  sprintf(__('[%s] New User Registration'), get_option('blogname')), $message);
+						@wp_mail($rb_agency_email,  sprintf(__('[%s] New User Registration'), get_option('blogname')), $message);
 					}
 
 					
@@ -208,7 +208,7 @@
 					@wp_mail(get_option('admin_email'), sprintf(__('[%s] New User Registration'), get_option('blogname')), $message);
 
 					if($rb_agency_email_can_received > 0){
-						wp_mail($rb_agency_email,  sprintf(__('[%s] New User Registration'), get_option('blogname')), $message);
+						@wp_mail($rb_agency_email,  sprintf(__('[%s] New User Registration'), get_option('blogname')), $message);
 					}
 
 					if ( empty($plaintext_pass) )  
@@ -229,9 +229,9 @@
 				}
 			}else{
 				$headers = array();
-				$message  = sprintf(__('New user registration on your blog %s:'), get_option('blogname')) . "<br/><br/>";
-				$message .= sprintf(__('Username: %s'), $user_login) . "<br/><br/>";
-				$message .= sprintf(__('E-mail: %s'), $user_email) . "<br/>";
+				$message  = sprintf(__('New user registration on your blog %s:'), get_option('blogname')) . "\r\n\r\n";
+				$message .= sprintf(__('Username: %s'), $user_login) . "\r\n\r\n";
+				$message .= sprintf(__('E-mail: %s'), $user_email) . "\r\n";
 
 				$rb_agency_options_arr = get_option('rb_agency_options');
 				$_sendEmailtoAdmin = isset($rb_agency_options_arr['rb_agency_option_notify_admin_new_user'])?$rb_agency_options_arr['rb_agency_option_notify_admin_new_user']:0;
@@ -241,7 +241,7 @@
 				}
 
 				if($rb_agency_email_can_received > 0){
-					wp_mail($rb_agency_email, sprintf(__('[%s] New User Registration'), get_option('blogname')), $message);
+					@wp_mail($rb_agency_email, sprintf(__('[%s] New User Registration'), get_option('blogname')), $message);
 				}
 
 				if ( empty($plaintext_pass) )  
@@ -319,7 +319,7 @@
 				@wp_mail(get_option('admin_email'), $_subject, $message);
 				
 				if($rb_agency_email_can_received > 0){
-					wp_mail($rb_agency_email,$_subject, $message);
+					@wp_mail($rb_agency_email,$_subject, $message);
 				}
 		
 				if($new_user == true){
