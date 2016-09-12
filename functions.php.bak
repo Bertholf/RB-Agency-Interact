@@ -165,6 +165,8 @@
 
 			$rbagency_initial_email_after_registration = get_option('rbagency_initial_email_after_registration');
 			$rb_agency_options_arr = get_option('rb_agency_options');
+			$rb_agency_email = $rb_agency_options_arr["rb_agency_option_agencyemail"];
+			$rb_agency_email_can_received = $rb_agency_options_arr["rb_agency_option_agency_email_receive_notification"] > 0 ? 1 : 0;
 
 			$rbagency_use_s2member = get_option('rbagency_use_s2member');
 			
@@ -181,6 +183,9 @@
 					
 					if($_sendEmailtoAdmin == 1){
 						@wp_mail(get_option('admin_email'), sprintf(__('[%s] New User Registration'), get_option('blogname')), $message);
+					}
+					if($rb_agency_email_can_received > 0){
+						wp_mail($rb_agency_email,  sprintf(__('[%s] New User Registration'), get_option('blogname')), $message);
 					}
 
 					
@@ -201,6 +206,10 @@
 					$message .= sprintf(__('E-mail: %s'), $user_email) . "\r\n";
 
 					@wp_mail(get_option('admin_email'), sprintf(__('[%s] New User Registration'), get_option('blogname')), $message);
+
+					if($rb_agency_email_can_received > 0){
+						wp_mail($rb_agency_email,  sprintf(__('[%s] New User Registration'), get_option('blogname')), $message);
+					}
 
 					if ( empty($plaintext_pass) )  
 						return;
@@ -229,6 +238,10 @@
 				
 				if($_sendEmailtoAdmin == 1){
 					@wp_mail(get_option('admin_email'), sprintf(__('[%s] New User Registration'), get_option('blogname')), $message);
+				}
+
+				if($rb_agency_email_can_received > 0){
+					wp_mail($rb_agency_email, sprintf(__('[%s] New User Registration'), get_option('blogname')), $message);
 				}
 
 				if ( empty($plaintext_pass) )  
@@ -300,9 +313,15 @@
 				
 				$message .= 'Manage Pending Account: '. admin_url('admin.php?page=rb_agency_interact_approvemembers');
 			
-			
+				$rb_agency_options_arr = get_option('rb_agency_options');
+				$rb_agency_email = $rb_agency_options_arr["rb_agency_option_agencyemail"];
+				$rb_agency_email_can_received = $rb_agency_options_arr["rb_agency_option_agency_email_receive_notification"] > 0 ? 1 : 0;
 				@wp_mail(get_option('admin_email'), $_subject, $message);
 				
+				if($rb_agency_email_can_received > 0){
+					wp_mail($rb_agency_email,$_subject, $message);
+				}
+		
 				if($new_user == true){
 					$message  = __('Hi there,', RBAGENCY_interact_TEXTDOMAIN) . "\r\n\r\n";
 					$message .= sprintf(__("Thanks for joining %s! ", RBAGENCY_interact_TEXTDOMAIN), get_option('blogname')) . "\r\n\r\n"; 
