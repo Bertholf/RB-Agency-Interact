@@ -807,8 +807,8 @@ function rb_get_user_profilstatus(){
 	
 	function rb_interact_sendadmin_pending_info($_userID){
 		global $wpdb, $current_user, $wp_roles;
-		$query_lastinfo = "SELECT ProfileDateUpdated,ProfileIsActive,ProfileUserLinked FROM  " . table_agency_profile . " WHERE ProfileID=$_userID";
-		$results_lastinfo = $wpdb->get_row( $wpdb->prepare( $query_lastinfo ), ARRAY_A );
+		$query_lastinfo = "SELECT ProfileDateUpdated,ProfileIsActive,ProfileUserLinked FROM  " . table_agency_profile . " WHERE ProfileID=%d";
+		$results_lastinfo = $wpdb->get_row( $wpdb->prepare( $query_lastinfo,$_userID ), ARRAY_A );
 		
 		$_lastinfoDateUpdated = $results_lastinfo['ProfileDateUpdated'];// => 2015-08-27 08:57:33
 		$_lastinfoStatus = $results_lastinfo['ProfileIsActive'];
