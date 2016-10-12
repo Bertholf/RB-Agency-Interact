@@ -277,7 +277,8 @@ if (isset($_POST['action'])) {
 
 					} elseif ($rb_agency_option_profilenaming == 2) {
 						$errorValidation['rb_agency_option_profilenaming'] = "<b><i>".LabelSingular . __(" must have a display name identified", RBAGENCY_TEXTDOMAIN) . ".</i></b><br>";
-						$have_error = true;
+						//$have_error = true;
+						$ProfileContactDisplay = $ProfileContactNameFirst . " " . $ProfileContactNameLast;
 					} elseif ($rb_agency_option_profilenaming == 3) {
 						$ProfileContactDisplay = "ID " . $ProfileID;
 					} elseif ($rb_agency_option_profilenaming == 4) {
@@ -327,10 +328,80 @@ if (isset($_POST['action'])) {
 						
 				}
 				
+				if (empty($ProfileContactDisplay)) { // Probably a new record... 
+					if ($rb_agency_option_profilenaming == 0) {
+						$ProfileContactDisplay = $ProfileContactNameFirst . " " . $ProfileContactNameLast;
+					} elseif ($rb_agency_option_profilenaming == 1) {
+						// If John-D already exists, make John-D-1
+						for ($i = 'a', $j = 1; $j <= 26; $i++, $j++) {
+							if (isset($ar) && in_array($i, $ar)){
+								$ProfileContactDisplay = $ProfileContactNameFirst . " " . $i .'-'. $j;
+							} else {
+								$ProfileContactDisplay = $ProfileContactNameFirst . " " . substr($ProfileContactNameLast, 0, 1);
+							}
+						}
+
+					} elseif ($rb_agency_option_profilenaming == 2) {
+						$errorValidation['rb_agency_option_profilenaming'] = "<b><i>".LabelSingular . __(" must have a display name identified", RBAGENCY_TEXTDOMAIN) . ".</i></b><br>";
+						//$have_error = true;
+						$ProfileContactDisplay = $ProfileContactNameFirst . " ". $ProfileContactNameLast;
+					} elseif ($rb_agency_option_profilenaming == 3) {
+						$ProfileContactDisplay = "ID " . $ProfileID;
+					} elseif ($rb_agency_option_profilenaming == 4) {
+						$ProfileContactDisplay = $ProfileContactNameFirst;
+					} elseif ($rb_agency_option_profilenaming == 5) {
+						$ProfileContactDisplay = $ProfileContactNameLast;
+					}
+				}
 				
 				
+				$UpdateNotificationsClass = new RBAgency_Interact_Update_Notifications();
+				$request = [
+					'ProfileID' =>$ProfileID,
+					'ProfileContactDisplay' =>$ProfileContactDisplay,
+					'ProfileContactNameFirst' => $ProfileContactNameFirst,
+					'ProfileContactNameLast' => $ProfileContactNameLast,
+					'ProfileContactEmail'	=> $ProfileContactEmail,
+					'ProfileContactWebsite' => $ProfileContactWebsite,
+					'ProfileContactLinkFacebook' => $ProfileContactLinkFacebook,
+					'ProfileContactLinkTwitter' => $ProfileContactLinkTwitter,
+					'ProfileContactLinkYoutube' => $ProfileContactLinkYoutube,
+					'ProfileContactLinkFlickr' => $ProfileContactLinkFlickr,
+					'ProfileContactPhoneHome' => $ProfileContactPhoneHome,
+					'ProfileContactPhoneCell' => $ProfileContactPhoneCell,
+					'ProfileContactPhoneWork' => $ProfileContactPhoneWork,
+					'ProfileGender' => $ProfileGender,
+					'ProfileDateBirth' => $ProfileDateBirth,
+					'ProfileLocationStreet' => $ProfileLocationStreet,
+					'ProfileLocationCity' => $ProfileLocationCity,
+					'ProfileLocationState' => $ProfileLocationState,
+					'ProfileLocationZip' => $ProfileLocationZip,
+					'ProfileLocationCountry' => $ProfileLocationCountry
+				];
+				$primaryInfoResult = $UpdateNotificationsClass->checkPrimaryInfoChanges($request);
 				
+				if(!empty($primaryInfoResult)){					
+					$user_id = $primaryInfoResult['ProfileUserLinked'];
+					foreach($primaryInfoResult as $key=>$val){
+						if($key != 'ProfileUserLinked'){
+							update_user_meta( $user_id, 'updated_'.$key, $val );
+						}						
+					}
+				}
+
+				$request = $UpdateNotificationsClass->generateRequestCustomFields();
+				$request['ProfileID'] = $ProfileID;
+				$customFieldResult = $UpdateNotificationsClass->checkCustomFieldChanges($request);
+				if(!empty($customFieldResult)){					
+					@$user_id = $customFieldResult['ProfileUserLinked'];
+					foreach(@$customFieldResult as $key=>$val){
+						if($key != 'ProfileUserLinked'){
+							update_user_meta( $user_id, 'updated_'.$key, $val );							
+						}						
+					}
+				}
 				
+
 				rb_interact_sendadmin_pending_info($ProfileID);
 				
 				
@@ -378,18 +449,23 @@ if (isset($_POST['action'])) {
 					@$wpdb->query("DELETE FROM ".$wpdb->prefix."usermeta WHERE meta_key = 'SocialMediaName_".$v."' AND user_id = ".$ProfileID);
 				}
 
-				foreach($_POST['profile_social_media_name'] as $k=>$v){
-					if(!empty($v) && !empty($_POST['profile_social_media_url'][$k])){
-						add_user_meta($ProfileID,'SocialMediaName_'.$v,$v);
-					}								
+				if(isset($_POST['profile_social_media_name'])){
+					foreach($_POST['profile_social_media_name'] as $k=>$v){
+						if(!empty($v) && !empty($_POST['profile_social_media_url'][$k])){
+							add_user_meta($ProfileID,'SocialMediaName_'.$v,$v);
+						}								
+					}
 				}
+				
 
 				//user meta social media url
-				foreach($_POST['profile_social_media_url'] as $k=>$v){
-					if(!empty($v) && !empty($_POST['profile_social_media_name'][$k])){
-						add_user_meta($ProfileID,'SocialMediaURL_'.$_POST['profile_social_media_name'][$k],$v);
-					}
+				if(isset($_POST['profile_social_media_url'])){
+					foreach($_POST['profile_social_media_url'] as $k=>$v){
+						if(!empty($v) && !empty($_POST['profile_social_media_name'][$k])){
+							add_user_meta($ProfileID,'SocialMediaURL_'.$_POST['profile_social_media_name'][$k],$v);
+						}
 
+					}
 				}
 				// Add New Custom Field Values
 				
@@ -406,6 +482,7 @@ if (isset($_POST['action'])) {
 
 
 						if(is_array($value)){
+							$value = array_unique($value);
 							$value =  implode(",",$value);
 						}
 						if(!empty($value)){

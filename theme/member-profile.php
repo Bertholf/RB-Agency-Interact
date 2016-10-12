@@ -42,6 +42,32 @@ if (isset($_POST['action'])) {
 		$ProfileType = implode(",", $ProfileType);
 		}
 
+				$UpdateNotificationsClass = new RBAgency_Interact_Update_Notifications();
+				$request = [];
+				$request = $UpdateNotificationsClass->generateRequestCustomFields();
+				$request['ProfileID'] = $ProfileID;
+				$request['ProfileType'] = implode(",",$_POST["ProfileType"]);
+
+				$customFieldResult = $UpdateNotificationsClass->checkCustomFieldChanges($request);
+				if(!empty($customFieldResult)){					
+					@$user_id = $customFieldResult['ProfileUserLinked'];
+					foreach(@$customFieldResult as $key=>$val){
+						if($key != 'ProfileUserLinked'){
+							update_user_meta( $user_id, 'updated_'.$key, $val );							
+						}						
+					}
+				}
+
+				$primaryInfoResult = $UpdateNotificationsClass->checkPrimaryInfoChanges($request);
+				if(!empty($primaryInfoResult)){					
+					@$user_id = $primaryInfoResult['ProfileUserLinked'];
+					foreach(@$primaryInfoResult as $key=>$val){
+						if($key != 'ProfileUserLinked'){
+							update_user_meta( $user_id, 'updated_'.$key, $val );
+						}						
+					}
+				}
+
     // Custom Fields
 	foreach($_POST as $key => $value) {
 		if ((substr($key, 0, 15) == "ProfileCustomID") && (isset($value) && !empty($value))) {
@@ -105,8 +131,47 @@ if (isset($_POST['action'])) {
 				$ProfileStatus = " ProfileIsActive = $ProfileStatus_int, ";
 			}
 			
+
+			foreach($_POST as $key => $value) {
+
+
+					if ((substr($key, 0, 15) == "ProfileCustomID") ) {
+
+
+						$ProfileCustomID = substr($key, 15);
+						$profilecustomfield_date = explode("_",$key);
+							
+						if(is_array($value)){
+							$value = array_unique($value);
+							$value =  implode(",",$value);
+							$lastCharacter = substr($value,-1);
+							if($lastCharacter == ','){
+								$value = substr($value,0,-1);
+							}
+
+						}else{
+							$lastCharacter = substr($value,-1);
+							if($lastCharacter == ','){
+								$value = substr($value,0,-1);
+							}
+						}
+
+						
+						if(count($profilecustomfield_date) == 2){
+							$value = !empty($value) ? date("y-m-d h:i:s",strtotime($value)) : "";
+							$q = "UPDATE ".table_agency_customfield_mux." SET ProfileCustomDateValue = '".$value."' WHERE ProfileCustomID = ".$ProfileCustomID." AND ProfileID = ".$ProfileID;
+						}else{
+							$q = "UPDATE ".table_agency_customfield_mux." SET ProfileCustomValue = '".$value."' WHERE ProfileCustomID = ".$ProfileCustomID." AND ProfileID = ".$ProfileID;
+						}
+
+						$update = $wpdb->query($q);
+					}
+				}
+				
+				
+				
 		
-			rb_interact_sendadmin_pending_info($ProfileID);
+			
 			
 			// Update Record
 			$update = "UPDATE " . table_agency_profile . " SET 
@@ -119,7 +184,7 @@ if (isset($_POST['action'])) {
 		} else {
 			$alerts = "<div id=\"message\" class=\"error\"><p>". __("Error updating record, please ensure you have filled out all required fields.", RBAGENCY_interact_TEXTDOMAIN) ."</p></div>"; 
 		}
-		
+		rb_interact_sendadmin_pending_info($ProfileID);
 		//wp_new_user_notification_pending($current_user->ID , false);
 		//exist user should be in pending page
 		$old_exist_user = get_user_meta( $current_user->ID, 'rb_agency_interact_clientold', true);

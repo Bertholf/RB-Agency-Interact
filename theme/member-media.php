@@ -71,7 +71,8 @@ if (isset($_POST['action'])) {
 					
 			}
 			
-			
+			$UpdateNotificationsClass = new RBAgency_Interact_Update_Notifications();
+
 			
         // fixed error of folder is not created 
 		$ProfileGallery = rb_agency_createdir($ProfileGallery,false);// Check Directory - create directory if does not exist
@@ -104,6 +105,9 @@ if (isset($_POST['action'])) {
 										$image->save(RBAGENCY_UPLOADPATH . $ProfileGallery ."/". $safeProfileMediaFilename);
 										// Add to database
 									$results = $wpdb->query("INSERT INTO " . table_agency_profile_media . " (ProfileID, ProfileMediaType, ProfileMediaTitle, ProfileMediaURL) VALUES ('". $ProfileID ."','". $uploadMediaType ."','". $safeProfileMediaFilename ."','". $safeProfileMediaFilename ."')");
+
+									$UpdateNotificationsClass->checkUploadPhotoChanges($ProfileID,$safeProfileMediaFilename,'Image');
+
 								} else {
 									$error .= "<b><i>".__("Please upload an image file only", RBAGENCY_interact_TEXTDOMAIN)."</i></b><br />";
 									  $have_error = true;
@@ -122,6 +126,8 @@ if (isset($_POST['action'])) {
 									
 						       		move_uploaded_file($_FILES['profileMedia'. $i]['tmp_name'], RBAGENCY_UPLOADPATH . $ProfileGallery ."/".$safeProfileMediaFilename);
 									
+									$UpdateNotificationsClass->checkUploadPhotoChanges($ProfileID,$safeProfileMediaFilename,'VoiceDemo');
+
 								} else {
 									$error .= "<b><i>".__("Please upload a mp3 file only", RBAGENCY_interact_TEXTDOMAIN) ."</i></b><br />";
 									$have_error = true;
@@ -133,6 +139,8 @@ if (isset($_POST['action'])) {
 								{
 										$results = $wpdb->query("INSERT INTO " . table_agency_profile_media . " (ProfileID, ProfileMediaType, ProfileMediaTitle, ProfileMediaURL) VALUES ('". $ProfileID ."','". $uploadMediaType ."','". $safeProfileMediaFilename ."','". $safeProfileMediaFilename ."')");
 						        		move_uploaded_file($_FILES['profileMedia'. $i]['tmp_name'], RBAGENCY_UPLOADPATH . $ProfileGallery ."/".$safeProfileMediaFilename);
+
+						        		$UpdateNotificationsClass->checkUploadPhotoChanges($ProfileID,$safeProfileMediaFilename,'Resume');
 								} else {
 										$error .= "<b><i>".__("Please upload PDF/MSword/RTF files only", RBAGENCY_interact_TEXTDOMAIN) ."</i></b><br />";
 									  $have_error = true;
@@ -144,6 +152,8 @@ if (isset($_POST['action'])) {
 								{
 									$results = $wpdb->query("INSERT INTO " . table_agency_profile_media . " (ProfileID, ProfileMediaType, ProfileMediaTitle, ProfileMediaURL) VALUES ('". $ProfileID ."','". $uploadMediaType ."','". $safeProfileMediaFilename ."','". $safeProfileMediaFilename ."')");
 						        		move_uploaded_file($_FILES['profileMedia'. $i]['tmp_name'], RBAGENCY_UPLOADPATH . $ProfileGallery ."/".$safeProfileMediaFilename);
+
+						        		$UpdateNotificationsClass->checkUploadPhotoChanges($ProfileID,$safeProfileMediaFilename,'Headshot');
 								} else {
 										$error .= "<b><i>".__("Please upload PDF/MSWord/RTF/Image files only", RBAGENCY_interact_TEXTDOMAIN) ."</i></b><br />";
 									  $have_error = true;
@@ -155,6 +165,8 @@ if (isset($_POST['action'])) {
 								{
 									$results = $wpdb->query("INSERT INTO " . table_agency_profile_media . " (ProfileID, ProfileMediaType, ProfileMediaTitle, ProfileMediaURL) VALUES ('". $ProfileID ."','". $uploadMediaType ."','". $safeProfileMediaFilename ."','". $safeProfileMediaFilename ."')");
 						            move_uploaded_file($_FILES['profileMedia'. $i]['tmp_name'], RBAGENCY_UPLOADPATH . $ProfileGallery ."/".$safeProfileMediaFilename);
+
+						            $UpdateNotificationsClass->checkUploadPhotoChanges($ProfileID,$safeProfileMediaFilename,'CompCard');
 								} else {
 										$error .= "<b><i>".__("Please upload jpeg or png files only", RBAGENCY_interact_TEXTDOMAIN) ."</i></b><br />";
 									$have_error = true;
@@ -183,6 +195,9 @@ if (isset($_POST['action'])) {
 															if (in_array($_FILES['profileMedia' . $i]['type'], $arr_extensions)) {
 																$results = $wpdb->query("INSERT INTO " . table_agency_profile_media . " (ProfileID, ProfileMediaType, ProfileMediaTitle, ProfileMediaURL) VALUES ('" . $ProfileID . "','" . $uploadMediaType . "','" . $safeProfileMediaFilename . "','" . $safeProfileMediaFilename . "')");
 																move_uploaded_file($_FILES['profileMedia' . $i]['tmp_name'], RBAGENCY_UPLOADPATH . $ProfileGallery . "/" . $safeProfileMediaFilename);
+
+																$UpdateNotificationsClass->checkUploadPhotoChanges($ProfileID,$safeProfileMediaFilename);
+
 															} else {
 																$errorValidation['profileMedia'] = "<b><i>".__("Please upload ".$custom_media_extenstion." files only", RBAGENCY_TEXTDOMAIN)."</i></b><br />";
 																$have_error = true;
@@ -193,6 +208,8 @@ if (isset($_POST['action'])) {
 									if($_FILES['profileMedia'. $i]['type'] == "image/pjpeg" || $_FILES['profileMedia'. $i]['type'] == "image/jpeg" || $_FILES['profileMedia'. $i]['type'] == "image/gif" || $_FILES['profileMedia'. $i]['type'] == "image/png"){
 									$results = $wpdb->query("INSERT INTO " . table_agency_profile_media . " (ProfileID, ProfileMediaType, ProfileMediaTitle, ProfileMediaURL) VALUES ('". $ProfileID ."','". $uploadMediaType ."','". $safeProfileMediaFilename ."','". $safeProfileMediaFilename ."')");
 						       			move_uploaded_file($_FILES['profileMedia'. $i]['tmp_name'], RBAGENCY_UPLOADPATH . $ProfileGallery ."/".$safeProfileMediaFilename);
+
+						       			$UpdateNotificationsClass->checkUploadPhotoChanges($ProfileID,$safeProfileMediaFilename);
 								} else {
 										$error .= "<b><i>".__("Please upload jpeg or png files only", RBAGENCY_interact_TEXTDOMAIN) ."</i></b><br />";
 									$have_error = true;
@@ -210,24 +227,32 @@ if (isset($_POST['action'])) {
 				$profileMediaURL = rb_agency_get_VideoFromObject($_POST['profileMediaV1']);
 				$profileVideoType = rb_agency_get_videotype($_POST['profileMediaV1']);
 				$results = $wpdb->query("INSERT INTO " . table_agency_profile_media . " (ProfileID, ProfileMediaType, ProfileMediaTitle, ProfileMediaURL, ProfileVideoType) VALUES ('". $ProfileID ."','". $profileMediaType ."','". $profileMediaType ."','". $profileMediaURL ."','".$profileVideoType."')");
+
+				$UpdateNotificationsClass->checkUploadVideoChanges($ProfileID,$profileMediaURL,'VideoSlate');
 			}
 			if (isset($_POST['profileMediaV2']) && !empty($_POST['profileMediaV2'])) {
 				$profileMediaType	=$_POST['profileMediaV2Type'];
 				$profileMediaURL = rb_agency_get_VideoFromObject($_POST['profileMediaV2']);
 				$profileVideoType = rb_agency_get_videotype($_POST['profileMediaV2']);
 				$results = $wpdb->query("INSERT INTO " . table_agency_profile_media . " (ProfileID, ProfileMediaType, ProfileMediaTitle, ProfileMediaURL, ProfileVideoType) VALUES ('". $ProfileID ."','". $profileMediaType ."','". $profileMediaType ."','". $profileMediaURL ."','".$profileVideoType."')");
+
+				$UpdateNotificationsClass->checkUploadVideoChanges($ProfileID,$profileMediaURL,'VideoMonologue');
 			}
 			if (isset($_POST['profileMediaV3']) && !empty($_POST['profileMediaV3'])) {
 				$profileMediaType	=$_POST['profileMediaV3Type'];
 				$profileMediaURL = rb_agency_get_VideoFromObject($_POST['profileMediaV3']);
 				$profileVideoType = rb_agency_get_videotype($_POST['profileMediaV3']);
 				$results = $wpdb->query("INSERT INTO " . table_agency_profile_media . " (ProfileID, ProfileMediaType, ProfileMediaTitle, ProfileMediaURL, ProfileVideoType) VALUES ('". $ProfileID ."','". $profileMediaType ."','". $profileMediaType ."','". $profileMediaURL ."','".$profileVideoType."')");
+
+				$UpdateNotificationsClass->checkUploadVideoChanges($ProfileID,$profileMediaURL,'DemoReel');
 			}
 			if (isset($_POST['profileMediaV4']) && !empty($_POST['profileMediaV4'])) {
 				$profileMediaType	=$_POST['profileMediaV4Type'];
 				$profileMediaURL = rb_agency_get_VideoFromObject($_POST['profileMediaV4']);
 				$profileVideoType = rb_agency_get_videotype($_POST['profileMediaV4']);
 				$results = $wpdb->query("INSERT INTO " . table_agency_profile_media . " (ProfileID, ProfileMediaType, ProfileMediaTitle, ProfileMediaURL, ProfileVideoType) VALUES ('". $ProfileID ."','". $profileMediaType ."','". $profileMediaType ."','". $profileMediaURL ."','".$profileVideoType."')");
+
+				$UpdateNotificationsClass->checkUploadVideoChanges($ProfileID,$profileMediaURL,'SoundCloud');
 			}
 
 			/* --------------------------------------------------------- CLEAN THIS UP -------------- */

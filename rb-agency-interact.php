@@ -105,6 +105,8 @@ See license.txt for full details.
 	include_once( RBAGENCY_INTERACT_PLUGIN_DIR .'lib/RBAgency-Interact-Extends.php');
 		add_action( 'init', array('RBAgency_Interact_Extends', 'init'), 0, 1 );
 
+	require_once(RBAGENCY_INTERACT_PLUGIN_DIR . "lib/RBAgency-Interact-Update_Notifications.php");
+
 // *************************************************************************************************** //
 
 /*

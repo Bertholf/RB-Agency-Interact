@@ -27,6 +27,7 @@
 		$count3 = $wpdb->num_rows;
 	foreach($results as $data) {
 		$ProfileID					=$data['ProfileID'];
+		$ProfileGender = $data['ProfileGender'];
 		$ProfileUserLinked			=$data['ProfileUserLinked'];
 		$ProfileDateUpdated			=stripslashes($data['ProfileDateUpdated']);
 		$ProfileType				=stripslashes($data['ProfileType']);
@@ -112,7 +113,9 @@
 		echo'<input type="hidden" name="ctype" value="'.(isset($ProfileCustomType)?$ProfileCustomType:"").'" >';
 			$ProfileCustomTitle = $data3['ProfileCustomTitle'];
 			$ProfileCustomType  = $data3['ProfileCustomType'];
-			if (($data3["ProfileCustomShowGender"] == $ProfileGender || $data3["ProfileCustomShowGender"] == 0)  && $permit_type == true ) {
+			$genderTitle = rb_agency_getGenderTitle($ProfileGender);						
+			$customFieldGenders = get_option("ProfileCustomShowGenderArr_".$data3['ProfileCustomID']);
+			if (strpos($customFieldGenders, $genderTitle)>-1  && $permit_type == true  ) {
 
 			//  SET Label for Measurements
 			//  Imperial(in/lb), Metrics(ft/kg)
