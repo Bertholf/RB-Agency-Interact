@@ -180,9 +180,15 @@ function rb_model_registration_form($visibility = 0,$result){
 		echo "	</div>";
 
 	} elseif ($ProfileCustomType == 7) { // Imperial(in/lb), Metrics(ft/kg)
-		/*   if($result['ProfileCustomOptions']==1){
+		
+		 	if($result['ProfileCustomOptions']==3){
+
+		 		$arr = explode(',',$userInput["ProfileCustomID". $result['ProfileCustomID']]);
+
+		 		echo "	<div id=\"rbfield-". $result['ProfileCustomID'] ."\" class=\"rbfield rbtextarea rbsingle\">\n";
+		 		echo "		<label for=\"ProfileCustomID". $result['ProfileCustomID'] ."\">".__($result['ProfileCustomTitle'].$measurements_label, RBAGENCY_TEXTDOMAIN).":</label>\n";
 						if($rb_agency_option_unittype == 1){
-							echo "<select name=\"ProfileCustomID". $result['ProfileCustomID'] ."\">\n";
+							echo "<div><select name=\"ProfileCustomID". $result['ProfileCustomID'] ."\">\n";
 								if (empty($ProfileCustomValue)) {
 							echo " 				<option value=\"\">--</option>\n";
 								}
@@ -195,20 +201,23 @@ function rb_model_registration_form($visibility = 0,$result){
 									$heightraw = $i;
 									$heightfeet = floor($heightraw/12);
 									$heightinch = $heightraw - floor($heightfeet*12);
-							echo " <option value=\"". $i ."\" ". selected($ProfileCustomValue, $i) .">". $heightfeet ." ft ". $heightinch ." in</option>\n";
+							$selected = in_array($i, $arr) ? "selected" : "";
+							echo " <option value=\"". $i ."\" ". $selected .">". $heightfeet ." ft ". $heightinch ." in</option>\n";
 									$i++;
 								}
-							echo " </select>\n";
+							echo " </select></div>\n";
 						} else {
-							echo "	<input type=\"text\" id=\"ProfileStatHeight\" name=\"ProfileStatHeight\" value=\"". $ProfileCustomValue ."\" />\n";
+							echo "	<div><input type=\"text\" id=\"ProfileStatHeight\" name=\"ProfileStatHeight\" value=\"". $ProfileCustomValue ."\" /></div>\n";
 						}
+				echo "	</div>";
 			} else {
-		 */
-		echo "	<div id=\"rbfield-". $result['ProfileCustomID'] ."\" class=\"rbfield rbtextarea rbsingle\">\n";
-		echo "		<label for=\"ProfileCustomID". $result['ProfileCustomID'] ."\">".__($result['ProfileCustomTitle'].$measurements_label, RBAGENCY_TEXTDOMAIN).":</label>\n";
-		echo "		<div><input type=\"text\" name=\"ProfileCustomID". $result['ProfileCustomID'] ."\" value=\"". (isset($userInput["ProfileCustomID". $result['ProfileCustomID']]) ? $userInput["ProfileCustomID". $result['ProfileCustomID']] : "" ) ."\" /></div>\n";
-		echo "	</div>";
-	}
+		 
+				echo "	<div id=\"rbfield-". $result['ProfileCustomID'] ."\" class=\"rbfield rbtextarea rbsingle\">\n";
+				echo "		<label for=\"ProfileCustomID". $result['ProfileCustomID'] ."\">".__($result['ProfileCustomTitle'].$measurements_label, RBAGENCY_TEXTDOMAIN).":</label>\n";
+				echo "		<div><input type=\"text\" name=\"ProfileCustomID". $result['ProfileCustomID'] ."\" value=\"". (isset($userInput["ProfileCustomID". $result['ProfileCustomID']]) ? $userInput["ProfileCustomID". $result['ProfileCustomID']] : "" ) ."\" /></div>\n";
+				echo "	</div>";
+			}
+		}
 }
 
 
