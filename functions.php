@@ -1512,7 +1512,7 @@ function rb_get_customfields_registration(){
 			$find_in_set = " FIND_IN_SET('".$_REQUEST['profile_types']."',customtypes.ProfileCustomDataTypeID)>0 ";
 		}
 
-		$sql = "SELECT customfield.*,customtypes.* FROM ".$wpdb->prefix."agency_customfields customfield INNER JOIN ".$wpdb->prefix."agency_customfields_types customtypes on customtypes.ProfileCustomID = customfield.ProfileCustomID WHERE $find_in_set AND customfield.ProfileCustomShowInitialRegistration > 0 ORDER BY customfield.ProfileCustomOrder ASC";
+		$sql = "SELECT customfield.*,customtypes.* FROM ".$wpdb->prefix."agency_customfields customfield INNER JOIN ".$wpdb->prefix."agency_customfields_types customtypes on customtypes.ProfileCustomID = customfield.ProfileCustomID WHERE $find_in_set AND customfield.ProfileCustomShowInitialRegistration > 0 AND (customfield.ProfileCustomView = 0 OR customfield.ProfileCustomView = 1) ORDER BY customfield.ProfileCustomOrder ASC";
 	
 
 	$results = $wpdb->get_results($sql,ARRAY_A);		
@@ -1561,7 +1561,9 @@ function RbGetProfileTypeChildCheckboxAjaxRegistration($parentID,$genderID){
 			if(in_array($genderTitle, $allowedGendersArr) || in_array("All Gender", $allowedGendersArr)){
 				echo "<label style=\"display:none;\" class=\"CDataTypeID".$child['DataTypeParentID']."\">";
 					$t = trim(str_replace(' ','_',$child['DataTypeTitle']));
-					echo $space.'<input type="checkbox" name="profiletype[]" value="'.$child['DataTypeID'].'" id="'.$child['DataTypeID'].'" myparent="'.$child['DataTypeParentID'].'" class="DataTypeIDClassCheckbox"/>&nbsp;'.
+
+					$checked = in_array($child['DataTypeID'], $_SESSION['selected_sub_type']) ? 'checked="checked"' : "";
+					echo $space.'<input type="checkbox" name="profiletype[]" value="'.$child['DataTypeID'].'" id="'.$child['DataTypeID'].'" myparent="'.$child['DataTypeParentID'].'" class="DataTypeIDClassCheckbox" '.$checked.'/>&nbsp;'.
 					trim($child['DataTypeTitle'])
 					.'&nbsp;<br/>';
 				echo "</label>";
