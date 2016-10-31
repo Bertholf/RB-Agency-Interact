@@ -39,6 +39,7 @@
 	$query = "SELECT * FROM " . table_agency_profile . " WHERE ProfileUserLinked='$ProfileUserLinked' LIMIT 1";
 	$results = $wpdb->get_results($query,ARRAY_A) or die ( __("Error, query failed", RBAGENCY_interact_TEXTDOMAIN ));
 	$count = $wpdb->num_rows;
+	$ProfileTypeNotArray = "";
 	foreach($results as $data) {
 
 		$ProfileGender = $data['ProfileGender'];
@@ -66,6 +67,8 @@
 		$ProfileLocationCountry		=stripslashes($data['ProfileLocationCountry']);
 		$ProfileDateUpdated			=$data['ProfileDateUpdated'];
 		$ProfileCustomType          =$data["ProfileType"];
+
+		$ProfileTypeNotArray		=stripslashes($data['ProfileType']);
 
 			$ptype = explode(",",$ProfileCustomType);
 		//check if array
@@ -236,7 +239,6 @@
 
 	$results3 = $wpdb->get_results($query3,ARRAY_A);
 		$count3 = $wpdb->num_rows;
-
 	foreach($results3 as $data3) {
 		/*
 		 * Get Profile Types to
@@ -246,28 +248,20 @@
 
 		$PID = $data3['ProfileCustomID'];
 
-		$get_types = "SELECT ProfileCustomTypes FROM ". table_agency_customfields_types .
+
+		$get_types = "SELECT ProfileCustomTypes,ProfileCustomDataTypeID FROM ". table_agency_customfields_types .
 					" WHERE ProfileCustomID = " . $PID;
-		$result = $wpdb->get_results($get_types,ARRAY_A);
-		$types = "";
-		foreach($result as $p){
-		// 	$types = $p['ProfileCustomTypes'];
-			//$types = str_replace("_", " ", $p['ProfileCustomTypes']);
-			$types = str_replace(" ", "_", trim(strtolower($p['ProfileCustomTypes'])));
+		$results = $wpdb->get_results($get_types,ARRAY_A);
+		$typesID = "";
+		foreach($results as $result){
+			$typesID = $result['ProfileCustomDataTypeID'];
 		}
-
-		/*if($types != "" || $types != NULL){
-			$types = explode(",",$types); 
-			if(in_array($ptype,$types)){$permit_type=true; }
-		}*/
-
-		if($types != "" || $types != NULL){
-			$types = explode(",",trim($types)); 
-			echo "<!-- ";
-			var_dump($types);
-			echo "-->";
-			if(count(array_intersect($ptype,$types))>0){
-				$permit_type=true; 
+		
+		$ProfileTypeToArray = explode(",",$ProfileTypeNotArray);
+		if($typesID != "" || $typesID != NULL){
+			$typesID = explode(",",trim($typesID));
+			if(count(array_intersect($ProfileTypeToArray,$typesID))>0){
+					$permit_type=true;
 			}
 		}
 
@@ -278,8 +272,9 @@
 
 			$genderTitle = rb_agency_getGenderTitle($ProfileGender);						
 			$customFieldGenders = get_option("ProfileCustomShowGenderArr_".$data3['ProfileCustomID']);
+			$showCustomfieldsGendersArr = explode(",",$customFieldGenders);
 
-	if (strpos($customFieldGenders, $genderTitle)>-1  && $permit_type == true ) {
+	if ((in_array($genderTitle, $showCustomfieldsGendersArr) || in_array('All Gender', $showCustomfieldsGendersArr)) && $permit_type == true ) {
 
 
 

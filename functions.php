@@ -1546,7 +1546,7 @@ function getProfileTypeTitleByTag($tag){
 
 function RbGetProfileTypeChildCheckboxAjaxRegistration($parentID,$genderID){
 	global $wpdb;
-	$sql = "SELECT DISTINCT(DataTypeID),DataTypeTitle,DataTypeLevel,DataTypeParentID,DataTypeTag FROM ".$wpdb->prefix."agency_data_type WHERE DataTypeParentID = $parentID";
+	$sql = "SELECT DISTINCT(DataTypeID),DataTypeTitle,DataTypeLevel,DataTypeParentID,DataTypeTag FROM ".$wpdb->prefix."agency_data_type WHERE DataTypeParentID = $parentID ORDER BY DataTypeOrder ASC";
 	$childs = $wpdb->get_results($sql,ARRAY_A);
 	if($wpdb->num_rows > 0){
 		foreach($childs as $child){
@@ -1578,13 +1578,13 @@ add_action("rb_get_profile_type_childs_checkbox_ajax_register_display","RbGetPro
 
 function rb_get_profile_type_id_by_slug($slug){
 	global $wpdb;
-	$sql = "SELECT DataTypeID FROM ".$wpdb->prefix."agency_data_type WHERE DataTypeTag = %s";
+	$sql = "SELECT DataTypeID FROM ".$wpdb->prefix."agency_data_type WHERE DataTypeTag = %s ORDER BY DataTypeOrder ASC";
 	$datatype = $wpdb->get_row($wpdb->prepare($sql,$slug),ARRAY_A);
 	return $datatype["DataTypeID"];
 }
 function rb_get_profile_type_by_id($id){
 	global $wpdb;
-	$sql = "SELECT * FROM ".$wpdb->prefix."agency_data_type WHERE DataTypeID = %d AND DataTypeParentID = 0";
+	$sql = "SELECT * FROM ".$wpdb->prefix."agency_data_type WHERE DataTypeID = %d AND DataTypeParentID = 0 ORDER BY DataTypeOrder ASC";
 	$datatype = $wpdb->get_row($wpdb->prepare($sql,$id),ARRAY_A);
 	return $datatype;
 }

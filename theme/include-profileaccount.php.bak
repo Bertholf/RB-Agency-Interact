@@ -276,7 +276,10 @@
 			echo'<input type="hidden" name="aps12" value="'.$data3["ProfileCustomShowGender"].'" >';
 			echo'<input type="hidden" name="ctype" value="'.($permit_type).'" >';
 
-	if (($data3["ProfileCustomShowGender"] == $ProfileGender) || ($data3["ProfileCustomShowGender"] == 0)  && $permit_type == true ) {
+			$genderTitle = rb_agency_getGenderTitle($ProfileGender);						
+			$customFieldGenders = get_option("ProfileCustomShowGenderArr_".$data3['ProfileCustomID']);
+
+	if (strpos($customFieldGenders, $genderTitle)>-1  && $permit_type == true ) {
 
 
 

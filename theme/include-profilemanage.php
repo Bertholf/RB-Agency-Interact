@@ -22,9 +22,11 @@
 		$profileType = "";
 		$ptype1 = get_user_meta($current_user->ID, "rb_agency_interact_profiletype", true);
 		$ProfileTypeArray = explode(",", $ptype1);
-		$query3 = "SELECT * FROM " . table_agency_data_type . " ORDER BY DataTypeTitle";
+		$query3 = "SELECT * FROM " . table_agency_data_type . " WHERE DataTypeLevel = 0 ORDER BY DataTypeOrder ASC";
 		$results3 = $wpdb->get_results($query3,ARRAY_A);
 		$count3 = $wpdb->num_rows;
+		$ProfileTypeNotArray = "";
+		// print_r($results3);
 	foreach($results as $data) {
 		$ProfileID					=$data['ProfileID'];
 		$ProfileGender = $data['ProfileGender'];
@@ -32,11 +34,19 @@
 		$ProfileDateUpdated			=stripslashes($data['ProfileDateUpdated']);
 		$ProfileType				=stripslashes($data['ProfileType']);
 		$ProfileType 				=explode(",",$ProfileType);
-
+		$ProfileTypeNotArray		=stripslashes($data['ProfileType']);
 		$i=1;
 		foreach($results3 as $data3) {
 
-				$profileType .=  "<input type=\"checkbox\" name=\"ProfileType[]\" value=\"".$data3['DataTypeID']."\" ".(in_array($data3['DataTypeID'], $ProfileType)?"checked=\"checked\"":"")."/>".$data3['DataTypeTitle'] ;
+				$dataID = $data3['DataTypeID'];
+
+				$profileType .=  "<input type=\"checkbox\" name=\"ProfileType[]\" value=\"".$data3['DataTypeID']."\" ".(in_array($data3['DataTypeID'], $ProfileType)?"checked=\"checked\"":"")."/> ".$data3['DataTypeTitle'] ;
+
+				$query3 = "SELECT * FROM " . table_agency_data_type . " WHERE DataTypeParentID = ".$dataID." ORDER BY DataTypeOrder ASC";
+				$results_child = $wpdb->get_results($query3,ARRAY_A);
+				foreach ($results_child as $child) {
+					$profileType .=  "<br />&nbsp;&nbsp;<input type=\"checkbox\" name=\"ProfileType[]\" value=\"".$child['DataTypeID']."\" ".(in_array($child['DataTypeID'], $ProfileType)?"checked=\"checked\"":"")."/> ".$child['DataTypeTitle'] ;
+				}
 
 				if($i<$count3){
 					$profileType .=  "</br>";
@@ -66,23 +76,7 @@
 
 	$results3 = $wpdb->get_results($query3,ARRAY_A);
 		$count3 = $wpdb->num_rows;
-
-
-		$ptype = $ProfileType;
-		//check if array
-		$ptype_arr = array();
-
-		if($ptype != ''){
-			if(is_array($ptype)){
-				foreach($ptype as $p){
-					$ptype_arr[] = str_replace(" ","_",trim(strtolower(retrieve_title($p))));
-				}
-				$ptype = array();
-				$ptype = $ptype_arr;
-			} else {
-					$ptype = str_replace(" ","_",trim(strtolower(retrieve_title($ptype))));
-			}
-        }
+	//echo $ProfileTypeNotArray;
 
 	foreach($results3 as $data3) {
 		/*
@@ -93,30 +87,33 @@
 
 		$PID = $data3['ProfileCustomID'];
 
-		$get_types = "SELECT ProfileCustomTypes FROM ". table_agency_customfields_types .
+		$get_types = "SELECT ProfileCustomTypes,ProfileCustomDataTypeID FROM ". table_agency_customfields_types .
 					" WHERE ProfileCustomID = " . $PID;
-		$result = $wpdb->get_results($get_types,ARRAY_A);
-		$types = "";
-		foreach( $result as $p){
-			$types = str_replace(" ", "_", trim(strtolower($p['ProfileCustomTypes'])));
-		}
+		$results = $wpdb->get_results($get_types,ARRAY_A);
 
-		if($types != "" || $types != NULL){
-			$types = explode(",",trim($types));
-			if(count(array_intersect($ptype,$types))>0){
+		$typesID = "";
+		foreach($results as $result){
+			$typesID = $result['ProfileCustomDataTypeID'];
+		}
+		$ProfileTypeToArray = explode(",",$ProfileTypeNotArray);
+		if($typesID != "" || $typesID != NULL){
+			$typesID = explode(",",trim($typesID));
+			if(count(array_intersect($ProfileTypeToArray,$typesID))>0){
 					$permit_type=true;
 			}
 		}
-
 
 		echo'<input type="hidden" name="aps12" value="'.$data3["ProfileCustomShowGender"].'" >';
 		echo'<input type="hidden" name="ctype" value="'.(isset($ProfileCustomType)?$ProfileCustomType:"").'" >';
 			$ProfileCustomTitle = $data3['ProfileCustomTitle'];
 			$ProfileCustomType  = $data3['ProfileCustomType'];
+
 			$genderTitle = rb_agency_getGenderTitle($ProfileGender);						
 			$customFieldGenders = get_option("ProfileCustomShowGenderArr_".$data3['ProfileCustomID']);
-			if (strpos($customFieldGenders, $genderTitle)>-1  && $permit_type == true  ) {
+			$showCustomfieldsGendersArr = explode(",",$customFieldGenders);
 
+			//echo $genderTitle."=".$data3['ProfileCustomTitle']."=".$data3['ProfileCustomID']."=".get_option("ProfileCustomShowGenderArr_".$data3["ProfileCustomID"])."<br>";
+			if (  (in_array($genderTitle, $showCustomfieldsGendersArr) || in_array('All Gender', $showCustomfieldsGendersArr)) && $permit_type == true) {
 			//  SET Label for Measurements
 			//  Imperial(in/lb), Metrics(ft/kg)
 			$rb_agency_options_arr = get_option('rb_agency_options');
@@ -344,42 +341,51 @@
 					echo "</div>";
 			} elseif ($ProfileCustomType == 7) { //Imperial/Metrics
 
-				echo "<div id=\"". $styleid ."\" class=\"". $styleclass ." rbselect rbsingle\">";
-				echo "<label for=\"".strtolower(trim($data3['ProfileCustomTitle']))."\">"
-				. __( $data3['ProfileCustomTitle'].$measurements_label, RBAGENCY_interact_TEXTDOMAIN)
-				."</label>\n";
-				if($data3['ProfileCustomTitle']=="Height" AND $rb_agency_option_unittype==1){
-					echo "<div>";
-					echo "<select name=\"ProfileCustomID". $data3['ProfileCustomID'] ."\">\n";
-					echo "<option value=\"\">--</option>\n";
+				if($data3['ProfileCustomOptions']==3){
+					echo "<div id=\"". $styleid ."\" class=\"". $styleclass ." rbselect rbsingle\">";
+					echo "<label for=\"".strtolower(trim($data3['ProfileCustomTitle']))."\">"
+					. __( $data3['ProfileCustomTitle'].$measurements_label, RBAGENCY_interact_TEXTDOMAIN)
+					."</label>\n";
+					if($rb_agency_option_unittype==1){
+						echo "<div>";
+						echo "<select name=\"ProfileCustomID". $data3['ProfileCustomID'] ."\">\n";
+						echo "<option value=\"\">--</option>\n";
 
-					$i=36;
-						$heightraw = 0;
-						$heightfeet = 0;
-						$heightinch = 0;
-						while($i<=90)  {
-								$heightraw = $i;
-								$heightfeet = floor($heightraw/12);
-								$heightinch = $heightraw - floor($heightfeet*12);
-								echo " <option value=\"". $i ."\" ".
-								retrieve_datavalue("",$data3['ProfileCustomID'],$ProfileID,"dropdown",$i)  .">"
-									. $heightfeet ." ft ". $heightinch ." in</option>\n";
-								$i++;
-						}
+						$i=36;
+							$heightraw = 0;
+							$heightfeet = 0;
+							$heightinch = 0;
+							while($i<=90)  {
+									$heightraw = $i;
+									$heightfeet = floor($heightraw/12);
+									$heightinch = $heightraw - floor($heightfeet*12);
+									echo " <option value=\"". $i ."\" ".
+									retrieve_datavalue("",$data3['ProfileCustomID'],$ProfileID,"dropdown",$i)  .">"
+										. $heightfeet ." ft ". $heightinch ." in</option>\n";
+									$i++;
+							}
 
-					echo " </select>\n";
+						echo " </select>\n";
+						echo "</div>";
+
+					}
+						else {
+
+					echo '<div><input type="text" name="ProfileCustomID'. $data3['ProfileCustomID']
+					.'" value="'. retrieve_datavalue(isset($_REQUEST["ProfileCustomID". $data3['ProfileCustomID']])?$_REQUEST["ProfileCustomID". $data3['ProfileCustomID']]:"",
+														$data3['ProfileCustomID'],$ProfileID, 'textbox')
+					.'" /></div>';
+					;
+					}
 					echo "</div>";
-
+				}else{
+					echo "	<div id=\"rbfield-". $data3['ProfileCustomID'] ."\" class=\"rbfield rbtextarea rbsingle\">\n";
+					echo "		<label for=\"ProfileCustomID". $data3['ProfileCustomID'] ."\">".__($data3['ProfileCustomTitle'].$measurements_label, RBAGENCY_TEXTDOMAIN).":</label>\n";
+					echo "		<div><input type=\"text\" name=\"ProfileCustomID". $data3['ProfileCustomID'] ."\" value=\"". retrieve_datavalue(isset($_REQUEST["ProfileCustomID". $data3['ProfileCustomID']])?$_REQUEST["ProfileCustomID". $data3['ProfileCustomID']]:"",
+														$data3['ProfileCustomID'],$ProfileID, 'textbox') ."\" /></div>\n";
+					echo "	</div>";
 				}
-					else {
-
-			echo '<div><input type="text" name="ProfileCustomID'. $data3['ProfileCustomID']
-				.'" value="'. retrieve_datavalue(isset($_REQUEST["ProfileCustomID". $data3['ProfileCustomID']])?$_REQUEST["ProfileCustomID". $data3['ProfileCustomID']]:"",
-													$data3['ProfileCustomID'],$ProfileID, 'textbox')
-				.'" /></div>';
-				;
-				}
-				echo "</div>";
+				
 			}
 
 			}// end if
