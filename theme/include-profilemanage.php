@@ -35,6 +35,7 @@
 		$ProfileType				=stripslashes($data['ProfileType']);
 		$ProfileType 				=explode(",",$ProfileType);
 		$ProfileTypeNotArray		=stripslashes($data['ProfileType']);
+		$ProfileResume		=stripslashes($data['ProfileResume']);
 		$i=1;
 		foreach($results3 as $data3) {
 
@@ -391,6 +392,18 @@
 			}// end if
 
 		}// End while
+
+		echo "<div class=\"rbfield\">";
+		echo "		<label>". __("Resume Editor", RBAGENCY_interact_TEXTDOMAIN)."</label>";
+		echo " <div id=\"\" class=\"\" style=\"width: 700px !important;overflow: hidden;margin-left:250px;margin-top:-35px;\">";		
+			$profile_resume = $ProfileResume;
+			$content = !empty($profile_resume) ? $profile_resume : "";
+			$editor_id = 'profile_resume'; 
+		
+			wp_editor( $content, $editor_id,array("wpautop"=>false,"tinymce"=>true) ); 
+		
+		echo "	</div>\n";
+		echo " </div>\n";
 
 		echo " <div id=\"rbfield-last-update\" class=\"". $styleclass ." rbtext rbsingle\">";
 		echo "		<label>". __("Last updated", RBAGENCY_interact_TEXTDOMAIN)."</label>";

@@ -172,11 +172,11 @@ if (isset($_POST['action'])) {
 				
 		
 			
-			
+			$profile_resume = !empty($_POST['profile_resume']) ? $_POST['profile_resume'] : "";
 			// Update Record
 			$update = "UPDATE " . table_agency_profile . " SET 
 			ProfileDateUpdated=now(), $ProfileStatus
-			ProfileType='" . $wpdb->escape($ProfileType) . "'
+			ProfileType='" . $wpdb->escape($ProfileType) . "', ProfileResume = '".$wpdb->escape($profile_resume)."'
 			WHERE ProfileID=$ProfileID ";
 
 			$results = $wpdb->query($update);
