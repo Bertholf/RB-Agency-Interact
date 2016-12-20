@@ -144,3 +144,6 @@ p.submit { margin-top: 15px!important; }
     width: 150px;
     margin-right: 15px;
 }
+
+#talent-register{ margin-top:-20px; }
+#talent-register h3{ font-size: 2.5rem!important; }
