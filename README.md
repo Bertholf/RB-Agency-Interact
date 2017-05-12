@@ -1,10 +1,16 @@
 # RB Agency Interact
 Allows profiles to self regsiter and manage their information.
 
-### Current Version 2.4.3
+### Current Version 2.4.4
 
 
 ## Change Log
+
+### 2.4.4
+* fixed - login not working for admin
+* fixed - login redirection
+* new - resume editor section on talent dashboard
+* fixed - backslashes in custom fields registration
 
 ### 2.4.3
 * new feature - admin's ability to customize email notification for model/talent registration
