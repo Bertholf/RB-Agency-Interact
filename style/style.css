@@ -112,7 +112,9 @@ p.submit { margin-top: 15px!important; }
 #rbsignin-register .inline-block .field-row input[type="text"],
 #rbsignin-register .inline-block .field-row input[type="password"] { width: 100%; }
 #rbsignin-register .inline-block .field-row input[type="password"] { margin-bottom: 5px; }
-#rbsignin-register .inline-block .field-row.submit-row { padding-top: 0; }
+#rbsignin-register .inline-block .field-row.password { padding-bottom: 0; }
+#rbsignin-register .inline-block .field-row.options { padding-top: 0; }
+#rbsignin-register .inline-block .field-row a { font-size: small; float: right; }
 
 /* Register */
 #rbsignin-register .inline-block h3 { margin: 20px 0 10px 0; }
@@ -144,6 +146,3 @@ p.submit { margin-top: 15px!important; }
     width: 150px;
     margin-right: 15px;
 }
-
-#talent-register{ margin-top:-20px; }
-#talent-register h3{ font-size: 2.5rem!important; }
