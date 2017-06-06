@@ -606,7 +606,7 @@
 		echo "       </div><!-- #rofile-username -->\n";
 	if ($rb_agencyinteract_option_registerconfirm == 1 && $rb_agencyinteract_option_useraccountcreation == 1) {
 
-		echo "       <div id=\"profile-password\" class=\"rbfield rbpassword rbsingle\">\n";
+		echo "       <div id=\"profile-password\" class=\"clear rbfield rbpassword rbsingle\">\n";
 		echo "   		<label for=\"profile_password\">". __("Password (required)", RBAGENCY_interact_TEXTDOMAIN) ."</label>\n";
 		echo "   		<div><input class=\"text-input\" name=\"profile_password\" type=\"password\" id=\"profile_password\" value=\""; if ( $error ) echo esc_html( $_POST['profile_password'], 1 ); echo "\" /></div>\n";
 		echo "       </div><!-- #profile-password -->\n";
@@ -619,17 +619,17 @@
 		echo "       </div><!-- #profile-contact-display-name -->\n";
 
 	}
-	echo "       <div id=\"profile-first-name\" class=\"rbfield rbtext rbsingle\">\n";
+	echo "       <div id=\"profile-first-name\" class=\"clear rbfield rbtext rbsingle\">\n";
 	echo "   		<label for=\"profile_first_name\">". __("First Name", RBAGENCY_interact_TEXTDOMAIN) ."</label>\n";
 	echo "   		<div><input class=\"text-input\" name=\"profile_first_name\" type=\"text\" id=\"profile_first_name\" value=\""; if ( $error ) echo esc_html( $_POST['profile_first_name'], 1 ); echo "\" /></div>\n";
 	echo "       </div><!-- #profile-first-name -->\n";
 
-	echo "       <div id=\"profile-last-name\" class=\"rbfield rbtext rbsingle\">\n";
+	echo "       <div id=\"profile-last-name\" class=\"clear rbfield rbtext rbsingle\">\n";
 	echo "   		<label for=\"profile_last_name\">". __("Last Name", RBAGENCY_interact_TEXTDOMAIN) ."</label>\n";
 	echo "   		<div><input class=\"text-input\" name=\"profile_last_name\" type=\"text\" id=\"profile_last_name\" value=\""; if ( $error ) echo esc_html( $_POST['profile_last_name'], 1 ); echo "\" /></div>\n";
 	echo "       </div><!-- #profile_last_name -->\n";
 
-	echo "       <div id=\"profile-email\" class=\"rbfield rbemail rbsingle\">\n";
+	echo "       <div id=\"profile-email\" class=\"clear rbfield rbemail rbsingle\">\n";
 	echo "   		<label for=\"email\">". __("E-mail (required)", RBAGENCY_interact_TEXTDOMAIN) ."</label>\n";
 	echo "   		<div><input class=\"text-input\" name=\"profile_email\" type=\"text\" id=\"profile_email\" value=\""; if ( $error ) echo esc_html( $_POST['profile_email'], 1 ); echo "\" /></div>\n";
 	echo "       </div><!-- #profile-email -->\n";
@@ -645,7 +645,7 @@
 	$profileTypeGenders = get_option("DataTypeID_".$requestProfileTypeID);
 	$profileTypeGendersArr = explode(",",$profileTypeGenders);
 	
-	echo "       <div id=\"profile-gender\" class=\"rbfield rbselect rbsingle\">\n";
+	echo "       <div id=\"profile-gender\" class=\"clear rbfield rbselect rbsingle\">\n";
 	echo "			<label for=\"profile_gender\">". __("Gender", RBAGENCY_interact_TEXTDOMAIN) ."</label>\n";
 					$query= "SELECT GenderID, GenderTitle FROM " .  table_agency_data_gender . " GROUP BY GenderTitle ";
 	echo "			<div><select id='ProfileGender' name=\"ProfileGender\">";
@@ -665,7 +665,7 @@
 	echo "		</div><!-- #profile-gender -->\n";
 
 	if($rb_agencyinteract_option_allow_upload_photo>0){
-		echo "<div id=\"upload-profile-photo\" class=\"rbfield\">\n";
+		echo "<div id=\"upload-profile-photo\" class=\"clear rbfield\">\n";
 		echo "		<label>". __("Upload Photos", RBAGENCY_interact_TEXTDOMAIN) .":</label>\n";
 		echo "<div>";
 		for($idx=0;$idx<=2;$idx++){
@@ -677,7 +677,7 @@
 	
 
 
-	echo "	<fieldset id=\"profile-gender\" class=\"rbfield rbcheckbox rbmulti\">\n";
+	echo "	<fieldset id=\"profile-gender\" class=\"clear rbfield rbcheckbox rbmulti\">\n";
 	echo "		<legend for=\"profile_type\">". __("Type of Profile", RBAGENCY_interact_TEXTDOMAIN) ."</legend>\n";
 
 				//check for parentid column
@@ -782,14 +782,14 @@
 
 	echo "</div>";
 
-	echo "      <div id=\"profile-agree\" class=\"rbfield rbtext rbsingle\">\n";
+	echo "      <div id=\"profile-agree\" class=\"clear rbfield rbtext rbsingle\">\n";
 					$profile_agree = get_the_author_meta("profile_agree", $current_user->ID );
 	echo "  		<label></label>\n";
 	echo "  		<div><input type=\"checkbox\" name=\"profile_agree\" value=\"yes\" /> ". sprintf(__("I agree to the %s terms of service", RBAGENCY_interact_TEXTDOMAIN), "<a href=\"".$rb_agency_option_model_toc ."\" target=\"_blank\">") ."</a></div>\n";
 	echo "      </div><!-- #profile-agree -->\n";
     if($rb_agency_interact_options_arr['rb_agencyinteract_site_key']){
             echo '<script src="https://www.google.com/recaptcha/api.js" async defer></script>';
-            echo '<div class="rbfield rbsingle"><div class="rbfield rbsubmit rbsingle g-recaptcha" data-sitekey="'.$rb_agency_interact_options_arr['rb_agencyinteract_site_key'].'"></div></div>';
+            echo '<div class="clear rbfield rbsingle"><div class="rbfield rbsubmit rbsingle g-recaptcha" data-sitekey="'.$rb_agency_interact_options_arr['rb_agencyinteract_site_key'].'"></div></div>';
         }
 	echo "<div id=\"profile-submit\" class=\"clear rbfield rbsubmit rbsingle\">\n";
 	echo "<input name=\"adduser\" type=\"submit\" id=\"addusersub\" class=\"submit button\" value='". __("Register", RBAGENCY_interact_TEXTDOMAIN) ."'/>";
