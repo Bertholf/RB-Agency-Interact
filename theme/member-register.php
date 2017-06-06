@@ -620,7 +620,10 @@
 	echo "  		<label></label>\n";
 	echo "  		<div><input type=\"checkbox\" name=\"profile_agree\" value=\"yes\" /> ". sprintf(__("I agree to the %s terms of service", RBAGENCY_interact_TEXTDOMAIN), "<a href=\"".$rb_agency_option_model_toc ."\" target=\"_blank\">") ."</a></div>\n";
 	echo "      </div><!-- #profile-agree -->\n";
-
+    if($rb_agency_interact_options_arr['rb_agencyinteract_site_key']){
+        echo '<script src="https://www.google.com/recaptcha/api.js" async defer></script>';
+        echo '<div class="rbfield rbsingle"><div class="rbfield rbsubmit rbsingle g-recaptcha" data-sitekey="'.$rb_agency_interact_options_arr['rb_agencyinteract_site_key'].'"></div></div>';
+    }
 	echo "      <div id=\"profile-submit\" class=\"rbfield rbsubmit rbsingle\">\n";
 	echo "   		<input name=\"adduser\" type=\"submit\" id=\"addusersub\" class=\"submit button\" value='". __("Register", RBAGENCY_interact_TEXTDOMAIN) ."'/>";
 

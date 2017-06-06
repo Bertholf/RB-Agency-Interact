@@ -186,6 +186,27 @@
 			}
 			
 		}
+        
+        if(isset($_POST['g-recaptcha-response'])){ echo $_POST['g-recaptcha-response'];
+            
+            $data = array(
+            'secret' => $rb_agency_interact_options_arr['rb_agencyinteract_secret_key'],
+            'response' => $_POST['g-recaptcha-response']
+            );
+
+            $verify = curl_init();
+            curl_setopt($verify, CURLOPT_URL, "https://www.google.com/recaptcha/api/siteverify");
+            curl_setopt($verify, CURLOPT_POST, true);
+            curl_setopt($verify, CURLOPT_POSTFIELDS, http_build_query($data));
+            curl_setopt($verify, CURLOPT_SSL_VERIFYPEER, false);
+            curl_setopt($verify, CURLOPT_RETURNTRANSFER, true);
+            $response = curl_exec($verify);
+            $result = json_decode($response);
+            if($result->success==false){
+                $error .= __("Recaptcha code invalid! <br />", RBAGENCY_interact_TEXTDOMAIN);
+				$have_error = true;
+            }
+        }
 
 		
 
@@ -766,9 +787,12 @@
 	echo "  		<label></label>\n";
 	echo "  		<div><input type=\"checkbox\" name=\"profile_agree\" value=\"yes\" /> ". sprintf(__("I agree to the %s terms of service", RBAGENCY_interact_TEXTDOMAIN), "<a href=\"".$rb_agency_option_model_toc ."\" target=\"_blank\">") ."</a></div>\n";
 	echo "      </div><!-- #profile-agree -->\n";
-
-	echo "      <div id=\"profile-submit\" class=\"rbfield rbsubmit rbsingle\">\n";
-	echo "   		<input name=\"adduser\" type=\"submit\" id=\"addusersub\" class=\"submit button\" value='". __("Register", RBAGENCY_interact_TEXTDOMAIN) ."'/>";
+    if($rb_agency_interact_options_arr['rb_agencyinteract_site_key']){
+            echo '<script src="https://www.google.com/recaptcha/api.js" async defer></script>';
+            echo '<div class="rbfield rbsingle"><div class="rbfield rbsubmit rbsingle g-recaptcha" data-sitekey="'.$rb_agency_interact_options_arr['rb_agencyinteract_site_key'].'"></div></div>';
+        }
+	echo "<div id=\"profile-submit\" class=\"clear rbfield rbsubmit rbsingle\">\n";
+	echo "<input name=\"adduser\" type=\"submit\" id=\"addusersub\" class=\"submit button\" value='". __("Register", RBAGENCY_interact_TEXTDOMAIN) ."'/>";
 
 					// if ( current_user_can("create_users") ) { _e("Add User", RBAGENCY_interact_TEXTDOMAIN); } else { _e("Register", RBAGENCY_interact_TEXTDOMAIN); }echo "\" />\n";
 					wp_nonce_field("add-user");
@@ -776,6 +800,7 @@
 	echo "   		<input name=\"action\" type=\"hidden\" id=\"action\" value=\"adduser\" />\n";
 	echo "       </div><!-- #profile-submit -->\n";
 	echo "   </form>\n";
+    echo "<div class='clear'></div>";
 	echo "   </div><!-- .rbform -->\n";
 
 			}
