@@ -114,7 +114,7 @@ p.submit { margin-top: 15px!important; }
 #rbsignin-register .inline-block .field-row input[type="password"] { margin-bottom: 5px; }
 #rbsignin-register .inline-block .field-row.password { padding-bottom: 0; }
 #rbsignin-register .inline-block .field-row.options { padding-top: 0; }
-#rbsignin-register .inline-block .field-row a { font-size: small; float: right; }
+#rbsignin-register .inline-block .field-row a { font-size: small; float: right; margin-top: 4px; }
 
 /* Register */
 #rbsignin-register .inline-block h3 { margin: 20px 0 10px 0; }
