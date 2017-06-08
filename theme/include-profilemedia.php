@@ -4,6 +4,7 @@
 	global $wpdb;
 	get_currentuserinfo();
 	$ProfileUserLinked = $current_user->ID;
+	$medialink_option = $rb_agency_options_arr['rb_agency_option_profilemedia_links'];
 
 	$query1 = "SELECT * FROM " . table_agency_profile . " WHERE ProfileUserLinked='$ProfileUserLinked'";
 	$results1 = $wpdb->get_results($query1,ARRAY_A);
@@ -224,7 +225,7 @@
 					$countMedia =  $wpdb->num_rows;
 					foreach($resultsMedia as $dataMedia) {
 						if ($dataMedia['ProfileMediaType'] == "Demo Reel" || $dataMedia['ProfileMediaType'] == "Video Monologue" || $dataMedia['ProfileMediaType'] == "Video Slate") {
-							$outVideoMedia .= "<div class=\"media-video\">" . $dataMedia['ProfileMediaType'] . "<br />" . rb_agency_get_videothumbnail($dataMedia['ProfileMediaURL'], $dataMedia['ProfileVideoType']) . "<br /><a href=\"" . $dataMedia['ProfileMediaURL'] . "\" target=\"_blank\">".sprintf(__("Link to %s Video",RBAGENCY_interact_TEXTDOMAIN),ucfirst($dataMedia['ProfileVideoType']))."</a><br />[<a href=\"javascript:confirmDelete('" . $dataMedia['ProfileMediaID'] . "','" . $dataMedia['ProfileMediaType'] . "')\">".__('DELETE',RBAGENCY_interact_TEXTDOMAIN)."</a>]</div>\n";
+							$outVideoMedia .= "<div class=\"media-file media-video\">" . $dataMedia['ProfileMediaType'] . "<br />" . rb_agency_get_videothumbnail($dataMedia['ProfileMediaURL'], $dataMedia['ProfileVideoType']) . "<br /><a href=\"" . $dataMedia['ProfileMediaURL'] . "\" target=\"_blank\">".sprintf(__("Link to %s Video",RBAGENCY_interact_TEXTDOMAIN),ucfirst($dataMedia['ProfileVideoType']))."</a><br />[<a href=\"javascript:confirmDelete('" . $dataMedia['ProfileMediaID'] . "','" . $dataMedia['ProfileMediaType'] . "')\" class=\"delete-file\">".__('DELETE',RBAGENCY_interact_TEXTDOMAIN)."</a>]</div>\n";
 						} elseif ($dataMedia['ProfileMediaType'] == "VoiceDemo") {
 							
 							$_titleVoice = get_option("voicedemo_". $dataMedia['ProfileMediaID']);
@@ -234,26 +235,35 @@
 							
 							if($medialink_option == 2){
 							
-								$outLinkVoiceDemo .= "<div class=\"voicedemo\"> <a href=\"". RBAGENCY_UPLOADDIR . $ProfileGallery ."/". $dataMedia['ProfileMediaURL'] ."\" target=\"_blank\">". 
-									$_titleVoice ."</a> [<a href=\"javascript:confirmDelete('". $dataMedia['ProfileMediaID'] ."','".$dataMedia['ProfileMediaType']."')\">".__('DELETE',RBAGENCY_interact_TEXTDOMAIN)."</a>]</div>\n";
-							}else{//force download
+								$outLinkVoiceDemo .= "<div class=\"media-file voicedemo\"><div class=\"file-box\">";
+								$outLinkVoiceDemo .= "	<a href=\"". RBAGENCY_UPLOADDIR . $ProfileGallery ."/voicedemo/". $dataMedia['ProfileMediaURL'] ."\" target=\"_blank\"><i class=\"fa fa-file-audio-o\"></i></a>";
+								$outLinkVoiceDemo .= "	<br>". $_titleVoice ."<br>";
+								$outLinkVoiceDemo .= "	[<a href=\"javascript:confirmDelete('". $dataMedia['ProfileMediaID'] ."','".$dataMedia['ProfileMediaType']."')\" class=\"delete-file\">".__('DELETE',RBAGENCY_interact_TEXTDOMAIN)."</a>]";
+								$outLinkVoiceDemo .= "</div></div>\n";
+							} else {//force download
 							
-							
-							
-								$force_download_url = wpfdl_dl($ProfileGallery ."/". $dataMedia['ProfileMediaURL'],get_option('wpfdl_token'),'dl');
-								$outLinkVoiceDemo .= "<div class=\"voicedemo forcedl\"> <a ".$force_download_url ." target=\"_blank\">". 
-								$_titleVoice ."</a> [<a href=\"javascript:confirmDelete('". $dataMedia['ProfileMediaID'] ."','".$dataMedia['ProfileMediaType']."')\">".__('DELETE',RBAGENCY_interact_TEXTDOMAIN)."</a>]</div>\n";
+								$force_download_url = $ProfileGallery ."/voicedemo/". $dataMedia['ProfileMediaURL'];
+								$outLinkVoiceDemo .= "<div class=\"voicedemo forcedl\"><div class=\"file-box\">";
+								$outLinkVoiceDemo .= "	<a href=\"".$force_download_url ."\" target=\"_blank\"><i class=\"fa fa-file-audio-o\"></i></a>";
+								$outLinkVoiceDemo .= "	<br>". $_titleVoice ."<br>";
+								$outLinkVoiceDemo .= "	[<a href=\"javascript:confirmDelete('". $dataMedia['ProfileMediaID'] ."','".$dataMedia['ProfileMediaType']."')\" class=\"delete-file\">".__('DELETE',RBAGENCY_interact_TEXTDOMAIN)."</a>]";
+								$outLinkVoiceDemo .= "</div></div>\n";
 							}
-
-
-						}
-						elseif ($dataMedia['ProfileMediaType'] == "Resume") {
+						} elseif ($dataMedia['ProfileMediaType'] == "Resume") {
 
 							if($medialink_option == 2){
-								$outLinkResume .= "<div class=\"resume\"> <a href=\"". RBAGENCY_UPLOADDIR . $ProfileGallery ."/". $dataMedia['ProfileMediaURL'] ."\" target=\"_blank\">". __($dataMedia['ProfileMediaType'],RBAGENCY_interact_TEXTDOMAIN) ."</a> [<a href=\"javascript:confirmDelete('". $dataMedia['ProfileMediaID'] ."','".$dataMedia['ProfileMediaType']."')\">".__('DELETE',RBAGENCY_interact_TEXTDOMAIN)."</a>]</div>\n";
-							}else{//force download
-								$force_download_url = wpfdl_dl($ProfileGallery ."/". $dataMedia['ProfileMediaURL'],get_option('wpfdl_token'),'dl');
-								$outLinkResume .= "<div class=\"resume forcedl\"> <a ".$force_download_url ." target=\"_blank\">". __($dataMedia['ProfileMediaType'],RBAGENCY_interact_TEXTDOMAIN) ."</a> [<a href=\"javascript:confirmDelete('". $dataMedia['ProfileMediaID'] ."','".$dataMedia['ProfileMediaType']."')\">".__('DELETE',RBAGENCY_interact_TEXTDOMAIN)."</a>]</div>\n";
+								$outLinkResume .= "<div class=\"media-file resume\"><div class=\"file-box\">";
+								$outLinkResume .= "	<a href=\"". RBAGENCY_UPLOADDIR . $ProfileGallery ."/resume/". $dataMedia['ProfileMediaURL'] ."\" target=\"_blank\"><i class=\"fa fa-file-audio-o\"></i></a>";
+								$outLinkResume .= "	<br>".__($dataMedia['ProfileMediaType'],RBAGENCY_interact_TEXTDOMAIN) ."<br>";
+								$outLinkResume .= "	[<a href=\"javascript:confirmDelete('". $dataMedia['ProfileMediaID'] ."','".$dataMedia['ProfileMediaType']."')\" class=\"delete-file\">".__('DELETE',RBAGENCY_interact_TEXTDOMAIN)."</a>]\n";
+								$outLinkResume .= "</div></div>\n";
+							} else {//force download
+								$force_download_url = $ProfileGallery ."/resume/". $dataMedia['ProfileMediaURL'];
+								$outLinkResume .= "<div class=\"media-file resume forcedl\"><div class=\"file-box\">";
+								$outLinkResume .= "	<a href=\"".$force_download_url ."\" target=\"_blank\"><i class=\"fa fa-file-pdf-o\"></i></a>";
+								$outLinkResume .= "	<br>".__($dataMedia['ProfileMediaType'],RBAGENCY_interact_TEXTDOMAIN) ."<br>";
+								$outLinkResume .= "	[<a href=\"javascript:confirmDelete('". $dataMedia['ProfileMediaID'] ."','".$dataMedia['ProfileMediaType']."')\" class=\"delete-file\">".__('DELETE',RBAGENCY_interact_TEXTDOMAIN)."</a>]";
+								$outLinkResume .= "</div></div>\n";
 							}
 
 							
@@ -261,21 +271,36 @@
 						elseif ($dataMedia['ProfileMediaType'] == "Headshot") {
 
 							if($medialink_option == 2){
-								$outLinkHeadShot .= "<div class=\"headshot\"> <a href=\"". RBAGENCY_UPLOADDIR . $ProfileGallery ."/". $dataMedia['ProfileMediaURL'] ."\" target=\"_blank\">". __($dataMedia['ProfileMediaType'],RBAGENCY_interact_TEXTDOMAIN) ."</a> [<a href=\"javascript:confirmDelete('". $dataMedia['ProfileMediaID'] ."','".$dataMedia['ProfileMediaType']."')\" >".__('DELETE',RBAGENCY_interact_TEXTDOMAIN)."</a>]</div>\n";
+								$outLinkHeadShot .= "<div class=\"media-file headshot\"><div class=\"file-box\">";
+								$outLinkHeadShot .= "	<a href=\"". RBAGENCY_UPLOADDIR . $ProfileGallery ."/headshot/". $dataMedia['ProfileMediaURL'] ."\" target=\"_blank\"><i class=\"fa fa-picture-o\"></i></a>";
+								$outLinkHeadShot .= "	<br>". __($dataMedia['ProfileMediaType'],RBAGENCY_interact_TEXTDOMAIN) ."<br>";
+								$outLinkHeadShot .= "	[<a href=\"javascript:confirmDelete('". $dataMedia['ProfileMediaID'] ."','".$dataMedia['ProfileMediaType']."')\" class=\"delete-file\">".__('DELETE',RBAGENCY_interact_TEXTDOMAIN)."</a>]\n";
+								$outLinkHeadShot .= "</div></div>\n";
 							}else{//force download
-								$force_download_url = wpfdl_dl($ProfileGallery ."/". $dataMedia['ProfileMediaURL'],get_option('wpfdl_token'),'dl');
-								$outLinkHeadShot .= "<div class=\"headshot forcedl\"> <a ".$force_download_url ." target=\"_blank\">". __($dataMedia['ProfileMediaType'],RBAGENCY_interact_TEXTDOMAIN) ."</a> [<a href=\"javascript:confirmDelete('". $dataMedia['ProfileMediaID'] ."','".$dataMedia['ProfileMediaType']."')\" >".__('DELETE',RBAGENCY_interact_TEXTDOMAIN)."</a>]</div>\n";
+								$force_download_url = $ProfileGallery ."/headshot/". $dataMedia['ProfileMediaURL'];
+								$outLinkHeadShot .= "<div class=\"media-file headshot forcedl\"><div class=\"file-box\">";
+								$outLinkHeadShot .= "	<a href=\"".$force_download_url ."\" target=\"_blank\"><i class=\"fa fa-picture-o\"></i></a>";
+								$outLinkHeadShot .= "	<br>". __($dataMedia['ProfileMediaType'],RBAGENCY_interact_TEXTDOMAIN) ."<br>";
+								$outLinkHeadShot .= "	[<a href=\"javascript:confirmDelete('". $dataMedia['ProfileMediaID'] ."','".$dataMedia['ProfileMediaType']."')\" class=\"delete-file\">".__('DELETE',RBAGENCY_interact_TEXTDOMAIN)."</a>]\n";
+								$outLinkHeadShot .= "</div></div>\n";
 							}
 							
 						} elseif ($dataMedia['ProfileMediaType'] == "CompCard") {
 
 							if($medialink_option == 2){
-								$outLinkComCard .= "<div class=\"compcard\"> <a href=\"". RBAGENCY_UPLOADDIR . $ProfileGallery ."/". $dataMedia['ProfileMediaURL'] ."\" target=\"_blank\">". __("Comp Card",RBAGENCY_interact_TEXTDOMAIN) ."</a> [<a href=\"javascript:confirmDelete('". $dataMedia['ProfileMediaID'] ."','".$dataMedia['ProfileMediaType']."')\">".__('DELETE',RBAGENCY_interact_TEXTDOMAIN)."</a>]</div>\n";
+								$outLinkComCard .= "<div class=\"media-file compcard\"><div class=\"file-box\">";
+								$outLinkComCard .= "	<a href=\"". RBAGENCY_UPLOADDIR . $ProfileGallery ."/compcard/". $dataMedia['ProfileMediaURL'] ."\" target=\"_blank\"><i class=\"fa fa-picture-o\"></i></a>";
+								$outLinkComCard .= 		"<br>".__("Comp Card",RBAGENCY_interact_TEXTDOMAIN)."<br>";
+								$outLinkComCard .= "	[<a href=\"javascript:confirmDelete('". $dataMedia['ProfileMediaID'] ."','".$dataMedia['ProfileMediaType']."')\" class=\"delete-file\">".__('DELETE',RBAGENCY_interact_TEXTDOMAIN)."</a>]";
+								$outLinkComCard .= "</div></div>\n";
 							}else{//force download
-								$force_download_url = wpfdl_dl($ProfileGallery ."/". $dataMedia['ProfileMediaURL'],get_option('wpfdl_token'),'dl');
-								$outLinkComCard .= "<div class=\"compcard forcedl\"> <a ".$force_download_url ." target=\"_blank\">". __("Comp Card",RBAGENCY_interact_TEXTDOMAIN) ."</a> [<a href=\"javascript:confirmDelete('". $dataMedia['ProfileMediaID'] ."','".$dataMedia['ProfileMediaType']."')\">".__('DELETE',RBAGENCY_interact_TEXTDOMAIN)."</a>]</div>\n";
-							}
-							
+								$force_download_url = $ProfileGallery ."/compcard/". $dataMedia['ProfileMediaURL'];
+								$outLinkComCard .= "<div class=\"media-file compcard forcedl\"><div class=\"file-box\">";
+								$outLinkComCard .= "	<a href=\"".$force_download_url ."\" target=\"_blank\"><i class=\"fa fa-picture-o\"></i></a>";
+								$outLinkComCard .= "	<br>". __("Comp Card",RBAGENCY_interact_TEXTDOMAIN) ."<br>";
+								$outLinkComCard .= "	[<a href=\"javascript:confirmDelete('". $dataMedia['ProfileMediaID'] ."','".$dataMedia['ProfileMediaType']."')\" class=\"delete-file\">".__('DELETE',RBAGENCY_interact_TEXTDOMAIN)."</a>]\n";
+								$outLinkComCard .= "</div></div>\n";
+							}							
 							
 						}elseif ($dataMedia['ProfileMediaType'] == "SoundCloud") {
 							$outSoundCloud .= RBAgency_Common::rb_agency_embed_soundcloud($dataMedia['ProfileMediaURL'])." [<a href=\"javascript:confirmDelete('". $dataMedia['ProfileMediaID'] ."','".$dataMedia['ProfileMediaType']."')\">DELETE</a>]<br/>\n";
@@ -285,32 +310,29 @@
 							$custom_media_type = $custom_media_info[2];
 							$custom_media_id = $custom_media_info[4];
 							$query = current($wpdb->get_results("SELECT MediaCategoryTitle, MediaCategoryFileType FROM  ".table_agency_data_media." WHERE MediaCategoryID='".$custom_media_id."'",ARRAY_A));
-							$outCustomMediaLink .= "<div class=\"soundcloud\"><a href=\"" . RBAGENCY_UPLOADDIR . $ProfileGallery . "/" . $dataMedia['ProfileMediaURL'] . "\" target=\"_blank\">" . (isset($query["MediaCategoryTitle"])?$query["MediaCategoryTitle"]:$custom_media_title). "</a> [<a href=\"javascript:confirmDelete('" . $dataMedia['ProfileMediaID'] . "','" . $dataMedia['ProfileMediaType'] . "')\" title=\"Delete this File\" class=\"delete-file\">".__('DELETE',RBAGENCY_interact_TEXTDOMAIN)."</a>]</div>\n";
+							$outCustomMediaLink .= "<div class=\"media-file soundcloud\"><a href=\"" . RBAGENCY_UPLOADDIR . $ProfileGallery . "/" . $dataMedia['ProfileMediaURL'] . "\" target=\"_blank\">" . (isset($query["MediaCategoryTitle"])?$query["MediaCategoryTitle"]:$custom_media_title). "</a> [<a href=\"javascript:confirmDelete('" . $dataMedia['ProfileMediaID'] . "','" . $dataMedia['ProfileMediaType'] . "')\" title=\"Delete this File\" class=\"delete-file\">".__('DELETE',RBAGENCY_interact_TEXTDOMAIN)."</a>]</div>\n";
 						} else {
 							// $outCustomMediaLink .= "<div class=\"soundcloud forcedl\"> <a href=\"". $dataMedia['ProfileMediaURL'] ."\" target=\"_blank\">". $dataMedia['ProfileMediaType'] ."</a> [<a href=\"javascript:confirmDelete('". $dataMedia['ProfileMediaID'] ."','".$dataMedia['ProfileMediaType']."')\">".__('DELETE',RBAGENCY_interact_TEXTDOMAIN)."</a>]</div>\n";
-							$outCustomMediaLink .= "<div class=\"soundcloud forcedl\"> <a href=\"". $dataMedia['ProfileMediaURL'] ."\" target=\"_blank\"><img src=\"". get_bloginfo("url")."/wp-content/plugins/rb-agency/ext/timthumb.php?src=".RBAGENCY_UPLOADDIR . $ProfileGallery ."/". $dataMedia['ProfileMediaURL'] ."&a=t&w=150&h=200\" /></a><br> [<a href=\"javascript:confirmDelete('". $dataMedia['ProfileMediaID'] ."','".$dataMedia['ProfileMediaType']."')\">".__('DELETE',RBAGENCY_interact_TEXTDOMAIN)."</a>]</div>\n";
+							$outCustomMediaLink .= "<div class=\"media-file polaroid forcedl\">";
+							$outCustomMediaLink .= "<a href=\"". $dataMedia['ProfileMediaURL'] ."\" target=\"_blank\"><img src=\"". get_bloginfo("url")."/wp-content/plugins/rb-agency/ext/timthumb.php?src=".RBAGENCY_UPLOADDIR . $ProfileGallery ."/polariod/". $dataMedia['ProfileMediaURL'] ."&a=t&w=150&h=200\" /></a><br>";
+							$outCustomMediaLink .= "[<a href=\"javascript:confirmDelete('". $dataMedia['ProfileMediaID'] ."','".$dataMedia['ProfileMediaType']."')\" class=\"delete-file\">".__('DELETE',RBAGENCY_interact_TEXTDOMAIN)."</a>]\n";
+							$outCustomMediaLink .= "</div>\n";
 						}
 					}
 
-					echo '<p>';
-					echo $outLinkVoiceDemo;
-					echo '</p>';
-					echo '<p>';
-					echo $outLinkResume;
-					echo '</p>';
-					echo '<p>';
+					echo "<div class=\"media-file-group\">";
+					echo $outLinkVoiceDemo;					
+					echo $outLinkResume;					
 					echo $outLinkHeadShot;
-					echo '</p>';
-					echo '<p>';
 					echo $outLinkComCard;
-					echo '</p>';
-					echo '<p>';
+					echo "</div>";
+					echo "<div class=\"media-file-group media-polaroid\">";
 					echo $outCustomMediaLink;
-					echo '</p>';
-					echo '<p>';
+					echo "</div>";
 					echo $outSoundCloud;
-					echo '</p>';
+					echo "<div class=\"media-file-group media-video\">";
 					echo $outVideoMedia;
+					echo "</div>";
 
 					if ($countMedia < 1) {
 						echo "<p><em>". __("There are no additional media linked", RBAGENCY_interact_TEXTDOMAIN) ."</em></p>\n";

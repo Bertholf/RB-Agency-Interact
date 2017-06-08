@@ -53,7 +53,6 @@
 #profile-manage .manage-section.upload > div input[type="file"] { display: inline-block; }
 #profile-manage .manage-section.gallery > div select,
 #profile-manage .manage-section.upload > div select { margin-right: 5px; margin-left: 5px; }
-#profile-manage .manage-section.upload > div textarea { margin-top: 5px; }
 .media-files .file { float: left;width: 120px; margin: 0 10px 10px 0; text-align: center; font-size: smaller; }
 p.submit { margin-top: 15px!important; }
 
@@ -88,7 +87,12 @@ p.submit { margin-top: 15px!important; }
 	/theme/include-profilemedia.php */
 #profile-manage .manage-section.upload div textarea { vertical-align: top; }
 #profile-manage .manage-section.upload p { margin: 15px 0; }
-#profile-manage .manage-section.media .media-video { display: inline-block; margin: 15px; width: 250px; }
+#profile-manage .manage-section.media .media-file { float: left; padding: 15px; width: 25%; }
+#profile-manage .manage-section.media .media-file .fa { font-size: x-large; margin-bottom: 11px; }
+#profile-manage .manage-section.media .media-file .delete-file { font-size: smaller; }
+#profile-manage .manage-section.media .media-file .file-box { text-align: center; padding: 19px 15px; background-color: #fafafa; border: 1px solid #dbdbdb; border-radius: 3px; }
+#profile-manage .manage-section.media .media-file-group { overflow: hidden; margin: 0 -15px; }
+
 
 /* 	Overview - /profile-member/manage/
 	/theme/member-profile.php */
@@ -114,7 +118,7 @@ p.submit { margin-top: 15px!important; }
 #rbsignin-register .inline-block .field-row input[type="password"] { margin-bottom: 5px; }
 #rbsignin-register .inline-block .field-row.password { padding-bottom: 0; }
 #rbsignin-register .inline-block .field-row.options { padding-top: 0; }
-#rbsignin-register .inline-block .field-row a { font-size: small; float: right; margin-top: 4px; }
+#rbsignin-register .inline-block .field-row a { font-size: small; float: right; }
 
 /* Register */
 #rbsignin-register .inline-block h3 { margin: 20px 0 10px 0; }
