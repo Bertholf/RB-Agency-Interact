@@ -87,11 +87,13 @@ p.submit { margin-top: 15px!important; }
 	/theme/include-profilemedia.php */
 #profile-manage .manage-section.upload div textarea { vertical-align: top; }
 #profile-manage .manage-section.upload p { margin: 15px 0; }
-#profile-manage .manage-section.media .media-file { float: left; padding: 15px; width: 25%; }
+#profile-manage .manage-section.media .media-file { padding: 15px; }
 #profile-manage .manage-section.media .media-file .fa { font-size: x-large; margin-bottom: 11px; }
-#profile-manage .manage-section.media .media-file .delete-file { font-size: smaller; }
+#profile-manage .manage-section.media .media-file .delete-file { font-size: smaller; color: #de5147; }
 #profile-manage .manage-section.media .media-file .file-box { text-align: center; padding: 19px 15px; background-color: #fafafa; border: 1px solid #dbdbdb; border-radius: 3px; }
 #profile-manage .manage-section.media .media-file-group { overflow: hidden; margin: 0 -15px; }
+#profile-manage .manage-section.media .polaroid img { border: 1px solid #dbdbdb; border-radius: 3px; }
+#profile-manage .manage-section.media .media-video img { border-radius: 3px; }
 
 
 /* 	Overview - /profile-member/manage/
@@ -149,4 +151,24 @@ p.submit { margin-top: 15px!important; }
 	float: left;
     width: 150px;
     margin-right: 15px;
+}
+
+/*Small devices (landscape phones, 576px and up)*/
+@media (min-width: 576px) {
+	#profile-manage .manage-section.media .media-file { float: left; width: 50%; }
+}
+
+/*Medium devices (tablets, 768px and up)*/
+@media (min-width: 768px) {
+	#profile-manage .manage-section.media .media-file { width: 33.33333333333333%; }
+}
+
+/*Large devices (desktops, 992px and up)*/
+@media (min-width: 992px) {
+	#profile-manage .manage-section.media .media-file { width: 25%; }
+}
+
+/*Extra large devices (large desktops, 1200px and up)*/
+@media (min-width: 1200px) {
+	#profile-manage .manage-section.media .media-file { width: 25%; }
 }

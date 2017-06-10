@@ -314,7 +314,7 @@
 						} else {
 							// $outCustomMediaLink .= "<div class=\"soundcloud forcedl\"> <a href=\"". $dataMedia['ProfileMediaURL'] ."\" target=\"_blank\">". $dataMedia['ProfileMediaType'] ."</a> [<a href=\"javascript:confirmDelete('". $dataMedia['ProfileMediaID'] ."','".$dataMedia['ProfileMediaType']."')\">".__('DELETE',RBAGENCY_interact_TEXTDOMAIN)."</a>]</div>\n";
 							$outCustomMediaLink .= "<div class=\"media-file polaroid forcedl\">";
-							$outCustomMediaLink .= "<a href=\"". $dataMedia['ProfileMediaURL'] ."\" target=\"_blank\"><img src=\"". get_bloginfo("url")."/wp-content/plugins/rb-agency/ext/timthumb.php?src=".RBAGENCY_UPLOADDIR . $ProfileGallery ."/polariod/". $dataMedia['ProfileMediaURL'] ."&a=t&w=150&h=200\" /></a><br>";
+							$outCustomMediaLink .= "<a href=\"". $dataMedia['ProfileMediaURL'] ."\" target=\"_blank\"><img src=\"". get_bloginfo("url")."/wp-content/plugins/rb-agency/ext/timthumb.php?src=".RBAGENCY_UPLOADDIR . $ProfileGallery ."/polaroid/". $dataMedia['ProfileMediaURL'] ."&a=t&w=430&h=512\" /></a><br>";
 							$outCustomMediaLink .= "[<a href=\"javascript:confirmDelete('". $dataMedia['ProfileMediaID'] ."','".$dataMedia['ProfileMediaType']."')\" class=\"delete-file\">".__('DELETE',RBAGENCY_interact_TEXTDOMAIN)."</a>]\n";
 							$outCustomMediaLink .= "</div>\n";
 						}
