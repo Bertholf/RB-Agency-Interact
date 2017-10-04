@@ -160,8 +160,7 @@
 		<script type="text/javascript">
 				jQuery(function(){
 					jQuery( "input[id=ProfileDateBirth]").datepicker({
-						maxDate: "+1m",
-						dateFormat: "yy-mm-dd"
+						dateFormat: "yy-mm-dd",changeYear:true, yearRange: "-100:+0"
 					});
 				});
 				</script>

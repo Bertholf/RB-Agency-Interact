@@ -147,7 +147,7 @@ if (isset($_POST['action'])) {
 			$ProfileIsFeatured	= 0;
 			$ProfileIsPromoted	= 0;
 			$ProfileStatHits		= 0;
-			$ProfileDateBirth			= $_POST['ProfileDateBirth_Year'] ."-". $_POST['ProfileDateBirth_Month'] ."-". $_POST['ProfileDateBirth_Day'];
+			$ProfileDateBirth			= $_POST['ProfileDateBirth'];
 			//$ProfileGallery 		= rb_agency_interact_checkdir($ProfileGallery); // Check directory existence , create if does not exist.
 			$ProfileGallery = rb_agency_createdir($ProfileGallery);
 			// Create Record
