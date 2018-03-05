@@ -122,7 +122,10 @@ echo $rb_header = RBAgency_Common::rb_header();
 							
 							//audio files
 							$dir = RBAGENCY_UPLOADPATH ."_casting-jobs/";
-							$files = scandir($dir, 0);
+							$files = "";
+                            if(is_dir($dir)){
+                                $files = scandir($dir, 0);
+                            }
 							
 							$medialink_option = $rb_agency_options_arr['rb_agency_option_profilemedia_links'];
 
@@ -140,6 +143,7 @@ echo $rb_header = RBAgency_Common::rb_header();
 									<td><?php echo $job->CastingAvailabilityDateCreated ; ?> </td>
 									<td>
 										<?php 
+                                        if(is_array($files)){
 										for($i = 0; $i < count($files); $i++){
 										$parsedFile = explode('-',$files[$i]);
 
@@ -156,6 +160,7 @@ echo $rb_header = RBAgency_Common::rb_header();
 												
 											}
 										}
+                                        }
 										?>
 
 									</td>

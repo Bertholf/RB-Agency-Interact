@@ -84,7 +84,7 @@ global $wpdb;
 										$types = $p['ProfileCustomTypes'];
 								}
 
-								$types = explode(",",$types); 
+								$types = !is_array($types)? explode(",",$types) : $types; 
 
 								// check ptype if array
 								if(is_array($ptype)){
