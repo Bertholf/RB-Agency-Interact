@@ -5,7 +5,7 @@ Allows profiles to self regsiter and manage their information.
 
 ## Installation
 
-Here are some guidelines to install the RB Agency plugin:
+Here are some guidelines to install the RB Agency Interact plugin:
 
 1. Download the zip file here in github.
 2. Unzip the file.
