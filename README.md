@@ -3,6 +3,33 @@ Allows profiles to self regsiter and manage their information.
 
 ### Current Version 2.4.4
 
+## Installation
+
+Here are some guidelines to install the RB Agency plugin:
+
+1. Download the zip file here in github.
+2. Unzip the file.
+3. Rename the folder to "rb-agency-interact"
+4. Login to your ftp.
+5. Locate the /wp-content/plugins directory.
+6. Upload the entire "rb-agency-interact" folder
+7. Login to your website.
+8. Go to Plugins > Inactive
+9. Locate the "RB Agency Interact" plugin.
+10. Click "Activate".
+
+## Configuration
+
+1. Login to your website.
+2. Go to RB Agency » Settings » Interactive Settings. 
+3. Under "Interactive Settings" click the "Settings" button. Here you may choose the settings and edit the agency's login and registration forms.
+4. Click "Save Changes" button to update.
+
+More detailed information:
+http://rbplugin.com/plugin/rb-agency-interact/documentation/
+
+If you would like help on installation and configuration, you may contact any of our support team:
+http://rbplugin.com/contact-us/request-support/
 
 ## Change Log
 
