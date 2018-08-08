@@ -1,4 +1,4 @@
-# RB Agency Interact
+# AP Agency Interact
 Allows profiles to self regsiter and manage their information.
 
 ### Current Version 2.4.4
@@ -9,27 +9,27 @@ Here are some guidelines to install the RB Agency Interact plugin:
 
 1. Download the zip file here in github.
 2. Unzip the file.
-3. Rename the folder to "rb-agency-interact"
+3. Rename the folder to "ap-agency-interact"
 4. Login to your ftp.
 5. Locate the /wp-content/plugins directory.
-6. Upload the entire "rb-agency-interact" folder
+6. Upload the entire "ap-agency-interact" folder
 7. Login to your website.
 8. Go to Plugins > Inactive
-9. Locate the "RB Agency Interact" plugin.
+9. Locate the "AP Agency Interact" plugin.
 10. Click "Activate".
 
 ## Configuration
 
 1. Login to your website.
-2. Go to RB Agency » Settings » Interactive Settings. 
+2. Go to AP Agency » Settings » Interactive Settings. 
 3. Under "Interactive Settings" click the "Settings" button. Here you may choose the settings and edit the agency's login and registration forms.
 4. Click "Save Changes" button to update.
 
 More detailed information:
-http://rbplugin.com/plugin/rb-agency-interact/documentation/
+http://modelingagencysoftware.com/plugin/rb-agency-interact/documentation/
 
 If you would like help on installation and configuration, you may contact any of our support team:
-http://rbplugin.com/contact-us/
+http://modelingagencysoftware.com/contact-us/
 
 ## Change Log
 
@@ -53,7 +53,7 @@ http://rbplugin.com/contact-us/
 * fixed - admin and users are not getting email notifications.
 
 ### 2.4.2
-* created "RB Login Widget" widget which you can add to the sidebar. This widget will show the "Log Out" if user is logged in.
+* created "AP Login Widget" widget which you can add to the sidebar. This widget will show the "Log Out" if user is logged in.
 * fixed - blank page upon registration
 * fixed - Login Settings > Redirect first time users - i set it to "Redirect to /profile-member/account/" but when I tried to login for the first time, I am still redirected to /profile-member/
 * created a setting similar to models where site admin can redirect casting agents to another url. They want they clients to be * able to register but not view the /casting-dashboard/
